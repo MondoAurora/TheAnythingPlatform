@@ -1,0 +1,197 @@
+package me.giskard.dust.kb;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import me.giskard.dust.DustException;
+import me.giskard.dust.utils.DustUtils;
+
+@SuppressWarnings({ "unchecked", "rawtypes" })
+public class DustKBUtils implements DustKBConsts {
+
+	public static synchronized KBUnit bootLoadAppUnitJsonApi(File f) throws Exception {
+		if (null == DustKBStore.appUnit) {
+			String unitId = DustUtils.cutPostfix(f.getName(), ".");
+			DustKBStore.appUnit = new DustKBUnit(null, unitId);
+			DustKBSerializerJsonApi.loadFile(DustKBStore.appUnit, f);
+		} else {
+			return DustException.wrap(null, "DustKBStore.appUnit already set");
+		}
+
+		return DustKBStore.appUnit;
+	}
+
+	public static <RetType> RetType access(KBAccess access, Object val, Object root, Object... path) {
+		Object curr = root;
+		KBCollType collType = KBCollType.getCollType(root);
+
+		Object ret = null;
+
+		Object prev = null;
+		Object lastKey = null;
+
+		Object prevColl = null;
+		
+		if ( val instanceof Enum ) {
+			val = ((Enum)val).name();
+		}
+
+		for (Object p : path) {
+			if ( p instanceof Enum ) {
+				p = ((Enum)p).name();
+			}
+
+			if (curr instanceof KBObject) {
+				curr = ((DustKBObject) curr).content;
+			} else if (null == curr) {
+				if (access.creator) {
+					curr = (p instanceof Integer) ? new ArrayList() : new HashMap();
+
+					if (null != prevColl) {
+						switch (collType) {
+						case Arr:
+							DustUtils.safePut((ArrayList) prevColl, (Integer) lastKey, val, false);
+							break;
+						case Map:
+							((Map) prevColl).put(lastKey, curr);
+							break;
+						case One:
+							break;
+						case Set:
+							((Set) prevColl).add(curr);
+							break;
+						}
+					}
+				} else {
+					break;
+				}
+			}
+
+			prev = curr;
+			collType = KBCollType.getCollType(prev);
+			prevColl = (null == collType) ? null : prev;
+
+			lastKey = p;
+
+			if (curr instanceof ArrayList) {
+				ArrayList al = (ArrayList) curr;
+				Integer idx = (Integer) p;
+
+				if ((KEY_SIZE == idx)) {
+					curr = al.size();
+				} else if ((KEY_ADD == idx) || (idx >= al.size())) {
+					curr = null;
+				} else {
+					curr = al.get(idx);
+				}
+			} else if (curr instanceof Map) {
+				curr = DustUtils.isEqual(KEY_SIZE, p) ? ((Map) curr).size()
+						: DustUtils.isEqual(KEY_MAP_KEYS, p) ? new ArrayList(((Map) curr).keySet()) : ((Map) curr).get(p);
+			} else {
+				curr = null;
+			}
+
+		}
+
+		switch (access) {
+		case Check:
+			ret = DustUtils.isEqual(val, curr);
+			break;
+		case Delete:
+			if (curr != null) {
+				switch (collType) {
+				case Arr:
+					((ArrayList) prevColl).remove((int) lastKey);
+					break;
+				case Map:
+					((Map) prevColl).remove(lastKey);
+					break;
+				case One:
+					break;
+				case Set:
+					((Set) prevColl).remove(curr);
+					break;
+				}
+			}
+			ret = curr;
+
+			break;
+		case Get:
+			ret = (null == curr) ? val : curr;
+			break;
+		case Insert:
+			if (!DustUtils.isEqual(curr, val) && (null != prevColl)) {
+				switch (collType) {
+				case Arr:
+					DustUtils.safePut((ArrayList) prevColl, (Integer) lastKey, val, false);
+					break;
+				case Map:
+					Set s = (curr instanceof Set) ? (Set) curr : new HashSet();
+					ret = s.add(val);
+					((Map) prevColl).put(lastKey, s);
+					break;
+				case One:
+					break;
+				case Set:
+					ret = ((Set) prevColl).add(curr);
+					break;
+				}
+			}
+			break;
+		case Peek:
+			ret = (null == curr) ? val : curr;
+			break;
+		case Reset:
+			if (curr instanceof Map) {
+				((Map) curr).clear();
+			} else if (curr instanceof Collection) {
+				((Collection) curr).clear();
+			}
+			break;
+		case Set:
+			ret = curr;
+			if ((null != lastKey) && (null != prevColl)) {
+				switch (collType) {
+				case Arr:
+					DustUtils.safePut((ArrayList) prevColl, (Integer) lastKey, val, true);
+					break;
+				case Map:
+					if (!DustUtils.isEqual(curr, val)) {
+						((Map) prevColl).put(lastKey, val);
+					}
+					break;
+				case One:
+					break;
+				case Set:
+					((Set) prevColl).add(val);
+					break;
+				}
+			}
+
+			break;
+		case Visit:
+			switch (KBCollType.getCollType(curr)) {
+			case Arr:
+			case Set:
+				ret = curr;
+				break;
+			case Map:
+				ret = ((Map) curr).entrySet();
+				break;
+			case One:
+				ret = null;
+				break;
+			}
+
+			break;
+		}
+
+		return (RetType) ret;
+
+	}
+}

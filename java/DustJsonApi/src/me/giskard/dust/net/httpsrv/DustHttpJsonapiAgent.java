@@ -1,0 +1,101 @@
+package me.giskard.dust.net.httpsrv;
+
+import java.io.PrintWriter;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+
+import me.giskard.dust.Dust;
+import me.giskard.dust.DustConsts;
+import me.giskard.dust.kb.DustKBConsts;
+import me.giskard.dust.kb.DustKBUtils;
+import me.giskard.dust.net.DustNetConsts;
+import me.giskard.dust.stream.DustStreamConsts;
+import me.giskard.dust.utils.DustUtils;
+
+//@SuppressWarnings({ "rawtypes", "unchecked" })
+public class DustHttpJsonapiAgent extends DustConsts.DustAgentBase implements DustNetConsts, DustStreamConsts, DustKBConsts {
+
+	@Override
+	protected Object process(Map<String, Object> cfg, Object params) throws Exception {
+
+		HttpServletResponse response = DustKBUtils.access(KBAccess.Peek, null, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+
+		if (null != response) {
+			String pi = DustKBUtils.access(KBAccess.Get, null, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
+
+			String[] path = pi.split("/");
+			int pl = path.length;
+
+			KBStore kb = Dust.getAgent(DustUtils.simpleGet(cfg, TOKEN_KB_KNOWLEDGEBASE));
+			KBUnit unit = null;
+
+			if (0 == pl) {
+				String m = DustKBUtils.access(KBAccess.Get, null, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_METHOD);
+
+				StringBuilder sb = new StringBuilder(
+						"<!doctype html>\n" + "<html lang=\"en\">\n" + "<head>\n<meta charset=\"utf-8\">\n<title>DustTracer JSON:API</title>\n</head>\n" + "<body>");
+
+				sb.append("<h2>JSONAPI</h2>");
+
+				sb.append("<p>Method: " + m + "</p>");
+				sb.append("<p>PathInfo: " + pi + "</p>");
+
+				response.setContentType(MEDIATYPE_UTF8_HTML);
+				PrintWriter out = response.getWriter();
+
+				out.println(sb.toString());
+			} else {
+
+				String cmd = path[0];
+
+				switch (cmd) {
+				case "unit":
+					unit = kb.getUnit(path[1], false);
+
+					if (pl > 2) {
+						String type = path[2];
+
+						KBUnit source = unit;
+						unit = kb.getUnit(null, true);
+
+						if (pl > 3) {
+							StringBuilder sb = null;
+							for (int i = 3; i < pl; ++i) {
+								sb = DustUtils.sbAppend(sb, "/", true, path[i]);
+							}
+							String id = sb.toString();
+							KBObject o = source.getObject(type, id.toString(), KBOptCreate.None);
+							if (null != o) {
+								unit.getObject(type, id).load(o, false);
+							}
+						} else {
+							for (KBObject o : source.objects()) {
+								if (DustUtils.isEqual(type, o.getType())) {
+									unit.getObject(type, o.getId()).load(o, false);
+								}
+							}
+						}
+					}
+					break;
+				}
+			}
+
+			if (null != unit) {
+				response.setCharacterEncoding(DUST_CHARSET_UTF8);
+				response.setContentType(MEDIATYPE_JSONAPI);
+				PrintWriter out = response.getWriter();
+
+				Map<String, Object> ser = DustUtils.simpleGet(cfg, TOKEN_SERIALIZER);
+				DustKBUtils.access(KBAccess.Set, unit, ser, TOKEN_PARAMS, TOKEN_UNIT);
+				DustKBUtils.access(KBAccess.Set, out, ser, TOKEN_PARAMS, TOKEN_STREAM_WRITER);
+
+				Dust.sendMessage(ser);
+
+				out.flush();
+			}
+		}
+
+		return TOKEN_RESULT_ACCEPT;
+	}
+}
