@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -144,6 +145,12 @@ public class DustKBUtils implements DustKBConsts {
 			}
 			break;
 		case Peek:
+			if ( collType == KBCollType.Set ) {
+				Iterator is = ((Set) prevColl).iterator();
+				if ( is.hasNext() ) {
+					curr = is.next();
+				}
+			}
 			ret = (null == curr) ? val : curr;
 			break;
 		case Reset:

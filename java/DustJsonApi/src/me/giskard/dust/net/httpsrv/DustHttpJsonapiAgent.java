@@ -15,6 +15,7 @@ import me.giskard.dust.utils.DustUtils;
 
 //@SuppressWarnings({ "rawtypes", "unchecked" })
 public class DustHttpJsonapiAgent extends DustConsts.DustAgentBase implements DustNetConsts, DustStreamConsts, DustKBConsts {
+	String infoType;
 
 	@Override
 	protected Object process(Map<String, Object> cfg, Object params) throws Exception {
@@ -28,6 +29,8 @@ public class DustHttpJsonapiAgent extends DustConsts.DustAgentBase implements Du
 			int pl = path.length;
 
 			KBStore kb = Dust.getAgent(DustUtils.simpleGet(cfg, TOKEN_KB_KNOWLEDGEBASE));
+			infoType = kb.getMetaTypeId(TOKEN_INFO);
+
 			KBUnit unit = null;
 
 			if (0 == pl) {
@@ -51,29 +54,25 @@ public class DustHttpJsonapiAgent extends DustConsts.DustAgentBase implements Du
 
 				switch (cmd) {
 				case "unit":
-					unit = kb.getUnit(path[1], false);
+					KBUnit source = kb.getUnit(path[1], false);
+					String type = (pl > 2) ? path[2] : null;
 
-					if (pl > 2) {
-						String type = path[2];
+					unit = kb.getUnit(null, true);
 
-						KBUnit source = unit;
-						unit = kb.getUnit(null, true);
-
-						if (pl > 3) {
-							StringBuilder sb = null;
-							for (int i = 3; i < pl; ++i) {
-								sb = DustUtils.sbAppend(sb, "/", true, path[i]);
-							}
-							String id = sb.toString();
-							KBObject o = source.getObject(type, id.toString(), KBOptCreate.None);
-							if (null != o) {
-								unit.getObject(type, id).load(o, false);
-							}
-						} else {
-							for (KBObject o : source.objects()) {
-								if (DustUtils.isEqual(type, o.getType())) {
-									unit.getObject(type, o.getId()).load(o, false);
-								}
+					if (pl > 3) {
+						StringBuilder sb = null;
+						for (int i = 3; i < pl; ++i) {
+							sb = DustUtils.sbAppend(sb, "/", true, path[i]);
+						}
+						String id = sb.toString();
+						KBObject o = source.getObject(type, id.toString(), KBOptCreate.None);
+						if (null != o) {
+							cloneObj(unit, o);
+						}
+					} else {
+						for (KBObject o : source.objects()) {
+							if ((null == type) || DustUtils.isEqual(type, o.getType())) {
+								cloneObj(unit, o);
 							}
 						}
 					}
@@ -97,5 +96,17 @@ public class DustHttpJsonapiAgent extends DustConsts.DustAgentBase implements Du
 		}
 
 		return TOKEN_RESULT_ACCEPT;
+	}
+
+	public void cloneObj(KBUnit unit, KBObject o) {
+		KBObject to = unit.getObject(o.getType(), o.getId());
+		to.load(o, false);
+
+		KBObject info = unit.getObject(infoType, unit.getUnitId());
+		
+		for (String a : to.atts()) {
+			Long c = DustKBUtils.access(KBAccess.Peek, 0L, info, a, TOKEN_COUNT);
+			DustKBUtils.access(KBAccess.Set, c + 1, info, a, TOKEN_COUNT);
+		}
 	}
 }

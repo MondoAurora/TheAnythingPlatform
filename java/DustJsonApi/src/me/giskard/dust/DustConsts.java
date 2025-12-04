@@ -30,6 +30,8 @@ public interface DustConsts {
 	String TOKEN_CMD_SAVE = "save";
 
 	String TOKEN_PATH = "path";
+	String TOKEN_COUNT = "count";
+	String TOKEN_INFO = "Info";
 
 	String TOKEN_INIT = "init";
 	String TOKEN_AGENTS = "agents";

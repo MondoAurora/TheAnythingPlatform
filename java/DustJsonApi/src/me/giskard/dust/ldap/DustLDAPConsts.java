@@ -16,6 +16,9 @@ public interface DustLDAPConsts extends DustStreamConsts, DustKBConsts {
 
 	String TOKEN_LDAP_DN = "dn";
 	String TOKEN_LDAP_CN = "cn";
+
+	String TOKEN_LDAP_CHANGETYPE = "changetype";
+	String TOKEN_LDAP_OBJECTCLASS = "objectClass";
 	
 	String[] DEF_ATTS = new String[] { TOKEN_LDAP_CN };
 
