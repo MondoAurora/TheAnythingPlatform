@@ -44,6 +44,7 @@ public interface DustConsts {
 	String TOKEN_SOURCE = "source";
 	String TOKEN_SERIALIZER = "serializer";
 
+	String TOKEN_ID = "id";
 	String TOKEN_NAME = "name";
 	String TOKEN_DESC = "desc";
 	String TOKEN_PAYLOAD = "payload";
@@ -62,6 +63,8 @@ public interface DustConsts {
 	String TOKEN_CHILDMAP = "childMap";
 	String TOKEN_FILTER = "filter";
 	String TOKEN_ROOT = "root";
+	String TOKEN_INDEX = "index";
+	String TOKEN_MAPPING = "mapping";
 
 	String TOKEN_TYPE_APP = "Application";
 	String TOKEN_TYPE_AGENT = "Agent";

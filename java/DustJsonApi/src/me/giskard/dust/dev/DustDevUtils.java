@@ -2,7 +2,7 @@ package me.giskard.dust.dev;
 
 import java.text.NumberFormat;
 
-public class DustutilsDev {
+public class DustDevUtils {
 	
 	//https://stackoverflow.com/questions/74674/how-do-i-check-cpu-and-memory-usage-in-java
 	public static String memInfo() {

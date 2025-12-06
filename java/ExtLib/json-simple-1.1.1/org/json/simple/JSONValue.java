@@ -147,7 +147,7 @@ public class JSONValue {
 			return;
 		}
 		
-		if(value instanceof List){
+		if(value instanceof Collection){
 			JSONArray.writeJSONString((Collection)value, out);
             return;
 		}

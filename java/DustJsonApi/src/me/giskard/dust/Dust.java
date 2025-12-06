@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
-import me.giskard.dust.dev.DustutilsDev;
+import me.giskard.dust.dev.DustDevUtils;
 import me.giskard.dust.kb.DustKBConsts;
 import me.giskard.dust.kb.DustKBUtils;
 import me.giskard.dust.utils.DustUtils;
@@ -104,7 +104,7 @@ public class Dust implements DustConsts, DustKBConsts {
 			}
 
 			for (KBObject ca : ((Collection<KBObject>) appObj.access(KBAccess.Peek, Collections.EMPTY_LIST, TOKEN_INIT))) {
-				Dust.log(TOKEN_LEVEL_INFO, "MemInfo", DustutilsDev.memInfo());
+				Dust.log(TOKEN_LEVEL_INFO, "MemInfo", DustDevUtils.memInfo());
 
 				String type = DustUtils.getPostfix(ca.getType(), DUST_SEP_TOKEN);
 				String an;
