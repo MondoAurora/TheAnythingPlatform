@@ -250,7 +250,8 @@ public class DustStreamLdifAgent extends DustConsts.DustAgentBase implements Dus
 					unitMeta.getObject(tt, vv);
 				}
 
-				String k = unitMeta.getUnitId() + DUST_SEP_TOKEN + key;
+//				String k = unitMeta.getUnitId() + DUST_SEP_TOKEN + key;
+				String k = key;
 				Object v = DustKBUtils.access(KBAccess.Peek, null, o, k);
 				
 				boolean coll = (v instanceof Collection);

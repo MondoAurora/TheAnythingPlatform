@@ -14,6 +14,9 @@ import me.giskard.dust.DustException;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public interface DustUtilsConsts extends DustConsts {
 	
+	String TOKEN_PREPROCESS = "preProcess";
+	String TOKEN_UPPERCASE = "upperCase";
+	
 	interface DustCreator<Type> {
 		Type create(Object key, Object... hints);
 		default void initNew(Type item, Object key, Object... hints) {}

@@ -15,6 +15,7 @@ import me.giskard.dust.Dust;
 import me.giskard.dust.kb.DustKBUtils;
 import me.giskard.dust.net.DustNetConsts;
 import me.giskard.dust.stream.DustStreamConsts;
+import me.giskard.dust.utils.DustUtils;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, DustStreamConsts {
@@ -94,6 +95,12 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 				for (ee = request.getHeaderNames(); ee.hasMoreElements();) {
 					n = ee.nextElement();
 					optAdd(params, TOKEN_NET_SRVCALL_HEADERS, n, request.getHeader(n));
+				}
+				
+				String cmd = (String) params.get(TOKEN_CMD);
+				if ( null == cmd ) {
+					cmd = DustUtils.getPrefix(pathInfo, "/");
+					params.put(TOKEN_CMD, cmd);
 				}
 				
 				Dust.sendMessage(msg);
