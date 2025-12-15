@@ -1,9 +1,6 @@
 package me.giskard.dust;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -79,29 +76,19 @@ public class Dust implements DustConsts, DustKBConsts {
 			File f = new File(appUnitPath);
 			appUnit = DustKBUtils.bootLoadAppUnitJsonApi(f);
 
-			String appType = DUST_UNIT_ID + DUST_SEP_TOKEN + TOKEN_TYPE_APP;
+			DustKBUtils.loadExtFile(appUnit, new File(DUST_CRED_FILE));
 
-			appObj = appUnit.getObject(appType, appName, KBOptCreate.None);
-
-			File cf = new File(DUST_CRED_FILE);
-
-			if (cf.isFile()) {
-				try (FileInputStream fis = new FileInputStream(cf); BufferedReader br = new BufferedReader(new InputStreamReader(fis))) {
-					String line;
-					while ((line = br.readLine()) != null) {
-						line = line.trim();
-
-						if (!DustUtils.isEmpty(line)) {
-							String[] cred = line.split(":");
-
-							KBObject aCfg = appObj.access(KBAccess.Peek, null, TOKEN_AGENTS, cred[0].trim());
-							aCfg.access(KBAccess.Set, cred[2].trim(), (Object[]) cred[1].trim().split("\\."));
-						}
-					}
-				}
-			} else {
-				Dust.log(TOKEN_LEVEL_WARNING, "No credentials file given", cf.getName());
+			String userName = System.getProperty("user.name");
+			if (!DustUtils.isEmpty(userName)) {
+				File d = f.getAbsoluteFile().getParentFile();
+				String fn = f.getName();
+				int s = fn.lastIndexOf(".");
+				File f2 = new File(d, fn.substring(0, s) + "." + userName + DUST_EXT_TXT);
+				DustKBUtils.loadExtFile(appUnit, f2);
 			}
+
+			String appType = DUST_UNIT_ID + DUST_SEP_TOKEN + TOKEN_TYPE_APP;
+			appObj = appUnit.getObject(appType, appName, KBOptCreate.None);
 
 			for (KBObject ca : ((Collection<KBObject>) appObj.access(KBAccess.Peek, Collections.EMPTY_LIST, TOKEN_INIT))) {
 				Dust.log(TOKEN_LEVEL_INFO, "MemInfo", DustDevUtils.memInfo());

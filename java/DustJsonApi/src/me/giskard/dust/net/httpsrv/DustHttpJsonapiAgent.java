@@ -102,11 +102,13 @@ public class DustHttpJsonapiAgent extends DustConsts.DustAgentBase implements Du
 		KBObject to = unit.getObject(o.getType(), o.getId());
 		to.load(o, false);
 
-		KBObject info = unit.getObject(infoType, unit.getUnitId());
-		
-		for (String a : to.atts()) {
-			Long c = DustKBUtils.access(KBAccess.Peek, 0L, info, a, TOKEN_COUNT);
-			DustKBUtils.access(KBAccess.Set, c + 1, info, a, TOKEN_COUNT);
+		KBObject info = unit.getObject(infoType, unit.getUnitId(), KBOptCreate.None);
+
+		if (null != info) {
+			for (String a : to.atts()) {
+				Long c = DustKBUtils.access(KBAccess.Peek, 0L, info, a, TOKEN_COUNT);
+				DustKBUtils.access(KBAccess.Set, c + 1, info, a, TOKEN_COUNT);
+			}
 		}
 	}
 }

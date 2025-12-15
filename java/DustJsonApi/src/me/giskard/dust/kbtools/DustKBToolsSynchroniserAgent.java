@@ -94,7 +94,7 @@ public class DustKBToolsSynchroniserAgent extends DustConsts.DustAgentBase imple
 				continue;
 			}
 
-			KBUnit u = kb.getUnit(DustKBUtils.access(KBAccess.Peek, null, src, TOKEN_UNIT), false);
+			KBUnit u = kb.getUnit(DustKBUtils.access(KBAccess.Peek, null, src, TOKEN_UNIT), true);
 			Dust.log(TOKEN_LEVEL_INFO, "Reading unit", u.getUnitId());
 
 			String id = DustKBUtils.access(KBAccess.Peek, null, src, TOKEN_ID);

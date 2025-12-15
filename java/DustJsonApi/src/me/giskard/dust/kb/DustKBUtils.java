@@ -1,6 +1,11 @@
 package me.giskard.dust.kb;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -9,6 +14,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import me.giskard.dust.Dust;
 import me.giskard.dust.DustException;
 import me.giskard.dust.utils.DustUtils;
 
@@ -25,6 +31,52 @@ public class DustKBUtils implements DustKBConsts {
 		}
 
 		return DustKBStore.appUnit;
+	}
+	
+	public static void loadExtFile(KBUnit unit, File extFile) throws IOException, FileNotFoundException {
+		if (extFile.isFile()) {
+			try (FileInputStream fis = new FileInputStream(extFile); BufferedReader br = new BufferedReader(new InputStreamReader(fis))) {
+				String line;
+				while ((line = br.readLine()) != null) {
+					line = line.trim();
+
+					if (!DustUtils.isEmpty(line)) {
+						String[] ext = line.split("\\|");
+
+						String[] access = ext[0].trim().split("/");
+						KBObject aCfg = unit.getObject(access[0], access[1], KBOptCreate.None);
+
+						if (null == aCfg) {
+							Dust.log(TOKEN_LEVEL_WARNING, "No object found for id", ext[0]);
+						} else {
+							String val = ext[2].trim();
+							Object v = val;
+
+							if (val.startsWith("!!")) {
+								switch (val) {
+								case "!!true":
+									v = true;
+									break;
+								case "!!false":
+									v = false;
+									break;
+								case "!!null":
+									v = null;
+									break;
+								default:
+									v = Long.valueOf(val.substring(2));
+									break;
+								}
+							}
+							aCfg.access(KBAccess.Set, v, (Object[]) ext[1].trim().split("\\."));
+							Dust.log(TOKEN_LEVEL_TRACE, "change applied", line);
+						}
+					}
+				}
+			}
+		} else {
+			Dust.log(TOKEN_LEVEL_WARNING, "No extension file found", extFile.getName());
+		}
 	}
 
 	public static <RetType> RetType access(KBAccess access, Object val, Object root, Object... path) {
