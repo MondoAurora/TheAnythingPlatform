@@ -1,11 +1,13 @@
 package me.giskard.dust.kb;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
 
 import me.giskard.dust.Dust;
 import me.giskard.dust.DustException;
 
+@SuppressWarnings("unchecked")
 class DustKBObject implements DustKBConsts, DustKBConsts.KBObject {
 
 	String id;
@@ -43,34 +45,29 @@ class DustKBObject implements DustKBConsts, DustKBConsts.KBObject {
 	public KBUnit getUnit() {
 		return unit;
 	}
-	
+
+//	@Override
+//	public Iterable<String> atts() {
+//		return content.keySet();
+//	}
+
 	@Override
-	public Iterable<String> atts() {
-		return content.keySet();
-	}
-	
-	@Override
-	public void load(KBObject from,  boolean deep, String... atts) {
-		if ( deep ) {
+	public void load(KBObject from, boolean deep, String... atts) {
+		if (deep) {
 			Dust.log(TOKEN_LEVEL_WARNING, "DustKBObject deep load not supported");
 		}
-		
-		DustKBObject kbo = (DustKBObject)from;
-		
-		if ( 0 == atts.length) {
-			for (String a : from.atts() ) {
+
+		DustKBObject kbo = (DustKBObject) from;
+
+		if (0 == atts.length) {
+			for (String a : (Iterable<String>) DustKBUtils.access(KBAccess.Peek, Collections.EMPTY_LIST, from, KEY_MAP_KEYS)) {
 				content.put(a, kbo.content.get(a));
 			}
 		} else {
-			for (String a : atts ) {
+			for (String a : atts) {
 				content.put(a, kbo.content.get(a));
 			}
 		}
-	}
-
-	@Override
-	public <RetType> RetType access(KBAccess access, Object val, Object... path) {
-		return DustKBUtils.access(access, val, this.content, path);
 	}
 
 }

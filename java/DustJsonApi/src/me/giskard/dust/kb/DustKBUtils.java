@@ -68,7 +68,7 @@ public class DustKBUtils implements DustKBConsts {
 									break;
 								}
 							}
-							aCfg.access(KBAccess.Set, v, (Object[]) ext[1].trim().split("\\."));
+							access(KBAccess.Set, v, aCfg, (Object[]) ext[1].trim().split("\\."));
 							Dust.log(TOKEN_LEVEL_TRACE, "change applied", line);
 						}
 					}
@@ -89,14 +89,14 @@ public class DustKBUtils implements DustKBConsts {
 		Object lastKey = null;
 
 		Object prevColl = null;
-		
-		if ( val instanceof Enum ) {
-			val = ((Enum)val).name();
+
+		if (val instanceof Enum) {
+			val = ((Enum) val).name();
 		}
 
 		for (Object p : path) {
-			if ( p instanceof Enum ) {
-				p = ((Enum)p).name();
+			if (p instanceof Enum) {
+				p = ((Enum) p).name();
 			}
 
 			if (curr instanceof KBObject) {
@@ -197,9 +197,9 @@ public class DustKBUtils implements DustKBConsts {
 			}
 			break;
 		case Peek:
-			if ( collType == KBCollType.Set ) {
+			if (collType == KBCollType.Set) {
 				Iterator is = ((Set) prevColl).iterator();
-				if ( is.hasNext() ) {
+				if (is.hasNext()) {
 					curr = is.next();
 				}
 			}

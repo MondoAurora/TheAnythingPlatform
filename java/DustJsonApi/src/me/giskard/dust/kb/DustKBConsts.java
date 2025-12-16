@@ -45,10 +45,8 @@ public interface DustKBConsts extends DustConsts, DustUtilsConsts {
 		String getType();
 		String getId();
 		
-		Iterable<String> atts();
 		void load(KBObject from, boolean deep, String... atts);
 
-		<RetType> RetType access(KBAccess access, Object value, Object... path);
 	}
 	
 	enum KBOptCreate {

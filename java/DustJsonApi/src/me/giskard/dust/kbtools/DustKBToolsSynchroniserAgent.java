@@ -79,7 +79,7 @@ public class DustKBToolsSynchroniserAgent extends DustConsts.DustAgentBase imple
 
 		for (KBObject o : uTarget.objects()) {
 			for (String i : ids) {
-				Collection<String> ic = o.access(KBAccess.Peek, Collections.EMPTY_SET, i);
+				Collection<String> ic = DustKBUtils.access(KBAccess.Peek, Collections.EMPTY_SET, o, i);
 				for (String v : ic) {
 					if (!DustUtils.isEmpty(v)) {
 						index.get(i).put(v, o);
@@ -135,8 +135,8 @@ public class DustKBToolsSynchroniserAgent extends DustConsts.DustAgentBase imple
 					}
 				}
 
-				target.access(KBAccess.Insert, DustUtils.sbAppend(null, "/", true, u.getUnitId(), o.getType(), o.getId()).toString(), TOKEN_SOURCE);
-				target.access(KBAccess.Insert, u.getUnitId(), TOKEN_UNIT);
+				DustKBUtils.access(KBAccess.Insert, DustUtils.sbAppend(null, "/", true, u.getUnitId(), o.getType(), o.getId()).toString(), target, TOKEN_SOURCE);
+				DustKBUtils.access(KBAccess.Insert, u.getUnitId(), target, TOKEN_UNIT);
 
 				for (Map.Entry<String, Object> me : mapping.entrySet()) {
 					String fTarget = me.getKey();
@@ -144,15 +144,15 @@ public class DustKBToolsSynchroniserAgent extends DustConsts.DustAgentBase imple
 					Object v;
 
 					if (fSource instanceof String) {
-						v = o.access(KBAccess.Peek, null, fSource);
+						v = DustKBUtils.access(KBAccess.Peek, null, o, fSource);
 						if (null != v) {
-							target.access(KBAccess.Insert, v, fTarget);
+							DustKBUtils.access(KBAccess.Insert, v, target, fTarget);
 						}
 					} else {
 						for (Object fld : (Collection) fSource) {
-							v = o.access(KBAccess.Peek, null, fld);
+							v = DustKBUtils.access(KBAccess.Peek, null, o, fld);
 							if (null != v) {
-								target.access(KBAccess.Insert, v, fTarget);
+								DustKBUtils.access(KBAccess.Insert, v, target, fTarget);
 							}
 						}
 					}
@@ -178,10 +178,10 @@ public class DustKBToolsSynchroniserAgent extends DustConsts.DustAgentBase imple
 		if (null != fldSource) {
 
 			if (fldSource instanceof String) {
-				val = o.access(KBAccess.Peek, null, fldSource);
+				val = DustKBUtils.access(KBAccess.Peek, null, o, fldSource);
 			} else {
 				for (Object fld : (Collection) fldSource) {
-					String s = o.access(KBAccess.Peek, null, fld);
+					String s = DustKBUtils.access(KBAccess.Peek, null, o, fld);
 					if (!DustUtils.isEmpty(s)) {
 						val = s;
 						break;

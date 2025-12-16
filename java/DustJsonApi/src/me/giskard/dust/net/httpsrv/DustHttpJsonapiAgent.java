@@ -1,6 +1,7 @@
 package me.giskard.dust.net.httpsrv;
 
 import java.io.PrintWriter;
+import java.util.Collections;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import me.giskard.dust.stream.DustStreamConsts;
 import me.giskard.dust.utils.DustUtils;
 
 //@SuppressWarnings({ "rawtypes", "unchecked" })
+@SuppressWarnings({  "unchecked" })
 public class DustHttpJsonapiAgent extends DustConsts.DustAgentBase implements DustNetConsts, DustStreamConsts, DustKBConsts {
 	String infoType;
 
@@ -105,7 +107,7 @@ public class DustHttpJsonapiAgent extends DustConsts.DustAgentBase implements Du
 		KBObject info = unit.getObject(infoType, unit.getUnitId(), KBOptCreate.None);
 
 		if (null != info) {
-			for (String a : to.atts()) {
+			for (String a : (Iterable<String>) DustKBUtils.access(KBAccess.Peek, Collections.EMPTY_LIST, to, KEY_MAP_KEYS)) {
 				Long c = DustKBUtils.access(KBAccess.Peek, 0L, info, a, TOKEN_COUNT);
 				DustKBUtils.access(KBAccess.Set, c + 1, info, a, TOKEN_COUNT);
 			}

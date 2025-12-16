@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -20,6 +21,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import me.giskard.dust.Dust;
 import me.giskard.dust.DustConsts;
 import me.giskard.dust.kb.DustKBConsts;
+import me.giskard.dust.kb.DustKBUtils;
 import me.giskard.dust.ldap.DustLDAPConsts;
 import me.giskard.dust.utils.DustUtils;
 import me.giskard.dust.utils.DustUtilsFactory;
@@ -50,7 +52,7 @@ public class DustStreamExcelAgent extends DustConsts.DustAgentBase implements Du
 			}
 
 			Set<String> flds = meta.get(o.getType());
-			for (String a : o.atts()) {
+			for (String a : (Iterable<String>) DustKBUtils.access(KBAccess.Peek, Collections.EMPTY_LIST, o, KEY_MAP_KEYS)) {
 				flds.add(a);
 			}
 		}
@@ -109,7 +111,7 @@ public class DustStreamExcelAgent extends DustConsts.DustAgentBase implements Du
 				Cell c = row.createCell(cc++);
 				c.setCellStyle(cs);
 
-				Object v = o.access(KBAccess.Peek, "", a);
+				Object v = DustKBUtils.access(KBAccess.Peek, "", o, a);
 				StringBuilder sb = null;
 				if (v instanceof Collection) {
 					clc = 0;

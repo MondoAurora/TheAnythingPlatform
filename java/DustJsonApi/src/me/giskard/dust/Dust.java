@@ -43,18 +43,18 @@ public class Dust implements DustConsts, DustKBConsts {
 	private static DustUtilsFactory<String, DustAgent> AGENTS = new DustUtilsFactory<String, DustAgent>(new DustCreator<DustAgent>() {
 		@Override
 		public DustAgent create(Object key, Object... hints) {
-			KBObject aCfg = appObj.access(KBAccess.Peek, null, TOKEN_AGENTS, key);
+			KBObject aCfg = DustKBUtils.access(KBAccess.Peek, null, appObj, TOKEN_AGENTS, key);
 
 			if (null == aCfg) {
 				return DustException.wrap(null, "Missing config for agent", key);
 			}
-			String cn = aCfg.access(KBAccess.Peek, null, TOKEN_CLASS_NAME);
+			String cn = DustKBUtils.access(KBAccess.Peek, null, aCfg, TOKEN_CLASS_NAME);
 			DustAgent a = null;
 			try {
 				a = (DustAgent) Class.forName(cn).getConstructor().newInstance();
-				a.agentProcess(DustAction.Init, aCfg.access(KBAccess.Peek, Collections.EMPTY_MAP, TOKEN_PARAMS));
+				a.agentProcess(DustAction.Init, DustKBUtils.access(KBAccess.Peek, Collections.EMPTY_MAP, aCfg, TOKEN_PARAMS));
 
-				if ((Boolean) aCfg.access(KBAccess.Peek, false, TOKEN_TYPE_RELEASEONSHUTDOWN)) {
+				if ((Boolean) DustKBUtils.access(KBAccess.Peek, false, aCfg, TOKEN_TYPE_RELEASEONSHUTDOWN)) {
 					registerToRelease(a);
 				}
 			} catch (Throwable e) {
@@ -90,7 +90,7 @@ public class Dust implements DustConsts, DustKBConsts {
 			String appType = DUST_UNIT_ID + DUST_SEP_TOKEN + TOKEN_TYPE_APP;
 			appObj = appUnit.getObject(appType, appName, KBOptCreate.None);
 
-			for (KBObject ca : ((Collection<KBObject>) appObj.access(KBAccess.Peek, Collections.EMPTY_LIST, TOKEN_INIT))) {
+			for (KBObject ca : ((Collection<KBObject>) DustKBUtils.access(KBAccess.Peek, Collections.EMPTY_LIST, appObj, TOKEN_INIT))) {
 				Dust.log(TOKEN_LEVEL_INFO, "MemInfo", DustDevUtils.memInfo());
 
 				String type = DustUtils.getPostfix(ca.getType(), DUST_SEP_TOKEN);
@@ -100,7 +100,7 @@ public class Dust implements DustConsts, DustKBConsts {
 				switch (type) {
 				case TOKEN_TYPE_AGENT:
 					an = ca.getId();
-					skip = appObj.access(KBAccess.Check, true, TOKEN_AGENTS, an, TOKEN_SKIP);
+					skip = DustKBUtils.access(KBAccess.Check, true, appObj, TOKEN_AGENTS, an, TOKEN_SKIP);
 					if (skip) {
 						continue;
 					} else {
@@ -108,7 +108,7 @@ public class Dust implements DustConsts, DustKBConsts {
 					}
 					break;
 				case TOKEN_TYPE_MESSAGE:
-					skip = ca.access(KBAccess.Check, true, TOKEN_SKIP);
+					skip = DustKBUtils.access(KBAccess.Check, true, ca, TOKEN_SKIP);
 					if (skip) {
 						continue;
 					} else {

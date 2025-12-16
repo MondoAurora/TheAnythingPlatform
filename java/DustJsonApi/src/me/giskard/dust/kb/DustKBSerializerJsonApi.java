@@ -61,9 +61,8 @@ public class DustKBSerializerJsonApi extends DustConsts.DustAgentBase implements
 			for (KBObject o : unit.objects()) {
 				Map<String, Object> item = getJsonHead(o);
 
-				for (Map.Entry<String, Object> c : ((Iterable<Map.Entry<String, Object>>) o.access(KBAccess.Visit, Collections.EMPTY_MAP))) {
-					String key = c.getKey();
-					Object val = c.getValue();
+				for (String key : (Iterable<String>) DustKBUtils.access(KBAccess.Peek, Collections.EMPTY_LIST, o, KEY_MAP_KEYS)) {
+					Object val = DustKBUtils.access(KBAccess.Peek, null, o, key);
 
 					if (val instanceof KBObject) {
 						addRelation(item, key, val, null);
@@ -175,7 +174,7 @@ public class DustKBSerializerJsonApi extends DustConsts.DustAgentBase implements
 		Map<String, Object> atts = DustUtils.simpleGet(data, JsonApiMember.attributes);
 		if (null != atts) {
 			for (Map.Entry<String, Object> ae : atts.entrySet()) {
-				target.access(KBAccess.Set, ae.getValue(), ae.getKey());
+				DustKBUtils.access(KBAccess.Set, ae.getValue(), target, ae.getKey());
 			}
 		}
 
@@ -196,9 +195,9 @@ public class DustKBSerializerJsonApi extends DustConsts.DustAgentBase implements
 						KBObject ro = unit.getObject(rt, ri, KBOptCreate.Reference);
 
 						if (null == key) {
-							target.access(KBAccess.Insert, ro, rk);
+							DustKBUtils.access(KBAccess.Insert, ro, target, rk);
 						} else {
-							target.access(KBAccess.Set, ro, rk, (key instanceof Number) ? ((Number) key).intValue() : key);
+							DustKBUtils.access(KBAccess.Set, ro, target, rk, (key instanceof Number) ? ((Number) key).intValue() : key);
 						}
 					}
 				} else {
@@ -207,7 +206,7 @@ public class DustKBSerializerJsonApi extends DustConsts.DustAgentBase implements
 
 					KBObject ro = unit.getObject(rt, ri, KBOptCreate.Reference);
 
-					target.access(KBAccess.Set, ro, rk);
+					DustKBUtils.access(KBAccess.Set, ro, target, rk);
 				}
 			}
 		}
