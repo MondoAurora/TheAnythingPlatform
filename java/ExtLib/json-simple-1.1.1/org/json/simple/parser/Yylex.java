@@ -2,6 +2,7 @@
 
 package org.json.simple.parser;
 
+@SuppressWarnings("deprecation")
 class Yylex {
 
   /** This character denotes the end of file */
