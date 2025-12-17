@@ -56,8 +56,14 @@ public class DustKBToolsSynchroniserAgent extends DustConsts.DustAgentBase imple
 	}
 
 	public KBUnit loadAll() {
+		String tName = DustKBUtils.access(KBAccess.Peek, null, cfg, TOKEN_KBMETA_TYPE);
+		String mName = DustKBUtils.access(KBAccess.Peek, null, cfg, TOKEN_META);
+		KBUnit uMeta = kb.getUnit(mName, true);
+
+		KBObject targetType = uMeta.getObject(kb.getMetaTypeId(TOKEN_KBMETA_TYPE), tName);
+		String type = uMeta.getUnitId() + DUST_SEP_TOKEN + targetType.getId();
+
 		String uName = DustKBUtils.access(KBAccess.Peek, null, cfg, TOKEN_UNIT);
-		String type = DustKBUtils.access(KBAccess.Peek, null, cfg, TOKEN_KBMETA_TYPE);
 		KBUnit uTarget = kb.getUnit(uName, true);
 
 		DustCreator<KBObject> coreCreator = new DustCreator<KBObject>() {
@@ -94,6 +100,9 @@ public class DustKBToolsSynchroniserAgent extends DustConsts.DustAgentBase imple
 				continue;
 			}
 
+			KBUnit m = kb.getUnit(DustKBUtils.access(KBAccess.Peek, null, src, TOKEN_META), true);
+			String srcPrefix = m.getUnitId() + DUST_SEP_TOKEN;
+			
 			KBUnit u = kb.getUnit(DustKBUtils.access(KBAccess.Peek, null, src, TOKEN_UNIT), true);
 			Dust.log(TOKEN_LEVEL_INFO, "Reading unit", u.getUnitId());
 
@@ -142,6 +151,14 @@ public class DustKBToolsSynchroniserAgent extends DustConsts.DustAgentBase imple
 					String fTarget = me.getKey();
 					Object fSource = me.getValue();
 					Object v;
+					
+					KBObject targetAtt = uMeta.getObject(kb.getMetaTypeId(TOKEN_KBMETA_ATTRIBUTE), fTarget, KBOptCreate.None);
+					if ( null == targetAtt ) {
+						targetAtt = uMeta.getObject(kb.getMetaTypeId(TOKEN_KBMETA_ATTRIBUTE), fTarget);
+						DustKBUtils.access(KBAccess.Insert, targetAtt, targetType, TOKEN_CHILDMAP, fTarget);
+						DustKBUtils.access(KBAccess.Set, targetType, targetAtt, TOKEN_PARENT);
+					}
+					DustKBUtils.access(KBAccess.Insert, srcPrefix + fSource, targetAtt, TOKEN_SOURCE);
 
 					if (fSource instanceof String) {
 						v = DustKBUtils.access(KBAccess.Peek, null, o, fSource);
@@ -162,9 +179,13 @@ public class DustKBToolsSynchroniserAgent extends DustConsts.DustAgentBase imple
 
 		Map<String, Object> ser = DustUtils.simpleGet(cfg, TOKEN_SERIALIZER);
 		if (null != ser) {
+			DustKBUtils.access(KBAccess.Set, uMeta, ser, TOKEN_PARAMS, TOKEN_UNIT);
+			DustKBUtils.access(KBAccess.Set, mName, ser, TOKEN_PARAMS, TOKEN_KEY);
+			Dust.sendMessage(ser);
+
 			DustKBUtils.access(KBAccess.Set, uTarget, ser, TOKEN_PARAMS, TOKEN_UNIT);
 			DustKBUtils.access(KBAccess.Set, uName, ser, TOKEN_PARAMS, TOKEN_KEY);
-			Dust.sendMessage(ser);
+			Dust.sendMessage(ser);			
 		}
 
 		return uTarget;
