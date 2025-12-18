@@ -19,7 +19,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import me.giskard.dust.Dust;
-import me.giskard.dust.DustConsts;
+import me.giskard.dust.DustAgent;
 import me.giskard.dust.kb.DustKBConsts;
 import me.giskard.dust.kb.DustKBUtils;
 import me.giskard.dust.ldap.DustLDAPConsts;
@@ -28,17 +28,17 @@ import me.giskard.dust.utils.DustUtilsFactory;
 import me.giskard.dust.utils.DustUtilsFile;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustStreamExcelAgent extends DustConsts.DustAgentBase implements DustStreamConsts, DustKBConsts, DustLDAPConsts {
+public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts, DustKBConsts, DustLDAPConsts {
 
 	@Override
-	protected Object process(Map<String, Object> cfg, Object params) throws Exception {
-		String unitId = DustUtils.simpleGet(params, TOKEN_UNIT);
+	protected Object process(DustAction action) throws Exception {
+		String unitId = access(DustAccess.Peek, null, null, TOKEN_UNIT);
 
 		if (null == unitId) {
-			unitId = DustUtils.simpleGet(params, TOKEN_CMD);
+			unitId = access(DustAccess.Peek, null, null, TOKEN_CMD);
 		}
 
-		KBStore kb = Dust.getAgent(DustUtils.simpleGet(cfg, TOKEN_KB_KNOWLEDGEBASE));
+		KBStore kb = Dust.getAgent(access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
 		KBUnit unit = kb.getUnit(unitId, false);
 
 		DustUtilsFactory<String, Set<String>> meta = new DustUtilsFactory.Simple<String, Set<String>>(true, (Class<? extends Set<String>>) TreeSet.class);
@@ -52,12 +52,12 @@ public class DustStreamExcelAgent extends DustConsts.DustAgentBase implements Du
 			}
 
 			Set<String> flds = meta.get(o.getType());
-			for (String a : (Iterable<String>) DustKBUtils.access(KBAccess.Peek, Collections.EMPTY_LIST, o, KEY_MAP_KEYS)) {
+			for (String a : (Iterable<String>) DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_LIST, o, KEY_MAP_KEYS)) {
 				flds.add(a);
 			}
 		}
 
-		String fName = DustUtils.simpleGet(params, TOKEN_PATH);
+		String fName = access(DustAccess.Peek, null, null, TOKEN_PATH);
 		if (null == fName) {
 			fName = unitId + ".xlsx";
 		}
@@ -68,7 +68,7 @@ public class DustStreamExcelAgent extends DustConsts.DustAgentBase implements Du
 		cs.setWrapText(true);
 
 		Map<String, Sheet> sheets = new HashMap<String, Sheet>();
-		
+
 		float rowHeight = 1;
 
 		for (String t : meta.keys()) {
@@ -83,7 +83,7 @@ public class DustStreamExcelAgent extends DustConsts.DustAgentBase implements Du
 				Cell c = row.createCell(cc++);
 				c.setCellValue(f);
 			}
-			
+
 			rowHeight = row.getHeightInPoints();
 		}
 
@@ -111,7 +111,7 @@ public class DustStreamExcelAgent extends DustConsts.DustAgentBase implements Du
 				Cell c = row.createCell(cc++);
 				c.setCellStyle(cs);
 
-				Object v = DustKBUtils.access(KBAccess.Peek, "", o, a);
+				Object v = DustKBUtils.access(DustAccess.Peek, "", o, a);
 				StringBuilder sb = null;
 				if (v instanceof Collection) {
 					clc = 0;
@@ -131,7 +131,7 @@ public class DustStreamExcelAgent extends DustConsts.DustAgentBase implements Du
 				}
 
 				c.setCellValue(DustUtils.toString(v));
-				if ( clc > rlc ) {
+				if (clc > rlc) {
 					rlc = clc;
 				}
 			}
@@ -147,7 +147,7 @@ public class DustStreamExcelAgent extends DustConsts.DustAgentBase implements Du
 				sheet.autoSizeColumn(ci);
 			}
 		}
-		
+
 		Dust.log(TOKEN_LEVEL_TRACE, "Saving Excel", fName);
 
 		File f = new File(fName);

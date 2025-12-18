@@ -60,7 +60,7 @@ class DustKBObject implements DustKBConsts, DustKBConsts.KBObject {
 		DustKBObject kbo = (DustKBObject) from;
 
 		if (0 == atts.length) {
-			for (String a : (Iterable<String>) DustKBUtils.access(KBAccess.Peek, Collections.EMPTY_LIST, from, KEY_MAP_KEYS)) {
+			for (String a : (Iterable<String>) DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_LIST, from, KEY_MAP_KEYS)) {
 				content.put(a, kbo.content.get(a));
 			}
 		} else {

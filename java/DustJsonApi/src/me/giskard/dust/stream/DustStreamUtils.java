@@ -29,7 +29,7 @@ public class DustStreamUtils implements DustUtilsConsts, DustKBConsts {
 
 	public static File getFile(Object root, Object... path) throws Exception {
 
-		String fileName = DustKBUtils.access(KBAccess.Peek, null, root, path);
+		String fileName = DustKBUtils.access(DustAccess.Peek, null, root, path);
 		Dust.log(TOKEN_LEVEL_TRACE, "Accessing file", fileName);
 
 		File f;

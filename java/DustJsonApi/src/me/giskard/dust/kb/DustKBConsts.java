@@ -29,17 +29,6 @@ public interface DustKBConsts extends DustConsts, DustUtilsConsts {
 
 	};
 
-
-	enum KBAccess {
-		Check(false), Peek(false), Get(false), Set(true), Insert(true), Delete(false), Reset(false), Visit(false);
-		
-		public final boolean creator;
-
-		private KBAccess(boolean creator) {
-			this.creator = creator;
-		}
-	};
-
 	public interface KBObject {
 		KBUnit getUnit();
 		String getType();

@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
 import me.giskard.dust.Dust;
-import me.giskard.dust.DustConsts;
+import me.giskard.dust.DustAgent;
 import me.giskard.dust.kb.DustKBConsts;
 import me.giskard.dust.kb.DustKBUtils;
 import me.giskard.dust.net.DustNetConsts;
@@ -15,28 +15,28 @@ import me.giskard.dust.stream.DustStreamConsts;
 import me.giskard.dust.utils.DustUtils;
 
 //@SuppressWarnings({ "rawtypes", "unchecked" })
-@SuppressWarnings({  "unchecked" })
-public class DustHttpJsonapiAgent extends DustConsts.DustAgentBase implements DustNetConsts, DustStreamConsts, DustKBConsts {
+@SuppressWarnings({ "unchecked" })
+public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, DustStreamConsts, DustKBConsts {
 	String infoType;
 
 	@Override
-	protected Object process(Map<String, Object> cfg, Object params) throws Exception {
+	protected Object process(DustAction action) throws Exception {
 
-		HttpServletResponse response = DustKBUtils.access(KBAccess.Peek, null, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+		HttpServletResponse response = access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
 
 		if (null != response) {
-			String pi = DustKBUtils.access(KBAccess.Get, null, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
+			String pi = access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
 
 			String[] path = pi.split("/");
 			int pl = path.length;
 
-			KBStore kb = Dust.getAgent(DustUtils.simpleGet(cfg, TOKEN_KB_KNOWLEDGEBASE));
+			KBStore kb = Dust.getAgent(access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
 			infoType = kb.getMetaTypeId(TOKEN_INFO);
 
 			KBUnit unit = null;
 
 			if (0 == pl) {
-				String m = DustKBUtils.access(KBAccess.Get, null, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_METHOD);
+				String m = access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_METHOD);
 
 				StringBuilder sb = new StringBuilder(
 						"<!doctype html>\n" + "<html lang=\"en\">\n" + "<head>\n<meta charset=\"utf-8\">\n<title>DustTracer JSON:API</title>\n</head>\n" + "<body>");
@@ -56,7 +56,7 @@ public class DustHttpJsonapiAgent extends DustConsts.DustAgentBase implements Du
 
 				switch (cmd) {
 				case "unit":
-					KBUnit source = kb.getUnit(path[1], false);
+					KBUnit source = kb.getUnit(path[1], true);
 					String type = (pl > 2) ? path[2] : null;
 
 					unit = kb.getUnit(null, true);
@@ -87,9 +87,9 @@ public class DustHttpJsonapiAgent extends DustConsts.DustAgentBase implements Du
 				response.setContentType(MEDIATYPE_JSONAPI);
 				PrintWriter out = response.getWriter();
 
-				Map<String, Object> ser = DustUtils.simpleGet(cfg, TOKEN_SERIALIZER);
-				DustKBUtils.access(KBAccess.Set, unit, ser, TOKEN_PARAMS, TOKEN_UNIT);
-				DustKBUtils.access(KBAccess.Set, out, ser, TOKEN_PARAMS, TOKEN_STREAM_WRITER);
+				Map<String, Object> ser = access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
+				DustKBUtils.access(DustAccess.Set, unit, ser, TOKEN_PARAMS, TOKEN_UNIT);
+				DustKBUtils.access(DustAccess.Set, out, ser, TOKEN_PARAMS, TOKEN_STREAM_WRITER);
 
 				Dust.sendMessage(ser);
 
@@ -107,9 +107,9 @@ public class DustHttpJsonapiAgent extends DustConsts.DustAgentBase implements Du
 		KBObject info = unit.getObject(infoType, unit.getUnitId(), KBOptCreate.None);
 
 		if (null != info) {
-			for (String a : (Iterable<String>) DustKBUtils.access(KBAccess.Peek, Collections.EMPTY_LIST, to, KEY_MAP_KEYS)) {
-				Long c = DustKBUtils.access(KBAccess.Peek, 0L, info, a, TOKEN_COUNT);
-				DustKBUtils.access(KBAccess.Set, c + 1, info, a, TOKEN_COUNT);
+			for (String a : (Iterable<String>) DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_LIST, to, KEY_MAP_KEYS)) {
+				Long c = DustKBUtils.access(DustAccess.Peek, 0L, info, a, TOKEN_COUNT);
+				DustKBUtils.access(DustAccess.Set, c + 1, info, a, TOKEN_COUNT);
 			}
 		}
 	}

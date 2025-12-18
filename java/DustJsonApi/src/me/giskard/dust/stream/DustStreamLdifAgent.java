@@ -9,12 +9,11 @@ import java.util.Base64;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import me.giskard.dust.Dust;
-import me.giskard.dust.DustConsts;
+import me.giskard.dust.DustAgent;
 import me.giskard.dust.DustException;
 import me.giskard.dust.kb.DustKBConsts;
 import me.giskard.dust.kb.DustKBUtils;
@@ -23,25 +22,24 @@ import me.giskard.dust.utils.DustUtils;
 import me.giskard.dust.utils.DustUtilsFile;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustStreamLdifAgent extends DustConsts.DustAgentBase implements DustStreamConsts, DustKBConsts, DustLDAPConsts {
+public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, DustKBConsts, DustLDAPConsts {
 
 	FileFilter ffLdif = new DustUtilsFile.ExtFilter(DUST_EXT_LDIF);
 
 	@Override
-	protected Object process(Map<String, Object> cfg, Object params) throws Exception {
+	protected Object process(DustAction action) throws Exception {
+		KBStore kb = Dust.getAgent(access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
 
-		KBStore kb = Dust.getAgent(DustUtils.simpleGet(cfg, TOKEN_KB_KNOWLEDGEBASE));
-
-		String cmd = DustUtils.simpleGet(params, TOKEN_CMD);
-		Map<String, Object> ser = DustUtils.simpleGet(params, TOKEN_SERIALIZER);
+		String cmd = access(DustAccess.Peek, null, null, TOKEN_CMD);
+		Map<String, Object> ser = access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
 
 		switch (cmd) {
 		case TOKEN_CMD_LOAD:
 
-			String unitId = DustUtils.simpleGet(params, TOKEN_UNIT);
+			String unitId = access(DustAccess.Peek, null, null, TOKEN_UNIT);
 			KBUnit unitMeta = kb.getUnit(unitId, true);
 
-			String fn = DustKBUtils.access(KBAccess.Peek, null, cfg, TOKEN_META);
+			String fn = access(DustAccess.Peek, null, null, TOKEN_META);
 
 			if (!DustUtils.isEmpty(fn)) {
 				File f = new File(fn);
@@ -61,28 +59,28 @@ public class DustStreamLdifAgent extends DustConsts.DustAgentBase implements Dus
 				DustUtilsFile.procRecursive(f, fp, ffLdif);
 
 				if (null != ser) {
-					DustKBUtils.access(KBAccess.Set, unitMeta, ser, TOKEN_PARAMS, TOKEN_UNIT);
-					DustKBUtils.access(KBAccess.Set, unitId, ser, TOKEN_PARAMS, TOKEN_KEY);
+					DustKBUtils.access(DustAccess.Set, unitMeta, ser, TOKEN_PARAMS, TOKEN_UNIT);
+					DustKBUtils.access(DustAccess.Set, unitId, ser, TOKEN_PARAMS, TOKEN_KEY);
 					Dust.sendMessage(ser);
 				}
 			}
 
-			for (Map<String, Object> src : ((Collection<Map<String, Object>>) DustKBUtils.access(KBAccess.Visit, Collections.EMPTY_LIST, params, TOKEN_SOURCE))) {
-				Map<String, Object> p = new TreeMap<>(cfg);
-				p.putAll((Map) params);
-				p.putAll(src);
+			for (Map<String, Object> src : ((Collection<Map<String, Object>>) access(DustAccess.Visit, Collections.EMPTY_LIST, null, TOKEN_SOURCE))) {
+//				Map<String, Object> p = new TreeMap<>(cfg);
+//				p.putAll((Map) params);
+//				p.putAll(src);
 
-				String fileName = DustKBUtils.access(KBAccess.Peek, null, p, TOKEN_PATH);
+				String fileName = access(DustAccess.Peek, null, src, TOKEN_PATH);
 				File f = new File(fileName);
 
-				unitId = DustUtils.simpleGet(p, TOKEN_UNIT);
+				unitId = access(DustAccess.Peek, null, src, TOKEN_UNIT);
 				KBUnit unit = kb.getUnit(unitId, true);
 
-				readDataLdif(unit, unitMeta, p, f);
+				readDataLdif(unit, unitMeta, src, f);
 
 				if (null != ser) {
-					DustKBUtils.access(KBAccess.Set, unit, ser, TOKEN_PARAMS, TOKEN_UNIT);
-					DustKBUtils.access(KBAccess.Set, unitId, ser, TOKEN_PARAMS, TOKEN_KEY);
+					DustKBUtils.access(DustAccess.Set, unit, ser, TOKEN_PARAMS, TOKEN_UNIT);
+					DustKBUtils.access(DustAccess.Set, unitId, ser, TOKEN_PARAMS, TOKEN_KEY);
 					Dust.sendMessage(ser);
 				}
 			}
@@ -145,13 +143,13 @@ public class DustStreamLdifAgent extends DustConsts.DustAgentBase implements Dus
 				if (m.matches()) {
 					str = m.group(1);
 					o = unit.getObject(type, str);
-					DustKBUtils.access(KBAccess.Set, str, o, TOKEN_KEY);
-					DustKBUtils.access(KBAccess.Set, DustUtils.cutPostfix(f.getName(), "."), o, TOKEN_PARENT);
+					DustKBUtils.access(DustAccess.Set, str, o, TOKEN_KEY);
+					DustKBUtils.access(DustAccess.Set, DustUtils.cutPostfix(f.getName(), "."), o, TOKEN_PARENT);
 				}
 
 				m = ptDesc.matcher(val);
 				if (m.matches()) {
-					DustKBUtils.access(KBAccess.Set, m.group(1), o, TOKEN_DESC);
+					DustKBUtils.access(DustAccess.Set, m.group(1), o, TOKEN_DESC);
 				}
 
 				m = ptMust.matcher(val);
@@ -160,8 +158,8 @@ public class DustStreamLdifAgent extends DustConsts.DustAgentBase implements Dus
 
 					for (String a : members) {
 						KBObject ao = unit.getObject(typeAtt, a.trim());
-						DustKBUtils.access(KBAccess.Insert, ao, o, TOKEN_LDAP_MUST);
-						DustKBUtils.access(KBAccess.Insert, o, ao, TOKEN_LDAP_APPEARS);
+						DustKBUtils.access(DustAccess.Insert, ao, o, TOKEN_LDAP_MUST);
+						DustKBUtils.access(DustAccess.Insert, o, ao, TOKEN_LDAP_APPEARS);
 					}
 				}
 
@@ -171,14 +169,14 @@ public class DustStreamLdifAgent extends DustConsts.DustAgentBase implements Dus
 
 					for (String a : members) {
 						KBObject ao = unit.getObject(typeAtt, a.trim());
-						DustKBUtils.access(KBAccess.Insert, ao, o, TOKEN_LDAP_MAY);
-						DustKBUtils.access(KBAccess.Insert, o, ao, TOKEN_LDAP_APPEARS);
+						DustKBUtils.access(DustAccess.Insert, ao, o, TOKEN_LDAP_MAY);
+						DustKBUtils.access(DustAccess.Insert, o, ao, TOKEN_LDAP_APPEARS);
 					}
 				}
 
 				if (val.contains(TOKEN_LDAP_SINGLE_VALUE)) {
-					DustKBUtils.access(KBAccess.Set, true, o, TOKEN_LDAP_SINGLE_VALUE);
-					DustKBUtils.access(KBAccess.Set, true, o, TOKEN_LDAP_SINGLE_VALUE);
+					DustKBUtils.access(DustAccess.Set, true, o, TOKEN_LDAP_SINGLE_VALUE);
+					DustKBUtils.access(DustAccess.Set, true, o, TOKEN_LDAP_SINGLE_VALUE);
 				}
 			}
 		}
@@ -203,10 +201,10 @@ public class DustStreamLdifAgent extends DustConsts.DustAgentBase implements Dus
 			this.unit = unit;
 			this.unitMeta = unitMeta;
 
-			type = DustKBUtils.access(KBAccess.Peek, "???", params, TOKEN_KBMETA_TYPE);
+			type = access(DustAccess.Peek, "???", params, TOKEN_KBMETA_TYPE);
 			at = unit.getStore().getMetaTypeId(TOKEN_KBMETA_ATTRIBUTE);
 			tt = unit.getStore().getMetaTypeId(TOKEN_KBMETA_TYPE);
-			encoding = DustKBUtils.access(KBAccess.Peek, DUST_CHARSET_UTF8, params, TOKEN_STREAM_ENCODING);
+			encoding = access(DustAccess.Peek, DUST_CHARSET_UTF8, params, TOKEN_STREAM_ENCODING);
 		}
 
 		public void processLine(String line) {
@@ -221,7 +219,7 @@ public class DustStreamLdifAgent extends DustConsts.DustAgentBase implements Dus
 
 					key = line.substring(0, sep).trim();
 					String val = line.substring(sep + 1).trim();
-					
+
 					base64 = val.startsWith(":");
 					if (base64) {
 						val = val.substring(1).trim();
@@ -244,36 +242,36 @@ public class DustStreamLdifAgent extends DustConsts.DustAgentBase implements Dus
 				if (TOKEN_LDAP_DN.equals(key)) {
 					o = unit.getObject(type, vv);
 				}
-								
+
 				unitMeta.getObject(at, key);
-				if ( TOKEN_LDAP_OBJECTCLASS.equals(key)) {
+				if (TOKEN_LDAP_OBJECTCLASS.equals(key)) {
 					unitMeta.getObject(tt, vv);
 				}
 
 //				String k = unitMeta.getUnitId() + DUST_SEP_TOKEN + key;
 				String k = key;
-				Object v = DustKBUtils.access(KBAccess.Peek, null, o, k);
-				
+				Object v = DustKBUtils.access(DustAccess.Peek, null, o, k);
+
 				boolean coll = (v instanceof Collection);
-				
-				if ( coll ) {
-					if ( ((Collection)v).contains(vv)) {
+
+				if (coll) {
+					if (((Collection) v).contains(vv)) {
 						return;
 					}
 				} else {
-					if ( DustUtils.isEqual(vv, v)) {
+					if (DustUtils.isEqual(vv, v)) {
 						return;
 					}
 				}
-				
+
 				if (null == v) {
-					DustKBUtils.access(KBAccess.Set, vv, o, k);
+					DustKBUtils.access(DustAccess.Set, vv, o, k);
 				} else {
 					if (!coll) {
-						DustKBUtils.access(KBAccess.Delete, null, o, k);
-						DustKBUtils.access(KBAccess.Insert, v, o, k, KEY_ADD);
+						DustKBUtils.access(DustAccess.Delete, null, o, k);
+						DustKBUtils.access(DustAccess.Insert, v, o, k, KEY_ADD);
 					}
-					DustKBUtils.access(KBAccess.Insert, vv, o, k, KEY_ADD);
+					DustKBUtils.access(DustAccess.Insert, vv, o, k, KEY_ADD);
 				}
 			}
 		}

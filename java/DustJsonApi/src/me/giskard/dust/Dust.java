@@ -22,13 +22,13 @@ public class Dust implements DustConsts, DustKBConsts {
 
 	private static synchronized void registerToRelease(DustAgent agent) {
 		if (null == TORELEASE) {
-			TORELEASE = new ArrayList<DustConsts.DustAgent>();
+			TORELEASE = new ArrayList<DustAgent>();
 			Runtime.getRuntime().addShutdownHook(new Thread() {
 				@Override
 				public void run() {
 					for (DustAgent a : TORELEASE) {
 						try {
-							a.agentProcess(DustAction.Release, null);
+							a.release();
 						} catch (Throwable e) {
 							DustException.swallow(e, "Releasing on shutdown", a);
 						}
@@ -43,18 +43,18 @@ public class Dust implements DustConsts, DustKBConsts {
 	private static DustUtilsFactory<String, DustAgent> AGENTS = new DustUtilsFactory<String, DustAgent>(new DustCreator<DustAgent>() {
 		@Override
 		public DustAgent create(Object key, Object... hints) {
-			KBObject aCfg = DustKBUtils.access(KBAccess.Peek, null, appObj, TOKEN_AGENTS, key);
+			KBObject aCfg = DustKBUtils.access(DustAccess.Peek, null, appObj, TOKEN_AGENTS, key);
 
 			if (null == aCfg) {
 				return DustException.wrap(null, "Missing config for agent", key);
 			}
-			String cn = DustKBUtils.access(KBAccess.Peek, null, aCfg, TOKEN_CLASS_NAME);
+			String cn = DustKBUtils.access(DustAccess.Peek, null, aCfg, TOKEN_CLASS_NAME);
 			DustAgent a = null;
 			try {
 				a = (DustAgent) Class.forName(cn).getConstructor().newInstance();
-				a.agentProcess(DustAction.Init, DustKBUtils.access(KBAccess.Peek, Collections.EMPTY_MAP, aCfg, TOKEN_PARAMS));
+				a.init(DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_MAP, aCfg, TOKEN_PARAMS));
 
-				if ((Boolean) DustKBUtils.access(KBAccess.Peek, false, aCfg, TOKEN_TYPE_RELEASEONSHUTDOWN)) {
+				if ((Boolean) DustKBUtils.access(DustAccess.Peek, false, aCfg, TOKEN_TYPE_RELEASEONSHUTDOWN)) {
 					registerToRelease(a);
 				}
 			} catch (Throwable e) {
@@ -90,7 +90,7 @@ public class Dust implements DustConsts, DustKBConsts {
 			String appType = DUST_UNIT_ID + DUST_SEP_TOKEN + TOKEN_TYPE_APP;
 			appObj = appUnit.getObject(appType, appName, KBOptCreate.None);
 
-			for (KBObject ca : ((Collection<KBObject>) DustKBUtils.access(KBAccess.Peek, Collections.EMPTY_LIST, appObj, TOKEN_INIT))) {
+			for (KBObject ca : ((Collection<KBObject>) DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_LIST, appObj, TOKEN_INIT))) {
 				Dust.log(TOKEN_LEVEL_INFO, "MemInfo", DustDevUtils.memInfo());
 
 				String type = DustUtils.getPostfix(ca.getType(), DUST_SEP_TOKEN);
@@ -100,7 +100,7 @@ public class Dust implements DustConsts, DustKBConsts {
 				switch (type) {
 				case TOKEN_TYPE_AGENT:
 					an = ca.getId();
-					skip = DustKBUtils.access(KBAccess.Check, true, appObj, TOKEN_AGENTS, an, TOKEN_SKIP);
+					skip = DustKBUtils.access(DustAccess.Check, true, appObj, TOKEN_AGENTS, an, TOKEN_SKIP);
 					if (skip) {
 						continue;
 					} else {
@@ -108,7 +108,7 @@ public class Dust implements DustConsts, DustKBConsts {
 					}
 					break;
 				case TOKEN_TYPE_MESSAGE:
-					skip = DustKBUtils.access(KBAccess.Check, true, ca, TOKEN_SKIP);
+					skip = DustKBUtils.access(DustAccess.Check, true, ca, TOKEN_SKIP);
 					if (skip) {
 						continue;
 					} else {
@@ -133,14 +133,14 @@ public class Dust implements DustConsts, DustKBConsts {
 	}
 
 	public static <RetType> RetType sendMessage(Object msg) {
-		String agent = DustKBUtils.access(KBAccess.Get, null, msg, TOKEN_AGENT);
+		String agent = DustKBUtils.access(DustAccess.Get, null, msg, TOKEN_AGENT);
 		Dust.log(TOKEN_LEVEL_TRACE, "Message to agent", agent, "params", msg);
 		long start = System.currentTimeMillis();
 		Object ret = null;
 
 		try {
 			DustAgent a = Dust.getAgent(agent);
-			Map<String, Object> params = DustKBUtils.access(KBAccess.Get, null, msg, TOKEN_PARAMS);
+			Map<String, Object> params = DustKBUtils.access(DustAccess.Get, null, msg, TOKEN_PARAMS);
 			ret = a.agentProcess(DustAction.Process, params);
 		} catch (Throwable e) {
 			DustException.wrap(e, "sendMessage failed", msg);

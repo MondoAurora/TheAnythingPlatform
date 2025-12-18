@@ -1,7 +1,6 @@
 package me.giskard.dust;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
 
 public interface DustConsts {
 	String DUST_CRED_FILE = "credentials.txt";
@@ -70,64 +69,32 @@ public interface DustConsts {
 	String TOKEN_TYPE_AGENT = "Agent";
 	String TOKEN_TYPE_MESSAGE = "Message";
 	String TOKEN_TYPE_RELEASEONSHUTDOWN = "releaseOnShutdown";
-	
+
 	String TOKEN_RESULT_REJECT = "Reject";
 	String TOKEN_RESULT_PASS = "Pass";
 	String TOKEN_RESULT_READ = "Read";
 	String TOKEN_RESULT_READACCEPT = "ReadAccept";
 	String TOKEN_RESULT_ACCEPT = "Accept";
 
-
 	String TOKEN_LEVEL_TRACE = "Trace";
 	String TOKEN_LEVEL_INFO = "Info";
 	String TOKEN_LEVEL_WARNING = "Warning";
 	String TOKEN_LEVEL_ERROR = "Error";
+	
+	Object NOT_FOUND = new Object();
 
-	enum DustAction {
-		Init, Begin, Process, End, Release,
+	enum DustAccess {
+		Check(false), Peek(false), Get(false), Set(true), Insert(true), Delete(false), Reset(false), Visit(false),
+		Begin(false), Commit(false), Rollback(false), Process(false);
+
+		public final boolean creator;
+
+		private DustAccess(boolean creator) {
+			this.creator = creator;
+		}
 	};
 
-	interface DustAgent {
-		<RetType> RetType agentProcess(DustAction action, Object params) throws Exception;
-	}
-
-	@SuppressWarnings("unchecked")
-	abstract class DustAgentBase implements DustAgent {
-		protected Map<String, Object> cfg;
-
-		@Override
-		public <RetType> RetType agentProcess(DustAction action, Object params) throws Exception {
-			Object ret = null;
-
-			switch (action) {
-			case Begin:
-				break;
-			case End:
-				break;
-			case Init:
-				this.cfg = (Map<String, Object>) params;
-				init();
-				break;
-			case Process:
-				ret = process(cfg, params);
-				break;
-			case Release:
-				release();
-				break;
-			}
-
-			return (RetType) ret;
-		}
-
-		protected void init() throws Exception {
-		}
-
-		protected void release() throws Exception {
-		}
-
-		protected Object process(Map<String, Object> cfg, Object params) throws Exception {
-			return null;
-		}
-
+	enum DustAction {
+		Begin, Process, End, // Init, Release,
 	}
 }

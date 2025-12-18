@@ -5,38 +5,34 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
-import me.giskard.dust.DustConsts;
-import me.giskard.dust.kb.DustKBUtils;
+import me.giskard.dust.DustAgent;
 import me.giskard.dust.net.DustNetConsts;
 import me.giskard.dust.net.DustNetUtils;
 import me.giskard.dust.stream.DustStreamUtils;
 import me.giskard.dust.utils.DustUtils;
 
-public class DustHttpFileAgent extends DustConsts.DustAgentBase implements DustNetConsts {
+public class DustHttpFileAgent extends DustAgent implements DustNetConsts {
 
 	@Override
-	protected Object process(Map<String, Object> cfg, Object params) throws Exception {
-		HttpServletResponse response = DustKBUtils.access(KBAccess.Peek, null, params, TOKEN_TARGET,
-				TOKEN_NET_SRVCALL_RESPONSE);
+	protected Object process(DustAction action) throws Exception {
+		HttpServletResponse response = access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
 
 		if (null != response) {
-			String path = DustKBUtils.access(KBAccess.Get, null, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
-			
-			if ( DustUtils.isEmpty(path) ) {
-				 path = DustKBUtils.access(KBAccess.Get, null, params, TOKEN_PATH);
+			String path = access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
+
+			if (DustUtils.isEmpty(path)) {
+				path = access(DustAccess.Peek, null, null, TOKEN_PATH);
 			}
-			
+
 			if (!DustStreamUtils.checkPathBound(path)) {
 				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 				return null;
 			}
 
-			Collection<Object> roots = DustKBUtils.access(KBAccess.Get, Collections.EMPTY_LIST, cfg,
-					TOKEN_SOURCE);
+			Collection<Object> roots = access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_SOURCE);
 
 			File f = null;
 

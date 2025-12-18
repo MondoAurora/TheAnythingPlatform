@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 import me.giskard.dust.Dust;
-import me.giskard.dust.DustConsts;
+import me.giskard.dust.DustAgent;
 import me.giskard.dust.DustException;
 import me.giskard.dust.stream.DustStreamConsts;
 import me.giskard.dust.utils.DustUtils;
@@ -19,31 +19,31 @@ import me.giskard.dust.utils.DustUtilsConstsJson;
 import me.giskard.dust.utils.DustUtilsJson;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustKBSerializerJsonApi extends DustConsts.DustAgentBase implements DustKBConsts, DustUtilsConstsJson, DustStreamConsts {
+public class DustKBSerializerJsonApi extends DustAgent implements DustKBConsts, DustUtilsConstsJson, DustStreamConsts {
 
 	@Override
-	protected Object process(Map<String, Object> cfg, Object params) throws Exception {
+	protected Object process(DustAction action) throws Exception {
 
-		String unitId = DustUtils.simpleGet(params, TOKEN_KEY);
-		DustKBUnit unit = DustUtils.simpleGet(params, TOKEN_UNIT);
-		((Map) params).remove(TOKEN_UNIT);
+		String unitId = access(DustAccess.Peek, null, null, TOKEN_KEY);
+		DustKBUnit unit = access(DustAccess.Peek, null, null, TOKEN_UNIT);
+		access(DustAccess.Delete, null, null, TOKEN_UNIT);
 		File f = null;
 
 		if (null == unit) {
-			KBStore kb = Dust.getAgent(DustUtils.simpleGet(cfg, TOKEN_KB_KNOWLEDGEBASE));
+			KBStore kb = Dust.getAgent(access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
 			unit = (DustKBUnit) kb.getUnit(unitId, true);
 		}
 
 		if (!DustUtils.isEmpty(unitId)) {
-			String fn = DustKBUtils.access(KBAccess.Peek, unitId, params, TOKEN_ALIAS);
+			String fn = access(DustAccess.Peek, unitId, null, TOKEN_ALIAS);
 			if (fn.contains("{")) {
 				fn = MessageFormat.format(fn, unitId);
 			}
-			String fileName = DustUtils.sbAppend(null, "/", false, DustUtils.simpleGet(cfg, TOKEN_STREAM_ROOTFOLDER), fn + DUST_EXT_JSON).toString();
+			String fileName = DustUtils.sbAppend(null, "/", false, access(DustAccess.Peek, null, null, TOKEN_STREAM_ROOTFOLDER), fn + DUST_EXT_JSON).toString();
 
 			f = new File(fileName);
 		}
-		String cmd = DustUtils.simpleGet(params, TOKEN_CMD);
+		String cmd = access(DustAccess.Peek, null, null, TOKEN_CMD);
 		switch (cmd) {
 		case TOKEN_CMD_LOAD:
 			loadFile(unit, f);
@@ -52,17 +52,17 @@ public class DustKBSerializerJsonApi extends DustConsts.DustAgentBase implements
 		case TOKEN_CMD_SAVE:
 			Map<String, Object> target = new HashMap<>();
 
-			DustKBUtils.access(KBAccess.Set, JSONAPI_VERSION, target, JsonApiMember.jsonapi, JsonApiMember.version);
+			DustKBUtils.access(DustAccess.Set, JSONAPI_VERSION, target, JsonApiMember.jsonapi, JsonApiMember.version);
 
 			ArrayList data = new ArrayList();
 
-			DustKBUtils.access(KBAccess.Set, data, target, JsonApiMember.data);
+			DustKBUtils.access(DustAccess.Set, data, target, JsonApiMember.data);
 
 			for (KBObject o : unit.objects()) {
 				Map<String, Object> item = getJsonHead(o);
 
-				for (String key : (Iterable<String>) DustKBUtils.access(KBAccess.Peek, Collections.EMPTY_LIST, o, KEY_MAP_KEYS)) {
-					Object val = DustKBUtils.access(KBAccess.Peek, null, o, key);
+				for (String key : (Iterable<String>) DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_LIST, o, KEY_MAP_KEYS)) {
+					Object val = DustKBUtils.access(DustAccess.Peek, null, o, key);
 
 					if (val instanceof KBObject) {
 						addRelation(item, key, val, null);
@@ -77,7 +77,7 @@ public class DustKBSerializerJsonApi extends DustConsts.DustAgentBase implements
 //							Dust.log(TOKEN_LEVEL_TRACE, "hmm");
 //						}
 
-						Object sample = DustKBUtils.access(KBAccess.Peek, null, coll, 0);
+						Object sample = DustKBUtils.access(DustAccess.Peek, null, coll, 0);
 						if (sample instanceof KBObject) {
 							int idx = (coll instanceof Set) ? -1 : 0;
 							for (KBObject co : (Collection<KBObject>) coll) {
@@ -102,17 +102,17 @@ public class DustKBSerializerJsonApi extends DustConsts.DustAgentBase implements
 					}
 
 					if (null != val) {
-						DustKBUtils.access(KBAccess.Set, val, item, JsonApiMember.attributes, key);
+						DustKBUtils.access(DustAccess.Set, val, item, JsonApiMember.attributes, key);
 					}
 				}
 
 				data.add(item);
 			}
 
-			DustKBUtils.access(KBAccess.Set, data.size(), target, JsonApiMember.meta, JsonApiMember.count);
+			DustKBUtils.access(DustAccess.Set, data.size(), target, JsonApiMember.meta, JsonApiMember.count);
 
 			if (null == f) {
-				Writer w = DustKBUtils.access(KBAccess.Peek, null, params, TOKEN_STREAM_WRITER);
+				Writer w = access(DustAccess.Peek, null, null, TOKEN_STREAM_WRITER);
 				DustUtilsJson.writeJson(w, target);
 			} else {
 				DustUtilsJson.writeJson(f, target);
@@ -125,10 +125,10 @@ public class DustKBSerializerJsonApi extends DustConsts.DustAgentBase implements
 
 	private Map addRelation(Map<String, Object> item, String key, Object val, Object metaKey) {
 		Map head = getJsonHead((KBObject) val);
-		DustKBUtils.access(KBAccess.Insert, head, item, JsonApiMember.relationships, key, JsonApiMember.data, KEY_ADD);
+		DustKBUtils.access(DustAccess.Insert, head, item, JsonApiMember.relationships, key, JsonApiMember.data, KEY_ADD);
 
 		if (null != metaKey) {
-			DustKBUtils.access(KBAccess.Set, metaKey, head, JsonApiMember.meta, TOKEN_KEY);
+			DustKBUtils.access(DustAccess.Set, metaKey, head, JsonApiMember.meta, TOKEN_KEY);
 		} else {
 //			Dust.log(TOKEN_LEVEL_TRACE, "hmm");
 		}
@@ -154,11 +154,11 @@ public class DustKBSerializerJsonApi extends DustConsts.DustAgentBase implements
 				DustException.wrap(null, "Loading JSON:API version", str, "does not match", JSONAPI_VERSION);
 			}
 
-			for (Map<String, Object> ca : ((Collection<Map<String, Object>>) DustKBUtils.access(KBAccess.Peek, Collections.EMPTY_LIST, content,
+			for (Map<String, Object> ca : ((Collection<Map<String, Object>>) DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_LIST, content,
 					JsonApiMember.data))) {
 				loadData(unit, ca, false);
 			}
-			for (Map<String, Object> ca : ((Collection<Map<String, Object>>) DustKBUtils.access(KBAccess.Peek, Collections.EMPTY_LIST, content,
+			for (Map<String, Object> ca : ((Collection<Map<String, Object>>) DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_LIST, content,
 					JsonApiMember.included))) {
 				loadData(unit, ca, true);
 			}
@@ -174,7 +174,7 @@ public class DustKBSerializerJsonApi extends DustConsts.DustAgentBase implements
 		Map<String, Object> atts = DustUtils.simpleGet(data, JsonApiMember.attributes);
 		if (null != atts) {
 			for (Map.Entry<String, Object> ae : atts.entrySet()) {
-				DustKBUtils.access(KBAccess.Set, ae.getValue(), target, ae.getKey());
+				DustKBUtils.access(DustAccess.Set, ae.getValue(), target, ae.getKey());
 			}
 		}
 
@@ -195,9 +195,9 @@ public class DustKBSerializerJsonApi extends DustConsts.DustAgentBase implements
 						KBObject ro = unit.getObject(rt, ri, KBOptCreate.Reference);
 
 						if (null == key) {
-							DustKBUtils.access(KBAccess.Insert, ro, target, rk);
+							DustKBUtils.access(DustAccess.Insert, ro, target, rk);
 						} else {
-							DustKBUtils.access(KBAccess.Set, ro, target, rk, (key instanceof Number) ? ((Number) key).intValue() : key);
+							DustKBUtils.access(DustAccess.Set, ro, target, rk, (key instanceof Number) ? ((Number) key).intValue() : key);
 						}
 					}
 				} else {
@@ -206,7 +206,7 @@ public class DustKBSerializerJsonApi extends DustConsts.DustAgentBase implements
 
 					KBObject ro = unit.getObject(rt, ri, KBOptCreate.Reference);
 
-					DustKBUtils.access(KBAccess.Set, ro, target, rk);
+					DustKBUtils.access(DustAccess.Set, ro, target, rk);
 				}
 			}
 		}

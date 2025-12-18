@@ -1,7 +1,6 @@
 package me.giskard.dust.net.httpsrv;
 
 import java.io.PrintWriter;
-import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletResponse;
@@ -18,12 +17,11 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 
 import me.giskard.dust.Dust;
-import me.giskard.dust.DustConsts;
+import me.giskard.dust.DustAgent;
 import me.giskard.dust.DustException;
-import me.giskard.dust.kb.DustKBUtils;
 import me.giskard.dust.net.DustNetConsts;
 
-public class DustHttpServerJetty extends DustConsts.DustAgentBase implements DustNetConsts // , DustConsts.DustThreadOwner
+public class DustHttpServerJetty extends DustAgent implements DustNetConsts // , DustConsts.DustThreadOwner
 {
 	enum Commands {
 		stop, info,
@@ -40,9 +38,9 @@ public class DustHttpServerJetty extends DustConsts.DustAgentBase implements Dus
 			jetty = new Server();
 			handlers = new HandlerList();
 
-			name = DustKBUtils.access(KBAccess.Get, null, cfg, TOKEN_NAME);
+			name = access(DustAccess.Peek, null, null, TOKEN_NAME);
 
-			long port = DustKBUtils.access(KBAccess.Peek, 8080, cfg, TOKEN_NET_HOST_PORT);
+			long port = access(DustAccess.Peek, 8080L, null, TOKEN_NET_HOST_PORT);
 			HttpConfiguration http = new HttpConfiguration();
 
 			ServerConnector connector = new ServerConnector(jetty);
@@ -54,7 +52,7 @@ public class DustHttpServerJetty extends DustConsts.DustAgentBase implements Dus
 
 			System.out.println("Connector: " + connector);
 
-			Long sslPort = DustKBUtils.access(KBAccess.Peek, null, cfg, TOKEN_NET_SSLINFO_PORT);
+			Long sslPort = access(DustAccess.Peek, null, null, TOKEN_NET_SSLINFO_PORT);
 
 			if (null != sslPort) {
 				HttpConfiguration https = new HttpConfiguration();
@@ -63,11 +61,11 @@ public class DustHttpServerJetty extends DustConsts.DustAgentBase implements Dus
 				SslContextFactory sslContextFactory = new SslContextFactory();
 
 				String str;
-				str = DustKBUtils.access(KBAccess.Peek, null, cfg, TOKEN_NET_SSLINFO_STOREPATH);
+				str = access(DustAccess.Peek, null, null, TOKEN_NET_SSLINFO_STOREPATH);
 				sslContextFactory.setKeyStorePath(ClassLoader.getSystemResource(str).toExternalForm());
-				str = DustKBUtils.access(KBAccess.Peek, null, cfg, TOKEN_NET_SSLINFO_STOREPASS);
+				str = access(DustAccess.Peek, null, null, TOKEN_NET_SSLINFO_STOREPASS);
 				sslContextFactory.setKeyStorePassword(str);
-				str = DustKBUtils.access(KBAccess.Peek, null, cfg, TOKEN_NET_SSLINFO_KEYMANAGERPASS);
+				str = access(DustAccess.Peek, null, null, TOKEN_NET_SSLINFO_KEYMANAGERPASS);
 				sslContextFactory.setKeyManagerPassword(str);
 
 				ServerConnector sslConnector = new ServerConnector(jetty, new SslConnectionFactory(sslContextFactory, "http/1.1"), new HttpConnectionFactory(https));
@@ -80,7 +78,7 @@ public class DustHttpServerJetty extends DustConsts.DustAgentBase implements Dus
 			ctxHandler.setContextPath("/*");
 			handlers.addHandler(ctxHandler);
 
-			Object dispatch = DustKBUtils.access(KBAccess.Peek, null, cfg, TOKEN_MEMBERS);
+			Object dispatch = access(DustAccess.Peek, null, null, TOKEN_MEMBERS);
 
 			ctxHandler.addServlet(new ServletHolder(new DustHttpServletDispatcher(dispatch)), "/*");
 
@@ -90,9 +88,9 @@ public class DustHttpServerJetty extends DustConsts.DustAgentBase implements Dus
 	}
 
 	@Override
-	protected Object process(Map<String, Object> cfg, Object params) throws Exception {
+	protected Object process(DustAction action) throws Exception {
 		Commands cmd = Commands.info;
-		String str = DustKBUtils.access(KBAccess.Get, "", params, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
+		String str = access(DustAccess.Peek, "", null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
 		String[] path = str.split("/");
 		if (0 < path.length) {
 			try {
@@ -102,7 +100,7 @@ public class DustHttpServerJetty extends DustConsts.DustAgentBase implements Dus
 			}
 		}
 
-		HttpServletResponse response = DustKBUtils.access(KBAccess.Peek, null, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+		HttpServletResponse response = access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
 		if (null == response) {
 			Dust.log(TOKEN_LEVEL_ERROR, "no response given?");
 		}
@@ -137,7 +135,7 @@ public class DustHttpServerJetty extends DustConsts.DustAgentBase implements Dus
 			}.start();
 			break;
 		case info:
-			response = DustKBUtils.access(KBAccess.Peek, null, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+			response = access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
 
 			if (null != response) {
 				Properties pp = System.getProperties();
@@ -174,7 +172,7 @@ public class DustHttpServerJetty extends DustConsts.DustAgentBase implements Dus
 	}
 
 	@Override
-	public void release() throws Exception {
+	protected void release() throws Exception {
 		if (null != jetty) {
 			Server j = jetty;
 			jetty = null;

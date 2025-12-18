@@ -45,7 +45,7 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 				Map target = null;
 				
 				for (Map agent : agents) {
-					String p = DustKBUtils.access(KBAccess.Get, "@@@", agent, TOKEN_PATH);
+					String p = DustKBUtils.access(DustAccess.Get, "@@@", agent, TOKEN_PATH);
 
 					if (pathInfo.startsWith(p)) {
 						target = agent;
@@ -71,12 +71,12 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 				}
 				msg.put(TOKEN_PARAMS, params);
 
-				DustKBUtils.access(KBAccess.Set, pathInfo, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
+				DustKBUtils.access(DustAccess.Set, pathInfo, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
 
-				DustKBUtils.access(KBAccess.Set, request, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_REQUEST);
-				DustKBUtils.access(KBAccess.Set, response, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+				DustKBUtils.access(DustAccess.Set, request, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_REQUEST);
+				DustKBUtils.access(DustAccess.Set, response, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
 
-				DustKBUtils.access(KBAccess.Set, request.getMethod(), params, TOKEN_TARGET,
+				DustKBUtils.access(DustAccess.Set, request.getMethod(), params, TOKEN_TARGET,
 						TOKEN_NET_SRVCALL_METHOD);
 
 				Enumeration<String> ee;
@@ -105,7 +105,7 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 				
 				Dust.sendMessage(msg);
 
-				int status = DustKBUtils.access(KBAccess.Peek, HttpServletResponse.SC_OK, params, TOKEN_TARGET,
+				int status = DustKBUtils.access(DustAccess.Peek, HttpServletResponse.SC_OK, params, TOKEN_TARGET,
 						TOKEN_NET_SRVCALL_STATUS);
 
 				response.setStatus(status);
@@ -123,6 +123,6 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 	}
 
 	private void optAdd(Object params, Object kind, String name, Object val) {
-		DustKBUtils.access(KBAccess.Set, val, params, TOKEN_TARGET, kind, name);
+		DustKBUtils.access(DustAccess.Set, val, params, TOKEN_TARGET, kind, name);
 	}
 }

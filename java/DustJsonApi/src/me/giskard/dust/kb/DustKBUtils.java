@@ -32,7 +32,7 @@ public class DustKBUtils implements DustKBConsts {
 
 		return DustKBStore.appUnit;
 	}
-	
+
 	public static void loadExtFile(KBUnit unit, File extFile) throws IOException, FileNotFoundException {
 		if (extFile.isFile()) {
 			try (FileInputStream fis = new FileInputStream(extFile); BufferedReader br = new BufferedReader(new InputStreamReader(fis))) {
@@ -68,7 +68,7 @@ public class DustKBUtils implements DustKBConsts {
 									break;
 								}
 							}
-							access(KBAccess.Set, v, aCfg, (Object[]) ext[1].trim().split("\\."));
+							access(DustAccess.Set, v, aCfg, (Object[]) ext[1].trim().split("\\."));
 							Dust.log(TOKEN_LEVEL_TRACE, "change applied", line);
 						}
 					}
@@ -79,7 +79,7 @@ public class DustKBUtils implements DustKBConsts {
 		}
 	}
 
-	public static <RetType> RetType access(KBAccess access, Object val, Object root, Object... path) {
+	public static <RetType> RetType access(DustAccess access, Object val, Object root, Object... path) {
 		Object curr = root;
 		KBCollType collType = KBCollType.getCollType(root);
 
@@ -153,7 +153,7 @@ public class DustKBUtils implements DustKBConsts {
 
 		switch (access) {
 		case Check:
-			ret = DustUtils.isEqual(val, curr);
+			ret = (null == curr) ? NOT_FOUND : DustUtils.isEqual(val, curr);
 			break;
 		case Delete:
 			if (curr != null) {
@@ -234,19 +234,27 @@ public class DustKBUtils implements DustKBConsts {
 
 			break;
 		case Visit:
-			switch (KBCollType.getCollType(curr)) {
-			case Arr:
-			case Set:
-				ret = curr;
-				break;
-			case Map:
-				ret = ((Map) curr).entrySet();
-				break;
-			case One:
-				ret = null;
-				break;
+			if (curr == null) {
+				ret = NOT_FOUND;
+			} else {
+				switch (KBCollType.getCollType(curr)) {
+				case Arr:
+				case Set:
+					ret = curr;
+					break;
+				case Map:
+					ret = ((Map) curr).entrySet();
+					break;
+				case One:
+					ret = null;
+					break;
+				}
 			}
-
+			break;
+		case Begin:
+		case Commit:
+		case Process:
+		case Rollback:
 			break;
 		}
 

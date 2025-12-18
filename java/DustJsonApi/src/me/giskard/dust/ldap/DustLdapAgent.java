@@ -2,7 +2,6 @@ package me.giskard.dust.ldap;
 
 import java.util.Collection;
 import java.util.Hashtable;
-import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.NamingEnumeration;
@@ -13,20 +12,19 @@ import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
 import me.giskard.dust.Dust;
-import me.giskard.dust.DustConsts;
-import me.giskard.dust.kb.DustKBUtils;
+import me.giskard.dust.DustAgent;
 
-public class DustLdapAgent extends DustConsts.DustAgentBase implements DustLDAPConsts {
+public class DustLdapAgent extends DustAgent implements DustLDAPConsts {
 
 	@Override
-	protected Object process(Map<String, Object> cfg, Object params) throws Exception {
+	protected Object process(DustAction action) throws Exception {
 		Hashtable<String, String> environment = new Hashtable<String, String>();
 
-		String url = (String) cfg.get(TOKEN_STREAM_URL);
-		String auth = DustKBUtils.access(KBAccess.Peek, CONST_LDAP_SIMPLE, params, TOKEN_AUTH);
+		String url = access(DustAccess.Peek, null, null, TOKEN_STREAM_URL);
+		String auth = access(DustAccess.Peek, CONST_LDAP_SIMPLE, null, TOKEN_AUTH);
 
-		String user = (String) cfg.get(TOKEN_USER);
-		String pass = (String) cfg.get(TOKEN_PASSWORD);
+		String user = access(DustAccess.Peek, null, null, TOKEN_USER);
+		String pass = access(DustAccess.Peek, null, null, TOKEN_PASSWORD);
 
 		environment.put(Context.INITIAL_CONTEXT_FACTORY, CONST_LDAP_DEF_CTX_FACTORY);
 		environment.put(Context.PROVIDER_URL, url);
@@ -39,9 +37,9 @@ public class DustLdapAgent extends DustConsts.DustAgentBase implements DustLDAPC
 		try {
 			ldapCtx = new InitialDirContext(environment);
 
-			String filter = DustKBUtils.access(KBAccess.Peek, "", params, TOKEN_FILTER);
+			String filter = access(DustAccess.Peek, "", null, TOKEN_FILTER);
 
-			Collection<String> m = DustKBUtils.access(KBAccess.Peek, null, params, TOKEN_MEMBERS);
+			Collection<String> m = access(DustAccess.Peek, "", null, TOKEN_MEMBERS);
 			String[] attrIDs;
 			if (null == m) {
 				attrIDs = DEF_ATTS;
@@ -53,7 +51,7 @@ public class DustLdapAgent extends DustConsts.DustAgentBase implements DustLDAPC
 			searchControls.setReturningAttributes(attrIDs);
 			searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
 
-			NamingEnumeration<SearchResult> searchResults = ldapCtx.search((String) DustKBUtils.access(KBAccess.Peek, "", params, TOKEN_ROOT), filter,
+			NamingEnumeration<SearchResult> searchResults = ldapCtx.search((String) access(DustAccess.Peek, "", null,  TOKEN_ROOT), filter,
 					searchControls);
 
 			String distinguishedName = null;
