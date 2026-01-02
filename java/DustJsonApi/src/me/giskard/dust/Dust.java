@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Map;
 
 import me.giskard.dust.dev.DustDevUtils;
 import me.giskard.dust.kb.DustKBConsts;
@@ -12,11 +11,24 @@ import me.giskard.dust.kb.DustKBUtils;
 import me.giskard.dust.utils.DustUtils;
 import me.giskard.dust.utils.DustUtilsFactory;
 
-@SuppressWarnings("unchecked")
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class Dust implements DustConsts, DustKBConsts {
 
 	private static KBUnit appUnit;
 	private static KBObject appObj;
+
+//	static ThreadLocal<DustUtilsFactory<DustContext, Object>> CTX = new ThreadLocal<DustUtilsFactory<DustContext, Object>>() {
+//		@Override
+//		protected DustUtilsFactory<DustContext, Object> initialValue() {
+//			return new DustUtilsFactory(MAP_CREATOR);
+//		}
+//	};
+
+	static DustUtilsFactory<DustContext, Object> CTX = new DustUtilsFactory(MAP_CREATOR);
+
+	public static <RetType> RetType optGetCtx(Object in) {
+		return (RetType) ((in instanceof DustContext) ? CTX.get((DustContext) in) : in);
+	}
 
 	private static ArrayList<DustAgent> TORELEASE;
 
@@ -52,17 +64,33 @@ public class Dust implements DustConsts, DustKBConsts {
 			DustAgent a = null;
 			try {
 				a = (DustAgent) Class.forName(cn).getConstructor().newInstance();
-				a.init(DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_MAP, aCfg, TOKEN_PARAMS));
+			} catch (Throwable e) {
+				DustException.wrap(e, "Creating agent", key);
+			}
+			
+			return a;
+		}
+		
+		@Override
+		public void initNew(DustAgent a, Object key, Object... hints) {
+			KBObject aCfg = DustKBUtils.access(DustAccess.Peek, null, appObj, TOKEN_AGENTS, key);
+
+			DustUtilsFactory<DustContext, Object> ctx = CTX;
+			try {
+				CTX = new DustUtilsFactory(MAP_CREATOR);
+				CTX.put(DustContext.Agent, DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_MAP, aCfg, TOKEN_PARAMS));
+				a.init();
 
 				if ((Boolean) DustKBUtils.access(DustAccess.Peek, false, aCfg, TOKEN_TYPE_RELEASEONSHUTDOWN)) {
 					registerToRelease(a);
 				}
 			} catch (Throwable e) {
-				DustException.wrap(e, "Creating agent", key);
+				DustException.wrap(e, "Initialising agent", key);
+			} finally {
+				CTX = ctx;
 			}
-
-			return a;
-		}
+		};
+		
 	}, true);
 
 	public static void main(String[] args) throws Exception {
@@ -137,15 +165,21 @@ public class Dust implements DustConsts, DustKBConsts {
 		Dust.log(TOKEN_LEVEL_TRACE, "Message to agent", agent, "params", msg);
 		long start = System.currentTimeMillis();
 		Object ret = null;
+		DustUtilsFactory<DustContext, Object> ctx = CTX;
 
 		try {
 			DustAgent a = Dust.getAgent(agent);
-			Map<String, Object> params = DustKBUtils.access(DustAccess.Get, null, msg, TOKEN_PARAMS);
-			ret = a.agentProcess(DustAction.Process, params);
+
+			CTX = new DustUtilsFactory(MAP_CREATOR);
+			CTX.put(DustContext.Agent, DustKBUtils.access(DustAccess.Peek, null, appObj, TOKEN_AGENTS, agent, TOKEN_PARAMS));
+			CTX.put(DustContext.Service, DustKBUtils.access(DustAccess.Peek, null, msg, TOKEN_PARAMS));
+
+			ret = a.process(DustAction.Process);
 		} catch (Throwable e) {
 			DustException.wrap(e, "sendMessage failed", msg);
 		} finally {
 			Dust.log(TOKEN_LEVEL_TRACE, "Message processed", System.currentTimeMillis() - start, "msec.");
+			CTX = ctx;
 		}
 
 		return (RetType) ret;

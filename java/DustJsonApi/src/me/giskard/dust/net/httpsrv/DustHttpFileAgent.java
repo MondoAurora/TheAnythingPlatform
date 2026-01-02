@@ -9,6 +9,7 @@ import java.util.Collections;
 import javax.servlet.http.HttpServletResponse;
 
 import me.giskard.dust.DustAgent;
+import me.giskard.dust.kb.DustKBUtils;
 import me.giskard.dust.net.DustNetConsts;
 import me.giskard.dust.net.DustNetUtils;
 import me.giskard.dust.stream.DustStreamUtils;
@@ -18,13 +19,13 @@ public class DustHttpFileAgent extends DustAgent implements DustNetConsts {
 
 	@Override
 	protected Object process(DustAction action) throws Exception {
-		HttpServletResponse response = access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+		HttpServletResponse response = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
 
 		if (null != response) {
-			String path = access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
+			String path = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
 
 			if (DustUtils.isEmpty(path)) {
-				path = access(DustAccess.Peek, null, null, TOKEN_PATH);
+				path = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_PATH);
 			}
 
 			if (!DustStreamUtils.checkPathBound(path)) {
@@ -32,7 +33,7 @@ public class DustHttpFileAgent extends DustAgent implements DustNetConsts {
 				return null;
 			}
 
-			Collection<Object> roots = access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_SOURCE);
+			Collection<Object> roots = DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_SOURCE);
 
 			File f = null;
 

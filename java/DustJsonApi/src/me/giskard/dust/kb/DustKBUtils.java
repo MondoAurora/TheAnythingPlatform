@@ -79,8 +79,59 @@ public class DustKBUtils implements DustKBConsts {
 		}
 	}
 
+	public static <RetType> RetType accessCtx(DustAccess access, Object val, Object root, Object... path) {
+		Object ret = NOT_FOUND;
+
+		Object main = Dust.optGetCtx(root);
+		Object def = val;
+		boolean pg = false;
+
+		switch (access) {
+		case Peek:
+		case Get:
+			pg = true;
+			def = NOT_FOUND;
+		case Check:
+		case Visit:
+			ret = ((null != main) && (main == root)) ? DustKBUtils.access(access, def, main, path) : NOT_FOUND;
+			for ( DustContext dc : DustContext.values() ) {
+				if (NOT_FOUND != ret) {
+					break;
+				}
+				Object ctx = Dust.optGetCtx(dc);
+				ret = (null == ctx) ? NOT_FOUND : DustKBUtils.access(access, def, ctx, path);
+			}
+
+			if (pg && (NOT_FOUND == ret)) {
+				ret = val;
+			}
+			break;
+
+		case Begin:
+		case Process:
+		case Commit:
+		case Rollback:
+
+		case Set:
+		case Insert:
+		case Delete:
+		case Reset:
+//			ret = DustKBUtils.access(access, val, main, path);
+			ret = ((null != main) && (main == root)) ? DustKBUtils.access(access, def, main, path) : NOT_FOUND;
+			break;
+
+		}
+
+		return (RetType) ret;
+	}
+
 	public static <RetType> RetType access(DustAccess access, Object val, Object root, Object... path) {
+		if ( (null == root) || (root instanceof DustContext) ) {
+			return accessCtx(access, val, (DustContext) root, path);
+		}
+		
 		Object curr = root;
+
 		KBCollType collType = KBCollType.getCollType(root);
 
 		Object ret = null;
@@ -153,7 +204,7 @@ public class DustKBUtils implements DustKBConsts {
 
 		switch (access) {
 		case Check:
-			ret = (null == curr) ? NOT_FOUND : DustUtils.isEqual(val, curr);
+			ret = DustUtils.isEqual(val, curr);
 			break;
 		case Delete:
 			if (curr != null) {

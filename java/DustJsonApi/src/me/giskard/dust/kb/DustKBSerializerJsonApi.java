@@ -24,26 +24,26 @@ public class DustKBSerializerJsonApi extends DustAgent implements DustKBConsts, 
 	@Override
 	protected Object process(DustAction action) throws Exception {
 
-		String unitId = access(DustAccess.Peek, null, null, TOKEN_KEY);
-		DustKBUnit unit = access(DustAccess.Peek, null, null, TOKEN_UNIT);
-		access(DustAccess.Delete, null, null, TOKEN_UNIT);
+		String unitId = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_KEY);
+		DustKBUnit unit = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_UNIT);
+		DustKBUtils.access(DustAccess.Delete, null, null, TOKEN_UNIT);
 		File f = null;
 
 		if (null == unit) {
-			KBStore kb = Dust.getAgent(access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
+			KBStore kb = Dust.getAgent(DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
 			unit = (DustKBUnit) kb.getUnit(unitId, true);
 		}
 
 		if (!DustUtils.isEmpty(unitId)) {
-			String fn = access(DustAccess.Peek, unitId, null, TOKEN_ALIAS);
+			String fn = DustKBUtils.access(DustAccess.Peek, unitId, null, TOKEN_ALIAS);
 			if (fn.contains("{")) {
 				fn = MessageFormat.format(fn, unitId);
 			}
-			String fileName = DustUtils.sbAppend(null, "/", false, access(DustAccess.Peek, null, null, TOKEN_STREAM_ROOTFOLDER), fn + DUST_EXT_JSON).toString();
+			String fileName = DustUtils.sbAppend(null, "/", false, DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_STREAM_ROOTFOLDER), fn + DUST_EXT_JSON).toString();
 
 			f = new File(fileName);
 		}
-		String cmd = access(DustAccess.Peek, null, null, TOKEN_CMD);
+		String cmd = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_CMD);
 		switch (cmd) {
 		case TOKEN_CMD_LOAD:
 			loadFile(unit, f);
@@ -112,7 +112,7 @@ public class DustKBSerializerJsonApi extends DustAgent implements DustKBConsts, 
 			DustKBUtils.access(DustAccess.Set, data.size(), target, JsonApiMember.meta, JsonApiMember.count);
 
 			if (null == f) {
-				Writer w = access(DustAccess.Peek, null, null, TOKEN_STREAM_WRITER);
+				Writer w = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_STREAM_WRITER);
 				DustUtilsJson.writeJson(w, target);
 			} else {
 				DustUtilsJson.writeJson(f, target);

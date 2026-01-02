@@ -32,13 +32,13 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 
 	@Override
 	protected Object process(DustAction action) throws Exception {
-		String unitId = access(DustAccess.Peek, null, null, TOKEN_UNIT);
+		String unitId = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_UNIT);
 
 		if (null == unitId) {
-			unitId = access(DustAccess.Peek, null, null, TOKEN_CMD);
+			unitId = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_CMD);
 		}
 
-		KBStore kb = Dust.getAgent(access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
+		KBStore kb = Dust.getAgent(DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
 		KBUnit unit = kb.getUnit(unitId, false);
 
 		DustUtilsFactory<String, Set<String>> meta = new DustUtilsFactory.Simple<String, Set<String>>(true, (Class<? extends Set<String>>) TreeSet.class);
@@ -57,7 +57,7 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 			}
 		}
 
-		String fName = access(DustAccess.Peek, null, null, TOKEN_PATH);
+		String fName = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_PATH);
 		if (null == fName) {
 			fName = unitId + ".xlsx";
 		}

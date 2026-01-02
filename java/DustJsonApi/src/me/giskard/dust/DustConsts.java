@@ -82,6 +82,10 @@ public interface DustConsts {
 	String TOKEN_LEVEL_ERROR = "Error";
 	
 	Object NOT_FOUND = new Object();
+	
+	enum DustContext {
+		Work, Input, Service, Agent, Dialog, 
+	}
 
 	enum DustAccess {
 		Check(false), Peek(false), Get(false), Set(true), Insert(true), Delete(false), Reset(false), Visit(false),
@@ -95,6 +99,6 @@ public interface DustConsts {
 	};
 
 	enum DustAction {
-		Begin, Process, End, // Init, Release,
+		Begin, Process, End,
 	}
 }

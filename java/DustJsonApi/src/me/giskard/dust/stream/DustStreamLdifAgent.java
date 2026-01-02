@@ -28,18 +28,18 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 
 	@Override
 	protected Object process(DustAction action) throws Exception {
-		KBStore kb = Dust.getAgent(access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
+		KBStore kb = Dust.getAgent(DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
 
-		String cmd = access(DustAccess.Peek, null, null, TOKEN_CMD);
-		Map<String, Object> ser = access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
+		String cmd = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_CMD);
+		Map<String, Object> ser = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
 
 		switch (cmd) {
 		case TOKEN_CMD_LOAD:
 
-			String unitId = access(DustAccess.Peek, null, null, TOKEN_UNIT);
+			String unitId = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_UNIT);
 			KBUnit unitMeta = kb.getUnit(unitId, true);
 
-			String fn = access(DustAccess.Peek, null, null, TOKEN_META);
+			String fn = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_META);
 
 			if (!DustUtils.isEmpty(fn)) {
 				File f = new File(fn);
@@ -65,15 +65,16 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 				}
 			}
 
-			for (Map<String, Object> src : ((Collection<Map<String, Object>>) access(DustAccess.Visit, Collections.EMPTY_LIST, null, TOKEN_SOURCE))) {
+			for (Map<String, Object> src : ((Collection<Map<String, Object>>) DustKBUtils.access(DustAccess.Visit, Collections.EMPTY_LIST, null,
+					TOKEN_SOURCE))) {
 //				Map<String, Object> p = new TreeMap<>(cfg);
 //				p.putAll((Map) params);
 //				p.putAll(src);
 
-				String fileName = access(DustAccess.Peek, null, src, TOKEN_PATH);
+				String fileName = DustKBUtils.access(DustAccess.Peek, null, src, TOKEN_PATH);
 				File f = new File(fileName);
 
-				unitId = access(DustAccess.Peek, null, src, TOKEN_UNIT);
+				unitId = DustKBUtils.access(DustAccess.Peek, null, src, TOKEN_UNIT);
 				KBUnit unit = kb.getUnit(unitId, true);
 
 				readDataLdif(unit, unitMeta, src, f);
@@ -201,10 +202,10 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 			this.unit = unit;
 			this.unitMeta = unitMeta;
 
-			type = access(DustAccess.Peek, "???", params, TOKEN_KBMETA_TYPE);
+			type = DustKBUtils.access(DustAccess.Peek, "???", params, TOKEN_KBMETA_TYPE);
 			at = unit.getStore().getMetaTypeId(TOKEN_KBMETA_ATTRIBUTE);
 			tt = unit.getStore().getMetaTypeId(TOKEN_KBMETA_TYPE);
-			encoding = access(DustAccess.Peek, DUST_CHARSET_UTF8, params, TOKEN_STREAM_ENCODING);
+			encoding = DustKBUtils.access(DustAccess.Peek, DUST_CHARSET_UTF8, params, TOKEN_STREAM_ENCODING);
 		}
 
 		public void processLine(String line) {

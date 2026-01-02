@@ -22,21 +22,21 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 	@Override
 	protected Object process(DustAction action) throws Exception {
 
-		HttpServletResponse response = access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+		HttpServletResponse response = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
 
 		if (null != response) {
-			String pi = access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
+			String pi = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
 
 			String[] path = pi.split("/");
 			int pl = path.length;
 
-			KBStore kb = Dust.getAgent(access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
+			KBStore kb = Dust.getAgent(DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
 			infoType = kb.getMetaTypeId(TOKEN_INFO);
 
 			KBUnit unit = null;
 
 			if (0 == pl) {
-				String m = access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_METHOD);
+				String m = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_METHOD);
 
 				StringBuilder sb = new StringBuilder(
 						"<!doctype html>\n" + "<html lang=\"en\">\n" + "<head>\n<meta charset=\"utf-8\">\n<title>DustTracer JSON:API</title>\n</head>\n" + "<body>");
@@ -87,7 +87,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 				response.setContentType(MEDIATYPE_JSONAPI);
 				PrintWriter out = response.getWriter();
 
-				Map<String, Object> ser = access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
+				Map<String, Object> ser = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
 				DustKBUtils.access(DustAccess.Set, unit, ser, TOKEN_PARAMS, TOKEN_UNIT);
 				DustKBUtils.access(DustAccess.Set, out, ser, TOKEN_PARAMS, TOKEN_STREAM_WRITER);
 

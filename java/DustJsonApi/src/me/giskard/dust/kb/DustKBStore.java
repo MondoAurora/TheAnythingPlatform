@@ -25,7 +25,7 @@ public class DustKBStore extends DustAgent implements DustKBConsts, DustKBConsts
 
 		@Override
 		public void initNew(DustKBUnit item, Object key, Object... hints) {
-			Object ser = access(DustAccess.Peek, null, null, TOKEN_KB_KNOWNUNITS, TOKEN_SERIALIZER, key);
+			Object ser = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_KB_KNOWNUNITS, TOKEN_SERIALIZER, key);
 
 			if (null == ser) {
 				ser = defaultSerializer;
@@ -91,9 +91,9 @@ public class DustKBStore extends DustAgent implements DustKBConsts, DustKBConsts
 	}
 
 	protected void init() {
-		defaultSerializer = access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
+		defaultSerializer = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
 
-		String mm = access(DustAccess.Peek, null, null, TOKEN_META);
+		String mm = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_META);
 		metaUnit = getUnit(mm, true);
 	}
 

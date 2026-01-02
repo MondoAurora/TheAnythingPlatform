@@ -19,6 +19,7 @@ import org.eclipse.jetty.util.ssl.SslContextFactory;
 import me.giskard.dust.Dust;
 import me.giskard.dust.DustAgent;
 import me.giskard.dust.DustException;
+import me.giskard.dust.kb.DustKBUtils;
 import me.giskard.dust.net.DustNetConsts;
 
 public class DustHttpServerJetty extends DustAgent implements DustNetConsts // , DustConsts.DustThreadOwner
@@ -38,9 +39,9 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 			jetty = new Server();
 			handlers = new HandlerList();
 
-			name = access(DustAccess.Peek, null, null, TOKEN_NAME);
+			name = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_NAME);
 
-			long port = access(DustAccess.Peek, 8080L, null, TOKEN_NET_HOST_PORT);
+			long port = DustKBUtils.access(DustAccess.Peek, 8080L, null, TOKEN_NET_HOST_PORT);
 			HttpConfiguration http = new HttpConfiguration();
 
 			ServerConnector connector = new ServerConnector(jetty);
@@ -52,7 +53,7 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 
 			System.out.println("Connector: " + connector);
 
-			Long sslPort = access(DustAccess.Peek, null, null, TOKEN_NET_SSLINFO_PORT);
+			Long sslPort = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_NET_SSLINFO_PORT);
 
 			if (null != sslPort) {
 				HttpConfiguration https = new HttpConfiguration();
@@ -61,11 +62,11 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 				SslContextFactory sslContextFactory = new SslContextFactory();
 
 				String str;
-				str = access(DustAccess.Peek, null, null, TOKEN_NET_SSLINFO_STOREPATH);
+				str = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_NET_SSLINFO_STOREPATH);
 				sslContextFactory.setKeyStorePath(ClassLoader.getSystemResource(str).toExternalForm());
-				str = access(DustAccess.Peek, null, null, TOKEN_NET_SSLINFO_STOREPASS);
+				str = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_NET_SSLINFO_STOREPASS);
 				sslContextFactory.setKeyStorePassword(str);
-				str = access(DustAccess.Peek, null, null, TOKEN_NET_SSLINFO_KEYMANAGERPASS);
+				str = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_NET_SSLINFO_KEYMANAGERPASS);
 				sslContextFactory.setKeyManagerPassword(str);
 
 				ServerConnector sslConnector = new ServerConnector(jetty, new SslConnectionFactory(sslContextFactory, "http/1.1"), new HttpConnectionFactory(https));
@@ -78,7 +79,7 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 			ctxHandler.setContextPath("/*");
 			handlers.addHandler(ctxHandler);
 
-			Object dispatch = access(DustAccess.Peek, null, null, TOKEN_MEMBERS);
+			Object dispatch = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_MEMBERS);
 
 			ctxHandler.addServlet(new ServletHolder(new DustHttpServletDispatcher(dispatch)), "/*");
 
@@ -90,7 +91,7 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 	@Override
 	protected Object process(DustAction action) throws Exception {
 		Commands cmd = Commands.info;
-		String str = access(DustAccess.Peek, "", null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
+		String str = DustKBUtils.access(DustAccess.Peek, "", null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
 		String[] path = str.split("/");
 		if (0 < path.length) {
 			try {
@@ -100,7 +101,7 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 			}
 		}
 
-		HttpServletResponse response = access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+		HttpServletResponse response = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
 		if (null == response) {
 			Dust.log(TOKEN_LEVEL_ERROR, "no response given?");
 		}
@@ -135,7 +136,7 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 			}.start();
 			break;
 		case info:
-			response = access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+			response = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
 
 			if (null != response) {
 				Properties pp = System.getProperties();
