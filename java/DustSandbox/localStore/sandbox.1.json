@@ -1,0 +1,131 @@
+{
+	"data": [
+		{
+			"type": "dust.1$Application",
+			"id": "Sandbox",
+			"attributes": {
+				"name": "DustSandbox",
+				"data": "KnowledgeBase"
+			},
+			"relationships": {
+				"agents": {
+					"data": [
+						{
+							"type": "dust.1$Agent",
+							"id": "KnowledgeBase",
+							"meta": {
+								"key": "KnowledgeBase"
+							}
+						},
+						{
+							"type": "dust.1$Agent",
+							"id": "SerializeJsonApi",
+							"meta": {
+								"key": "SerializeJsonApi"
+							}
+						},
+						{
+							"type": "dust.1$Agent",
+							"id": "AppFrame",
+							"meta": {
+								"key": "AppFrame"
+							}
+						},
+						{
+							"type": "dust.1$Agent",
+							"id": "Sandbox",
+							"meta": {
+								"key": "Sandbox"
+							}
+						}
+					]
+				},
+				"init": {
+					"data": [
+						{
+							"type": "dust.1$Message",
+							"id": "SandboxTest",
+							"meta": {
+								"key": -1
+							}
+						},
+						{
+							"type": "dust.1$Agent",
+							"id": "AppFrame",
+							"meta": {
+								"key": -1
+							}
+						}
+					]
+				}
+			}
+		},
+		{
+			"type": "dust.1$Agent",
+			"id": "KnowledgeBase",
+			"attributes": {
+				"className": "me.giskard.dust.kb.DustKBStore",
+				"params": {
+					"meta": "dust.1",
+					"serializer": {
+						"agent": "SerializeJsonApi",
+						"params": {}
+					},
+					"knownUnits": {
+						"dust.1": null
+					}
+				}
+			}
+		},
+		{
+			"type": "dust.1$Agent",
+			"id": "Sandbox",
+			"attributes": {
+				"className": "me.giskard.dust.sandbox.DustSandboxTestAgent",
+				"params": {
+					"KnowledgeBase": "KnowledgeBase"
+				}
+			}
+		},
+		{
+			"type": "dust.1$Agent",
+			"id": "AppFrame",
+			"attributes": {
+				"className": "me.giskard.dust.sandbox.DustSandboxAppFrameAgent",
+				"params": {
+					"KnowledgeBase": "KnowledgeBase",
+					"lookAndFeel": [
+						"com.apple.laf.AquaLookAndFeel",
+						"javax.swing.plaf.nimbus.NimbusLookAndFeel"
+					]
+				}
+			}
+		},
+		{
+			"type": "dust.1$Message",
+			"id": "SandboxTest",
+			"attributes": {
+				"skip": false,
+				"agent": "Sandbox",
+				"params": {
+					"cmd": "LnF"
+				}
+			}
+		},
+		{
+			"type": "dust.1$Agent",
+			"id": "SerializeJsonApi",
+			"attributes": {
+				"className": "me.giskard.dust.kb.DustKBSerializerJsonApi",
+				"params": {
+					"rootFolder": "localStore",
+					"KnowledgeBase": "KnowledgeBase"
+				}
+			}
+		}
+	],
+	"meta": {},
+	"jsonapi": {
+		"version": "1.1"
+	}
+}

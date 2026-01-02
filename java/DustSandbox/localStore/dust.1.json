@@ -1,0 +1,45 @@
+{
+	"data": [
+		{
+			"type": "dust.1$Type",
+			"id": "Type",
+			"attributes": {
+				"country": "one"
+			},
+			"relationships": {
+				"entity": {
+					"data": {
+						"type": "entity",
+						"id": "1379"
+					}
+				}
+			}
+		},
+		{
+			"type": "dust.1$Type",
+			"id": "Attribute",
+			"attributes": {
+				"country": "two"
+			},
+			"relationships": {
+				"entity": {
+					"data": {
+						"type": "entity",
+						"id": "1379"
+					}
+				}
+			}
+		},
+		{
+			"type": "entity",
+			"id": "1379",
+			"attributes": {
+				"country": "three"
+			}
+		}
+	],
+	"meta": {},
+	"jsonapi": {
+		"version": "1.1"
+	}
+}
