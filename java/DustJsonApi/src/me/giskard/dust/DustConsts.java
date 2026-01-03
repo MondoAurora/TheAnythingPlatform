@@ -33,7 +33,6 @@ public interface DustConsts {
 	String TOKEN_INFO = "Info";
 
 	String TOKEN_INIT = "init";
-	String TOKEN_AGENTS = "agents";
 	String TOKEN_AGENT = "agent";
 	String TOKEN_CLASS_NAME = "className";
 	String TOKEN_SKIP = "skip";

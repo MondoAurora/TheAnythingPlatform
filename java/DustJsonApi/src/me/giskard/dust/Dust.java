@@ -16,6 +16,8 @@ public class Dust implements DustConsts, DustKBConsts {
 
 	private static KBUnit appUnit;
 	private static KBObject appObj;
+	
+	private static final String TYPE_AGENT = DUST_UNIT_ID + DUST_SEP_TOKEN + TOKEN_TYPE_AGENT;
 
 //	static ThreadLocal<DustUtilsFactory<DustContext, Object>> CTX = new ThreadLocal<DustUtilsFactory<DustContext, Object>>() {
 //		@Override
@@ -55,10 +57,10 @@ public class Dust implements DustConsts, DustKBConsts {
 	private static DustUtilsFactory<String, DustAgent> AGENTS = new DustUtilsFactory<String, DustAgent>(new DustCreator<DustAgent>() {
 		@Override
 		public DustAgent create(Object key, Object... hints) {
-			KBObject aCfg = DustKBUtils.access(DustAccess.Peek, null, appObj, TOKEN_AGENTS, key);
+			KBObject aCfg = appUnit.getObject(TYPE_AGENT, (String) key, KBOptCreate.None);
 
 			if (null == aCfg) {
-				return DustException.wrap(null, "Missing config for agent", key);
+				return DustException.wrap(null, "Missing config for agent ", key);
 			}
 			String cn = DustKBUtils.access(DustAccess.Peek, null, aCfg, TOKEN_CLASS_NAME);
 			DustAgent a = null;
@@ -73,7 +75,7 @@ public class Dust implements DustConsts, DustKBConsts {
 		
 		@Override
 		public void initNew(DustAgent a, Object key, Object... hints) {
-			KBObject aCfg = DustKBUtils.access(DustAccess.Peek, null, appObj, TOKEN_AGENTS, key);
+			KBObject aCfg = appUnit.getObject(TYPE_AGENT, (String) key, KBOptCreate.None);
 
 			DustUtilsFactory<DustContext, Object> ctx = CTX;
 			try {
@@ -128,7 +130,8 @@ public class Dust implements DustConsts, DustKBConsts {
 				switch (type) {
 				case TOKEN_TYPE_AGENT:
 					an = ca.getId();
-					skip = DustKBUtils.access(DustAccess.Check, true, appObj, TOKEN_AGENTS, an, TOKEN_SKIP);
+					KBObject aCfg = appUnit.getObject(TYPE_AGENT, an, KBOptCreate.None);
+					skip = DustKBUtils.access(DustAccess.Check, true, aCfg, TOKEN_SKIP);
 					if (skip) {
 						continue;
 					} else {
@@ -171,7 +174,8 @@ public class Dust implements DustConsts, DustKBConsts {
 			DustAgent a = Dust.getAgent(agent);
 
 			CTX = new DustUtilsFactory(MAP_CREATOR);
-			CTX.put(DustContext.Agent, DustKBUtils.access(DustAccess.Peek, null, appObj, TOKEN_AGENTS, agent, TOKEN_PARAMS));
+			KBObject aCfg = appUnit.getObject(TYPE_AGENT, agent, KBOptCreate.None);
+			CTX.put(DustContext.Agent, DustKBUtils.access(DustAccess.Peek, null, aCfg, TOKEN_PARAMS));
 			CTX.put(DustContext.Service, DustKBUtils.access(DustAccess.Peek, null, msg, TOKEN_PARAMS));
 
 			ret = a.process(DustAction.Process);
