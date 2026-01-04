@@ -94,7 +94,7 @@ public class DustKBUtils implements DustKBConsts {
 		case Check:
 		case Visit:
 			ret = ((null != main) && (main == root)) ? DustKBUtils.access(access, def, main, path) : NOT_FOUND;
-			for ( DustContext dc : DustContext.values() ) {
+			for (DustContext dc : DustContext.values()) {
 				if (NOT_FOUND != ret) {
 					break;
 				}
@@ -126,10 +126,10 @@ public class DustKBUtils implements DustKBConsts {
 	}
 
 	public static <RetType> RetType access(DustAccess access, Object val, Object root, Object... path) {
-		if ( (null == root) || (root instanceof DustContext) ) {
+		if ((null == root) || (root instanceof DustContext)) {
 			return accessCtx(access, val, (DustContext) root, path);
 		}
-		
+
 		Object curr = root;
 
 		KBCollType collType = KBCollType.getCollType(root);
@@ -304,8 +304,16 @@ public class DustKBUtils implements DustKBConsts {
 			break;
 		case Begin:
 		case Commit:
-		case Process:
 		case Rollback:
+		case Process:
+
+			Object ll = DustKBUtils.access(DustAccess.Peek, null, curr, TOKEN_LISTENERS);
+			if (ll instanceof Collection) {
+				for (Object l : (Collection) ll) {
+					ret = Dust.notifyAgent(access, (KBObject) l, (KBObject) curr, val);
+				}
+			}
+
 			break;
 		}
 

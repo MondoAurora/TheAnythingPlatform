@@ -69,10 +69,10 @@ public class Dust implements DustConsts, DustKBConsts {
 			} catch (Throwable e) {
 				DustException.wrap(e, "Creating agent", key);
 			}
-			
+
 			return a;
 		}
-		
+
 		@Override
 		public void initNew(DustAgent a, Object key, Object... hints) {
 			KBObject aCfg = appUnit.getObject(TYPE_AGENT, (String) key, KBOptCreate.None);
@@ -92,7 +92,7 @@ public class Dust implements DustConsts, DustKBConsts {
 				CTX = ctx;
 			}
 		};
-		
+
 	}, true);
 
 	public static void main(String[] args) throws Exception {
@@ -120,33 +120,32 @@ public class Dust implements DustConsts, DustKBConsts {
 			String appType = DUST_UNIT_ID + DUST_SEP_TOKEN + TOKEN_TYPE_APP;
 			appObj = appUnit.getObject(appType, appName, KBOptCreate.None);
 
+			Dust.log(TOKEN_LEVEL_INFO, "MemInfo before init", DustDevUtils.memInfo());
+
 			for (KBObject ca : ((Collection<KBObject>) DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_LIST, appObj, TOKEN_INIT))) {
-				Dust.log(TOKEN_LEVEL_INFO, "MemInfo", DustDevUtils.memInfo());
 
 				String type = DustUtils.getPostfix(ca.getType(), DUST_SEP_TOKEN);
-				String an;
-				boolean skip;
+				String an = ca.getId();
+
+				KBObject o = (TOKEN_TYPE_AGENT == type) ? appUnit.getObject(TYPE_AGENT, an, KBOptCreate.None) : ca;
+				boolean skip = DustKBUtils.access(DustAccess.Check, true, o, TOKEN_SKIP);
+				if (skip) {
+					continue;
+				}
 
 				switch (type) {
 				case TOKEN_TYPE_AGENT:
-					an = ca.getId();
-					KBObject aCfg = appUnit.getObject(TYPE_AGENT, an, KBOptCreate.None);
-					skip = DustKBUtils.access(DustAccess.Check, true, aCfg, TOKEN_SKIP);
-					if (skip) {
-						continue;
-					} else {
-						getAgent(an);
-					}
+					getAgent(an);
 					break;
 				case TOKEN_TYPE_MESSAGE:
-					skip = DustKBUtils.access(DustAccess.Check, true, ca, TOKEN_SKIP);
-					if (skip) {
-						continue;
-					} else {
-						sendMessage(ca);
-					}
+					sendMessage(ca);
+					break;
+				case TOKEN_TYPE_SERVICE:
+					DustKBUtils.access(DustAccess.Process, null, ca);
 					break;
 				}
+
+				Dust.log(TOKEN_LEVEL_INFO, "MemInfo after " + ca.getId(), DustDevUtils.memInfo());
 			}
 		} finally {
 			Dust.log(TOKEN_LEVEL_TRACE, "Dust finished", System.currentTimeMillis() - start, "msec.");
@@ -181,6 +180,34 @@ public class Dust implements DustConsts, DustKBConsts {
 			ret = a.process(DustAction.Process);
 		} catch (Throwable e) {
 			DustException.wrap(e, "sendMessage failed", msg);
+		} finally {
+			Dust.log(TOKEN_LEVEL_TRACE, "Message processed", System.currentTimeMillis() - start, "msec.");
+			CTX = ctx;
+		}
+
+		return (RetType) ret;
+	}
+
+	public static <RetType> RetType notifyAgent(DustAccess access, KBObject listener, KBObject service, Object params) {
+		String agent = listener.getId();
+		Dust.log(TOKEN_LEVEL_TRACE, "Message to agent", agent, "service", service, "params", params);
+
+		long start = System.currentTimeMillis();
+		Object ret = null;
+		DustUtilsFactory<DustContext, Object> ctx = CTX;
+
+		try {
+			DustAgent a = Dust.getAgent(agent);
+
+			CTX = new DustUtilsFactory(MAP_CREATOR);
+			KBObject aCfg = appUnit.getObject(TYPE_AGENT, agent, KBOptCreate.None);
+			CTX.put(DustContext.Agent, DustKBUtils.access(DustAccess.Peek, null, aCfg, TOKEN_PARAMS));
+			CTX.put(DustContext.Service, DustKBUtils.access(DustAccess.Peek, null, service, TOKEN_PARAMS));
+			CTX.put(DustContext.Input, params);
+
+			ret = a.process(DustAction.Process);
+		} catch (Throwable e) {
+			DustException.wrap(e, "sendMessage failed", agent, "service", service, "params", params);
 		} finally {
 			Dust.log(TOKEN_LEVEL_TRACE, "Message processed", System.currentTimeMillis() - start, "msec.");
 			CTX = ctx;

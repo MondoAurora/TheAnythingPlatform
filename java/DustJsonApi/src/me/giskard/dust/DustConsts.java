@@ -38,6 +38,7 @@ public interface DustConsts {
 	String TOKEN_SKIP = "skip";
 
 	String TOKEN_PARAMS = "params";
+	String TOKEN_LISTENERS = "listeners";
 	String TOKEN_ALIAS = "alias";
 	String TOKEN_SOURCE = "source";
 	String TOKEN_SERIALIZER = "serializer";
@@ -67,6 +68,7 @@ public interface DustConsts {
 	String TOKEN_TYPE_APP = "Application";
 	String TOKEN_TYPE_AGENT = "Agent";
 	String TOKEN_TYPE_MESSAGE = "Message";
+	String TOKEN_TYPE_SERVICE = "Service";
 	String TOKEN_TYPE_RELEASEONSHUTDOWN = "releaseOnShutdown";
 
 	String TOKEN_RESULT_REJECT = "Reject";
