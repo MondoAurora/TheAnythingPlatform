@@ -10,6 +10,8 @@ public interface DustConsts {
 	String DUST_CHARSET_UTF8 = StandardCharsets.UTF_8.name();// "UTF-8";
 	String DUST_FMT_TIMESTAMP = "yyyyMMdd'T'HHmmss'Z'";
 
+	String DUST_PLATFORM_JAVA = "java";
+
 	String DUST_EXT_JSON = ".json";
 	String DUST_EXT_CSV = ".csv";
 	String DUST_EXT_XML = ".xml";
@@ -28,16 +30,19 @@ public interface DustConsts {
 	String TOKEN_CMD_LOAD = "load";
 	String TOKEN_CMD_SAVE = "save";
 
+	String TOKEN_PREFIX = "prefix";
 	String TOKEN_PATH = "path";
 	String TOKEN_COUNT = "count";
 	String TOKEN_INFO = "Info";
 
 	String TOKEN_INIT = "init";
 	String TOKEN_AGENT = "agent";
-	String TOKEN_CLASS_NAME = "className";
 	String TOKEN_SKIP = "skip";
 
-	String TOKEN_PARAMS = "params";
+	String TOKEN_BINARY_RESOLVER = "binaryResolver";
+	String TOKEN_BINARY = "binary";
+
+//	String TOKEN_PARAMS = "params";
 	String TOKEN_LISTENERS = "listeners";
 	String TOKEN_ALIAS = "alias";
 	String TOKEN_SOURCE = "source";
@@ -100,6 +105,6 @@ public interface DustConsts {
 	};
 
 	enum DustAction {
-		Begin, Process, End,
+		Process, // Begin, End,
 	}
 }

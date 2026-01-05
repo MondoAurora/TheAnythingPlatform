@@ -62,15 +62,12 @@ public class Dust implements DustConsts, DustKBConsts {
 			if (null == aCfg) {
 				return DustException.wrap(null, "Missing config for agent ", key);
 			}
-			String cn = DustKBUtils.access(DustAccess.Peek, null, aCfg, TOKEN_CLASS_NAME);
-			DustAgent a = null;
-			try {
-				a = (DustAgent) Class.forName(cn).getConstructor().newInstance();
-			} catch (Throwable e) {
-				DustException.wrap(e, "Creating agent", key);
-			}
 
-			return a;
+			try {
+				return (DustAgent) getBinary(key).getConstructor().newInstance();
+			} catch (Throwable e) {
+				return DustException.wrap(e, "Creating agent", key);
+			}
 		}
 
 		@Override
@@ -80,7 +77,7 @@ public class Dust implements DustConsts, DustKBConsts {
 			DustUtilsFactory<DustContext, Object> ctx = CTX;
 			try {
 				CTX = new DustUtilsFactory(MAP_CREATOR);
-				CTX.put(DustContext.Agent, DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_MAP, aCfg, TOKEN_PARAMS));
+				CTX.put(DustContext.Agent, DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_MAP, aCfg));
 				a.init();
 
 				if ((Boolean) DustKBUtils.access(DustAccess.Peek, false, aCfg, TOKEN_TYPE_RELEASEONSHUTDOWN)) {
@@ -119,6 +116,10 @@ public class Dust implements DustConsts, DustKBConsts {
 
 			String appType = DUST_UNIT_ID + DUST_SEP_TOKEN + TOKEN_TYPE_APP;
 			appObj = appUnit.getObject(appType, appName, KBOptCreate.None);
+			
+			int s = appUnitPath.lastIndexOf(".");
+			File fBin = new File(appUnitPath.substring(0, s) + "." + DUST_PLATFORM_JAVA + appUnitPath.substring(s));
+			DustKBUtils.bootLoadAppUnitJsonApi(fBin);
 
 			Dust.log(TOKEN_LEVEL_INFO, "MemInfo before init", DustDevUtils.memInfo());
 
@@ -151,6 +152,11 @@ public class Dust implements DustConsts, DustKBConsts {
 			Dust.log(TOKEN_LEVEL_TRACE, "Dust finished", System.currentTimeMillis() - start, "msec.");
 		}
 	}
+	
+	public static <RetType> Class<RetType> getBinary(Object key) throws Exception {
+		String cn = DustKBUtils.access(DustAccess.Peek, null, appObj, TOKEN_BINARY_RESOLVER, key, TOKEN_BINARY);
+		return (Class<RetType>) Class.forName(cn);
+	}
 
 	public static <RetType extends DustAgent> RetType getAgent(String agentId) {
 		return DustUtils.isEmpty(agentId) ? null : (RetType) AGENTS.get(agentId);
@@ -174,8 +180,8 @@ public class Dust implements DustConsts, DustKBConsts {
 
 			CTX = new DustUtilsFactory(MAP_CREATOR);
 			KBObject aCfg = appUnit.getObject(TYPE_AGENT, agent, KBOptCreate.None);
-			CTX.put(DustContext.Agent, DustKBUtils.access(DustAccess.Peek, null, aCfg, TOKEN_PARAMS));
-			CTX.put(DustContext.Service, DustKBUtils.access(DustAccess.Peek, null, msg, TOKEN_PARAMS));
+			CTX.put(DustContext.Agent, DustKBUtils.access(DustAccess.Peek, null, aCfg));
+			CTX.put(DustContext.Service, DustKBUtils.access(DustAccess.Peek, null, msg));
 
 			ret = a.process(DustAction.Process);
 		} catch (Throwable e) {
@@ -201,8 +207,8 @@ public class Dust implements DustConsts, DustKBConsts {
 
 			CTX = new DustUtilsFactory(MAP_CREATOR);
 			KBObject aCfg = appUnit.getObject(TYPE_AGENT, agent, KBOptCreate.None);
-			CTX.put(DustContext.Agent, DustKBUtils.access(DustAccess.Peek, null, aCfg, TOKEN_PARAMS));
-			CTX.put(DustContext.Service, DustKBUtils.access(DustAccess.Peek, null, service, TOKEN_PARAMS));
+			CTX.put(DustContext.Agent, DustKBUtils.access(DustAccess.Peek, null, aCfg));
+			CTX.put(DustContext.Service, DustKBUtils.access(DustAccess.Peek, null, service));
 			CTX.put(DustContext.Input, params);
 
 			ret = a.process(DustAction.Process);

@@ -15,19 +15,20 @@ import java.util.Map;
 import java.util.Set;
 
 import me.giskard.dust.Dust;
-import me.giskard.dust.DustException;
 import me.giskard.dust.utils.DustUtils;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustKBUtils implements DustKBConsts {
 
 	public static synchronized KBUnit bootLoadAppUnitJsonApi(File f) throws Exception {
-		if (null == DustKBStore.appUnit) {
-			String unitId = DustUtils.cutPostfix(f.getName(), ".");
-			DustKBStore.appUnit = new DustKBUnit(null, unitId);
+		if (f.isFile()) {
+			if (null == DustKBStore.appUnit) {
+				String unitId = DustUtils.cutPostfix(f.getName(), ".");
+				DustKBStore.appUnit = new DustKBUnit(null, unitId);
+//		} else {
+//			return DustException.wrap(null, "DustKBStore.appUnit already set");
+			}
 			DustKBSerializerJsonApi.loadFile(DustKBStore.appUnit, f);
-		} else {
-			return DustException.wrap(null, "DustKBStore.appUnit already set");
 		}
 
 		return DustKBStore.appUnit;

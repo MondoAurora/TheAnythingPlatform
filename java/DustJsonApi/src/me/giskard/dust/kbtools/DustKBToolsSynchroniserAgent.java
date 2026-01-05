@@ -181,12 +181,12 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 
 		Map<String, Object> ser = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
 		if (null != ser) {
-			DustKBUtils.access(DustAccess.Set, uMeta, ser, TOKEN_PARAMS, TOKEN_UNIT);
-			DustKBUtils.access(DustAccess.Set, mName, ser, TOKEN_PARAMS, TOKEN_KEY);
+			DustKBUtils.access(DustAccess.Set, uMeta, ser, TOKEN_UNIT);
+			DustKBUtils.access(DustAccess.Set, mName, ser, TOKEN_KEY);
 			Dust.sendMessage(ser);
 
-			DustKBUtils.access(DustAccess.Set, uTarget, ser, TOKEN_PARAMS, TOKEN_UNIT);
-			DustKBUtils.access(DustAccess.Set, uName, ser, TOKEN_PARAMS, TOKEN_KEY);
+			DustKBUtils.access(DustAccess.Set, uTarget, ser, TOKEN_UNIT);
+			DustKBUtils.access(DustAccess.Set, uName, ser, TOKEN_KEY);
 			Dust.sendMessage(ser);
 		}
 

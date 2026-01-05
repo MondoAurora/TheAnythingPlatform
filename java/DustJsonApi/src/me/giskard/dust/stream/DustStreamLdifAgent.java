@@ -59,14 +59,13 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 				DustUtilsFile.procRecursive(f, fp, ffLdif);
 
 				if (null != ser) {
-					DustKBUtils.access(DustAccess.Set, unitMeta, ser, TOKEN_PARAMS, TOKEN_UNIT);
-					DustKBUtils.access(DustAccess.Set, unitId, ser, TOKEN_PARAMS, TOKEN_KEY);
+					DustKBUtils.access(DustAccess.Set, unitMeta, ser, TOKEN_UNIT);
+					DustKBUtils.access(DustAccess.Set, unitId, ser, TOKEN_KEY);
 					Dust.sendMessage(ser);
 				}
 			}
 
-			for (Map<String, Object> src : ((Collection<Map<String, Object>>) DustKBUtils.access(DustAccess.Visit, Collections.EMPTY_LIST, null,
-					TOKEN_SOURCE))) {
+			for (Map<String, Object> src : ((Collection<Map<String, Object>>) DustKBUtils.access(DustAccess.Visit, Collections.EMPTY_LIST, null, TOKEN_SOURCE))) {
 //				Map<String, Object> p = new TreeMap<>(cfg);
 //				p.putAll((Map) params);
 //				p.putAll(src);
@@ -80,8 +79,8 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 				readDataLdif(unit, unitMeta, src, f);
 
 				if (null != ser) {
-					DustKBUtils.access(DustAccess.Set, unit, ser, TOKEN_PARAMS, TOKEN_UNIT);
-					DustKBUtils.access(DustAccess.Set, unitId, ser, TOKEN_PARAMS, TOKEN_KEY);
+					DustKBUtils.access(DustAccess.Set, unit, ser, TOKEN_UNIT);
+					DustKBUtils.access(DustAccess.Set, unitId, ser, TOKEN_KEY);
 					Dust.sendMessage(ser);
 				}
 			}

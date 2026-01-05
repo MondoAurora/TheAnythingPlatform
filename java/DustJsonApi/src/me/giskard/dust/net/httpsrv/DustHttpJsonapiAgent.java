@@ -88,8 +88,8 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 				PrintWriter out = response.getWriter();
 
 				Map<String, Object> ser = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
-				DustKBUtils.access(DustAccess.Set, unit, ser, TOKEN_PARAMS, TOKEN_UNIT);
-				DustKBUtils.access(DustAccess.Set, out, ser, TOKEN_PARAMS, TOKEN_STREAM_WRITER);
+				DustKBUtils.access(DustAccess.Set, unit, ser, TOKEN_UNIT);
+				DustKBUtils.access(DustAccess.Set, out, ser, TOKEN_STREAM_WRITER);
 
 				Dust.sendMessage(ser);
 

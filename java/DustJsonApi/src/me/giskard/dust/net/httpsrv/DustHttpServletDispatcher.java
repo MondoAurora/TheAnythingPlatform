@@ -45,7 +45,7 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 				Map target = null;
 				
 				for (Map agent : agents) {
-					String p = DustKBUtils.access(DustAccess.Get, "@@@", agent, TOKEN_PATH);
+					String p = DustKBUtils.access(DustAccess.Get, "@@@", agent, TOKEN_PREFIX);
 
 					if (pathInfo.startsWith(p)) {
 						target = agent;
@@ -61,15 +61,17 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 					response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
 					return;
 				}
-				
+							
 				Map msg = new HashMap(target);
-				Map params = new HashMap();
-				
-				Map p = (Map) target.get(TOKEN_PARAMS);
-				if ( null != p ) {
-					params.putAll(p);
-				}
-				msg.put(TOKEN_PARAMS, params);
+				Map params = msg;
+
+//				Map params = new HashMap();
+//				
+//				Map p = (Map) target.get(TOKEN_PARAMS);
+//				if ( null != p ) {
+//					params.putAll(p);
+//				}
+//				msg.put(TOKEN_PARAMS, params);
 
 				DustKBUtils.access(DustAccess.Set, pathInfo, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
 
