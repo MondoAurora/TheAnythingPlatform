@@ -18,7 +18,7 @@ import me.giskard.dust.kb.DustKBUtils;
 public class DustLdapAgent extends DustAgent implements DustLDAPConsts {
 
 	@Override
-	protected Object process(DustAction action) throws Exception {
+	protected Object process(DustAccess access) throws Exception {
 		Hashtable<String, String> environment = new Hashtable<String, String>();
 
 		String url = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_STREAM_URL);

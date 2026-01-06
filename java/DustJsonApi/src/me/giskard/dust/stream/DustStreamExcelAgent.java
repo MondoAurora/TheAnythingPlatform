@@ -31,7 +31,7 @@ import me.giskard.dust.utils.DustUtilsFile;
 public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts, DustKBConsts, DustLDAPConsts {
 
 	@Override
-	protected Object process(DustAction action) throws Exception {
+	protected Object process(DustAccess access) throws Exception {
 		String unitId = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_UNIT);
 
 		if (null == unitId) {

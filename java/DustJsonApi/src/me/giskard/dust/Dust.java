@@ -142,9 +142,6 @@ public class Dust implements DustConsts, DustKBConsts {
 				case TOKEN_TYPE_AGENT:
 					getAgent(an);
 					break;
-//				case TOKEN_TYPE_MESSAGE:
-//					sendMessage(ca);
-//					break;
 				case TOKEN_TYPE_SERVICE:
 					DustKBUtils.access(DustAccess.Process, null, ca);
 					break;
@@ -176,32 +173,6 @@ public class Dust implements DustConsts, DustKBConsts {
 		System.out.println(sb);
 	}
 
-//	public static <RetType> RetType sendMessage(Object msg) {
-//		String agent = DustKBUtils.access(DustAccess.Get, null, msg, TOKEN_AGENT);
-//		Dust.log(TOKEN_LEVEL_TRACE, "Message to agent", agent, "params", msg);
-//		long start = System.currentTimeMillis();
-//		Object ret = null;
-//		DustUtilsFactory<DustContext, Object> ctx = CTX;
-//
-//		try {
-//			DustAgent a = Dust.getAgent(agent);
-//
-//			CTX = new DustUtilsFactory(MAP_CREATOR);
-//			KBObject aCfg = appUnit.getObject(TYPE_AGENT, agent, KBOptCreate.None);
-//			CTX.put(DustContext.Agent, DustKBUtils.access(DustAccess.Peek, null, aCfg));
-//			CTX.put(DustContext.Service, DustKBUtils.access(DustAccess.Peek, null, msg));
-//
-//			ret = a.process(DustAction.Process);
-//		} catch (Throwable e) {
-//			DustException.wrap(e, "sendMessage failed", msg);
-//		} finally {
-//			Dust.log(TOKEN_LEVEL_TRACE, "Message processed", System.currentTimeMillis() - start, "msec.");
-//			CTX = ctx;
-//		}
-//
-//		return (RetType) ret;
-//	}
-
 	public static <RetType> RetType notifyAgent(DustAccess access, KBObject listener, KBObject service, Object params) {
 		String agent = listener.getId();
 		Dust.log(TOKEN_LEVEL_TRACE, "Message to agent", agent, "service", service, "params", params);
@@ -219,7 +190,7 @@ public class Dust implements DustConsts, DustKBConsts {
 			CTX.put(DustContext.Service, DustKBUtils.access(DustAccess.Peek, null, service));
 			CTX.put(DustContext.Input, params);
 
-			ret = a.process(DustAction.Process);
+			ret = a.process(access);
 		} catch (Throwable e) {
 			DustException.wrap(e, "sendMessage failed", agent, "service", service, "params", params);
 		} finally {

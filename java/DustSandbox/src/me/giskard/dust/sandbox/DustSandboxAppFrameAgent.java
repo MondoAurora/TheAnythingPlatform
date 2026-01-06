@@ -27,7 +27,7 @@ public class DustSandboxAppFrameAgent extends DustAgent implements DustSandboxCo
 	}
 
 	@Override
-	protected Object process(DustAction action) throws Exception {
+	protected Object process(DustAccess access) throws Exception {
 		String cmd = DustKBUtils.access(DustAccess.Peek, "", null, TOKEN_CMD);
 //		StringBuilder sb = null;
 

@@ -91,7 +91,7 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 	}
 
 	@Override
-	protected Object process(DustAction action) throws Exception {
+	protected Object process(DustAccess access) throws Exception {
 		Commands cmd = Commands.info;
 		String str = DustKBUtils.access(DustAccess.Peek, "", null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
 		String[] path = str.split("/");

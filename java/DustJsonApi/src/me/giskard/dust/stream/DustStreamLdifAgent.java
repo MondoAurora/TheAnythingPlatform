@@ -28,7 +28,7 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 	FileFilter ffLdif = new DustUtilsFile.ExtFilter(DUST_EXT_LDIF);
 
 	@Override
-	protected Object process(DustAction action) throws Exception {
+	protected Object process(DustAccess access) throws Exception {
 		KBStore kb = Dust.getAgent(DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
 
 		String cmd = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_CMD);
@@ -67,10 +67,6 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 					params.put(TOKEN_KEY, unitId);
 					
 					DustKBUtils.access(DustAccess.Process, params, ser);
-
-//					DustKBUtils.access(DustAccess.Set, unitMeta, ser, TOKEN_UNIT);
-//					DustKBUtils.access(DustAccess.Set, unitId, ser, TOKEN_KEY);
-//					Dust.sendMessage(ser);
 				}
 			}
 
@@ -92,10 +88,6 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 					params.put(TOKEN_KEY, unitId);
 					
 					DustKBUtils.access(DustAccess.Process, params, ser);
-
-//					DustKBUtils.access(DustAccess.Set, unit, ser, TOKEN_UNIT);
-//					DustKBUtils.access(DustAccess.Set, unitId, ser, TOKEN_KEY);
-//					Dust.sendMessage(ser);
 				}
 			}
 

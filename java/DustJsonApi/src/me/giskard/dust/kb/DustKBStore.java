@@ -33,17 +33,14 @@ public class DustKBStore extends DustAgent implements DustKBConsts, DustKBConsts
 			}
 
 			if (null != ser) {
-//				Map<String, Object> params = DustUtils.simpleGet(ser, TOKEN_PARAMS);
 				Map<String, Object> params = new HashMap<>();
 
 				params.put(TOKEN_CMD, TOKEN_CMD_LOAD);
 				params.put(TOKEN_KEY, key);
 				params.put(TOKEN_UNIT, item);
 				
-//				Dust.sendMessage(ser);
 				DustKBUtils.access(DustAccess.Process, params, ser);
 			}
-
 		}
 
 	}, true);
@@ -89,7 +86,7 @@ public class DustKBStore extends DustAgent implements DustKBConsts, DustKBConsts
 	}
 
 	@Override
-	protected Object process(DustAction action) throws Exception {
+	protected Object process(DustAccess access) throws Exception {
 		return null;
 	}
 

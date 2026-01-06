@@ -18,7 +18,7 @@ import me.giskard.dust.utils.DustUtils;
 public class DustHttpFileAgent extends DustAgent implements DustNetConsts {
 
 	@Override
-	protected Object process(DustAction action) throws Exception {
+	protected Object process(DustAccess access) throws Exception {
 		HttpServletResponse response = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
 
 		if (null != response) {

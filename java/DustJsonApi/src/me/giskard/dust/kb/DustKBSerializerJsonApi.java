@@ -22,7 +22,7 @@ import me.giskard.dust.utils.DustUtilsJson;
 public class DustKBSerializerJsonApi extends DustAgent implements DustKBConsts, DustUtilsConstsJson, DustStreamConsts {
 
 	@Override
-	protected Object process(DustAction action) throws Exception {
+	protected Object process(DustAccess access) throws Exception {
 
 		String unitId = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_KEY);
 		DustKBUnit unit = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_UNIT);

@@ -102,9 +102,5 @@ public interface DustConsts {
 		private DustAccess(boolean creator) {
 			this.creator = creator;
 		}
-	};
-
-	enum DustAction {
-		Process, // Begin, End,
 	}
 }

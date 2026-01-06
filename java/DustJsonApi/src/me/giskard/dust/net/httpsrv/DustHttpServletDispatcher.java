@@ -106,8 +106,6 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 				
 				DustKBUtils.access(DustAccess.Process, params, m);
 
-//				Dust.sendMessage(msg);
-
 				int status = DustKBUtils.access(DustAccess.Peek, HttpServletResponse.SC_OK, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_STATUS);
 
 				response.setStatus(status);

@@ -28,7 +28,7 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 	}
 
 	@Override
-	protected Object process(DustAction action) throws Exception {
+	protected Object process(DustAccess access) throws Exception {
 		String cmd = DustKBUtils.access(DustAccess.Peek, "", null, TOKEN_CMD);
 //		String cmd = ((Map<String, String>) params).getOrDefault(TOKEN_CMD, "");
 		StringBuilder sb = null;
@@ -192,14 +192,6 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 			params.put(TOKEN_UNIT, uTarget);
 			params.put(TOKEN_KEY, uName);
 			DustKBUtils.access(DustAccess.Process, params, ser);
-
-//			DustKBUtils.access(DustAccess.Set, uMeta, ser, TOKEN_UNIT);
-//			DustKBUtils.access(DustAccess.Set, mName, ser, TOKEN_KEY);
-//			Dust.sendMessage(ser);
-//
-//			DustKBUtils.access(DustAccess.Set, uTarget, ser, TOKEN_UNIT);
-//			DustKBUtils.access(DustAccess.Set, uName, ser, TOKEN_KEY);
-//			Dust.sendMessage(ser);
 		}
 
 		return uTarget;
