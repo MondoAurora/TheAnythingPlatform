@@ -31,7 +31,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 			String[] path = pi.split("/");
 			int pl = path.length;
 
-			KBStore kb = Dust.getAgent(DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
+			KBStore kb = Dust.getStore();
 			infoType = kb.getMetaTypeId(TOKEN_INFO);
 
 			KBUnit unit = null;

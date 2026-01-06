@@ -50,8 +50,7 @@
 			"type": "dust.1$Agent",
 			"id": "SerializeJsonApi",
 			"attributes": {
-				"rootFolder": "localStore",
-				"KnowledgeBase": "KnowledgeBase"
+				"rootFolder": "localStore"
 			}
 		},
 		{
@@ -76,16 +75,12 @@
 		},
 		{
 			"type": "dust.1$Agent",
-			"id": "Sandbox",
-			"attributes": {
-				"KnowledgeBase": "KnowledgeBase"
-			}
+			"id": "Sandbox"
 		},
 		{
 			"type": "dust.1$Agent",
 			"id": "AppFrame",
 			"attributes": {
-				"KnowledgeBase": "KnowledgeBase",
 				"lookAndFeel": [
 					"com.apple.laf.AquaLookAndFeel",
 					"javax.swing.plaf.nimbus.NimbusLookAndFeel"

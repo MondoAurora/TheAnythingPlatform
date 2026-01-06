@@ -19,7 +19,10 @@ import me.giskard.dust.utils.DustUtilsConstsJson;
 import me.giskard.dust.utils.DustUtilsJson;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustKBSerializerJsonApi extends DustAgent implements DustKBConsts, DustUtilsConstsJson, DustStreamConsts {
+class DustKBSerializerJsonApi extends DustAgent implements DustKBConsts, DustUtilsConstsJson, DustStreamConsts {
+	
+	public DustKBSerializerJsonApi() {
+	}
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
@@ -30,8 +33,7 @@ public class DustKBSerializerJsonApi extends DustAgent implements DustKBConsts, 
 		File f = null;
 
 		if (null == unit) {
-			KBStore kb = Dust.getAgent(DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
-			unit = (DustKBUnit) kb.getUnit(unitId, true);
+			unit = (DustKBUnit) Dust.getStore().getUnit(unitId, true);
 		}
 
 		if (!DustUtils.isEmpty(unitId)) {

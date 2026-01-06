@@ -9,7 +9,6 @@ import me.giskard.dust.utils.DustUtilsConsts;
 
 public interface DustKBConsts extends DustConsts, DustUtilsConsts {
 	
-	String TOKEN_KB_KNOWLEDGEBASE = "KnowledgeBase";
 	String TOKEN_KB_KNOWNUNITS = "knownUnits";
 	
 	String TOKEN_KBMETA_TYPE = "Type";

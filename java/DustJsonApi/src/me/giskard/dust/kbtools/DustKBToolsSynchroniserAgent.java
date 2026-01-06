@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import me.giskard.dust.Dust;
 import me.giskard.dust.DustAgent;
 import me.giskard.dust.DustException;
-import me.giskard.dust.kb.DustKBStore;
 import me.giskard.dust.kb.DustKBUtils;
 import me.giskard.dust.net.DustNetConsts;
 import me.giskard.dust.utils.DustUtils;
@@ -19,13 +18,6 @@ import me.giskard.dust.utils.DustUtilsFactory;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToolsConsts, DustNetConsts {
-
-	DustKBStore kb;
-
-	@Override
-	protected void init() throws Exception {
-		kb = Dust.getAgent(DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
-	}
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
@@ -59,6 +51,8 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 	}
 
 	public KBUnit loadAll() {
+		KBStore kb = Dust.getStore();
+		
 		String tName = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_KBMETA_TYPE);
 		String mName = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_META);
 		KBUnit uMeta = kb.getUnit(mName, true);

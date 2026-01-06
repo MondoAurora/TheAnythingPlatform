@@ -9,7 +9,7 @@ import me.giskard.dust.utils.DustUtils;
 import me.giskard.dust.utils.DustUtilsFactory;
 
 //@SuppressWarnings("unchecked")
-public class DustKBStore extends DustAgent implements DustKBConsts, DustKBConsts.KBStore {
+class DustKBStore extends DustAgent implements DustKBConsts, DustKBConsts.KBStore {
 
 	static DustKBUnit appUnit;
 

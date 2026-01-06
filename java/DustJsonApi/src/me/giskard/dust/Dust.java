@@ -1,6 +1,7 @@
 package me.giskard.dust;
 
 import java.io.File;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -14,9 +15,10 @@ import me.giskard.dust.utils.DustUtilsFactory;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class Dust implements DustConsts, DustKBConsts {
 
+	private static KBStore appStore;
 	private static KBUnit appUnit;
 	private static KBObject appObj;
-	
+
 	private static final String TYPE_AGENT = DUST_UNIT_ID + DUST_SEP_TOKEN + TOKEN_TYPE_AGENT;
 
 //	static ThreadLocal<DustUtilsFactory<DustContext, Object>> CTX = new ThreadLocal<DustUtilsFactory<DustContext, Object>>() {
@@ -33,7 +35,7 @@ public class Dust implements DustConsts, DustKBConsts {
 	}
 
 	public static <RetType> RetType peekCtx(DustContext dc) {
-		return  (RetType) CTX.peek(dc);
+		return (RetType) CTX.peek(dc);
 	}
 
 	private static ArrayList<DustAgent> TORELEASE;
@@ -67,10 +69,20 @@ public class Dust implements DustConsts, DustKBConsts {
 				return DustException.wrap(null, "Missing config for agent ", key);
 			}
 
+			Constructor<Object> pc = null;
 			try {
-				return (DustAgent) getBinary(key).getConstructor().newInstance();
+				Constructor<Object> bcc = getBinary(key).getConstructor();
+				if (!bcc.canAccess(null)) {
+					bcc.setAccessible(true);
+					pc = bcc;
+				}
+				return (DustAgent) bcc.newInstance();
 			} catch (Throwable e) {
 				return DustException.wrap(e, "Creating agent", key);
+			} finally {
+				if (null != pc) {
+					pc.setAccessible(false);
+				}
 			}
 		}
 
@@ -120,10 +132,12 @@ public class Dust implements DustConsts, DustKBConsts {
 
 			String appType = DUST_UNIT_ID + DUST_SEP_TOKEN + TOKEN_TYPE_APP;
 			appObj = appUnit.getObject(appType, appName, KBOptCreate.None);
-			
+
 			int s = appUnitPath.lastIndexOf(".");
 			File fBin = new File(appUnitPath.substring(0, s) + "." + DUST_PLATFORM_JAVA + appUnitPath.substring(s));
 			DustKBUtils.bootLoadAppUnitJsonApi(fBin);
+
+			appStore = Dust.getAgent(DustKBUtils.access(DustAccess.Peek, null, appObj, TOKEN_DATA));
 
 			Dust.log(TOKEN_LEVEL_INFO, "MemInfo before init", DustDevUtils.memInfo());
 
@@ -157,6 +171,10 @@ public class Dust implements DustConsts, DustKBConsts {
 	public static <RetType> Class<RetType> getBinary(Object key) throws Exception {
 		String cn = DustKBUtils.access(DustAccess.Peek, null, appObj, TOKEN_BINARY_RESOLVER, key, TOKEN_BINARY);
 		return (Class<RetType>) Class.forName(cn);
+	}
+
+	public static KBStore getStore() {
+		return appStore;
 	}
 
 	public static KBObject getAgentObject(Object key) {

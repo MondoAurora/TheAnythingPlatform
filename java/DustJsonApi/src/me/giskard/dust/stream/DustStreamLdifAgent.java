@@ -29,7 +29,7 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		KBStore kb = Dust.getAgent(DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
+		KBStore kb = Dust.getStore();
 
 		String cmd = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_CMD);
 		Object ser = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);

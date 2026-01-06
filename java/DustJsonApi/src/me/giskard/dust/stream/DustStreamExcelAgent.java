@@ -38,7 +38,7 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 			unitId = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_CMD);
 		}
 
-		KBStore kb = Dust.getAgent(DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
+		KBStore kb = Dust.getStore();
 		KBUnit unit = kb.getUnit(unitId, false);
 
 		DustUtilsFactory<String, Set<String>> meta = new DustUtilsFactory.Simple<String, Set<String>>(true, (Class<? extends Set<String>>) TreeSet.class);

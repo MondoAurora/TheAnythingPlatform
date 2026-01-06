@@ -1,20 +1,12 @@
 package me.giskard.dust.sandbox;
 
-import me.giskard.dust.Dust;
 import me.giskard.dust.DustAgent;
 import me.giskard.dust.gui.swing.DustGuiSwingConsts;
 import me.giskard.dust.gui.swing.DustGuiSwingUtils;
-import me.giskard.dust.kb.DustKBStore;
 import me.giskard.dust.kb.DustKBUtils;
 
 //@SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustSandboxTestAgent extends DustAgent implements DustSandboxConsts, DustGuiSwingConsts {
-	DustKBStore kb;
-
-	@Override
-	protected void init() throws Exception {
-		kb = Dust.getAgent(DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_KB_KNOWLEDGEBASE));
-	}
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
