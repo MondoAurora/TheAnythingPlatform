@@ -3,6 +3,7 @@ package me.giskard.dust.kbtools;
 import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -179,15 +180,26 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 			}
 		}
 
-		Map<String, Object> ser = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
+		Object ser = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
 		if (null != ser) {
-			DustKBUtils.access(DustAccess.Set, uMeta, ser, TOKEN_UNIT);
-			DustKBUtils.access(DustAccess.Set, mName, ser, TOKEN_KEY);
-			Dust.sendMessage(ser);
+			Map<String, Object> params = new HashMap<>();
+			params.put(TOKEN_CMD, TOKEN_CMD_SAVE);
+			
+			params.put(TOKEN_UNIT, uMeta);
+			params.put(TOKEN_KEY, mName);
+			DustKBUtils.access(DustAccess.Process, params, ser);
+			
+			params.put(TOKEN_UNIT, uTarget);
+			params.put(TOKEN_KEY, uName);
+			DustKBUtils.access(DustAccess.Process, params, ser);
 
-			DustKBUtils.access(DustAccess.Set, uTarget, ser, TOKEN_UNIT);
-			DustKBUtils.access(DustAccess.Set, uName, ser, TOKEN_KEY);
-			Dust.sendMessage(ser);
+//			DustKBUtils.access(DustAccess.Set, uMeta, ser, TOKEN_UNIT);
+//			DustKBUtils.access(DustAccess.Set, mName, ser, TOKEN_KEY);
+//			Dust.sendMessage(ser);
+//
+//			DustKBUtils.access(DustAccess.Set, uTarget, ser, TOKEN_UNIT);
+//			DustKBUtils.access(DustAccess.Set, uName, ser, TOKEN_KEY);
+//			Dust.sendMessage(ser);
 		}
 
 		return uTarget;

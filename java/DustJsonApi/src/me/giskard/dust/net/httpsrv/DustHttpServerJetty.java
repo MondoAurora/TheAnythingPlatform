@@ -79,9 +79,11 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 			ctxHandler.setContextPath("/*");
 			handlers.addHandler(ctxHandler);
 
-			Object dispatch = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_MEMBERS);
+//			Object dispatch = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_MEMBERS);
 
-			ctxHandler.addServlet(new ServletHolder(new DustHttpServletDispatcher(dispatch)), "/*");
+//			ctxHandler.addServlet(new ServletHolder(new DustHttpServletDispatcher(dispatch)), "/*");
+			Object cfg =  DustKBUtils.access(DustAccess.Peek, null, null);
+			ctxHandler.addServlet(new ServletHolder(new DustHttpServletDispatcher(cfg)), "/*");
 
 			jetty.setHandler(handlers);
 			jetty.start();

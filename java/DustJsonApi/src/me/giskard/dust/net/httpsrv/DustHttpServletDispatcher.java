@@ -2,6 +2,7 @@ package me.giskard.dust.net.httpsrv;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,16 +22,17 @@ import me.giskard.dust.utils.DustUtils;
 class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, DustStreamConsts {
 	private static final long serialVersionUID = 1L;
 
+	KBObject cfg;
 	Collection<Map> agents;
-	
+
 	public DustHttpServletDispatcher(Object dispatch) {
 		super();
-		agents = (Collection<Map>) dispatch;
+		cfg = (KBObject) dispatch;
+		agents = DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_LIST, dispatch, TOKEN_MEMBERS);
 	}
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		long ts = System.currentTimeMillis();
 		Throwable exception = null;
 		String pathInfo = request.getPathInfo();
@@ -40,46 +42,43 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 		}
 
 		try {
-			synchronized (agents) { // quick and dirty
+			Map target = null;
 
-				Map target = null;
-				
-				for (Map agent : agents) {
-					String p = DustKBUtils.access(DustAccess.Get, "@@@", agent, TOKEN_PREFIX);
+			for (Map agent : agents) {
+				String p = DustKBUtils.access(DustAccess.Get, "@@@", agent, TOKEN_PREFIX);
 
-					if (pathInfo.startsWith(p)) {
-						target = agent;
-						pathInfo = pathInfo.substring(p.length());
-						if ( pathInfo.startsWith("/")) {
-							pathInfo = pathInfo.substring(1);
-						}
-						break;
+				if (pathInfo.startsWith(p)) {
+					target = agent;
+					pathInfo = pathInfo.substring(p.length());
+					if (pathInfo.startsWith("/")) {
+						pathInfo = pathInfo.substring(1);
 					}
+					break;
 				}
+			}
 
-				if (null == target) {
-					response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
-					return;
-				}
-							
-				Map msg = new HashMap(target);
-				Map params = msg;
+			if (null == target) {
+				response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
+				return;
+			}
 
-//				Map params = new HashMap();
-//				
-//				Map p = (Map) target.get(TOKEN_PARAMS);
-//				if ( null != p ) {
-//					params.putAll(p);
-//				}
-//				msg.put(TOKEN_PARAMS, params);
+			KBObject m = DustKBUtils.access(DustAccess.Peek, null, cfg, TOKEN_TARGET);
+
+			synchronized (m) { // quick and dirty
+
+				DustKBUtils.access(DustAccess.Reset, null, m, TOKEN_LISTENERS);
+				
+				KBObject ao = Dust.getAgentObject(target.get(TOKEN_AGENT));
+				DustKBUtils.access(DustAccess.Insert, ao, m, TOKEN_LISTENERS, KEY_ADD);
+				
+				Map params = new HashMap(target);
 
 				DustKBUtils.access(DustAccess.Set, pathInfo, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
 
 				DustKBUtils.access(DustAccess.Set, request, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_REQUEST);
 				DustKBUtils.access(DustAccess.Set, response, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
 
-				DustKBUtils.access(DustAccess.Set, request.getMethod(), params, TOKEN_TARGET,
-						TOKEN_NET_SRVCALL_METHOD);
+				DustKBUtils.access(DustAccess.Set, request.getMethod(), params, TOKEN_TARGET, TOKEN_NET_SRVCALL_METHOD);
 
 				Enumeration<String> ee;
 				String n = null;
@@ -98,17 +97,18 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 					n = ee.nextElement();
 					optAdd(params, TOKEN_NET_SRVCALL_HEADERS, n, request.getHeader(n));
 				}
-				
+
 				String cmd = (String) params.get(TOKEN_CMD);
-				if ( null == cmd ) {
+				if (null == cmd) {
 					cmd = DustUtils.getPrefix(pathInfo, "/");
 					params.put(TOKEN_CMD, cmd);
 				}
 				
-				Dust.sendMessage(msg);
+				DustKBUtils.access(DustAccess.Process, params, m);
 
-				int status = DustKBUtils.access(DustAccess.Peek, HttpServletResponse.SC_OK, params, TOKEN_TARGET,
-						TOKEN_NET_SRVCALL_STATUS);
+//				Dust.sendMessage(msg);
+
+				int status = DustKBUtils.access(DustAccess.Peek, HttpServletResponse.SC_OK, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_STATUS);
 
 				response.setStatus(status);
 			}

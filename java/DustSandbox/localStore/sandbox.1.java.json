@@ -1,0 +1,27 @@
+{
+	"data": [
+		{
+			"type": "dust.1$Application",
+			"id": "Sandbox",
+			"attributes": {
+				"binaryResolver": {
+					"KnowledgeBase": {
+						"binary": "me.giskard.dust.kb.DustKBStore"
+					},
+					"SerializeJsonApi": {
+						"binary": "me.giskard.dust.kb.DustKBSerializerJsonApi"
+					},
+					"AppFrame": {
+						"binary": "me.giskard.dust.sandbox.DustSandboxAppFrameAgent"
+					},
+					"Sandbox": {
+						"binary": "me.giskard.dust.sandbox.DustSandboxTestAgent"
+					}
+				}
+			}
+		}
+	],
+	"jsonapi": {
+		"version": "1.1"
+	}
+}

@@ -72,7 +72,7 @@ public interface DustConsts {
 
 	String TOKEN_TYPE_APP = "Application";
 	String TOKEN_TYPE_AGENT = "Agent";
-	String TOKEN_TYPE_MESSAGE = "Message";
+//	String TOKEN_TYPE_MESSAGE = "Message";
 	String TOKEN_TYPE_SERVICE = "Service";
 	String TOKEN_TYPE_RELEASEONSHUTDOWN = "releaseOnShutdown";
 

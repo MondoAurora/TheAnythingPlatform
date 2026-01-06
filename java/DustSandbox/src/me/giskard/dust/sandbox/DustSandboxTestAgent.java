@@ -3,6 +3,7 @@ package me.giskard.dust.sandbox;
 import me.giskard.dust.Dust;
 import me.giskard.dust.DustAgent;
 import me.giskard.dust.gui.swing.DustGuiSwingConsts;
+import me.giskard.dust.gui.swing.DustGuiSwingUtils;
 import me.giskard.dust.kb.DustKBStore;
 import me.giskard.dust.kb.DustKBUtils;
 
@@ -22,7 +23,7 @@ public class DustSandboxTestAgent extends DustAgent implements DustSandboxConsts
 
 		switch (cmd) {
 		case "LnF":
-//			DustGuiSwingUtils.optSetLookAndFeel(cfg);
+			DustGuiSwingUtils.optSetLookAndFeel();
 			break;
 		default:
 //			sb = new StringBuilder("Unknown command: ").append(cmd);

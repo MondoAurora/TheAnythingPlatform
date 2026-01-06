@@ -99,7 +99,7 @@ public class DustKBUtils implements DustKBConsts {
 				if (NOT_FOUND != ret) {
 					break;
 				}
-				Object ctx = Dust.optGetCtx(dc);
+				Object ctx = Dust.peekCtx(dc);
 				ret = (null == ctx) ? NOT_FOUND : DustKBUtils.access(access, def, ctx, path);
 			}
 
