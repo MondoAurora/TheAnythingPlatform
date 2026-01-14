@@ -2,24 +2,23 @@
 	"data": [
 		{
 			"type": "dust.1$Application",
-			"id": "Sandbox",
+			"id": "sandbox.1$Sandbox",
 			"attributes": {
-				"name": "DustSandbox",
-				"data": "KnowledgeBase"
+				"dust.1$name": "DustSandbox"
 			},
 			"relationships": {
-				"init": {
+				"dust.1$init": {
 					"data": [
 						{
 							"type": "dust.1$Service",
-							"id": "SandboxTest",
+							"id": "sandbox.1$SandboxTest1",
 							"meta": {
 								"key": -1
 							}
 						},
 						{
 							"type": "dust.1$Agent",
-							"id": "AppFrame",
+							"id": "sandbox.1$AppFrame",
 							"meta": {
 								"key": -1
 							}
@@ -30,41 +29,38 @@
 		},
 		{
 			"type": "dust.1$Agent",
-			"id": "KnowledgeBase",
+			"id": "sandbox.1$Mind",
 			"attributes": {
-				"meta": "dust.1",
-				"knownUnits": {
-					"dust.1": null
-				}
+				"dust.1$meta": "dust.1"
 			},
 			"relationships": {
-				"serializer": {
+				"dust.1$serializer": {
 					"data": {
 						"type": "dust.1$Service",
-						"id": "SerializeDefault"
+						"id": "sandbox.1$SerializeDefault"
 					}
 				}
 			}
 		},
 		{
 			"type": "dust.1$Agent",
-			"id": "SerializeJsonApi",
+			"id": "sandbox.1$SerializeJsonApi",
 			"attributes": {
-				"rootFolder": "localStore"
+				"dust.1$rootFolder": "localStore"
 			}
 		},
 		{
 			"type": "dust.1$Service",
-			"id": "SerializeDefault",
+			"id": "sandbox.1$SerializeDefault",
 			"attributes": {
-				"cmd": "save"
+				"dust.1$cmd": "dust.1$save"
 			},
 			"relationships": {
-				"listeners": {
+				"dust.1$listeners": {
 					"data": [
 						{
 							"type": "dust.1$Agent",
-							"id": "SerializeJsonApi",
+							"id": "sandbox.1$SerializeJsonApi",
 							"meta": {
 								"key": -1
 							}
@@ -75,13 +71,13 @@
 		},
 		{
 			"type": "dust.1$Agent",
-			"id": "Sandbox"
+			"id": "sandbox.1$SandboxAgent"
 		},
 		{
 			"type": "dust.1$Agent",
-			"id": "AppFrame",
+			"id": "sandbox.1$AppFrame",
 			"attributes": {
-				"lookAndFeel": [
+				"dust.1$lookAndFeel": [
 					"com.apple.laf.AquaLookAndFeel",
 					"javax.swing.plaf.nimbus.NimbusLookAndFeel"
 				]
@@ -89,18 +85,21 @@
 		},
 		{
 			"type": "dust.1$Service",
-			"id": "SandboxTest",
+			"id": "sandbox.1$SandboxTest1",
 			"attributes": {
-				"skip": false,
-				"agent": "Sandbox",
-				"cmd": "LnF"
+				"dust.1$skip": false,
+				"dust.1$cmd": "LnF",
+				"dust.1$lookAndFeel": [
+					"com.apple.laf.AquaLookAndFeel",
+					"javax.swing.plaf.nimbus.NimbusLookAndFeel"
+				]			
 			},
 			"relationships": {
-				"listeners": {
+				"dust.1$listeners": {
 					"data": [
 						{
 							"type": "dust.1$Agent",
-							"id": "Sandbox",
+							"id": "sandbox.1$SandboxAgent",
 							"meta": {
 								"key": -1
 							}

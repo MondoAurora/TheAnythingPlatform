@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import me.giskard.dust.Dust;
-import me.giskard.dust.kb.DustKBUtils;
 import me.giskard.dust.net.DustNetConsts;
 import me.giskard.dust.stream.DustStreamConsts;
 import me.giskard.dust.utils.DustUtils;
@@ -22,13 +21,13 @@ import me.giskard.dust.utils.DustUtils;
 class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, DustStreamConsts {
 	private static final long serialVersionUID = 1L;
 
-	KBObject cfg;
+	DustObject cfg;
 	Collection<Map> agents;
 
 	public DustHttpServletDispatcher(Object dispatch) {
 		super();
-		cfg = (KBObject) dispatch;
-		agents = DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_LIST, dispatch, TOKEN_MEMBERS);
+		cfg = (DustObject) dispatch;
+		agents = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, dispatch, TOKEN_MEMBERS);
 	}
 
 	@Override
@@ -45,7 +44,7 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 			Map target = null;
 
 			for (Map agent : agents) {
-				String p = DustKBUtils.access(DustAccess.Get, "@@@", agent, TOKEN_PREFIX);
+				String p = Dust.access(DustAccess.Get, "@@@", agent, TOKEN_PREFIX);
 
 				if (pathInfo.startsWith(p)) {
 					target = agent;
@@ -62,23 +61,23 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 				return;
 			}
 
-			KBObject m = DustKBUtils.access(DustAccess.Peek, null, cfg, TOKEN_TARGET);
+			DustObject m = Dust.access(DustAccess.Peek, null, cfg, TOKEN_TARGET);
 
 			synchronized (m) { // quick and dirty
 
-				DustKBUtils.access(DustAccess.Reset, null, m, TOKEN_LISTENERS);
+				Dust.access(DustAccess.Reset, null, m, TOKEN_LISTENERS);
 				
-				KBObject ao = Dust.getAgentObject(target.get(TOKEN_AGENT));
-				DustKBUtils.access(DustAccess.Insert, ao, m, TOKEN_LISTENERS, KEY_ADD);
+				DustObject ao = Dust.getAgentObject(target.get(TOKEN_AGENT));
+				Dust.access(DustAccess.Insert, ao, m, TOKEN_LISTENERS, KEY_ADD);
 				
 				Map params = new HashMap(target);
 
-				DustKBUtils.access(DustAccess.Set, pathInfo, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
+				Dust.access(DustAccess.Set, pathInfo, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
 
-				DustKBUtils.access(DustAccess.Set, request, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_REQUEST);
-				DustKBUtils.access(DustAccess.Set, response, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+				Dust.access(DustAccess.Set, request, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_REQUEST);
+				Dust.access(DustAccess.Set, response, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
 
-				DustKBUtils.access(DustAccess.Set, request.getMethod(), params, TOKEN_TARGET, TOKEN_NET_SRVCALL_METHOD);
+				Dust.access(DustAccess.Set, request.getMethod(), params, TOKEN_TARGET, TOKEN_NET_SRVCALL_METHOD);
 
 				Enumeration<String> ee;
 				String n = null;
@@ -104,9 +103,9 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 					params.put(TOKEN_CMD, cmd);
 				}
 				
-				DustKBUtils.access(DustAccess.Process, params, m);
+				Dust.access(DustAccess.Process, params, m);
 
-				int status = DustKBUtils.access(DustAccess.Peek, HttpServletResponse.SC_OK, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_STATUS);
+				int status = Dust.access(DustAccess.Peek, HttpServletResponse.SC_OK, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_STATUS);
 
 				response.setStatus(status);
 			}
@@ -123,6 +122,6 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 	}
 
 	private void optAdd(Object params, Object kind, String name, Object val) {
-		DustKBUtils.access(DustAccess.Set, val, params, TOKEN_TARGET, kind, name);
+		Dust.access(DustAccess.Set, val, params, TOKEN_TARGET, kind, name);
 	}
 }

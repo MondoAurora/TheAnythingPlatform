@@ -14,33 +14,35 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import me.giskard.dust.Dust;
-import me.giskard.dust.DustAgent;
+import me.giskard.dust.DustConsts.DustAgent;
 import me.giskard.dust.DustException;
-import me.giskard.dust.kb.DustKBConsts;
-import me.giskard.dust.kb.DustKBUtils;
 import me.giskard.dust.ldap.DustLDAPConsts;
+import me.giskard.dust.mind.DustMindConsts;
 import me.giskard.dust.utils.DustUtils;
 import me.giskard.dust.utils.DustUtilsFile;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, DustKBConsts, DustLDAPConsts {
+public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, DustMindConsts, DustLDAPConsts {
 
 	FileFilter ffLdif = new DustUtilsFile.ExtFilter(DUST_EXT_LDIF);
 
+	DustObject typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
+	DustObject typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
+
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		KBStore kb = Dust.getStore();
+//		KBStore kb = Dust.getStore();
 
-		String cmd = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_CMD);
-		Object ser = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
+		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
+		Object ser = Dust.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
 
 		switch (cmd) {
 		case TOKEN_CMD_LOAD:
 
-			String unitId = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_UNIT);
-			KBUnit unitMeta = kb.getUnit(unitId, true);
+			String unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_META, TOKEN_KEY);
+			DustObject unitMeta = Dust.getUnit(unitId, true);
 
-			String fn = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_META);
+			String fn = Dust.access(DustAccess.Peek, null, null, TOKEN_META, TOKEN_PATH);
 
 			if (!DustUtils.isEmpty(fn)) {
 				File f = new File(fn);
@@ -63,20 +65,20 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 					
 					Map<String, Object> params = new HashMap<>();
 					params.put(TOKEN_CMD, TOKEN_CMD_SAVE);
-					params.put(TOKEN_UNIT, unitMeta);
+					params.put(TOKEN_DATA, unitMeta);
 					params.put(TOKEN_KEY, unitId);
 					
-					DustKBUtils.access(DustAccess.Process, params, ser);
+					Dust.access(DustAccess.Process, params, ser);
 				}
 			}
 
-			for (Map<String, Object> src : ((Collection<Map<String, Object>>) DustKBUtils.access(DustAccess.Visit, Collections.EMPTY_LIST, null, TOKEN_SOURCE))) {
+			for (Map<String, Object> src : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, null, TOKEN_SOURCE))) {
 
-				String fileName = DustKBUtils.access(DustAccess.Peek, null, src, TOKEN_PATH);
+				String fileName = Dust.access(DustAccess.Peek, null, src, TOKEN_PATH);
 				File f = new File(fileName);
 
-				unitId = DustKBUtils.access(DustAccess.Peek, null, src, TOKEN_UNIT);
-				KBUnit unit = kb.getUnit(unitId, true);
+				unitId = Dust.access(DustAccess.Peek, null, src, TOKEN_DATA);
+				DustObject unit = Dust.getUnit(unitId, true);
 
 				readDataLdif(unit, unitMeta, src, f);
 
@@ -84,10 +86,10 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 					
 					Map<String, Object> params = new HashMap<>();
 					params.put(TOKEN_CMD, TOKEN_CMD_SAVE);
-					params.put(TOKEN_UNIT, unit);
+					params.put(TOKEN_DATA, unit);
 					params.put(TOKEN_KEY, unitId);
 					
-					DustKBUtils.access(DustAccess.Process, params, ser);
+					Dust.access(DustAccess.Process, params, ser);
 				}
 			}
 
@@ -100,22 +102,18 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 		return null;
 	}
 
-	protected void readSchemaLdif(KBUnit unit, File f) throws Exception {
+	protected void readSchemaLdif(DustObject unit, File f) throws Exception {
 		Pattern ptName = Pattern.compile(".*NAME\\s+'([^']+)'.*");
 		Pattern ptDesc = Pattern.compile(".*DESC\\s+'([^']*)'.*");
 		Pattern ptMust = Pattern.compile(".*MUST\\s+\\(([^)]*)\\).*");
 		Pattern ptMay = Pattern.compile(".*MAY\\s+\\(([^)]*)\\).*");
 
-		KBStore kb = unit.getStore();
-		String typeAtt = kb.getMetaTypeId(TOKEN_KBMETA_ATTRIBUTE);
-		String typeType = kb.getMetaTypeId(TOKEN_KBMETA_TYPE);
-
 		try (FileInputStream fis = new FileInputStream(f); BufferedReader br = new BufferedReader(new InputStreamReader(fis))) {
 			String line;
 
-			KBObject o = null;
+			DustObject o = null;
 
-			String type = null;
+			DustObject type = null;
 
 			while ((line = br.readLine()) != null) {
 				line = line.trim();
@@ -133,10 +131,10 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 					val = line.substring(sep + 1).trim();
 
 					switch (key) {
-					case TOKEN_LDAP_ATTRIBUTE_TYPES:
+					case LDAP_ATTRIBUTE_TYPES:
 						type = typeAtt;
 						break;
-					case TOKEN_LDAP_OBJECT_CLASSES:
+					case LDAP_OBJECT_CLASSES:
 						type = typeType;
 						break;
 					default:
@@ -148,14 +146,14 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 
 				if (m.matches()) {
 					str = m.group(1);
-					o = unit.getObject(type, str);
-					DustKBUtils.access(DustAccess.Set, str, o, TOKEN_KEY);
-					DustKBUtils.access(DustAccess.Set, DustUtils.cutPostfix(f.getName(), "."), o, TOKEN_PARENT);
+					o = Dust.getObject(unit, type, str, DustOptCreate.Meta);
+					Dust.access(DustAccess.Set, str, o, TOKEN_KEY);
+					Dust.access(DustAccess.Set, DustUtils.cutPostfix(f.getName(), "."), o, TOKEN_PARENT);
 				}
 
 				m = ptDesc.matcher(val);
 				if (m.matches()) {
-					DustKBUtils.access(DustAccess.Set, m.group(1), o, TOKEN_DESC);
+					Dust.access(DustAccess.Set, m.group(1), o, TOKEN_DESC);
 				}
 
 				m = ptMust.matcher(val);
@@ -163,9 +161,9 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 					String[] members = m.group(1).split("\\$");
 
 					for (String a : members) {
-						KBObject ao = unit.getObject(typeAtt, a.trim());
-						DustKBUtils.access(DustAccess.Insert, ao, o, TOKEN_LDAP_MUST);
-						DustKBUtils.access(DustAccess.Insert, o, ao, TOKEN_LDAP_APPEARS);
+						DustObject ao = Dust.getObject(unit, typeAtt, a.trim(), DustOptCreate.Primary);
+						Dust.access(DustAccess.Insert, ao, o, TOKEN_MANDATORY);
+						Dust.access(DustAccess.Insert, o, ao, TOKEN_APPEARS);
 					}
 				}
 
@@ -174,43 +172,40 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 					String[] members = m.group(1).split("\\$");
 
 					for (String a : members) {
-						KBObject ao = unit.getObject(typeAtt, a.trim());
-						DustKBUtils.access(DustAccess.Insert, ao, o, TOKEN_LDAP_MAY);
-						DustKBUtils.access(DustAccess.Insert, o, ao, TOKEN_LDAP_APPEARS);
+						DustObject ao = Dust.getObject(unit, typeAtt, a.trim(), DustOptCreate.Primary);
+						Dust.access(DustAccess.Insert, ao, o, TOKEN_OPTIONAL);
+						Dust.access(DustAccess.Insert, o, ao, TOKEN_APPEARS);
 					}
 				}
 
-				if (val.contains(TOKEN_LDAP_SINGLE_VALUE)) {
-					DustKBUtils.access(DustAccess.Set, true, o, TOKEN_LDAP_SINGLE_VALUE);
-					DustKBUtils.access(DustAccess.Set, true, o, TOKEN_LDAP_SINGLE_VALUE);
+				if (val.contains(LDAP_SINGLE_VALUE)) {
+					Dust.access(DustAccess.Set, true, o, TOKEN_COLLTYPE_SINGLE);
 				}
 			}
 		}
 	}
 
 	class LdifBlock {
-		KBUnit unit;
-		KBUnit unitMeta;
+		DustObject unit;
+		DustObject unitMeta;
 
-		String type;
-		String at;
-		String tt;
+		DustObject type;
 		String encoding;
 
-		KBObject o = null;
+		DustObject o = null;
 
 		String key = null;
 		boolean base64 = false;
 		StringBuilder sb = new StringBuilder();
 
-		public LdifBlock(KBUnit unit, KBUnit unitMeta, Object params) {
+		public LdifBlock(DustObject unit, DustObject unitMeta, Object params) {
 			this.unit = unit;
 			this.unitMeta = unitMeta;
 
-			type = DustKBUtils.access(DustAccess.Peek, "???", params, TOKEN_KBMETA_TYPE);
-			at = unit.getStore().getMetaTypeId(TOKEN_KBMETA_ATTRIBUTE);
-			tt = unit.getStore().getMetaTypeId(TOKEN_KBMETA_TYPE);
-			encoding = DustKBUtils.access(DustAccess.Peek, DUST_CHARSET_UTF8, params, TOKEN_STREAM_ENCODING);
+			String typeName = Dust.access(DustAccess.Peek, "???", params, TOKEN_TYPE);
+			type = Dust.getObject(unitMeta, typeType, typeName, DustOptCreate.Meta);
+			
+			encoding = Dust.access(DustAccess.Peek, DUST_CHARSET_UTF8, params, TOKEN_STREAM_ENCODING);
 		}
 
 		public void processLine(String line) {
@@ -244,19 +239,21 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 					vv = new String(Base64.getDecoder().decode(vv));
 				}
 				sb.setLength(0);
+				
+				String optId = unitMeta.getId() + DUST_SEP_TOKEN + vv;
 
-				if (TOKEN_LDAP_DN.equals(key)) {
-					o = unit.getObject(type, vv);
+				if (LDAP_DN.equals(key)) {
+					o = Dust.getObject(unit, type, optId, DustOptCreate.Primary);
 				}
 
-				unitMeta.getObject(at, key);
-				if (TOKEN_LDAP_OBJECTCLASS.equals(key)) {
-					unitMeta.getObject(tt, vv);
+				Object k = Dust.getObject(unitMeta, typeAtt, key, DustOptCreate.Primary);
+				if (LDAP_OBJECTCLASS.equals(key)) {
+					Dust.getObject(unitMeta, typeType, optId, DustOptCreate.Primary);
 				}
 
 //				String k = unitMeta.getUnitId() + DUST_SEP_TOKEN + key;
-				String k = key;
-				Object v = DustKBUtils.access(DustAccess.Peek, null, o, k);
+//				String k = key;
+				Object v = Dust.access(DustAccess.Peek, null, o, k);
 
 				boolean coll = (v instanceof Collection);
 
@@ -271,20 +268,20 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 				}
 
 				if (null == v) {
-					DustKBUtils.access(DustAccess.Set, vv, o, k);
+					Dust.access(DustAccess.Set, vv, o, k);
 				} else {
 					if (!coll) {
-						DustKBUtils.access(DustAccess.Delete, null, o, k);
-						DustKBUtils.access(DustAccess.Insert, v, o, k, KEY_ADD);
+						Dust.access(DustAccess.Delete, null, o, k);
+						Dust.access(DustAccess.Insert, v, o, k, KEY_ADD);
 					}
-					DustKBUtils.access(DustAccess.Insert, vv, o, k, KEY_ADD);
+					Dust.access(DustAccess.Insert, vv, o, k, KEY_ADD);
 				}
 			}
 		}
 
 	}
 
-	public void readDataLdif(KBUnit unit, KBUnit unitMeta, Object params, File f) throws Exception {
+	public void readDataLdif(DustObject unit, DustObject unitMeta, Object params, File f) throws Exception {
 		LdifBlock block = new LdifBlock(unit, unitMeta, params);
 
 		int lc = 0;

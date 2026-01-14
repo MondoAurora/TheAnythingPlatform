@@ -4,18 +4,18 @@
 			"type": "dust.1$Application",
 			"id": "Sandbox",
 			"attributes": {
-				"binaryResolver": {
-					"KnowledgeBase": {
-						"binary": "me.giskard.dust.kb.DustKBStore"
+				"dust.1$binaryResolver": {
+					"sandbox.1$Mind": {
+						"dust.1$binary": "me.giskard.dust.mind.DustMindAgent"
 					},
-					"SerializeJsonApi": {
-						"binary": "me.giskard.dust.kb.DustKBSerializerJsonApi"
+					"sandbox.1$SerializeJsonApi": {
+						"dust.1$binary": "me.giskard.dust.mind.DustMindSerializerJsonApi"
 					},
-					"AppFrame": {
-						"binary": "me.giskard.dust.sandbox.DustSandboxAppFrameAgent"
+					"sandbox.1$AppFrame": {
+						"dust.1$binary": "me.giskard.dust.sandbox.DustSandboxAppFrameAgent"
 					},
-					"Sandbox": {
-						"binary": "me.giskard.dust.sandbox.DustSandboxTestAgent"
+					"sandbox.1$SandboxAgent": {
+						"dust.1$binary": "me.giskard.dust.sandbox.DustSandboxTestAgent"
 					}
 				}
 			}

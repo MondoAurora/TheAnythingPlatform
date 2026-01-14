@@ -1,9 +1,9 @@
 package me.giskard.dust.net;
 
 import me.giskard.dust.DustConsts;
-import me.giskard.dust.kb.DustKBConsts;
+import me.giskard.dust.mind.DustMindConsts;
 
-public interface DustNetConsts extends DustConsts, DustKBConsts {
+public interface DustNetConsts extends DustConsts, DustMindConsts {
 	
 	int NO_PORT_SET = -1;
 
@@ -20,24 +20,24 @@ public interface DustNetConsts extends DustConsts, DustKBConsts {
 	String MEDIATYPE_JSONAPI = "application/vnd.api+json";
 	String MEDIATYPE_ZIP = "application/zip";
 
-	String TOKEN_NET_HOST_PORT = "port";
+	String TOKEN_NET_HOST_PORT = DUST_UNIT_ID + DUST_SEP_TOKEN + "port";
 
-	String TOKEN_NET_SSLINFO_PORT = "sslPort";
-	String TOKEN_NET_SSLINFO_STOREPATH = "sslStorePath";
-	String TOKEN_NET_SSLINFO_STOREPASS = "sslStorePass";
-	String TOKEN_NET_SSLINFO_KEYMANAGERPASS = "sslKeyMgrPass";
+	String TOKEN_NET_SSLINFO_PORT = DUST_UNIT_ID + DUST_SEP_TOKEN + "sslPort";
+	String TOKEN_NET_SSLINFO_STOREPATH = DUST_UNIT_ID + DUST_SEP_TOKEN + "sslStorePath";
+	String TOKEN_NET_SSLINFO_STOREPASS = DUST_UNIT_ID + DUST_SEP_TOKEN + "sslStorePass";
+	String TOKEN_NET_SSLINFO_KEYMANAGERPASS = DUST_UNIT_ID + DUST_SEP_TOKEN + "sslKeyMgrPass";
 
-	String TOKEN_NET_SRVCALL_REQUEST = "request";
-	String TOKEN_NET_SRVCALL_RESPONSE = "response";
-	String TOKEN_NET_SRVCALL_METHOD = "method";
-	String TOKEN_NET_SRVCALL_PATHINFO = "pathInfo";
-	String TOKEN_NET_SRVCALL_HEADERS = "headers";
-	String TOKEN_NET_SRVCALL_ATTRIBUTES = "attributes";
-	String TOKEN_NET_SRVCALL_STATUS = "status";
+	String TOKEN_NET_SRVCALL_REQUEST = DUST_UNIT_ID + DUST_SEP_TOKEN + "request";
+	String TOKEN_NET_SRVCALL_RESPONSE = DUST_UNIT_ID + DUST_SEP_TOKEN + "response";
+	String TOKEN_NET_SRVCALL_METHOD = DUST_UNIT_ID + DUST_SEP_TOKEN + "method";
+	String TOKEN_NET_SRVCALL_PATHINFO = DUST_UNIT_ID + DUST_SEP_TOKEN + "pathInfo";
+	String TOKEN_NET_SRVCALL_HEADERS = DUST_UNIT_ID + DUST_SEP_TOKEN + "headers";
+	String TOKEN_NET_SRVCALL_ATTRIBUTES = DUST_UNIT_ID + DUST_SEP_TOKEN + "attributes";
+	String TOKEN_NET_SRVCALL_STATUS = DUST_UNIT_ID + DUST_SEP_TOKEN + "status";
 
-	String TOKEN_NET_SRVRESP_STATUS = "respStatus";
-	String TOKEN_NET_SRVRESP_TYPE = "respType";
-	String TOKEN_NET_SRVRESP_HEADER = "respHeader";
+	String TOKEN_NET_SRVRESP_STATUS = DUST_UNIT_ID + DUST_SEP_TOKEN + "respStatus";
+	String TOKEN_NET_SRVRESP_TYPE = DUST_UNIT_ID + DUST_SEP_TOKEN + "respType";
+	String TOKEN_NET_SRVRESP_HEADER = DUST_UNIT_ID + DUST_SEP_TOKEN + "respHeader";
 
 
 }

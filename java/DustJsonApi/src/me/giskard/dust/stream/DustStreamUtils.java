@@ -7,12 +7,11 @@ import java.util.regex.Pattern;
 
 import me.giskard.dust.Dust;
 import me.giskard.dust.DustException;
-import me.giskard.dust.kb.DustKBConsts;
-import me.giskard.dust.kb.DustKBUtils;
+import me.giskard.dust.mind.DustMindConsts;
 import me.giskard.dust.utils.DustUtils;
 import me.giskard.dust.utils.DustUtilsConsts;
 
-public class DustStreamUtils implements DustUtilsConsts, DustKBConsts {
+public class DustStreamUtils implements DustUtilsConsts, DustMindConsts {
 
 	public static boolean checkPathBound(String path) throws IOException {
 		File root = new File(".");
@@ -29,7 +28,7 @@ public class DustStreamUtils implements DustUtilsConsts, DustKBConsts {
 
 	public static File getFile(Object root, Object... path) throws Exception {
 
-		String fileName = DustKBUtils.access(DustAccess.Peek, null, root, path);
+		String fileName = Dust.access(DustAccess.Peek, null, root, path);
 		Dust.log(TOKEN_LEVEL_TRACE, "Accessing file", fileName);
 
 		File f;

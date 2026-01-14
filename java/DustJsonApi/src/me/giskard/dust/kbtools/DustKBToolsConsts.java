@@ -1,8 +1,8 @@
 package me.giskard.dust.kbtools;
 
-import me.giskard.dust.kb.DustKBConsts;
+import me.giskard.dust.mind.DustMindConsts;
 
-public interface DustKBToolsConsts extends DustKBConsts {
-	String TOKEN_KBT_CMD_LOADALL = "loadAll";
+public interface DustKBToolsConsts extends DustMindConsts {
+	String TOKEN_KBT_CMD_LOADALL = DUST_UNIT_ID + DUST_SEP_TOKEN + "loadAll";
 
 }

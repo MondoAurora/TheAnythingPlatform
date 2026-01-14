@@ -1,4 +1,4 @@
-package me.giskard.dust.kb;
+package me.giskard.dust.mind;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -7,13 +7,16 @@ import java.util.Set;
 import me.giskard.dust.DustConsts;
 import me.giskard.dust.utils.DustUtilsConsts;
 
-public interface DustKBConsts extends DustConsts, DustUtilsConsts {
+public interface DustMindConsts extends DustConsts, DustUtilsConsts {
 	
-	String TOKEN_KB_KNOWNUNITS = "knownUnits";
+	String TOKEN_MIND = DUST_UNIT_ID + DUST_SEP_TOKEN + "MiND";
 	
-	String TOKEN_KBMETA_TYPE = "Type";
-	String TOKEN_KBMETA_ATTRIBUTE = "Attribute";
-	String TOKEN_KBMETA_TAG = "Tag";
+	String TOKEN_KB_KNOWNUNITS = DUST_UNIT_ID + DUST_SEP_TOKEN + "knownUnits";
+	
+	String TOKEN_KBMETA_UNIT = DUST_UNIT_ID + DUST_SEP_TOKEN + "Unit";
+	String TOKEN_KBMETA_TYPE = DUST_UNIT_ID + DUST_SEP_TOKEN + "Type";
+	String TOKEN_KBMETA_ATTRIBUTE = DUST_UNIT_ID + DUST_SEP_TOKEN + "Attribute";
+	String TOKEN_KBMETA_TAG = DUST_UNIT_ID + DUST_SEP_TOKEN + "Tag";
 	
 	enum KBCollType {
 		One, Set, Arr, Map;
@@ -27,29 +30,20 @@ public interface DustKBConsts extends DustConsts, DustUtilsConsts {
 		}
 
 	};
-
-	public interface KBObject {
-		KBUnit getUnit();
-		String getType();
-		String getId();
-		
-		void load(KBObject from, boolean deep, String... atts);
-
-	}
 	
 	enum KBOptCreate {
 		Primary, Reference, None
 	}
 
 	public interface KBUnit {
-		KBStore getStore();
+//		KBStore getStore();
 		String getUnitId();
-		Iterable<? extends KBObject> objects();
+		Iterable<? extends DustObject> objects();
 		int size();
 
-		KBObject getObject(String type, String id, KBOptCreate optCreate);
+		DustObject getObject(String type, String id, KBOptCreate optCreate);
 
-		default KBObject getObject(String type, String id)  {
+		default DustObject getObject(String type, String id)  {
 			return getObject(type, id, KBOptCreate.Primary);
 		}
 	}
@@ -58,7 +52,6 @@ public interface DustKBConsts extends DustConsts, DustUtilsConsts {
 		String getMetaTypeId(String mt);
 
 		KBUnit getUnit(String unitId, boolean createIfMissing);	
-		Iterable<? extends KBUnit> knownUnits();
 		boolean releaseUnit(String unitId);
 		void reset();
 	}

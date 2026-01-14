@@ -2,10 +2,10 @@ package me.giskard.dust.sandbox;
 
 import javax.swing.JFrame;
 
-import me.giskard.dust.DustAgent;
+import me.giskard.dust.Dust;
+import me.giskard.dust.DustConsts.DustAgent;
 import me.giskard.dust.gui.swing.DustGuiSwingConsts;
 import me.giskard.dust.gui.swing.DustGuiSwingUtils;
-import me.giskard.dust.kb.DustKBUtils;
 
 //@SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustSandboxAppFrameAgent extends DustAgent implements DustSandboxConsts, DustGuiSwingConsts {
@@ -17,7 +17,7 @@ public class DustSandboxAppFrameAgent extends DustAgent implements DustSandboxCo
 		
 		frm = new JFrame();
 		
-		frm.setTitle( DustKBUtils.accessCtx(DustAccess.Peek, "App frame", DustContext.Agent, TOKEN_NAME));
+		frm.setTitle( Dust.accessCtx(DustAccess.Peek, "App frame", DustContext.Agent, TOKEN_NAME));
 		
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -28,7 +28,7 @@ public class DustSandboxAppFrameAgent extends DustAgent implements DustSandboxCo
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		String cmd = DustKBUtils.access(DustAccess.Peek, "", null, TOKEN_CMD);
+		String cmd = Dust.access(DustAccess.Peek, "", null, TOKEN_CMD);
 //		StringBuilder sb = null;
 
 		switch (cmd) {

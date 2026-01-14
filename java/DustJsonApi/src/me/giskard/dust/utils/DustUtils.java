@@ -4,11 +4,28 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.Map;
 import java.util.TimeZone;
 
+import me.giskard.dust.Dust;
+
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustUtils implements DustUtilsConsts {
+	
+	public static String buildToken(String unit, String name) {
+		return unit + DUST_SEP_TOKEN + name;
+	}
+
+	private static final EnumSet<DustAccess> ACCESS_CREATE = EnumSet.of(DustAccess.Set, DustAccess.Insert);
+	public static boolean isCreate(DustAccess acc) {
+		return ACCESS_CREATE.contains(acc);
+	}
+
+	private static final EnumSet<DustAccess> ACCESS_CHANGE = EnumSet.of(DustAccess.Set, DustAccess.Insert, DustAccess.Delete, DustAccess.Reset);
+	public static boolean isChange(DustAccess acc) {
+		return ACCESS_CHANGE.contains(acc);
+	}
 
 	public static boolean isEmpty(String str) {
 		return (null == str) || str.isEmpty();
@@ -35,6 +52,8 @@ public class DustUtils implements DustUtilsConsts {
 				sb = sbAppend(sb, sep, false, oo);
 			}
 			return (null == sb) ? "" : sb.toString();
+		} else if (ob instanceof DustObject) {
+			return ((DustObject) ob).getId();
 		} else {
 			return ob.toString();
 		}
@@ -162,5 +181,9 @@ public class DustUtils implements DustUtilsConsts {
 
 	public static boolean isEmpty(Collection coll) {
 		return (null == coll) || coll.isEmpty();
+	}
+
+	public static DustObject getMindMeta(String type) {
+		return Dust.getObject(null, null, type, DustOptCreate.Meta);
 	}
 }

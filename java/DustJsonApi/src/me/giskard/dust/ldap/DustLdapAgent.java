@@ -12,8 +12,7 @@ import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
 import me.giskard.dust.Dust;
-import me.giskard.dust.DustAgent;
-import me.giskard.dust.kb.DustKBUtils;
+import me.giskard.dust.DustConsts.DustAgent;
 
 public class DustLdapAgent extends DustAgent implements DustLDAPConsts {
 
@@ -21,11 +20,11 @@ public class DustLdapAgent extends DustAgent implements DustLDAPConsts {
 	protected Object process(DustAccess access) throws Exception {
 		Hashtable<String, String> environment = new Hashtable<String, String>();
 
-		String url = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_STREAM_URL);
-		String auth = DustKBUtils.access(DustAccess.Peek, CONST_LDAP_SIMPLE, null, TOKEN_AUTH);
+		String url = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_URL);
+		String auth = Dust.access(DustAccess.Peek, CONST_LDAP_SIMPLE, null, TOKEN_AUTH);
 
-		String user = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_USER);
-		String pass = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_PASSWORD);
+		String user = Dust.access(DustAccess.Peek, null, null, TOKEN_USER);
+		String pass = Dust.access(DustAccess.Peek, null, null, TOKEN_PASSWORD);
 
 		environment.put(Context.INITIAL_CONTEXT_FACTORY, CONST_LDAP_DEF_CTX_FACTORY);
 		environment.put(Context.PROVIDER_URL, url);
@@ -38,9 +37,9 @@ public class DustLdapAgent extends DustAgent implements DustLDAPConsts {
 		try {
 			ldapCtx = new InitialDirContext(environment);
 
-			String filter = DustKBUtils.access(DustAccess.Peek, "", null, TOKEN_FILTER);
+			String filter = Dust.access(DustAccess.Peek, "", null, TOKEN_FILTER);
 
-			Collection<String> m = DustKBUtils.access(DustAccess.Peek, "", null, TOKEN_MEMBERS);
+			Collection<String> m = Dust.access(DustAccess.Peek, "", null, TOKEN_MEMBERS);
 			String[] attrIDs;
 			if (null == m) {
 				attrIDs = DEF_ATTS;
@@ -52,7 +51,7 @@ public class DustLdapAgent extends DustAgent implements DustLDAPConsts {
 			searchControls.setReturningAttributes(attrIDs);
 			searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
 
-			NamingEnumeration<SearchResult> searchResults = ldapCtx.search((String) DustKBUtils.access(DustAccess.Peek, "", null, TOKEN_ROOT), filter,
+			NamingEnumeration<SearchResult> searchResults = ldapCtx.search((String) Dust.access(DustAccess.Peek, "", null, TOKEN_ROOT), filter,
 					searchControls);
 
 			String distinguishedName = null;

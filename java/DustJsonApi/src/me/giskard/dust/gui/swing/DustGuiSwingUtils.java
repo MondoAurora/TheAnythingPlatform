@@ -6,12 +6,11 @@ import java.util.List;
 import javax.swing.UIManager;
 
 import me.giskard.dust.Dust;
-import me.giskard.dust.kb.DustKBUtils;
 
 public class DustGuiSwingUtils implements DustGuiSwingConsts {
 	public static String optSetLookAndFeel() throws Exception {
 		UIManager.LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();
-		List<String> lnf = DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_SWING_LOOKANDFEEL);
+		List<String> lnf = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_SWING_LOOKANDFEEL);
 		
 		int i = Integer.MAX_VALUE;
 		String lcn = null;

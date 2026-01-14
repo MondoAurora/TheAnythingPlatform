@@ -13,6 +13,8 @@ public interface DustUtilsConstsJson {
 	String TOKEN_JSON_TRUE = "true";
 	String TOKEN_JSON_FALSE = "false";
 	
+	String TOKEN_JSONAPI_KEY = "key";
+	
 //@formatter:off
 	enum JsonApiMember {
 		jsonapi, version, ext, profile,

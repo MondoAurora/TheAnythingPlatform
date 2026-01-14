@@ -1,43 +1,40 @@
 package me.giskard.dust.net.httpsrv;
 
 import java.io.PrintWriter;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
 import me.giskard.dust.Dust;
-import me.giskard.dust.DustAgent;
-import me.giskard.dust.kb.DustKBConsts;
-import me.giskard.dust.kb.DustKBUtils;
+import me.giskard.dust.DustConsts.DustAgent;
+import me.giskard.dust.mind.DustMindUtils;
 import me.giskard.dust.net.DustNetConsts;
 import me.giskard.dust.stream.DustStreamConsts;
 import me.giskard.dust.utils.DustUtils;
 
 //@SuppressWarnings({ "rawtypes", "unchecked" })
-@SuppressWarnings({ "unchecked" })
-public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, DustStreamConsts, DustKBConsts {
-	String infoType;
+//@SuppressWarnings({ "unchecked" })
+public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, DustStreamConsts {
+//	String infoType;
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
 
-		HttpServletResponse response = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
 
 		if (null != response) {
-			String pi = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
+			String pi = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
 
 			String[] path = pi.split("/");
 			int pl = path.length;
 
-			KBStore kb = Dust.getStore();
-			infoType = kb.getMetaTypeId(TOKEN_INFO);
+//			infoType = Dust.getMetaMeta(TOKEN_INFO);
 
-			KBUnit unit = null;
+			DustObject unit = null;
 
 			if (0 == pl) {
-				String m = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_METHOD);
+				String m = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_METHOD);
 
 				StringBuilder sb = new StringBuilder(
 						"<!doctype html>\n" + "<html lang=\"en\">\n" + "<head>\n<meta charset=\"utf-8\">\n<title>DustTracer JSON:API</title>\n</head>\n" + "<body>");
@@ -57,10 +54,10 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 
 				switch (cmd) {
 				case "unit":
-					KBUnit source = kb.getUnit(path[1], true);
+					DustObject source = Dust.getUnit(path[1], true);
 					String type = (pl > 2) ? path[2] : null;
 
-					unit = kb.getUnit(null, true);
+					unit = Dust.getUnit(null, true);
 
 					if (pl > 3) {
 						StringBuilder sb = null;
@@ -68,13 +65,13 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 							sb = DustUtils.sbAppend(sb, "/", true, path[i]);
 						}
 						String id = sb.toString();
-						KBObject o = source.getObject(type, id.toString(), KBOptCreate.None);
+						DustObject o = Dust.getObject(source, null, id.toString(), DustOptCreate.None);
 						if (null != o) {
 							cloneObj(unit, o);
 						}
 					} else {
-						for (KBObject o : source.objects()) {
-							if ((null == type) || DustUtils.isEqual(type, o.getType())) {
+						for (DustObject o : DustMindUtils.getUnitMembers(source) ) {
+							if ((null == type) || DustUtils.isEqual(type, o.getType().getId())) {
 								cloneObj(unit, o);
 							}
 						}
@@ -88,14 +85,14 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 				response.setContentType(MEDIATYPE_JSONAPI);
 				PrintWriter out = response.getWriter();
 
-				Object ser = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
+				Object ser = Dust.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
 				
 				Map<String, Object> params = new HashMap<>();
 				params.put(TOKEN_CMD, TOKEN_CMD_SAVE);
-				params.put(TOKEN_UNIT, unit);
+				params.put(TOKEN_DATA, unit);
 				params.put(TOKEN_STREAM_WRITER, out);
 				
-				DustKBUtils.access(DustAccess.Process, params, ser);
+				Dust.access(DustAccess.Process, params, ser);
 
 				out.flush();
 			}
@@ -104,17 +101,17 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 		return TOKEN_RESULT_ACCEPT;
 	}
 
-	public void cloneObj(KBUnit unit, KBObject o) {
-		KBObject to = unit.getObject(o.getType(), o.getId());
-		to.load(o, false);
+	public void cloneObj(DustObject unit, DustObject o) {
+		DustObject to = Dust.getObject(unit, o.getType(), o.getId(), DustOptCreate.Primary);
+		DustMindUtils.loadObject(to, o, false);
 
-		KBObject info = unit.getObject(infoType, unit.getUnitId(), KBOptCreate.None);
-
-		if (null != info) {
-			for (String a : (Iterable<String>) DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_LIST, to, KEY_MAP_KEYS)) {
-				Long c = DustKBUtils.access(DustAccess.Peek, 0L, info, a, TOKEN_COUNT);
-				DustKBUtils.access(DustAccess.Set, c + 1, info, a, TOKEN_COUNT);
-			}
-		}
+//		MindObject info = Dust.getObject(unit, infoType, unit.getUnitId(), MindOptCreate.None);
+//
+//		if (null != info) {
+//			for (String a : (Iterable<String>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, to, KEY_MAP_KEYS)) {
+//				Long c = Dust.access(DustAccess.Peek, 0L, info, a, TOKEN_COUNT);
+//				Dust.access(DustAccess.Set, c + 1, info, a, TOKEN_COUNT);
+//			}
+//		}
 	}
 }

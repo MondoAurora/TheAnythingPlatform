@@ -8,8 +8,8 @@ import java.util.Collections;
 
 import javax.servlet.http.HttpServletResponse;
 
-import me.giskard.dust.DustAgent;
-import me.giskard.dust.kb.DustKBUtils;
+import me.giskard.dust.Dust;
+import me.giskard.dust.DustConsts.DustAgent;
 import me.giskard.dust.net.DustNetConsts;
 import me.giskard.dust.net.DustNetUtils;
 import me.giskard.dust.stream.DustStreamUtils;
@@ -19,13 +19,13 @@ public class DustHttpFileAgent extends DustAgent implements DustNetConsts {
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		HttpServletResponse response = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
 
 		if (null != response) {
-			String path = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
+			String path = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
 
 			if (DustUtils.isEmpty(path)) {
-				path = DustKBUtils.access(DustAccess.Peek, null, null, TOKEN_PATH);
+				path = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
 			}
 
 			if (!DustStreamUtils.checkPathBound(path)) {
@@ -33,7 +33,7 @@ public class DustHttpFileAgent extends DustAgent implements DustNetConsts {
 				return null;
 			}
 
-			Collection<Object> roots = DustKBUtils.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_SOURCE);
+			Collection<Object> roots = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_SOURCE);
 
 			File f = null;
 
@@ -42,10 +42,10 @@ public class DustHttpFileAgent extends DustAgent implements DustNetConsts {
 					break;
 				}
 
-//				String p = DustKBUtils.access(KBAccess.Get, null, root, TOKEN_PATH);
+//				String p = Dust.access(KBAccess.Get, null, root, TOKEN_PATH);
 //
 //				if (!DustUtils.isEmpty(p)) {
-//					String res = DustKBUtils.access(KBAccess.Get, path, root, TOKEN_CHILDMAP, path);
+//					String res = Dust.access(KBAccess.Get, path, root, TOKEN_CHILDMAP, path);
 //					if (null != (f = DustStreamUtils.optGetFile(p, res))) {
 //						break;
 //					}
