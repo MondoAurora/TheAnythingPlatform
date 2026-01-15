@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.nio.charset.Charset;
 import java.util.Map;
 
 import org.json.simple.JSONObject;
@@ -19,11 +20,19 @@ public class DustUtilsJson implements DustUtilsConsts {
 		return readJson(new File(fileName));
 	}
 
+	public static <RetType> RetType parseJson(String str) throws Exception {
+		return (RetType) JSONValue.parse(str);
+	}
+
 	public static <RetType> RetType readJson(File f) throws Exception {
+		return readJson(f, DUST_CHARSET_UTF8);
+	}
+
+	public static <RetType> RetType readJson(File f, String encoding) throws Exception {
 		Object ret = null;
 
 		if (f.isFile()) {
-			try (FileReader r = new FileReader(f)) {
+			try (FileReader r = new FileReader(f, Charset.forName(encoding))) {
 				JSONParser p = new JSONParser();
 				ret = p.parse(r);
 			}
