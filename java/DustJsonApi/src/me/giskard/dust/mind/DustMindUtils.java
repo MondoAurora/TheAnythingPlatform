@@ -22,6 +22,10 @@ public class DustMindUtils implements DustMindConsts {
 		if (deep) {
 			Dust.log(TOKEN_LEVEL_WARNING, "DustKBObject deep load not supported");
 		}
+		
+		if ( null == atts ) {
+			return;
+		}
 
 		DustMindIdea t = (DustMindIdea) target;
 		DustMindIdea kbo = (DustMindIdea) from;
