@@ -1,6 +1,7 @@
 package me.giskard.dust.net.httpsrv;
 
 import java.io.PrintWriter;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -12,13 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import me.giskard.dust.Dust;
 import me.giskard.dust.DustConsts.DustAgent;
 import me.giskard.dust.mind.DustMindUtils;
+import me.giskard.dust.mvel.DustExprMvelUtils;
 import me.giskard.dust.net.DustNetConsts;
 import me.giskard.dust.stream.DustStreamConsts;
 import me.giskard.dust.utils.DustUtils;
+import me.giskard.dust.utils.DustUtilsConstsJson;
 
 //@SuppressWarnings({ "rawtypes", "unchecked" })
 //@SuppressWarnings({ "unchecked" })
-public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, DustStreamConsts {
+public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, DustStreamConsts, DustUtilsConstsJson {
 //	String infoType;
 
 	@Override
@@ -53,7 +56,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 				out.println(sb.toString());
 			} else {
 				Pattern ptFilter = Pattern.compile("fields\\[(.*)\\]");
-				Map<String, String> params = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_PAYLOAD);
+				Map<String, String> params = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null, TOKEN_TARGET, TOKEN_PAYLOAD);
 				Map<String, String[]> atts = new TreeMap<String, String[]>();
 
 				String cmd = path[0];
@@ -64,30 +67,36 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 					String type = (pl > 2) ? path[2] : null;
 					String defMeta = DustUtils.getPrefix(type, DUST_SEP_TOKEN);
 
+					JsonApiFilter filter = null;
+
 					for (Map.Entry<String, String> pe : params.entrySet()) {
 						String pk = pe.getKey();
 
-						Matcher matcher = ptFilter.matcher(pk);
-						if (matcher.matches()) {
-							String tn = matcher.group(1);
-							if (-1 == tn.indexOf(DUST_SEP_TOKEN)) {
-								tn = defMeta + DUST_SEP_TOKEN + tn;
-							}
-
-							String[] attList = pe.getValue().split(",");
-
-							if (0 == attList.length) {
-								attList = null;
-							} else {
-								for (int i = attList.length; i-- > 0;) {
-									String a = attList[i].trim();
-									if (-1 == a.indexOf(DUST_SEP_TOKEN)) {
-										a = defMeta + DUST_SEP_TOKEN + a;
-									}
-									attList[i] = a;
+						if ("filter".equals(pk)) {
+							filter = new JsonApiFilter(pe.getValue());
+						} else {
+							Matcher matcher = ptFilter.matcher(pk);
+							if (matcher.matches()) {
+								String tn = matcher.group(1);
+								if (-1 == tn.indexOf(DUST_SEP_TOKEN)) {
+									tn = defMeta + DUST_SEP_TOKEN + tn;
 								}
+
+								String[] attList = pe.getValue().split(",");
+
+								if (0 == attList.length) {
+									attList = null;
+								} else {
+									for (int i = attList.length; i-- > 0;) {
+										String a = attList[i].trim();
+										if (-1 == a.indexOf(DUST_SEP_TOKEN)) {
+											a = defMeta + DUST_SEP_TOKEN + a;
+										}
+										attList[i] = a;
+									}
+								}
+								atts.put(tn, attList);
 							}
-							atts.put(tn, attList);
 						}
 					}
 
@@ -106,6 +115,15 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 					} else {
 						for (DustObject o : DustMindUtils.getUnitMembers(source)) {
 							if ((null == type) || DustUtils.isEqual(type, o.getType().getId())) {
+
+								if (null != filter) {
+									filter.setObject(o);
+									Boolean eval = DustExprMvelUtils.eval(filter.condition, filter, filter.getValues());
+									if ( !eval ) {
+										continue;
+									}
+								}
+
 								cloneObj(unit, o, atts);
 							}
 						}

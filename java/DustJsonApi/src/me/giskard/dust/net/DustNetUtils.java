@@ -68,7 +68,7 @@ public class DustNetUtils implements DustNetConsts {
 		return conn;
 	}
 
-	@SuppressWarnings("deprecation")
+//	@SuppressWarnings("deprecation")
 	public static boolean download(String urlStr, OutputStream target, Collection<String> headers, int timeout) throws Exception {
 		boolean success = false;
 		
