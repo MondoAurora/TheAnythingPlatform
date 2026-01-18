@@ -46,11 +46,21 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		typeAtt = safeGetIdea(metaUnit, TOKEN_MEMBERS, true, typeType, TOKEN_KBMETA_ATTRIBUTE);
 		typeUnit = safeGetIdea(metaUnit, TOKEN_MEMBERS, true, typeType, TOKEN_KBMETA_UNIT);
 
-		safeGetIdea(metaUnit, TOKEN_MEMBERS, true, typeAtt, TOKEN_TYPE);
+//		setAtt(typeType, TOKEN_TYPE, typeType);
+//		setAtt(mindUnit, TOKEN_TYPE, typeUnit);
+//		setAtt(metaUnit, TOKEN_TYPE, typeUnit);
 
-		setAtt(typeType, TOKEN_TYPE, typeType);
-		setAtt(mindUnit, TOKEN_TYPE, typeUnit);
-		setAtt(metaUnit, TOKEN_TYPE, typeUnit);
+		typeType.content.put(TOKEN_TYPE, typeType);
+		mindUnit.content.put(TOKEN_TYPE, typeUnit);
+		metaUnit.content.put(TOKEN_TYPE, typeUnit);
+
+		DustMindIdea attType = safeGetIdea(metaUnit, TOKEN_MEMBERS, true, typeAtt, TOKEN_UNIT);
+		DustMindIdea attId = safeGetIdea(metaUnit, TOKEN_MEMBERS, true, typeAtt, TOKEN_TYPE);
+		DustMindIdea attUnit = safeGetIdea(metaUnit, TOKEN_MEMBERS, true, typeAtt, TOKEN_ID);
+
+		attType.content.put(TOKEN_FINAL, true);
+		attId.content.put(TOKEN_FINAL, true);
+		attUnit.content.put(TOKEN_FINAL, true);
 	}
 
 	@Override
@@ -60,8 +70,19 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		optLoadUnit(DUST_UNIT_ID, metaUnit);
 	}
 
-	public void setAtt(DustMindIdea idea, String att, Object value) {
-		idea.content.put(att, value);
+//	public void setAtt(DustMindIdea idea, String att, Object value) {
+//		idea.content.put(att, value);
+//	}
+
+	@Override
+	protected Object checkAccess(DustObject agent, DustAccess acess, DustObject object, DustObject att, Object value) throws RuntimeException {
+		Object ret = value;
+		
+		if ((null != value) && DustUtils.isChange(acess) && (Boolean) ((DustMindIdea) att).content.getOrDefault(TOKEN_FINAL, Boolean.FALSE)) {
+			DustException.wrap(null, "Trying to overwrite a final attribute)");
+		}
+
+		return ret;
 	}
 
 	@Override
@@ -91,7 +112,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			String uid = id.substring(0, sep);
 			if (!DustUtils.isEqual(u.getId(), uid)) {
 				DustMindIdea uu = (DustMindIdea) getUnit(uid, true);
-				if ((null != u) && (uu != u) && (optCreate == DustOptCreate.Meta) ) {
+				if ((null != u) && (uu != u) && (optCreate == DustOptCreate.Meta)) {
 					// TODO Should do an auto-copy in the target unit?
 //				DustException.wrap(null, "unit mismatch, requested", u.getId(), "for id", id);
 					u = uu;
@@ -106,7 +127,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		return (DustObject) ret;
 	}
 
-	public DustMindIdea safeGetIdea(DustMindIdea u, String key, boolean createMissing, DustObject type, String id) {
+	private DustMindIdea safeGetIdea(DustMindIdea u, String key, boolean createMissing, DustObject type, String id) {
 		DustMindIdea ret;
 		synchronized (u) {
 			Map m = (Map) u.content.get(key);
@@ -125,8 +146,8 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 				}
 				ret = new DustMindIdea(this, u, type, id);
 				m.put(id, ret);
-				
-				if ((null != type) && (type == typeUnit )) {
+
+				if ((null != type) && (type == typeUnit)) {
 					optLoadUnit(id, ret);
 				}
 			}
@@ -149,7 +170,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		return ret;
 	}
 
-	public void optLoadUnit(String unitId, DustMindIdea unit) {
+	private void optLoadUnit(String unitId, DustMindIdea unit) {
 		Object ser = Dust.access(DustAccess.Peek, defaultSerializer, null, TOKEN_KB_KNOWNUNITS, unitId, TOKEN_SERIALIZER);
 
 		if (null != ser) {
@@ -196,7 +217,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 					line = line.trim();
 
 					if (!DustUtils.isEmpty(line)) {
-						if ( line.startsWith("#")) {
+						if (line.startsWith("#")) {
 							continue;
 						}
 						String[] ext = line.split("\\|");
@@ -226,10 +247,10 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 									v = Long.valueOf(val.substring(2));
 									break;
 								}
-							} else if ( val.startsWith("!>") ) {
+							} else if (val.startsWith("!>")) {
 								v = Dust.getObject(unit, null, val.substring(2), DustOptCreate.None);
 							}
-							
+
 							Dust.access(DustAccess.Set, v, aCfg, (Object[]) ext[1].trim().split("/"));
 							Dust.log(TOKEN_LEVEL_TRACE, "change applied", line);
 						}

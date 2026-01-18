@@ -118,7 +118,7 @@ public class Dust implements DustConsts, DustMindConsts {
 			MIND.bootLoadAppUnitJsonApi(appUnit, fBin);
 
 			Dust.log(TOKEN_LEVEL_INFO, "MemInfo before init", DustDevUtils.memInfo());
-			
+
 			MIND.init();
 			typeAtt = MIND.getObject(null, null, TOKEN_KBMETA_ATTRIBUTE, DustOptCreate.Meta);
 
@@ -246,6 +246,8 @@ public class Dust implements DustConsts, DustMindConsts {
 			return accessCtx(access, val, (DustContext) root, path);
 		}
 
+		DustObject agent = (DustObject) CTX.peek(DustContext.Agent);
+
 		Object curr = root;
 
 		KBCollType collType = KBCollType.getCollType(root);
@@ -257,6 +259,7 @@ public class Dust implements DustConsts, DustMindConsts {
 
 		Object prevColl = null;
 		DustObject prevObject = (curr instanceof DustObject) ? (DustObject) curr : null;
+		DustObject prevAtt = null;
 //		DustObject prevUnit = (null != prevObject) ? prevObject.getUnit() : null;
 
 		if (val instanceof Enum) {
@@ -279,9 +282,11 @@ public class Dust implements DustConsts, DustMindConsts {
 //				prevUnit = prevObject.getUnit();
 
 				if (p instanceof DustObject) {
+					prevAtt = (DustObject) p;
 					p = ((DustObject) p).getId();
 				} else if (p instanceof String) {
 					DustObject a = Dust.getObject(prevObject.getUnit(), typeAtt, (String) p, DustOptCreate.Meta);
+					prevAtt = a;
 					p = a.getId();
 				}
 
@@ -334,6 +339,9 @@ public class Dust implements DustConsts, DustMindConsts {
 				curr = null;
 			}
 
+			if ((null != prevAtt) && (null != prevObject)) {
+				curr = MIND.checkAccess(agent, access, prevObject, prevAtt, curr);
+			}
 		}
 
 		switch (access) {

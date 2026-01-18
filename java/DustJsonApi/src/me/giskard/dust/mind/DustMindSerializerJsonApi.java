@@ -142,7 +142,7 @@ class DustMindSerializerJsonApi extends DustAgent implements DustMindConsts, Dus
 		Dust.access(DustAccess.Insert, head, item, JsonApiMember.relationships, key, JsonApiMember.data, KEY_ADD);
 
 		if (null != metaKey) {
-			Dust.access(DustAccess.Set, metaKey, head, JsonApiMember.meta, TOKEN_JSONAPI_KEY);
+			Dust.access(DustAccess.Set, metaKey, head, JsonApiMember.meta, EXT_JSONAPI_KEY);
 		} else {
 //			Dust.log(TOKEN_LEVEL_TRACE, "hmm");
 		}
@@ -215,7 +215,7 @@ class DustMindSerializerJsonApi extends DustAgent implements DustMindConsts, Dus
 
 						String ri = DustUtils.simpleGet(rdd, JsonApiMember.id);
 
-						Object key = DustUtils.simpleGet(rdd, JsonApiMember.meta, TOKEN_JSONAPI_KEY);
+						Object key = DustUtils.simpleGet(rdd, JsonApiMember.meta, EXT_JSONAPI_KEY);
 
 						DustObject ro = Dust.getObject(unit, tTypeRef, ri, DustOptCreate.Reference);
 

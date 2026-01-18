@@ -94,6 +94,8 @@ public interface DustConsts {
 	String TOKEN_OPTIONAL = DUST_UNIT_ID + DUST_SEP_TOKEN + "optional";
 	String TOKEN_APPEARS = DUST_UNIT_ID + DUST_SEP_TOKEN + "appears";
 	
+	String TOKEN_FINAL = DUST_UNIT_ID + DUST_SEP_TOKEN + "final";
+	
 	Object NOT_FOUND = new Object();
 	
 	public abstract class DustObject {

@@ -6,6 +6,7 @@ import java.util.Map;
 import me.giskard.dust.Dust;
 import me.giskard.dust.DustConsts.DustAccess;
 import me.giskard.dust.DustConsts.DustObject;
+import me.giskard.dust.DustException;
 import me.giskard.dust.mind.DustMindUtils;
 
 public interface DustUtilsConstsJson {
@@ -15,11 +16,11 @@ public interface DustUtilsConstsJson {
 
 	String JSONAPI_IDSEP = "-";
 
-	String TOKEN_JSON_NULL = "null";
-	String TOKEN_JSON_TRUE = "true";
-	String TOKEN_JSON_FALSE = "false";
+	String EXT_JSON_NULL = "null";
+	String EXT_JSON_TRUE = "true";
+	String EXT_JSON_FALSE = "false";
 
-	String TOKEN_JSONAPI_KEY = "key";
+	String EXT_JSONAPI_KEY = "key";
 
 //@formatter:off
 	enum JsonApiMember {
@@ -47,13 +48,7 @@ public interface DustUtilsConstsJson {
 	enum JsonApiParam {
 		include, fields, sort, filter, page, limit, offset
 	}
-	
-	enum JsonFilterFunction {
-		equals, lessThan, lessOrEqual, greaterThan, greaterOrEqual,
-		contains, startsWith, endsWith,
-		isType, count, any, has,
-		not, or, and,
-	}
+
 //@formatter:on	
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -114,14 +109,17 @@ public interface DustUtilsConstsJson {
 		};
 
 		public boolean isType(Object a, Object b) {
+			DustException.wrap(null, "TBD");
 			return false;
 		};
 
 		public boolean isType(Object a, Object b, Object f) {
+			DustException.wrap(null, "TBD");
 			return false;
 		};
 
 		public int  count(Object a) {
+			DustException.wrap(null, "TBD");
 			return 0;
 		};
 
