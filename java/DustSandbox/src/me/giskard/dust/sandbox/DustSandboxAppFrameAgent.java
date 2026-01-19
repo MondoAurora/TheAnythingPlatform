@@ -17,7 +17,7 @@ public class DustSandboxAppFrameAgent extends DustAgent implements DustSandboxCo
 		
 		frm = new JFrame();
 		
-		frm.setTitle( Dust.accessCtx(DustAccess.Peek, "App frame", DustContext.Agent, TOKEN_NAME));
+		frm.setTitle( Dust.access(DustAccess.Peek, "App frame", null, TOKEN_NAME));
 		
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

@@ -1,15 +1,17 @@
 package me.giskard.dust.utils;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.Map;
 
 import me.giskard.dust.Dust;
-import me.giskard.dust.DustConsts.DustAccess;
-import me.giskard.dust.DustConsts.DustObject;
+import me.giskard.dust.DustConsts;
 import me.giskard.dust.DustException;
 import me.giskard.dust.mind.DustMindUtils;
 
-public interface DustUtilsConstsJson {
+public interface DustUtilsConstsJson extends DustConsts {
 
 //https://jsonapi.org/format/
 	String JSONAPI_VERSION = "1.1";
@@ -53,24 +55,29 @@ public interface DustUtilsConstsJson {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public class JsonApiFilter {
-		
+
 		public final String condition;
 		private DustObject ob;
-		Map values;
-		
+
+		Map values = new HashMap();
+
 		public JsonApiFilter(String condition) {
 			this.condition = condition;
 		}
-		
+
 		public void setObject(DustObject o) {
 			this.ob = o;
 			values = DustMindUtils.getValues(o, values, true);
+
+			for (Object att : ((Collection) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, o.getType(), TOKEN_CHILDMAP, KEY_MAP_KEYS))) {
+				values.putIfAbsent(att, null);
+			}
 		}
-		
+
 		public Map getValues() {
 			return values;
 		};
-		
+
 		public Object get(Object a) {
 			Object ret = Dust.access(DustAccess.Peek, null, ob, a);
 			return ret;
@@ -96,8 +103,15 @@ public interface DustUtilsConstsJson {
 			return 0 >= ((Comparable) a).compareTo(b);
 		};
 
-		public boolean contains(Object a, Object b) {
-			return ((String) a).contains((String) b);
+		// to avoid name clash with MVEL contains operator... 
+		public boolean contain(Object a, Object b) {
+			if (a instanceof String) {
+				return ((String) a).contains((String) b);
+			} else if (a instanceof Collection) {
+				return ((Collection) a).contains((String) b);
+			}
+
+			return false;
 		};
 
 		public boolean startsWith(Object a, Object b) {
@@ -118,14 +132,14 @@ public interface DustUtilsConstsJson {
 			return false;
 		};
 
-		public int  count(Object a) {
+		public int count(Object a) {
 			DustException.wrap(null, "TBD");
 			return 0;
 		};
 
-		public boolean any(Object a, Object... b ) {
-			for ( Object m : b ) {
-				if ( DustUtils.isEqual(a, m) ) {
+		public boolean any(Object a, Object... b) {
+			for (Object m : b) {
+				if (DustUtils.isEqual(a, m)) {
 					return true;
 				}
 			}
@@ -137,12 +151,12 @@ public interface DustUtilsConstsJson {
 		};
 
 		public boolean not(Object a) {
-			return !((Boolean)a);
+			return !((Boolean) a);
 		};
 
 		public boolean or(Object... b) {
-			for ( Object m : b ) {
-				if ( (Boolean)m ) {
+			for (Object m : b) {
+				if ((Boolean) m) {
 					return true;
 				}
 			}
@@ -150,8 +164,8 @@ public interface DustUtilsConstsJson {
 		};
 
 		public boolean and(Object... b) {
-			for ( Object m : b ) {
-				if ( !(Boolean)m ) {
+			for (Object m : b) {
+				if (!(Boolean) m) {
 					return false;
 				}
 			}

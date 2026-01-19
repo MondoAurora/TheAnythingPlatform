@@ -99,16 +99,16 @@ public class Dust implements DustConsts, DustMindConsts {
 			File f = new File(appUnitPath);
 			appUnit = MIND.bootLoadAppUnitJsonApi(null, f);
 
-			MIND.loadExtFile(appUnit, new File(DUST_CRED_FILE));
-
 			String userName = System.getProperty("user.name");
 			if (!DustUtils.isEmpty(userName)) {
 				File d = f.getAbsoluteFile().getParentFile();
 				String fn = f.getName();
 				int s = fn.lastIndexOf(".");
-				File f2 = new File(d, fn.substring(0, s) + "." + userName + DUST_EXT_TXT);
-				MIND.loadExtFile(appUnit, f2);
+				File f2 = new File(d, fn.substring(0, s) + "." + userName + DUST_EXT_JSON);
+				MIND.bootLoadAppUnitJsonApi(appUnit, f2);
 			}
+
+			MIND.bootLoadAppUnitJsonApi(appUnit, new File(DUST_CRED_FILE));
 
 			DustObject appType = DustUtils.getMindMeta(TOKEN_TYPE_APP);
 			appObj = getObject(appUnit, appType, appName, DustOptCreate.None);
@@ -242,11 +242,11 @@ public class Dust implements DustConsts, DustMindConsts {
 	}
 
 	public static <RetType> RetType access(DustAccess access, Object val, Object root, Object... path) {
-		if ((null == root) || (root instanceof DustContext)) {
-			return accessCtx(access, val, (DustContext) root, path);
-		}
-
 		DustObject agent = (DustObject) CTX.peek(DustContext.Agent);
+
+		if ((null == root) || (root instanceof DustContext)) {
+			return accessCtx(access, agent, val, (DustContext) root, path);
+		}
 
 		Object curr = root;
 
@@ -459,11 +459,15 @@ public class Dust implements DustConsts, DustMindConsts {
 			break;
 		}
 
+		if (curr instanceof DustObject) {
+			curr = MIND.checkAccess(agent, access, (DustObject) curr, null, curr);
+		}
+
 		return (RetType) ret;
 
 	}
 
-	public static <RetType> RetType accessCtx(DustAccess access, Object val, Object root, Object... path) {
+	public static <RetType> RetType accessCtx(DustAccess access, DustObject agent, Object val, Object root, Object... path) {
 		Object ret = NOT_FOUND;
 
 		Object main = Dust.optGetCtx(root);
@@ -504,6 +508,10 @@ public class Dust implements DustConsts, DustMindConsts {
 			ret = ((null != main) && (main == root)) ? access(access, def, main, path) : NOT_FOUND;
 			break;
 
+		}
+
+		if (ret instanceof DustObject) {
+			ret = MIND.checkAccess(agent, access, (DustObject) ret, null, ret);
 		}
 
 		return (RetType) ret;

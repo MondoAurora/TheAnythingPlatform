@@ -65,7 +65,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 				case "unit":
 					DustObject source = Dust.getUnit(path[1], true);
 					String type = (pl > 2) ? path[2] : null;
-					String defMeta = DustUtils.getPrefix(type, DUST_SEP_TOKEN);
+					String defMeta = (null == type) ? null : DustUtils.getPrefix(type, DUST_SEP_TOKEN);
 
 					JsonApiFilter filter = null;
 
@@ -118,7 +118,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 
 								if (null != filter) {
 									filter.setObject(o);
-									Boolean eval = DustExprMvelUtils.eval(filter.condition, filter, filter.getValues());
+									Boolean eval = DustExprMvelUtils.eval(filter.condition, filter, filter.getValues(), false);
 									if ( !eval ) {
 										continue;
 									}

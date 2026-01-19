@@ -77,6 +77,7 @@
 			"type": "dust.1$Agent",
 			"id": "sandbox.1$AppFrame",
 			"attributes": {
+				"dust.1$name": "DustSandbox Frame",
 				"dust.1$lookAndFeel": [
 					"com.apple.laf.AquaLookAndFeel",
 					"javax.swing.plaf.nimbus.NimbusLookAndFeel"

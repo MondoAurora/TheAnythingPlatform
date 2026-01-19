@@ -1,11 +1,7 @@
 package me.giskard.dust.mind;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -46,10 +42,6 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		typeAtt = safeGetIdea(metaUnit, TOKEN_MEMBERS, true, typeType, TOKEN_KBMETA_ATTRIBUTE);
 		typeUnit = safeGetIdea(metaUnit, TOKEN_MEMBERS, true, typeType, TOKEN_KBMETA_UNIT);
 
-//		setAtt(typeType, TOKEN_TYPE, typeType);
-//		setAtt(mindUnit, TOKEN_TYPE, typeUnit);
-//		setAtt(metaUnit, TOKEN_TYPE, typeUnit);
-
 		typeType.content.put(TOKEN_TYPE, typeType);
 		mindUnit.content.put(TOKEN_TYPE, typeUnit);
 		metaUnit.content.put(TOKEN_TYPE, typeUnit);
@@ -70,18 +62,23 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		optLoadUnit(DUST_UNIT_ID, metaUnit);
 	}
 
-//	public void setAtt(DustMindIdea idea, String att, Object value) {
-//		idea.content.put(att, value);
-//	}
-
 	@Override
 	protected Object checkAccess(DustObject agent, DustAccess acess, DustObject object, DustObject att, Object value) throws RuntimeException {
 		Object ret = value;
-		
-		if ((null != value) && DustUtils.isChange(acess) && (Boolean) ((DustMindIdea) att).content.getOrDefault(TOKEN_FINAL, Boolean.FALSE)) {
-			DustException.wrap(null, "Trying to overwrite a final attribute)");
-		}
 
+		if (null != value) {
+			if (DustUtils.isChange(acess) && (Boolean) ((DustMindIdea) att).content.getOrDefault(TOKEN_FINAL, Boolean.FALSE)) {
+				DustException.wrap(null, "Trying to overwrite a final attribute)");
+			}
+			
+			Collection c = (Collection) ((DustMindIdea) object).content.get(TOKEN_READABLETO);
+			
+			if ( null != c) {
+				if ( !c.contains(agent) ) {
+					ret = null;
+				}
+			}
+		}
 		return ret;
 	}
 
@@ -196,6 +193,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		return null;
 	}
 
+	@Override
 	protected synchronized DustObject bootLoadAppUnitJsonApi(DustObject appUnit, File f) throws Exception {
 		if (f.isFile()) {
 			if (null == appUnit) {
@@ -209,56 +207,4 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		return appUnit;
 	}
 
-	protected void loadExtFile(DustObject unit, File extFile) throws IOException, FileNotFoundException {
-		if (extFile.isFile()) {
-			try (FileInputStream fis = new FileInputStream(extFile); BufferedReader br = new BufferedReader(new InputStreamReader(fis))) {
-				String line;
-				while ((line = br.readLine()) != null) {
-					line = line.trim();
-
-					if (!DustUtils.isEmpty(line)) {
-						if (line.startsWith("#")) {
-							continue;
-						}
-						String[] ext = line.split("\\|");
-
-						String[] access = ext[0].trim().split("/");
-						DustObject aType = Dust.getObject(unit, DustUtils.getMindMeta(TOKEN_KBMETA_TYPE), access[0], DustOptCreate.Meta);
-						DustObject aCfg = Dust.getObject(unit, aType, access[1], DustOptCreate.None);
-
-						if (null == aCfg) {
-							Dust.log(TOKEN_LEVEL_WARNING, "No object found for id", ext[0]);
-						} else {
-							String val = ext[2].trim();
-							Object v = val;
-
-							if (val.startsWith("!!")) {
-								switch (val) {
-								case "!!true":
-									v = true;
-									break;
-								case "!!false":
-									v = false;
-									break;
-								case "!!null":
-									v = null;
-									break;
-								default:
-									v = Long.valueOf(val.substring(2));
-									break;
-								}
-							} else if (val.startsWith("!>")) {
-								v = Dust.getObject(unit, null, val.substring(2), DustOptCreate.None);
-							}
-
-							Dust.access(DustAccess.Set, v, aCfg, (Object[]) ext[1].trim().split("/"));
-							Dust.log(TOKEN_LEVEL_TRACE, "change applied", line);
-						}
-					}
-				}
-			}
-		} else {
-			Dust.log(TOKEN_LEVEL_WARNING, "No extension file found", extFile.getName());
-		}
-	}
 }

@@ -19,12 +19,13 @@ public class DustLdapAgent extends DustAgent implements DustLDAPConsts {
 	@Override
 	protected Object process(DustAccess access) throws Exception {
 		Hashtable<String, String> environment = new Hashtable<String, String>();
+		
+		DustObject accInfo =  Dust.access(DustAccess.Peek, null, null, TOKEN_ACCESS);
 
-		String url = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_URL);
-		String auth = Dust.access(DustAccess.Peek, CONST_LDAP_SIMPLE, null, TOKEN_AUTH);
-
-		String user = Dust.access(DustAccess.Peek, null, null, TOKEN_USER);
-		String pass = Dust.access(DustAccess.Peek, null, null, TOKEN_PASSWORD);
+		String url = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_STREAM_URL);
+		String user = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_USER);
+		String pass = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_PASSWORD);
+		String auth = Dust.access(DustAccess.Peek, CONST_LDAP_SIMPLE, accInfo, TOKEN_AUTH);
 
 		environment.put(Context.INITIAL_CONTEXT_FACTORY, CONST_LDAP_DEF_CTX_FACTORY);
 		environment.put(Context.PROVIDER_URL, url);

@@ -3,7 +3,7 @@ package me.giskard.dust;
 import java.nio.charset.StandardCharsets;
 
 public interface DustConsts {
-	String DUST_CRED_FILE = "credentials.txt";
+	String DUST_CRED_FILE = "credentials.json";
 
 	String DUST_UNIT_ID = "dust.1";
 
@@ -56,6 +56,8 @@ public interface DustConsts {
 	String TOKEN_NAME = DUST_UNIT_ID + DUST_SEP_TOKEN + "name";
 	String TOKEN_DESC = DUST_UNIT_ID + DUST_SEP_TOKEN + "desc";
 	String TOKEN_PAYLOAD = DUST_UNIT_ID + DUST_SEP_TOKEN + "payload";
+
+	String TOKEN_ACCESS = DUST_UNIT_ID + DUST_SEP_TOKEN + "access";
 	String TOKEN_USER = DUST_UNIT_ID + DUST_SEP_TOKEN + "user";
 	String TOKEN_PASSWORD = DUST_UNIT_ID + DUST_SEP_TOKEN + "password";
 	String TOKEN_AUTH = DUST_UNIT_ID + DUST_SEP_TOKEN + "auth";
@@ -95,6 +97,7 @@ public interface DustConsts {
 	String TOKEN_APPEARS = DUST_UNIT_ID + DUST_SEP_TOKEN + "appears";
 	
 	String TOKEN_FINAL = DUST_UNIT_ID + DUST_SEP_TOKEN + "final";
+	String TOKEN_READABLETO = DUST_UNIT_ID + DUST_SEP_TOKEN + "readableTo";
 	
 	Object NOT_FOUND = new Object();
 	
