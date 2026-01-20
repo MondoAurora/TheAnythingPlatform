@@ -29,6 +29,7 @@ public interface DustConsts {
 	String TOKEN_CMD = DUST_UNIT_ID + DUST_SEP_TOKEN + "cmd";
 	String TOKEN_CMD_LOAD = DUST_UNIT_ID + DUST_SEP_TOKEN + "load";
 	String TOKEN_CMD_SAVE = DUST_UNIT_ID + DUST_SEP_TOKEN + "save";
+	String TOKEN_CMD_INFO = DUST_UNIT_ID + DUST_SEP_TOKEN + "info";
 
 	String TOKEN_COLLTYPE = DUST_UNIT_ID + DUST_SEP_TOKEN + "colltype";
 	String TOKEN_COLLTYPE_SINGLE = DUST_UNIT_ID + DUST_SEP_TOKEN + "single";

@@ -21,15 +21,15 @@ import me.giskard.dust.utils.DustUtilsJson;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 class DustMindSerializerJsonApi extends DustAgent implements DustMindConsts, DustUtilsConstsJson, DustStreamConsts {
-	
+
 	private static final Set<String> SKIP_KEYS = new HashSet<String>();
-	
+
 	static {
 		SKIP_KEYS.add(TOKEN_ID);
 		SKIP_KEYS.add(TOKEN_TYPE);
 		SKIP_KEYS.add(TOKEN_UNIT);
 	}
-	
+
 	public DustMindSerializerJsonApi() {
 	}
 
@@ -41,11 +41,11 @@ class DustMindSerializerJsonApi extends DustAgent implements DustMindConsts, Dus
 		Dust.access(DustAccess.Delete, null, null, TOKEN_DATA);
 		File f = null;
 
-		if (null == unit) {
-			unit = Dust.getUnit(unitId, true);
-		}
-
 		if (!DustUtils.isEmpty(unitId)) {
+			if (null == unit) {
+				unit = Dust.getUnit(unitId, true);
+			}
+
 			String fn = Dust.access(DustAccess.Peek, unitId, null, TOKEN_ALIAS);
 			if (fn.contains("{")) {
 				fn = MessageFormat.format(fn, unitId);
@@ -56,6 +56,23 @@ class DustMindSerializerJsonApi extends DustAgent implements DustMindConsts, Dus
 		}
 		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
 		switch (cmd) {
+		case TOKEN_CMD_INFO:
+			String fileName = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ROOTFOLDER);
+
+			f = new File(fileName);
+
+			Dust.access(DustAccess.Reset, null, DustContext.Input, TOKEN_MEMBERS);
+
+			if (f.isDirectory()) {
+				for (String fn : f.list()) {
+					if (fn.endsWith(DUST_EXT_JSON)) {
+						String unitName = DustUtils.cutPostfix(fn, ".");
+						Dust.access(DustAccess.Insert, unitName, DustContext.Input, TOKEN_MEMBERS);
+					}
+				}
+			}
+
+			break;
 		case TOKEN_CMD_LOAD:
 			loadFile(unit, f);
 
@@ -73,7 +90,7 @@ class DustMindSerializerJsonApi extends DustAgent implements DustMindConsts, Dus
 				Map<String, Object> item = getJsonHead(o);
 
 				for (String key : (Iterable<String>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, o, KEY_MAP_KEYS)) {
-					if ( SKIP_KEYS.contains(key)) {
+					if (SKIP_KEYS.contains(key)) {
 						continue;
 					}
 					Object val = Dust.access(DustAccess.Peek, null, o, key);
@@ -169,12 +186,10 @@ class DustMindSerializerJsonApi extends DustAgent implements DustMindConsts, Dus
 				DustException.wrap(null, "Loading JSON:API version", str, "does not match", JSONAPI_VERSION);
 			}
 
-			for (Map<String, Object> ca : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, content,
-					JsonApiMember.data))) {
+			for (Map<String, Object> ca : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, content, JsonApiMember.data))) {
 				loadData(unit, ca, false);
 			}
-			for (Map<String, Object> ca : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, content,
-					JsonApiMember.included))) {
+			for (Map<String, Object> ca : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, content, JsonApiMember.included))) {
 				loadData(unit, ca, true);
 			}
 		}
@@ -183,7 +198,7 @@ class DustMindSerializerJsonApi extends DustAgent implements DustMindConsts, Dus
 	static void loadData(DustObject unit, Map<String, Object> data, boolean included) {
 		DustObject metaType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
 		DustObject metaAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
-		
+
 		String type = DustUtils.simpleGet(data, JsonApiMember.type);
 		DustObject tType = Dust.getObject(unit, metaType, type, DustOptCreate.Meta);
 

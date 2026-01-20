@@ -467,7 +467,12 @@ public class Dust implements DustConsts, DustMindConsts {
 
 	}
 
-	public static <RetType> RetType accessCtx(DustAccess access, DustObject agent, Object val, Object root, Object... path) {
+	public static <RetType> RetType accessCtx(DustAccess access, Object val, Object root, Object... path) {
+		DustObject agent = peekCtx(DustContext.Agent);
+		return accessCtx(access, agent, val, root, path);
+	}
+
+	private static <RetType> RetType accessCtx(DustAccess access, DustObject agent, Object val, Object root, Object... path) {
 		Object ret = NOT_FOUND;
 
 		Object main = Dust.optGetCtx(root);
@@ -505,7 +510,8 @@ public class Dust implements DustConsts, DustMindConsts {
 		case Delete:
 		case Reset:
 			// ret = access(access, val, main, path);
-			ret = ((null != main) && (main == root)) ? access(access, def, main, path) : NOT_FOUND;
+//			ret = ((null != main) && (main == root)) ? access(access, def, main, path) : NOT_FOUND;
+			ret = (null != main) ? access(access, def, main, path) : NOT_FOUND;
 			break;
 
 		}
