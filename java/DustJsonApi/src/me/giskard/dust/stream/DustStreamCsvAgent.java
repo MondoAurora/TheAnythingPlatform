@@ -138,7 +138,7 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 	public DustObject getAtt(DustObject meta, DustObject tType, String attName) {
 		DustObject att = Dust.getObject(meta, DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE), attName, DustOptCreate.Meta);
 		Dust.access(DustAccess.Insert, tType, att, TOKEN_APPEARS);
-		Dust.access(DustAccess.Insert, att, tType, TOKEN_MEMBERS);
+		Dust.access(DustAccess.Set, att, tType, TOKEN_CHILDMAP, attName);
 		return att;
 	}
 

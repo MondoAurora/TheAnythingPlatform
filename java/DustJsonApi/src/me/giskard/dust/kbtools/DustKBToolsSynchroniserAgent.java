@@ -152,8 +152,8 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 					DustObject targetAtt = Dust.getObject(uMeta, attType, fTarget, DustOptCreate.None);
 					if (null == targetAtt) {
 						targetAtt = Dust.getObject(uMeta, attType, fTarget, DustOptCreate.Primary);
-						Dust.access(DustAccess.Insert, targetAtt, type, TOKEN_CHILDMAP, fTarget);
-						Dust.access(DustAccess.Set, type, targetAtt, TOKEN_PARENT);
+						Dust.access(DustAccess.Set, targetAtt, type, TOKEN_CHILDMAP, fTarget);
+						Dust.access(DustAccess.Insert, type, targetAtt, TOKEN_APPEARS);
 					}
 					Dust.access(DustAccess.Insert, srcPrefix + fSource, targetAtt, TOKEN_SOURCE);
 
