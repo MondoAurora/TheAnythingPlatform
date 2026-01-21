@@ -4,12 +4,15 @@ import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import me.giskard.dust.Dust;
 import me.giskard.dust.DustException;
 import me.giskard.dust.DustMind;
+import me.giskard.dust.dev.DustDevCounter;
 import me.giskard.dust.dev.DustDevUtils;
 import me.giskard.dust.utils.DustUtils;
 import me.giskard.dust.utils.DustUtilsFactory;
@@ -196,55 +199,158 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
 			switch (cmd) {
 			case TOKEN_CMD_INFO:
+
+				DustObject info = Dust.access(DustAccess.Peek, null, DustContext.Agent, TOKEN_CMD_INFO);
+				String lastChanged = Dust.access(DustAccess.Peek, null, info, TOKEN_LASTCHANGED);
+
+				if (!DustUtils.isEmpty(lastChanged)) {
+					return info;
+				}
+
 				Dust.log(TOKEN_LEVEL_TRACE, "Before MiND info", DustDevUtils.memInfo());
-				
+
 				Collection<String> loadedUnits = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, mindUnit, TOKEN_KB_KNOWNUNITS, KEY_MAP_KEYS);
 				Dust.log(TOKEN_LEVEL_TRACE, "Loaded units", loadedUnits);
 
-				
 				Object ser = Dust.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
 				Map<String, Object> p = new HashMap<>();
 				p.put(TOKEN_CMD, TOKEN_CMD_INFO);
 
 				Dust.access(DustAccess.Process, p, ser);
-				
+
 				Collection<String> unitNames = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, p, TOKEN_MEMBERS);
-				
-				DustUtilsFactory<String, DustObject> atts = new DustUtilsFactory<String, DustObject> ( new DustCreator<DustObject>() {
+
+				DustUtilsFactory<String, DustObject> atts = new DustUtilsFactory<String, DustObject>(new DustCreator<DustObject>() {
 					@Override
 					public DustObject create(Object key, Object... hints) {
 						return getObject(null, typeAtt, (String) key, DustOptCreate.Meta);
 					}
 				});
-				
-				for ( String un : unitNames ) {
+
+				DustDevCounter<DustObject> cntGlobal = new DustDevCounter<DustObject>(false);
+				DustDevCounter<DustObject> cntUnit = new DustDevCounter<DustObject>(false);
+				Set<DustObject> types = new HashSet<DustObject>();
+				Set<String> metaUnitsGlobal = new HashSet<>();
+				int totalCount = 0;
+
+				for (String un : unitNames) {
 					Dust.log(TOKEN_LEVEL_TRACE, "Loading unit info", un);
 					boolean notLoaded = !loadedUnits.contains(un);
-					
+
 					DustObject u = getUnit(un, notLoaded);
+					cntUnit.reset();
+					Set<String> metaUnits = new HashSet<>();
 					
+					int count = 0;
+
 					for (DustObject o : DustMindUtils.getUnitMembers(u)) {
-						DustObject type = o.getType();
-						Map<String, Object> data = ((DustMindIdea) o).content;
+						++count;
 						
+						DustObject type = o.getType();
+						types.add(type);
+						
+						metaUnits.add(type.getUnit().getId());
+
+						cntUnit.add(type);
+						cntGlobal.add(type);
+
+						Map<String, Object> data = ((DustMindIdea) o).content;
+
 						for (Map.Entry<String, Object> de : data.entrySet()) {
 							String attName = de.getKey();
-							
 							DustObject att = atts.get(attName);
-							
-							Object val = de.getValue();
-							
-							
-						}
 
+							metaUnits.add(att.getUnit().getId());
+							cntUnit.add(att);
+							cntGlobal.add(att);
+
+							Object val = de.getValue();
+
+							String valType = null;
+							String collType = null;
+
+							if (val instanceof Set) {
+								collType = TOKEN_COLLTYPE_SET;
+							} else if (val instanceof Collection) {
+								collType = TOKEN_COLLTYPE_ARRAY;
+							} else if (val instanceof Map) {
+								collType = TOKEN_COLLTYPE_MAP;
+							}
+
+							if (null != collType) {
+								val = DustUtils.getSample(val);
+							}
+
+							if (null != val) {
+								if (val instanceof String) {
+									String sVal = ((String) val).toLowerCase().trim();
+
+									if (-1 != DustUtils.indexOf(sVal, DustUtils.DUST_BOOL)) {
+										valType = TOKEN_VALTYPE_BOOL;
+									} else {
+										valType = TOKEN_VALTYPE_STRING;
+									}
+								} else if (val instanceof DustObject) {
+									valType = TOKEN_VALTYPE_REFERENCE;
+								} else if (val instanceof Long) {
+									valType = TOKEN_VALTYPE_LONG;
+								} else if (val instanceof Double) {
+									valType = TOKEN_VALTYPE_REAL;
+								} else {
+									valType = TOKEN_VALTYPE_RAW;
+								}
+							}
+
+							Dust.access(DustAccess.Set, valType, att, TOKEN_VALTYPE);
+							if (null != collType) {
+								Dust.access(DustAccess.Set, collType, att, TOKEN_VALTYPE);
+							}
+						}
 					}
 					
-					if ( notLoaded ) {
-						Dust.log(TOKEN_LEVEL_TRACE, "Dropping unit",un);
+					totalCount += count;
+					metaUnitsGlobal.addAll(metaUnits);
+
+					Dust.access(DustAccess.Set, count, info, TOKEN_KB_KNOWNUNITS, un, TOKEN_COUNT);
+					
+					for ( String mu : metaUnits ) {
+						Dust.access(DustAccess.Set, mu, info, TOKEN_KB_KNOWNUNITS, un, TOKEN_META, KEY_ADD);						
+					}
+					
+					for ( Map.Entry<DustObject, Long> cnt : cntUnit ) {
+						DustObject o = cnt.getKey();
+						String t = types.contains(o) ? TOKEN_TYPES : TOKEN_ATTRIBUTES;
+						Dust.access(DustAccess.Set, cnt.getValue(), info, TOKEN_KB_KNOWNUNITS, un, t, o.getId());
+					}
+
+					if (notLoaded && !metaUnitsGlobal.contains(un)) {
+						Dust.log(TOKEN_LEVEL_TRACE, "Dropping unit", un);
 						releaseUnit(un);
 					}
 				}
+
+				Dust.access(DustAccess.Set, totalCount, info, TOKEN_COUNT);
 				
+				Map<String, Object> params = new HashMap<>();
+				params.put(TOKEN_CMD, TOKEN_CMD_SAVE);
+				
+				for ( String mu : metaUnitsGlobal ) {
+					if ( DustUtils.isEqual(DUST_UNIT_ID, mu)) {
+						continue;
+					}
+					Dust.access(DustAccess.Set, mu, info, TOKEN_META, KEY_ADD);
+					params.put(TOKEN_KEY, mu);
+					Dust.access(DustAccess.Process, params, ser);
+				}
+				
+				for ( Map.Entry<DustObject, Long> cnt : cntGlobal ) {
+					DustObject o = cnt.getKey();
+					String t = types.contains(o) ? TOKEN_TYPES : TOKEN_ATTRIBUTES;
+					Dust.access(DustAccess.Set, cnt.getValue(), info, t, o.getId());
+				}
+				
+				Dust.access(DustAccess.Set, DustUtils.strTime(), info, TOKEN_LASTCHANGED);
+
 				Dust.log(TOKEN_LEVEL_TRACE, "After MiND info", DustDevUtils.memInfo());
 				loadedUnits = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, mindUnit, TOKEN_KB_KNOWNUNITS, KEY_MAP_KEYS);
 				Dust.log(TOKEN_LEVEL_TRACE, "Loaded units", loadedUnits);
@@ -255,6 +361,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		default:
 			break;
 		}
+
 		return null;
 	}
 

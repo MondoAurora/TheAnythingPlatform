@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.EnumSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.TimeZone;
 
@@ -12,17 +13,19 @@ import me.giskard.dust.Dust;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustUtils implements DustUtilsConsts {
-	
+
 	public static String buildToken(String unit, String name) {
 		return unit + DUST_SEP_TOKEN + name;
 	}
 
 	private static final EnumSet<DustAccess> ACCESS_CREATE = EnumSet.of(DustAccess.Set, DustAccess.Insert);
+
 	public static boolean isCreate(DustAccess acc) {
 		return ACCESS_CREATE.contains(acc);
 	}
 
 	private static final EnumSet<DustAccess> ACCESS_CHANGE = EnumSet.of(DustAccess.Set, DustAccess.Insert, DustAccess.Delete, DustAccess.Reset);
+
 	public static boolean isChange(DustAccess acc) {
 		return ACCESS_CHANGE.contains(acc);
 	}
@@ -145,6 +148,20 @@ public class DustUtils implements DustUtilsConsts {
 		return (RetType) curr;
 	}
 
+	public static int indexOf(Object item, Object... options) {
+		if ((null != options) && (0 < options.length)) {
+			int i = 0;
+			for (Object o : options) {
+				if (isEqual(item, o)) {
+					return i;
+				}
+				++i;
+			}
+		}
+
+		return -1;
+	}
+
 	public static <RetType> RetType optGet(Object[] arr, int index, RetType value) {
 		return ((null != arr) && (index < arr.length)) ? (RetType) arr[index] : value;
 	}
@@ -185,5 +202,18 @@ public class DustUtils implements DustUtilsConsts {
 
 	public static DustObject getMindMeta(String type) {
 		return Dust.getObject(null, null, type, DustOptCreate.Meta);
+	}
+
+	public static Object getSample(Object val) {
+		if (val instanceof Map) {
+			val = ((Map) val).values();
+		}
+		if (val instanceof Collection) {
+			Iterator it = ((Collection) val).iterator();
+			if (it.hasNext()) {
+				return it.next();
+			}
+		}
+		return null;
 	}
 }

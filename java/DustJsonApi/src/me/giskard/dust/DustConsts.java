@@ -22,6 +22,9 @@ public interface DustConsts {
 	String DUST_SEP_ID = ":";
 	String DUST_SEP_TOKEN = "$";
 
+	String DUST_CONST_FALSE = "false";
+	String DUST_CONST_TRUE = "true";
+	
 	int KEY_ADD = -1;
 	int KEY_SIZE = -2;
 	Object KEY_MAP_KEYS = new Object();
@@ -31,8 +34,19 @@ public interface DustConsts {
 	String TOKEN_CMD_SAVE = DUST_UNIT_ID + DUST_SEP_TOKEN + "save";
 	String TOKEN_CMD_INFO = DUST_UNIT_ID + DUST_SEP_TOKEN + "info";
 
+	String TOKEN_VALTYPE = DUST_UNIT_ID + DUST_SEP_TOKEN + "valtype";
+	String TOKEN_VALTYPE_STRING = TOKEN_VALTYPE + "String";
+	String TOKEN_VALTYPE_REFERENCE = TOKEN_VALTYPE + "Reference";
+	String TOKEN_VALTYPE_LONG = TOKEN_VALTYPE + "Long";
+	String TOKEN_VALTYPE_REAL = TOKEN_VALTYPE + "Real";
+	String TOKEN_VALTYPE_BOOL = TOKEN_VALTYPE + "Bool";
+	String TOKEN_VALTYPE_RAW = TOKEN_VALTYPE + "Raw";
+
 	String TOKEN_COLLTYPE = DUST_UNIT_ID + DUST_SEP_TOKEN + "colltype";
-	String TOKEN_COLLTYPE_SINGLE = DUST_UNIT_ID + DUST_SEP_TOKEN + "single";
+	String TOKEN_COLLTYPE_SINGLE = TOKEN_COLLTYPE + "Single";
+	String TOKEN_COLLTYPE_MAP = TOKEN_COLLTYPE + "Map";
+	String TOKEN_COLLTYPE_ARRAY = TOKEN_COLLTYPE + "Array";
+	String TOKEN_COLLTYPE_SET = TOKEN_COLLTYPE + "Set";
 
 	String TOKEN_PREFIX = DUST_UNIT_ID + DUST_SEP_TOKEN + "prefix";
 	String TOKEN_PATH = DUST_UNIT_ID + DUST_SEP_TOKEN + "path";
@@ -99,6 +113,8 @@ public interface DustConsts {
 	
 	String TOKEN_FINAL = DUST_UNIT_ID + DUST_SEP_TOKEN + "final";
 	String TOKEN_READABLETO = DUST_UNIT_ID + DUST_SEP_TOKEN + "readableTo";
+	
+	String TOKEN_LASTCHANGED = DUST_UNIT_ID + DUST_SEP_TOKEN + "lastChanged";
 	
 	Object NOT_FOUND = new Object();
 	

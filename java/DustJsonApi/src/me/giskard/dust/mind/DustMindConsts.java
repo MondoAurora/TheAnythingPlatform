@@ -11,6 +11,9 @@ public interface DustMindConsts extends DustConsts, DustUtilsConsts {
 	
 	String TOKEN_MIND = DUST_UNIT_ID + DUST_SEP_TOKEN + "MiND";
 	
+	String TOKEN_TYPES = DUST_UNIT_ID + DUST_SEP_TOKEN + "types";
+	String TOKEN_ATTRIBUTES = DUST_UNIT_ID + DUST_SEP_TOKEN + "attributes";
+	
 	String TOKEN_KB_KNOWNUNITS = DUST_UNIT_ID + DUST_SEP_TOKEN + "knownUnits";
 	
 	String TOKEN_KBMETA_UNIT = DUST_UNIT_ID + DUST_SEP_TOKEN + "Unit";

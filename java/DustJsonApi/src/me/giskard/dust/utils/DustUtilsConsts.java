@@ -18,6 +18,9 @@ public interface DustUtilsConsts extends DustConsts {
 	String TOKEN_UPPERCASE = DUST_UNIT_ID + DUST_SEP_TOKEN + "upperCase";
 	String TOKEN_INNERJSON = DUST_UNIT_ID + DUST_SEP_TOKEN + "innerJson";
 	
+	Object[] DUST_BOOL = {DUST_CONST_TRUE, DUST_CONST_FALSE, "yes", "no"};
+
+	
 	interface DustCreator<Type> {
 		Type create(Object key, Object... hints);
 		default void initNew(Type item, Object key, Object... hints) {}
