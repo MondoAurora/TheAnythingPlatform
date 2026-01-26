@@ -32,6 +32,7 @@ public class DustLdapAgent extends DustAgent implements DustLDAPConsts {
 		environment.put(Context.SECURITY_AUTHENTICATION, auth);
 		environment.put(Context.SECURITY_PRINCIPAL, user);
 		environment.put(Context.SECURITY_CREDENTIALS, pass);
+		environment.put(CONST_LDAP_TIMEOUT, "10000");
 
 		DirContext ldapCtx = null;
 

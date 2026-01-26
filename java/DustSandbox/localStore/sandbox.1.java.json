@@ -8,6 +8,9 @@
 					"sandbox.1$Mind": {
 						"dust.1$binary": "me.giskard.dust.mind.DustMindAgent"
 					},
+					"dust.1$Browser": {
+						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserFrameAgent"
+					},
 					"sandbox.1$SerializeJsonApi": {
 						"dust.1$binary": "me.giskard.dust.mind.DustMindSerializerJsonApi"
 					},

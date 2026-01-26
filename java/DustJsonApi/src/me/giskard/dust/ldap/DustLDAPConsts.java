@@ -5,6 +5,7 @@ import me.giskard.dust.stream.DustStreamConsts;
 
 public interface DustLDAPConsts extends DustStreamConsts, DustMindConsts {
 	String CONST_LDAP_DEF_CTX_FACTORY = "com.sun.jndi.ldap.LdapCtxFactory";
+	String CONST_LDAP_TIMEOUT = "com.sun.jndi.ldap.read.timeout";
 	String CONST_LDAP_SIMPLE = "simple";
 	
 	String LDAP_SINGLE_VALUE = "SINGLE-VALUE";

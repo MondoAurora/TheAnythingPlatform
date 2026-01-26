@@ -19,6 +19,11 @@ public class DustMindUtils implements DustMindConsts {
 		return m.values();
 	}
 
+	public static Iterable<String> getAttNames(DustObject ob) {
+		Iterable<String> ret = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, ob, KEY_MAP_KEYS);
+		return ret;
+	}
+
 	public static void loadObject(DustObject target, DustObject from, boolean deep, String... atts) {
 		if (deep) {
 			Dust.log(TOKEN_LEVEL_WARNING, "DustKBObject deep load not supported");
