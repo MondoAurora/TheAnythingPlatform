@@ -3,8 +3,10 @@ package me.giskard.dust.sandbox.browser;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Set;
 
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -14,17 +16,66 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.JTree;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 
 import me.giskard.dust.Dust;
 import me.giskard.dust.gui.swing.DustGuiSwingConsts;
 import me.giskard.dust.gui.swing.DustGuiSwingUtils;
+import me.giskard.dust.mvel.DustExprMvelUtils;
+import me.giskard.dust.utils.DustUtils;
+import me.giskard.dust.utils.DustUtilsConsts;
+import me.giskard.dust.utils.DustUtilsConstsJson.JsonApiFilter;
+import me.giskard.dust.utils.DustUtilsFactory;
 
-//@SuppressWarnings({ "unchecked", "rawtypes" })
-@SuppressWarnings({ "unchecked" })
-public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent implements DustSwingBrowserConsts {
+@SuppressWarnings({ "unchecked", "rawtypes" })
+//@SuppressWarnings({ "unchecked" })
+public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent implements DustSwingBrowserConsts, DustUtilsConsts {
+
+	String selUnit;
+
+	DustUtilsFactory<String, DefaultMutableTreeNode> roots = new DustUtilsFactory<String, DefaultMutableTreeNode>(new DustCreator<DefaultMutableTreeNode>() {
+		@Override
+		public DefaultMutableTreeNode create(Object key, Object... hints) {
+			DefaultMutableTreeNode ret = new DefaultMutableTreeNode(key);
+			Map<String, Object> unitInfo = Dust.access(DustAccess.Peek, null, mindInfo, TOKEN_KB_KNOWNUNITS, key);
+
+			for (Map.Entry<String, Object> eui : unitInfo.entrySet()) {
+				DefaultMutableTreeNode k = new DefaultMutableTreeNode(eui.getKey());
+				ret.add(k);
+
+				Object val = eui.getValue();
+				if (val instanceof Map) {
+					for (Map.Entry<String, Object> eVal : ((Map<String, Object>) val).entrySet()) {
+						DefaultMutableTreeNode v = new DefaultMutableTreeNode(eVal.getKey() + ": " + eVal.getValue());
+						k.add(v);
+					}
+				} else if (val instanceof Collection) {
+					for (Object co : (Collection) val) {
+						DefaultMutableTreeNode v = new DefaultMutableTreeNode(co);
+						k.add(v);
+					}
+				} else {
+					k.setUserObject(eui.getKey() + ": " + val);
+				}
+			}
+
+			return ret;
+		}
+	}, true);
+
+	DustUtilsFactory<String, Set> metaFilter = new DustUtilsFactory<String, Set>(SET_CREATOR, false);
+	JsonApiFilter mvelFilter = new JsonApiFilter(null);
+
 	JComboBox<String> cbUnit = new JComboBox<String>();
 
-	JTree trUnitInfo = new JTree();
+	DefaultTreeModel tm = new DefaultTreeModel(null);
+	JTree trUnitInfo = new JTree(tm);
 
 	JLabel lbCount = new JLabel("Item count");
 
@@ -38,10 +89,44 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 		public void actionPerformed(ActionEvent e) {
 			switch (e.getActionCommand()) {
 			case TOKEN_UNIT:
-				String sel = (String) cbUnit.getSelectedItem();
-				grid.loadUnit(Dust.getUnit(sel, true));
+				selUnit = (String) cbUnit.getSelectedItem();
+				grid.setUnit(Dust.getUnit(selUnit, true));
+
+//				trUnitInfo.setRootVisible(false);
+				tm.setRoot(roots.get(selUnit));
+
+				lbCount.setText(DustUtils.toString(Dust.access(DustAccess.Peek, "?", mindInfo, TOKEN_KB_KNOWNUNITS, selUnit, TOKEN_COUNT)));
+
 				break;
 			}
+		}
+	};
+
+	private DustObject mindInfo;
+
+	DustProcessor<Boolean> gridFilter = new DustProcessor<Boolean>() {
+		@Override
+		public Boolean process(DustObject ob, Object... hints) {
+			boolean ret = true;
+
+			Set<String> s = metaFilter.get(TOKEN_ATTRIBUTES);
+
+			if (!s.isEmpty()) {
+				ret = false;
+				for (String att : s) {
+					if (null != Dust.access(DustAccess.Peek, null, ob, att)) {
+						ret = true;
+						break;
+					}
+				}
+			}
+
+			if (ret && (null != mvelFilter.getCondition())) {
+				mvelFilter.setObject(ob);
+				ret = DustExprMvelUtils.eval(mvelFilter.getCondition(), mvelFilter, mvelFilter.getValues(), false);
+			}
+
+			return ret;
 		}
 	};
 
@@ -51,10 +136,12 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 		String[] i = iId.split("\\$");
 
 		DustObject uInfo = Dust.getUnit(i[0], true);
-		DustObject oInfo = Dust.getObject(uInfo, null, iId, DustOptCreate.None);
+		mindInfo = Dust.getObject(uInfo, null, iId, DustOptCreate.None);
+
+		grid.setExtFilter(gridFilter);
 
 		cbUnit.removeAllItems();
-		for (Map.Entry<String, Object> eUnit : (Iterable<Map.Entry<String, Object>>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, oInfo,
+		for (Map.Entry<String, Object> eUnit : (Iterable<Map.Entry<String, Object>>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, mindInfo,
 				TOKEN_KB_KNOWNUNITS)) {
 			String key = eUnit.getKey();
 			if (key.contains("Meta.")) {
@@ -66,12 +153,51 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 		cbUnit.addActionListener(al);
 		cbUnit.setActionCommand(TOKEN_UNIT);
 
-//		String data = Dust.access(DustAccess.Peek, null, null, TOKEN_DATA);
-//		DustObject uData = Dust.getUnit(data, true);
-//
-//		grid.loadUnit(uData);
-		
 		cbUnit.setSelectedIndex(0);
+
+		trUnitInfo.addTreeSelectionListener(new TreeSelectionListener() {
+			@Override
+			public void valueChanged(TreeSelectionEvent e) {
+
+				for (Set s : metaFilter.values()) {
+					s.clear();
+				}
+
+				if (0 < trUnitInfo.getSelectionCount()) {
+
+					for (TreePath tp : trUnitInfo.getSelectionPaths()) {
+						int tpl = tp.getPathCount();
+
+						if (3 == tpl) {
+
+							String str = (String) ((DefaultMutableTreeNode) tp.getPathComponent(1)).getUserObject();
+							Set s = metaFilter.get(str);
+
+							s.add(DustUtils.getPrefix((String) ((DefaultMutableTreeNode) tp.getPathComponent(2)).getUserObject(), ":"));
+						}
+					}
+				}
+
+				grid.reload();
+			}
+		});
+
+		taSearch.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				optFilter();
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				optFilter();
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				optFilter();
+			}
+		});
 
 		JPanel pnlLeft = new JPanel(new BorderLayout());
 
@@ -86,6 +212,20 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 		JSplitPane spMain = DustGuiSwingUtils.createSplit(true, pnlLeft, spRight, 0.3);
 
 		comp.add(spMain, BorderLayout.CENTER);
+	}
+
+	protected void optFilter() {
+		String f = taSearch.getText().trim();
+
+		if (!f.isEmpty()) {
+			try {
+				DustExprMvelUtils.compile(f);
+				mvelFilter.setCondition(f);
+				grid.reload();
+			} catch (Throwable e) {
+				mvelFilter.setCondition(null);
+			}
+		}
 	}
 
 	@Override

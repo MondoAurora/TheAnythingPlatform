@@ -56,7 +56,7 @@ public interface DustUtilsConstsJson extends DustConsts {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public class JsonApiFilter {
 
-		public final String condition;
+		private String condition;
 		private DustObject ob;
 
 		Map values = new HashMap();
@@ -65,12 +65,23 @@ public interface DustUtilsConstsJson extends DustConsts {
 			this.condition = condition;
 		}
 
+		public void setCondition(String condition) {
+			this.condition = condition;
+		}
+
+		public String getCondition() {
+			return condition;
+		}
+
 		public void setObject(DustObject o) {
 			this.ob = o;
 			values = DustMindUtils.getValues(o, values, true);
 
-			for (Object att : ((Collection) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, o.getType(), TOKEN_CHILDMAP, KEY_MAP_KEYS))) {
-				values.putIfAbsent(att, null);
+			Object typeAtts = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, o.getType(), TOKEN_CHILDMAP, KEY_MAP_KEYS);
+			if (typeAtts instanceof Collection) {
+				for (Object att : ((Collection) typeAtts)) {
+					values.putIfAbsent(att, null);
+				}
 			}
 		}
 
@@ -103,7 +114,7 @@ public interface DustUtilsConstsJson extends DustConsts {
 			return 0 >= ((Comparable) a).compareTo(b);
 		};
 
-		// to avoid name clash with MVEL contains operator... 
+		// to avoid name clash with MVEL contains operator...
 		public boolean contain(Object a, Object b) {
 			if (a instanceof String) {
 				return ((String) a).contains((String) b);

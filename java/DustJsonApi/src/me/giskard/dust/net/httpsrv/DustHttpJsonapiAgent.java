@@ -118,7 +118,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 
 								if (null != filter) {
 									filter.setObject(o);
-									Boolean eval = DustExprMvelUtils.eval(filter.condition, filter, filter.getValues(), false);
+									Boolean eval = DustExprMvelUtils.eval(filter.getCondition(), filter, filter.getValues(), false);
 									if ( !eval ) {
 										continue;
 									}

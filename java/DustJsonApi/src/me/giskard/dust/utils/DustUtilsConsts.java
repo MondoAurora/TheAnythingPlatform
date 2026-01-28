@@ -21,6 +21,19 @@ public interface DustUtilsConsts extends DustConsts {
 	Object[] DUST_BOOL = {DUST_CONST_TRUE, DUST_CONST_FALSE, "yes", "no"};
 
 	
+	interface DustProcessor<Type> {
+		 Type process(DustObject ob, Object... hints);
+		default void begin(Object... hints) {}
+		default void end(Object... hints) {}
+	}
+	
+	DustProcessor<Boolean> NO_FILTER = new DustProcessor<>() {
+		@Override
+		public Boolean process(DustObject ob, Object... hints) {
+			return true;
+		}
+	};
+	
 	interface DustCreator<Type> {
 		Type create(Object key, Object... hints);
 		default void initNew(Type item, Object key, Object... hints) {}

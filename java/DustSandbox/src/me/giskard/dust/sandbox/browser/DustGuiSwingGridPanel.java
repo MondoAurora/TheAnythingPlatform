@@ -1,10 +1,12 @@
 package me.giskard.dust.sandbox.browser;
 
 import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
@@ -16,11 +18,14 @@ import me.giskard.dust.utils.DustUtils;
 
 //@SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustGuiSwingGridPanel extends DustGuiSwingConsts.JPanelAgent implements DustSwingBrowserConsts {
+	
+	DustObject unit;
+	DustProcessor<Boolean> extFilter = NO_FILTER;
 
 	private final ArrayList<DustObject> allData = new ArrayList<>();
 	private final ArrayList<DustObject> display = new ArrayList<>();
 
-	private final Set<String> allAtts = new HashSet<>();
+	private final Set<String> allAtts = new TreeSet<>();
 	private final ArrayList<String> atts = new ArrayList<>();
 
 	private boolean dataRows = true;
@@ -78,6 +83,8 @@ public class DustGuiSwingGridPanel extends DustGuiSwingConsts.JPanelAgent implem
 
 	JTable tblData;
 	JScrollPane scp;
+	
+	JPanel colEditor;
 
 	public DustGuiSwingGridPanel() {
 		tblData = new JTable(tm);
@@ -89,12 +96,34 @@ public class DustGuiSwingGridPanel extends DustGuiSwingConsts.JPanelAgent implem
 		
 		comp.add(scp, BorderLayout.CENTER);
 	}
+	
+	public void setExtFilter(DustProcessor<Boolean> extFilter) {
+		this.extFilter = (null == extFilter) ? NO_FILTER : extFilter;
+	}
+	
+	public JPanel getColEditor() {
+		if ( null == colEditor ) {
+			colEditor = new JPanel(new GridBagLayout());
 
-	public void loadUnit(DustObject unit) {
+//			GridBagConstraints gbc = new GridBagConstraints();
+		}
+		return colEditor;
+	}
+
+	public void setUnit(DustObject unit) {
+		this.unit = unit;
+		reload();
+	}
+
+	public void reload() {
 		allData.clear();
 		allAtts.clear();
 
 		for (DustObject o : DustMindUtils.getUnitMembers(unit)) {
+			if ( !extFilter.process(o) ) {
+				continue;
+			}
+			
 			allData.add(o);
 			for (String a : DustMindUtils.getAttNames(o)) {
 				String p = DustUtils.getPrefix(a, DUST_SEP_TOKEN);
