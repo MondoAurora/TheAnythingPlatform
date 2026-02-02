@@ -6,7 +6,7 @@ import java.util.TreeMap;
 import me.giskard.dust.DustConsts;
 
 //@SuppressWarnings({ "unchecked", "rawtypes" })
-class DustMindIdea extends DustConsts.DustObject implements DustMindConsts {
+class DustMindIdea implements DustConsts.DustObject, DustMindConsts {
 	final DustMindAgent mind;
 
 	Map<String, Object> content = new TreeMap<>();
@@ -53,7 +53,6 @@ class DustMindIdea extends DustConsts.DustObject implements DustMindConsts {
 		return str;
 	}
 
-	@Override
 	protected Object getContent() {
 		return content;
 	}

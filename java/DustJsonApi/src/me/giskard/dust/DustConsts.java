@@ -119,12 +119,10 @@ public interface DustConsts {
 	
 	Object NOT_FOUND = new Object();
 	
-	public abstract class DustObject {
-		public abstract DustObject getUnit();
-		public abstract DustObject getType();
-		public abstract String getId();
-		
-		protected abstract Object getContent();
+	public interface DustObject {
+		DustObject getUnit();
+		DustObject getType();
+		String getId();
 	}
 	
 	enum DustContext {
@@ -155,4 +153,9 @@ public interface DustConsts {
 	enum DustOptCreate {
 		Meta, Primary, Reference, None
 	}
+	
+	enum DustCollType {
+		One, Set, Arr, Map;
+	};
+
 }

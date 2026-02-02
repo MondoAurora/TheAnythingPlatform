@@ -120,10 +120,13 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 					}
 				}
 			}
+			
+//			'11111'.equals(get('cardMeta.1$card_owner.id_doc_id'))
 
 			if (ret && (null != mvelFilter.getCondition())) {
 				mvelFilter.setObject(ob);
-				ret = DustExprMvelUtils.eval(mvelFilter.getCondition(), mvelFilter, mvelFilter.getValues(), false);
+				Object r = DustExprMvelUtils.eval(mvelFilter.getCondition(), mvelFilter, mvelFilter.getValues(), false);
+				ret = (r instanceof Boolean) ? (Boolean) r : false;
 			}
 
 			return ret;
@@ -216,11 +219,11 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 
 	protected void optFilter() {
 		String f = taSearch.getText().trim();
+		mvelFilter.setCondition(f);
 
 		if (!f.isEmpty()) {
 			try {
 				DustExprMvelUtils.compile(f);
-				mvelFilter.setCondition(f);
 				grid.reload();
 			} catch (Throwable e) {
 				mvelFilter.setCondition(null);

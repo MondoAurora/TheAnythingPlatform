@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.TimeZone;
 
 import me.giskard.dust.Dust;
@@ -29,6 +30,15 @@ public class DustUtils implements DustUtilsConsts {
 	public static boolean isChange(DustAccess acc) {
 		return ACCESS_CHANGE.contains(acc);
 	}
+	
+	public static DustCollType getCollType(Object coll) {
+		DustCollType ret = (null == coll) ? DustCollType.One
+				: (coll instanceof ArrayList) ? DustCollType.Arr
+						: (coll instanceof Map) ? DustCollType.Map : (coll instanceof Set) ? DustCollType.Set : DustCollType.One;
+
+		return ret;
+	}
+
 
 	public static boolean isEmpty(String str) {
 		return (null == str) || str.isEmpty();

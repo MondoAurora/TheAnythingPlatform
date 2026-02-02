@@ -97,7 +97,7 @@ public class Dust implements DustConsts, DustMindConsts {
 			String appUnitPath = args[1];
 
 			File f = new File(appUnitPath);
-			appUnit = MIND.bootLoadAppUnitJsonApi(null, f);
+			appUnit = MIND.bootLoadAppUnit(null, f);
 
 			String userName = System.getProperty("user.name");
 			if (!DustUtils.isEmpty(userName)) {
@@ -105,17 +105,17 @@ public class Dust implements DustConsts, DustMindConsts {
 				String fn = f.getName();
 				int s = fn.lastIndexOf(".");
 				File f2 = new File(d, fn.substring(0, s) + "." + userName + DUST_EXT_JSON);
-				MIND.bootLoadAppUnitJsonApi(appUnit, f2);
+				MIND.bootLoadAppUnit(appUnit, f2);
 			}
 
-			MIND.bootLoadAppUnitJsonApi(appUnit, new File(DUST_CRED_FILE));
+			MIND.bootLoadAppUnit(appUnit, new File(DUST_CRED_FILE));
 
 			DustObject appType = DustUtils.getMindMeta(TOKEN_TYPE_APP);
 			appObj = getObject(appUnit, appType, appName, DustOptCreate.None);
 
 			int s = appUnitPath.lastIndexOf(".");
 			File fBin = new File(appUnitPath.substring(0, s) + "." + DUST_PLATFORM_JAVA + appUnitPath.substring(s));
-			MIND.bootLoadAppUnitJsonApi(appUnit, fBin);
+			MIND.bootLoadAppUnit(appUnit, fBin);
 
 			Dust.log(TOKEN_LEVEL_INFO, "MemInfo before init", DustDevUtils.memInfo());
 
@@ -250,7 +250,7 @@ public class Dust implements DustConsts, DustMindConsts {
 
 		Object curr = root;
 
-		KBCollType collType = KBCollType.getCollType(root);
+		DustCollType collType = DustUtils.getCollType(root);
 
 		Object ret = null;
 
@@ -290,7 +290,7 @@ public class Dust implements DustConsts, DustMindConsts {
 					p = a.getId();
 				}
 
-				curr = prevObject.getContent();
+				curr = MIND.getContent(prevObject);
 			} else if (null == curr) {
 				if (access.creator) {
 					curr = (p instanceof Integer) ? new ArrayList() : new HashMap();
@@ -316,7 +316,7 @@ public class Dust implements DustConsts, DustMindConsts {
 			}
 
 			prev = curr;
-			collType = KBCollType.getCollType(prev);
+			collType = DustUtils.getCollType(prev);
 			prevColl = (null == collType) ? null : prev;
 
 			lastKey = p;
@@ -390,7 +390,7 @@ public class Dust implements DustConsts, DustMindConsts {
 			}
 			break;
 		case Peek:
-			if (collType == KBCollType.Set) {
+			if (collType == DustCollType.Set) {
 				Iterator is = ((Set) prevColl).iterator();
 				if (is.hasNext()) {
 					curr = is.next();
@@ -430,7 +430,7 @@ public class Dust implements DustConsts, DustMindConsts {
 			if (curr == null) {
 				ret = NOT_FOUND;
 			} else {
-				switch (KBCollType.getCollType(curr)) {
+				switch (DustUtils.getCollType(curr)) {
 				case Arr:
 				case Set:
 					ret = curr;

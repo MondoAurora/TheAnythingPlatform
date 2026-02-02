@@ -11,11 +11,11 @@ import me.giskard.dust.Dust;
 public class DustMindUtils implements DustMindConsts {
 
 	public static Integer getUnitSize(DustObject unit) {
-		return Dust.access(DustAccess.Peek, 0, unit, TOKEN_MEMBERS, KEY_SIZE);
+		return Dust.access(DustAccess.Peek, 0, unit, TOKEN_UNIT_OBJECTS, KEY_SIZE);
 	}
 
 	public static Iterable<DustObject> getUnitMembers(DustObject unit) {
-		Map<String, DustObject> m = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unit, TOKEN_MEMBERS);
+		Map<String, DustObject> m = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unit, TOKEN_UNIT_OBJECTS);
 		return m.values();
 	}
 

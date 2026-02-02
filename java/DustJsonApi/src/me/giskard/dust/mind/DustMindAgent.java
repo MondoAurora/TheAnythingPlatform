@@ -44,17 +44,17 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		mindUnit = new DustMindIdea(this, null, null, TOKEN_MIND);
 		metaUnit = getUnit(DUST_UNIT_ID, true);
 
-		typeType = safeGetIdea(metaUnit, TOKEN_MEMBERS, true, null, TOKEN_KBMETA_TYPE);
-		typeAtt = safeGetIdea(metaUnit, TOKEN_MEMBERS, true, typeType, TOKEN_KBMETA_ATTRIBUTE);
-		typeUnit = safeGetIdea(metaUnit, TOKEN_MEMBERS, true, typeType, TOKEN_KBMETA_UNIT);
+		typeType = safeGetIdea(metaUnit, true, null, TOKEN_KBMETA_TYPE);
+		typeAtt = safeGetIdea(metaUnit, true, typeType, TOKEN_KBMETA_ATTRIBUTE);
+		typeUnit = safeGetIdea(metaUnit, true, typeType, TOKEN_KBMETA_UNIT);
 
 		typeType.content.put(TOKEN_TYPE, typeType);
 		mindUnit.content.put(TOKEN_TYPE, typeUnit);
 		metaUnit.content.put(TOKEN_TYPE, typeUnit);
 
-		DustMindIdea attType = safeGetIdea(metaUnit, TOKEN_MEMBERS, true, typeAtt, TOKEN_UNIT);
-		DustMindIdea attId = safeGetIdea(metaUnit, TOKEN_MEMBERS, true, typeAtt, TOKEN_TYPE);
-		DustMindIdea attUnit = safeGetIdea(metaUnit, TOKEN_MEMBERS, true, typeAtt, TOKEN_ID);
+		DustMindIdea attType = safeGetIdea(metaUnit, true, typeAtt, TOKEN_UNIT);
+		DustMindIdea attId = safeGetIdea(metaUnit, true, typeAtt, TOKEN_TYPE);
+		DustMindIdea attUnit = safeGetIdea(metaUnit, true, typeAtt, TOKEN_ID);
 
 		attType.content.put(TOKEN_FINAL, true);
 		attId.content.put(TOKEN_FINAL, true);
@@ -125,21 +125,26 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			id = u.getId() + DUST_SEP_TOKEN + id;
 		}
 
-		ret = safeGetIdea(u, TOKEN_MEMBERS, (optCreate != DustOptCreate.None), type, id);
+		ret = safeGetIdea(u, (optCreate != DustOptCreate.None), type, id);
 
 		return (DustObject) ret;
 	}
+	
+	@Override
+	protected Object getContent(DustObject ob) {
+		return ((DustMindIdea)ob).getContent();
+	}
 
-	private DustMindIdea safeGetIdea(DustMindIdea u, String key, boolean createMissing, DustObject type, String id) {
+	private DustMindIdea safeGetIdea(DustMindIdea u, boolean createMissing, DustObject type, String id) {
 		DustMindIdea ret;
 		synchronized (u) {
-			Map m = (Map) u.content.get(key);
+			Map m = (Map) u.content.get(TOKEN_UNIT_OBJECTS);
 			if (null == m) {
 				if (!createMissing) {
 					return null;
 				}
 				m = new TreeMap();
-				u.content.put(key, m);
+				u.content.put(TOKEN_UNIT_OBJECTS, m);
 			}
 			ret = (DustMindIdea) m.get(id);
 
@@ -167,14 +172,14 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 				ret = new DustMindIdea(this, null, typeUnit, "");
 			}
 		} else {
-			ret = safeGetIdea(mindUnit, TOKEN_KB_KNOWNUNITS, createIfMissing, typeUnit, unitId);
+			ret = safeGetIdea(mindUnit, createIfMissing, typeUnit, unitId);
 		}
 
 		return ret;
 	}
 
 	private void optLoadUnit(String unitId, DustMindIdea unit) {
-		Object ser = Dust.access(DustAccess.Peek, defaultSerializer, null, TOKEN_KB_KNOWNUNITS, unitId, TOKEN_SERIALIZER);
+		Object ser = Dust.access(DustAccess.Peek, defaultSerializer, mindUnit, TOKEN_UNIT_OBJECTS, unitId, TOKEN_SERIALIZER);
 
 		if (null != ser) {
 			Map<String, Object> params = new HashMap<>();
@@ -189,7 +194,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 	@Override
 	protected boolean releaseUnit(String unitId) {
-		return null != Dust.access(DustAccess.Delete, null, mindUnit, TOKEN_KB_KNOWNUNITS, unitId);
+		return null != Dust.access(DustAccess.Delete, null, mindUnit, TOKEN_UNIT_OBJECTS, unitId);
 	}
 
 	@Override
@@ -201,15 +206,19 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			case TOKEN_CMD_INFO:
 
 				DustObject info = Dust.access(DustAccess.Peek, null, DustContext.Agent, TOKEN_CMD_INFO);
-				String lastChanged = Dust.access(DustAccess.Peek, null, info, TOKEN_LASTCHANGED);
+				String iid = info.getId();
+				String uid = DustUtils.getPrefix(iid, DUST_SEP_TOKEN);
+				DustObject unitInfo = Dust.getUnit(uid, true);
+				info = getObject(unitInfo, info.getType(), iid, DustOptCreate.Primary);
+//				String lastChanged = Dust.access(DustAccess.Peek, null, info, TOKEN_LASTCHANGED);
 
-				if (!DustUtils.isEmpty(lastChanged)) {
-					return info;
-				}
+//				if (!DustUtils.isEmpty(lastChanged)) {
+//					return info;
+//				}
 
 				Dust.log(TOKEN_LEVEL_TRACE, "Before MiND info", DustDevUtils.memInfo());
 
-				Collection<String> loadedUnits = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, mindUnit, TOKEN_KB_KNOWNUNITS, KEY_MAP_KEYS);
+				Collection<String> loadedUnits = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, mindUnit, TOKEN_UNIT_OBJECTS, KEY_MAP_KEYS);
 				Dust.log(TOKEN_LEVEL_TRACE, "Loaded units", loadedUnits);
 
 				Object ser = Dust.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
@@ -234,6 +243,11 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 				int totalCount = 0;
 
 				for (String un : unitNames) {
+					if ( DustUtils.isEqual(uid, un)) {
+						Dust.log(TOKEN_LEVEL_TRACE, "SKIPPING unit info", un);
+						continue;
+					}
+					
 					Dust.log(TOKEN_LEVEL_TRACE, "Loading unit info", un);
 					boolean notLoaded = !loadedUnits.contains(un);
 
@@ -365,9 +379,13 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 				}
 
 				Dust.access(DustAccess.Set, DustUtils.strTime(), info, TOKEN_LASTCHANGED);
+				
+				params.put(TOKEN_KEY, uid);
+				Dust.access(DustAccess.Process, params, ser);
+
 
 				Dust.log(TOKEN_LEVEL_TRACE, "After MiND info", DustDevUtils.memInfo());
-				loadedUnits = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, mindUnit, TOKEN_KB_KNOWNUNITS, KEY_MAP_KEYS);
+				loadedUnits = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, mindUnit, TOKEN_UNIT_OBJECTS, KEY_MAP_KEYS);
 				Dust.log(TOKEN_LEVEL_TRACE, "Loaded units", loadedUnits);
 
 				break;
@@ -381,7 +399,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 	}
 
 	@Override
-	protected synchronized DustObject bootLoadAppUnitJsonApi(DustObject appUnit, File f) throws Exception {
+	protected synchronized DustObject bootLoadAppUnit(DustObject appUnit, File f) throws Exception {
 		if (f.isFile()) {
 			if (null == appUnit) {
 				String unitId = DustUtils.cutPostfix(f.getName(), ".");

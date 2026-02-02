@@ -158,7 +158,8 @@ public interface DustUtilsConstsJson extends DustConsts {
 		};
 
 		public boolean has(Object a) {
-			return null != Dust.access(DustAccess.Peek, null, ob, a);
+			Object o = Dust.access(DustAccess.Peek, null, ob, a);
+			return null != o;
 		};
 
 		public boolean not(Object a) {
