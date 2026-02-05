@@ -15,7 +15,7 @@ public class DustMindUtils implements DustMindConsts {
 	}
 
 	public static Iterable<DustObject> getUnitMembers(DustObject unit) {
-		Map<String, DustObject> m = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unit, TOKEN_UNIT_OBJECTS);
+		Map<String, DustObject> m = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unit, TOKEN_UNIT_REFS);
 		return m.values();
 	}
 
@@ -32,17 +32,18 @@ public class DustMindUtils implements DustMindConsts {
 		if (null == atts) {
 			return;
 		}
-
-		DustMindIdea t = (DustMindIdea) target;
-		DustMindIdea kbo = (DustMindIdea) from;
+		
+		DustMindAgent mind = ((DustMindObject) target).mind;
+		Map mFrom = mind.getContent(from);
+		Map mTarget = mind.getContent(target);
 
 		if (0 == atts.length) {
-			for (String a : (Iterable<String>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, from, KEY_MAP_KEYS)) {
-				t.content.put(a, kbo.content.get(a));
+			for (String a : getAttNames(from)) {
+				mTarget.put(a, mFrom.get(a));
 			}
 		} else {
 			for (String a : atts) {
-				t.content.put(a, kbo.content.get(a));
+				mTarget.put(a, mFrom.get(a));
 			}
 		}
 	}
@@ -55,17 +56,17 @@ public class DustMindUtils implements DustMindConsts {
 		}
 
 		if (null != atts) {
-			DustMindIdea kbo = (DustMindIdea) from;
+			Map mFrom = ((DustMindObject) from).mind.getContent(from);
 
 			if (0 == atts.length) {
-				for (String a : (Iterable<String>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, from, KEY_MAP_KEYS)) {
+				for (String a : getAttNames(from)) {
 					String k = cutPrefix  ? a.substring(a.indexOf(DUST_SEP_TOKEN)+1) : a;
-					target.put(k, kbo.content.get(a));
+					target.put(k, mFrom.get(a));
 				}
 			} else {
 				for (String a : atts) {
 					String k = cutPrefix  ? a.substring(a.indexOf(DUST_SEP_TOKEN)+1) : a;
-					target.put(k, kbo.content.get(a));
+					target.put(k, mFrom.get(a));
 				}
 			}
 		}

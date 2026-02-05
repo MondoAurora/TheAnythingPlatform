@@ -176,6 +176,22 @@ public class DustUtils implements DustUtilsConsts {
 		return ((null != arr) && (index < arr.length)) ? (RetType) arr[index] : value;
 	}
 
+	public static <RetType> RetType safeGet(Map m, DustCreator<RetType> creator, Object key, Object...hints) {
+		RetType ret = null;
+		
+		synchronized (m) {
+			ret = (RetType) m.get(key);
+			
+			if ( null == ret ) {
+				ret = creator.create(key, hints);
+				m.put(key, ret);
+				creator.initNew(ret, key, hints);
+			}
+		}
+		
+		return ret;
+	}
+
 	public static int safePut(ArrayList arr, int index, Object value, boolean overwrite) {
 		int idx;
 		int s = arr.size();

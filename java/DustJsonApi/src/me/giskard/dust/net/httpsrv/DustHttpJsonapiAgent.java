@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.giskard.dust.Dust;
 import me.giskard.dust.DustConsts.DustAgent;
+import me.giskard.dust.dev.DustDevUtils;
 import me.giskard.dust.mind.DustMindUtils;
 import me.giskard.dust.mvel.DustExprMvelUtils;
 import me.giskard.dust.net.DustNetConsts;
@@ -55,98 +56,104 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 
 				out.println(sb.toString());
 			} else {
-				Pattern ptFilter = Pattern.compile("fields\\[(.*)\\]");
-				Map<String, String> params = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null, TOKEN_TARGET, TOKEN_PAYLOAD);
-				Map<String, String[]> atts = new TreeMap<String, String[]>();
+				try {
+					Pattern ptFilter = Pattern.compile("fields\\[(.*)\\]");
+					Map<String, String> params = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null, TOKEN_TARGET, TOKEN_PAYLOAD);
+					Map<String, String[]> atts = new TreeMap<String, String[]>();
 
-				String cmd = path[0];
+					String cmd = path[0];
 
-				switch (cmd) {
-				case "unit":
-					DustObject source = Dust.getUnit(path[1], true);
-					String type = (pl > 2) ? path[2] : null;
-					String defMeta = (null == type) ? null : DustUtils.getPrefix(type, DUST_SEP_TOKEN);
+					switch (cmd) {
+					case "unit":
+						DustObject source = Dust.getUnit(path[1], true);
+						String type = (pl > 2) ? path[2] : null;
+						String defMeta = (null == type) ? null : DustUtils.getPrefix(type, DUST_SEP_TOKEN);
 
-					JsonApiFilter filter = null;
+						JsonApiFilter filter = null;
 
-					for (Map.Entry<String, String> pe : params.entrySet()) {
-						String pk = pe.getKey();
+						for (Map.Entry<String, String> pe : params.entrySet()) {
+							String pk = pe.getKey();
 
-						if ("filter".equals(pk)) {
-							filter = new JsonApiFilter(pe.getValue());
-						} else {
-							Matcher matcher = ptFilter.matcher(pk);
-							if (matcher.matches()) {
-								String tn = matcher.group(1);
-								if (-1 == tn.indexOf(DUST_SEP_TOKEN)) {
-									tn = defMeta + DUST_SEP_TOKEN + tn;
-								}
-
-								String[] attList = pe.getValue().split(",");
-
-								if (0 == attList.length) {
-									attList = null;
-								} else {
-									for (int i = attList.length; i-- > 0;) {
-										String a = attList[i].trim();
-										if (-1 == a.indexOf(DUST_SEP_TOKEN)) {
-											a = defMeta + DUST_SEP_TOKEN + a;
-										}
-										attList[i] = a;
+							if ("filter".equals(pk)) {
+								filter = new JsonApiFilter(pe.getValue());
+							} else {
+								Matcher matcher = ptFilter.matcher(pk);
+								if (matcher.matches()) {
+									String tn = matcher.group(1);
+									if (-1 == tn.indexOf(DUST_SEP_TOKEN)) {
+										tn = defMeta + DUST_SEP_TOKEN + tn;
 									}
+
+									String[] attList = pe.getValue().split(",");
+
+									if (0 == attList.length) {
+										attList = null;
+									} else {
+										for (int i = attList.length; i-- > 0;) {
+											String a = attList[i].trim();
+											if (-1 == a.indexOf(DUST_SEP_TOKEN)) {
+												a = defMeta + DUST_SEP_TOKEN + a;
+											}
+											attList[i] = a;
+										}
+									}
+									atts.put(tn, attList);
 								}
-								atts.put(tn, attList);
 							}
 						}
-					}
 
-					unit = Dust.getUnit(null, true);
+						unit = Dust.getUnit(null, true);
 
-					if (pl > 3) {
-						StringBuilder sb = null;
-						for (int i = 3; i < pl; ++i) {
-							sb = DustUtils.sbAppend(sb, "/", true, path[i]);
-						}
-						String id = sb.toString();
-						DustObject o = Dust.getObject(source, null, id.toString(), DustOptCreate.None);
-						if (null != o) {
-							cloneObj(unit, o, atts);
-						}
-					} else {
-						for (DustObject o : DustMindUtils.getUnitMembers(source)) {
-							if ((null == type) || DustUtils.isEqual(type, o.getType().getId())) {
-
-								if (null != filter) {
-									filter.setObject(o);
-									Boolean eval = DustExprMvelUtils.eval(filter.getCondition(), filter, filter.getValues(), false);
-									if ( !eval ) {
-										continue;
-									}
-								}
-
+						if (pl > 3) {
+							StringBuilder sb = null;
+							for (int i = 3; i < pl; ++i) {
+								sb = DustUtils.sbAppend(sb, "/", true, path[i]);
+							}
+							String id = sb.toString();
+							DustObject o = Dust.getObject(source, null, id.toString(), DustOptCreate.None);
+							if (null != o) {
 								cloneObj(unit, o, atts);
 							}
+						} else {
+							for (DustObject o : DustMindUtils.getUnitMembers(source)) {
+								if ((null == type) || DustUtils.isEqual(type, o.getType().getId())) {
+
+									if (null != filter) {
+										filter.setObject(o);
+										Boolean eval = DustExprMvelUtils.eval(filter.getCondition(), filter, filter.getValues(), false);
+										if (!eval) {
+											continue;
+										}
+									}
+
+									cloneObj(unit, o, atts);
+								}
+							}
 						}
+						break;
 					}
-					break;
+
+					if (null != unit) {
+						response.setCharacterEncoding(DUST_CHARSET_UTF8);
+						response.setContentType(MEDIATYPE_JSONAPI);
+						PrintWriter out = response.getWriter();
+
+						Object ser = Dust.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
+
+						Map<String, Object> ps = new HashMap<>();
+						ps.put(TOKEN_CMD, TOKEN_CMD_SAVE);
+						ps.put(TOKEN_DATA, unit);
+						ps.put(TOKEN_STREAM_WRITER, out);
+
+						Dust.access(DustAccess.Process, ps, ser);
+
+						out.flush();
+
+						DustDevUtils.memInfo();
+					}
+				} finally {
+					Dust.releaseUnit(unit);
 				}
-			}
-
-			if (null != unit) {
-				response.setCharacterEncoding(DUST_CHARSET_UTF8);
-				response.setContentType(MEDIATYPE_JSONAPI);
-				PrintWriter out = response.getWriter();
-
-				Object ser = Dust.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
-
-				Map<String, Object> params = new HashMap<>();
-				params.put(TOKEN_CMD, TOKEN_CMD_SAVE);
-				params.put(TOKEN_DATA, unit);
-				params.put(TOKEN_STREAM_WRITER, out);
-
-				Dust.access(DustAccess.Process, params, ser);
-
-				out.flush();
 			}
 		}
 

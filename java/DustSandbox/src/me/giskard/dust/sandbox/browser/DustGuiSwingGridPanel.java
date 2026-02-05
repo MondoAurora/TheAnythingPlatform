@@ -128,7 +128,7 @@ public class DustGuiSwingGridPanel extends DustGuiSwingConsts.JPanelAgent implem
 			for (String a : DustMindUtils.getAttNames(o)) {
 				String p = DustUtils.getPrefix(a, DUST_SEP_TOKEN);
 				if (DUST_UNIT_ID.equals(p)) {
-					continue;
+//					continue;
 				}
 				allAtts.add(a);
 			}

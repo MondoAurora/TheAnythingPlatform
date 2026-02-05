@@ -5,7 +5,7 @@ import java.io.File;
 public abstract class DustMind extends DustConsts.DustAgent implements DustConsts {
 	protected abstract DustObject bootLoadAppUnit(DustObject appUnit, File f) throws Exception;
 	protected abstract DustObject getUnit(String unitId, boolean createIfMissing);
-	protected abstract boolean releaseUnit(String unitId);
+	protected abstract boolean releaseUnit(DustObject unit);
 
 	protected abstract DustObject getObject(DustObject unit, DustObject type, String id, DustOptCreate optCreate);
 	protected abstract Object getContent(DustObject ob);

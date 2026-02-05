@@ -157,8 +157,8 @@ public class Dust implements DustConsts, DustMindConsts {
 		return MIND.getUnit(unitId, createIfMissing);
 	}
 
-	public static boolean releaseUnit(String unitId) {
-		return MIND.releaseUnit(unitId);
+	public static boolean releaseUnit(DustObject unit) {
+		return MIND.releaseUnit(unit);
 	}
 
 	public static <RetType> Class<RetType> getBinary(Object key) {

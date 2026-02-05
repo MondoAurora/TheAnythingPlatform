@@ -1,4 +1,4 @@
-package me.giskard.dust.mind;
+package me.giskard.dust.stream;
 
 import java.io.File;
 import java.io.Writer;
@@ -14,13 +14,14 @@ import java.util.Set;
 import me.giskard.dust.Dust;
 import me.giskard.dust.DustConsts.DustAgent;
 import me.giskard.dust.DustException;
-import me.giskard.dust.stream.DustStreamConsts;
+import me.giskard.dust.mind.DustMindConsts;
+import me.giskard.dust.mind.DustMindUtils;
 import me.giskard.dust.utils.DustUtils;
 import me.giskard.dust.utils.DustUtilsConstsJson;
 import me.giskard.dust.utils.DustUtilsJson;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-class DustMindSerializerJsonApi extends DustAgent implements DustMindConsts, DustUtilsConstsJson, DustStreamConsts {
+public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustMindConsts, DustUtilsConstsJson, DustStreamConsts {
 
 	private static final Set<String> SKIP_KEYS = new HashSet<String>();
 
@@ -30,7 +31,7 @@ class DustMindSerializerJsonApi extends DustAgent implements DustMindConsts, Dus
 		SKIP_KEYS.add(TOKEN_UNIT);
 	}
 
-	public DustMindSerializerJsonApi() {
+	public DustStreamJsonApiSerializerAgent() {
 	}
 
 	@Override
@@ -173,7 +174,7 @@ class DustMindSerializerJsonApi extends DustAgent implements DustMindConsts, Dus
 		return item;
 	}
 
-	static void loadFile(DustObject unit, File f) throws Exception {
+	public static void loadFile(DustObject unit, File f) throws Exception {
 		if (f.isFile()) {
 			Dust.log(TOKEN_LEVEL_INFO, "Loading unit", unit, "from file", f.getCanonicalPath());
 			Map<String, Object> content = DustUtilsJson.readJson(f);

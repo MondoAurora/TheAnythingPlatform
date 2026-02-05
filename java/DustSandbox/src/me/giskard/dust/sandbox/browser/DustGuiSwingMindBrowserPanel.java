@@ -148,7 +148,7 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 				TOKEN_KB_KNOWNUNITS)) {
 			String key = eUnit.getKey();
 			if (key.contains("Meta.")) {
-				continue;
+//				continue;
 			}
 			cbUnit.addItem(key);
 		}

@@ -82,7 +82,8 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 
 		for (DustObject o : DustMindUtils.getUnitMembers(uTarget)) {
 			for (String i : ids) {
-				Collection<String> ic = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, o, i);
+				String ik = ( -1 == i.indexOf(DUST_SEP_TOKEN)) ? mName + DUST_SEP_TOKEN + i : i;
+				Collection<String> ic = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, o, ik);
 				for (String v : ic) {
 					if (!DustUtils.isEmpty(v)) {
 						index.get(i).put(v, o);

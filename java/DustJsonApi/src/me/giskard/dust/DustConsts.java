@@ -24,7 +24,7 @@ public interface DustConsts {
 
 	String DUST_CONST_FALSE = "false";
 	String DUST_CONST_TRUE = "true";
-	
+
 	int KEY_ADD = -1;
 	int KEY_SIZE = -2;
 	Object KEY_MAP_KEYS = new Object();
@@ -107,31 +107,25 @@ public interface DustConsts {
 	String TOKEN_LEVEL_INFO = DUST_UNIT_ID + DUST_SEP_TOKEN + "Info";
 	String TOKEN_LEVEL_WARNING = DUST_UNIT_ID + DUST_SEP_TOKEN + "Warning";
 	String TOKEN_LEVEL_ERROR = DUST_UNIT_ID + DUST_SEP_TOKEN + "Error";
-	
+
 	String TOKEN_MANDATORY = DUST_UNIT_ID + DUST_SEP_TOKEN + "mandatory";
 	String TOKEN_OPTIONAL = DUST_UNIT_ID + DUST_SEP_TOKEN + "optional";
 	String TOKEN_APPEARS = DUST_UNIT_ID + DUST_SEP_TOKEN + "appears";
-	
+
 	String TOKEN_FINAL = DUST_UNIT_ID + DUST_SEP_TOKEN + "final";
 	String TOKEN_READABLETO = DUST_UNIT_ID + DUST_SEP_TOKEN + "readableTo";
-	
+
 	String TOKEN_LASTCHANGED = DUST_UNIT_ID + DUST_SEP_TOKEN + "lastChanged";
-	
+
 	Object NOT_FOUND = new Object();
-	
-	public interface DustObject {
-		DustObject getUnit();
-		DustObject getType();
-		String getId();
-	}
-	
+
 	enum DustContext {
-		Work, Input, Service, Agent, Dialog, 
+		Work, Input, Service, Agent, Dialog,
 	}
 
 	enum DustAccess {
-		Check(false), Peek(false), Get(false), Set(true), Insert(true), Delete(false), Reset(false), Visit(false),
-		Begin(false), Commit(false), Rollback(false), Process(false);
+		Check(false), Peek(false), Get(false), Set(true), Insert(true), Delete(false), Reset(false), Visit(false), Begin(false), Commit(false), Rollback(false),
+		Process(false);
 
 		public final boolean creator;
 
@@ -139,7 +133,23 @@ public interface DustConsts {
 			this.creator = creator;
 		}
 	}
-		
+
+	enum DustOptCreate {
+		Meta, Primary, Reference, None
+	}
+
+	enum DustCollType {
+		One, Set, Arr, Map;
+	};
+
+	public interface DustObject {
+		DustObject getUnit();
+
+		DustObject getType();
+
+		String getId();
+	}
+
 	public abstract class DustAgent implements DustConsts {
 		protected void init() throws Exception {
 		}
@@ -149,13 +159,5 @@ public interface DustConsts {
 		protected void release() throws Exception {
 		}
 	}
-		
-	enum DustOptCreate {
-		Meta, Primary, Reference, None
-	}
-	
-	enum DustCollType {
-		One, Set, Arr, Map;
-	};
 
 }
