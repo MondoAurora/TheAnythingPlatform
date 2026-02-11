@@ -123,8 +123,12 @@ public class DustUtilsFile extends DustUtils implements DustUtilsConsts {
 
 		return count;
 	}
+	
+	public static boolean checkPathBound(String path) throws IOException {
+		return checkPathBound(path, new File("."));
+	}
 
-	public static boolean checkPathBound(File root, String path) throws IOException {
+	public static boolean checkPathBound(String path, File root) throws IOException {
 		File f = new File(root, path);
 		return f.getCanonicalPath().startsWith(root.getCanonicalPath());
 	}

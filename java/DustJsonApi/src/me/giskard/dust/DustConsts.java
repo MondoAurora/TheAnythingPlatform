@@ -142,10 +142,10 @@ public interface DustConsts {
 		One, Set, Arr, Map;
 	};
 
-	public interface DustObject {
-		DustObject getUnit();
+	public interface DustHandle {
+		DustHandle getUnit();
 
-		DustObject getType();
+		DustHandle getType();
 
 		String getId();
 	}

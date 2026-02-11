@@ -19,21 +19,12 @@ import me.giskard.dust.utils.DustUtilsFactory;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class Dust implements DustConsts, DustMindConsts {
 
-	private static DustObject appUnit;
-	private static DustObject appObj;
+	private static DustHandle appUnit;
+	private static DustHandle appHandle;
 
 	private static DustMind MIND;
 
-	private static DustObject typeAtt;
-
-//	private static final String TYPE_AGENT = DUST_UNIT_ID + DUST_SEP_TOKEN + TOKEN_TYPE_AGENT;
-
-//	static ThreadLocal<DustUtilsFactory<DustContext, Object>> CTX = new ThreadLocal<DustUtilsFactory<DustContext, Object>>() {
-//		@Override
-//		protected DustUtilsFactory<DustContext, Object> initialValue() {
-//			return new DustUtilsFactory(MAP_CREATOR);
-//		}
-//	};
+	private static DustHandle typeAtt;
 
 	static DustUtilsFactory<DustContext, Object> CTX = new DustUtilsFactory(MAP_CREATOR);
 
@@ -70,7 +61,7 @@ public class Dust implements DustConsts, DustMindConsts {
 	private static DustUtilsFactory<String, DustAgent> AGENTS = new DustUtilsFactory<String, DustAgent>(new DustCreator<DustAgent>() {
 		@Override
 		public DustAgent create(Object key, Object... hints) {
-			DustObject aCfg = getAgentObject(key);
+			DustHandle aCfg = getAgentHandle(key);
 
 			if (null == aCfg) {
 				return DustException.wrap(null, "Missing config for agent ", key);
@@ -110,8 +101,8 @@ public class Dust implements DustConsts, DustMindConsts {
 
 			MIND.bootLoadAppUnit(appUnit, new File(DUST_CRED_FILE));
 
-			DustObject appType = DustUtils.getMindMeta(TOKEN_TYPE_APP);
-			appObj = getObject(appUnit, appType, appName, DustOptCreate.None);
+			DustHandle appType = DustUtils.getMindMeta(TOKEN_TYPE_APP);
+			appHandle = getHandle(appUnit, appType, appName, DustOptCreate.None);
 
 			int s = appUnitPath.lastIndexOf(".");
 			File fBin = new File(appUnitPath.substring(0, s) + "." + DUST_PLATFORM_JAVA + appUnitPath.substring(s));
@@ -120,15 +111,15 @@ public class Dust implements DustConsts, DustMindConsts {
 			Dust.log(TOKEN_LEVEL_INFO, "MemInfo before init", DustDevUtils.memInfo());
 
 			MIND.init();
-			typeAtt = MIND.getObject(null, null, TOKEN_KBMETA_ATTRIBUTE, DustOptCreate.Meta);
+			typeAtt = MIND.getHandle(null, null, TOKEN_KBMETA_ATTRIBUTE, DustOptCreate.Meta);
 
-			for (DustObject ca : ((Collection<DustObject>) access(DustAccess.Peek, Collections.EMPTY_LIST, appObj, DustUtils.getMindMeta(TOKEN_INIT)))) {
+			for (DustHandle ca : ((Collection<DustHandle>) access(DustAccess.Peek, Collections.EMPTY_LIST, appHandle, DustUtils.getMindMeta(TOKEN_INIT)))) {
 
 				String type = ca.getType().getId();
 				String an = ca.getId();
 
-				DustObject o = (TOKEN_TYPE_AGENT == type) ? getObject(appUnit, null, an, DustOptCreate.None) : ca;
-				boolean skip = access(DustAccess.Check, true, o, TOKEN_SKIP);
+				DustHandle h = (TOKEN_TYPE_AGENT == type) ? getHandle(appUnit, null, an, DustOptCreate.None) : ca;
+				boolean skip = access(DustAccess.Check, true, h, TOKEN_SKIP);
 				if (skip) {
 					continue;
 				}
@@ -149,20 +140,20 @@ public class Dust implements DustConsts, DustMindConsts {
 		}
 	}
 
-	public static DustObject getObject(DustObject unit, DustObject type, String id, DustOptCreate optCreate) {
-		return MIND.getObject(unit, type, id, optCreate);
+	public static DustHandle getHandle(DustHandle unit, DustHandle type, String id, DustOptCreate optCreate) {
+		return MIND.getHandle(unit, type, id, optCreate);
 	}
 
-	public static DustObject getUnit(String unitId, boolean createIfMissing) {
+	public static DustHandle getUnit(String unitId, boolean createIfMissing) {
 		return MIND.getUnit(unitId, createIfMissing);
 	}
 
-	public static boolean releaseUnit(DustObject unit) {
+	public static boolean releaseUnit(DustHandle unit) {
 		return MIND.releaseUnit(unit);
 	}
 
 	public static <RetType> Class<RetType> getBinary(Object key) {
-		String cn = access(DustAccess.Peek, null, appObj, TOKEN_BINARY_RESOLVER, key, TOKEN_BINARY);
+		String cn = access(DustAccess.Peek, null, appHandle, TOKEN_BINARY_RESOLVER, key, TOKEN_BINARY);
 		try {
 			return (Class<RetType>) Class.forName(cn);
 		} catch (Exception e) {
@@ -189,15 +180,15 @@ public class Dust implements DustConsts, DustMindConsts {
 	}
 
 	private static void initAgent(Object key, DustAgent a) {
-		DustObject aCfg = getAgentObject(key);
+		DustHandle hCfg = getAgentHandle(key);
 
 		DustUtilsFactory<DustContext, Object> ctx = CTX;
 		try {
 			CTX = new DustUtilsFactory(MAP_CREATOR);
-			CTX.put(DustContext.Agent, access(DustAccess.Peek, Collections.EMPTY_MAP, aCfg));
+			CTX.put(DustContext.Agent, access(DustAccess.Peek, Collections.EMPTY_MAP, hCfg));
 			a.init();
 
-			if ((Boolean) access(DustAccess.Peek, false, aCfg, TOKEN_TYPE_RELEASEONSHUTDOWN)) {
+			if ((Boolean) access(DustAccess.Peek, false, hCfg, TOKEN_TYPE_RELEASEONSHUTDOWN)) {
 				registerToRelease(a);
 			}
 		} catch (Throwable e) {
@@ -213,7 +204,7 @@ public class Dust implements DustConsts, DustMindConsts {
 		System.out.println(sb);
 	}
 
-	private static <RetType> RetType notifyAgent(DustAccess access, DustObject listener, DustObject service, Object params) {
+	private static <RetType> RetType notifyAgent(DustAccess access, DustHandle listener, DustHandle service, Object params) {
 		String agent = listener.getId();
 		Dust.log(TOKEN_LEVEL_TRACE, "Message to agent", agent, "service", service, "params", params);
 
@@ -225,8 +216,8 @@ public class Dust implements DustConsts, DustMindConsts {
 			DustAgent a = Dust.getAgent(agent);
 
 			CTX = new DustUtilsFactory(MAP_CREATOR);
-			DustObject aCfg = getObject(appUnit, null, agent, DustOptCreate.None);
-			CTX.put(DustContext.Agent, access(DustAccess.Peek, null, aCfg));
+			DustHandle hCfg = getHandle(appUnit, null, agent, DustOptCreate.None);
+			CTX.put(DustContext.Agent, access(DustAccess.Peek, null, hCfg));
 			CTX.put(DustContext.Service, access(DustAccess.Peek, null, service));
 			CTX.put(DustContext.Input, params);
 
@@ -242,7 +233,7 @@ public class Dust implements DustConsts, DustMindConsts {
 	}
 
 	public static <RetType> RetType access(DustAccess access, Object val, Object root, Object... path) {
-		DustObject agent = (DustObject) CTX.peek(DustContext.Agent);
+		DustHandle agent = (DustHandle) CTX.peek(DustContext.Agent);
 
 		if ((null == root) || (root instanceof DustContext)) {
 			return accessCtx(access, agent, val, (DustContext) root, path);
@@ -258,9 +249,8 @@ public class Dust implements DustConsts, DustMindConsts {
 		Object lastKey = null;
 
 		Object prevColl = null;
-		DustObject prevObject = (curr instanceof DustObject) ? (DustObject) curr : null;
-		DustObject prevAtt = null;
-//		DustObject prevUnit = (null != prevObject) ? prevObject.getUnit() : null;
+		DustHandle prevHandle = (curr instanceof DustHandle) ? (DustHandle) curr : null;
+		DustHandle prevAtt = null;
 
 		if (val instanceof Enum) {
 			val = ((Enum) val).name();
@@ -276,26 +266,28 @@ public class Dust implements DustConsts, DustMindConsts {
 //				p = ((DustObject) p).getId();
 			}
 
-			prevObject = null;
-			if (curr instanceof DustObject) {
-				prevObject = (DustObject) curr;
-//				prevUnit = prevObject.getUnit();
+			if (curr instanceof DustHandle) {
+				prevHandle = (DustHandle) curr;
 
-				if (p instanceof DustObject) {
-					prevAtt = (DustObject) p;
-					p = ((DustObject) p).getId();
+				if (p instanceof DustHandle) {
+					prevAtt = (DustHandle) p;
+					p = ((DustHandle) p).getId();
 				} else if (p instanceof String) {
-					DustObject a = Dust.getObject(prevObject.getUnit(), typeAtt, (String) p, DustOptCreate.Meta);
+					DustHandle a = Dust.getHandle(prevHandle.getUnit(), typeAtt, (String) p, DustOptCreate.Meta);
 					prevAtt = a;
 					p = a.getId();
 				}
 
-				curr = MIND.getContent(prevObject);
+				curr = MIND.getContent(prevHandle);
 			} else if (null == curr) {
 				if (access.creator) {
 					curr = (p instanceof Integer) ? new ArrayList() : new HashMap();
 
 					if (null != prevColl) {
+						if ((null != prevAtt) && (null != prevHandle)) {
+							MIND.checkAccess(agent, access, prevHandle, prevAtt, curr);
+						}
+
 						switch (collType) {
 						case Arr:
 							DustUtils.safePut((ArrayList) prevColl, (Integer) lastKey, val, false);
@@ -313,6 +305,7 @@ public class Dust implements DustConsts, DustMindConsts {
 				} else {
 					break;
 				}
+				prevHandle = null;
 			}
 
 			prev = curr;
@@ -339,8 +332,8 @@ public class Dust implements DustConsts, DustMindConsts {
 				curr = null;
 			}
 
-			if ((null != prevAtt) && (null != prevObject)) {
-				curr = MIND.checkAccess(agent, access, prevObject, prevAtt, curr);
+			if ((null != prevAtt) && (null != prevHandle)) {
+				curr = MIND.checkAccess(agent, access, prevHandle, prevAtt, curr);
 			}
 		}
 
@@ -452,15 +445,15 @@ public class Dust implements DustConsts, DustMindConsts {
 			Object ll = access(DustAccess.Peek, null, curr, TOKEN_LISTENERS);
 			if (ll instanceof Collection) {
 				for (Object l : (Collection) ll) {
-					ret = Dust.notifyAgent(access, (DustObject) l, (DustObject) curr, val);
+					ret = Dust.notifyAgent(access, (DustHandle) l, (DustHandle) curr, val);
 				}
 			}
 
 			break;
 		}
 
-		if (curr instanceof DustObject) {
-			curr = MIND.checkAccess(agent, access, (DustObject) curr, null, curr);
+		if (curr instanceof DustHandle) {
+			curr = MIND.checkAccess(agent, access, (DustHandle) curr, null, curr);
 		}
 
 		return (RetType) ret;
@@ -468,11 +461,11 @@ public class Dust implements DustConsts, DustMindConsts {
 	}
 
 	public static <RetType> RetType accessCtx(DustAccess access, Object val, Object root, Object... path) {
-		DustObject agent = peekCtx(DustContext.Agent);
+		DustHandle agent = peekCtx(DustContext.Agent);
 		return accessCtx(access, agent, val, root, path);
 	}
 
-	private static <RetType> RetType accessCtx(DustAccess access, DustObject agent, Object val, Object root, Object... path) {
+	private static <RetType> RetType accessCtx(DustAccess access, DustHandle agent, Object val, Object root, Object... path) {
 		Object ret = NOT_FOUND;
 
 		Object main = Dust.optGetCtx(root);
@@ -516,15 +509,15 @@ public class Dust implements DustConsts, DustMindConsts {
 
 		}
 
-		if (ret instanceof DustObject) {
-			ret = MIND.checkAccess(agent, access, (DustObject) ret, null, ret);
+		if (ret instanceof DustHandle) {
+			ret = MIND.checkAccess(agent, access, (DustHandle) ret, null, ret);
 		}
 
 		return (RetType) ret;
 	}
 
-	public static DustObject getAgentObject(Object key) {
-		return getObject(appUnit, null, (String) key, DustOptCreate.None);
+	public static DustHandle getAgentHandle(Object key) {
+		return getHandle(appUnit, null, (String) key, DustOptCreate.None);
 	}
 
 	private static <RetType extends DustAgent> RetType getAgent(String agentId) {

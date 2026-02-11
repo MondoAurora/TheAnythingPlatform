@@ -13,13 +13,6 @@ import me.giskard.dust.utils.DustUtilsConsts;
 
 public class DustStreamUtils implements DustUtilsConsts, DustMindConsts {
 
-	public static boolean checkPathBound(String path) throws IOException {
-		File root = new File(".");
-		File f = new File(root, path);
-
-		return f.getCanonicalPath().startsWith(root.getCanonicalPath());
-	}
-
 	public static File optGetFile(Object... path) throws IOException {
 		String p = DustUtils.toString(DustUtils.sbAppend(null, File.separator, false, path));
 		File f = new File(p);

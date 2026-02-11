@@ -37,20 +37,20 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 			unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
 		}
 
-		DustObject unit = Dust.getUnit(unitId, false);
+		DustHandle unit = Dust.getUnit(unitId, false);
 
 		DustUtilsFactory<String, Set<String>> meta = new DustUtilsFactory.Simple<String, Set<String>>(true, (Class<? extends Set<String>>) TreeSet.class);
 
 		int lc = 0;
 
 		Dust.log(TOKEN_LEVEL_TRACE, "Reading meta", unitId);
-		for (DustObject o : DustMindUtils.getUnitMembers(unit) ) {
+		for (DustHandle h : DustMindUtils.getUnitMembers(unit) ) {
 			if (0 == (++lc % 10000)) {
 				Dust.log(TOKEN_LEVEL_TRACE, "line", lc);
 			}
 
-			Set<String> flds = meta.get(o.getType().getId());
-			for (String a : (Iterable<String>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, o, KEY_MAP_KEYS)) {
+			Set<String> flds = meta.get(h.getType().getId());
+			for (String a : (Iterable<String>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, KEY_MAP_KEYS)) {
 				flds.add(a);
 			}
 		}
@@ -88,12 +88,12 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 		Dust.log(TOKEN_LEVEL_TRACE, "Generating Excel");
 
 		lc = 0;
-		for (DustObject o : DustMindUtils.getUnitMembers(unit) ) {
+		for (DustHandle h : DustMindUtils.getUnitMembers(unit) ) {
 			if (0 == (++lc % 10000)) {
 				Dust.log(TOKEN_LEVEL_TRACE, "line", lc);
 			}
 
-			String t = o.getType().getId();
+			String t = h.getType().getId();
 
 			Sheet sheet = sheets.get(t);
 
@@ -109,7 +109,7 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 				Cell c = row.createCell(cc++);
 				c.setCellStyle(cs);
 
-				Object v = Dust.access(DustAccess.Peek, "", o, a);
+				Object v = Dust.access(DustAccess.Peek, "", h, a);
 				StringBuilder sb = null;
 				if (v instanceof Collection) {
 					clc = 0;
@@ -125,7 +125,7 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 						++clc;
 					}
 					v = sb;
-				} else if (v instanceof DustObject) {
+				} else if (v instanceof DustHandle) {
 					v =  DustUtils.toString(v);
 				}
 

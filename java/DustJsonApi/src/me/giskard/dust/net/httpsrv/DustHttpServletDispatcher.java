@@ -21,12 +21,12 @@ import me.giskard.dust.utils.DustUtils;
 class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, DustStreamConsts {
 	private static final long serialVersionUID = 1L;
 
-	DustObject cfg;
+	DustHandle hCfg;
 	Collection<Map> agents;
 
 	public DustHttpServletDispatcher(Object dispatch) {
 		super();
-		cfg = (DustObject) dispatch;
+		hCfg = (DustHandle) dispatch;
 		agents = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, dispatch, TOKEN_MEMBERS);
 	}
 
@@ -61,14 +61,14 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 				return;
 			}
 
-			DustObject m = Dust.access(DustAccess.Peek, null, cfg, TOKEN_TARGET);
+			DustHandle hRelay = Dust.access(DustAccess.Peek, null, hCfg, TOKEN_TARGET);
 
-			synchronized (m) { // quick and dirty
+			synchronized (hRelay) { // quick and dirty
 
-				Dust.access(DustAccess.Reset, null, m, TOKEN_LISTENERS);
+				Dust.access(DustAccess.Reset, null, hRelay, TOKEN_LISTENERS);
 				
-				DustObject ao = Dust.getAgentObject(target.get(TOKEN_AGENT));
-				Dust.access(DustAccess.Insert, ao, m, TOKEN_LISTENERS, KEY_ADD);
+				DustHandle ao = Dust.getAgentHandle(target.get(TOKEN_AGENT));
+				Dust.access(DustAccess.Insert, ao, hRelay, TOKEN_LISTENERS, KEY_ADD);
 				
 				Map params = new HashMap(target);
 
@@ -103,7 +103,7 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 					params.put(TOKEN_CMD, cmd);
 				}
 				
-				Dust.access(DustAccess.Process, params, m);
+				Dust.access(DustAccess.Process, params, hRelay);
 
 				int status = Dust.access(DustAccess.Peek, HttpServletResponse.SC_OK, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_STATUS);
 

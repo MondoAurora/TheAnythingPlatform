@@ -65,8 +65,8 @@ public class DustUtils implements DustUtilsConsts {
 				sb = sbAppend(sb, sep, false, oo);
 			}
 			return (null == sb) ? "" : sb.toString();
-		} else if (ob instanceof DustObject) {
-			return ((DustObject) ob).getId();
+		} else if (ob instanceof DustHandle) {
+			return ((DustHandle) ob).getId();
 		} else {
 			return ob.toString();
 		}
@@ -226,8 +226,8 @@ public class DustUtils implements DustUtilsConsts {
 		return (null == coll) || coll.isEmpty();
 	}
 
-	public static DustObject getMindMeta(String type) {
-		return Dust.getObject(null, null, type, DustOptCreate.Meta);
+	public static DustHandle getMindMeta(String type) {
+		return Dust.getHandle(null, null, type, DustOptCreate.Meta);
 	}
 
 	public static Object getSample(Object val) {

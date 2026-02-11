@@ -17,8 +17,8 @@ import me.giskard.dust.utils.DustUtilsJson;
 @SuppressWarnings({ "unchecked" })
 public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, DustMindConsts, DustLDAPConsts {
 
-	DustObject typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
-	DustObject typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
+	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
+	DustHandle typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
@@ -31,16 +31,16 @@ public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, 
 
 			for (Map<String, Object> src : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, null, TOKEN_SOURCE))) {
 				String metaId = Dust.access(DustAccess.Peek, null, src, TOKEN_META);
-				DustObject meta = Dust.getUnit(metaId, true);
+				DustHandle meta = Dust.getUnit(metaId, true);
 
 				String type = Dust.access(DustAccess.Peek, null, src, TOKEN_TYPE);
-				DustObject tType = Dust.getObject(meta, typeType, type, DustOptCreate.Meta);
+				DustHandle tType = Dust.getHandle(meta, typeType, type, DustOptCreate.Meta);
 
 				String fileName = Dust.access(DustAccess.Peek, null, src, TOKEN_PATH);
 				File f = new File(fileName);
 
 				String unitId = Dust.access(DustAccess.Peek, null, src, TOKEN_DATA);
-				DustObject unit = Dust.getUnit(unitId, true);
+				DustHandle unit = Dust.getUnit(unitId, true);
 
 				String encoding = Dust.access(DustAccess.Peek, DUST_CHARSET_UTF8, src, TOKEN_STREAM_ENCODING);
 				Map<String, Object> content = DustUtilsJson.readJson(f, encoding);
@@ -54,7 +54,7 @@ public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, 
 				for (Map<String, Object> o : arr) {
 					Object id = o.get(idKey);
 
-					DustObject t = Dust.getObject(unit, tType, DustUtils.toString(id), DustOptCreate.Meta);
+					DustHandle t = Dust.getHandle(unit, tType, DustUtils.toString(id), DustOptCreate.Meta);
 
 					for (Map.Entry<String, Object> oe : o.entrySet()) {
 						String attName = oe.getKey();
@@ -65,12 +65,12 @@ public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, 
 						case TOKEN_INNERJSON:
 							Map<String, Object> v = DustUtilsJson.parseJson((String) val);
 							for (Map.Entry<String, Object> ve : v.entrySet()) {
-								DustObject att = getAtt(meta, tType, attName + "::" + ve.getKey());
+								DustHandle att = getAtt(meta, tType, attName + "::" + ve.getKey());
 								Dust.access(DustAccess.Set, ve.getValue(), t, att);
 							}
 							break;
 						default:
-							DustObject att = getAtt(meta, tType, attName);
+							DustHandle att = getAtt(meta, tType, attName);
 							Dust.access(DustAccess.Set, val, t, att);
 							break;
 						}
@@ -101,8 +101,8 @@ public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, 
 		return null;
 	}
 
-	public DustObject getAtt(DustObject meta, DustObject tType, String attName) {
-		DustObject att = Dust.getObject(meta, DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE), attName, DustOptCreate.Meta);
+	public DustHandle getAtt(DustHandle meta, DustHandle tType, String attName) {
+		DustHandle att = Dust.getHandle(meta, DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE), attName, DustOptCreate.Meta);
 		Dust.access(DustAccess.Insert, tType, att, TOKEN_APPEARS);
 		Dust.access(DustAccess.Set, att, tType, TOKEN_CHILDMAP, attName);
 		return att;

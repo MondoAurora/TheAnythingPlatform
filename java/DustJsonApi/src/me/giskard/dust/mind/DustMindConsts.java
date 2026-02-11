@@ -22,23 +22,23 @@ public interface DustMindConsts extends DustConsts, DustUtilsConsts {
 	String TOKEN_UNIT_OBJECTS = DUST_UNIT_ID + DUST_SEP_TOKEN + "UnitObjects";
 	String TOKEN_UNIT_REFS = DUST_UNIT_ID + DUST_SEP_TOKEN + "UnitRefs";
 
-	class DustMindObject implements DustObject {
+	class DustMindHandle implements DustHandle {
 		final DustMindAgent mind;
 
 		private DustMindIdea unit;
-		private DustMindObject type;
+		private DustMindHandle type;
 		private String id;
 		
-		DustMindObject(DustMindAgent mind) {
+		DustMindHandle(DustMindAgent mind) {
 			this.mind = mind;
 		}
 
-		public DustMindObject(DustMindAgent mind, DustMindIdea unit, DustMindObject type, String id) {
+		public DustMindHandle(DustMindAgent mind, DustMindIdea unit, DustMindHandle type, String id) {
 			this(mind);
 			init(unit, type, id);
 		}
 
-		void init(DustMindIdea unit, DustMindObject type, String id) {
+		void init(DustMindIdea unit, DustMindHandle type, String id) {
 			this.unit = unit;
 			this.type = type;
 			this.id = id;
@@ -49,12 +49,12 @@ public interface DustMindConsts extends DustConsts, DustUtilsConsts {
 		}
 
 		@Override
-		public DustObject getUnit() {
-			return (null == unit) ? null : unit.dmo;
+		public DustMindHandle getUnit() {
+			return (null == unit) ? null : unit.mh;
 		}
 
 		@Override
-		public DustObject getType() {
+		public DustMindHandle getType() {
 			return type;
 		}
 
@@ -65,7 +65,7 @@ public interface DustMindConsts extends DustConsts, DustUtilsConsts {
 
 		@Override
 		public String toString() {
-			DustObject t = getType();
+			DustHandle t = getType();
 			String str = getId();
 
 			if (null != t) {

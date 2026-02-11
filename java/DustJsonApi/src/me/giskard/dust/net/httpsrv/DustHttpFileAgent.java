@@ -14,6 +14,7 @@ import me.giskard.dust.net.DustNetConsts;
 import me.giskard.dust.net.DustNetUtils;
 import me.giskard.dust.stream.DustStreamUtils;
 import me.giskard.dust.utils.DustUtils;
+import me.giskard.dust.utils.DustUtilsFile;
 
 public class DustHttpFileAgent extends DustAgent implements DustNetConsts {
 
@@ -28,7 +29,7 @@ public class DustHttpFileAgent extends DustAgent implements DustNetConsts {
 				path = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
 			}
 
-			if (!DustStreamUtils.checkPathBound(path)) {
+			if (!DustUtilsFile.checkPathBound(path)) {
 				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 				return null;
 			}

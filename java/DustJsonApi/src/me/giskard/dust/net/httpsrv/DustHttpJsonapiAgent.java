@@ -38,7 +38,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 
 //			infoType = Dust.getMetaMeta(TOKEN_INFO);
 
-			DustObject unit = null;
+			DustHandle unit = null;
 
 			if (0 == pl) {
 				String m = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_METHOD);
@@ -65,7 +65,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 
 					switch (cmd) {
 					case "unit":
-						DustObject source = Dust.getUnit(path[1], true);
+						DustHandle source = Dust.getUnit(path[1], true);
 						String type = (pl > 2) ? path[2] : null;
 						String defMeta = (null == type) ? null : DustUtils.getPrefix(type, DUST_SEP_TOKEN);
 
@@ -110,23 +110,23 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 								sb = DustUtils.sbAppend(sb, "/", true, path[i]);
 							}
 							String id = sb.toString();
-							DustObject o = Dust.getObject(source, null, id.toString(), DustOptCreate.None);
-							if (null != o) {
-								cloneObj(unit, o, atts);
+							DustHandle h = Dust.getHandle(source, null, id.toString(), DustOptCreate.None);
+							if (null != h) {
+								cloneData(unit, h, atts);
 							}
 						} else {
-							for (DustObject o : DustMindUtils.getUnitMembers(source)) {
-								if ((null == type) || DustUtils.isEqual(type, o.getType().getId())) {
+							for (DustHandle h : DustMindUtils.getUnitMembers(source)) {
+								if ((null == type) || DustUtils.isEqual(type, h.getType().getId())) {
 
 									if (null != filter) {
-										filter.setObject(o);
+										filter.setHandle(h);
 										Boolean eval = DustExprMvelUtils.eval(filter.getCondition(), filter, filter.getValues(), false);
 										if (!eval) {
 											continue;
 										}
 									}
 
-									cloneObj(unit, o, atts);
+									cloneData(unit, h, atts);
 								}
 							}
 						}
@@ -162,11 +162,11 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 
 	private static final String[] NOFILTER = new String[] {};
 
-	public void cloneObj(DustObject unit, DustObject o, Map<String, String[]> atts) {
-		DustObject ot = o.getType();
-		DustObject to = Dust.getObject(unit, ot, o.getId(), DustOptCreate.Primary);
+	public void cloneData(DustHandle unit, DustHandle h, Map<String, String[]> atts) {
+		DustHandle ot = h.getType();
+		DustHandle to = Dust.getHandle(unit, ot, h.getId(), DustOptCreate.Primary);
 		String[] a = atts.getOrDefault(ot.getId(), NOFILTER);
-		DustMindUtils.loadObject(to, o, false, a);
+		DustMindUtils.loadData(to, h, false, a);
 
 //		MindObject info = Dust.getObject(unit, infoType, unit.getUnitId(), MindOptCreate.None);
 //

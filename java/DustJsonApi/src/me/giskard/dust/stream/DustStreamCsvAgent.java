@@ -22,8 +22,8 @@ import me.giskard.dust.utils.DustUtils;
 @SuppressWarnings({ "unchecked" })
 public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, DustMindConsts, DustLDAPConsts {
 
-	DustObject typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
-	DustObject typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
+	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
+	DustHandle typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
@@ -36,16 +36,16 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 
 			for (Map<String, Object> src : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, null, TOKEN_SOURCE))) {
 				String metaId = Dust.access(DustAccess.Peek, null, src, TOKEN_META);
-				DustObject meta = Dust.getUnit(metaId, true);
+				DustHandle meta = Dust.getUnit(metaId, true);
 
 				String type = Dust.access(DustAccess.Peek, null, src, TOKEN_TYPE);
-				DustObject tType = Dust.getObject(meta, typeType, type, DustOptCreate.Meta);
+				DustHandle tType = Dust.getHandle(meta, typeType, type, DustOptCreate.Meta);
 
 				String fileName = Dust.access(DustAccess.Peek, null, src, TOKEN_PATH);
 				File f = new File(fileName);
 
 				String unitId = Dust.access(DustAccess.Peek, null, src, TOKEN_DATA);
-				DustObject unit = Dust.getUnit(unitId, true);
+				DustHandle unit = Dust.getUnit(unitId, true);
 
 				String encoding = Dust.access(DustAccess.Peek, DUST_CHARSET_UTF8, src, TOKEN_STREAM_ENCODING);
 				String colSep = Dust.access(DustAccess.Peek, ",", src, TOKEN_STREAM_COLSEP);
@@ -58,7 +58,7 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 					ArrayList<String> items = new ArrayList<>();
 					DustStreamUtils.CsvLineReader lineReader = new DustStreamUtils.CsvLineReader(colSep, items);
 
-					ArrayList<DustObject> fields = new ArrayList<>();
+					ArrayList<DustHandle> fields = new ArrayList<>();
 					Set<String> keys = new HashSet<>();
 					int lc = 0;
 					String str;
@@ -81,12 +81,12 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 							if (!keys.add(str)) {
 //								Dust.log(TOKEN_LEVEL_WARNING, "key collision", str);
 							}
-							DustObject o = Dust.getObject(unit, tType, str, DustOptCreate.Primary);
+							DustHandle hTarget = Dust.getHandle(unit, tType, str, DustOptCreate.Primary);
 
 							for (int i = 0; i < colCount; ++i) {
 								str = items.get(i).trim();
 								if (!DustUtils.isEmpty(str)) {
-									Dust.access(DustAccess.Set, str, o, fields.get(i));
+									Dust.access(DustAccess.Set, str, hTarget, fields.get(i));
 								}
 							}
 						} else {
@@ -98,7 +98,7 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 										keyIdx = fields.size();
 									}
 									
-									DustObject att = getAtt(meta, tType, colName);
+									DustHandle att = getAtt(meta, tType, colName);
 
 									fields.add(att);
 								}
@@ -135,8 +135,8 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 		return null;
 	}
 
-	public DustObject getAtt(DustObject meta, DustObject tType, String attName) {
-		DustObject att = Dust.getObject(meta, DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE), attName, DustOptCreate.Meta);
+	public DustHandle getAtt(DustHandle meta, DustHandle tType, String attName) {
+		DustHandle att = Dust.getHandle(meta, DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE), attName, DustOptCreate.Meta);
 		Dust.access(DustAccess.Insert, tType, att, TOKEN_APPEARS);
 		Dust.access(DustAccess.Set, att, tType, TOKEN_CHILDMAP, attName);
 		return att;

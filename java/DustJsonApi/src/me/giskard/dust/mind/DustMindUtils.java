@@ -10,21 +10,21 @@ import me.giskard.dust.Dust;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustMindUtils implements DustMindConsts {
 
-	public static Integer getUnitSize(DustObject unit) {
+	public static Integer getUnitSize(DustHandle unit) {
 		return Dust.access(DustAccess.Peek, 0, unit, TOKEN_UNIT_OBJECTS, KEY_SIZE);
 	}
 
-	public static Iterable<DustObject> getUnitMembers(DustObject unit) {
-		Map<String, DustObject> m = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unit, TOKEN_UNIT_REFS);
+	public static Iterable<DustHandle> getUnitMembers(DustHandle unit) {
+		Map<String, DustHandle> m = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unit, TOKEN_UNIT_REFS);
 		return m.values();
 	}
 
-	public static Iterable<String> getAttNames(DustObject ob) {
+	public static Iterable<String> getAttNames(DustHandle ob) {
 		Iterable<String> ret = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, ob, KEY_MAP_KEYS);
 		return ret;
 	}
 
-	public static void loadObject(DustObject target, DustObject from, boolean deep, String... atts) {
+	public static void loadData(DustHandle target, DustHandle from, boolean deep, String... atts) {
 		if (deep) {
 			Dust.log(TOKEN_LEVEL_WARNING, "DustKBObject deep load not supported");
 		}
@@ -33,7 +33,7 @@ public class DustMindUtils implements DustMindConsts {
 			return;
 		}
 		
-		DustMindAgent mind = ((DustMindObject) target).mind;
+		DustMindAgent mind = ((DustMindHandle) target).mind;
 		Map mFrom = mind.getContent(from);
 		Map mTarget = mind.getContent(target);
 
@@ -48,7 +48,7 @@ public class DustMindUtils implements DustMindConsts {
 		}
 	}
 
-	public static Map getValues(DustObject from, Map target, boolean cutPrefix, String... atts) {
+	public static Map getValues(DustHandle from, Map target, boolean cutPrefix, String... atts) {
 		if (null == target) {
 			target = new HashMap();
 		} else {
@@ -56,7 +56,7 @@ public class DustMindUtils implements DustMindConsts {
 		}
 
 		if (null != atts) {
-			Map mFrom = ((DustMindObject) from).mind.getContent(from);
+			Map mFrom = ((DustMindHandle) from).mind.getContent(from);
 
 			if (0 == atts.length) {
 				for (String a : getAttNames(from)) {

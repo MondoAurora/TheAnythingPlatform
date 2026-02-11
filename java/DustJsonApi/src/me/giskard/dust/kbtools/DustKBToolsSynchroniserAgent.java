@@ -26,7 +26,7 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 
 		switch (cmd) {
 		case TOKEN_KBT_CMD_LOADALL:
-			DustObject uTarget = loadAll();
+			DustHandle uTarget = loadAll();
 			int size = DustMindUtils.getUnitSize(uTarget);
 			sb = DustUtils.sbAppend(null, " ", false, size);
 			break;
@@ -49,44 +49,43 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 
 	}
 
-	public DustObject loadAll() {
-		DustObject attType = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
+	public DustHandle loadAll() {
+		DustHandle attType = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
 
 		String mName = Dust.access(DustAccess.Peek, null, null, TOKEN_META);
-		DustObject uMeta = Dust.getUnit(mName, true);
+		DustHandle uMeta = Dust.getUnit(mName, true);
 		
 		String tName = Dust.access(DustAccess.Peek, null, null, TOKEN_KBMETA_TYPE);
-		DustObject type = Dust.getObject(uMeta, null, tName, DustOptCreate.Meta);
-//		String type = uMeta.getId() + DUST_SEP_TOKEN + targetType.getId();
+		DustHandle type = Dust.getHandle(uMeta, null, tName, DustOptCreate.Meta);
 
 		String uName = Dust.access(DustAccess.Peek, null, null, TOKEN_DATA);
-		DustObject uTarget = Dust.getUnit(uName, true);
+		DustHandle uTarget = Dust.getUnit(uName, true);
 
-		DustCreator<DustObject> coreCreator = new DustCreator<DustObject>() {
+		DustCreator<DustHandle> coreCreator = new DustCreator<DustHandle>() {
 			@Override
-			public DustObject create(Object key, Object... hints) {
+			public DustHandle create(Object key, Object... hints) {
 				int size = DustMindUtils.getUnitSize(uTarget);
-				return Dust.getObject(uTarget, type, DustUtils.toString(size), DustOptCreate.Primary);
+				return Dust.getHandle(uTarget, type, DustUtils.toString(size), DustOptCreate.Primary);
 			}
 		};
 
-		DustUtilsFactory<String, DustUtilsFactory<String, DustObject>> index = new DustUtilsFactory<String, DustUtilsFactory<String, DustObject>>(
-				new DustCreator<DustUtilsFactory<String, DustObject>>() {
+		DustUtilsFactory<String, DustUtilsFactory<String, DustHandle>> index = new DustUtilsFactory<String, DustUtilsFactory<String, DustHandle>>(
+				new DustCreator<DustUtilsFactory<String, DustHandle>>() {
 					@Override
-					public DustUtilsFactory<String, DustObject> create(Object key, Object... hints) {
-						return new DustUtilsFactory<String, DustObject>(coreCreator);
+					public DustUtilsFactory<String, DustHandle> create(Object key, Object... hints) {
+						return new DustUtilsFactory<String, DustHandle>(coreCreator);
 					}
 				});
 
 		Collection<String> ids = Dust.access(DustAccess.Peek, null, null, TOKEN_INDEX);
 
-		for (DustObject o : DustMindUtils.getUnitMembers(uTarget)) {
+		for (DustHandle h : DustMindUtils.getUnitMembers(uTarget)) {
 			for (String i : ids) {
 				String ik = ( -1 == i.indexOf(DUST_SEP_TOKEN)) ? mName + DUST_SEP_TOKEN + i : i;
-				Collection<String> ic = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, o, ik);
+				Collection<String> ic = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, h, ik);
 				for (String v : ic) {
 					if (!DustUtils.isEmpty(v)) {
-						index.get(i).put(v, o);
+						index.get(i).put(v, h);
 					}
 				}
 			}
@@ -98,25 +97,25 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 				continue;
 			}
 
-			DustObject m = Dust.getUnit(Dust.access(DustAccess.Peek, null, src, TOKEN_META), true);
+			DustHandle m = Dust.getUnit(Dust.access(DustAccess.Peek, null, src, TOKEN_META), true);
 			String srcPrefix = m.getId() + DUST_SEP_TOKEN;
 
-			DustObject u = Dust.getUnit(Dust.access(DustAccess.Peek, null, src, TOKEN_DATA), true);
+			DustHandle u = Dust.getUnit(Dust.access(DustAccess.Peek, null, src, TOKEN_DATA), true);
 			Dust.log(TOKEN_LEVEL_INFO, "Reading unit", u.getId());
 
 			String id = Dust.access(DustAccess.Peek, null, src, TOKEN_ID);
 			int lc = 0;
 
-			for (DustObject o : DustMindUtils.getUnitMembers(u)) {
+			for (DustHandle h : DustMindUtils.getUnitMembers(u)) {
 				if (0 == (++lc % 10000)) {
 					Dust.log(TOKEN_LEVEL_TRACE, "item", lc);
 				}
 
-				DustObject target = null;
+				DustHandle target = null;
 				String idVal;
 
 				for (String i : ids) {
-					idVal = getFirstValue(o, mapping, srcPrefix, i);
+					idVal = getFirstValue(h, mapping, srcPrefix, i);
 					if (!DustUtils.isEmpty(idVal)) {
 						target = index.get(i).peek(idVal);
 						if (null != target) {
@@ -126,23 +125,23 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 				}
 
 				if (null == target) {
-					idVal = getFirstValue(o, mapping, srcPrefix, id);
+					idVal = getFirstValue(h, mapping, srcPrefix, id);
 
 					if (DustUtils.isEmpty(idVal)) {
-						Dust.log(TOKEN_LEVEL_WARNING, "Missing ID", o);
+						Dust.log(TOKEN_LEVEL_WARNING, "Missing ID", h);
 						continue;
 					}
 					target = index.get(id).get(idVal);
 				}
 
 				for (String i : ids) {
-					idVal = getFirstValue(o, mapping, srcPrefix, i);
+					idVal = getFirstValue(h, mapping, srcPrefix, i);
 					if (!DustUtils.isEmpty(idVal)) {
 						index.get(i).put(idVal, target);
 					}
 				}
 
-				Dust.access(DustAccess.Insert, DustUtils.sbAppend(null, "/", true, u.getId(), o.getType().getId(), o.getId()).toString(), target, TOKEN_SOURCE);
+				Dust.access(DustAccess.Insert, DustUtils.sbAppend(null, "/", true, u.getId(), h.getType().getId(), h.getId()).toString(), target, TOKEN_SOURCE);
 				Dust.access(DustAccess.Insert, u.getId(), target, TOKEN_DATA);
 
 				for (Map.Entry<String, Object> me : mapping.entrySet()) {
@@ -150,22 +149,22 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 					Object fSource = me.getValue();
 					Object v;
 
-					DustObject targetAtt = Dust.getObject(uMeta, attType, fTarget, DustOptCreate.None);
+					DustHandle targetAtt = Dust.getHandle(uMeta, attType, fTarget, DustOptCreate.None);
 					if (null == targetAtt) {
-						targetAtt = Dust.getObject(uMeta, attType, fTarget, DustOptCreate.Primary);
+						targetAtt = Dust.getHandle(uMeta, attType, fTarget, DustOptCreate.Primary);
 						Dust.access(DustAccess.Set, targetAtt, type, TOKEN_CHILDMAP, fTarget);
 						Dust.access(DustAccess.Insert, type, targetAtt, TOKEN_APPEARS);
 					}
 					Dust.access(DustAccess.Insert, srcPrefix + fSource, targetAtt, TOKEN_SOURCE);
 
 					if (fSource instanceof String) {
-						v = Dust.access(DustAccess.Peek, null, o, srcPrefix + fSource);
+						v = Dust.access(DustAccess.Peek, null, h, srcPrefix + fSource);
 						if (null != v) {
 							Dust.access(DustAccess.Insert, v, target, targetAtt);
 						}
 					} else {
 						for (Object fld : (Collection) fSource) {
-							v = Dust.access(DustAccess.Peek, null, o, srcPrefix + fld);
+							v = Dust.access(DustAccess.Peek, null, h, srcPrefix + fld);
 							if (null != v) {
 								Dust.access(DustAccess.Insert, v, target, targetAtt);
 							}
@@ -192,17 +191,17 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 		return uTarget;
 	}
 
-	public String getFirstValue(DustObject o, Map<String, Object> mapping, String srcPrefix, String fldTarget) {
+	public String getFirstValue(DustHandle h, Map<String, Object> mapping, String srcPrefix, String fldTarget) {
 		String val = null;
 
 		Object fldSource = mapping.get(fldTarget);
 
 		if (null != fldSource) {
 			if (fldSource instanceof String) {
-				val = Dust.access(DustAccess.Peek, null, o, srcPrefix + fldSource);
+				val = Dust.access(DustAccess.Peek, null, h, srcPrefix + fldSource);
 			} else {
 				for (Object fld : (Collection) fldSource) {
-					String s = Dust.access(DustAccess.Peek, null, o, srcPrefix + fld);
+					String s = Dust.access(DustAccess.Peek, null, h, srcPrefix + fld);
 					if (!DustUtils.isEmpty(s)) {
 						val = s;
 						break;

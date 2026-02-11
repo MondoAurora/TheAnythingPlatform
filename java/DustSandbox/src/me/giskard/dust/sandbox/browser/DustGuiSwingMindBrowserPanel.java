@@ -102,11 +102,11 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 		}
 	};
 
-	private DustObject mindInfo;
+	private DustHandle mindInfo;
 
 	DustProcessor<Boolean> gridFilter = new DustProcessor<Boolean>() {
 		@Override
-		public Boolean process(DustObject ob, Object... hints) {
+		public Boolean process(DustHandle handle, Object... hints) {
 			boolean ret = true;
 
 			Set<String> s = metaFilter.get(TOKEN_ATTRIBUTES);
@@ -114,7 +114,7 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 			if (!s.isEmpty()) {
 				ret = false;
 				for (String att : s) {
-					if (null != Dust.access(DustAccess.Peek, null, ob, att)) {
+					if (null != Dust.access(DustAccess.Peek, null, handle, att)) {
 						ret = true;
 						break;
 					}
@@ -124,7 +124,7 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 //			'11111'.equals(get('cardMeta.1$card_owner.id_doc_id'))
 
 			if (ret && (null != mvelFilter.getCondition())) {
-				mvelFilter.setObject(ob);
+				mvelFilter.setHandle(handle);
 				Object r = DustExprMvelUtils.eval(mvelFilter.getCondition(), mvelFilter, mvelFilter.getValues(), false);
 				ret = (r instanceof Boolean) ? (Boolean) r : false;
 			}
@@ -138,8 +138,8 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 		String iId = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD_INFO);
 		String[] i = iId.split("\\$");
 
-		DustObject uInfo = Dust.getUnit(i[0], true);
-		mindInfo = Dust.getObject(uInfo, null, iId, DustOptCreate.None);
+		DustHandle uInfo = Dust.getUnit(i[0], true);
+		mindInfo = Dust.getHandle(uInfo, null, iId, DustOptCreate.None);
 
 		grid.setExtFilter(gridFilter);
 

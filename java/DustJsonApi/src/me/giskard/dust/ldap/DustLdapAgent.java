@@ -20,7 +20,7 @@ public class DustLdapAgent extends DustAgent implements DustLDAPConsts {
 	protected Object process(DustAccess access) throws Exception {
 		Hashtable<String, String> environment = new Hashtable<String, String>();
 		
-		DustObject accInfo =  Dust.access(DustAccess.Peek, null, null, TOKEN_ACCESS);
+		DustHandle accInfo =  Dust.access(DustAccess.Peek, null, null, TOKEN_ACCESS);
 
 		String url = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_STREAM_URL);
 		String user = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_USER);

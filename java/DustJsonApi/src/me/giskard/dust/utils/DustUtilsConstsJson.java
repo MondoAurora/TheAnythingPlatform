@@ -57,7 +57,7 @@ public interface DustUtilsConstsJson extends DustConsts {
 	public class JsonApiFilter {
 
 		private String condition;
-		private DustObject ob;
+		private DustHandle handle;
 
 		Map values = new HashMap();
 
@@ -73,11 +73,11 @@ public interface DustUtilsConstsJson extends DustConsts {
 			return condition;
 		}
 
-		public void setObject(DustObject o) {
-			this.ob = o;
-			values = DustMindUtils.getValues(o, values, true);
+		public void setHandle(DustHandle h) {
+			this.handle = h;
+			values = DustMindUtils.getValues(h, values, true);
 
-			Object typeAtts = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, o.getType(), TOKEN_CHILDMAP, KEY_MAP_KEYS);
+			Object typeAtts = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h.getType(), TOKEN_CHILDMAP, KEY_MAP_KEYS);
 			if (typeAtts instanceof Collection) {
 				for (Object att : ((Collection) typeAtts)) {
 					values.putIfAbsent(att, null);
@@ -90,7 +90,7 @@ public interface DustUtilsConstsJson extends DustConsts {
 		};
 
 		public Object get(Object a) {
-			Object ret = Dust.access(DustAccess.Peek, null, ob, a);
+			Object ret = Dust.access(DustAccess.Peek, null, handle, a);
 			return ret;
 		};
 
@@ -158,7 +158,7 @@ public interface DustUtilsConstsJson extends DustConsts {
 		};
 
 		public boolean has(Object a) {
-			Object o = Dust.access(DustAccess.Peek, null, ob, a);
+			Object o = Dust.access(DustAccess.Peek, null, handle, a);
 			return null != o;
 		};
 

@@ -19,11 +19,11 @@ import me.giskard.dust.utils.DustUtils;
 //@SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustGuiSwingGridPanel extends DustGuiSwingConsts.JPanelAgent implements DustSwingBrowserConsts {
 	
-	DustObject unit;
+	DustHandle unit;
 	DustProcessor<Boolean> extFilter = NO_FILTER;
 
-	private final ArrayList<DustObject> allData = new ArrayList<>();
-	private final ArrayList<DustObject> display = new ArrayList<>();
+	private final ArrayList<DustHandle> allData = new ArrayList<>();
+	private final ArrayList<DustHandle> display = new ArrayList<>();
 
 	private final Set<String> allAtts = new TreeSet<>();
 	private final ArrayList<String> atts = new ArrayList<>();
@@ -110,7 +110,7 @@ public class DustGuiSwingGridPanel extends DustGuiSwingConsts.JPanelAgent implem
 		return colEditor;
 	}
 
-	public void setUnit(DustObject unit) {
+	public void setUnit(DustHandle unit) {
 		this.unit = unit;
 		reload();
 	}
@@ -119,13 +119,13 @@ public class DustGuiSwingGridPanel extends DustGuiSwingConsts.JPanelAgent implem
 		allData.clear();
 		allAtts.clear();
 
-		for (DustObject o : DustMindUtils.getUnitMembers(unit)) {
-			if ( !extFilter.process(o) ) {
+		for (DustHandle h : DustMindUtils.getUnitMembers(unit)) {
+			if ( !extFilter.process(h) ) {
 				continue;
 			}
 			
-			allData.add(o);
-			for (String a : DustMindUtils.getAttNames(o)) {
+			allData.add(h);
+			for (String a : DustMindUtils.getAttNames(h)) {
 				String p = DustUtils.getPrefix(a, DUST_SEP_TOKEN);
 				if (DUST_UNIT_ID.equals(p)) {
 //					continue;

@@ -22,14 +22,14 @@ public interface DustUtilsConsts extends DustConsts {
 
 	
 	interface DustProcessor<Type> {
-		 Type process(DustObject ob, Object... hints);
+		Type process(DustHandle handle, Object... hints);
 		default void begin(Object... hints) {}
 		default void end(Object... hints) {}
 	}
 	
 	DustProcessor<Boolean> NO_FILTER = new DustProcessor<>() {
 		@Override
-		public Boolean process(DustObject ob, Object... hints) {
+		public Boolean process(DustHandle handle, Object... hints) {
 			return true;
 		}
 	};

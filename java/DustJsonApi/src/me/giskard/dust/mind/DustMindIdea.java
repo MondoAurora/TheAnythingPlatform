@@ -5,31 +5,31 @@ import java.util.TreeMap;
 
 //@SuppressWarnings({ "unchecked", "rawtypes" })
 class DustMindIdea implements DustMindConsts {
-	DustMindObject dmo;
+	DustMindHandle mh;
 
 	Map<String, Object> content = new TreeMap<>();
 
 	DustMindIdea() {
 	}
 
-	DustMindIdea(DustMindObject dmo) {
-		setDmo(dmo);
+	DustMindIdea(DustMindHandle mh) {
+		setMh(mh);
 	};
 
-	void setDmo(DustMindObject dmo) {
-		this.dmo = dmo;
-		loadDmo();
+	void setMh(DustMindHandle mh) {
+		this.mh = mh;
+		loadMh();
 	};
 
-	void loadDmo() {
-		content.put(TOKEN_UNIT, dmo.getUnit());
-		content.put(TOKEN_TYPE, dmo.getType());
-		content.put(TOKEN_ID, dmo.getId());
+	void loadMh() {
+		content.put(TOKEN_UNIT, mh.getUnit());
+		content.put(TOKEN_TYPE, mh.getType());
+		content.put(TOKEN_ID, mh.getId());
 	}
 
 	@Override
 	public String toString() {
-		return dmo.toString();
+		return mh.toString();
 	}
 
 	protected Map<String, Object> getContent() {

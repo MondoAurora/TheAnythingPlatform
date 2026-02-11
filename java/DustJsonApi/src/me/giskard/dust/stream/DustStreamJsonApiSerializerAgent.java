@@ -38,7 +38,7 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 	protected Object process(DustAccess access) throws Exception {
 
 		String unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_KEY);
-		DustObject unit = Dust.access(DustAccess.Peek, null, null, TOKEN_DATA);
+		DustHandle unit = Dust.access(DustAccess.Peek, null, null, TOKEN_DATA);
 		Dust.access(DustAccess.Delete, null, null, TOKEN_DATA);
 		File f = null;
 
@@ -87,16 +87,16 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 
 			Dust.access(DustAccess.Set, data, target, JsonApiMember.data);
 
-			for (DustObject o : DustMindUtils.getUnitMembers(unit)) {
-				Map<String, Object> item = getJsonHead(o);
+			for (DustHandle h : DustMindUtils.getUnitMembers(unit)) {
+				Map<String, Object> item = getJsonHead(h);
 
-				for (String key : (Iterable<String>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, o, KEY_MAP_KEYS)) {
+				for (String key : (Iterable<String>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, KEY_MAP_KEYS)) {
 					if (SKIP_KEYS.contains(key)) {
 						continue;
 					}
-					Object val = Dust.access(DustAccess.Peek, null, o, key);
+					Object val = Dust.access(DustAccess.Peek, null, h, key);
 
-					if (val instanceof DustObject) {
+					if (val instanceof DustHandle) {
 						addRelation(item, key, val, null);
 						val = null;
 					} else if (val instanceof Collection) {
@@ -110,9 +110,9 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 //						}
 
 						Object sample = Dust.access(DustAccess.Peek, null, coll, 0);
-						if (sample instanceof DustObject) {
+						if (sample instanceof DustHandle) {
 							int idx = (coll instanceof Set) ? -1 : 0;
-							for (DustObject co : (Collection<DustObject>) coll) {
+							for (DustHandle co : (Collection<DustHandle>) coll) {
 								addRelation(item, key, co, (-1 == idx) ? null : idx++);
 							}
 							val = null;
@@ -124,7 +124,7 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 						}
 						for (Map.Entry<String, Object> ce : ((Map<String, Object>) coll).entrySet()) {
 							Object cv = ce.getValue();
-							if (cv instanceof DustObject) {
+							if (cv instanceof DustHandle) {
 								addRelation(item, key, cv, ce.getKey());
 								val = null;
 							} else {
@@ -156,7 +156,7 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 	}
 
 	private Map addRelation(Map<String, Object> item, String key, Object val, Object metaKey) {
-		Map head = getJsonHead((DustObject) val);
+		Map head = getJsonHead((DustHandle) val);
 		Dust.access(DustAccess.Insert, head, item, JsonApiMember.relationships, key, JsonApiMember.data, KEY_ADD);
 
 		if (null != metaKey) {
@@ -167,14 +167,14 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 		return head;
 	}
 
-	private Map<String, Object> getJsonHead(DustObject o) {
+	private Map<String, Object> getJsonHead(DustHandle h) {
 		Map<String, Object> item = new HashMap<>();
-		item.put(JsonApiMember.type.name(), o.getType().getId());
-		item.put(JsonApiMember.id.name(), o.getId());
+		item.put(JsonApiMember.type.name(), h.getType().getId());
+		item.put(JsonApiMember.id.name(), h.getId());
 		return item;
 	}
 
-	public static void loadFile(DustObject unit, File f) throws Exception {
+	public static void loadFile(DustHandle unit, File f) throws Exception {
 		if (f.isFile()) {
 			Dust.log(TOKEN_LEVEL_INFO, "Loading unit", unit, "from file", f.getCanonicalPath());
 			Map<String, Object> content = DustUtilsJson.readJson(f);
@@ -196,21 +196,21 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 		}
 	}
 
-	static void loadData(DustObject unit, Map<String, Object> data, boolean included) {
-		DustObject metaType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
-		DustObject metaAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
+	static void loadData(DustHandle unit, Map<String, Object> data, boolean included) {
+		DustHandle metaType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
+		DustHandle metaAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
 
 		String type = DustUtils.simpleGet(data, JsonApiMember.type);
-		DustObject tType = Dust.getObject(unit, metaType, type, DustOptCreate.Meta);
+		DustHandle tType = Dust.getHandle(unit, metaType, type, DustOptCreate.Meta);
 
 		String id = DustUtils.simpleGet(data, JsonApiMember.id);
-		DustObject target = Dust.getObject(unit, tType, id, DustOptCreate.Primary);
+		DustHandle target = Dust.getHandle(unit, tType, id, DustOptCreate.Primary);
 
 		Map<String, Object> atts = DustUtils.simpleGet(data, JsonApiMember.attributes);
 		if (null != atts) {
 			for (Map.Entry<String, Object> ae : atts.entrySet()) {
 				String rk = ae.getKey();
-				DustObject tAtt = Dust.getObject(unit, metaAtt, rk, DustOptCreate.Meta);
+				DustHandle tAtt = Dust.getHandle(unit, metaAtt, rk, DustOptCreate.Meta);
 				Dust.access(DustAccess.Set, ae.getValue(), target, tAtt);
 			}
 		}
@@ -219,7 +219,7 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 		if (null != rels) {
 			for (Map.Entry<String, Object> re : rels.entrySet()) {
 				String rk = re.getKey();
-				DustObject tAtt = Dust.getObject(unit, metaAtt, rk, DustOptCreate.Meta);
+				DustHandle tAtt = Dust.getHandle(unit, metaAtt, rk, DustOptCreate.Meta);
 
 				Object rv = re.getValue();
 				Object rd = DustUtils.simpleGet(rv, JsonApiMember.data);
@@ -227,28 +227,28 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 				if (rd instanceof Collection) {
 					for (Object rdd : (Collection) rd) {
 						String rt = DustUtils.simpleGet(rdd, JsonApiMember.type);
-						DustObject tTypeRef = Dust.getObject(unit, metaType, rt, DustOptCreate.Meta);
+						DustHandle tTypeRef = Dust.getHandle(unit, metaType, rt, DustOptCreate.Meta);
 
 						String ri = DustUtils.simpleGet(rdd, JsonApiMember.id);
 
 						Object key = DustUtils.simpleGet(rdd, JsonApiMember.meta, EXT_JSONAPI_KEY);
 
-						DustObject ro = Dust.getObject(unit, tTypeRef, ri, DustOptCreate.Reference);
+						DustHandle rh = Dust.getHandle(unit, tTypeRef, ri, DustOptCreate.Reference);
 
 						if (null == key) {
-							Dust.access(DustAccess.Insert, ro, target, tAtt);
+							Dust.access(DustAccess.Insert, rh, target, tAtt);
 						} else {
-							Dust.access(DustAccess.Set, ro, target, tAtt, (key instanceof Number) ? ((Number) key).intValue() : key);
+							Dust.access(DustAccess.Set, rh, target, tAtt, (key instanceof Number) ? ((Number) key).intValue() : key);
 						}
 					}
 				} else {
 					String rt = DustUtils.simpleGet(rd, JsonApiMember.type);
-					DustObject tTypeRef = Dust.getObject(unit, metaType, rt, DustOptCreate.Meta);
+					DustHandle tTypeRef = Dust.getHandle(unit, metaType, rt, DustOptCreate.Meta);
 					String ri = DustUtils.simpleGet(rd, JsonApiMember.id);
 
-					DustObject ro = Dust.getObject(unit, tTypeRef, ri, DustOptCreate.Reference);
+					DustHandle rh = Dust.getHandle(unit, tTypeRef, ri, DustOptCreate.Reference);
 
-					Dust.access(DustAccess.Set, ro, target, tAtt);
+					Dust.access(DustAccess.Set, rh, target, tAtt);
 				}
 			}
 		}
