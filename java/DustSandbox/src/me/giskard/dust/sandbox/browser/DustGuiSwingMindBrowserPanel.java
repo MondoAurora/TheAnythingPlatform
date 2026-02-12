@@ -156,7 +156,9 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 		cbUnit.addActionListener(al);
 		cbUnit.setActionCommand(TOKEN_UNIT);
 
-		cbUnit.setSelectedIndex(0);
+		if (0 < cbUnit.getItemCount()) {
+			cbUnit.setSelectedIndex(0);
+		}
 
 		trUnitInfo.addTreeSelectionListener(new TreeSelectionListener() {
 			@Override

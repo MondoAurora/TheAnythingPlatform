@@ -118,6 +118,7 @@ public interface DustConsts {
 	String TOKEN_LASTCHANGED = DUST_UNIT_ID + DUST_SEP_TOKEN + "lastChanged";
 
 	Object NOT_FOUND = new Object();
+	Object NOT_IMPLEMENTED = new Object();
 
 	enum DustContext {
 		Work, Input, Service, Agent, Dialog,
@@ -149,13 +150,49 @@ public interface DustConsts {
 
 		String getId();
 	}
+	
+	enum DustAction {
+		Init, Begin, Process, End, Release,
+	}
 
 	public abstract class DustAgent implements DustConsts {
+		protected final Object process(DustAction action, DustAccess access) throws Exception {
+			Object ret = null;
+			
+			switch ( action ) {
+			case Init:
+				init();
+				break;
+			case Begin:
+				ret = begin();
+				break;
+			case Process:
+				ret = process(access);
+				break;
+			case End:
+				ret = end(access == DustAccess.Commit);
+				break;
+			case Release:
+				release();
+				break;
+			}
+			
+			return ret;
+		}
+		
 		protected void init() throws Exception {
+		}
+
+		protected Object begin() throws Exception {
+			return NOT_IMPLEMENTED;
 		}
 
 		protected abstract Object process(DustAccess access) throws Exception;
 
+		protected Object end(boolean commit) throws Exception {
+			return NOT_IMPLEMENTED;
+		}
+		
 		protected void release() throws Exception {
 		}
 	}
