@@ -3,7 +3,6 @@ package me.giskard.dust.stream;
 import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 import me.giskard.dust.Dust;
@@ -24,7 +23,6 @@ public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, 
 	protected Object process(DustAccess access) throws Exception {
 
 		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
-		Object ser = Dust.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
 
 		switch (cmd) {
 		case TOKEN_CMD_LOAD:
@@ -75,20 +73,6 @@ public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, 
 							break;
 						}
 					}
-				}
-
-				if (null != ser) {
-					Map<String, Object> params = new HashMap<>();
-					params.put(TOKEN_CMD, TOKEN_CMD_SAVE);
-					params.put(TOKEN_DATA, meta);
-					params.put(TOKEN_KEY, metaId);
-
-					Dust.access(DustAccess.Process, params, ser);
-
-					params.put(TOKEN_DATA, unit);
-					params.put(TOKEN_KEY, unitId);
-
-					Dust.access(DustAccess.Process, params, ser);
 				}
 			}
 

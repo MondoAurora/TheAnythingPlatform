@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -29,7 +28,6 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 	protected Object process(DustAccess access) throws Exception {
 
 		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
-		Object ser = Dust.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
 
 		switch (cmd) {
 		case TOKEN_CMD_LOAD:
@@ -109,20 +107,6 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 
 						items.clear();
 					}
-				}
-
-				if (null != ser) {
-					Map<String, Object> params = new HashMap<>();
-					params.put(TOKEN_CMD, TOKEN_CMD_SAVE);
-					params.put(TOKEN_DATA, meta);
-					params.put(TOKEN_KEY, metaId);
-
-					Dust.access(DustAccess.Process, params, ser);
-
-					params.put(TOKEN_DATA, unit);
-					params.put(TOKEN_KEY, unitId);
-
-					Dust.access(DustAccess.Process, params, ser);
 				}
 			}
 

@@ -3,7 +3,6 @@ package me.giskard.dust.kbtools;
 import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -172,20 +171,6 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 					}
 				}
 			}
-		}
-
-		Object ser = Dust.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
-		if (null != ser) {
-			Map<String, Object> params = new HashMap<>();
-			params.put(TOKEN_CMD, TOKEN_CMD_SAVE);
-
-			params.put(TOKEN_DATA, uMeta);
-			params.put(TOKEN_KEY, mName);
-			Dust.access(DustAccess.Process, params, ser);
-
-			params.put(TOKEN_DATA, uTarget);
-			params.put(TOKEN_KEY, uName);
-			Dust.access(DustAccess.Process, params, ser);
 		}
 
 		return uTarget;

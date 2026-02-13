@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
 import java.util.Base64;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,10 +30,8 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-//		KBStore kb = Dust.getStore();
 
 		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
-		Object ser = Dust.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
 
 		switch (cmd) {
 		case TOKEN_CMD_LOAD:
@@ -60,16 +57,6 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 				};
 
 				DustUtilsFile.procRecursive(f, fp, ffLdif);
-
-				if (null != ser) {
-
-					Map<String, Object> params = new HashMap<>();
-					params.put(TOKEN_CMD, TOKEN_CMD_SAVE);
-					params.put(TOKEN_DATA, unitMeta);
-					params.put(TOKEN_KEY, unitId);
-
-					Dust.access(DustAccess.Process, params, ser);
-				}
 			}
 
 			for (Map<String, Object> src : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, null, TOKEN_SOURCE))) {
@@ -81,16 +68,6 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 				DustHandle unit = Dust.getUnit(unitId, true);
 
 				readDataLdif(unit, unitMeta, src, f);
-
-				if (null != ser) {
-
-					Map<String, Object> params = new HashMap<>();
-					params.put(TOKEN_CMD, TOKEN_CMD_SAVE);
-					params.put(TOKEN_DATA, unit);
-					params.put(TOKEN_KEY, unitId);
-
-					Dust.access(DustAccess.Process, params, ser);
-				}
 			}
 
 			break;
