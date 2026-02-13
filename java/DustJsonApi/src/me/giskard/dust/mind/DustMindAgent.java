@@ -26,6 +26,12 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 	DustUtilsFactory<DustContext, Object> CTX = new DustUtilsFactory(MAP_CREATOR);
 
+	ThreadLocal<Set<DustHandle>> loadingUnit = new ThreadLocal<>() {
+		protected Set<DustHandle> initialValue() {
+			return new HashSet<DustHandle>();
+		};
+	};
+
 	public <RetType> RetType optGetCtx(Object in) {
 		return (RetType) ((in instanceof DustContext) ? CTX.get((DustContext) in) : in);
 	}
@@ -43,6 +49,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 	DustMindIdea unitMeta;
 
 	DustMindHandle defaultSerializer;
+	Set<DustHandle> changedUnits = new HashSet<>();
 
 	DustCreator<DustMindHandle> createHandle = new DustCreator<DustMindHandle>() {
 		@Override
@@ -219,7 +226,12 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			params.put(TOKEN_KEY, unitId);
 			params.put(TOKEN_DATA, unit.mh);
 
-			access(DustAccess.Process, params, ser);
+			try {
+				loadingUnit.get().add(unit.mh);
+				access(DustAccess.Process, params, ser);
+			} finally {
+				loadingUnit.get().remove(unit.mh);
+			}
 		}
 	}
 
@@ -227,7 +239,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 	protected boolean releaseUnit(DustHandle unit) {
 		return (null == unit) ? false : null != access(DustAccess.Delete, null, unitMind.content, TOKEN_UNIT_OBJECTS, unit);
 	}
-	
+
 	@Override
 	protected <RetType> RetType notifyAgent(DustHandle hAgent, DustAction action, DustAccess access, DustHandle service, Object params) {
 		String agent = hAgent.getId();
@@ -236,19 +248,36 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		long start = System.currentTimeMillis();
 		Object ret = null;
 		DustUtilsFactory<DustContext, Object> ctx = CTX;
+		Set<DustHandle> chg = changedUnits;
 
 		try {
 			CTX = new DustUtilsFactory(MAP_CREATOR);
-			CTX.put(DustContext.Agent,  hAgent);
-			CTX.put(DustContext.Service,  service);
+			CTX.put(DustContext.Agent, hAgent);
+			CTX.put(DustContext.Service, service);
 			CTX.put(DustContext.Input, params);
 
+			changedUnits = new HashSet<>();
+
 			ret = super.callAgent(hAgent, action, access);
+
+			for (DustHandle hChg : changedUnits) {
+				if (unitApp.mh == hChg) {
+					continue;
+				}
+
+				if (loadingUnit.get().contains(hChg)) {
+					continue;
+				}
+
+				Dust.log(TOKEN_LEVEL_TRACE, "Would save changed unit", hChg.getId());
+
+			}
 		} catch (Throwable e) {
 			DustException.wrap(e, "sendMessage failed", agent, "service", service, "params", params);
 		} finally {
 			Dust.log(TOKEN_LEVEL_TRACE, "Message processed", System.currentTimeMillis() - start, "msec.");
 			CTX = ctx;
+			changedUnits = chg;
 		}
 
 		return (RetType) ret;
@@ -270,6 +299,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 		Object prev = null;
 		Object lastKey = null;
+		DustHandle lastHandle = null;
 
 		Object prevColl = null;
 		DustHandle prevHandle = (curr instanceof DustHandle) ? (DustHandle) curr : null;
@@ -294,7 +324,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			}
 
 			if (curr instanceof DustHandle) {
-				prevHandle = (DustHandle) curr;
+				lastHandle = prevHandle = (DustHandle) curr;
 
 				if (p instanceof DustHandle) {
 					prevAtt = (DustHandle) p;
@@ -312,7 +342,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 					if (null != prevColl) {
 						if ((null != prevAtt) && (null != prevHandle)) {
-							checkAccess(agent, access, prevHandle, prevAtt, curr);
+							registerChange(agent, DustAccess.Insert, prevHandle, prevAtt, lastKey, curr);
 						}
 
 						switch (collType) {
@@ -360,16 +390,92 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			}
 
 			if ((null != prevAtt) && (null != prevHandle)) {
-				curr = checkAccess(agent, access, prevHandle, prevAtt, curr);
+				curr = checkAccess(agent, access, prevHandle, prevAtt, lastKey, curr);
 			}
+		}
+
+		/**
+		 * Admin change
+		 */
+
+		Boolean change = null;
+
+		switch (access) {
+		case Delete:
+			if (curr != null) {
+				switch (collType) {
+				case Arr:
+					int lk = (int) lastKey;
+					change = (0 <= lk) && (lk < ((ArrayList) prevColl).size());
+					break;
+				case Map:
+					change = ((Map) prevColl).containsKey(lastKey);
+					break;
+				case One:
+					change = true;
+					break;
+				case Set:
+					change = ((Set) prevColl).contains(curr);
+					break;
+				}
+			}
+
+			break;
+		case Insert:
+			switch (collType) {
+			case Arr:
+				change = true;
+				break;
+			case Map:
+				change = !DustUtils.isEqual(curr, val);
+				break;
+			case One:
+				break;
+			case Set:
+				change = !((Set) prevColl).contains(val);
+				break;
+			}
+
+			break;
+		case Reset:
+			if (curr instanceof Map) {
+				change = !((Map) curr).isEmpty();
+			} else if (curr instanceof Collection) {
+				change = !((Collection) curr).isEmpty();
+			}
+
+			break;
+		case Set:
+			if ((null != lastKey) && (null != prevColl)) {
+				switch (collType) {
+				case Arr:
+					change = !DustUtils.isEqual(curr, val);
+					break;
+				case Map:
+					change = !DustUtils.isEqual(curr, val);
+					break;
+				case One:
+					break;
+				case Set:
+					change = !((Set) prevColl).contains(val);
+					break;
+				}
+			}
+			break;
+		default:
+			break;
+		}
+
+		if (Boolean.TRUE.equals(change) && (null != lastHandle)) {
+			registerChange(agent, access, lastHandle, prevAtt, lastKey, val);
 		}
 
 		/**
 		 * Do the job
 		 */
-		
+
 		DustAction action = null;
-		
+
 		switch (access) {
 		case Check:
 			ret = DustUtils.isEqual(val, curr);
@@ -386,7 +492,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 				case One:
 					break;
 				case Set:
-					((Set) prevColl).remove(curr);
+					((Set) prevColl).remove(val);
 					break;
 				}
 			}
@@ -403,14 +509,18 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 					DustUtils.safePut((ArrayList) prevColl, (Integer) lastKey, val, false);
 					break;
 				case Map:
-					Set s = (curr instanceof Set) ? (Set) curr : new HashSet();
-					ret = s.add(val);
-					((Map) prevColl).put(lastKey, s);
+					if (curr instanceof Set) {
+						ret = ((Set) curr).add(val);
+					} else {
+						Set s = new HashSet<>();
+						((Map) prevColl).put(lastKey, s);
+						ret = s.add(val);
+					}
 					break;
 				case One:
 					break;
 				case Set:
-					ret = ((Set) prevColl).add(curr);
+					ret = ((Set) prevColl).add(val);
 					break;
 				}
 			}
@@ -485,10 +595,10 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		}
 
 		if (curr instanceof DustHandle) {
-			curr = checkAccess(agent, access, (DustHandle) curr, null, curr);
+			curr = checkAccess(agent, access, (DustHandle) curr, null, null, curr);
 		}
-		
-		if ( null != action ) {
+
+		if (null != action) {
 			Object ll = access(DustAccess.Peek, null, curr, TOKEN_LISTENERS);
 			if (ll instanceof Collection) {
 				for (Object l : (Collection) ll) {
@@ -501,12 +611,12 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 	}
 
-	public  <RetType> RetType accessCtx(DustAccess access, Object val, Object root, Object... path) {
+	public <RetType> RetType accessCtx(DustAccess access, Object val, Object root, Object... path) {
 		DustHandle agent = peekCtx(DustContext.Agent);
 		return accessCtx(access, agent, val, root, path);
 	}
 
-	private  <RetType> RetType accessCtx(DustAccess access, DustHandle agent, Object val, Object root, Object... path) {
+	private <RetType> RetType accessCtx(DustAccess access, DustHandle agent, Object val, Object root, Object... path) {
 		Object ret = NOT_FOUND;
 
 		Object main = optGetCtx(root);
@@ -551,13 +661,18 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		}
 
 		if (ret instanceof DustHandle) {
-			ret = checkAccess(agent, access, (DustHandle) ret, null, ret);
+			ret = checkAccess(agent, access, (DustHandle) ret, null, null, ret);
 		}
 
 		return (RetType) ret;
 	}
 
-	private Object checkAccess(DustHandle agent, DustAccess acess, DustHandle object, DustHandle att, Object value) throws RuntimeException {
+	private void registerChange(DustHandle agent, DustAccess acess, DustHandle handle, DustHandle att, Object lastKey, Object value) throws RuntimeException {
+		checkAccess(agent, acess, handle, att, lastKey, value);
+		changedUnits.add(handle.getUnit());
+	}
+
+	private Object checkAccess(DustHandle agent, DustAccess acess, DustHandle handle, DustHandle att, Object lastKey, Object value) throws RuntimeException {
 		Object ret = value;
 		Map m;
 
@@ -568,7 +683,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 					DustException.wrap(null, "Trying to overwrite a final attribute)");
 				}
 			}
-			m = getContent(object);
+			m = getContent(handle);
 
 			Collection c = (Collection) m.get(TOKEN_READABLETO);
 
