@@ -27,7 +27,7 @@ public interface DustUtilsConsts extends DustConsts {
 		default void end(Object... hints) {}
 	}
 	
-	DustProcessor<Boolean> NO_FILTER = new DustProcessor<>() {
+	DustProcessor<Boolean> NO_FILTER = new DustProcessor<Boolean>() {
 		@Override
 		public Boolean process(DustHandle handle, Object... hints) {
 			return true;

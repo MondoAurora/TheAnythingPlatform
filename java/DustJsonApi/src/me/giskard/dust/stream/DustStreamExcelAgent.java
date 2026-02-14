@@ -33,7 +33,7 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 	protected Object process(DustAccess access) throws Exception {
 		String unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_DATA);
 
-		if (null == unitId) {
+		if ( null == unitId ) {
 			unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
 		}
 
@@ -44,8 +44,8 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 		int lc = 0;
 
 		Dust.log(TOKEN_LEVEL_TRACE, "Reading meta", unitId);
-		for (DustHandle h : DustMindUtils.getUnitMembers(unit) ) {
-			if (0 == (++lc % 10000)) {
+		for (DustHandle h : DustMindUtils.getUnitMembers(unit)) {
+			if ( 0 == (++lc % 10000) ) {
 				Dust.log(TOKEN_LEVEL_TRACE, "line", lc);
 			}
 
@@ -56,106 +56,107 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 		}
 
 		String fName = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
-		if (null == fName) {
+		if ( null == fName ) {
 			fName = unitId + ".xlsx";
 		}
 
-		Workbook wb = fName.toLowerCase().endsWith(".xlsx") ? new XSSFWorkbook() : new HSSFWorkbook();
+		try (Workbook wb = fName.toLowerCase().endsWith(".xlsx") ? new XSSFWorkbook() : new HSSFWorkbook()) {
 
-		CellStyle cs = wb.createCellStyle();
-		cs.setWrapText(true);
+			CellStyle cs = wb.createCellStyle();
+			cs.setWrapText(true);
 
-		Map<String, Sheet> sheets = new HashMap<String, Sheet>();
+			Map<String, Sheet> sheets = new HashMap<String, Sheet>();
 
-		float rowHeight = 1;
+			float rowHeight = 1;
 
-		for (String t : meta.keys()) {
-			Sheet sheet = wb.createSheet(t);
-			sheets.put(t, sheet);
+			for (String t : meta.keys()) {
+				Sheet sheet = wb.createSheet(t);
+				sheets.put(t, sheet);
 
-			int rc = sheet.getPhysicalNumberOfRows();
-			Row row = sheet.createRow(rc);
+				int rc = sheet.getPhysicalNumberOfRows();
+				Row row = sheet.createRow(rc);
 
-			int cc = 0;
-			for (String f : meta.peek(t)) {
-				Cell c = row.createCell(cc++);
-				c.setCellValue(f);
-			}
-
-			rowHeight = row.getHeightInPoints();
-		}
-
-		Dust.log(TOKEN_LEVEL_TRACE, "Generating Excel");
-
-		lc = 0;
-		for (DustHandle h : DustMindUtils.getUnitMembers(unit) ) {
-			if (0 == (++lc % 10000)) {
-				Dust.log(TOKEN_LEVEL_TRACE, "line", lc);
-			}
-
-			String t = h.getType().getId();
-
-			Sheet sheet = sheets.get(t);
-
-			int rc = sheet.getPhysicalNumberOfRows();
-			Row row = sheet.createRow(rc);
-			row.setRowStyle(cs);
-
-			Set<String> flds = meta.peek(t);
-			int cc = 0;
-			int rlc = 1;
-			int clc = 1;
-			for (String a : flds) {
-				Cell c = row.createCell(cc++);
-				c.setCellStyle(cs);
-
-				Object v = Dust.access(DustAccess.Peek, "", h, a);
-				StringBuilder sb = null;
-				if (v instanceof Collection) {
-					clc = 0;
-					for (Object vv : (Collection) v) {
-						sb = DustUtils.sbAppend(sb, "\n", false, DustUtils.toString(vv));
-						++clc;
-					}
-					v = sb;
-				} else if (v instanceof Map) {
-					clc = 0;
-					for (Map.Entry<Object, Object> vv : ((Map<Object, Object>) v).entrySet()) {
-						sb = DustUtils.sbAppend(sb, "\n", false, DustUtils.toString(vv.getKey()) + " = " + DustUtils.toString(vv.getValue()));
-						++clc;
-					}
-					v = sb;
-				} else if (v instanceof DustHandle) {
-					v =  DustUtils.toString(v);
+				int cc = 0;
+				for (String f : meta.peek(t)) {
+					Cell c = row.createCell(cc++);
+					c.setCellValue(f);
 				}
 
-				c.setCellValue(DustUtils.toString(v));
-				if (clc > rlc) {
-					rlc = clc;
+				rowHeight = row.getHeightInPoints();
+			}
+
+			Dust.log(TOKEN_LEVEL_TRACE, "Generating Excel");
+
+			lc = 0;
+			for (DustHandle h : DustMindUtils.getUnitMembers(unit)) {
+				if ( 0 == (++lc % 10000) ) {
+					Dust.log(TOKEN_LEVEL_TRACE, "line", lc);
+				}
+
+				String t = h.getType().getId();
+
+				Sheet sheet = sheets.get(t);
+
+				int rc = sheet.getPhysicalNumberOfRows();
+				Row row = sheet.createRow(rc);
+				row.setRowStyle(cs);
+
+				Set<String> flds = meta.peek(t);
+				int cc = 0;
+				int rlc = 1;
+				int clc = 1;
+				for (String a : flds) {
+					Cell c = row.createCell(cc++);
+					c.setCellStyle(cs);
+
+					Object v = Dust.access(DustAccess.Peek, "", h, a);
+					StringBuilder sb = null;
+					if ( v instanceof Collection ) {
+						clc = 0;
+						for (Object vv : (Collection) v) {
+							sb = DustUtils.sbAppend(sb, "\n", false, DustUtils.toString(vv));
+							++clc;
+						}
+						v = sb;
+					} else if ( v instanceof Map ) {
+						clc = 0;
+						for (Map.Entry<Object, Object> vv : ((Map<Object, Object>) v).entrySet()) {
+							sb = DustUtils.sbAppend(sb, "\n", false, DustUtils.toString(vv.getKey()) + " = " + DustUtils.toString(vv.getValue()));
+							++clc;
+						}
+						v = sb;
+					} else if ( v instanceof DustHandle ) {
+						v = DustUtils.toString(v);
+					}
+
+					c.setCellValue(DustUtils.toString(v));
+					if ( clc > rlc ) {
+						rlc = clc;
+					}
+				}
+
+				row.setHeightInPoints(rowHeight * rlc);
+			}
+
+			for (String sn : meta.keys()) {
+				Sheet sheet = sheets.get(sn);
+				int cc = meta.peek(sn).size();
+				for (int ci = 0; ci < cc; ++ci) {
+					Dust.log(TOKEN_LEVEL_TRACE, "Column sizing", ci);
+					sheet.autoSizeColumn(ci);
 				}
 			}
 
-			row.setHeightInPoints(rowHeight * rlc);
-		}
+			Dust.log(TOKEN_LEVEL_TRACE, "Saving Excel", fName);
 
-		for (String sn : meta.keys()) {
-			Sheet sheet = sheets.get(sn);
-			int cc = meta.peek(sn).size();
-			for (int ci = 0; ci < cc; ++ci) {
-				Dust.log(TOKEN_LEVEL_TRACE, "Column sizing", ci);
-				sheet.autoSizeColumn(ci);
+			File f = new File(fName);
+			DustUtilsFile.ensureDir(f.getAbsoluteFile().getParentFile());
+			try (OutputStream fileOut = new FileOutputStream(f)) {
+				wb.write(fileOut);
+				fileOut.flush();
+				fileOut.close();
 			}
 		}
-
-		Dust.log(TOKEN_LEVEL_TRACE, "Saving Excel", fName);
-
-		File f = new File(fName);
-		DustUtilsFile.ensureDir(f.getAbsoluteFile().getParentFile());
-		OutputStream fileOut = new FileOutputStream(f);
-
-		wb.write(fileOut);
-		fileOut.flush();
-		fileOut.close();
 
 		return null;
 	}

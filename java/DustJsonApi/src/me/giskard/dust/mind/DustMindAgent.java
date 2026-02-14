@@ -26,7 +26,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 	DustUtilsFactory<DustContext, Object> CTX = new DustUtilsFactory(MAP_CREATOR);
 
-	ThreadLocal<Set<DustHandle>> loadingUnit = new ThreadLocal<>() {
+	ThreadLocal<Set<DustHandle>> loadingUnit = new ThreadLocal<Set<DustHandle>>() {
 		protected Set<DustHandle> initialValue() {
 			return new HashSet<DustHandle>();
 		};
