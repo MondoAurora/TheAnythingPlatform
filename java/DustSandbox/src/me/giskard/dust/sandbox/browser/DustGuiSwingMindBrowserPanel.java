@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -144,13 +145,19 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 		grid.setExtFilter(gridFilter);
 
 		cbUnit.removeAllItems();
+		
+		Set<String> units = new TreeSet<String>();
 		for (Map.Entry<String, Object> eUnit : (Iterable<Map.Entry<String, Object>>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, mindInfo,
 				TOKEN_KB_KNOWNUNITS)) {
 			String key = eUnit.getKey();
 			if (key.contains("Meta.")) {
 //				continue;
 			}
-			cbUnit.addItem(key);
+			units.add(key);
+		}
+		
+		for ( String uk : units ) {
+			cbUnit.addItem(uk);			
 		}
 
 		cbUnit.addActionListener(al);

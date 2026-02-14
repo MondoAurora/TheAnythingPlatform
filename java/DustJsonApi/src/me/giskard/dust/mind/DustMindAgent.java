@@ -55,7 +55,9 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		@Override
 		public DustMindHandle create(Object key, Object... hints) {
 			String k = (String) key;
-			return new DustMindHandle(DustMindAgent.this, (DustMindIdea) hints[0], (DustMindHandle) hints[1], k);
+			DustMindIdea unit = (DustMindIdea) hints[0];
+			changedUnits.add(unit.mh);
+			return new DustMindHandle(DustMindAgent.this, unit, (DustMindHandle) hints[1], k);
 		}
 	};
 

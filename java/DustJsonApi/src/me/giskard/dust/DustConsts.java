@@ -72,6 +72,8 @@ public interface DustConsts {
 	String TOKEN_NAME = DUST_UNIT_ID + DUST_SEP_TOKEN + "name";
 	String TOKEN_DESC = DUST_UNIT_ID + DUST_SEP_TOKEN + "desc";
 	String TOKEN_PAYLOAD = DUST_UNIT_ID + DUST_SEP_TOKEN + "payload";
+	String TOKEN_POSTFIX = DUST_UNIT_ID + DUST_SEP_TOKEN + "postfix";
+	
 
 	String TOKEN_ACCESS = DUST_UNIT_ID + DUST_SEP_TOKEN + "access";
 	String TOKEN_USER = DUST_UNIT_ID + DUST_SEP_TOKEN + "user";
