@@ -1,10 +1,13 @@
 package me.giskard.dust.mind;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import me.giskard.dust.Dust;
+import me.giskard.dust.DustException;
 
 //@SuppressWarnings({ "unchecked" })
 @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -25,27 +28,48 @@ public class DustMindUtils implements DustMindConsts {
 	}
 
 	public static void loadData(DustHandle target, DustHandle from, boolean deep, String... atts) {
-		if (deep) {
-			Dust.log(TOKEN_LEVEL_WARNING, "DustKBObject deep load not supported");
-		}
-
 		if (null == atts) {
 			return;
 		}
-		
+
 		DustMindAgent mind = ((DustMindHandle) target).mind;
 		Map mFrom = mind.getContent(from);
 		Map mTarget = mind.getContent(target);
 
 		if (0 == atts.length) {
 			for (String a : getAttNames(from)) {
-				mTarget.put(a, mFrom.get(a));
+				mTarget.put(a, copy(mFrom.get(a), deep));
 			}
 		} else {
 			for (String a : atts) {
-				mTarget.put(a, mFrom.get(a));
+				mTarget.put(a, copy(mFrom.get(a), deep));
 			}
 		}
+	}
+
+	public static Object copy(Object from, boolean deep) {
+		Object ret = from;
+
+		if (deep) {
+			try {
+				if (from instanceof Collection) {
+					ret = (Collection) from.getClass().getDeclaredConstructor().newInstance();
+					for (Object o : (Collection) from) {
+						((Collection) ret).add(copy(o, deep));
+					}
+				} else if (from instanceof Map) {
+					ret = (Map) from.getClass().getDeclaredConstructor().newInstance();
+					for (Object o : ((Map) from).entrySet()) {
+						Map.Entry e = (Entry) o;
+						((Map) ret).put(e.getKey(), copy(e.getValue(), deep));
+					}
+				}
+			} catch (Throwable e) {
+				DustException.wrap(e, "In deep copy");
+			}
+		}
+
+		return ret;
 	}
 
 	public static Map getValues(DustHandle from, Map target, boolean cutPrefix, String... atts) {
@@ -60,17 +84,17 @@ public class DustMindUtils implements DustMindConsts {
 
 			if (0 == atts.length) {
 				for (String a : getAttNames(from)) {
-					String k = cutPrefix  ? a.substring(a.indexOf(DUST_SEP_TOKEN)+1) : a;
+					String k = cutPrefix ? a.substring(a.indexOf(DUST_SEP_TOKEN) + 1) : a;
 					target.put(k, mFrom.get(a));
 				}
 			} else {
 				for (String a : atts) {
-					String k = cutPrefix  ? a.substring(a.indexOf(DUST_SEP_TOKEN)+1) : a;
+					String k = cutPrefix ? a.substring(a.indexOf(DUST_SEP_TOKEN) + 1) : a;
 					target.put(k, mFrom.get(a));
 				}
 			}
 		}
-		
+
 		return target;
 	}
 

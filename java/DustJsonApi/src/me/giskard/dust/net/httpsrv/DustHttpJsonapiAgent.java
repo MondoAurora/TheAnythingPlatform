@@ -162,19 +162,10 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 
 	private static final String[] NOFILTER = new String[] {};
 
-	public void cloneData(DustHandle unit, DustHandle h, Map<String, String[]> atts) {
+	private void cloneData(DustHandle unit, DustHandle h, Map<String, String[]> atts) {
 		DustHandle ot = h.getType();
 		DustHandle to = Dust.getHandle(unit, ot, h.getId(), DustOptCreate.Primary);
 		String[] a = atts.getOrDefault(ot.getId(), NOFILTER);
 		DustMindUtils.loadData(to, h, false, a);
-
-//		MindObject info = Dust.getObject(unit, infoType, unit.getUnitId(), MindOptCreate.None);
-//
-//		if (null != info) {
-//			for (String a : (Iterable<String>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, to, KEY_MAP_KEYS)) {
-//				Long c = Dust.access(DustAccess.Peek, 0L, info, a, TOKEN_COUNT);
-//				Dust.access(DustAccess.Set, c + 1, info, a, TOKEN_COUNT);
-//			}
-//		}
 	}
 }

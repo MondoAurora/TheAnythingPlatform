@@ -65,6 +65,10 @@ public class DustUtilsJson implements DustUtilsConsts {
 		JSONValue.writeJSONString(ob, w);
 	}
 	
+	public static String toJson(Object ob) {
+		return JSONValue.toJSONString(ob);
+	}
+	
 	@SuppressWarnings("rawtypes")
 	public static boolean cloneWithJson(Map source, Map MISC_GEN_TARGET, String keySource, String keyMISC_GEN_TARGET) {
 		Object ob = source.get(keySource);

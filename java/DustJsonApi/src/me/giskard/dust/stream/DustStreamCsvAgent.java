@@ -91,7 +91,7 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 		String colSep = Dust.access(DustAccess.Peek, ",", src, TOKEN_STREAM_COLSEP);
 
 		String keyCol = Dust.access(DustAccess.Peek, null, src, TOKEN_ID);
-		Collection<String> altKeyCols = Dust.access(DustAccess.Peek, null, src, TOKEN_ALIAS);
+		Collection<String> altKeyCols = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, src, TOKEN_ALIAS);
 //				Map<String, String> preProcess = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, src, TOKEN_PREPROCESS);
 
 		try (FileInputStream fis = new FileInputStream(f); BufferedReader br = new BufferedReader(new InputStreamReader(fis, encoding))) {

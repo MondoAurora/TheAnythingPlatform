@@ -1,6 +1,7 @@
 package me.giskard.dust.sandbox.browser;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collection;
@@ -9,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -38,7 +40,7 @@ import me.giskard.dust.utils.DustUtilsFactory;
 //@SuppressWarnings({ "unchecked" })
 public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent implements DustSwingBrowserConsts, DustUtilsConsts {
 
-	String selUnit;
+	DustHandle selUnit;
 
 	DustUtilsFactory<String, DefaultMutableTreeNode> roots = new DustUtilsFactory<String, DefaultMutableTreeNode>(new DustCreator<DefaultMutableTreeNode>() {
 		@Override
@@ -88,13 +90,15 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			switch (e.getActionCommand()) {
+			String cmd = e.getActionCommand();
+			switch (cmd) {
 			case TOKEN_UNIT:
-				selUnit = (String) cbUnit.getSelectedItem();
-				grid.setUnit(Dust.getUnit(selUnit, true));
+				String su = (String) cbUnit.getSelectedItem();
+				selUnit = Dust.getUnit(su, true);
+				grid.setUnit(selUnit);
 
 //				trUnitInfo.setRootVisible(false);
-				tm.setRoot(roots.get(selUnit));
+				tm.setRoot(roots.get(su));
 
 				lbCount.setText(DustUtils.toString(Dust.access(DustAccess.Peek, "?", mindInfo, TOKEN_KB_KNOWNUNITS, selUnit, TOKEN_COUNT)));
 
@@ -155,9 +159,9 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 			}
 			units.add(key);
 		}
-		
-		for ( String uk : units ) {
-			cbUnit.addItem(uk);			
+
+		for (String uk : units) {
+			cbUnit.addItem(uk);
 		}
 
 		cbUnit.addActionListener(al);
@@ -211,6 +215,28 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 			}
 		});
 
+		JPanel pnSearch = new JPanel(new BorderLayout());
+		pnSearch.add(new JScrollPane(taSearch), BorderLayout.CENTER);
+
+		DustHandle test = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD_TEST);
+		if (null != test) {
+			JPanel pnlBtns = new JPanel(new FlowLayout());
+			ActionListener testDispatch = new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Dust.access(DustAccess.Set, e.getActionCommand(), test, TOKEN_CMD);
+					Dust.access(DustAccess.Process, null, test);
+				}
+			};
+
+			Collection<String> tm = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, test, TOKEN_MEMBERS);
+			for (String tc : tm) {
+				JButton bt = DustGuiSwingUtils.createBtn(tc, testDispatch, JButton.class);
+				pnlBtns.add(bt);
+			}
+			pnSearch.add(pnlBtns, BorderLayout.SOUTH);
+		}
+
 		JPanel pnlLeft = new JPanel(new BorderLayout());
 
 		pnlLeft.add(cbUnit, BorderLayout.NORTH);
@@ -219,7 +245,7 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 
 		JComponent cGrid = DustGuiSwingUtils.setTitle(grid.getComp(), "Data");
 
-		JSplitPane spRight = DustGuiSwingUtils.createSplit(false, DustGuiSwingUtils.setTitle(new JScrollPane(taSearch), "Search"), cGrid, 0.1);
+		JSplitPane spRight = DustGuiSwingUtils.createSplit(false, DustGuiSwingUtils.setTitle(pnSearch, "Search"), cGrid, 0.1);
 
 		JSplitPane spMain = DustGuiSwingUtils.createSplit(true, pnlLeft, spRight, 0.3);
 
