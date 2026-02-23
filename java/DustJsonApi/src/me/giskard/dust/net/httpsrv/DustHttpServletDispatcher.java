@@ -34,11 +34,13 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		long ts = System.currentTimeMillis();
 		Throwable exception = null;
-		String pathInfo = request.getPathInfo();
+		String url = request.getPathInfo();
 
-		if (pathInfo.startsWith("/")) {
-			pathInfo = pathInfo.substring(1);
+		if (url.startsWith("/")) {
+			url = url.substring(1);
 		}
+
+		String pathInfo = url;
 
 		try {
 			Map target = null;
@@ -72,6 +74,7 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 				
 				Map params = new HashMap(target);
 
+				Dust.access(DustAccess.Set, url, params, TOKEN_TARGET, TOKEN_STREAM_URL);
 				Dust.access(DustAccess.Set, pathInfo, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
 
 				Dust.access(DustAccess.Set, request, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_REQUEST);

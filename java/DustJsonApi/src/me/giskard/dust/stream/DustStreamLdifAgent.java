@@ -15,13 +15,13 @@ import java.util.regex.Pattern;
 import me.giskard.dust.Dust;
 import me.giskard.dust.DustConsts.DustAgent;
 import me.giskard.dust.DustException;
-import me.giskard.dust.ldap.DustLDAPConsts;
+import me.giskard.dust.ldap.DustLdapNewConsts;
 import me.giskard.dust.mind.DustMindConsts;
 import me.giskard.dust.utils.DustUtils;
 import me.giskard.dust.utils.DustUtilsFile;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, DustMindConsts, DustLDAPConsts {
+public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, DustMindConsts, DustLdapNewConsts {
 
 	FileFilter ffLdif = new DustUtilsFile.ExtFilter(DUST_EXT_LDIF);
 

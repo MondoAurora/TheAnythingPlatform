@@ -275,7 +275,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			Map<String, Object> sp = null;
 
 			for (DustHandle hChg : changedUnits) {
-				if (unitApp.mh == hChg) {
+				if ((unitApp.mh == hChg) || (DustUtils.isEmpty(hChg.getId()))) {
 					continue;
 				}
 

@@ -14,7 +14,7 @@ import javax.naming.directory.SearchResult;
 import me.giskard.dust.Dust;
 import me.giskard.dust.DustConsts.DustAgent;
 
-public class DustLdapAgent extends DustAgent implements DustLDAPConsts {
+public class DustLdapAgent extends DustAgent implements DustLdapNewConsts {
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
@@ -26,13 +26,18 @@ public class DustLdapAgent extends DustAgent implements DustLDAPConsts {
 		String user = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_USER);
 		String pass = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_PASSWORD);
 		String auth = Dust.access(DustAccess.Peek, CONST_LDAP_SIMPLE, accInfo, TOKEN_AUTH);
+		
+		url = Dust.access(DustAccess.Peek, url, null, TOKEN_STREAM_URL);
+		user = Dust.access(DustAccess.Peek, user, null, TOKEN_USER);
+		pass = Dust.access(DustAccess.Peek, pass, null, TOKEN_PASSWORD);
 
 		environment.put(Context.INITIAL_CONTEXT_FACTORY, CONST_LDAP_DEF_CTX_FACTORY);
 		environment.put(Context.PROVIDER_URL, url);
 		environment.put(Context.SECURITY_AUTHENTICATION, auth);
 		environment.put(Context.SECURITY_PRINCIPAL, user);
 		environment.put(Context.SECURITY_CREDENTIALS, pass);
-		environment.put(CONST_LDAP_TIMEOUT, "10000");
+		environment.put(CONST_LDAP_READTIMEOUT, "10000");
+		environment.put(CONST_LDAP_CONNTIMEOUT, "10000");
 
 		DirContext ldapCtx = null;
 

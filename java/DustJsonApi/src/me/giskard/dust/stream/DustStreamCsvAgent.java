@@ -14,14 +14,13 @@ import java.util.Set;
 import me.giskard.dust.Dust;
 import me.giskard.dust.DustConsts.DustAgent;
 import me.giskard.dust.DustException;
-import me.giskard.dust.ldap.DustLDAPConsts;
 import me.giskard.dust.mind.DustMindConsts;
 import me.giskard.dust.utils.DustUtils;
 import me.giskard.dust.utils.DustUtilsFile;
 
 //@SuppressWarnings({ "unchecked", "rawtypes" })
 @SuppressWarnings({ "unchecked" })
-public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, DustMindConsts, DustLDAPConsts {
+public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, DustMindConsts {
 
 	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
 	DustHandle typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
