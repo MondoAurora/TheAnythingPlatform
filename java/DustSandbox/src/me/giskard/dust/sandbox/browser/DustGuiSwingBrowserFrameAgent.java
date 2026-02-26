@@ -5,10 +5,10 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import me.giskard.dust.Dust;
-import me.giskard.dust.DustConsts.DustAgent;
-import me.giskard.dust.gui.swing.DustGuiSwingConsts;
-import me.giskard.dust.gui.swing.DustGuiSwingUtils;
+import me.giskard.dust.core.Dust;
+import me.giskard.dust.core.DustConsts.DustAgent;
+import me.giskard.dust.mod.gui.swing.DustGuiSwingConsts;
+import me.giskard.dust.mod.gui.swing.DustGuiSwingUtils;
 
 //@SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustGuiSwingBrowserFrameAgent extends DustAgent implements DustGuiSwingConsts {

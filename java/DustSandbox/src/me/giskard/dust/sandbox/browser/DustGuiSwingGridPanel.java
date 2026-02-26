@@ -11,10 +11,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
-import me.giskard.dust.Dust;
-import me.giskard.dust.gui.swing.DustGuiSwingConsts;
-import me.giskard.dust.mind.DustMindUtils;
-import me.giskard.dust.utils.DustUtils;
+import me.giskard.dust.core.Dust;
+import me.giskard.dust.core.mind.DustMindUtils;
+import me.giskard.dust.core.utils.DustUtils;
+import me.giskard.dust.mod.gui.swing.DustGuiSwingConsts;
 
 //@SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustGuiSwingGridPanel extends DustGuiSwingConsts.JPanelAgent implements DustSwingBrowserConsts {

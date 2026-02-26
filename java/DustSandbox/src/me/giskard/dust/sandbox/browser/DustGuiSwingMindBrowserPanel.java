@@ -27,14 +27,14 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
-import me.giskard.dust.Dust;
-import me.giskard.dust.gui.swing.DustGuiSwingConsts;
-import me.giskard.dust.gui.swing.DustGuiSwingUtils;
-import me.giskard.dust.mvel.DustExprMvelUtils;
-import me.giskard.dust.utils.DustUtils;
-import me.giskard.dust.utils.DustUtilsConsts;
-import me.giskard.dust.utils.DustUtilsConstsJson.JsonApiFilter;
-import me.giskard.dust.utils.DustUtilsFactory;
+import me.giskard.dust.core.Dust;
+import me.giskard.dust.core.utils.DustUtils;
+import me.giskard.dust.core.utils.DustUtilsConsts;
+import me.giskard.dust.core.utils.DustUtilsFactory;
+import me.giskard.dust.core.utils.DustUtilsConstsJson.JsonApiFilter;
+import me.giskard.dust.mod.gui.swing.DustGuiSwingConsts;
+import me.giskard.dust.mod.gui.swing.DustGuiSwingUtils;
+import me.giskard.dust.mod.mvel.DustExprMvelUtils;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 //@SuppressWarnings({ "unchecked" })
