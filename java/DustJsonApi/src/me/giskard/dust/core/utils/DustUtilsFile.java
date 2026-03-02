@@ -8,13 +8,49 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import me.giskard.dust.core.Dust;
+import me.giskard.dust.core.DustException;
+
 public class DustUtilsFile extends DustUtils implements DustUtilsConsts {
+	
+	public static File ensureDir(String fName) throws Exception {
+		if (DustUtils.isEmpty(fName)) {
+			return null;
+		}
+		File f = new File(fName);
+		ensureDir(f);
+		return f;
+	}
+
 
 	public static void ensureDir(File f) throws Exception {
 		if ((null != f) && !f.isDirectory() && !f.mkdirs()) {
 			throw new IOException("failed to create directory " + f);
 		}
 	}
+	
+	public static File optGetFile(Object... path) throws IOException {
+		String p = DustUtils.toString(DustUtils.sbAppend(null, File.separator, false, path));
+		File f = new File(p);
+		return f.isFile() ? f : null;
+	}
+
+	public static File getFile(Object root, Object... path) throws Exception {
+
+		String fileName = Dust.access(DustAccess.Peek, null, root, path);
+		Dust.log(TOKEN_LEVEL_TRACE, "Accessing file", fileName);
+
+		File f;
+		if ( fileName.startsWith(File.separator) ) {
+			f = new File(fileName);
+		} else {
+			File home = new File(System.getProperty("user.home"));
+			f = DustUtils.isEmpty(fileName) ? home : new File(home, fileName);
+		}
+
+		return f;
+	}
+
 
 	public static String addHash2(String str) {
 		return addHash2(str, ".");
@@ -116,23 +152,27 @@ public class DustUtilsFile extends DustUtils implements DustUtilsConsts {
 
 		return count;
 	}
-	
-	public static boolean checkPathBound(String path) throws IOException {
-		return checkPathBound(path, new File("."));
+
+	public static boolean checkPathBound(String path, boolean throwEx) throws IOException {
+		return checkPathBound(path, new File("."), throwEx);
 	}
 
-	public static boolean checkPathBound(String path, File root) throws IOException {
-		File f = new File(root, path);
-		return f.getCanonicalPath().startsWith(root.getCanonicalPath());
+	public static boolean checkPathBound(String path, File root, boolean throwEx) throws IOException {
+		return checkPathBound(new File(root, path), root, throwEx);
 	}
 
-	public static File ensureDir(String fName) throws Exception {
-		if (DustUtils.isEmpty(fName)) {
-			return null;
+	public static boolean checkPathBound(File f, File root, boolean throwEx) throws IOException {
+		if ( null == root ) {
+			return true;
 		}
-		File f = new File(fName);
-		ensureDir(f);
-		return f;
+		
+		String fcp = f.getCanonicalPath();
+		String rcp = root.getCanonicalPath();
+		boolean ok = fcp.startsWith(rcp);
+		if (throwEx && !ok) {
+			return DustException.wrap(null, "File path bounds check failed", fcp, "root", rcp);
+		}
+		return ok;
 	}
 
 	public static String fileToString(File f) throws Exception {
@@ -146,7 +186,7 @@ public class DustUtilsFile extends DustUtils implements DustUtilsConsts {
 			}
 			return resultStringBuilder.toString();
 		}
-		
+
 		return null;
 	}
 

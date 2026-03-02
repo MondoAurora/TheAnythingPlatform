@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
-import me.giskard.dust.core.stream.DustStreamUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFile;
 import me.giskard.dust.mod.net.DustNetConsts;
@@ -29,7 +28,7 @@ public class DustHttpFileAgent extends DustAgent implements DustNetConsts {
 				path = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
 			}
 
-			if (!DustUtilsFile.checkPathBound(path)) {
+			if (!DustUtilsFile.checkPathBound(path, false)) {
 				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 				return null;
 			}
@@ -39,7 +38,7 @@ public class DustHttpFileAgent extends DustAgent implements DustNetConsts {
 			File f = null;
 
 			for (Object root : roots) {
-				if (null != (f = DustStreamUtils.optGetFile(root, path))) {
+				if (null != (f = DustUtilsFile.optGetFile(root, path))) {
 					break;
 				}
 

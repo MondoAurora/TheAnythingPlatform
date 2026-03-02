@@ -1,6 +1,7 @@
 package me.giskard.dust.core;
 
-import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -75,38 +76,50 @@ public class Dust implements DustConsts, DustMindConsts {
 		String appName = args[0];
 		String appUnitPath = args[1];
 		DustMind.Bootloader bootLoader = createInstance(Class.forName("me.giskard.dust.core.stream.DustStreamJsonApiSerializerAgent"));
+		DustMind.StreamSource streamSource = createInstance(Class.forName("me.giskard.dust.core.stream.DustStreamSrcFileAgent"));
 
-		start(appName, appUnitPath, bootLoader);
+		start(appName, appUnitPath, bootLoader, streamSource);
 	}
 
-	public static void start(String appName, String appUnitPath, DustMind.Bootloader bootLoader) throws Exception {
+	public static void start(String appName, String appUnitPath, DustMind.Bootloader bootLoader, DustMind.StreamSource streamSource) throws Exception {
 		long start = System.currentTimeMillis();
 
 		try {
 			MIND = createInstance(Class.forName("me.giskard.dust.core.mind.DustMindAgent"));
 			AGENTS.put(TOKEN_MIND, MIND);
 
-			File f = new File(appUnitPath);
-			appUnit = MIND.bootLoadAppUnit(null, f, bootLoader);
+//			File f = new File(appUnitPath);
+//			int u = appUnitPath.lastIndexOf("/");
+//			String root = (-1 == u) ? "." : appUnitPath.substring(0, u);
+//			String unitId = DustUtils.cutPostfix(appUnitPath.substring(u + 1), ".");
+			int s = appUnitPath.lastIndexOf(".");
+
+//			optLoadAppUnit(unitId, bootLoader, f);
+			appUnit = optExtAppUnit(null, appUnitPath, streamSource, bootLoader);
 
 			String userName = System.getProperty("user.name");
 			if (!DustUtils.isEmpty(userName)) {
-				File d = f.getAbsoluteFile().getParentFile();
-				String fn = f.getName();
-				int s = fn.lastIndexOf(".");
-				File f2 = new File(d, fn.substring(0, s) + "." + userName + DUST_EXT_JSON);
-				MIND.bootLoadAppUnit(appUnit, f2, bootLoader);
+				String userExtPath = new StringBuilder(appUnitPath).insert(s, "." + userName).toString();
+				optExtAppUnit(null, userExtPath, streamSource, bootLoader);
+//				File d = f.getAbsoluteFile().getParentFile();
+//				String fn = f.getName();
+//				int s = fn.lastIndexOf(".");
+//				File f2 = new File(d, fn.substring(0, s) + "." + userName + DUST_EXT_JSON);
+//				MIND.bootLoadAppUnit(appUnit, f2, bootLoader);
 			}
 
-			MIND.bootLoadAppUnit(appUnit, new File(DUST_CRED_FILE), bootLoader);
+			optExtAppUnit(null, DUST_CRED_FILE, streamSource, bootLoader);
+//			MIND.bootLoadAppUnit(appUnit, new File(DUST_CRED_FILE), bootLoader);
 
 			DustHandle appType = DustUtils.getMindMeta(TOKEN_TYPE_APP);
 			appHandle = getHandle(appUnit, appType, appName, DustOptCreate.None);
 
-			int s = appUnitPath.lastIndexOf(".");
-			File fBin = new File(appUnitPath.substring(0, s) + "." + DUST_PLATFORM_JAVA + appUnitPath.substring(s));
-			MIND.bootLoadAppUnit(appUnit, fBin, bootLoader);
-
+//			int s = appUnitPath.lastIndexOf(".");
+//			File fBin = new File(appUnitPath.substring(0, s) + "." + DUST_PLATFORM_JAVA + appUnitPath.substring(s));
+//			MIND.bootLoadAppUnit(appUnit, fBin, bootLoader);
+			String binPath = new StringBuilder(appUnitPath).insert(s, "." + DUST_PLATFORM_JAVA).toString();
+			optExtAppUnit(null, binPath, streamSource, bootLoader);
+			
 			Dust.log(TOKEN_LEVEL_INFO, "MemInfo before init", DustDevUtils.memInfo());
 
 			MIND.init();
@@ -135,6 +148,13 @@ public class Dust implements DustConsts, DustMindConsts {
 			}
 		} finally {
 			Dust.log(TOKEN_LEVEL_TRACE, "Dust finished", System.currentTimeMillis() - start, "msec.");
+		}
+	}
+
+	public static DustHandle optExtAppUnit(String root, String file, DustMind.StreamSource streamSource, DustMind.Bootloader bootLoader)
+			throws Exception, IOException {
+		try (InputStream is = streamSource.optGetStream(TOKEN_CMD_LOAD, root, file)) {
+			return (null == is) ? null : MIND.bootLoadAppUnit(appUnit, file, is, bootLoader);
 		}
 	}
 

@@ -3,6 +3,10 @@ package me.giskard.dust.core.stream;
 import me.giskard.dust.core.DustConsts;
 
 public interface DustStreamConsts extends DustConsts {
+	String TOKEN_INPUT_STREAM = DUST_UNIT_ID + DUST_SEP_TOKEN + "inputStream";
+	String TOKEN_OUTPUT_STREAM = DUST_UNIT_ID + DUST_SEP_TOKEN + "outputStream";
+	String TOKEN_STREAM_SOURCE = DUST_UNIT_ID + DUST_SEP_TOKEN + "streamSource";
+
 	String TOKEN_STREAM_ROOTFOLDER = DUST_UNIT_ID + DUST_SEP_TOKEN + "rootFolder";
 	String TOKEN_STREAM_URL = DUST_UNIT_ID + DUST_SEP_TOKEN + "url";
 	String TOKEN_STREAM_ENCODING = DUST_UNIT_ID + DUST_SEP_TOKEN + "encoding";

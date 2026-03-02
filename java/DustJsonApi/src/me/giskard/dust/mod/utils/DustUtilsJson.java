@@ -1,10 +1,10 @@
 package me.giskard.dust.mod.utils;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.Reader;
 import java.io.Writer;
 import java.nio.charset.Charset;
 import java.util.Map;
@@ -14,62 +14,40 @@ import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 
 import me.giskard.dust.core.utils.DustUtilsConsts;
-import me.giskard.dust.core.utils.DustUtilsFile;
 
 @SuppressWarnings("unchecked")
 public class DustUtilsJson implements DustUtilsConsts {
 
-	public static <RetType> RetType readJson(String fileName) throws Exception {
-		return readJson(new File(fileName));
+	public static String toJson(Object ob) {
+		return JSONValue.toJSONString(ob);
 	}
-
+	
 	public static <RetType> RetType parseJson(String str) throws Exception {
 		return (RetType) JSONValue.parse(str);
 	}
 
-	public static <RetType> RetType readJson(File f) throws Exception {
-		return readJson(f, DUST_CHARSET_UTF8);
-	}
-
-	public static <RetType> RetType readJson(File f, String encoding) throws Exception {
+	public static <RetType> RetType readJson(InputStream is, String encoding) throws Exception {
 		Object ret = null;
 
-		if (f.isFile()) {
-			try (FileReader r = new FileReader(f, Charset.forName(encoding))) {
+		if (null != is) {
+			try (Reader r = new InputStreamReader(is, Charset.forName(encoding))) {
 				JSONParser p = new JSONParser();
 				ret = p.parse(r);
 			}
 		}
-
+		
 		return (RetType) ret;
 	}
 
-	public static void writeJson(OutputStream os, Object ob) throws Exception {
-		try (Writer w = new OutputStreamWriter(os)) {
+	public static void writeJson(OutputStream os, Object ob, String encoding) throws Exception {
+		try (Writer w = new OutputStreamWriter(os, encoding)) {
 			writeJson(w, ob);
 			os.flush();
 		}
 	}
 
-	public static void writeJson(String fileName, Object ob) throws Exception {
-		writeJson(new File(fileName), ob);
-	}
-
-	public static void writeJson(File f, Object ob) throws Exception {
-		DustUtilsFile.ensureDir(f.getParentFile());
-		
-		try (FileWriter w = new FileWriter(f)) {
-			writeJson(w, ob);
-			w.flush();
-		}
-	}
-
 	public static void writeJson(Writer w, Object ob) throws Exception {
 		JSONValue.writeJSONString(ob, w);
-	}
-	
-	public static String toJson(Object ob) {
-		return JSONValue.toJSONString(ob);
 	}
 	
 	@SuppressWarnings("rawtypes")
@@ -90,6 +68,4 @@ public class DustUtilsJson implements DustUtilsConsts {
 		Object clone = JSONValue.parse(rs);
 		return (Map) clone;
 	}
-
-
 }

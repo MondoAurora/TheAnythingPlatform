@@ -1,30 +1,26 @@
 package me.giskard.dust.mod.stream;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileFilter;
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Base64;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
-import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.mind.DustMindConsts;
 import me.giskard.dust.core.stream.DustStreamConsts;
+import me.giskard.dust.core.stream.DustStreamUtils;
 import me.giskard.dust.core.utils.DustUtils;
-import me.giskard.dust.core.utils.DustUtilsFile;
 import me.giskard.dust.mod.ldap.DustLdapNewConsts;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, DustMindConsts, DustLdapNewConsts {
-
-	FileFilter ffLdif = new DustUtilsFile.ExtFilter(DUST_EXT_LDIF);
 
 	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
 	DustHandle typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
@@ -33,6 +29,8 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 	protected Object process(DustAccess access) throws Exception {
 
 		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
+		Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_SOURCE);
+		Map<String, Object> sp = new HashMap<String, Object>();
 
 		switch (cmd) {
 		case TOKEN_CMD_LOAD:
@@ -40,35 +38,35 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 			String unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_META, TOKEN_KEY);
 			DustHandle unitMeta = Dust.getUnit(unitId, true);
 
-			String fn = Dust.access(DustAccess.Peek, null, null, TOKEN_META, TOKEN_PATH);
+			String metaPath = Dust.access(DustAccess.Peek, null, null, TOKEN_META, TOKEN_PATH);
 
-			if (!DustUtils.isEmpty(fn)) {
-				File f = new File(fn);
+			if (!DustUtils.isEmpty(metaPath)) {				
+				sp.put(TOKEN_CMD, TOKEN_CMD_INFO);
+				sp.put(TOKEN_PATH, metaPath);
 
-				DustUtilsFile.FileProcessor fp = new DustUtilsFile.FileProcessor() {
-					@Override
-					public boolean processFile(File f) {
-						try {
-							readSchemaLdif(unitMeta, f);
-						} catch (Throwable e) {
-							DustException.swallow(e, "Processing schema LDIF", fn);
+				Dust.access(DustAccess.Process, sp, streamSource);
+
+				Collection<String> metaNames = (Collection<String>) sp.get(TOKEN_MEMBERS);
+				
+				for (String mn  : metaNames) {
+					if ( mn.endsWith(DUST_EXT_LDIF) ) {
+						try ( InputStream is = DustStreamUtils.getStream(TOKEN_CMD_LOAD, mn, streamSource) ) {
+							readSchemaLdif(unitMeta, mn, is);
 						}
-						return true;
 					}
-				};
-
-				DustUtilsFile.procRecursive(f, fp, ffLdif);
+				}
 			}
 
 			for (Map<String, Object> src : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, null, TOKEN_SOURCE))) {
 
 				String fileName = Dust.access(DustAccess.Peek, null, src, TOKEN_PATH);
-				File f = new File(fileName);
 
 				unitId = Dust.access(DustAccess.Peek, null, src, TOKEN_DATA);
 				DustHandle unit = Dust.getUnit(unitId, true);
-
-				readDataLdif(unit, unitMeta, src, f);
+				
+				try ( InputStream is = DustStreamUtils.getStream(TOKEN_CMD_LOAD, fileName, streamSource) ) {
+					readDataLdif(unit, unitMeta, src, is);
+				}
 			}
 
 			break;
@@ -80,13 +78,13 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 		return null;
 	}
 
-	protected void readSchemaLdif(DustHandle unit, File f) throws Exception {
+	protected void readSchemaLdif(DustHandle unit, String fileName, InputStream is) throws Exception {
 		Pattern ptName = Pattern.compile(".*NAME\\s+'([^']+)'.*");
 		Pattern ptDesc = Pattern.compile(".*DESC\\s+'([^']*)'.*");
 		Pattern ptMust = Pattern.compile(".*MUST\\s+\\(([^)]*)\\).*");
 		Pattern ptMay = Pattern.compile(".*MAY\\s+\\(([^)]*)\\).*");
 
-		try (FileInputStream fis = new FileInputStream(f); BufferedReader br = new BufferedReader(new InputStreamReader(fis))) {
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
 			String line;
 
 			DustHandle h = null;
@@ -126,7 +124,7 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 					str = m.group(1);
 					h = Dust.getHandle(unit, type, str, DustOptCreate.Meta);
 					Dust.access(DustAccess.Set, str, h, TOKEN_KEY);
-					Dust.access(DustAccess.Set, DustUtils.cutPostfix(f.getName(), "."), h, TOKEN_PARENT);
+					Dust.access(DustAccess.Set, DustUtils.cutPostfix(fileName, "."), h, TOKEN_PARENT);
 				}
 
 				m = ptDesc.matcher(val);
@@ -267,12 +265,12 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 
 	}
 
-	public void readDataLdif(DustHandle unit, DustHandle unitMeta, Object params, File f) throws Exception {
+	public void readDataLdif(DustHandle unit, DustHandle unitMeta, Object params, InputStream is) throws Exception {
 		LdifBlock block = new LdifBlock(unit, unitMeta, params);
 
 		int lc = 0;
 
-		try (FileInputStream fis = new FileInputStream(f); BufferedReader br = new BufferedReader(new InputStreamReader(fis, block.encoding))) {
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(is, block.encoding))) {
 			String line;
 
 			while ((line = br.readLine()) != null) {
@@ -286,5 +284,4 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 			block.optAddVal();
 		}
 	}
-
 }

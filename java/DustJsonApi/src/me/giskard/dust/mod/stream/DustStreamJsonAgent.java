@@ -1,6 +1,6 @@
 package me.giskard.dust.mod.stream;
 
-import java.io.File;
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
@@ -9,6 +9,7 @@ import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.mind.DustMindConsts;
 import me.giskard.dust.core.stream.DustStreamConsts;
+import me.giskard.dust.core.stream.DustStreamUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.mod.utils.DustUtilsJson;
 
@@ -34,15 +35,16 @@ public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, 
 				String type = Dust.access(DustAccess.Peek, null, src, TOKEN_TYPE);
 				DustHandle tType = Dust.getHandle(meta, typeType, type, DustOptCreate.Meta);
 
-				String fileName = Dust.access(DustAccess.Peek, null, src, TOKEN_PATH);
-				File f = new File(fileName);
-
 				String unitId = Dust.access(DustAccess.Peek, null, src, TOKEN_DATA);
 				DustHandle unit = Dust.getUnit(unitId, true);
 
+				String fileName = Dust.access(DustAccess.Peek, null, src, TOKEN_PATH);
 				String encoding = Dust.access(DustAccess.Peek, DUST_CHARSET_UTF8, src, TOKEN_STREAM_ENCODING);
-				Map<String, Object> content = DustUtilsJson.readJson(f, encoding);
-
+				
+				Map<String, Object> content = null;
+				try (InputStream is = DustStreamUtils.getStream(TOKEN_CMD_LOAD, fileName)) {
+					content = DustUtilsJson.readJson(is, encoding);
+				}
 				String collId = Dust.access(DustAccess.Peek, null, src, TOKEN_SOURCE);
 				Collection<Map<String, Object>> arr = DustUtils.simpleGet(content, collId);
 

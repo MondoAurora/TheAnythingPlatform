@@ -1,6 +1,6 @@
 package me.giskard.dust.core.mind;
 
-import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -721,15 +721,16 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 	}
 
 	@Override
-	protected synchronized DustHandle bootLoadAppUnit(DustHandle appUnit, File f, Bootloader bootLoader) throws Exception {
-		if (f.isFile()) {
+	protected synchronized DustHandle bootLoadAppUnit(DustHandle appUnit, String path, InputStream is, Bootloader bootLoader) throws Exception {
 			if (null == appUnit) {
-				String unitId = DustUtils.cutPostfix(f.getName(), ".");
+//				String unitId = DustUtils.cutPostfix(f.getName(), ".");
+			int u = path.lastIndexOf("/");
+			String unitId = DustUtils.cutPostfix(path.substring(u + 1), ".");
+
 				this.unitApp = getUnitIdea(unitId, true);
 				appUnit = this.unitApp.mh;
 			}
-			bootLoader.loadFile(appUnit, f);
-		}
+			bootLoader.loadFile(appUnit, is);
 
 		return appUnit;
 	}
@@ -763,7 +764,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 				Dust.access(DustAccess.Process, p, defaultSerializer);
 
-				Collection<String> unitNames = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, p, TOKEN_MEMBERS);
+				Collection<String> fileNames = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, p, TOKEN_MEMBERS);
 
 				DustUtilsFactory<String, DustHandle> atts = new DustUtilsFactory<String, DustHandle>(new DustCreator<DustHandle>() {
 					@Override
@@ -778,7 +779,13 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 				Set<String> metaUnitsGlobal = new HashSet<>();
 				int totalCount = 0;
 
-				for (String un : unitNames) {
+				for (String fn : fileNames) {
+					if (!fn.endsWith(DUST_EXT_JSON)) {
+						continue;
+					}
+					String un = DustUtils.cutPostfix(fn, ".");
+					un = DustUtils.getPostfix(un, "/");
+
 					if (DustUtils.isEqual(uid, un)) {
 						Dust.log(TOKEN_LEVEL_TRACE, "SKIPPING unit info", un);
 						continue;

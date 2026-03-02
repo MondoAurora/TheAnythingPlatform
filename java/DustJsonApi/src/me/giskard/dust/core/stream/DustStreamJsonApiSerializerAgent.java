@@ -1,6 +1,7 @@
 package me.giskard.dust.core.stream;
 
-import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Writer;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -41,7 +42,11 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 		String unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_KEY);
 		DustHandle unit = Dust.access(DustAccess.Peek, null, null, TOKEN_DATA);
 		Dust.access(DustAccess.Delete, null, null, TOKEN_DATA);
-		File f = null;
+
+		Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_SOURCE);
+		Map<String, Object> sp = new HashMap<String, Object>();
+
+		String fileName = null;
 
 		if (!DustUtils.isEmpty(unitId)) {
 			if (null == unit) {
@@ -52,32 +57,50 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 			if (fn.contains("{")) {
 				fn = MessageFormat.format(fn, unitId);
 			}
-			String fileName = DustUtils.sbAppend(null, "/", false, Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ROOTFOLDER), fn + DUST_EXT_JSON).toString();
+			fileName = fn + DUST_EXT_JSON;
 
-			f = new File(fileName);
+//			fileName = DustUtils.sbAppend(null, "/", false, Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ROOTFOLDER), fn + DUST_EXT_JSON).toString();
+//			f = new File(fileName);
 		}
+
 		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
+
 		switch (cmd) {
 		case TOKEN_CMD_INFO:
-			String fileName = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ROOTFOLDER);
 
-			f = new File(fileName);
+			fileName = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ROOTFOLDER);
 
-			Dust.access(DustAccess.Reset, null, DustContext.Input, TOKEN_MEMBERS);
+			sp.put(TOKEN_CMD, TOKEN_CMD_INFO);
+			sp.put(TOKEN_STREAM_ROOTFOLDER, fileName);
 
-			if (f.isDirectory()) {
-				for (String fn : f.list()) {
-					if (fn.endsWith(DUST_EXT_JSON)) {
-						String unitName = DustUtils.cutPostfix(fn, ".");
-						Dust.access(DustAccess.Insert, unitName, DustContext.Input, TOKEN_MEMBERS);
-					}
-				}
-			}
+			Dust.access(DustAccess.Process, sp, streamSource);
+
+			Object files = sp.get(TOKEN_MEMBERS);
+			Dust.access(DustAccess.Set, files, DustContext.Input, TOKEN_MEMBERS);
+
+//			f = new File(fileName);
+//
+//			Dust.access(DustAccess.Reset, null, DustContext.Input, TOKEN_MEMBERS);
+//
+//			if (f.isDirectory()) {
+//				for (String fn : f.list()) {
+//					if (fn.endsWith(DUST_EXT_JSON)) {
+//						String unitName = DustUtils.cutPostfix(fn, ".");
+//						Dust.access(DustAccess.Insert, unitName, DustContext.Input, TOKEN_MEMBERS);
+//					}
+//				}
+//			}
 
 			break;
 		case TOKEN_CMD_LOAD:
-			loadFile(unit, f);
+//			sp.put(TOKEN_CMD, TOKEN_CMD_LOAD);
+//			sp.put(TOKEN_PATH, fileName);
+//
+//			InputStream is = Dust.access(DustAccess.Process, sp, streamSource);
 
+			try (InputStream is = DustStreamUtils.getStream(TOKEN_CMD_LOAD, fileName)) {
+				loadFile(unit, is);
+			}
 			break;
 		case TOKEN_CMD_SAVE:
 			Map<String, Object> target = new HashMap<>();
@@ -144,11 +167,18 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 
 			Dust.access(DustAccess.Set, data.size(), target, JsonApiMember.meta, JsonApiMember.count);
 
-			if (null == f) {
+			if (null == fileName) {
 				Writer w = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_WRITER);
 				DustUtilsJson.writeJson(w, target);
 			} else {
-				DustUtilsJson.writeJson(f, target);
+//				sp.put(TOKEN_CMD, TOKEN_CMD_SAVE);
+//				sp.put(TOKEN_PATH, fileName);
+//
+//				OutputStream os = Dust.access(DustAccess.Process, sp, streamSource);
+
+				try (OutputStream os = DustStreamUtils.getStream(TOKEN_CMD_SAVE, fileName)) {
+					DustUtilsJson.writeJson(os, target, DUST_CHARSET_UTF8);
+				}
 			}
 			break;
 
@@ -176,26 +206,29 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 	}
 
 	@Override
-	public void loadFile(DustHandle unit, File f) throws Exception {
-		if (f.isFile()) {
-			Dust.log(TOKEN_LEVEL_INFO, "Loading unit", unit, "from file", f.getCanonicalPath());
-			Map<String, Object> content = DustUtilsJson.readJson(f);
-
-			String str;
-
-			str = DustUtils.simpleGet(content, JsonApiMember.jsonapi, JsonApiMember.version);
-
-			if (!DustUtils.isEqual(JSONAPI_VERSION, str)) {
-				DustException.wrap(null, "Loading JSON:API version", str, "does not match", JSONAPI_VERSION);
-			}
-
-			for (Map<String, Object> ca : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, content, JsonApiMember.data))) {
-				loadData(unit, ca, false);
-			}
-			for (Map<String, Object> ca : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, content, JsonApiMember.included))) {
-				loadData(unit, ca, true);
-			}
+	public void loadFile(DustHandle unit, InputStream is) throws Exception {
+		if ( null == is ) {
+			return;
 		}
+//		if (f.isFile()) {
+//			Dust.log(TOKEN_LEVEL_INFO, "Loading unit", unit, "from file", f.getCanonicalPath());
+		Map<String, Object> content = DustUtilsJson.readJson(is, DUST_CHARSET_UTF8);
+
+		String str;
+
+		str = DustUtils.simpleGet(content, JsonApiMember.jsonapi, JsonApiMember.version);
+
+		if (!DustUtils.isEqual(JSONAPI_VERSION, str)) {
+			DustException.wrap(null, "Loading JSON:API version", str, "does not match", JSONAPI_VERSION);
+		}
+
+		for (Map<String, Object> ca : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, content, JsonApiMember.data))) {
+			loadData(unit, ca, false);
+		}
+		for (Map<String, Object> ca : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, content, JsonApiMember.included))) {
+			loadData(unit, ca, true);
+		}
+//		}
 	}
 
 	static void loadData(DustHandle unit, Map<String, Object> data, boolean included) {

@@ -1,14 +1,18 @@
 package me.giskard.dust.core;
 
-import java.io.File;
+import java.io.InputStream;
 
 public abstract class DustMind extends DustConsts.DustAgent implements DustConsts {
 	
-	public interface Bootloader {
-		void loadFile(DustHandle unit, File f) throws Exception;
+	public interface StreamSource {
+		<StreamType> StreamType optGetStream(String cmd, String root, String path) throws Exception;
 	}
 	
-	protected abstract DustHandle bootLoadAppUnit(DustHandle appUnit, File f, Bootloader bootLoader) throws Exception;
+	public interface Bootloader {
+		void loadFile(DustHandle unit, InputStream is) throws Exception;
+	}
+	
+	protected abstract DustHandle bootLoadAppUnit(DustHandle appUnit, String unitId, InputStream is, Bootloader bootLoader) throws Exception;
 
 	protected abstract DustHandle getHandle(DustHandle unit, DustHandle type, String id, DustOptCreate optCreate);
 	protected abstract DustHandle getUnit(String unitId, boolean createIfMissing);

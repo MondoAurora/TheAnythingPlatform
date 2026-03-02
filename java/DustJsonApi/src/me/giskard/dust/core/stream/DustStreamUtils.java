@@ -1,8 +1,8 @@
 package me.giskard.dust.core.stream;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import me.giskard.dust.core.Dust;
@@ -11,59 +11,61 @@ import me.giskard.dust.core.mind.DustMindConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsConsts;
 
-public class DustStreamUtils implements DustUtilsConsts, DustMindConsts {
+public class DustStreamUtils implements DustUtilsConsts, DustMindConsts, DustStreamConsts {
 
-	public static File optGetFile(Object... path) throws IOException {
-		String p = DustUtils.toString(DustUtils.sbAppend(null, File.separator, false, path));
-		File f = new File(p);
-		return f.isFile() ? f : null;
+	public static <RetType> RetType getStream() {
+		Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_SOURCE);
+		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
+		String fileName = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
+		
+		return getStream(cmd, fileName, streamSource);
 	}
 
-	public static File getFile(Object root, Object... path) throws Exception {
+	public static <RetType> RetType getStream(String cmd, String fileName) {
+		Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_SOURCE);
 
-		String fileName = Dust.access(DustAccess.Peek, null, root, path);
-		Dust.log(TOKEN_LEVEL_TRACE, "Accessing file", fileName);
+		return getStream(cmd, fileName, streamSource);
+	}
 
-		File f;
-		if ( fileName.startsWith(File.separator) ) {
-			f = new File(fileName);
-		} else {
-			File home = new File(System.getProperty("user.home"));
-			f = DustUtils.isEmpty(fileName) ? home : new File(home, fileName);
-		}
+	public static <RetType> RetType getStream(String cmd, String fileName, Object streamSource) {
+		Map<String, Object> sp = new HashMap<String, Object>();
 
-		return f;
+		sp.put(TOKEN_CMD, cmd);
+		sp.put(TOKEN_PATH, fileName);
+
+		return Dust.access(DustAccess.Process, sp, streamSource);
+
 	}
 
 	public static String csvOptEscape(String valStr, String sepChar) {
-		if ( null == valStr ) {
+		if (null == valStr) {
 			return "";
 		}
 
 		String ret = valStr.trim();
-		
-		if ( valStr.startsWith("\"") && valStr.endsWith("\"")) {
+
+		if (valStr.startsWith("\"") && valStr.endsWith("\"")) {
 			return ret;
 		}
 
-		if ( valStr.contains(sepChar) || valStr.contains("\"") || valStr.contains("\n") ) {
+		if (valStr.contains(sepChar) || valStr.contains("\"") || valStr.contains("\n")) {
 			ret = csvEscape(valStr, true);
 		}
 		return ret;
 	}
-	
+
 	static Pattern PT_ESC = Pattern.compile("\\s+", Pattern.MULTILINE);
 
 	public static String csvEscape(String valStr, boolean addQuotes) {
 		String ret = "";
-		
+
 		if (null != valStr) {
-			
+
 			ret = valStr.replace("\"", "\"\"");
 			ret = PT_ESC.matcher(ret).replaceAll(" ");
 		}
 
-		if ( addQuotes ) {
+		if (addQuotes) {
 			ret = "\"" + ret + "\"";
 		}
 
@@ -71,16 +73,16 @@ public class DustStreamUtils implements DustUtilsConsts, DustMindConsts {
 	}
 
 	public static String csvOptUnEscape(String valStr, boolean removeQuotes) {
-		if ( DustUtils.isEmpty(valStr) || !valStr.contains("\"") ) {
+		if (DustUtils.isEmpty(valStr) || !valStr.contains("\"")) {
 			return valStr;
 		}
 
 		String ret = valStr;
-		if ( removeQuotes ) {
-			if ( ret.startsWith("\"") ) {
+		if (removeQuotes) {
+			if (ret.startsWith("\"")) {
 				ret = ret.substring(1);
 			}
-			if ( ret.endsWith("\"") ) {
+			if (ret.endsWith("\"")) {
 				ret = ret.substring(0, ret.length() - 1);
 			}
 		}
@@ -114,17 +116,17 @@ public class DustStreamUtils implements DustUtilsConsts, DustMindConsts {
 			for (char c : line.toCharArray()) {
 				++pos;
 
-				switch ( c ) {
+				switch (c) {
 				case 65279:
 					// BOM?
 					break;
 				case '\"':
-					if ( null == sb ) {
+					if (null == sb) {
 						inQuote = true;
 						sb = new StringBuilder();
 						prevQuote = false;
-					} else if ( inQuote ) {
-						if ( prevQuote ) {
+					} else if (inQuote) {
+						if (prevQuote) {
 							sb.append(c);
 							prevQuote = false;
 						} else {
@@ -135,22 +137,22 @@ public class DustStreamUtils implements DustUtilsConsts, DustMindConsts {
 					}
 					break;
 				default:
-					if ( c == sep ) {
-						if ( null != sb ) {
-							if ( inQuote && !prevQuote ) {
+					if (c == sep) {
+						if (null != sb) {
+							if (inQuote && !prevQuote) {
 								sb.append(c);
 							} else {
 								target.add(sb.toString());
 								sb = null;
 							}
-						} else if ( !prevQuote ) {
+						} else if (!prevQuote) {
 							target.add("");
 						}
 						prevQuote = false;
 					} else {
 						prevQuote = false;
-						if ( null == sb ) {
-							if ( Character.isWhitespace(c) ) {
+						if (null == sb) {
+							if (Character.isWhitespace(c)) {
 								break;
 							}
 							sb = new StringBuilder();
@@ -162,15 +164,15 @@ public class DustStreamUtils implements DustUtilsConsts, DustMindConsts {
 				}
 			}
 
-			if ( null != sb ) {
-				if ( inQuote && !prevQuote ) {
+			if (null != sb) {
+				if (inQuote && !prevQuote) {
 					sb.append("\n");
 					return false;
 				} else {
 					target.add(sb.toString());
 					sb = null;
 				}
-			} else if ( 0 < pos ) {
+			} else if (0 < pos) {
 				target.add("");
 			}
 
