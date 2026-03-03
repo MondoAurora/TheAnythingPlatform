@@ -20,7 +20,7 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustMind.Stream
 		String path = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
 
 		File r = new File(root);
-		File f = new File(r, path);
+		File f = DustUtils.isEmpty(path) ? r : new File(r, path);
 
 		String token = null;
 		switch (cmd) {

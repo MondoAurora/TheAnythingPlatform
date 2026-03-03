@@ -1,22 +1,20 @@
 package me.giskard.dust.core.stream;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import me.giskard.dust.core.Dust;
-import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.mind.DustMindConsts;
 import me.giskard.dust.core.utils.DustUtils;
-import me.giskard.dust.core.utils.DustUtilsFile;
 
 //@SuppressWarnings({ "unchecked", "rawtypes" })
 @SuppressWarnings({ "unchecked" })
@@ -35,40 +33,75 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 
 			for (Map<String, Object> src : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, null, TOKEN_SOURCE))) {
 				String fileName = Dust.access(DustAccess.Peek, null, src, TOKEN_PATH);
-				File f = new File(fileName);
-				
-				String grp = f.getName();
+				String grp = DustUtils.getPostfix(fileName, "/");
 
 				String metaId = Dust.access(DustAccess.Peek, grp + "Meta.1", src, TOKEN_META);
 				DustHandle meta = Dust.getUnit(metaId, true);
 
-				if (f.isFile()) {
-					loadFile(f, src, meta);
-				} else if (f.isDirectory()) {
-					String postfix = Dust.access(DustAccess.Peek, null, src, TOKEN_POSTFIX);
-					String prefix = f.getName();
+				Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_SOURCE);
+				Map<String, Object> sp = new HashMap<String, Object>();
 
-					DustUtilsFile.procRecursive(f, new DustUtilsFile.FileProcessor() {
+				sp.put(TOKEN_CMD, TOKEN_CMD_INFO);
+				sp.put(TOKEN_PATH, fileName);
 
-						@Override
-						public boolean processFile(File f) {
-							try {
-								String type = f.getName();
+				Dust.access(DustAccess.Process, sp, streamSource);
+
+				Collection<String> fileNames = (Collection<String>) sp.get(TOKEN_MEMBERS);
+
+				boolean dir = fileName.length() > 1;
+
+				for (String fn : fileNames) {
+					if (fn.endsWith(DUST_EXT_CSV)) {
+						try (InputStream is = DustStreamUtils.getStream(TOKEN_CMD_LOAD, fn, streamSource)) {
+							if (dir) {
+								String postfix = Dust.access(DustAccess.Peek, null, src, TOKEN_POSTFIX);
+								String prefix = DustUtils.getPostfix(fn, "/");
+
+								String type = prefix;
 								if (type.endsWith(postfix)) {
 									type = type.substring(0, type.length() - postfix.length());
 								}
-								type = prefix + "_" + type;
+								type = grp + "_" + type;
 
 								Dust.access(DustAccess.Set, type, src, TOKEN_TYPE);
 								Dust.access(DustAccess.Set, type + ".1", src, TOKEN_DATA);
-								loadFile(f, src, meta);
-							} catch (Throwable e) {
-								DustException.swallow(e, "Processing csv file", f.getAbsolutePath());
 							}
-							return true;
+
+							loadFile(is, src, meta);
 						}
-					}, new DustUtilsFile.ExtFilter(DUST_EXT_CSV));
+					}
 				}
+
+//				File f = new File(fileName);
+//				
+//
+//				if (f.isFile()) {
+//					loadFile(f, src, meta);
+//				} else if (f.isDirectory()) {
+//					String postfix = Dust.access(DustAccess.Peek, null, src, TOKEN_POSTFIX);
+//					String prefix = f.getName();
+//
+//					DustUtilsFile.procRecursive(f, new DustUtilsFile.FileProcessor() {
+//
+//						@Override
+//						public boolean processFile(File f) {
+//							try {
+//								String type = f.getName();
+//								if (type.endsWith(postfix)) {
+//									type = type.substring(0, type.length() - postfix.length());
+//								}
+//								type = prefix + "_" + type;
+//
+//								Dust.access(DustAccess.Set, type, src, TOKEN_TYPE);
+//								Dust.access(DustAccess.Set, type + ".1", src, TOKEN_DATA);
+//								loadFile(f, src, meta);
+//							} catch (Throwable e) {
+//								DustException.swallow(e, "Processing csv file", f.getAbsolutePath());
+//							}
+//							return true;
+//						}
+//					}, new DustUtilsFile.ExtFilter(DUST_EXT_CSV));
+//				}
 			}
 
 			break;
@@ -80,7 +113,7 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 		return null;
 	}
 
-	public void loadFile(File f, Map<String, Object> src, DustHandle meta) throws Exception {
+	public void loadFile(InputStream is, Map<String, Object> src, DustHandle meta) throws Exception {
 		DustHandle tType = null;
 
 		String unitId = Dust.access(DustAccess.Peek, null, src, TOKEN_DATA);
@@ -93,7 +126,7 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 		Collection<String> altKeyCols = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, src, TOKEN_ALIAS);
 //				Map<String, String> preProcess = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, src, TOKEN_PREPROCESS);
 
-		try (FileInputStream fis = new FileInputStream(f); BufferedReader br = new BufferedReader(new InputStreamReader(fis, encoding))) {
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(is, encoding))) {
 			String line;
 			ArrayList<String> items = new ArrayList<>();
 			DustStreamUtils.CsvLineReader lineReader = new DustStreamUtils.CsvLineReader(colSep, items);
@@ -118,14 +151,14 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 				if (colCount == fields.size()) {
 					if (-1 == keyIdx) {
 						StringBuilder sb = null;
-						for ( String fval : items ) {
+						for (String fval : items) {
 							sb = DustUtils.sbAppend(sb, "_", true, fval);
 						}
 						str = sb.toString();
 					} else {
 						str = items.get(keyIdx).trim();
 					}
-					
+
 					if (!keys.add(str)) {
 //								Dust.log(TOKEN_LEVEL_WARNING, "key collision", str);
 					}
@@ -156,18 +189,18 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 
 							fields.add(att);
 						}
-						
-						if ( -1 == keyIdx ) {
-							for ( int i = 0; i < items.size(); ++i ) {
+
+						if (-1 == keyIdx) {
+							for (int i = 0; i < items.size(); ++i) {
 								String colName = items.get(i).trim();
-								if ( altKeyCols.contains(colName) ) {
+								if (altKeyCols.contains(colName)) {
 									keyIdx = i;
 									break;
 								}
 							}
 						}
 
-						Dust.log("Reading unit", f.getName(), fields);
+						Dust.log("Reading unit", unitId, fields);
 					}
 				}
 

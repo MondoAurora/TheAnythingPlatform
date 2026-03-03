@@ -1,7 +1,5 @@
 package me.giskard.dust.mod.stream;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.Collection;
 import java.util.Collections;
@@ -23,9 +21,9 @@ import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.mind.DustMindConsts;
 import me.giskard.dust.core.mind.DustMindUtils;
 import me.giskard.dust.core.stream.DustStreamConsts;
+import me.giskard.dust.core.stream.DustStreamUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
-import me.giskard.dust.core.utils.DustUtilsFile;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts, DustMindConsts {
@@ -150,13 +148,18 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 
 			Dust.log(TOKEN_LEVEL_TRACE, "Saving Excel", fName);
 
-			File f = new File(fName);
-			DustUtilsFile.ensureDir(f.getAbsoluteFile().getParentFile());
-			try (OutputStream fileOut = new FileOutputStream(f)) {
-				wb.write(fileOut);
-				fileOut.flush();
-				fileOut.close();
+			try (OutputStream os = DustStreamUtils.getStream(TOKEN_CMD_SAVE, fName)) {
+				wb.write(os);
+				os.flush();
 			}
+
+//			File f = new File(fName);
+//			DustUtilsFile.ensureDir(f.getAbsoluteFile().getParentFile());
+//			try (OutputStream fileOut = new FileOutputStream(f)) {
+//				wb.write(fileOut);
+//				fileOut.flush();
+//				fileOut.close();
+//			}
 		}
 
 		return null;
