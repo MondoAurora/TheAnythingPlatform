@@ -20,6 +20,8 @@ public interface DustNetConsts extends DustConsts, DustMindConsts {
 	String MEDIATYPE_JSONAPI = "application/vnd.api+json";
 	String MEDIATYPE_ZIP = "application/zip";
 
+	String TOKEN_NET_KNOWN_HOST = DUST_UNIT_ID + DUST_SEP_TOKEN + "knownHost";
+
 	String TOKEN_NET_HOST_PORT = DUST_UNIT_ID + DUST_SEP_TOKEN + "port";
 
 	String TOKEN_NET_SSLINFO_PORT = DUST_UNIT_ID + DUST_SEP_TOKEN + "sslPort";

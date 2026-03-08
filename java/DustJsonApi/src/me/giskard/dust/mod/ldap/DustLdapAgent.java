@@ -1,38 +1,31 @@
 package me.giskard.dust.mod.ldap;
 
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Hashtable;
 
 import javax.naming.Context;
 import javax.naming.NamingEnumeration;
+import javax.naming.directory.Attribute;
 import javax.naming.directory.Attributes;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
-import javax.net.ssl.SSLContext;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
+import me.giskard.dust.core.stream.DustStreamUtils;
 import me.giskard.dust.mod.net.DustNetUtils;
 
 public class DustLdapAgent extends DustAgent implements DustLdapNewConsts {
-	
-	static {
-		System.setProperty("jdk.tls.client.enableSessionTicketExtension", "false");
-	}
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		
-    SSLContext ctx = SSLContext.getDefault();
-    for (String s : ctx.getSupportedSSLParameters().getCipherSuites()) {
-      if (s.contains("AES_256_CBC_SHA"))
-        System.out.println(s);
-    }
 
-		DustNetUtils.doTrustToCertificates();
-		
+		DustNetUtils.sslHack();
+
 		Hashtable<String, String> environment = new Hashtable<String, String>();
 
 		DustHandle accInfo = Dust.access(DustAccess.Peek, null, null, TOKEN_ACCESS);
@@ -60,41 +53,91 @@ public class DustLdapAgent extends DustAgent implements DustLdapNewConsts {
 		try {
 			ldapCtx = new InitialDirContext(environment);
 
-			String filter = Dust.access(DustAccess.Peek, "", null, TOKEN_FILTER);
+			String filter = Dust.access(DustAccess.Peek, null, null, TOKEN_FILTER);
+
+			SearchControls searchControls = new SearchControls();
 
 			Collection<String> m = Dust.access(DustAccess.Peek, null, null, TOKEN_MEMBERS);
-			SearchControls searchControls = new SearchControls();
 			if (null != m) {
 				String[] attrIDs = new String[m.size()];
 				m.toArray(attrIDs);
 				searchControls.setReturningAttributes(attrIDs);
 			}
 			searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
-			searchControls.setCountLimit(100);
-			
-			String cn = user.split(",")[0];
-			
-			filter = "(" + cn + ")";
+			Long count = Dust.access(DustAccess.Peek, null, null, TOKEN_COUNT);
+			if (null != count) {
+				searchControls.setCountLimit(count);
+			}
+
+			if ("self".equals(filter)) {
+				String cn = user.split(",")[0];
+				filter = "(" + cn + ")";
+			}
 
 			String root = Dust.access(DustAccess.Peek, "", null, TOKEN_ROOT);
 			NamingEnumeration<SearchResult> searchResults = ldapCtx.search(root, filter, searchControls);
 
 			String distinguishedName = null;
 
-			while (searchResults.hasMore()) {
-				SearchResult result = (SearchResult) searchResults.next();
-				Attributes attrs = result.getAttributes();
+			if (searchResults.hasMore()) {
 
-				distinguishedName = result.getNameInNamespace();
+				String fileName = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
+				OutputStream os = null;
+				PrintWriter pw = null;
+				int lc = 0;
 
-				Dust.log(TOKEN_LEVEL_INFO, "Found user", distinguishedName, attrs);
+				try {
+					while (searchResults.hasMore()) {
+						if (0 == (++lc % 100)) {
+							Dust.log(TOKEN_LEVEL_TRACE, "record", lc);
+						}
+
+						SearchResult result = searchResults.next();
+						Attributes attrs = result.getAttributes();
+
+						distinguishedName = result.getNameInNamespace();
+						
+						if (null == pw) {
+							os = DustStreamUtils.getStream(TOKEN_CMD_SAVE, fileName);
+							pw = new PrintWriter(os);
+						} else {
+							pw.println();
+						}
+						
+						pw.print("dn: ");
+						pw.println(distinguishedName);
+						
+						Attribute att;
+						for (NamingEnumeration<? extends Attribute> ae = attrs.getAll(); ae.hasMore();) {
+							att = ae.next();
+							String attId = att.getID();
+							for (NamingEnumeration<?> ve = att.getAll(); ve.hasMore();) {
+								Object val = ve.next();
+								pw.print(attId + ": ");
+								pw.println(val);
+							}
+						}
+						
+						pw.flush();
+					}
+				} finally {
+					if ( null != pw ) {
+						pw.flush();
+						os.flush();
+						
+						pw.close();
+						os.close();
+					}
+					
+					Dust.log(TOKEN_LEVEL_INFO, "Loaded count", lc);
+				}
 			}
 		} finally {
 			if (null != ldapCtx) {
 				ldapCtx.close();
 			}
 		}
-		
+
 		return null;
 	}
 

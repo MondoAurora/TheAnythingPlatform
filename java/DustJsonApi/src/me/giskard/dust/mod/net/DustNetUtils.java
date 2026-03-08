@@ -119,8 +119,13 @@ public class DustNetUtils implements DustNetConsts {
 		return success;
 	}
 
-	// trusting all certificate
-	public static void doTrustToCertificates() throws Exception {
+	public static void sslHack() throws Exception {
+		
+    SSLContext ctx = SSLContext.getDefault();
+    for (String s : ctx.getSupportedSSLParameters().getCipherSuites()) {
+      if (s.contains("AES_256_CBC_SHA"))
+        System.out.println(s);
+    }
 		
     TrustManager[] trustAllCerts = new TrustManager[]{
         new X509TrustManager() {
@@ -140,6 +145,9 @@ public class DustNetUtils implements DustNetConsts {
 
     // 4. Install the all-trusting host verifier
     HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
+    
+		System.setProperty("jdk.tls.client.enableSessionTicketExtension", "false");
+
 		
 	}
 
