@@ -15,6 +15,7 @@ import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.mind.DustMindConsts;
 import me.giskard.dust.core.utils.DustUtils;
+import me.giskard.dust.core.utils.DustUtilsData;
 
 //@SuppressWarnings({ "unchecked", "rawtypes" })
 @SuppressWarnings({ "unchecked" })
@@ -185,7 +186,7 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 								keyIdx = fields.size();
 							}
 
-							DustHandle att = getAtt(meta, tType, colName);
+							DustHandle att = DustUtilsData.getAtt(meta, tType, colName);
 
 							fields.add(att);
 						}
@@ -208,12 +209,4 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 			}
 		}
 	}
-
-	public DustHandle getAtt(DustHandle meta, DustHandle tType, String attName) {
-		DustHandle att = Dust.getHandle(meta, DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE), meta.getId() + DUST_SEP_TOKEN + attName, DustOptCreate.Meta);
-		Dust.access(DustAccess.Insert, tType, att, TOKEN_APPEARS);
-		Dust.access(DustAccess.Set, att, tType, TOKEN_CHILDMAP, attName);
-		return att;
-	}
-
 }

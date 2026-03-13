@@ -29,9 +29,6 @@ public class DustStreamSrcSftpAgent extends DustAgent implements DustMind.Stream
 		String p1 = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
 
 		String path = DustUtils.sbAppend(null, "/", false, root, p1).toString();
-		
-//		path = "./sapexport";
-		path = "./sapexport/archive/2026-03-04";
 
 		DustHandle accInfo = Dust.access(DustAccess.Peek, null, null, TOKEN_ACCESS);
 
@@ -54,13 +51,13 @@ public class DustStreamSrcSftpAgent extends DustAgent implements DustMind.Stream
 			channelSftp = (ChannelSftp) jschSession.openChannel("sftp");
 			channelSftp.connect();
 
-			String token = null;
+//			String token = null;
 			switch (cmd) {
 			case TOKEN_CMD_LOAD:
-				token = TOKEN_INPUT_STREAM;
+//				token = TOKEN_INPUT_STREAM;
 				break;
 			case TOKEN_CMD_SAVE:
-				token = TOKEN_OUTPUT_STREAM;
+//				token = TOKEN_OUTPUT_STREAM;
 				break;
 			case TOKEN_CMD_INFO:
 				try {

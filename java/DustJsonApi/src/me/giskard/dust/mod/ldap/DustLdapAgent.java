@@ -64,7 +64,7 @@ public class DustLdapAgent extends DustAgent implements DustLdapNewConsts {
 				searchControls.setReturningAttributes(attrIDs);
 			}
 			searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
-			Long count = Dust.access(DustAccess.Peek, null, null, TOKEN_COUNT);
+			Long count = Dust.access(DustAccess.Peek, 0L, null, TOKEN_COUNT);
 			if (null != count) {
 				searchControls.setCountLimit(count);
 			}
@@ -135,6 +135,7 @@ public class DustLdapAgent extends DustAgent implements DustLdapNewConsts {
 		} finally {
 			if (null != ldapCtx) {
 				ldapCtx.close();
+				Dust.log(TOKEN_LEVEL_INFO, "LDAP context closed.");
 			}
 		}
 

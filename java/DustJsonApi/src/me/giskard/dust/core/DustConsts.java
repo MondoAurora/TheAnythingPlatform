@@ -81,6 +81,8 @@ public interface DustConsts {
 	String TOKEN_PASSWORD = DUST_UNIT_ID + DUST_SEP_TOKEN + "password";
 	String TOKEN_AUTH = DUST_UNIT_ID + DUST_SEP_TOKEN + "auth";
 
+	String TOKEN_MAIL = DUST_UNIT_ID + DUST_SEP_TOKEN + "mail";
+
 	String TOKEN_KEY = DUST_UNIT_ID + DUST_SEP_TOKEN + "key";
 	String TOKEN_UNIT = DUST_UNIT_ID + DUST_SEP_TOKEN + "unit";
 	String TOKEN_META = DUST_UNIT_ID + DUST_SEP_TOKEN + "meta";
@@ -94,6 +96,7 @@ public interface DustConsts {
 	String TOKEN_ROOT = DUST_UNIT_ID + DUST_SEP_TOKEN + "root";
 	String TOKEN_INDEX = DUST_UNIT_ID + DUST_SEP_TOKEN + "index";
 	String TOKEN_MAPPING = DUST_UNIT_ID + DUST_SEP_TOKEN + "mapping";
+	String TOKEN_CONSTS = DUST_UNIT_ID + DUST_SEP_TOKEN + "consts";
 
 	String TOKEN_TYPE_APP = DUST_UNIT_ID + DUST_SEP_TOKEN + "Application";
 	String TOKEN_TYPE_AGENT = DUST_UNIT_ID + DUST_SEP_TOKEN + "Agent";
