@@ -1,4 +1,4 @@
-package me.giskard.dust.mod.net;
+package me.giskard.dust.core.net;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.cert.X509Certificate;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.zip.GZIPInputStream;
 
 import javax.net.ssl.HostnameVerifier;
@@ -17,10 +18,10 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import org.apache.commons.compress.utils.IOUtils;
-
+import me.giskard.dust.core.stream.DustStreamUtils;
 import me.giskard.dust.core.utils.DustUtils;
 
+@SuppressWarnings("unchecked")
 public class DustNetUtils implements DustNetConsts {
 
 	public static String getContentType(File f) {
@@ -80,9 +81,10 @@ public class DustNetUtils implements DustNetConsts {
 		boolean success = false;
 
 		URL url = new URL(urlStr);
-		HttpURLConnection conn = getConn(url, timeout, headers);
+		HttpURLConnection conn = getConn(url, timeout, (null == headers) ? Collections.EMPTY_LIST : headers);
 
-		if ("http".equals(url.getProtocol())) {
+        String protocol = url.getProtocol().toLowerCase();
+		if ("http".equals(protocol) || "https".equals(protocol)) {
 			conn.setInstanceFollowRedirects(false);
 			conn.connect();
 
@@ -97,22 +99,19 @@ public class DustNetUtils implements DustNetConsts {
 				url = new URL(redirect);
 				conn = getConn(url, timeout, headers);
 			}
-		}
+		} else {
+            conn.connect();
+        }
 
 		InputStream is = conn.getInputStream();
 
 		if ("gzip".equals(conn.getContentEncoding())) {
 			try (GZIPInputStream i = new GZIPInputStream(is)) {
-				success = 0 < IOUtils.copy(i, target);
+				success = DustStreamUtils.copyStream(i, target);
 			}
 		} else {
 			try (BufferedInputStream in = new BufferedInputStream(is)) {
-				byte dataBuffer[] = new byte[1024];
-				int bytesRead;
-				while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
-					target.write(dataBuffer, 0, bytesRead);
-					success = true;
-				}
+                success = DustStreamUtils.copyStream(in, target);
 			}
 		}
 

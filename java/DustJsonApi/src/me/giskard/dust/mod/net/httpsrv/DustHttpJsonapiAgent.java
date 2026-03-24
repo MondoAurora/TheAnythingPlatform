@@ -14,11 +14,11 @@ import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.dev.DustDevUtils;
 import me.giskard.dust.core.mind.DustMindUtils;
+import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.stream.DustStreamConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsConstsJson;
 import me.giskard.dust.mod.mvel.DustExprMvelUtils;
-import me.giskard.dust.mod.net.DustNetConsts;
 
 //@SuppressWarnings({ "rawtypes", "unchecked" })
 //@SuppressWarnings({ "unchecked" })

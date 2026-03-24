@@ -11,9 +11,9 @@ import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.mind.DustMindUtils;
+import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
-import me.giskard.dust.mod.net.DustNetConsts;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToolsConsts, DustNetConsts {

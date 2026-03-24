@@ -1,4 +1,4 @@
-package me.giskard.dust.mod.net;
+package me.giskard.dust.mod.stream;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,6 +11,7 @@ import com.jcraft.jsch.SftpException;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
+import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.DustMind;
 import me.giskard.dust.core.stream.DustStreamConsts;

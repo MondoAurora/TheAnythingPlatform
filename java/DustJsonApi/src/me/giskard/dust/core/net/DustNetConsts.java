@@ -1,4 +1,4 @@
-package me.giskard.dust.mod.net;
+package me.giskard.dust.core.net;
 
 import me.giskard.dust.core.DustConsts;
 import me.giskard.dust.core.mind.DustMindConsts;

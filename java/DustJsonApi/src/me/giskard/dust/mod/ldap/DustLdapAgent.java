@@ -16,8 +16,8 @@ import javax.naming.directory.SearchResult;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
+import me.giskard.dust.core.net.DustNetUtils;
 import me.giskard.dust.core.stream.DustStreamUtils;
-import me.giskard.dust.mod.net.DustNetUtils;
 
 public class DustLdapAgent extends DustAgent implements DustLdapNewConsts {
 

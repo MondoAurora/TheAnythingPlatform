@@ -2,7 +2,7 @@ package me.giskard.dust.mod.msgraph;
 
 import me.giskard.dust.core.DustConsts;
 import me.giskard.dust.core.mind.DustMindConsts;
-import me.giskard.dust.mod.net.DustNetConsts;
+import me.giskard.dust.core.net.DustNetConsts;
 
 public interface DustMSGraphConsts extends DustConsts, DustNetConsts, DustMindConsts {
 

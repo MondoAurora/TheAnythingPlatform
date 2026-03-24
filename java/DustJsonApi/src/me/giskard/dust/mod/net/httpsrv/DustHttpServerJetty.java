@@ -19,7 +19,7 @@ import org.eclipse.jetty.util.ssl.SslContextFactory;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.DustConsts.DustAgent;
-import me.giskard.dust.mod.net.DustNetConsts;
+import me.giskard.dust.core.net.DustNetConsts;
 
 public class DustHttpServerJetty extends DustAgent implements DustNetConsts // , DustConsts.DustThreadOwner
 {

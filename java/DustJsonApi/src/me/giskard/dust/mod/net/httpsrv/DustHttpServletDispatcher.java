@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import me.giskard.dust.core.Dust;
+import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.stream.DustStreamConsts;
 import me.giskard.dust.core.utils.DustUtils;
-import me.giskard.dust.mod.net.DustNetConsts;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, DustStreamConsts {

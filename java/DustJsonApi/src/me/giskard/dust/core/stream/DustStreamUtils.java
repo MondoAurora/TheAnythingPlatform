@@ -1,5 +1,8 @@
 package me.giskard.dust.core.stream;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +40,18 @@ public class DustStreamUtils implements DustUtilsConsts, DustMindConsts, DustStr
 
 	}
 
-	public static String csvOptEscape(String valStr, String sepChar) {
+    public static boolean copyStream(InputStream source, OutputStream target) throws IOException {
+        boolean success = false;
+        byte dataBuffer[] = new byte[1024];
+        int bytesRead;
+        while ((bytesRead = source.read(dataBuffer, 0, 1024)) != -1) {
+            target.write(dataBuffer, 0, bytesRead);
+            success = true;
+        }
+        return success;
+    }
+
+    public static String csvOptEscape(String valStr, String sepChar) {
 		if (null == valStr) {
 			return "";
 		}
