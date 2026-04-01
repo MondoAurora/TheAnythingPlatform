@@ -6,13 +6,13 @@
 			"attributes": {
 				"dust.1$binaryResolver": {
 					"sandbox.1$Mind": {
-						"dust.1$binary": "me.giskard.dust.mind.DustMindAgent"
+						"dust.1$binary": "me.giskard.dust.core.mind.DustMindAgent"
+					},
+					"sandbox.1$SerializeJsonApi": {
+						"dust.1$binary": "me.giskard.dust.core.stream.DustStreamJsonApiSerializerAgent"
 					},
 					"dust.1$Browser": {
 						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserFrameAgent"
-					},
-					"sandbox.1$SerializeJsonApi": {
-						"dust.1$binary": "me.giskard.dust.mind.DustMindSerializerJsonApi"
 					},
 					"sandbox.1$AppFrame": {
 						"dust.1$binary": "me.giskard.dust.sandbox.DustSandboxAppFrameAgent"

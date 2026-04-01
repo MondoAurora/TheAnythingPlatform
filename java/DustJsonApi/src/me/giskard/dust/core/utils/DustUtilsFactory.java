@@ -9,6 +9,7 @@ public class DustUtilsFactory<KeyType, ValType> implements DustUtilsConsts {
 	
 	String name;
 	protected final Map<KeyType, ValType> content;
+	protected Map<ValType, KeyType> reverse;
 
 	public DustUtilsFactory(DustCreator<ValType> creator) {
 		this(creator, false);
@@ -17,6 +18,16 @@ public class DustUtilsFactory<KeyType, ValType> implements DustUtilsConsts {
 	public DustUtilsFactory(DustCreator<ValType> creator, boolean sorted) {
 		this.content = sorted ? new TreeMap<>() : new HashMap<>();
 		this.creator = creator;
+	}
+
+	public synchronized KeyType getReverse(ValType val) {
+		if ( null == reverse ) {
+			reverse = new HashMap<>(content.size());
+			for ( Map.Entry<KeyType, ValType> e : content.entrySet() ) {
+				reverse.put(e.getValue(), e.getKey());
+			}
+		}
+		return reverse.get(val);
 	}
 
 	public synchronized ValType peek(KeyType key) {
@@ -29,6 +40,9 @@ public class DustUtilsFactory<KeyType, ValType> implements DustUtilsConsts {
 		if (null == v) {
 			v = creator.create(key, hints);
 			content.put(key, v);
+			if ( null != reverse ) {
+				reverse.put(v, key);
+			}
 			creator.initNew(v, key, hints);
 		}
 
