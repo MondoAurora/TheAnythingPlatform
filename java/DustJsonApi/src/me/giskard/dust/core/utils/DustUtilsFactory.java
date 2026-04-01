@@ -5,18 +5,22 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class DustUtilsFactory<KeyType, ValType> implements DustUtilsConsts {
-	DustCreator<ValType> creator;
+	protected DustCreator<ValType> creator;
 	
 	String name;
 	protected final Map<KeyType, ValType> content;
 	protected Map<ValType, KeyType> reverse;
+
+	protected DustUtilsFactory(boolean sorted) {
+		this.content = sorted ? new TreeMap<>() : new HashMap<>();
+	}
 
 	public DustUtilsFactory(DustCreator<ValType> creator) {
 		this(creator, false);
 	}
 
 	public DustUtilsFactory(DustCreator<ValType> creator, boolean sorted) {
-		this.content = sorted ? new TreeMap<>() : new HashMap<>();
+		this(sorted);
 		this.creator = creator;
 	}
 
