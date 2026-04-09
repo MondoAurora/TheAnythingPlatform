@@ -3,9 +3,6 @@ package me.giskard.dust.mod.android.gui;
 import android.content.Context;
 import android.net.Uri;
 import android.view.View;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -18,23 +15,14 @@ import me.giskard.dust.mod.android.dev.DustAndroidDevGuiUtils;
 
 public class DustAndroidGuiAgentFactory extends DustUtilsFactory<DustAndroidGuiConsts.ViewType, View> implements DustAndroidGuiConsts {
 
-    private static final DustCreator<DustAndroidGuiConsts.AndroidGuiAgent> AGENT_CREATOR = new DustCreator<DustAndroidGuiConsts.AndroidGuiAgent>() {
+    private static final DustCreator<AndroidGuiAgent> AGENT_CREATOR = new DustCreator<>() {
         @Override
         public DustAndroidGuiConsts.AndroidGuiAgent create(Object key, Object... hints) {
             Context ctx = (Context) hints[0];
 
             switch ((ViewType) key) {
                 case RichText:
-                    WebView wv = new WebView(ctx);
-                    wv.loadUrl("https://www.columbia.edu/~fdc/sample.html");
-                    WebViewClient wvc = new WebViewClient() {
-                        @Override
-                        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                            return super.shouldOverrideUrlLoading(view, request);
-                        }
-                    };
-                    wv.setWebViewClient(wvc);
-                    return new DustAndroidDevGuiAgent(wv);
+                    return new DustAndroidGuiRichTextAgent();
                 case Calendar:
                     return new DustAndroidGuiCalendarAgent();
                 case Cards:
@@ -46,9 +34,7 @@ public class DustAndroidGuiAgentFactory extends DustUtilsFactory<DustAndroidGuiC
                     DustAndroidDevGuiUtils.fillTable(grid, 10, "A", "B", "C", "D");
                     return new DustAndroidDevGuiAgent(grid);
                 case Properties:
-                    TableLayout prop = new TableLayout(ctx);
-                    DustAndroidDevGuiUtils.fillTable(prop, 0, "A", "B", "C", "D");
-                    return new DustAndroidDevGuiAgent(prop);
+                    return new DustAndroidGuiPropertyPageAgent();
                 case Player:
                     VideoView vv = new VideoView(ctx);
                     String u = "android.resource://me.giskard.dust.mod.android/" + R.raw.test_video;
@@ -70,7 +56,7 @@ public class DustAndroidGuiAgentFactory extends DustUtilsFactory<DustAndroidGuiC
     public DustAndroidGuiAgentFactory() {
         super(true);
 
-        creator = new DustCreator<View>() {
+        creator = new DustCreator<>() {
             @Override
             public View create(Object key, Object... hints) {
                 AndroidGuiAgent a = AGENT_FACTORY.get((ViewType) key, hints);
