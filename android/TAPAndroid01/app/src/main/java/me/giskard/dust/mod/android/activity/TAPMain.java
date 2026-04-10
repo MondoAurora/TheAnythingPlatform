@@ -1,6 +1,8 @@
 package me.giskard.dust.mod.android.activity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -13,14 +15,29 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Collection;
+import java.util.Collections;
+
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts;
+import me.giskard.dust.core.DustException;
+import me.giskard.dust.core.DustMind;
+import me.giskard.dust.core.stream.DustStreamJsonApiSerializerAgent;
+import me.giskard.dust.core.stream.DustStreamSrcFileAgent;
+import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsConsts;
 import me.giskard.dust.core.utils.DustUtilsFactory;
+import me.giskard.dust.core.utils.DustUtilsFile;
 import me.giskard.dust.mod.android.DustAndroidConsts;
+import me.giskard.dust.mod.android.R;
 import me.giskard.dust.mod.android.gui.DustAndroidGuiAgentFactory;
+import me.giskard.dust.mod.android.gui.DustAndroidGuiConsts;
+import me.giskard.dust.mod.android.gui.DustAndroidGuiViewFactory;
 
-public class TAPMain extends Activity implements DustAndroidConsts {
+public class TAPMain extends Activity implements DustAndroidConsts, DustAndroidGuiConsts {
 
     DustAndroidGuiAgentFactory viewAgentFactory;
 
@@ -57,9 +74,57 @@ public class TAPMain extends Activity implements DustAndroidConsts {
     ConstraintLayout.LayoutParams lpCenter;
     ViewType currView;
 
+    Context appCtx;
+    Resources appRes;
+
+    DustAndroidGuiViewFactory viewFactory;
+
+    String appUnitName = "MHCli.1";
+    DustMind.Bootloader bootLoader;
+    DustMind.StreamSource streamSource;
+    DustHandle hApp;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        appCtx = getApplicationContext();
+        appRes = appCtx.getResources();
+
+        viewFactory = new DustAndroidGuiViewFactory(this);
+
+        try {
+            DustMind.Bootloader bootLoader = new DustStreamJsonApiSerializerAgent();
+            streamSource = new DustStreamSrcFileAgent() {
+                @Override
+                protected File getRootFolder(String root) {
+                    File f = appCtx.getFilesDir();
+                    if (!DustUtils.isEmpty(root)) {
+                        f = new File(f, root);
+                        try {
+                            DustUtilsFile.ensureDir(f);
+                        } catch (Throwable e) {
+                            DustException.wrap(e, "Creating Dust root folder", f);
+                        }
+                    }
+                    return f;
+                }
+            };
+
+            String appUnitFile = appUnitName + DUST_EXT_JSON;
+
+            copyRes(R.raw.mhcli, appUnitFile);
+            copyRes(R.raw.mhcli_android, appUnitName + "." + DUST_PLATFORM_ANDROID + DUST_EXT_JSON);
+
+            copyRes(R.raw.mhcli_1_display_welcome, "mhcli_1_display_welcome.png");
+            copyRes(R.raw.mhcli_1_edit_user, "mhcli_1_edit_user.png");
+            copyRes(R.raw.mhcli_1_edit_config, "mhcli_1_edit_config.png");
+
+            hApp = Dust.start(DUST_PLATFORM_ANDROID, "MHCli", appUnitFile, bootLoader, streamSource);
+
+        } catch (Throwable e) {
+            DustException.wrap(e);
+        }
 
         viewAgentFactory = new DustAndroidGuiAgentFactory();
 
@@ -71,14 +136,17 @@ public class TAPMain extends Activity implements DustAndroidConsts {
         menuBar = new Toolbar(this);
         actionBar = new Toolbar(this);
 
+        Collection<DustHandle> topMenuItems = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, hApp, TOKEN_GUI_MAIN, TOKEN_GUI_FOCUS, TOKEN_GUI_TOPMENU, TOKEN_MEMBERS);
+
+        for ( DustHandle h : topMenuItems ) {
+            actionBar.addView(viewFactory.get(h));
+        }
+
+        Dust.log(DustConsts.TOKEN_LEVEL_INFO, "init focus", topMenuItems);
+
         for (ViewType vt : ViewType.values()) {
             menuBar.addView(menuBtnFactory.get(vt));
         }
-
-        Button bt;
-        bt = new Button(this);
-        bt.setText("szilva");
-        actionBar.addView(bt);
 
         LinearLayout.LayoutParams lp;
 
@@ -98,4 +166,21 @@ public class TAPMain extends Activity implements DustAndroidConsts {
 
         setContentView(main);
     }
+
+    private void copyRes(int res, String file) {
+        try (InputStream is = appRes.openRawResource(res);
+             OutputStream os = streamSource.optGetStream(TOKEN_CMD_SAVE, ".", file)) {
+
+            byte[] buffer = new byte[8 * 1024];
+            int bytesRead;
+            while ((bytesRead = is.read(buffer)) != -1) {
+                os.write(buffer, 0, bytesRead);
+            }
+
+            os.flush();
+        } catch (Throwable e) {
+            DustException.wrap(e);
+        }
+    }
+
 }
