@@ -12,14 +12,24 @@ import me.giskard.dust.core.utils.DustUtilsFile;
 
 public class DustStreamSrcFileAgent extends DustAgent implements DustMind.StreamSource, DustStreamConsts {
 
+	String defRoot;
+
+	public DustStreamSrcFileAgent() {
+		this(".");
+	}
+
+	public DustStreamSrcFileAgent(String defRoot) {
+		this.defRoot = defRoot;
+	}
+
 	@Override
 	protected Object process(DustAccess access) throws Exception {
 		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
 
-		String root = Dust.access(DustAccess.Peek, ".", null, TOKEN_STREAM_ROOTFOLDER);
-		String path = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
+		String root = Dust.access(DustAccess.Peek, defRoot, null, TOKEN_STREAM_ROOTFOLDER);
+		File r = getRootFolder(root);
 
-		File r = new File(root);
+		String path = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
 		File f = DustUtils.isEmpty(path) ? r : new File(r, path);
 
 		String token = null;
@@ -58,9 +68,14 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustMind.Stream
 		return stream;
 	}
 
+	protected File getRootFolder(String root) {
+		File r = DustUtils.isEmpty(root) ? null : new File(root);
+		return r;
+	}
+
 	@Override
 	public <StreamType> StreamType optGetStream(String cmd, String root, String path) throws Exception {
-		File r = DustUtils.isEmpty(root) ? null : new File(root);
+		File r = getRootFolder(root);
 		File f = (null == r) ? new File(path) : new File(r, path);
 
 		return createStream(cmd, r, f);

@@ -11,12 +11,14 @@ public interface DustConsts {
 	String DUST_FMT_TIMESTAMP = "yyyyMMdd'T'HHmmss'Z'";
 
 	String DUST_PLATFORM_JAVA = "java";
+	String DUST_PLATFORM_ANDROID = "android";
 
 	String DUST_EXT_JSON = ".json";
 	String DUST_EXT_CSV = ".csv";
 	String DUST_EXT_XML = ".xml";
 	String DUST_EXT_TXT = ".txt";
 	String DUST_EXT_LDIF = ".ldif";
+	String DUST_EXT_PNG = ".png";
 
 	String DUST_SEP = "_";
 	String DUST_SEP_ID = ":";

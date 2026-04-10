@@ -78,10 +78,10 @@ public class Dust implements DustConsts, DustMindConsts {
 		DustMind.Bootloader bootLoader = createInstance(Class.forName("me.giskard.dust.core.stream.DustStreamJsonApiSerializerAgent"));
 		DustMind.StreamSource streamSource = createInstance(Class.forName("me.giskard.dust.core.stream.DustStreamSrcFileAgent"));
 
-		start(appName, appUnitPath, bootLoader, streamSource);
+		start(DUST_PLATFORM_JAVA, appName, appUnitPath, bootLoader, streamSource);
 	}
 
-	public static void start(String appName, String appUnitPath, DustMind.Bootloader bootLoader, DustMind.StreamSource streamSource) throws Exception {
+	public static DustHandle start(String platform, String appName, String appUnitPath, DustMind.Bootloader bootLoader, DustMind.StreamSource streamSource) throws Exception {
 		long start = System.currentTimeMillis();
 
 		try {
@@ -117,7 +117,7 @@ public class Dust implements DustConsts, DustMindConsts {
 //			int s = appUnitPath.lastIndexOf(".");
 //			File fBin = new File(appUnitPath.substring(0, s) + "." + DUST_PLATFORM_JAVA + appUnitPath.substring(s));
 //			MIND.bootLoadAppUnit(appUnit, fBin, bootLoader);
-			String binPath = new StringBuilder(appUnitPath).insert(s, "." + DUST_PLATFORM_JAVA).toString();
+			String binPath = new StringBuilder(appUnitPath).insert(s, "." + platform).toString();
 			optExtAppUnit(null, binPath, streamSource, bootLoader);
 			
 			Dust.log(TOKEN_LEVEL_INFO, "MemInfo before init", DustDevUtils.memInfo());
@@ -149,6 +149,8 @@ public class Dust implements DustConsts, DustMindConsts {
 		} finally {
 			Dust.log(TOKEN_LEVEL_TRACE, "Dust finished", System.currentTimeMillis() - start, "msec.");
 		}
+
+		return appHandle;
 	}
 
 	public static DustHandle optExtAppUnit(String root, String file, DustMind.StreamSource streamSource, DustMind.Bootloader bootLoader)
