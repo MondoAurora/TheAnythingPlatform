@@ -26,6 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data android:name="tap:server" android:value="192.168.0.24" />
+        <meta-data android:name="tap:app_module" android:value="MHCli.1" />
     </application>
 
 </manifest>

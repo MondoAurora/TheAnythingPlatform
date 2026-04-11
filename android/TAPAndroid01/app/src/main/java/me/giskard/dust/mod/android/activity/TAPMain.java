@@ -2,6 +2,8 @@ package me.giskard.dust.mod.android.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -79,7 +82,10 @@ public class TAPMain extends Activity implements DustAndroidConsts, DustAndroidG
 
     DustAndroidGuiViewFactory viewFactory;
 
-    String appUnitName = "MHCli.1";
+    ProgressBar progress;
+
+    String server;
+    String appUnitName;
     DustMind.Bootloader bootLoader;
     DustMind.StreamSource streamSource;
     DustHandle hApp;
@@ -91,9 +97,16 @@ public class TAPMain extends Activity implements DustAndroidConsts, DustAndroidG
         appCtx = getApplicationContext();
         appRes = appCtx.getResources();
 
+        progress = new ProgressBar(this);
+        progress.setIndeterminate(true);
+
         viewFactory = new DustAndroidGuiViewFactory(this);
 
         try {
+            ApplicationInfo ai = appCtx.getPackageManager().getApplicationInfo(appCtx.getPackageName(), PackageManager.GET_META_DATA);
+            server = ai.metaData.getString(TAP_CONFIG_SERVER);
+            appUnitName = ai.metaData.getString(TAP_CONFIG_APP_MODULE);
+
             DustMind.Bootloader bootLoader = new DustStreamJsonApiSerializerAgent();
             streamSource = new DustStreamSrcFileAgent() {
                 @Override
@@ -165,6 +178,8 @@ public class TAPMain extends Activity implements DustAndroidConsts, DustAndroidG
         main.addView(actionBar, lp);
 
         setContentView(main);
+
+        center.addView(progress, lpCenter);
     }
 
     private void copyRes(int res, String file) {
