@@ -1,6 +1,7 @@
 package me.giskard.dust.mod.gui.swing;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -11,8 +12,10 @@ import java.util.List;
 import javax.swing.AbstractButton;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
@@ -71,6 +74,16 @@ public class DustGuiSwingUtils implements DustGuiSwingConsts {
 		return cb;
 	}
 
+	public static JComponent createToolbar(ActionListener al, String prefix, int count) {
+		JPanel pnlTB = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		
+		for ( int i = 1; i <= count; ++i) {
+			pnlTB.add(createBtn(prefix + " " + i, al, JButton.class));
+		}
+		
+		return pnlTB;
+	}
+
 	public static AbstractButton setActive(AbstractButton ab, String cmd, ActionListener al) {
 		ab.addActionListener(al);
 		ab.setActionCommand(cmd);
@@ -93,25 +106,37 @@ public class DustGuiSwingUtils implements DustGuiSwingConsts {
 	}
 
 	public static String optSetLookAndFeel() throws Exception {
-		UIManager.LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();
 		List<String> lnf = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_SWING_LOOKANDFEEL);
 
-		int i = Integer.MAX_VALUE;
-		String lcn = null;
-
-		for (UIManager.LookAndFeelInfo look : looks) {
-			String cn = look.getClassName();
-			int p = lnf.indexOf(cn);
-			if ((0 <= p) && (p < i)) {
-				i = p;
-				lcn = cn;
+		for ( String lcn : lnf ) {
+			try {
+				UIManager.setLookAndFeel(lcn);
+				Dust.log(TOKEN_LEVEL_INFO, "Swing L&F selected:", lcn);
+				return lcn;
+				
+			} catch (Throwable e) {
+				Dust.log(TOKEN_LEVEL_WARNING, "FAILED selecting Swing L&F:", lcn, e);
 			}
 		}
+		
+		String lcn = null;
 
-		if (null != lcn) {
-			UIManager.setLookAndFeel(lcn);
-			Dust.log(TOKEN_LEVEL_INFO, "Swing L&F selected:", lcn);
-		}
+//		UIManager.LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();
+//		int i = Integer.MAX_VALUE;
+//
+//		for (UIManager.LookAndFeelInfo look : looks) {
+//			String cn = look.getClassName();
+//			int p = lnf.indexOf(cn);
+//			if ((0 <= p) && (p < i)) {
+//				i = p;
+//				lcn = cn;
+//			}
+//		}
+//
+//		if (null != lcn) {
+//			UIManager.setLookAndFeel(lcn);
+//			Dust.log(TOKEN_LEVEL_INFO, "Swing L&F selected:", lcn);
+//		}
 
 		return lcn;
 	}

@@ -14,9 +14,9 @@ import me.giskard.dust.core.DustException;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public interface DustUtilsConsts extends DustConsts {
 	
-	String TOKEN_PREPROCESS = DUST_UNIT_ID + DUST_SEP_TOKEN + "preProcess";
-	String TOKEN_UPPERCASE = DUST_UNIT_ID + DUST_SEP_TOKEN + "upperCase";
-	String TOKEN_INNERJSON = DUST_UNIT_ID + DUST_SEP_TOKEN + "innerJson";
+	String TOKEN_PREPROCESS = DUST_UNIT_DUST + DUST_SEP_TOKEN + "preProcess";
+	String TOKEN_UPPERCASE = DUST_UNIT_DUST + DUST_SEP_TOKEN + "upperCase";
+	String TOKEN_INNERJSON = DUST_UNIT_DUST + DUST_SEP_TOKEN + "innerJson";
 	
 	Object[] DUST_BOOL = {DUST_CONST_TRUE, DUST_CONST_FALSE, "yes", "no"};
 

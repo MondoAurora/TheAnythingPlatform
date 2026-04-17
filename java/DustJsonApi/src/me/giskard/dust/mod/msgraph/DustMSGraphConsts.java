@@ -13,11 +13,11 @@ public interface DustMSGraphConsts extends DustConsts, DustNetConsts, DustMindCo
 	
 	
 	
-	String TOKEN_MSGRAPH_AUTHORITY = DUST_UNIT_ID + DUST_SEP_TOKEN + "msgraphAuthority";
-	String TOKEN_MSGRAPH_CLIENTID = DUST_UNIT_ID + DUST_SEP_TOKEN + "msgraphClientId";
-	String TOKEN_MSGRAPH_SECRET = DUST_UNIT_ID + DUST_SEP_TOKEN + "msgraphSecret";
-	String TOKEN_MSGRAPH_SCOPE = DUST_UNIT_ID + DUST_SEP_TOKEN + "msgraphScope";
+	String TOKEN_MSGRAPH_AUTHORITY = DUST_UNIT_DUST + DUST_SEP_TOKEN + "msgraphAuthority";
+	String TOKEN_MSGRAPH_CLIENTID = DUST_UNIT_DUST + DUST_SEP_TOKEN + "msgraphClientId";
+	String TOKEN_MSGRAPH_SECRET = DUST_UNIT_DUST + DUST_SEP_TOKEN + "msgraphSecret";
+	String TOKEN_MSGRAPH_SCOPE = DUST_UNIT_DUST + DUST_SEP_TOKEN + "msgraphScope";
 
-	String TOKEN_MSGRAPH_REQUEST = DUST_UNIT_ID + DUST_SEP_TOKEN + "msgraphRequest";
+	String TOKEN_MSGRAPH_REQUEST = DUST_UNIT_DUST + DUST_SEP_TOKEN + "msgraphRequest";
 
 }

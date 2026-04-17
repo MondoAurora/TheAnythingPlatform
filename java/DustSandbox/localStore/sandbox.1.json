@@ -10,15 +10,8 @@
 				"dust.1$init": {
 					"data": [
 						{
-							"type": "dust.1$Service",
-							"id": "sandbox.1$SandboxTest1",
-							"meta": {
-								"key": -1
-							}
-						},
-						{
 							"type": "dust.1$Agent",
-							"id": "sandbox.1$AppFrame",
+							"id": "sandbox.1$SandboxTextAgent",
 							"meta": {
 								"key": -1
 							}
@@ -75,10 +68,11 @@
 		},
 		{
 			"type": "dust.1$Agent",
-			"id": "sandbox.1$AppFrame",
+			"id": "sandbox.1$SandboxTextAgent",
 			"attributes": {
-				"dust.1$name": "DustSandbox Frame",
+				"dust.1$name": "DustSandbox Text editor",
 				"dust.1$lookAndFeel": [
+					"com.formdev.flatlaf.FlatLightLaf",
 					"com.apple.laf.AquaLookAndFeel",
 					"javax.swing.plaf.nimbus.NimbusLookAndFeel"
 				]

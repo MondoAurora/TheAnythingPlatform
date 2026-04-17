@@ -19,6 +19,9 @@
 					},
 					"sandbox.1$SandboxAgent": {
 						"dust.1$binary": "me.giskard.dust.sandbox.DustSandboxTestAgent"
+					},
+					"sandbox.1$SandboxTextAgent": {
+						"dust.1$binary": "me.giskard.dust.sandbox.text.DustSandboxTextEditor"
 					}
 				}
 			}
