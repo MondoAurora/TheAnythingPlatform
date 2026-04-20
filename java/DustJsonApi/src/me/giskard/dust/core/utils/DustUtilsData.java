@@ -15,6 +15,10 @@ public class DustUtilsData extends DustUtils implements DustUtilsConsts, DustMin
 		return att;
 	}
 
+	public static String getNewId(DustHandle hUnit) {
+		return getNewId(hUnit, DUST_DEF_ID_BYTES);
+	}
+
 	public static String getNewId(DustHandle hUnit, int bytes) {
 		String id;
 

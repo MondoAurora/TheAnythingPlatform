@@ -10,6 +10,8 @@ public interface DustConsts {
 
 	String DUST_CHARSET_UTF8 = StandardCharsets.UTF_8.name();// "UTF-8";
 	String DUST_FMT_TIMESTAMP = "yyyyMMdd'T'HHmmss'Z'";
+	
+	int DUST_DEF_ID_BYTES = 4;
 
 	String DUST_PLATFORM_JAVA = "java";
 	String DUST_PLATFORM_ANDROID = "android";
@@ -30,6 +32,7 @@ public interface DustConsts {
 
 	int KEY_ADD = -1;
 	int KEY_SIZE = -2;
+	int KEY_INDEXOF = -3;
 	Object KEY_MAP_KEYS = new Object();
 
 	String TOKEN_CMD = DUST_UNIT_DUST + DUST_SEP_TOKEN + "cmd";

@@ -389,6 +389,16 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 						}
 					}
 				} else {
+					if ( p instanceof Integer ) {
+						switch ( (Integer) p ) {
+						case KEY_SIZE:
+							curr = 0;
+							break;
+						case KEY_INDEXOF:
+							curr = -1;
+							break;
+						}
+					}
 					break;
 				}
 				prevHandle = null;
@@ -403,14 +413,31 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			if (curr instanceof ArrayList) {
 				ArrayList al = (ArrayList) curr;
 				Integer idx = (Integer) p;
-
-				if ((KEY_SIZE == idx)) {
+				
+				switch ( idx ) {
+				case KEY_SIZE:
 					curr = al.size();
-				} else if ((KEY_ADD == idx) || (idx >= al.size())) {
+					break;
+				case KEY_ADD:
 					curr = null;
-				} else {
-					curr = al.get(idx);
+					break;
+				case KEY_INDEXOF:
+					curr = al.indexOf(val);
+					break;
+				default:
+					curr = (idx < al.size()) ? al.get(idx) : null;
+					break;
 				}
+
+//				if (KEY_SIZE == idx) {
+//					curr = al.size();
+//				} else if ((KEY_ADD == idx) || (idx >= al.size())) {
+//					curr = null;
+//				} else if (KEY_INDEXOF == idx) {
+//					curr = al.indexOf(val);
+//				} else {
+//					curr = al.get(idx);
+//				}
 			} else if (curr instanceof Map) {
 				curr = DustUtils.isEqual(KEY_SIZE, p) ? ((Map) curr).size()
 						: DustUtils.isEqual(KEY_MAP_KEYS, p) ? new ArrayList(((Map) curr).keySet()) : ((Map) curr).get(p);
