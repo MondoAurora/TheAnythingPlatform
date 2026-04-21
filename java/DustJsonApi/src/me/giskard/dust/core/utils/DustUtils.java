@@ -126,7 +126,9 @@ public class DustUtils implements DustUtilsConsts {
 				if (null == sb) {
 					sb = new StringBuilder(str);
 				} else {
-					sb.append(sep);
+					if (0 < sb.length()) {
+						sb.append(sep);
+					}
 					sb.append(str);
 				}
 			}
@@ -176,19 +178,19 @@ public class DustUtils implements DustUtilsConsts {
 		return ((null != arr) && (index < arr.length)) ? (RetType) arr[index] : value;
 	}
 
-	public static <RetType> RetType safeGet(Map m, DustCreator<RetType> creator, Object key, Object...hints) {
+	public static <RetType> RetType safeGet(Map m, DustCreator<RetType> creator, Object key, Object... hints) {
 		RetType ret = null;
-		
+
 		synchronized (m) {
 			ret = (RetType) m.get(key);
-			
-			if ( null == ret ) {
+
+			if (null == ret) {
 				ret = creator.create(key, hints);
 				m.put(key, ret);
 				creator.initNew(ret, key, hints);
 			}
 		}
-		
+
 		return ret;
 	}
 

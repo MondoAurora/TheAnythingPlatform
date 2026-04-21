@@ -20,7 +20,7 @@ public class DustStreamUtils implements DustUtilsConsts, DustMindConsts, DustStr
 		Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_SOURCE);
 		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
 		String fileName = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
-		
+
 		return getStream(cmd, fileName, streamSource);
 	}
 
@@ -40,18 +40,18 @@ public class DustStreamUtils implements DustUtilsConsts, DustMindConsts, DustStr
 
 	}
 
-    public static boolean copyStream(InputStream source, OutputStream target) throws IOException {
-        boolean success = false;
-        byte dataBuffer[] = new byte[1024];
-        int bytesRead;
-        while ((bytesRead = source.read(dataBuffer, 0, 1024)) != -1) {
-            target.write(dataBuffer, 0, bytesRead);
-            success = true;
-        }
-        return success;
-    }
+	public static boolean copyStream(InputStream source, OutputStream target) throws IOException {
+		boolean success = false;
+		byte dataBuffer[] = new byte[1024];
+		int bytesRead;
+		while ((bytesRead = source.read(dataBuffer, 0, 1024)) != -1) {
+			target.write(dataBuffer, 0, bytesRead);
+			success = true;
+		}
+		return success;
+	}
 
-    public static String csvOptEscape(String valStr, String sepChar) {
+	public static String csvOptEscape(String valStr, String sepChar) {
 		if (null == valStr) {
 			return "";
 		}
@@ -196,20 +196,47 @@ public class DustStreamUtils implements DustUtilsConsts, DustMindConsts, DustStr
 
 	// https://stackoverflow.com/questions/1265282/what-is-the-recommended-way-to-escape-html-symbols-in-plain-java
 	// Apache text brings too many dependecies for one single function.
-	
+
 	public static String escapeHTML(String s) {
-    StringBuilder out = new StringBuilder(Math.max(16, s.length()));
-    
-    for (int i = 0; i < s.length(); i++) {
-        char c = s.charAt(i);
-        if (c > 127 || c == '"' || c == '\'' || c == '<' || c == '>' || c == '&') {
-            out.append("&#");
-            out.append((int) c);
-            out.append(';');
-        } else {
-            out.append(c);
-        }
-    }
-    return out.toString();
-}
+		StringBuilder out = new StringBuilder(Math.max(16, s.length()));
+
+		for (int i = 0; i < s.length(); i++) {
+			int ic = s.codePointAt(i);
+			char c = s.charAt(i);
+			
+			switch (c) {
+			case '"':
+				out.append("&quot;");
+				continue;
+			case '\'':
+				out.append("&apos;");
+				continue;
+			case '<':
+				out.append("&lt;");
+				continue;
+			case '>':
+				out.append("&gt;");
+				continue;
+			case '&':
+				out.append("&amp;");
+				continue;
+			default:
+				if ((c < 128) || Character.isLetter(ic)) {
+					out.append(c);
+				} else {
+					out.append("&#");
+					out.append((int) c);
+					out.append(';');
+				}
+			}
+//        if (c > 127 || c == '"' || c == '\'' || c == '<' || c == '>' || c == '&') {
+//            out.append("&#");
+//            out.append((int) c);
+//            out.append(';');
+//        } else {
+//            out.append(c);
+//        }
+		}
+		return out.toString();
+	}
 }
