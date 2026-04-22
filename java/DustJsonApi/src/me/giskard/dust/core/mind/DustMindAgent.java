@@ -424,6 +424,9 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 				case KEY_INDEXOF:
 					curr = al.indexOf(val);
 					break;
+				case KEY_MEMBEROF:
+					lastKey = al.indexOf(val);
+					break;
 				default:
 					curr = (idx < al.size()) ? al.get(idx) : null;
 					break;

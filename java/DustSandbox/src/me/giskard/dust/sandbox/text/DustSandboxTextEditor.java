@@ -1,6 +1,7 @@
 package me.giskard.dust.sandbox.text;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -11,6 +12,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -20,8 +22,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JTree;
+import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 import javax.swing.TransferHandler;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
@@ -35,12 +40,16 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.TreePath;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.DustException;
+import me.giskard.dust.core.mind.DustMindUtils;
 import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.stream.DustStreamUtils;
 import me.giskard.dust.core.utils.DustUtils;
@@ -59,14 +68,26 @@ public class DustSandboxTextEditor extends DustAgent implements DustConsts, Dust
 
 	JFrame frm;
 
+	JTextField tfUnit = new JTextField("test.1");
+
 	JTree docStruct;
-	DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("test");
+	DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode();
 	DefaultTreeModel structModel = new DefaultTreeModel(rootNode);
+	DefaultTreeCellRenderer structRenderer = new DefaultTreeCellRenderer() {
+		public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+			Object uo = ((DefaultMutableTreeNode) value).getUserObject();
+			String txt = (uo instanceof DustHandle) ? getNodeText((DustHandle) uo) : DustUtils.toString(uo);
+
+			Component r = super.getTreeCellRendererComponent(tree, txt, sel, expanded, leaf, row, hasFocus);
+
+			return r;
+		};
+	};
 
 	JEditorPane docEditor;
 	JTextPane docPreview;
 	HTMLDocument doc;
-	Map<Object, String> texts = new HashMap<>();
+//	Map<Object, String> texts = new HashMap<>();
 
 	DustUtilsFactory<String, JComponent> factToolbars = new DustUtilsFactory<String, JComponent>(new DustCreator<JComponent>() {
 		@Override
@@ -95,6 +116,9 @@ public class DustSandboxTextEditor extends DustAgent implements DustConsts, Dust
 		public void actionPerformed(ActionEvent e) {
 			String cmd = e.getActionCommand();
 
+			Map<String, Object> sp = null;
+			TreePath[] tps;
+
 			switch (cmd) {
 			case "Rebuild":
 				buildGui();
@@ -103,6 +127,50 @@ public class DustSandboxTextEditor extends DustAgent implements DustConsts, Dust
 				Dust.access(DustAccess.Reset, null, hDoc, TOKEN_MEMBERS);
 				updateDocEditor();
 				updateStruct();
+				break;
+			case "Load":
+				sp = new HashMap<String, Object>();
+				sp.put(TOKEN_CMD, TOKEN_CMD_LOAD);
+				break;
+			case "Save":
+				sp = new HashMap<String, Object>();
+				sp.put(TOKEN_CMD, TOKEN_CMD_SAVE);
+				break;
+			case "Delete":
+				tps = docStruct.getSelectionPaths();
+				if (null != tps) {
+					for (TreePath tp : tps) {
+						DustHandle parent = (DustHandle) ((DefaultMutableTreeNode) tp.getParentPath().getLastPathComponent()).getUserObject();
+						DustHandle node = (DustHandle) ((DefaultMutableTreeNode) tp.getLastPathComponent()).getUserObject();
+
+						Dust.access(DustAccess.Delete, node, parent, TOKEN_MEMBERS, KEY_MEMBEROF);
+						Dust.access(DustAccess.Insert, node, parent, TOKEN_TEXT_ORPHANS);
+					}
+
+					updateStruct();
+					updateDocEditor();
+				}
+				break;
+			case "UnderFirst":
+				tps = docStruct.getSelectionPaths();
+				if (null != tps) {
+					DustHandle np = null;
+					for (TreePath tp : tps) {
+						DustHandle parent = (DustHandle) ((DefaultMutableTreeNode) tp.getParentPath().getLastPathComponent()).getUserObject();
+						DustHandle node = (DustHandle) ((DefaultMutableTreeNode) tp.getLastPathComponent()).getUserObject();
+
+						if (null == np) {
+							np = node;
+						} else {
+							Dust.access(DustAccess.Delete, node, parent, TOKEN_MEMBERS, KEY_MEMBEROF);
+							Dust.access(DustAccess.Insert, node, np, TOKEN_MEMBERS, KEY_ADD);
+						}
+					}
+
+					updateStruct();
+					updateDocEditor();
+				}
+
 				break;
 			case "<-":
 				updateStruct();
@@ -136,6 +204,17 @@ public class DustSandboxTextEditor extends DustAgent implements DustConsts, Dust
 			default:
 				Dust.log(TOKEN_LEVEL_WARNING, "Command not handled", cmd);
 			}
+
+			if (null != sp) {
+				DustHandle app = Dust.getUnit("sandbox.1", false);
+				DustHandle mind = Dust.getHandle(app, null, TOKEN_MIND, DustOptCreate.None);
+				DustHandle defaultSerializer = Dust.access(DustAccess.Peek, null, mind, TOKEN_SERIALIZER);
+
+				sp.put(TOKEN_KEY, hUnit.getId());
+				sp.put(TOKEN_DATA, hUnit);
+				Dust.access(DustAccess.Process, sp, defaultSerializer);
+			}
+
 		}
 	};
 
@@ -198,6 +277,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustConsts, Dust
 												DustHandle h = Dust.getHandle(hUnit, hTypeBlock, id, DustOptCreate.Primary);
 												accessText(DustAccess.Set, sb.toString(), h.getId());
 												sb.setLength(0);
+
 //											appendHandle(h, sb);
 
 												if (override) {
@@ -256,15 +336,59 @@ public class DustSandboxTextEditor extends DustAgent implements DustConsts, Dust
 		public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
 			boolean skip = false;
 
-			if (text.contains("\n")) {
-				if (text.length() == 1) {
-					int l = doc.getLength();
-					int to = Math.max(0, offset - 2);
-					int tl = Math.min(l - to + 1, 4);
+			Element es = doc.getCharacterElement(offset);
+			Element ee = doc.getCharacterElement(offset + length);
 
-					String s = doc.getText(to, tl);
+			if (ee != es) {
+				skip = true;
+			} else {
+				if (text.contains("\n")) {
+					if (text.length() == 1) {
+						int dl = doc.getLength();
+						int to = Math.max(0, offset - 2);
+						int tl = Math.min(dl - to + 1, 4);
 
-					skip = -1 != s.indexOf("\n\n");
+						String s = doc.getText(to, tl);
+
+						if (-1 != s.indexOf("\n\n")) {
+							skip = true;
+						} else {
+							int so = es.getStartOffset();
+							String orig = doc.getText(so, es.getEndOffset() - so);
+							String remain = orig.substring(0, offset - so);
+							String move = orig.substring(offset - so);
+
+							Element eThis = doc.getParagraphElement(offset);
+							String idThis = (String) eThis.getAttributes().getAttribute(HTML.Attribute.ID);
+							DustHandle hThis = Dust.getHandle(hUnit, null, idThis, DustOptCreate.None);
+
+							String idParent = idThis;
+							for (Element p = eThis.getParentElement(); DustUtils.isEqual(idThis, idParent); p = p.getParentElement()) {
+								idParent = (String) p.getAttributes().getAttribute(HTML.Attribute.ID);
+							}
+							DustHandle hParent = Dust.getHandle(hUnit, null, idParent, DustOptCreate.None);
+
+							int idx = Dust.access(DustAccess.Peek, hThis, hParent, TOKEN_MEMBERS, KEY_INDEXOF);
+							String idNew = DustUtilsData.getNewId(hUnit);
+
+							DustHandle hNew = Dust.getHandle(hUnit, hTypeBlock, idNew, DustOptCreate.Primary);
+							Dust.access(DustAccess.Insert, hNew, hParent, TOKEN_MEMBERS, idx + 1);
+
+							accessText(DustAccess.Set, remain, idThis);
+							accessText(DustAccess.Set, move, hNew.getId());
+							
+							SwingUtilities.invokeLater(new Runnable() {
+								@Override
+								public void run() {
+									updateDocEditor();
+									updateStruct();
+									docEditor.setCaretPosition(offset);
+								}
+							});
+
+							return;
+						}
+					}
 				}
 			}
 
@@ -288,7 +412,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustConsts, Dust
 			int b = ce.getMark();
 			int e = ce.getDot();
 			boolean rev = b > e;
-			
+
 			if (b == e) {
 				Element ec = doc.getCharacterElement(b);
 
@@ -315,7 +439,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustConsts, Dust
 
 				if (eb != ee) {
 					b = eb.getStartOffset();
-					e = ee.getEndOffset() -1;
+					e = ee.getEndOffset() - 1;
 				}
 
 				Dust.log(TOKEN_LEVEL_TRACE, "select", b, e, eb, ee);
@@ -348,15 +472,22 @@ public class DustSandboxTextEditor extends DustAgent implements DustConsts, Dust
 	protected void init() throws Exception {
 
 		hUnit = Dust.getUnit("test.1", true);
+		hDoc = null;
 
 		hTypeDoc = DustUtilsData.getMindMeta(TOKEN_TEXT_DOC);
 		hTypeBlock = DustUtilsData.getMindMeta(TOKEN_TEXT_BLOCK);
 
-		String id = DustUtilsData.getNewId(hUnit);
+		for (DustHandle h : DustMindUtils.getUnitMembers(hUnit)) {
+			if (hTypeDoc == h.getType()) {
+				hDoc = h;
+				break;
+			}
+		}
 
-		hDoc = Dust.getHandle(hUnit, hTypeDoc, id, DustOptCreate.Primary);
-
-//		FlatLightLaf
+		if (null == hDoc) {
+			String id = DustUtilsData.getNewId(hUnit);
+			hDoc = Dust.getHandle(hUnit, hTypeDoc, id, DustOptCreate.Primary);
+		}
 
 		DustGuiSwingUtils.optSetLookAndFeel();
 
@@ -380,6 +511,8 @@ public class DustSandboxTextEditor extends DustAgent implements DustConsts, Dust
 		docPreview.setContentType("text/html");
 
 		docStruct = new JTree(structModel);
+		docStruct.setRootVisible(false);
+		docStruct.setCellRenderer(structRenderer);
 
 		factToolbars.get("tbTop", BoxLayout.LINE_AXIS);
 
@@ -397,7 +530,10 @@ public class DustSandboxTextEditor extends DustAgent implements DustConsts, Dust
 	};
 
 	String accessText(DustAccess access, String val, Object key) {
-		return Dust.access(access, val, texts, key);
+		DustHandle hNode = Dust.getHandle(hUnit, hTypeBlock, (String) key, DustOptCreate.None);
+
+		return Dust.access(access, val, hNode, TOKEN_TEXT_TEXT);
+//		return Dust.access(access, val, texts, key);
 	};
 
 	String generateHtml() {
@@ -474,22 +610,26 @@ public class DustSandboxTextEditor extends DustAgent implements DustConsts, Dust
 
 		frm.getContentPane().add(pnlMain);
 
-		fillToolbar("tbTop", "Rebuild", "Reset");
-		fillToolbar("tbStruct", "<-", "->");
+		fillToolbar("tbTop", "Rebuild", "Reset", null, tfUnit, "Load", "Save");
+		fillToolbar("tbStruct", "<-", "->", "Delete", "UnderFirst");
 		fillToolbar("tbDoc", "Doc 1", "Doc 2");
 
 		frm.getContentPane().revalidate();
 
-		docStruct.setRootVisible(true);
-
 	}
 
-	void fillToolbar(String tb, String... cmds) {
+	void fillToolbar(String tb, Object... cmds) {
 		JComponent pnl = factToolbars.get(tb);
 		pnl.removeAll();
 
-		for (String cmd : cmds) {
-			pnl.add(factActionControls.get(cmd));
+		for (Object o : cmds) {
+			if (null == o) {
+				pnl.add(Box.createHorizontalStrut(10));
+			} else if (o instanceof JComponent) {
+				pnl.add((JComponent) o);
+			} else if (o instanceof String) {
+				pnl.add(factActionControls.get((String) o));
+			}
 		}
 	}
 
@@ -503,6 +643,16 @@ public class DustSandboxTextEditor extends DustAgent implements DustConsts, Dust
 	}
 
 	public DefaultMutableTreeNode loadNode(DefaultMutableTreeNode p, DustHandle h) {
+		p.setUserObject(h);
+
+		for (DustHandle hc : (Collection<DustHandle>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h, TOKEN_MEMBERS)) {
+			p.add(loadNode(new DefaultMutableTreeNode(), hc));
+		}
+
+		return p;
+	}
+
+	public String getNodeText(DustHandle h) {
 		String txt = accessText(DustAccess.Peek, "placeholder", h.getId());
 		int maxLen = 50;
 		if (txt.length() > maxLen) {
@@ -510,13 +660,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustConsts, Dust
 		} else {
 			txt = txt.trim();
 		}
-		p.setUserObject(txt);
-
-		for (DustHandle hc : (Collection<DustHandle>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h, TOKEN_MEMBERS)) {
-			p.add(loadNode(new DefaultMutableTreeNode(), hc));
-		}
-
-		return p;
+		return txt;
 	}
 
 	public DefaultMutableTreeNode loadElement(DefaultMutableTreeNode p, Element e) {

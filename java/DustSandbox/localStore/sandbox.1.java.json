@@ -5,11 +5,14 @@
 			"id": "Sandbox",
 			"attributes": {
 				"dust.1$binaryResolver": {
-					"sandbox.1$Mind": {
+					"dust.1$MiND": {
 						"dust.1$binary": "me.giskard.dust.core.mind.DustMindAgent"
 					},
 					"sandbox.1$SerializeJsonApi": {
 						"dust.1$binary": "me.giskard.dust.core.stream.DustStreamJsonApiSerializerAgent"
+					},
+					"sandbox.1$FileStreamSource": {
+						"dust.1$binary": "me.giskard.dust.core.stream.DustStreamSrcFileAgent"
 					},
 					"dust.1$Browser": {
 						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserFrameAgent"

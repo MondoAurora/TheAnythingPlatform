@@ -22,7 +22,7 @@
 		},
 		{
 			"type": "dust.1$Agent",
-			"id": "sandbox.1$Mind",
+			"id": "dust.1$MiND",
 			"attributes": {
 				"dust.1$meta": "dust.1"
 			},
@@ -37,23 +37,47 @@
 		},
 		{
 			"type": "dust.1$Agent",
-			"id": "sandbox.1$SerializeJsonApi",
-			"attributes": {
-				"dust.1$rootFolder": "localStore"
-			}
+			"id": "sandbox.1$SerializeJsonApi"
 		},
 		{
 			"type": "dust.1$Service",
 			"id": "sandbox.1$SerializeDefault",
-			"attributes": {
-				"dust.1$cmd": "dust.1$save"
-			},
 			"relationships": {
 				"dust.1$listeners": {
 					"data": [
 						{
 							"type": "dust.1$Agent",
 							"id": "sandbox.1$SerializeJsonApi",
+							"meta": {
+								"key": -1
+							}
+						}
+					]
+				},
+				"dust.1$streamSource": {
+					"data": {
+						"type": "dust.1$Service",
+						"id": "sandbox.1$UnitCacheRoot"
+					}
+				}
+			}
+		},
+		{
+			"type": "dust.1$Agent",
+			"id": "sandbox.1$FileStreamSource"
+		},
+		{
+			"type": "dust.1$Service",
+			"id": "sandbox.1$UnitCacheRoot",
+			"attributes": {
+				"dust.1$rootFolder": "localStore"
+			},
+			"relationships": {
+				"dust.1$listeners": {
+					"data": [
+						{
+							"type": "dust.1$Agent",
+							"id": "sandbox.1$FileStreamSource",
 							"meta": {
 								"key": -1
 							}
@@ -87,7 +111,7 @@
 				"dust.1$lookAndFeel": [
 					"com.apple.laf.AquaLookAndFeel",
 					"javax.swing.plaf.nimbus.NimbusLookAndFeel"
-				]			
+				]
 			},
 			"relationships": {
 				"dust.1$listeners": {

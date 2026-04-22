@@ -33,6 +33,7 @@ public interface DustConsts {
 	int KEY_ADD = -1;
 	int KEY_SIZE = -2;
 	int KEY_INDEXOF = -3;
+	int KEY_MEMBEROF = -4;
 	Object KEY_MAP_KEYS = new Object();
 
 	String TOKEN_CMD = DUST_UNIT_DUST + DUST_SEP_TOKEN + "cmd";
@@ -132,6 +133,8 @@ public interface DustConsts {
 	
 	String TOKEN_TEXT_DOC = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "Document";
 	String TOKEN_TEXT_BLOCK = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "Block";
+	String TOKEN_TEXT_TEXT = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "text";
+	String TOKEN_TEXT_ORPHANS = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "orphans";
 
 	Object NOT_FOUND = new Object();
 	Object NOT_IMPLEMENTED = new Object();
