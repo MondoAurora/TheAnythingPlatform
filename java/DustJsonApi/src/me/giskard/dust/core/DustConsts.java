@@ -135,6 +135,10 @@ public interface DustConsts {
 	String TOKEN_TEXT_BLOCK = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "Block";
 	String TOKEN_TEXT_TEXT = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "text";
 	String TOKEN_TEXT_ORPHANS = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "orphans";
+	
+	String TOKEN_TEXT_GROUP = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "group";
+	String TOKEN_TEXT_GROUP_BULLET = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "groupBullet";
+	String TOKEN_TEXT_GROUP_NUMBER = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "groupNumber";
 
 	Object NOT_FOUND = new Object();
 	Object NOT_IMPLEMENTED = new Object();
