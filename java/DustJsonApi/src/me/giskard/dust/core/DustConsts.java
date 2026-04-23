@@ -10,7 +10,7 @@ public interface DustConsts {
 
 	String DUST_CHARSET_UTF8 = StandardCharsets.UTF_8.name();// "UTF-8";
 	String DUST_FMT_TIMESTAMP = "yyyyMMdd'T'HHmmss'Z'";
-	
+
 	int DUST_DEF_ID_BYTES = 4;
 
 	String DUST_PLATFORM_JAVA = "java";
@@ -81,7 +81,6 @@ public interface DustConsts {
 	String TOKEN_DESC = DUST_UNIT_DUST + DUST_SEP_TOKEN + "desc";
 	String TOKEN_PAYLOAD = DUST_UNIT_DUST + DUST_SEP_TOKEN + "payload";
 	String TOKEN_POSTFIX = DUST_UNIT_DUST + DUST_SEP_TOKEN + "postfix";
-	
 
 	String TOKEN_ACCESS = DUST_UNIT_DUST + DUST_SEP_TOKEN + "access";
 	String TOKEN_USER = DUST_UNIT_DUST + DUST_SEP_TOKEN + "user";
@@ -104,6 +103,9 @@ public interface DustConsts {
 	String TOKEN_INDEX = DUST_UNIT_DUST + DUST_SEP_TOKEN + "index";
 	String TOKEN_MAPPING = DUST_UNIT_DUST + DUST_SEP_TOKEN + "mapping";
 	String TOKEN_CONSTS = DUST_UNIT_DUST + DUST_SEP_TOKEN + "consts";
+
+	String TOKEN_POSITION = DUST_UNIT_DUST + DUST_SEP_TOKEN + "position";
+	String TOKEN_RANGE = DUST_UNIT_DUST + DUST_SEP_TOKEN + "range";
 
 	String TOKEN_TYPE_APP = DUST_UNIT_DUST + DUST_SEP_TOKEN + "Application";
 	String TOKEN_TYPE_AGENT = DUST_UNIT_DUST + DUST_SEP_TOKEN + "Agent";
@@ -130,12 +132,12 @@ public interface DustConsts {
 
 	String TOKEN_LASTCHANGED = DUST_UNIT_DUST + DUST_SEP_TOKEN + "lastChanged";
 
-	
 	String TOKEN_TEXT_DOC = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "Document";
+	String TOKEN_TEXT_TABLE = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "Table";
 	String TOKEN_TEXT_BLOCK = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "Block";
 	String TOKEN_TEXT_TEXT = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "text";
 	String TOKEN_TEXT_ORPHANS = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "orphans";
-	
+
 	String TOKEN_TEXT_GROUP = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "group";
 	String TOKEN_TEXT_GROUP_BULLET = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "groupBullet";
 	String TOKEN_TEXT_GROUP_NUMBER = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "groupNumber";
@@ -173,7 +175,7 @@ public interface DustConsts {
 
 		String getId();
 	}
-	
+
 	enum DustAction {
 		Init, Begin, Process, End, Release,
 	}
@@ -181,8 +183,8 @@ public interface DustConsts {
 	public abstract class DustAgent implements DustConsts {
 		protected final Object process(DustAction action, DustAccess access) throws Exception {
 			Object ret = null;
-			
-			switch ( action ) {
+
+			switch (action) {
 			case Init:
 				init();
 				break;
@@ -199,10 +201,10 @@ public interface DustConsts {
 				release();
 				break;
 			}
-			
+
 			return ret;
 		}
-		
+
 		protected void init() throws Exception {
 		}
 
@@ -215,7 +217,7 @@ public interface DustConsts {
 		protected Object end(boolean commit) throws Exception {
 			return NOT_IMPLEMENTED;
 		}
-		
+
 		protected void release() throws Exception {
 		}
 	}
