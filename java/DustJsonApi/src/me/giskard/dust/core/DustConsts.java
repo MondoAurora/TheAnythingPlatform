@@ -7,6 +7,7 @@ public interface DustConsts {
 
 	String DUST_UNIT_DUST = "dust.1";
 	String DUST_UNIT_TEXT = "text.1";
+	String DUST_UNIT_LAYOUT = "layout.1";
 
 	String DUST_CHARSET_UTF8 = StandardCharsets.UTF_8.name();// "UTF-8";
 	String DUST_FMT_TIMESTAMP = "yyyyMMdd'T'HHmmss'Z'";
@@ -103,8 +104,10 @@ public interface DustConsts {
 	String TOKEN_INDEX = DUST_UNIT_DUST + DUST_SEP_TOKEN + "index";
 	String TOKEN_MAPPING = DUST_UNIT_DUST + DUST_SEP_TOKEN + "mapping";
 	String TOKEN_CONSTS = DUST_UNIT_DUST + DUST_SEP_TOKEN + "consts";
+	String TOKEN_OPTIONS = DUST_UNIT_DUST + DUST_SEP_TOKEN + "options";
 
 	String TOKEN_POSITION = DUST_UNIT_DUST + DUST_SEP_TOKEN + "position";
+	String TOKEN_SPAN = DUST_UNIT_DUST + DUST_SEP_TOKEN + "span";
 	String TOKEN_RANGE = DUST_UNIT_DUST + DUST_SEP_TOKEN + "range";
 
 	String TOKEN_TYPE_APP = DUST_UNIT_DUST + DUST_SEP_TOKEN + "Application";
@@ -133,7 +136,6 @@ public interface DustConsts {
 	String TOKEN_LASTCHANGED = DUST_UNIT_DUST + DUST_SEP_TOKEN + "lastChanged";
 
 	String TOKEN_TEXT_DOC = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "Document";
-	String TOKEN_TEXT_TABLE = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "Table";
 	String TOKEN_TEXT_BLOCK = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "Block";
 	String TOKEN_TEXT_TEXT = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "text";
 	String TOKEN_TEXT_ORPHANS = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "orphans";
@@ -141,6 +143,12 @@ public interface DustConsts {
 	String TOKEN_TEXT_GROUP = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "group";
 	String TOKEN_TEXT_GROUP_BULLET = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "groupBullet";
 	String TOKEN_TEXT_GROUP_NUMBER = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "groupNumber";
+
+	String TOKEN_LAYOUT_RESPONSIVE = DUST_UNIT_LAYOUT + DUST_SEP_TOKEN + "Responsive";
+	String TOKEN_LAYOUT_TABLE = DUST_UNIT_LAYOUT + DUST_SEP_TOKEN + "Table";
+	String TOKEN_LAYOUT_CELL = DUST_UNIT_LAYOUT + DUST_SEP_TOKEN + "Cell";
+	String TOKEN_LAYOUT_LAYOUT = DUST_UNIT_LAYOUT + DUST_SEP_TOKEN + "layout";
+	String TOKEN_LAYOUT_LAYOUT_PAGE = DUST_UNIT_LAYOUT + DUST_SEP_TOKEN + "layoutPage";
 
 	Object NOT_FOUND = new Object();
 	Object NOT_IMPLEMENTED = new Object();

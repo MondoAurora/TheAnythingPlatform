@@ -56,7 +56,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			String k = (String) key;
 			DustMindIdea unit = (DustMindIdea) hints[0];
 			DustMindHandle hUnit = unit.mh;
-			
+
 			if ((null != unitApp) && (unitApp.mh != hUnit) && !loadingUnit.get().contains(hUnit)) {
 				changedUnits.add(hUnit);
 			}
@@ -135,21 +135,23 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			if (unit != unitMeta.mh) {
 				ret = getHandle(unitMeta.mh, type, id, (null == unit) ? DustOptCreate.Meta : DustOptCreate.None);
 			}
-
-			if (null == ret) {
-				if (-1 != sep) {
-					String uid = id.substring(0, sep);
-					if ((null == u) || !DustUtils.isEqual(u.getId(), uid)) {
-						DustMindHandle uu = (DustMindHandle) getUnit(uid, true);
-						if ((null == u) || (uu != u)) {
-							u = uu;
-						}
-					}
-				}
-			}
 		}
 
 		if (null == ret) {
+			if (-1 != sep) {
+				String uid = id.substring(0, sep);
+				if ((null == u) || !DustUtils.isEqual(u.getId(), uid)) {
+					u = (DustMindHandle) getUnit(uid, true);
+//					DustMindHandle uu = (DustMindHandle) getUnit(uid, true);
+//					if ((null == u) || (uu != u)) {
+//						u = uu;
+//					}
+				}
+			}
+//			}
+//		}
+
+//		if (null == ret) {
 			DustMindIdea ui;
 
 			if (DustUtils.isEqual(typeUnit, type)) {
@@ -300,7 +302,8 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		return (RetType) ret;
 	}
 
-	private void registerChange(DustHandle agent, DustAccess acess, DustHandle handle, DustHandle att, Object lastKey, Object oldVal, Object newVal) throws RuntimeException {
+	private void registerChange(DustHandle agent, DustAccess acess, DustHandle handle, DustHandle att, Object lastKey, Object oldVal, Object newVal)
+			throws RuntimeException {
 		checkAccess(agent, acess, handle, att, lastKey, newVal);
 
 		DustHandle hUnit = handle.getUnit();
@@ -389,8 +392,8 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 						}
 					}
 				} else {
-					if ( p instanceof Integer ) {
-						switch ( (Integer) p ) {
+					if (p instanceof Integer) {
+						switch ((Integer) p) {
 						case KEY_SIZE:
 							curr = 0;
 							break;
@@ -413,8 +416,8 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			if (curr instanceof ArrayList) {
 				ArrayList al = (ArrayList) curr;
 				Integer idx = (Integer) p;
-				
-				switch ( idx ) {
+
+				switch (idx) {
 				case KEY_SIZE:
 					curr = al.size();
 					break;
@@ -486,7 +489,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 				change = true;
 				break;
 			case Map:
-				change = (curr instanceof Set) ? !((Set)curr).contains(val) : !DustUtils.isEqual(curr, val);
+				change = (curr instanceof Set) ? !((Set) curr).contains(val) : !DustUtils.isEqual(curr, val);
 				break;
 			case One:
 				break;
@@ -752,15 +755,15 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 	@Override
 	protected synchronized DustHandle bootLoadAppUnit(DustHandle appUnit, String path, InputStream is, Bootloader bootLoader) throws Exception {
-			if (null == appUnit) {
+		if (null == appUnit) {
 //				String unitId = DustUtils.cutPostfix(f.getName(), ".");
 			int u = path.lastIndexOf("/");
 			String unitId = DustUtils.cutPostfix(path.substring(u + 1), ".");
 
-				this.unitApp = getUnitIdea(unitId, true);
-				appUnit = this.unitApp.mh;
-			}
-			bootLoader.loadFile(appUnit, is);
+			this.unitApp = getUnitIdea(unitId, true);
+			appUnit = this.unitApp.mh;
+		}
+		bootLoader.loadFile(appUnit, is);
 
 		return appUnit;
 	}

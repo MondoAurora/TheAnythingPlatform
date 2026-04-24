@@ -137,7 +137,7 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 						if (sample instanceof DustHandle) {
 							int idx = (coll instanceof Set) ? -1 : 0;
 							for (DustHandle co : (Collection<DustHandle>) coll) {
-								addRelation(item, key, co, (-1 == idx) ? null : idx++);
+								addRelation(item, key, co, (-1 == idx) ? -1 : idx++);
 							}
 							val = null;
 						}
@@ -188,12 +188,17 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 
 	private Map addRelation(Map<String, Object> item, String key, Object val, Object metaKey) {
 		Map head = getJsonHead((DustHandle) val);
-		Dust.access(DustAccess.Insert, head, item, JsonApiMember.relationships, key, JsonApiMember.data, KEY_ADD);
 
-		if (null != metaKey) {
-			Dust.access(DustAccess.Set, metaKey, head, JsonApiMember.meta, EXT_JSONAPI_KEY);
+		if (null == metaKey) {
+			Dust.access(DustAccess.Set, head, item, JsonApiMember.relationships, key, JsonApiMember.data);
 		} else {
-//			Dust.log(TOKEN_LEVEL_TRACE, "hmm");
+			Dust.access(DustAccess.Insert, head, item, JsonApiMember.relationships, key, JsonApiMember.data, KEY_ADD);
+
+			if ( ! DustUtils.isEqual(-1, metaKey)) {
+				Dust.access(DustAccess.Set, metaKey, head, JsonApiMember.meta, EXT_JSONAPI_KEY);
+			} else {
+				Dust.log(TOKEN_LEVEL_TRACE, "hmm");
+			}
 		}
 		return head;
 	}
@@ -207,7 +212,7 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 
 	@Override
 	public void loadFile(DustHandle unit, InputStream is) throws Exception {
-		if ( null == is ) {
+		if (null == is) {
 			return;
 		}
 //		if (f.isFile()) {
