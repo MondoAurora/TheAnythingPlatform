@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.TimeZone;
 
@@ -244,4 +245,30 @@ public class DustUtils implements DustUtilsConsts {
 		}
 		return null;
 	}
+	
+	private static final Random RND = new Random(System.currentTimeMillis());
+
+	public static String getNewId(DustHandle hUnit) {
+		return getNewId(hUnit, DUST_DEF_ID_BYTES);
+	}
+
+	public static String getNewId(DustHandle hUnit, int bytes) {
+		String id;
+
+		byte[] rb = new byte[bytes];
+		do {
+			RND.nextBytes(rb);
+
+			StringBuilder sb = new StringBuilder(2 * bytes);
+			for (byte b : rb) {
+				sb.append(Character.forDigit((b >> 4) & 0xF, 16));
+				sb.append(Character.forDigit((b & 0xF), 16));
+			}
+
+			id = sb.toString();
+		} while (null != Dust.getHandle(hUnit, null, id, DustOptCreate.None));
+
+		return id;
+	}
+
 }

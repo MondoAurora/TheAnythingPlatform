@@ -100,6 +100,70 @@
 					"com.apple.laf.AquaLookAndFeel",
 					"javax.swing.plaf.nimbus.NimbusLookAndFeel"
 				]
+			},
+			"relationships": {
+				"text.1$lang": {
+					"data": {
+						"type": "lang.1$Language",
+						"id": "lang.1$en"
+					}
+				},
+				"lang.1$supported": {
+					"data": [
+						{
+							"type": "lang.1$Language",
+							"id": "lang.1$en",
+							"meta": {
+								"key": -1
+							}
+						},
+						{
+							"type": "lang.1$Language",
+							"id": "lang.1$hu",
+							"meta": {
+								"key": -1
+							}
+						},
+						{
+							"type": "lang.1$Language",
+							"id": "lang.1$es",
+							"meta": {
+								"key": -1
+							}
+						}
+					]
+				},
+				"layout.1$layout": {
+					"data": {
+						"type": "dust.1$Tag",
+						"id": "layout.1$Flow"
+					}
+				},
+				"layout.1$layoutOptions": {
+					"data": [
+						{
+							"type": "dust.1$Tag",
+							"id": "layout.1$Flow",
+							"meta": {
+								"key": -1
+							}
+						},
+						{
+							"type": "dust.1$Tag",
+							"id": "layout.1$A4Portrait",
+							"meta": {
+								"key": -1
+							}
+						},
+						{
+							"type": "dust.1$Tag",
+							"id": "layout.1$A4Landscape",
+							"meta": {
+								"key": -1
+							}
+						}
+					]
+				}
 			}
 		},
 		{

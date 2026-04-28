@@ -125,6 +125,14 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 	protected DustMindHandle getHandle(DustHandle unit, DustHandle type, String id, DustOptCreate optCreate) {
 		DustMindHandle ret = null;
 
+		if (DustUtils.isEmpty(id)) {
+			if (optCreate == DustOptCreate.Primary) {
+				id = DustUtils.getNewId(unit);
+			} else {
+				return null;
+			}
+		}
+
 		DustMindHandle u = (DustMindHandle) unit;
 		int sep = id.indexOf(DUST_SEP_TOKEN);
 

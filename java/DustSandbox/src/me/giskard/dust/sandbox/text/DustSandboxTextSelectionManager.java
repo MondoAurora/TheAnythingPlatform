@@ -62,14 +62,11 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 
 						DustHandle h = (DustHandle) n.getUserObject();
 						DustHandle t = Dust.access(DustAccess.Peek, h, h, DustSandboxTextEditor.TOKEN_TARGET); // opt relay from table cell
-						hfBlock = (null == t ) ? h : t;
+						hfBlock = (null == t) ? h : t;
 
 						eSelByHandle(hfBlock);
 
-						JComponent txt = updateComps((JComponent) e.getSource());
-						if (null != txt) {
-							txt.requestFocusInWindow();
-						}
+						updateComps((JComponent) e.getSource());
 					} finally {
 						selUpdating = false;
 					}
@@ -200,7 +197,7 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 		return hfParent;
 	}
 
-	private void reset() {
+	void reset() {
 		caretPos = selBegin = selEnd = -1;
 		hfChar = hfBlock = hfParent = null;
 		hSel.clear();
@@ -208,10 +205,17 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 
 	private void updateFocus() {
 		eFocus = getTopSelf(eFocus);
-		eParent = getTopSelf(eFocus.getParentElement());
+		eParent = (null == eFocus) ? null : getTopSelf(eFocus.getParentElement());
 
-		hfBlock = Dust.getHandle(hUnit, null, DustSandboxTextUtils.getId(eFocus), DustOptCreate.None);
-		hfParent = (null == eParent) ? null : Dust.getHandle(hUnit, null, DustSandboxTextUtils.getId(eParent), DustOptCreate.None);
+		hfBlock = hfParent = null;
+		String id = DustSandboxTextUtils.getId(eFocus);
+		if (null != id) {
+			hfBlock = Dust.getHandle(hUnit, null, id, DustOptCreate.None);
+			if (null != eParent) {
+				String pid = DustSandboxTextUtils.getId(eParent);
+				hfParent = Dust.getHandle(hUnit, null, pid, DustOptCreate.None);
+			}
+		}
 	}
 
 	private Element getTopSelf(Element e) {
@@ -244,8 +248,8 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 		for (JComponent c : linkedComps) {
 			if (c != src) {
 				if (c instanceof JTree) {
-					if ( null != hfBlock) {
-					JTree tr = (JTree) c;
+					if (null != hfBlock) {
+						JTree tr = (JTree) c;
 
 //					String idThis = (String) eFocus.getAttributes().getAttribute(HTML.Attribute.ID);
 //					if (!DustUtils.isEmpty(idThis)) {
@@ -264,16 +268,24 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 
 				} else if (c instanceof JTextComponent) {
 					JTextComponent txt = (JTextComponent) c;
-					if (-1 == selBegin) {
-						txt.setCaretPosition(caretPos);
-					} else {
-						txt.setCaretPosition(selBegin);
-						txt.moveCaretPosition(selEnd);
+//					if (!txt.getText().isEmpty()) 
+					{
+						if (-1 == selBegin) {
+							if (-1 != caretPos) {
+								txt.setCaretPosition(caretPos);
+							}
+						} else {
+//							txt.moveCaretPosition(selEnd);
+							txt.setCaretPosition(selEnd);
+							txt.moveCaretPosition(selBegin);
+						}
 					}
+
+					if (c.isShowing()) {
+						c.requestFocusInWindow();
+					}
+
 				}
-			}
-			if (c.isShowing()) {
-				ret = c;
 			}
 		}
 		return ret;

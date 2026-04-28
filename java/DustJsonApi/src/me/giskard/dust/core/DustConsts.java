@@ -8,6 +8,7 @@ public interface DustConsts {
 	String DUST_UNIT_DUST = "dust.1";
 	String DUST_UNIT_TEXT = "text.1";
 	String DUST_UNIT_LAYOUT = "layout.1";
+	String DUST_UNIT_LANG = "lang.1";
 
 	String DUST_CHARSET_UTF8 = StandardCharsets.UTF_8.name();// "UTF-8";
 	String DUST_FMT_TIMESTAMP = "yyyyMMdd'T'HHmmss'Z'";
@@ -139,6 +140,13 @@ public interface DustConsts {
 	String TOKEN_TEXT_BLOCK = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "Block";
 	String TOKEN_TEXT_TEXT = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "text";
 	String TOKEN_TEXT_ORPHANS = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "orphans";
+	
+	String TOKEN_TEXT_STYLE = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "Style";
+	String TOKEN_TEXT_STYLE_DEF = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "styleDef";
+	String TOKEN_TEXT_STYLES = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "styles";
+
+	String TOKEN_TEXT_LANG = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "lang";
+
 
 	String TOKEN_TEXT_GROUP = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "group";
 	String TOKEN_TEXT_GROUP_BULLET = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "groupBullet";
@@ -149,7 +157,10 @@ public interface DustConsts {
 	String TOKEN_LAYOUT_TABLE = DUST_UNIT_LAYOUT + DUST_SEP_TOKEN + "Table";
 	String TOKEN_LAYOUT_CELL = DUST_UNIT_LAYOUT + DUST_SEP_TOKEN + "Cell";
 	String TOKEN_LAYOUT_LAYOUT = DUST_UNIT_LAYOUT + DUST_SEP_TOKEN + "layout";
-	String TOKEN_LAYOUT_LAYOUT_PAGE = DUST_UNIT_LAYOUT + DUST_SEP_TOKEN + "layoutPage";
+	String TOKEN_LAYOUT_LAYOUT_OTPIONS = DUST_UNIT_LAYOUT + DUST_SEP_TOKEN + "layoutOptions";
+
+	String TOKEN_LANG_LANGUAGE = DUST_UNIT_LANG + DUST_SEP_TOKEN + "Language";
+	String TOKEN_LANG_SUPPORTED = DUST_UNIT_LANG + DUST_SEP_TOKEN + "supported";
 
 	Object NOT_FOUND = new Object();
 	Object NOT_IMPLEMENTED = new Object();
