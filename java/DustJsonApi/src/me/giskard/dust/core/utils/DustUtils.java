@@ -228,10 +228,17 @@ public class DustUtils implements DustUtilsConsts {
 	public static boolean isEmpty(Collection coll) {
 		return (null == coll) || coll.isEmpty();
 	}
+	
+	public static final DustUtilsFactory<String, DustHandle> CONST_HANDLES = new DustUtilsFactory<String, DustHandle>(new DustCreator<DustHandle>() {
+		@Override
+		public DustHandle create(Object key, Object... hints) {
+			return Dust.getHandle(null, optGet(hints,  0, null), (String) key, DustOptCreate.Meta);
+		}
+	}, true);
 
-	public static DustHandle getMindMeta(String type) {
-		return Dust.getHandle(null, null, type, DustOptCreate.Meta);
-	}
+//	public static DustHandle getMindMeta(String type) {
+//		return Dust.getHandle(null, null, type, DustOptCreate.Meta);
+//	}
 
 	public static Object getSample(Object val) {
 		if (val instanceof Map) {

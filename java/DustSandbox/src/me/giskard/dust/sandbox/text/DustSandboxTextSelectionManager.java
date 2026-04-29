@@ -23,7 +23,9 @@ import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.utils.DustUtils;
 
 public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
-	private DustHandle hUnit;
+//	private DustHandle hUnit;
+	DustSandboxTextAgent txtAgent;
+	
 	private final HTMLDocument doc;
 	private DefaultMutableTreeNode rootNode;
 
@@ -133,7 +135,7 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 								if (in) {
 									String ii = DustSandboxTextUtils.getId(ei);
 									if (!DustUtils.isEmpty(ii)) {
-										DustHandle hi = Dust.getHandle(hUnit, null, ii, DustOptCreate.None);
+										DustHandle hi = txtAgent.getTextNode(ii);
 										if (null != hi) {
 											hSel.add(hi);
 										}
@@ -167,8 +169,9 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 		}
 	};
 
-	public DustSandboxTextSelectionManager(DustHandle hUnit, HTMLDocument doc) {
-		this.hUnit = hUnit;
+	public DustSandboxTextSelectionManager(DustSandboxTextAgent txtAgent, HTMLDocument doc) {
+//		this.hUnit = hUnit;
+		this.txtAgent = txtAgent;
 		this.doc = doc;
 	}
 
@@ -210,10 +213,10 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 		hfBlock = hfParent = null;
 		String id = DustSandboxTextUtils.getId(eFocus);
 		if (null != id) {
-			hfBlock = Dust.getHandle(hUnit, null, id, DustOptCreate.None);
+			hfBlock = txtAgent.getTextNode(id);
 			if (null != eParent) {
 				String pid = DustSandboxTextUtils.getId(eParent);
-				hfParent = Dust.getHandle(hUnit, null, pid, DustOptCreate.None);
+				hfParent = txtAgent.getTextNode(pid);
 			}
 		}
 	}

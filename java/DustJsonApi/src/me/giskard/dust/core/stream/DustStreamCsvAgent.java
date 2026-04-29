@@ -21,8 +21,8 @@ import me.giskard.dust.core.utils.DustUtilsData;
 @SuppressWarnings({ "unchecked" })
 public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, DustMindConsts {
 
-	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
-	DustHandle typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
+//	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
+//	DustHandle typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
@@ -166,7 +166,7 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 
 					if (null == tType) {
 						String type = Dust.access(DustAccess.Peek, null, src, TOKEN_TYPE);
-						tType = Dust.getHandle(meta, typeType, type, DustOptCreate.Meta);
+						tType = Dust.getHandle(meta, null, type, DustOptCreate.Meta);
 					}
 
 					DustHandle hTarget = Dust.getHandle(unit, tType, str, DustOptCreate.Primary);

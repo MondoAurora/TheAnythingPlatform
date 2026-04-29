@@ -111,8 +111,8 @@ public class Dust implements DustConsts, DustMindConsts {
 			optExtAppUnit(null, DUST_CRED_FILE, streamSource, bootLoader);
 //			MIND.bootLoadAppUnit(appUnit, new File(DUST_CRED_FILE), bootLoader);
 
-			DustHandle appType = DustUtils.getMindMeta(TOKEN_TYPE_APP);
-			appHandle = getHandle(appUnit, appType, appName, DustOptCreate.None);
+//			DustHandle appType = DustUtils.getMindMeta(TOKEN_TYPE_APP);
+			appHandle = getHandle(appUnit, TOKEN_TYPE_APP, appName, DustOptCreate.None);
 
 //			int s = appUnitPath.lastIndexOf(".");
 //			File fBin = new File(appUnitPath.substring(0, s) + "." + DUST_PLATFORM_JAVA + appUnitPath.substring(s));
@@ -124,7 +124,7 @@ public class Dust implements DustConsts, DustMindConsts {
 
 			MIND.init();
 
-			for (DustHandle ca : ((Collection<DustHandle>) access(DustAccess.Peek, Collections.EMPTY_LIST, appHandle, DustUtils.getMindMeta(TOKEN_INIT)))) {
+			for (DustHandle ca : ((Collection<DustHandle>) access(DustAccess.Peek, Collections.EMPTY_LIST, appHandle, TOKEN_INIT))) {
 
 				String type = ca.getType().getId();
 				String an = ca.getId();
@@ -160,7 +160,7 @@ public class Dust implements DustConsts, DustMindConsts {
 		}
 	}
 
-	public static DustHandle getHandle(DustHandle unit, DustHandle type, String id, DustOptCreate optCreate) {
+	public static DustHandle getHandle(DustHandle unit, Object type, String id, DustOptCreate optCreate) {
 		return MIND.getHandle(unit, type, id, optCreate);
 	}
 

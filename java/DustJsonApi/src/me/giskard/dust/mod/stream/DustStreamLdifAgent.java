@@ -22,8 +22,8 @@ import me.giskard.dust.mod.ldap.DustLdapNewConsts;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, DustMindConsts, DustLdapNewConsts {
 
-	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
-	DustHandle typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
+//	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
+//	DustHandle typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
@@ -89,7 +89,7 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 
 			DustHandle h = null;
 
-			DustHandle type = null;
+			String type = null;
 
 			while ((line = br.readLine()) != null) {
 				line = line.trim();
@@ -108,10 +108,10 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 
 					switch (key) {
 					case LDAP_ATTRIBUTE_TYPES:
-						type = typeAtt;
+						type = TOKEN_KBMETA_ATTRIBUTE;
 						break;
 					case LDAP_OBJECT_CLASSES:
-						type = typeType;
+						type = TOKEN_KBMETA_TYPE;
 						break;
 					default:
 						continue;
@@ -138,7 +138,7 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 
 					for (String a : members) {
 						String attName = a.trim();
-						DustHandle ah = Dust.getHandle(unit, typeAtt, attName, DustOptCreate.Primary);
+						DustHandle ah = Dust.getHandle(unit, TOKEN_KBMETA_ATTRIBUTE, attName, DustOptCreate.Primary);
 						Dust.access(DustAccess.Insert, ah, h, TOKEN_MANDATORY);
 						Dust.access(DustAccess.Insert, h, ah, TOKEN_APPEARS);
 						Dust.access(DustAccess.Set, ah, h, TOKEN_CHILDMAP, attName);
@@ -152,7 +152,7 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 
 					for (String a : members) {
 						String attName = a.trim();
-						DustHandle ah = Dust.getHandle(unit, typeAtt, attName, DustOptCreate.Primary);
+						DustHandle ah = Dust.getHandle(unit, TOKEN_KBMETA_ATTRIBUTE, attName, DustOptCreate.Primary);
 						Dust.access(DustAccess.Insert, ah, h, TOKEN_OPTIONAL);
 						Dust.access(DustAccess.Insert, h, ah, TOKEN_APPEARS);
 						Dust.access(DustAccess.Set, ah, h, TOKEN_CHILDMAP, attName);
@@ -184,7 +184,7 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 			this.unitMeta = unitMeta;
 
 			String typeName = Dust.access(DustAccess.Peek, "???", params, TOKEN_TYPE);
-			type = Dust.getHandle(unitMeta, typeType, typeName, DustOptCreate.Meta);
+			type = Dust.getHandle(unitMeta, TOKEN_KBMETA_TYPE, typeName, DustOptCreate.Meta);
 
 			encoding = Dust.access(DustAccess.Peek, DUST_CHARSET_UTF8, params, TOKEN_STREAM_ENCODING);
 		}
@@ -227,12 +227,12 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 					currHandle = Dust.getHandle(unit, type, optId, DustOptCreate.Primary);
 				}
 
-				Object k = Dust.getHandle(unitMeta, typeAtt, key, DustOptCreate.Meta);
+				Object k = Dust.getHandle(unitMeta, TOKEN_KBMETA_ATTRIBUTE, key, DustOptCreate.Meta);
 				Dust.access(DustAccess.Insert, type, k, TOKEN_APPEARS);
 				Dust.access(DustAccess.Set, k, type, TOKEN_CHILDMAP, key);
 
 				if (LDAP_OBJECTCLASS.equals(key)) {
-					Dust.getHandle(unitMeta, typeType, optId, DustOptCreate.Meta);
+					Dust.getHandle(unitMeta, TOKEN_KBMETA_TYPE, optId, DustOptCreate.Meta);
 				}
 
 //				String k = unitMeta.getUnitId() + DUST_SEP_TOKEN + key;

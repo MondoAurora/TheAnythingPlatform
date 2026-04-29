@@ -3,26 +3,21 @@ package me.giskard.dust.sandbox.text;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.Vector;
 
-import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListCellRenderer;
@@ -59,7 +54,6 @@ import javax.swing.tree.TreePath;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.DustException;
-import me.giskard.dust.core.mind.DustMindUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
 import me.giskard.dust.mod.gui.swing.DustGuiSwingUtils;
@@ -67,22 +61,13 @@ import me.giskard.dust.mod.gui.swing.DustGuiSwingUtils;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextConsts {
 
-	DustHandle hTypeDoc;
-	DustHandle hTypeBlock;
-	DustHandle hTagBullet;
-	DustHandle hTagNumber;
-	DustHandle hTagInline;
+//	DustHandle hUnit;
+//	DustHandle hDoc;
 
-	DustHandle hTypeResp;
-	DustHandle hTypeTable;
-	DustHandle hTypeCell;
+	DustSandboxTextAgent txtAgent = new DustSandboxTextAgent();
 
-	DustHandle hTypeStyle;
-	DustHandle hAttStyleDef;
-
-	DustHandle hUnit;
-	DustHandle hDoc;
 	DustHandle hCurrentLayout;
+	DustHandle hLang;
 
 	JFrame frm;
 
@@ -96,7 +81,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 	DefaultTreeCellRenderer structRenderer = new DefaultTreeCellRenderer() {
 		public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
 			Object uo = ((DefaultMutableTreeNode) value).getUserObject();
-			String txt = (uo instanceof DustHandle) ? getNodeText((DustHandle) uo) : DustUtils.toString(uo);
+			String txt = (uo instanceof DustHandle) ? txtAgent.getShortText((DustHandle) uo, 50) : DustUtils.toString(uo);
 
 			Component r = super.getTreeCellRendererComponent(tree, txt, sel, expanded, leaf, row, hasFocus);
 
@@ -123,7 +108,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 	DustSandboxTextSelectionManager selMgr;
 	DustSandboxTextHtmlGenerator htmlGen;
 
-	Map<String, String> styles = new TreeMap<>();
+//	Map<String, String> styles = new TreeMap<>();
 
 	DustUtilsFactory<String, JComponent> factToolbars = new DustUtilsFactory<String, JComponent>(new DustCreator<JComponent>() {
 		@Override
@@ -153,7 +138,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 			String cmd = e.getActionCommand();
 
 			Map<String, Object> sp = null;
-			TreePath[] tps;
+//			TreePath[] tps;
 
 			DustHandle hThis = selMgr.getFocusedBlock();
 			DustHandle hParent = selMgr.getFocusedParent();
@@ -167,11 +152,15 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					buildGui();
 					break;
 				case "Reset":
-					Dust.access(DustAccess.Reset, null, hDoc, TOKEN_MEMBERS);
+					txtAgent.reset();
 					refresh = true;
 					break;
 				case "Layout":
 					hCurrentLayout = (DustHandle) ((JComboBox) e.getSource()).getSelectedItem();
+					refresh = true;
+					break;
+				case "Language":
+					hLang = (DustHandle) ((JComboBox) e.getSource()).getSelectedItem();
 					refresh = true;
 					break;
 				case "Load":
@@ -191,37 +180,38 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					break;
 
 				case "Delete":
-					tps = docStruct.getSelectionPaths();
-					if (null != tps) {
-						for (TreePath tp : tps) {
-							DustHandle parent = (DustHandle) ((DefaultMutableTreeNode) tp.getParentPath().getLastPathComponent()).getUserObject();
-							DustHandle node = (DustHandle) ((DefaultMutableTreeNode) tp.getLastPathComponent()).getUserObject();
+					txtAgent.delete(hParent, selMgr.hSel);
+//					tps = docStruct.getSelectionPaths();
+//					if (null != tps) {
+//						for (TreePath tp : tps) {
+//							DustHandle parent = (DustHandle) ((DefaultMutableTreeNode) tp.getParentPath().getLastPathComponent()).getUserObject();
+//							DustHandle node = (DustHandle) ((DefaultMutableTreeNode) tp.getLastPathComponent()).getUserObject();
+//
+//							Dust.access(DustAccess.Delete, node, parent, TOKEN_MEMBERS, KEY_MEMBEROF);
+//							Dust.access(DustAccess.Insert, node, parent, TOKEN_TEXT_ORPHANS);
+//						}
+//					}
+					refresh = true;
 
-							Dust.access(DustAccess.Delete, node, parent, TOKEN_MEMBERS, KEY_MEMBEROF);
-							Dust.access(DustAccess.Insert, node, parent, TOKEN_TEXT_ORPHANS);
-						}
-
-						refresh = true;
-					}
 					break;
 				case "UnderFirst":
-					tps = docStruct.getSelectionPaths();
-					if (null != tps) {
-						DustHandle np = null;
-						for (TreePath tp : tps) {
-							DustHandle parent = (DustHandle) ((DefaultMutableTreeNode) tp.getParentPath().getLastPathComponent()).getUserObject();
-							DustHandle node = (DustHandle) ((DefaultMutableTreeNode) tp.getLastPathComponent()).getUserObject();
-
-							if (null == np) {
-								np = node;
-							} else {
-								Dust.access(DustAccess.Delete, node, parent, TOKEN_MEMBERS, KEY_MEMBEROF);
-								Dust.access(DustAccess.Insert, node, np, TOKEN_MEMBERS, KEY_ADD);
-							}
-						}
-
-						refresh = true;
-					}
+					txtAgent.underFirst(hParent, selMgr.hSel);
+//					tps = docStruct.getSelectionPaths();
+//					if (null != tps) {
+//						DustHandle np = null;
+//						for (TreePath tp : tps) {
+//							DustHandle parent = (DustHandle) ((DefaultMutableTreeNode) tp.getParentPath().getLastPathComponent()).getUserObject();
+//							DustHandle node = (DustHandle) ((DefaultMutableTreeNode) tp.getLastPathComponent()).getUserObject();
+//
+//							if (null == np) {
+//								np = node;
+//							} else {
+//								Dust.access(DustAccess.Delete, node, parent, TOKEN_MEMBERS, KEY_MEMBEROF);
+//								Dust.access(DustAccess.Insert, node, np, TOKEN_MEMBERS, KEY_ADD);
+//							}
+//						}
+//					}
+					refresh = true;
 
 					break;
 				case "Bullet": {
@@ -232,8 +222,10 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 //				DustHandle hThis = Dust.getHandle(hUnit, null, idThis, DustOptCreate.None);
 //
 //				Dust.log(TOKEN_LEVEL_TRACE, accessText(DustAccess.Peek, "??", idThis));
+					
+					txtAgent.setGroupType(hThis, TOKEN_TEXT_GROUP_BULLET);
 
-					Dust.access(DustAccess.Set, hTagBullet, selMgr.getFocusedBlock(), TOKEN_TEXT_GROUP);
+//					Dust.access(DustAccess.Set, DustUtils.CONST_HANDLES.get(TOKEN_TEXT_GROUP_BULLET, TOKEN_KBMETA_TAG), selMgr.getFocusedBlock(), TOKEN_TEXT_GROUP);
 
 					refresh = true;
 				}
@@ -245,7 +237,9 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 //				String idThis = (String) ep.getAttributes().getAttribute(HTML.Attribute.ID);
 //				DustHandle hThis = Dust.getHandle(hUnit, null, idThis, DustOptCreate.None);
 
-					Dust.access(DustAccess.Set, hTagNumber, selMgr.getFocusedBlock(), TOKEN_TEXT_GROUP);
+					txtAgent.setGroupType(hThis, TOKEN_TEXT_GROUP_NUMBER);
+
+//					Dust.access(DustAccess.Set, DustUtils.CONST_HANDLES.get(TOKEN_TEXT_GROUP_NUMBER, TOKEN_KBMETA_TAG), selMgr.getFocusedBlock(), TOKEN_TEXT_GROUP);
 
 					refresh = true;
 				}
@@ -262,16 +256,16 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					Long dataCols = Long.valueOf(DustUtils.optGet(dim, 1, "4").trim());
 					Long headRows = Long.valueOf(DustUtils.optGet(dim, 2, "2").trim());
 					Long headCols = Long.valueOf(DustUtils.optGet(dim, 3, "2").trim());
-					Long cols = dataCols + headCols;
-					Long rows = dataRows + headRows;
+//					Long cols = dataCols + headCols;
+//					Long rows = dataRows + headRows;
 
-					ArrayList<Long> tblSpan = new ArrayList<>();
-					tblSpan.add(rows);
-					tblSpan.add(cols);
-
-					ArrayList<Long> tblDataOffset = new ArrayList<>();
-					tblDataOffset.add(headRows);
-					tblDataOffset.add(headCols);
+//					ArrayList<Long> tblSpan = new ArrayList<>();
+//					tblSpan.add(rows);
+//					tblSpan.add(cols);
+//
+//					ArrayList<Long> tblDataOffset = new ArrayList<>();
+//					tblDataOffset.add(headRows);
+//					tblDataOffset.add(headCols);
 
 //				Element eThis = doc.getParagraphElement(docEditor.getCaretPosition());
 //				String idThis = (String) eThis.getAttributes().getAttribute(HTML.Attribute.ID);
@@ -284,29 +278,35 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 //				DustHandle hParent = Dust.getHandle(hUnit, null, idParent, DustOptCreate.None);
 
 					int idx = Dust.access(DustAccess.Peek, hThis, hParent, TOKEN_MEMBERS, KEY_INDEXOF);
-
-					DustHandle hTbl = Dust.getHandle(hUnit, hTypeTable, null, DustOptCreate.Primary);
-					Dust.access(DustAccess.Set, hCurrentLayout, hTbl, TOKEN_LAYOUT_LAYOUT);
-					Dust.access(DustAccess.Set, tblSpan, hTbl, TOKEN_SPAN);
-					Dust.access(DustAccess.Set, tblDataOffset, hTbl, TOKEN_POSITION);
-
-					DustHandle hResp = Dust.getHandle(hUnit, hTypeResp, null, DustOptCreate.Primary);
-					Dust.access(DustAccess.Insert, hTbl, hResp, TOKEN_OPTIONS);
-					Dust.access(DustAccess.Insert, hTbl, hResp, TOKEN_MEMBERS, KEY_ADD);
-
-					Dust.access(DustAccess.Insert, hResp, hParent, TOKEN_MEMBERS, idx + 1);
-
-					ArrayList<Long> pos = new ArrayList<>();
-					pos.add(0L);
-					pos.add(0L);
-
-					for (long c = 1; c <= dataCols; ++c) {
-						pos.set(1, c);
-						for (long i = 1; i <= rows; ++i) {
-							pos.set(0, i);
-							addCell(hResp, hTbl, pos, ((i <= headRows) ? "hdrRow " : (c <= headCols) ? "hdrCol " : "Cell ") + pos);
-						}
-					}
+					
+					DustHandle hResp = txtAgent.insertNode(hParent, idx, TOKEN_LAYOUT_RESPONSIVE);
+					
+					txtAgent.insertTable(hResp, hCurrentLayout, dataRows, dataCols, headRows, headCols);
+					
+//					DustHandle hTbl = txtAgent.insertNode(hResp, KEY_ADD, TOKEN_LAYOUT_TABLE);
+//
+////					DustHandle hTbl = Dust.getHandle(hUnit, TOKEN_LAYOUT_TABLE, null, DustOptCreate.Primary);
+//					Dust.access(DustAccess.Set, hCurrentLayout, hTbl, TOKEN_LAYOUT_LAYOUT);
+//					Dust.access(DustAccess.Set, tblSpan, hTbl, TOKEN_SPAN);
+//					Dust.access(DustAccess.Set, tblDataOffset, hTbl, TOKEN_POSITION);
+//
+////					DustHandle hResp = Dust.getHandle(hUnit, TOKEN_LAYOUT_RESPONSIVE, null, DustOptCreate.Primary);
+//					Dust.access(DustAccess.Insert, hTbl, hResp, TOKEN_OPTIONS);
+////					Dust.access(DustAccess.Insert, hTbl, hResp, TOKEN_MEMBERS, KEY_ADD);
+//
+////					Dust.access(DustAccess.Insert, hResp, hParent, TOKEN_MEMBERS, idx + 1);
+//
+//					ArrayList<Long> pos = new ArrayList<>();
+//					pos.add(0L);
+//					pos.add(0L);
+//
+//					for (long c = 1; c <= dataCols; ++c) {
+//						pos.set(1, c);
+//						for (long i = 1; i <= rows; ++i) {
+//							pos.set(0, i);
+//							addCell(hResp, hTbl, pos, ((i <= headRows) ? "hdrRow " : (c <= headCols) ? "hdrCol " : "Cell ") + pos);
+//						}
+//					}
 
 					refresh = true;
 				}
@@ -317,45 +317,52 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 					int eb = selMgr.eFocus.getStartOffset();
 					int ee = selMgr.eFocus.getEndOffset();
+					
+					String origText = docEditor.getText(eb, ee - eb);
+					int rsb = sb - eb;
+					int rse = se - eb;
+					
+					txtAgent.splitInline(hParent, hThis, origText, rsb, rse);
 
-					boolean inlineNow = Dust.access(DustAccess.Check, hTagInline, hParent, TOKEN_TEXT_GROUP);
-
-					int idx;
-					if (!inlineNow) {
-						Dust.access(DustAccess.Set, hTagInline, hThis, TOKEN_TEXT_GROUP);
-						accessText(DustAccess.Set, null, hThis.getId());
-						hParent = hThis;
-
-						hThis = Dust.getHandle(hUnit, hTypeBlock, null, DustOptCreate.Primary);
-						Dust.access(DustAccess.Insert, hThis, hParent, TOKEN_MEMBERS, KEY_ADD);
-						idx = 0;
-					} else {
-						idx = Dust.access(DustAccess.Peek, hThis, hParent, TOKEN_MEMBERS, KEY_INDEXOF);
-					}
-
-					String before = docEditor.getText(eb, sb - eb).trim();
-					String txt = docEditor.getSelectedText();
-					String after = docEditor.getText(se, ee - se).trim();
-
-					int sl = txt.length();
-					for (int o = 0; Character.isWhitespace(txt.charAt(o)) && (o < sl); ++o) {
-						++sb;
-					}
-					for (int o = sl - 1; Character.isWhitespace(txt.charAt(o)) && (o >= 0); --o) {
-						--se;
-					}
-
-					txt = docEditor.getText(sb, se - sb);
-
-					if (!DustUtils.isEmpty(before)) {
-						hThis = optAddText(hParent, idx++, hThis, before);
-					}
-					if (!DustUtils.isEmpty(txt)) {
-						hThis = optAddText(hParent, idx++, hThis, txt);
-					}
-					if (!DustUtils.isEmpty(after)) {
-						hThis = optAddText(hParent, idx++, hThis, after);
-					}
+//					DustHandle hTagInline = DustUtils.CONST_HANDLES.get(TOKEN_TEXT_GROUP_INLINE, TOKEN_KBMETA_TAG);
+//					boolean inlineNow = Dust.access(DustAccess.Check, hTagInline, hParent, TOKEN_TEXT_GROUP);
+//
+//					int idx;
+//					if (!inlineNow) {
+//						Dust.access(DustAccess.Set, hTagInline, hThis, TOKEN_TEXT_GROUP);
+//						accessText(DustAccess.Set, null, hThis.getId());
+//						hParent = hThis;
+//
+//						hThis = Dust.getHandle(hUnit, TOKEN_TEXT_BLOCK, null, DustOptCreate.Primary);
+//						Dust.access(DustAccess.Insert, hThis, hParent, TOKEN_MEMBERS, KEY_ADD);
+//						idx = 0;
+//					} else {
+//						idx = Dust.access(DustAccess.Peek, hThis, hParent, TOKEN_MEMBERS, KEY_INDEXOF);
+//					}
+//
+//					String before = docEditor.getText(eb, sb - eb).trim();
+//					String txt = docEditor.getSelectedText();
+//					String after = docEditor.getText(se, ee - se).trim();
+//
+//					int sl = txt.length();
+//					for (int o = 0; Character.isWhitespace(txt.charAt(o)) && (o < sl); ++o) {
+//						++sb;
+//					}
+//					for (int o = sl - 1; Character.isWhitespace(txt.charAt(o)) && (o >= 0); --o) {
+//						--se;
+//					}
+//
+//					txt = docEditor.getText(sb, se - sb);
+//
+//					if (!DustUtils.isEmpty(before)) {
+//						hThis = optAddText(hParent, idx++, hThis, before);
+//					}
+//					if (!DustUtils.isEmpty(txt)) {
+//						hThis = optAddText(hParent, idx++, hThis, txt);
+//					}
+//					if (!DustUtils.isEmpty(after)) {
+//						hThis = optAddText(hParent, idx++, hThis, after);
+//					}
 
 					refresh = true;
 
@@ -365,7 +372,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					Dust.log(TOKEN_LEVEL_INFO, docEditor.getText());
 					break;
 				case "GenHtml":
-					Dust.log(TOKEN_LEVEL_INFO, htmlGen.generateHtml(hDoc));
+					Dust.log(TOKEN_LEVEL_INFO, htmlGen.generateHtml(txtAgent));
 					break;
 				default:
 					Dust.log(TOKEN_LEVEL_WARNING, "Command not handled", cmd);
@@ -376,8 +383,8 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					DustHandle mind = Dust.getHandle(app, null, TOKEN_MIND, DustOptCreate.None);
 					DustHandle defaultSerializer = Dust.access(DustAccess.Peek, null, mind, TOKEN_SERIALIZER);
 
-					sp.put(TOKEN_KEY, hUnit.getId());
-					sp.put(TOKEN_DATA, hUnit);
+					sp.put(TOKEN_KEY, txtAgent.hUnit.getId());
+					sp.put(TOKEN_DATA, txtAgent.hUnit);
 					Dust.access(DustAccess.Process, sp, defaultSerializer);
 				}
 
@@ -392,30 +399,30 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 			}
 		}
 
-		private DustHandle optAddText(DustHandle hParent, int idx, DustHandle hTxt, String txt) {
-			if (!DustUtils.isEmpty(txt)) {
-				if (null == hTxt) {
-					hTxt = Dust.getHandle(hUnit, hTypeBlock, null, DustOptCreate.Primary);
-					Dust.access(DustAccess.Insert, hTxt, hParent, TOKEN_MEMBERS, idx);
-				}
-				accessText(DustAccess.Set, txt, hTxt.getId());
-				hTxt = null;
-			}
-
-			return hTxt;
-		}
-
-		public void addCell(DustHandle hResp, DustHandle hTbl, ArrayList<Long> pos, String txt) {
-			DustHandle hTxt = Dust.getHandle(hUnit, hTypeBlock, null, DustOptCreate.Primary);
-			accessText(DustAccess.Set, txt, hTxt.getId());
-			Dust.access(DustAccess.Insert, hTxt, hResp, TOKEN_MEMBERS, KEY_ADD);
-
-			DustHandle hCell = Dust.getHandle(hUnit, hTypeCell, null, DustOptCreate.Primary);
-			Dust.access(DustAccess.Set, new ArrayList<Long>(pos), hCell, TOKEN_POSITION);
-			Dust.access(DustAccess.Set, hTxt, hCell, TOKEN_TARGET);
-
-			Dust.access(DustAccess.Insert, hCell, hTbl, TOKEN_MEMBERS, KEY_ADD);
-		}
+//		private DustHandle optAddText(DustHandle hParent, int idx, DustHandle hTxt, String txt) {
+//			if (!DustUtils.isEmpty(txt)) {
+//				if (null == hTxt) {
+//					hTxt = Dust.getHandle(hUnit, TOKEN_TEXT_BLOCK, null, DustOptCreate.Primary);
+//					Dust.access(DustAccess.Insert, hTxt, hParent, TOKEN_MEMBERS, idx);
+//				}
+//				accessText(DustAccess.Set, txt, hTxt.getId());
+//				hTxt = null;
+//			}
+//
+//			return hTxt;
+//		}
+//
+//		public void addCell(DustHandle hResp, DustHandle hTbl, ArrayList<Long> pos, String txt) {
+//			DustHandle hTxt = Dust.getHandle(hUnit, TOKEN_TEXT_BLOCK, null, DustOptCreate.Primary);
+//			accessText(DustAccess.Set, txt, hTxt.getId());
+//			Dust.access(DustAccess.Insert, hTxt, hResp, TOKEN_MEMBERS, KEY_ADD);
+//
+//			DustHandle hCell = Dust.getHandle(hUnit, TOKEN_LAYOUT_CELL, null, DustOptCreate.Primary);
+//			Dust.access(DustAccess.Set, new ArrayList<Long>(pos), hCell, TOKEN_POSITION);
+//			Dust.access(DustAccess.Set, hTxt, hCell, TOKEN_TARGET);
+//
+//			Dust.access(DustAccess.Insert, hCell, hTbl, TOKEN_MEMBERS, KEY_ADD);
+//		}
 	};
 
 	TransferHandler cbTransferHandler = new TransferHandler() {
@@ -438,15 +445,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					if ("image".equals(pt)) {
 						Object o = t.getTransferData(df);
 						if (o instanceof Image) {
-							Image image = (Image) o;
-
-							int width = image.getWidth(null);
-							int height = image.getHeight(null);
-							BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
-							Graphics g = bi.getGraphics();
-							g.drawImage(image, 0, 0, null);
-							ImageIO.write(bi, "jpg", new File("localStore/save/temp.jpg"));
-
+							txtAgent.insertImage(selMgr.hfParent, selMgr.hfBlock, (Image) o);
 							return true;
 						}
 					}
@@ -472,52 +471,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 									DustHandle hThis = selMgr.getFocusedBlock();
 									DustHandle hParent = selMgr.getFocusedParent();
 
-									if (null == hParent) {
-										hParent = hDoc;
-									}
-
-									int len = Dust.access(DustAccess.Peek, 0, hParent, TOKEN_MEMBERS, KEY_SIZE);
-									int idx = Dust.access(DustAccess.Peek, hThis, hParent, TOKEN_MEMBERS, KEY_INDEXOF);
-
-									boolean insert = (++idx < len);
-									boolean override = DustUtils.isEqual(hThis, hParent) ? false : DustUtils.isEmpty(accessText(DustAccess.Peek, null, hThis));
-
-									String[] lines = str.split("\n");
-									StringBuilder sb = new StringBuilder();
-//									String eol = ".:?!";
-
-									for (String l : lines) {
-										l = l.trim();
-										if (0 < l.length()) {
-											DustUtils.sbAppend(sb, " ", false, l);
-//											sb.append(" ").append(l);
-
-//											char ce = l.charAt(l.length() - 1);
-
-//											if (-1 != eol.indexOf(ce)) 
-											{
-												String id;
-
-												if (override) {
-													id = hThis.getId();
-													override = false;
-												} else {
-													id = null;
-												}
-												DustHandle h = Dust.getHandle(hUnit, hTypeBlock, id, DustOptCreate.Primary);
-												accessText(DustAccess.Set, sb.toString(), h.getId());
-												sb.setLength(0);
-
-//											appendHandle(h, sb);
-
-												if (override) {
-													override = false;
-												} else {
-													Dust.access(DustAccess.Insert, h, hParent, TOKEN_MEMBERS, insert ? (idx++) : KEY_ADD);
-												}
-											}
-										}
-									}
+									txtAgent.insertLongText(hParent, hThis, str);
 
 									updateDocEditor();
 									updateStruct();
@@ -592,14 +546,8 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 							DustHandle hThis = selMgr.getFocusedBlock();
 							DustHandle hParent = selMgr.getFocusedParent();
-
-							int idx = Dust.access(DustAccess.Peek, hThis, hParent, TOKEN_MEMBERS, KEY_INDEXOF);
-
-							DustHandle hNew = Dust.getHandle(hUnit, hTypeBlock, null, DustOptCreate.Primary);
-							Dust.access(DustAccess.Insert, hNew, hParent, TOKEN_MEMBERS, idx + 1);
-
-							accessText(DustAccess.Set, remain, hThis.getId());
-							accessText(DustAccess.Set, move, hNew.getId());
+							
+							txtAgent.split(hParent, hThis, remain, move);
 
 							SwingUtilities.invokeLater(new Runnable() {
 								@Override
@@ -636,49 +584,52 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 	@Override
 	protected void init() throws Exception {
 
-		hTypeDoc = DustUtils.getMindMeta(TOKEN_TEXT_DOC);
-		hTypeBlock = DustUtils.getMindMeta(TOKEN_TEXT_BLOCK);
-		DustHandle hTag = DustUtils.getMindMeta(TOKEN_KBMETA_TAG);
-		hTagBullet = Dust.getHandle(null, hTag, TOKEN_TEXT_GROUP_BULLET, DustOptCreate.Meta);
-		hTagNumber = Dust.getHandle(null, hTag, TOKEN_TEXT_GROUP_NUMBER, DustOptCreate.Meta);
-		hTagInline = Dust.getHandle(null, hTag, TOKEN_TEXT_GROUP_INLINE, DustOptCreate.Meta);
+//		hTypeDoc = DustUtils.getMindMeta(TOKEN_TEXT_DOC);
+//		hTypeBlock = DustUtils.getMindMeta(TOKEN_TEXT_BLOCK);
+//		DustHandle hTag = DustUtils.getMindMeta(TOKEN_KBMETA_TAG);
+//		hTagBullet = Dust.getHandle(null, TOKEN_KBMETA_TAG, TOKEN_TEXT_GROUP_BULLET, DustOptCreate.Meta);
+//		hTagNumber = Dust.getHandle(null, TOKEN_KBMETA_TAG, TOKEN_TEXT_GROUP_NUMBER, DustOptCreate.Meta);
+//		hTagInline = Dust.getHandle(null, TOKEN_KBMETA_TAG, TOKEN_TEXT_GROUP_INLINE, DustOptCreate.Meta);
 
-		hTypeResp = DustUtils.getMindMeta(TOKEN_LAYOUT_RESPONSIVE);
-		hTypeTable = DustUtils.getMindMeta(TOKEN_LAYOUT_TABLE);
-		hTypeCell = DustUtils.getMindMeta(TOKEN_LAYOUT_CELL);
+//		hTypeResp = DustUtils.getMindMeta(TOKEN_LAYOUT_RESPONSIVE);
+//		hTypeTable = DustUtils.getMindMeta(TOKEN_LAYOUT_TABLE);
+//		hTypeCell = DustUtils.getMindMeta(TOKEN_LAYOUT_CELL);
 
 		hCurrentLayout = Dust.access(DustAccess.Peek, null, null, TOKEN_LAYOUT_LAYOUT);
 
-		hTypeStyle = DustUtils.getMindMeta(TOKEN_TEXT_STYLE);
-		DustHandle hAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
-		hAttStyleDef = Dust.getHandle(null, hAtt, TOKEN_TEXT_STYLE_DEF, DustOptCreate.Meta);
+//		hTypeStyle = DustUtils.getMindMeta(TOKEN_TEXT_STYLE);
+//		DustHandle hAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
+//		hAttStyleDef = Dust.getHandle(null, hAtt, TOKEN_TEXT_STYLE_DEF, DustOptCreate.Meta);
 
-		hUnit = Dust.getUnit("test.1", true);
-		hDoc = null;
-		styles.clear();
-
-		for (DustHandle h : DustMindUtils.getUnitMembers(hUnit)) {
-			DustHandle ht = h.getType();
-
-			if (hTypeDoc == ht) {
-				hDoc = h;
-			} else if (hTypeStyle == ht) {
-				String name = Dust.access(DustAccess.Peek, "", h, TOKEN_NAME);
-				Map<String, String> def = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, h, TOKEN_TEXT_STYLE_DEF);
-
-				if (!DustUtils.isEmpty(name) && !def.isEmpty()) {
-					StringBuilder sb = null;
-					for (Map.Entry<String, String> de : def.entrySet()) {
-						sb = DustUtils.sbAppend(sb, "", false, de.getKey(), ": ", de.getValue(), "; ");
-					}
-					styles.put(name, sb.toString());
-				}
-			}
-		}
-
-		if (null == hDoc) {
-			hDoc = Dust.getHandle(hUnit, hTypeDoc, null, DustOptCreate.Primary);
-		}
+//		hUnit = Dust.getUnit("test.1", true);
+//		hDoc = null;
+//		styles.clear();
+//
+//		for (DustHandle h : DustMindUtils.getUnitMembers(hUnit)) {
+//			String ht = h.getType().getId();
+//
+//			switch (ht) {
+//			case TOKEN_TEXT_DOC:
+//				hDoc = h;
+//				break;
+//			case TOKEN_TEXT_STYLE:
+//				String name = Dust.access(DustAccess.Peek, "", h, TOKEN_NAME);
+//				Map<String, String> def = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, h, TOKEN_TEXT_STYLE_DEF);
+//
+//				if (!DustUtils.isEmpty(name) && !def.isEmpty()) {
+//					StringBuilder sb = null;
+//					for (Map.Entry<String, String> de : def.entrySet()) {
+//						sb = DustUtils.sbAppend(sb, "", false, de.getKey(), ": ", de.getValue(), "; ");
+//					}
+//					styles.put(name, sb.toString());
+//				}
+//				break;
+//			}
+//		}
+//
+//		if (null == hDoc) {
+//			hDoc = Dust.getHandle(hUnit, TOKEN_TEXT_DOC, null, DustOptCreate.Primary);
+//		}
 
 		DustGuiSwingUtils.optSetLookAndFeel();
 
@@ -701,7 +652,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		doc.setBase(url);
 		doc.setDocumentFilter(df);
 
-		htmlGen = new DustSandboxTextHtmlGenerator(this);
+		htmlGen = new DustSandboxTextHtmlGenerator();
 
 		docPreview = new JTextPane();
 		docPreview.setContentType("text/html");
@@ -712,7 +663,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		docStruct.setRootVisible(false);
 		docStruct.setCellRenderer(structRenderer);
 
-		selMgr = new DustSandboxTextSelectionManager(hUnit, doc);
+		selMgr = new DustSandboxTextSelectionManager(txtAgent, doc);
 		selMgr.attach(docStruct);
 		selMgr.attach(docEditor);
 		selMgr.attach(docPreview);
@@ -720,14 +671,12 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		factToolbars.get("tbTop", BoxLayout.LINE_AXIS);
 
 		buildGui();
-		updateDocEditor();
-		updateStruct();
 
 		frm.setVisible(true);
 	};
 
 	void updateDocEditor() {
-		String htmlContent = htmlGen.generateHtml(hDoc);
+		String htmlContent = htmlGen.generateHtml(txtAgent);
 		selMgr.reset();
 		docEditor.setText(htmlContent);
 		docPreview.setText(htmlContent);
@@ -755,12 +704,12 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		}
 	}
 
-	String accessText(DustAccess access, String val, Object key) {
-		DustHandle hNode = Dust.getHandle(hUnit, hTypeBlock, (String) key, DustOptCreate.None);
-
-		return Dust.access(access, val, hNode, TOKEN_TEXT_TEXT);
-//		return Dust.access(access, val, texts, key);
-	};
+//	String accessText(DustAccess access, String val, Object key) {
+//		DustHandle hNode = Dust.getHandle(hUnit, null, (String) key, DustOptCreate.None);
+//
+//		return Dust.access(access, val, hNode, TOKEN_TEXT_TEXT);
+////		return Dust.access(access, val, texts, key);
+//	};
 
 	void buildGui() {
 		frm.getContentPane().removeAll();
@@ -798,11 +747,16 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		fillToolbar("tbDoc", "<-", "->", null, "Delete", "UnderFirst", null, "Bullet", "Number", "Local", null, "Table", "Merge", null, "PnlHtml", "GenHtml");
 
 		frm.getContentPane().revalidate();
+		
+		txtAgent.load(tfUnit.getText(), hCurrentLayout, hLang);
+
+		updateDocEditor();
+		updateStruct();
 
 	}
 
 	private JComboBox createCombo(String cmd, Object field) {
-		Vector lv = new Vector(Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, field));		
+		Vector lv = new Vector(Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, field));
 		JComboBox cb = new JComboBox(lv);
 		cb.setActionCommand(cmd);
 		cb.setRenderer(listRenderer);
@@ -830,7 +784,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 	public void updateStruct() {
 		rootNode.removeAllChildren();
 
-		loadNode(rootNode, hDoc);
+		loadNode(rootNode, txtAgent.hDoc);
 
 		structModel.nodeStructureChanged(rootNode);
 
@@ -846,19 +800,19 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		return p;
 	}
 
-	public String getNodeText(DustHandle h) {
-		DustHandle ht = h.getType();
-		int c = Dust.access(DustAccess.Peek, 0, h, TOKEN_MEMBERS, KEY_SIZE);
-		String ph = (0 < c) ? "Inline group" : "placeholder";
-		String txt = accessText(DustAccess.Peek, (hTypeBlock == ht) ? ph : ht.getId(), h.getId());
-		int maxLen = 50;
-		if (txt.length() > maxLen) {
-			txt = txt.substring(0, maxLen - 3) + "...";
-		} else {
-			txt = txt.trim();
-		}
-		return txt;
-	}
+//	public String getNodeText(DustHandle h) {
+//		String ht = h.getType().getId();
+//		int c = Dust.access(DustAccess.Peek, 0, h, TOKEN_MEMBERS, KEY_SIZE);
+//		String ph = (0 < c) ? "Inline group" : "placeholder";
+//		String txt = accessText(DustAccess.Peek, DustUtils.isEqual(TOKEN_TEXT_BLOCK, ht) ? ph : ht, h.getId());
+//		int maxLen = 50;
+//		if (txt.length() > maxLen) {
+//			txt = txt.substring(0, maxLen - 3) + "...";
+//		} else {
+//			txt = txt.trim();
+//		}
+//		return txt;
+//	}
 
 	public DefaultMutableTreeNode loadElement(DefaultMutableTreeNode p, Element e) {
 		String s = e.toString();

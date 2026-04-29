@@ -237,11 +237,11 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 	}
 
 	static void loadData(DustHandle unit, Map<String, Object> data, boolean included) {
-		DustHandle metaType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
-		DustHandle metaAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
+//		DustHandle metaType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
+//		DustHandle metaAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
 
 		String type = DustUtils.simpleGet(data, JsonApiMember.type);
-		DustHandle tType = Dust.getHandle(unit, metaType, type, DustOptCreate.Meta);
+		DustHandle tType = Dust.getHandle(unit, TOKEN_KBMETA_TYPE, type, DustOptCreate.Meta);
 
 		String id = DustUtils.simpleGet(data, JsonApiMember.id);
 		DustHandle target = Dust.getHandle(unit, tType, id, DustOptCreate.Primary);
@@ -250,7 +250,7 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 		if (null != atts) {
 			for (Map.Entry<String, Object> ae : atts.entrySet()) {
 				String rk = ae.getKey();
-				DustHandle tAtt = Dust.getHandle(unit, metaAtt, rk, DustOptCreate.Meta);
+				DustHandle tAtt = Dust.getHandle(unit, TOKEN_KBMETA_ATTRIBUTE, rk, DustOptCreate.Meta);
 				Dust.access(DustAccess.Set, ae.getValue(), target, tAtt);
 			}
 		}
@@ -259,7 +259,7 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 		if (null != rels) {
 			for (Map.Entry<String, Object> re : rels.entrySet()) {
 				String rk = re.getKey();
-				DustHandle tAtt = Dust.getHandle(unit, metaAtt, rk, DustOptCreate.Meta);
+				DustHandle tAtt = Dust.getHandle(unit, TOKEN_KBMETA_ATTRIBUTE, rk, DustOptCreate.Meta);
 
 				Object rv = re.getValue();
 				Object rd = DustUtils.simpleGet(rv, JsonApiMember.data);
@@ -267,7 +267,7 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 				if (rd instanceof Collection) {
 					for (Object rdd : (Collection) rd) {
 						String rt = DustUtils.simpleGet(rdd, JsonApiMember.type);
-						DustHandle tTypeRef = Dust.getHandle(unit, metaType, rt, DustOptCreate.Meta);
+						DustHandle tTypeRef = Dust.getHandle(unit, TOKEN_KBMETA_TYPE, rt, DustOptCreate.Meta);
 
 						String ri = DustUtils.simpleGet(rdd, JsonApiMember.id);
 
@@ -283,7 +283,7 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustM
 					}
 				} else {
 					String rt = DustUtils.simpleGet(rd, JsonApiMember.type);
-					DustHandle tTypeRef = Dust.getHandle(unit, metaType, rt, DustOptCreate.Meta);
+					DustHandle tTypeRef = Dust.getHandle(unit, TOKEN_KBMETA_TYPE, rt, DustOptCreate.Meta);
 					String ri = DustUtils.simpleGet(rd, JsonApiMember.id);
 
 					DustHandle rh = Dust.getHandle(unit, tTypeRef, ri, DustOptCreate.Reference);

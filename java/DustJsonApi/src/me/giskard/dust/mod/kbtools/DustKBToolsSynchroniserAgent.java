@@ -49,7 +49,7 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 	}
 
 	public DustHandle loadAll() {
-		DustHandle attType = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
+//		DustHandle attType = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
 
 		String mName = Dust.access(DustAccess.Peek, null, null, TOKEN_META);
 		DustHandle uMeta = Dust.getUnit(mName, true);
@@ -148,9 +148,9 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 					Object fSource = me.getValue();
 					Object v;
 
-					DustHandle targetAtt = Dust.getHandle(uMeta, attType, fTarget, DustOptCreate.None);
+					DustHandle targetAtt = Dust.getHandle(uMeta, TOKEN_KBMETA_ATTRIBUTE, fTarget, DustOptCreate.None);
 					if (null == targetAtt) {
-						targetAtt = Dust.getHandle(uMeta, attType, fTarget, DustOptCreate.Primary);
+						targetAtt = Dust.getHandle(uMeta, TOKEN_KBMETA_ATTRIBUTE, fTarget, DustOptCreate.Primary);
 						Dust.access(DustAccess.Set, targetAtt, type, TOKEN_CHILDMAP, fTarget);
 						Dust.access(DustAccess.Insert, type, targetAtt, TOKEN_APPEARS);
 					}

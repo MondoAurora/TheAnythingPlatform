@@ -18,8 +18,8 @@ import me.giskard.dust.mod.utils.DustUtilsJson;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustMSGraphAgent extends DustAgent implements DustMSGraphConsts, DustStreamConsts {
-	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
-	DustHandle typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
+//	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
+//	DustHandle typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
@@ -49,7 +49,7 @@ public class DustMSGraphAgent extends DustAgent implements DustMSGraphConsts, Du
 			DustHandle data = Dust.getUnit(dataId, true);
 
 			String typeId = Dust.access(DustAccess.Peek, null, src, TOKEN_TYPE);
-			DustHandle type = Dust.getHandle(meta, typeType, typeId, DustOptCreate.Meta);
+			DustHandle type = Dust.getHandle(meta, TOKEN_KBMETA_TYPE, typeId, DustOptCreate.Meta);
 
 			Object response;
 

@@ -17,8 +17,8 @@ import me.giskard.dust.mod.utils.DustUtilsJson;
 @SuppressWarnings({ "unchecked" })
 public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, DustMindConsts {
 
-	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
-	DustHandle typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
+//	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
+//	DustHandle typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
@@ -33,7 +33,7 @@ public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, 
 				DustHandle meta = Dust.getUnit(metaId, true);
 
 				String type = Dust.access(DustAccess.Peek, null, src, TOKEN_TYPE);
-				DustHandle tType = Dust.getHandle(meta, typeType, type, DustOptCreate.Meta);
+				DustHandle tType = Dust.getHandle(meta, TOKEN_KBMETA_TYPE, type, DustOptCreate.Meta);
 
 				String unitId = Dust.access(DustAccess.Peek, null, src, TOKEN_DATA);
 				DustHandle unit = Dust.getUnit(unitId, true);
@@ -88,7 +88,7 @@ public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, 
 	}
 
 	public DustHandle getAtt(DustHandle meta, DustHandle tType, String attName) {
-		DustHandle att = Dust.getHandle(meta, DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE), attName, DustOptCreate.Meta);
+		DustHandle att = Dust.getHandle(meta, TOKEN_KBMETA_ATTRIBUTE, attName, DustOptCreate.Meta);
 		Dust.access(DustAccess.Insert, tType, att, TOKEN_APPEARS);
 		Dust.access(DustAccess.Set, att, tType, TOKEN_CHILDMAP, attName);
 		return att;

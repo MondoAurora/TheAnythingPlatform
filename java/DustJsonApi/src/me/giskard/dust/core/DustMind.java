@@ -14,7 +14,7 @@ public abstract class DustMind extends DustConsts.DustAgent implements DustConst
 	
 	protected abstract DustHandle bootLoadAppUnit(DustHandle appUnit, String unitId, InputStream is, Bootloader bootLoader) throws Exception;
 
-	protected abstract DustHandle getHandle(DustHandle unit, DustHandle type, String id, DustOptCreate optCreate);
+	protected abstract DustHandle getHandle(DustHandle unit, Object type, String id, DustOptCreate optCreate);
 	protected abstract DustHandle getUnit(String unitId, boolean createIfMissing);
 	protected abstract boolean releaseUnit(DustHandle unit);
 

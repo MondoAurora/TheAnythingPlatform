@@ -122,7 +122,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 	}
 
 	@Override
-	protected DustMindHandle getHandle(DustHandle unit, DustHandle type, String id, DustOptCreate optCreate) {
+	protected DustMindHandle getHandle(DustHandle unit, Object type, String id, DustOptCreate optCreate) {
 		DustMindHandle ret = null;
 
 		if (DustUtils.isEmpty(id)) {
@@ -135,6 +135,10 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 		DustMindHandle u = (DustMindHandle) unit;
 		int sep = id.indexOf(DUST_SEP_TOKEN);
+		
+		if (type instanceof String) {
+			type = getHandle(unitMeta.mh, typeType, (String) type, DustOptCreate.Meta);
+		}
 
 		if (optCreate == DustOptCreate.Meta) {
 			if (null == type) {
@@ -150,16 +154,9 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 				String uid = id.substring(0, sep);
 				if ((null == u) || !DustUtils.isEqual(u.getId(), uid)) {
 					u = (DustMindHandle) getUnit(uid, true);
-//					DustMindHandle uu = (DustMindHandle) getUnit(uid, true);
-//					if ((null == u) || (uu != u)) {
-//						u = uu;
-//					}
 				}
 			}
-//			}
-//		}
 
-//		if (null == ret) {
 			DustMindIdea ui;
 
 			if (DustUtils.isEqual(typeUnit, type)) {
@@ -175,6 +172,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 			ret = (optCreate == DustOptCreate.None) ? unitRefs.get(id) : DustUtils.safeGet(unitRefs, createHandle, id, ui, type);
 		}
+		
 		return ret;
 	}
 
