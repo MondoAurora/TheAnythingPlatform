@@ -1,5 +1,6 @@
 package me.giskard.dust.sandbox.text;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +26,7 @@ import me.giskard.dust.core.utils.DustUtils;
 public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 //	private DustHandle hUnit;
 	DustSandboxTextAgent txtAgent;
-	
+
 	private final HTMLDocument doc;
 	private DefaultMutableTreeNode rootNode;
 
@@ -42,8 +43,8 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 	DustHandle hfBlock;
 	DustHandle hfParent;
 
-	final Set<DustHandle> hSel = new HashSet<>();
-	final Set<JComponent> linkedComps = new HashSet<>();
+	final ArrayList<DustHandle> hSel = new ArrayList<>();
+	final Set<JComponent> managedComps = new HashSet<>();
 
 	TreeSelectionListener treeSelListener = new TreeSelectionListener() {
 		@Override
@@ -68,6 +69,12 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 
 						eSelByHandle(hfBlock);
 
+						hSel.clear();
+
+						for (TreePath tp : ((JTree) e.getSource()).getSelectionPaths()) {
+							hSel.add((DustHandle) ((DefaultMutableTreeNode) tp.getLastPathComponent()).getUserObject());
+						}
+
 						updateComps((JComponent) e.getSource());
 					} finally {
 						selUpdating = false;
@@ -86,6 +93,8 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 					try {
 						selUpdating = true;
 
+						reset();
+
 						JTextComponent txt = (JTextComponent) ce.getSource();
 
 						caretPos = txt.getCaretPosition();
@@ -99,8 +108,8 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 							e = a;
 						}
 
-						Element eb = doc.getParagraphElement(b);
-						Element ee = doc.getParagraphElement(e);
+						Element eb = getTopSelf(doc.getParagraphElement(b));
+						Element ee = getTopSelf(doc.getParagraphElement(e));
 
 						eFocus = ee;
 
@@ -176,7 +185,7 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 	}
 
 	public void attach(JComponent c) {
-		if (linkedComps.add(c)) {
+		if (managedComps.add(c)) {
 			if (c instanceof JTree) {
 				JTree tr = (JTree) c;
 				tr.addTreeSelectionListener(treeSelListener);
@@ -206,19 +215,22 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 		hSel.clear();
 	}
 
-	private void updateFocus() {
+	private boolean updateFocus() {
 		eFocus = getTopSelf(eFocus);
-		eParent = (null == eFocus) ? null : getTopSelf(eFocus.getParentElement());
-
-		hfBlock = hfParent = null;
-		String id = DustSandboxTextUtils.getId(eFocus);
-		if (null != id) {
-			hfBlock = txtAgent.getTextNode(id);
-			if (null != eParent) {
-				String pid = DustSandboxTextUtils.getId(eParent);
-				hfParent = txtAgent.getTextNode(pid);
+		if (null != eFocus) {
+			hfBlock = hfParent = null;
+			String id = DustSandboxTextUtils.getId(eFocus);
+			if (null != id) {
+				hfBlock = txtAgent.getTextNode(id);
+				eParent = getTopSelf(eFocus.getParentElement());
+				if (null != eParent) {
+					String pid = DustSandboxTextUtils.getId(eParent);
+					hfParent = txtAgent.getTextNode(pid);
+				}
 			}
 		}
+
+		return (null != hfBlock);
 	}
 
 	private Element getTopSelf(Element e) {
@@ -241,14 +253,17 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 		String id = h.getId();
 		eFocus = doc.getElement(id);
 		updateFocus();
-		selBegin = eFocus.getStartOffset();
-		selEnd = eFocus.getEndOffset();
+
 		hSel.add(h);
+		if (null != eFocus) {
+			selBegin = eFocus.getStartOffset();
+			selEnd = eFocus.getEndOffset();
+		}		
 	}
 
 	JComponent updateComps(JComponent src) {
 		JComponent ret = null;
-		for (JComponent c : linkedComps) {
+		for (JComponent c : managedComps) {
 			if (c != src) {
 				if (c instanceof JTree) {
 					if (null != hfBlock) {

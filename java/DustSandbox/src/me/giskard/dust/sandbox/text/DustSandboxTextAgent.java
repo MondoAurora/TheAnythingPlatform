@@ -247,17 +247,11 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		tblDataOffset.add(headCols);
 
 		DustHandle hTbl = insertNode(hResp, KEY_ADD, TOKEN_LAYOUT_TABLE);
+		Dust.access(DustAccess.Insert, hTbl, hResp, TOKEN_OPTIONS);
 
-//	DustHandle hTbl = Dust.getHandle(hUnit, TOKEN_LAYOUT_TABLE, null, DustOptCreate.Primary);
 		Dust.access(DustAccess.Set, hCurrentLayout, hTbl, TOKEN_LAYOUT_LAYOUT);
 		Dust.access(DustAccess.Set, tblSpan, hTbl, TOKEN_SPAN);
 		Dust.access(DustAccess.Set, tblDataOffset, hTbl, TOKEN_POSITION);
-
-//	DustHandle hResp = Dust.getHandle(hUnit, TOKEN_LAYOUT_RESPONSIVE, null, DustOptCreate.Primary);
-		Dust.access(DustAccess.Insert, hTbl, hResp, TOKEN_OPTIONS);
-//	Dust.access(DustAccess.Insert, hTbl, hResp, TOKEN_MEMBERS, KEY_ADD);
-
-//	Dust.access(DustAccess.Insert, hResp, hParent, TOKEN_MEMBERS, idx + 1);
 
 		ArrayList<Long> pos = new ArrayList<>();
 		pos.add(0L);
