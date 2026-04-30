@@ -144,7 +144,7 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 								if (in) {
 									String ii = DustSandboxTextUtils.getId(ei);
 									if (!DustUtils.isEmpty(ii)) {
-										DustHandle hi = txtAgent.getTextNode(ii);
+										DustHandle hi = txtAgent.getNode(ii);
 										if (null != hi) {
 											hSel.add(hi);
 										}
@@ -221,11 +221,11 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 			hfBlock = hfParent = null;
 			String id = DustSandboxTextUtils.getId(eFocus);
 			if (null != id) {
-				hfBlock = txtAgent.getTextNode(id);
+				hfBlock = txtAgent.getNode(id);
 				eParent = getTopSelf(eFocus.getParentElement());
 				if (null != eParent) {
 					String pid = DustSandboxTextUtils.getId(eParent);
-					hfParent = txtAgent.getTextNode(pid);
+					hfParent = txtAgent.getNode(pid);
 				}
 			}
 		}

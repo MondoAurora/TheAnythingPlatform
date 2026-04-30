@@ -129,7 +129,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		return hRet;
 	}
 
-	public DustHandle getTextNode(String id) {
+	public DustHandle getNode(String id) {
 		return Dust.getHandle(hUnit, null, id, DustOptCreate.None);
 	}
 

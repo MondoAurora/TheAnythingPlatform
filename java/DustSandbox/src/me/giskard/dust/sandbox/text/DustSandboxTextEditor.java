@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Vector;
@@ -29,12 +30,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JTree;
 import javax.swing.ListCellRenderer;
 import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.text.AbstractDocument.LeafElement;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -48,6 +52,7 @@ import javax.swing.tree.DefaultTreeModel;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.DustException;
+import me.giskard.dust.core.mind.DustMindUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
 import me.giskard.dust.mod.gui.swing.DustGuiSwingUtils;
@@ -98,6 +103,16 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 	HTMLDocument doc;
 	JEditorPane docEditor;
 	JTextPane docPreview;
+
+	ArrayList<DustHandle> styleArr = new ArrayList<>();
+	JTable styleTable;
+	AbstractTableModel styleModel;
+	JTextArea styleEditor;
+
+	ArrayList<DustHandle> resArr = new ArrayList<>();
+	JTable resTable;
+	AbstractTableModel resModel;
+	JLabel resPreview;
 
 	DustSandboxTextSelectionManager selMgr;
 	DustSandboxTextHtmlGenerator htmlGen;
@@ -254,8 +269,8 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 				case "GenHtml":
 					String html = htmlGen.generateHtml(txtAgent);
 					Dust.log(TOKEN_LEVEL_INFO, html);
-					
-					try ( PrintWriter out = new PrintWriter(new File(txtAgent.docPath, "test.html")) ) {
+
+					try (PrintWriter out = new PrintWriter(new File(txtAgent.docPath, "test.html"))) {
 						out.println(html);
 						out.close();
 					}
@@ -464,6 +479,8 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 		factToolbars.get("tbTop", BoxLayout.LINE_AXIS);
 
+		loadDoc(tfUnit.getText());
+
 		buildGui();
 
 		frm.setVisible(true);
@@ -478,20 +495,93 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 	void loadDoc(String docUnit) {
 		txtAgent.load(tfUnit.getText(), hCurrentLayout, hLang);
-		updateDocEditor();
-		updateStruct();
+
+		styleArr.clear();
+		for (DustHandle hr : DustMindUtils.getUnitMembers(txtAgent.hUnit)) {
+			String ht = hr.getType().getId();
+
+			switch (ht) {
+			case TOKEN_TEXT_STYLE:
+				styleArr.add(hr);
+				break;
+			}
+		}
+		
+		resArr.clear();
+
+		for (DustHandle hr : DustMindUtils.getUnitMembers(txtAgent.hRes)) {
+			String ht = hr.getType().getId();
+
+			switch (ht) {
+			case TOKEN_STREAM:
+				resArr.add(hr);
+				break;
+			}
+		}
 	};
 
 	void buildGui() {
 		frm.getContentPane().removeAll();
 
+		JTabbedPane tpLeft = new JTabbedPane();
+
 		JPanel left = new JPanel(new BorderLayout());
 		left.add(new JScrollPane(docStruct), BorderLayout.CENTER);
 
-		JTabbedPane tpLeft = new JTabbedPane();
 		tpLeft.add("Struct", left);
-		tpLeft.add("Styles", new JLabel("Style editor"));
-		tpLeft.add("Resources", new JLabel("Resource editor"));
+
+		JPanel pnlStyles = new JPanel(new BorderLayout());
+		styleModel = new AbstractTableModel() {
+			@Override
+			public int getRowCount() {
+				return styleArr.size();
+			}
+
+			@Override
+			public int getColumnCount() {
+				return 1;
+			}
+
+			@Override
+			public Object getValueAt(int rowIndex, int columnIndex) {
+				DustHandle hs = styleArr.get(rowIndex);
+				return Dust.access(DustAccess.Peek, null, hs, TOKEN_NAME);
+			}
+		};
+		styleTable = new JTable(styleModel);
+		
+		styleEditor = new JTextArea();
+		
+		pnlStyles.add(DustGuiSwingUtils.createSplit(false, new JScrollPane(styleTable), new JScrollPane(styleEditor), 0.5), BorderLayout.CENTER);
+
+		tpLeft.add("Styles", pnlStyles);
+		
+		
+		JPanel pnlRes = new JPanel(new BorderLayout());
+		resModel = new AbstractTableModel() {
+			@Override
+			public int getRowCount() {
+				return resArr.size();
+			}
+
+			@Override
+			public int getColumnCount() {
+				return 1;
+			}
+
+			@Override
+			public Object getValueAt(int rowIndex, int columnIndex) {
+				DustHandle hs = resArr.get(rowIndex);
+				return Dust.access(DustAccess.Peek, null, hs, TOKEN_PATH);
+			}
+		};
+		resTable = new JTable(resModel);
+		
+		resPreview = new JLabel();
+		
+		pnlRes.add(DustGuiSwingUtils.createSplit(false, new JScrollPane(resTable), new JScrollPane(resPreview), 0.5), BorderLayout.CENTER);
+
+		tpLeft.add("Resources", pnlRes);
 
 		JPanel right = new JPanel(new BorderLayout());
 		JScrollPane scpDocEd = new JScrollPane(docEditor);
@@ -516,8 +606,6 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 				"GenHtml");
 
 		frm.getContentPane().revalidate();
-
-		loadDoc(tfUnit.getText());
 
 		updateDocEditor();
 		updateStruct();
