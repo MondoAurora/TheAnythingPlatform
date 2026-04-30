@@ -9,6 +9,7 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -16,9 +17,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Vector;
 
+import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListCellRenderer;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -36,8 +40,11 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JTree;
 import javax.swing.ListCellRenderer;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.text.AbstractDocument.LeafElement;
 import javax.swing.text.AttributeSet;
@@ -113,6 +120,22 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 	JTable resTable;
 	AbstractTableModel resModel;
 	JLabel resPreview;
+	DustUtilsFactory<DustHandle, Icon> resIconFactory = new DustUtilsFactory<DustHandle, Icon>(new DustCreator<Icon>() {
+		@Override
+		public Icon create(Object key, Object... hints) {
+			ImageIcon icon = null;
+			try {
+				String path = Dust.access(DustAccess.Peek, null, (DustHandle) key, TOKEN_PATH);
+				File f = new File(txtAgent.docPath, path);
+				BufferedImage image = ImageIO.read(f);
+				icon = new ImageIcon(image);
+			} catch (Throwable e) {
+				DustException.swallow(e, key);
+			}
+
+			return icon;
+		}
+	}, false);
 
 	DustSandboxTextSelectionManager selMgr;
 	DustSandboxTextHtmlGenerator htmlGen;
@@ -262,6 +285,32 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 					refresh = true;
 				}
+					break;
+				case "Apply":
+					int ss = styleTable.getSelectedRow();
+					if (-1 != ss) {
+						DustHandle hS = styleArr.get(ss);
+						for (DustHandle hn : selMgr.hSel) {
+							Dust.access(DustAccess.Insert, hS, hn, TOKEN_TEXT_STYLES);
+							refresh = true;
+						}
+						if (null != hThis) {
+							Dust.log(TOKEN_LEVEL_TRACE, "Setting style", hS, txtAgent.accessText(DustAccess.Peek, "", hThis.getId()));
+							Dust.access(DustAccess.Insert, hS, hThis, TOKEN_TEXT_STYLES);
+							refresh = true;
+						}
+					}
+					break;
+				case "ResInsert":
+					int sr = resTable.getSelectedRow();
+					if (-1 != sr) {
+						DustHandle hR = resArr.get(sr);
+						int idx = Dust.access(DustAccess.Peek, hThis, hParent, TOKEN_MEMBERS, KEY_INDEXOF);
+						DustHandle hRef = txtAgent.insertNode(hParent, idx, TOKEN_STREAM_REF);
+						Dust.access(DustAccess.Set, hR, hRef, TOKEN_TARGET);
+						
+						refresh = true;
+					}
 					break;
 				case "PnlHtml":
 					Dust.log(TOKEN_LEVEL_INFO, docEditor.getText());
@@ -506,7 +555,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 				break;
 			}
 		}
-		
+
 		resArr.clear();
 
 		for (DustHandle hr : DustMindUtils.getUnitMembers(txtAgent.hRes)) {
@@ -530,6 +579,8 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 		tpLeft.add("Struct", left);
 
+		ListSelectionModel lsm;
+
 		JPanel pnlStyles = new JPanel(new BorderLayout());
 		styleModel = new AbstractTableModel() {
 			@Override
@@ -549,14 +600,13 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 			}
 		};
 		styleTable = new JTable(styleModel);
-		
+
 		styleEditor = new JTextArea();
-		
+
 		pnlStyles.add(DustGuiSwingUtils.createSplit(false, new JScrollPane(styleTable), new JScrollPane(styleEditor), 0.5), BorderLayout.CENTER);
 
 		tpLeft.add("Styles", pnlStyles);
-		
-		
+
 		JPanel pnlRes = new JPanel(new BorderLayout());
 		resModel = new AbstractTableModel() {
 			@Override
@@ -576,9 +626,26 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 			}
 		};
 		resTable = new JTable(resModel);
-		
+
 		resPreview = new JLabel();
-		
+
+		lsm = resTable.getSelectionModel();
+		lsm.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		lsm.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()) {
+					int sr = resTable.getSelectedRow();
+					Icon icon = null;
+					if (-1 != sr) {
+						icon = resIconFactory.get(resArr.get(sr));
+
+					}
+					resPreview.setIcon(icon);
+				}
+			}
+		});
+
 		pnlRes.add(DustGuiSwingUtils.createSplit(false, new JScrollPane(resTable), new JScrollPane(resPreview), 0.5), BorderLayout.CENTER);
 
 		tpLeft.add("Resources", pnlRes);
@@ -602,8 +669,8 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		JComboBox cbLayout = createCombo("Layout", TOKEN_LAYOUT_LAYOUT_OTPIONS);
 
 		fillToolbar("tbTop", "Rebuild", "Reset", null, tfUnit, "Load", "Save", null, cbLang, cbLayout);
-		fillToolbar("tbDoc", "<-", "->", null, "Delete", "UnderFirst", null, "Bullet", "Number", "Local", null, "Resp", "Table", "Merge", null, "PnlHtml",
-				"GenHtml");
+		fillToolbar("tbDoc", "<-", "->", null, "Delete", "UnderFirst", null, "Bullet", "Number", "Local", null, "Resp", "Table", "Merge", null, "Style ->",
+				"<- Style", "Apply", "New", "Drop", null, "ResInsert", null, "PnlHtml", "GenHtml");
 
 		frm.getContentPane().revalidate();
 
