@@ -37,7 +37,7 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 
 		sb.append("</head><body>\n");
 
-		sb.append("<img src=\"save/temp.jpg\" width=\"500\">\n");
+//		sb.append("<img src=\"save/temp.jpg\" class=\"tap_sideimage\"/>\n");
 
 		appendHandle(txtAgent, txtAgent.hDoc, sb, null);
 
@@ -56,6 +56,18 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 		String container = "div";
 
 		DustHandle hLayoutParent = null;
+
+		if (DustUtils.isEqual(TOKEN_STREAM_REF, ht)) {
+			String path = Dust.access(DustAccess.Peek, null, h, TOKEN_TARGET, TOKEN_PATH);
+
+			if (!DustUtils.isEmpty(path)) {
+				DustUtils.sbAppend(sb, "", false, "<img src=\"", path, "\" ");
+				optAddStyleClass(h, sb);
+				sb.append("/>\n");
+			}
+			
+			return;
+		}
 
 		if (DustUtils.isEqual(TOKEN_LAYOUT_RESPONSIVE, ht)) {
 			Collection<DustHandle> options = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h, TOKEN_OPTIONS);
@@ -147,20 +159,7 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 				DustUtils.sbAppend(sb, "", false, " style=\"padding-left:", lp, "px\" ");
 			}
 
-			Collection<DustHandle> styles = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, h, TOKEN_TEXT_STYLES);
-
-			if (!styles.isEmpty()) {
-				StringBuilder sc = null;
-				for (DustHandle hs : styles) {
-					String name = (String) Dust.access(DustAccess.Peek, "", hs, TOKEN_NAME);
-					name = DustUtils.getPostfix(name, ".");
-					sc = DustUtils.sbAppend(sc, " ", false, name);
-//					sb.append(name);
-//					sb.append(" ");
-				}
-
-				sb.append(" class=\"").append(sc).append("\" ");
-			}
+			optAddStyleClass(h, sb);
 
 			sb.append(">");
 
@@ -218,6 +217,23 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 		}
 
 		DustUtils.sbAppend(sb, "", false, "</", container, ">");
+	}
+
+	private void optAddStyleClass(DustHandle h, StringBuilder sb) {
+		Collection<DustHandle> styles = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, h, TOKEN_TEXT_STYLES);
+
+		if (!styles.isEmpty()) {
+			StringBuilder sc = null;
+			for (DustHandle hs : styles) {
+				String name = (String) Dust.access(DustAccess.Peek, "", hs, TOKEN_NAME);
+				name = DustUtils.getPostfix(name, ".");
+				sc = DustUtils.sbAppend(sc, " ", false, name);
+//					sb.append(name);
+//					sb.append(" ");
+			}
+
+			sb.append(" class=\"").append(sc).append("\" ");
+		}
 	};
 
 }

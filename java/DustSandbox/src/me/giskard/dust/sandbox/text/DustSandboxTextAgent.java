@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -21,8 +22,14 @@ import me.giskard.dust.core.utils.DustUtilsFactory;
 
 public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextConsts {
 
+	DustHandle defaultSerializer;
+
 	String unitId;
 	DustHandle hUnit;
+	DustHandle hRes;
+
+	String resPath;
+	File resRoot;
 
 	DustHandle hDoc;
 	Map<String, String> styles = new TreeMap<>();
@@ -41,12 +48,22 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		}
 	}, false);
 
-	URL resUrl;
+	File docPath;
+	URL docUrl;
+
+	public DustSandboxTextAgent() throws Exception {
+		init();
+	}
 
 	@Override
 	protected void init() throws Exception {
-		File f = new File("localStore");
-		resUrl = f.toURI().toURL();
+		docPath = new File("localStore");
+		docUrl = docPath.toURI().toURL();
+
+		resPath = "res";
+		resRoot = new File(docPath, resPath);
+
+		hRes = Dust.getUnit("streams.1", true);
 	}
 
 	public void load(String unitId, DustHandle hLayout, DustHandle hLang) {
@@ -86,6 +103,26 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 
 	};
 
+	public void save() {
+		Map<String, Object> sp = new HashMap<String, Object>();
+		sp.put(TOKEN_CMD, TOKEN_CMD_SAVE);
+
+		if (null == defaultSerializer) {
+			DustHandle app = Dust.getUnit("sandbox.1", false);
+			DustHandle mind = Dust.getHandle(app, null, TOKEN_MIND, DustOptCreate.None);
+			defaultSerializer = Dust.access(DustAccess.Peek, null, mind, TOKEN_SERIALIZER);
+		}
+
+		sp.put(TOKEN_KEY, hRes.getId());
+		sp.put(TOKEN_DATA, hRes);
+		Dust.access(DustAccess.Process, sp, defaultSerializer);
+
+		sp.put(TOKEN_KEY, hUnit.getId());
+		sp.put(TOKEN_DATA, hUnit);
+		Dust.access(DustAccess.Process, sp, defaultSerializer);
+
+	};
+
 	public DustHandle insertNode(DustHandle hParent, int idx, String type) {
 		DustHandle hRet = Dust.getHandle(hUnit, type, null, DustOptCreate.Primary);
 		Dust.access(DustAccess.Insert, hRet, hParent, TOKEN_MEMBERS, idx + 1);
@@ -106,7 +143,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 	}
 
 	public URL getResUrl() {
-		return resUrl;
+		return docUrl;
 	}
 
 	String accessText(DustAccess access, String val, String key) {
@@ -170,16 +207,29 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		Dust.access(DustAccess.Set, DustUtils.CONST_HANDLES.get(grpToken, TOKEN_KBMETA_TAG), hTxt, TOKEN_TEXT_GROUP);
 	}
 
-	public void insertImage(DustHandle hfParent, DustHandle hfBlock, Image o) throws Exception {
-		Image image = (Image) o;
-
+	public void insertImage(DustHandle hParent, DustHandle hThis, Image image) throws Exception {
 		int width = image.getWidth(null);
 		int height = image.getHeight(null);
+
 		BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
 		Graphics g = bi.getGraphics();
 		g.drawImage(image, 0, 0, null);
-		ImageIO.write(bi, "jpg", new File("localStore/save/temp.jpg"));
 
+		String imgType = "jpg";
+
+		DustHandle hImg = Dust.getHandle(hRes, TOKEN_STREAM, null, DustOptCreate.Primary);
+		String path = resPath + "/" + DustUtils.getPostfix(hImg.getId(), DUST_SEP_TOKEN) + "." + imgType;
+		Dust.access(DustAccess.Set, path, hImg, TOKEN_PATH);
+		Dust.access(DustAccess.Insert, DustUtils.CONST_HANDLES.get(TOKEN_STREAM_IMAGE, TOKEN_KBMETA_TAG), hImg, TOKEN_TAGS);
+
+		ImageIO.write(bi, imgType, new File(docPath, path));
+
+		DustHandle hRef = Dust.getHandle(hUnit, TOKEN_STREAM_REF, null, DustOptCreate.Primary);
+		Dust.access(DustAccess.Set, hImg, hRef, TOKEN_TARGET);
+
+		int idx = Dust.access(DustAccess.Peek, hThis, hParent, TOKEN_MEMBERS, KEY_INDEXOF);
+
+		Dust.access(DustAccess.Insert, hRef, hParent, TOKEN_MEMBERS, idx + 1);
 	}
 
 	public void insertLongText(DustHandle hParent, DustHandle hThis, String str) {

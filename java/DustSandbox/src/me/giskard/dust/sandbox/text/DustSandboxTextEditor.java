@@ -10,11 +10,9 @@ import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.net.URL;
+import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Vector;
 
 import javax.swing.Box;
@@ -57,7 +55,7 @@ import me.giskard.dust.mod.gui.swing.DustGuiSwingUtils;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextConsts {
 
-	DustSandboxTextAgent txtAgent = new DustSandboxTextAgent();
+	DustSandboxTextAgent txtAgent;
 
 	DustHandle hCurrentLayout;
 	DustHandle hLang;
@@ -131,9 +129,6 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		public void actionPerformed(ActionEvent e) {
 			String cmd = e.getActionCommand();
 
-			Map<String, Object> sp = null;
-//			TreePath[] tps;
-
 			DustHandle hThis = selMgr.getFocusedBlock();
 			DustHandle hParent = selMgr.getFocusedParent();
 
@@ -164,8 +159,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					refresh = true;
 					break;
 				case "Save":
-					sp = new HashMap<String, Object>();
-					sp.put(TOKEN_CMD, TOKEN_CMD_SAVE);
+					txtAgent.save();
 					break;
 
 				case "<-":
@@ -258,20 +252,16 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					Dust.log(TOKEN_LEVEL_INFO, docEditor.getText());
 					break;
 				case "GenHtml":
-					Dust.log(TOKEN_LEVEL_INFO, htmlGen.generateHtml(txtAgent));
+					String html = htmlGen.generateHtml(txtAgent);
+					Dust.log(TOKEN_LEVEL_INFO, html);
+					
+					try ( PrintWriter out = new PrintWriter(new File(txtAgent.docPath, "test.html")) ) {
+						out.println(html);
+						out.close();
+					}
 					break;
 				default:
 					Dust.log(TOKEN_LEVEL_WARNING, "Command not handled", cmd);
-				}
-
-				if (null != sp) {
-					DustHandle app = Dust.getUnit("sandbox.1", false);
-					DustHandle mind = Dust.getHandle(app, null, TOKEN_MIND, DustOptCreate.None);
-					DustHandle defaultSerializer = Dust.access(DustAccess.Peek, null, mind, TOKEN_SERIALIZER);
-
-					sp.put(TOKEN_KEY, txtAgent.hUnit.getId());
-					sp.put(TOKEN_DATA, txtAgent.hUnit);
-					Dust.access(DustAccess.Process, sp, defaultSerializer);
 				}
 
 				if (refresh) {
@@ -433,6 +423,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 	@Override
 	protected void init() throws Exception {
+		txtAgent = new DustSandboxTextAgent();
 
 		hCurrentLayout = Dust.access(DustAccess.Peek, null, null, TOKEN_LAYOUT_LAYOUT);
 		hLang = Dust.access(DustAccess.Peek, null, null, TOKEN_TEXT_LANG);
@@ -452,10 +443,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		docEditor.setTransferHandler(cbTransferHandler);
 
 		doc = (HTMLDocument) docEditor.getDocument();
-		File f = new File("localStore");
-		URL url = f.toURI().toURL();
-
-		doc.setBase(url);
+		doc.setBase(txtAgent.docUrl);
 		doc.setDocumentFilter(df);
 
 		htmlGen = new DustSandboxTextHtmlGenerator();

@@ -79,6 +79,7 @@ public interface DustConsts {
 
 	String TOKEN_ID = DUST_UNIT_DUST + DUST_SEP_TOKEN + "id";
 	String TOKEN_TYPE = DUST_UNIT_DUST + DUST_SEP_TOKEN + "type";
+	String TOKEN_TAGS = DUST_UNIT_DUST + DUST_SEP_TOKEN + "tags";
 	String TOKEN_NAME = DUST_UNIT_DUST + DUST_SEP_TOKEN + "name";
 	String TOKEN_DESC = DUST_UNIT_DUST + DUST_SEP_TOKEN + "desc";
 	String TOKEN_PAYLOAD = DUST_UNIT_DUST + DUST_SEP_TOKEN + "payload";
@@ -135,6 +136,13 @@ public interface DustConsts {
 	String TOKEN_READABLETO = DUST_UNIT_DUST + DUST_SEP_TOKEN + "readableTo";
 
 	String TOKEN_LASTCHANGED = DUST_UNIT_DUST + DUST_SEP_TOKEN + "lastChanged";
+	
+	String TOKEN_STREAM = DUST_UNIT_DUST + DUST_SEP_TOKEN + "Stream";
+	String TOKEN_STREAM_REF = DUST_UNIT_DUST + DUST_SEP_TOKEN + "StreamRef";
+	
+	String TOKEN_STREAM_IMAGE = DUST_UNIT_DUST + DUST_SEP_TOKEN + "Image";
+	
+	
 
 	String TOKEN_TEXT_DOC = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "Document";
 	String TOKEN_TEXT_BLOCK = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "Block";
