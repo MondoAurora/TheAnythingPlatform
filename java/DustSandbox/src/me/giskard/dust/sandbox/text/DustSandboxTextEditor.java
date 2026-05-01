@@ -346,6 +346,8 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 		@Override
 		public boolean importData(TransferSupport support) {
+			boolean inserted = false;
+			
 			Transferable t = support.getTransferable();
 			String pt = null;
 			String st = null;
@@ -360,8 +362,11 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					if ("image".equals(pt)) {
 						Object o = t.getTransferData(df);
 						if (o instanceof Image) {
-							txtAgent.insertImage(selMgr.hfParent, selMgr.hfBlock, (Image) o);
-							return true;
+							DustHandle hImg = txtAgent.insertImage(selMgr.hfParent, selMgr.hfBlock, (Image) o);
+							int ri = resArr.size();
+							resArr.add(hImg);
+							resModel.fireTableRowsInserted(ri, ri);
+							inserted = true;
 						}
 					}
 
@@ -380,13 +385,17 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 									txtAgent.insertLongText(hParent, hThis, str);
 
-									updateDocEditor();
-									updateStruct();
-
-									return true;
+									inserted = true;
 								}
 							}
 						}
+					}
+					
+					if ( inserted ) {
+						updateDocEditor();
+						updateStruct();
+
+						return true;
 					}
 				}
 			} catch (Throwable e) {

@@ -207,7 +207,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		Dust.access(DustAccess.Set, DustUtils.CONST_HANDLES.get(grpToken, TOKEN_KBMETA_TAG), hTxt, TOKEN_TEXT_GROUP);
 	}
 
-	public void insertImage(DustHandle hParent, DustHandle hThis, Image image) throws Exception {
+	public DustHandle insertImage(DustHandle hParent, DustHandle hThis, Image image) throws Exception {
 		int width = image.getWidth(null);
 		int height = image.getHeight(null);
 
@@ -230,6 +230,8 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		int idx = Dust.access(DustAccess.Peek, hThis, hParent, TOKEN_MEMBERS, KEY_INDEXOF);
 
 		Dust.access(DustAccess.Insert, hRef, hParent, TOKEN_MEMBERS, idx + 1);
+		
+		return hImg;
 	}
 
 	public void insertLongText(DustHandle hParent, DustHandle hThis, String str) {
