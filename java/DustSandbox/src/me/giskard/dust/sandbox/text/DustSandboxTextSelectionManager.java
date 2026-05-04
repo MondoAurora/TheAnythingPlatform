@@ -30,7 +30,7 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 	private final HTMLDocument doc;
 	private DefaultMutableTreeNode rootNode;
 
-	private boolean selUpdating = false;
+	 Object selUpdating = null;
 
 	private int caretPos;
 	int selBegin;
@@ -49,10 +49,10 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 	TreeSelectionListener treeSelListener = new TreeSelectionListener() {
 		@Override
 		public void valueChanged(TreeSelectionEvent e) {
-			if (!selUpdating) {
+			if (null == selUpdating) {
 				synchronized (this) {
 					try {
-						selUpdating = true;
+						selUpdating = e.getSource();
 
 						reset();
 
@@ -77,7 +77,7 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 
 						updateComps((JComponent) e.getSource());
 					} finally {
-						selUpdating = false;
+						selUpdating = null;
 					}
 				}
 			}
@@ -88,10 +88,10 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 
 		@Override
 		public void caretUpdate(CaretEvent ce) {
-			if (!selUpdating) {
+			if (null == selUpdating) {
 				synchronized (this) {
 					try {
-						selUpdating = true;
+						selUpdating = ce.getSource();
 
 						reset();
 
@@ -128,6 +128,12 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 
 							SimpleAttributeSet sas = (SimpleAttributeSet) ec.getAttributes().getAttribute(HTML.Tag.SPAN);
 							Object name = (null == sas) ? null : sas.getAttribute(HTML.Attribute.NAME);
+							
+							String ii = DustSandboxTextUtils.getId(ec);
+							if (!DustUtils.isEmpty(ii)) {
+								hfChar = txtAgent.getNode(ii);
+							}
+							
 							if (DustUtils.isEqual("placeholder", name)) {
 								selBegin = ec.getStartOffset();
 								selEnd = ec.getEndOffset() - 1;
@@ -171,7 +177,7 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 						updateComps(txt);
 
 					} finally {
-						selUpdating = false;
+						selUpdating = null;
 					}
 				}
 			}
@@ -263,8 +269,12 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 
 	JComponent updateComps(JComponent src) {
 		JComponent ret = null;
+//		if ( null == ret ) {
+//			 return ret;
+//		}
+		
 		for (JComponent c : managedComps) {
-			if (c != src) {
+			if ((c != src) && (c != selUpdating)) {
 				if (c instanceof JTree) {
 					if (null != hfBlock) {
 						JTree tr = (JTree) c;

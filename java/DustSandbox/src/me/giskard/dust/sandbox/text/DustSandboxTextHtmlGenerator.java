@@ -61,11 +61,11 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 			String path = Dust.access(DustAccess.Peek, null, h, TOKEN_TARGET, TOKEN_PATH);
 
 			if (!DustUtils.isEmpty(path)) {
-				DustUtils.sbAppend(sb, "", false, "<img src=\"", path, "\" ");
+				DustUtils.sbAppend(sb, "", false, "<img src=\"", path, "\" ", "id=\"" + id + "\" ");
 				optAddStyleClass(h, sb);
 				sb.append("/>\n");
 			}
-			
+
 			return;
 		}
 

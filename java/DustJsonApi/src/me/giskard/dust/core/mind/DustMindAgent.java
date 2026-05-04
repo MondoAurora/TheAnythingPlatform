@@ -135,7 +135,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 		DustMindHandle u = (DustMindHandle) unit;
 		int sep = id.indexOf(DUST_SEP_TOKEN);
-		
+
 		if (type instanceof String) {
 			type = getHandle(unitMeta.mh, typeType, (String) type, DustOptCreate.Meta);
 		}
@@ -172,7 +172,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 			ret = (optCreate == DustOptCreate.None) ? unitRefs.get(id) : DustUtils.safeGet(unitRefs, createHandle, id, ui, type);
 		}
-		
+
 		return ret;
 	}
 
@@ -546,7 +546,13 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 		switch (access) {
 		case Check:
-			ret = DustUtils.isEqual(val, curr);
+
+			boolean match = DustUtils.isEqual(val, curr);
+			if (!match && (curr instanceof Collection)) {
+				match = ((Collection) curr).contains(val);
+			}
+			ret = match;
+
 			break;
 		case Delete:
 			if (curr != null) {
