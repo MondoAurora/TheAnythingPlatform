@@ -5,4 +5,8 @@ import me.giskard.dust.core.net.DustNetConsts;
 
 public interface DustSandboxTextConsts extends DustConsts, DustNetConsts {
 
+	enum EventCommand {
+		evtToNext, evtToPrev, evtSplit, evtMergeNext, evtMergePrev
+	}
+
 }

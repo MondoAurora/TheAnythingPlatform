@@ -3,19 +3,25 @@ package me.giskard.dust.sandbox.text;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
 import javax.swing.text.BadLocationException;
@@ -27,6 +33,7 @@ import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.mind.DustMindUtils;
 import me.giskard.dust.core.utils.DustUtils;
+import me.giskard.dust.core.utils.DustUtilsData;
 
 public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextConsts {
 
@@ -43,6 +50,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 
 	DustHandle hDoc;
 	Map<String, String> styles = new TreeMap<>();
+	Map<DustHandle, DustHandle> events = new HashMap<>();
 
 	DustHandle hLayout;
 
@@ -82,6 +90,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		hUnit = Dust.getUnit(unitId, true);
 		hDoc = null;
 		styles.clear();
+		events.clear();
 
 		for (DustHandle h : DustMindUtils.getUnitMembers(hUnit)) {
 			String ht = h.getType().getId();
@@ -94,6 +103,9 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 				break;
 			case TOKEN_TEXT_STYLE:
 				updateStyleDef(h);
+				break;
+			case TOKEN_EVENT:
+				events.put(Dust.access(DustAccess.Peek, null, h, TOKEN_TARGET), h);
 				break;
 			}
 		}
@@ -492,5 +504,127 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		save();
 
 		return true;
+	}
+
+	public DustHandle optCreateTextEvent(String txt, Date dStart, long duration, DustHandle durationUnit) {
+		if (DustUtils.isEmpty(txt)) {
+			return null;
+		}
+		
+		Dust.log(TOKEN_LEVEL_TRACE, txt);
+
+		DustHandle hTxt = Dust.getHandle(hUnit, TOKEN_TEXT_BLOCK, null, DustOptCreate.Primary);
+		Dust.access(DustAccess.Insert, hTxt, hDoc, TOKEN_MEMBERS, KEY_ADD);
+		accessText(DustAccess.Set, txt, hTxt.getId());
+
+		DustUtilsData.createEvent(hUnit, hTxt, dStart, duration, durationUnit);
+
+		return hTxt;
+	}
+
+	public void manageEvent(EventCommand eCmd, DustHandle hTxt, int pos, DustHandle hParent) throws Exception {
+		int idx = Dust.access(DustAccess.Peek, hTxt, hParent, TOKEN_MEMBERS, KEY_INDEXOF);
+		
+		String tId = hTxt.getId();
+		String txt = accessText(DustAccess.Peek, null, tId);
+		double ratio = (double) pos / (double) txt.length();
+		
+		DustHandle eTxt = events.get(hTxt);
+		DustHandle e2;
+		
+		Date timeTxt = DustUtilsData.getEventDate(eTxt);
+		Date time2;
+		
+		long durationTxt;
+		long duration2;
+		
+		DustHandle hUnit;
+		
+		DustHandle h2;
+		String i2;
+		String t2;
+		
+		String tt;
+
+		Dust.log(TOKEN_LEVEL_TRACE, "manageEvent", eCmd, hTxt, pos, hParent, idx, txt);
+		
+		
+		switch (eCmd) {
+		case evtMergeNext:
+			break;
+		case evtMergePrev:
+			break;
+		case evtSplit:
+			tt = txt.substring(pos).trim();
+			
+			accessText(DustAccess.Set, txt.substring(0, pos), tId);
+
+			break;
+		case evtToNext:
+			h2 = Dust.access(DustAccess.Peek, null, hParent, TOKEN_MEMBERS, idx+1);
+			if ( null == h2 ) {
+				
+			} else {
+				i2 = h2.getId();
+				t2 = accessText(DustAccess.Peek, null, i2);
+				
+				tt = txt.substring(pos).trim();
+				t2 = tt + " " + t2.trim();
+				
+				accessText(DustAccess.Set, t2, i2);
+				accessText(DustAccess.Set, txt.substring(0, pos), tId);
+			}
+			break;
+		case evtToPrev:
+			break;
+		default:
+			break;
+		
+		}
+	}
+
+	public void importFile(File f) {
+		String type = DustUtils.getPostfix(f.getName(), ".").toLowerCase();
+		Pattern pt1 = Pattern.compile("\\d+:\\d+:\\d+\\.\\d+\\s*,\\s*\\d+:\\d+:\\d+\\.\\d+\\s*");
+		SimpleDateFormat df1 = new SimpleDateFormat("HH:mm:ss.SSS");
+		DustHandle hDurationUnit = DustUtils.CONST_HANDLES.get(TOKEN_EVENT_DURATION_UNIT_MSEC, TOKEN_KBMETA_TAG);
+
+		try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+			String line;
+			StringBuilder sb = null;
+			Date dStart = null;
+			long durationMsec = 0;
+
+			while ((line = br.readLine()) != null) {
+				line = line.trim();
+
+				if (line.isEmpty() || line.startsWith("#")) {
+					continue;
+				}
+
+				switch (type) {
+				case "sbv":
+					Matcher m = pt1.matcher(line);
+
+					if (m.matches()) {
+						optCreateTextEvent(DustUtils.toString(sb), dStart, durationMsec, hDurationUnit);
+
+						String[] strRange = line.split(",");
+						dStart = df1.parse(strRange[0].trim());
+						Date dEnd = df1.parse(strRange[1].trim());
+						durationMsec = Math.abs(dEnd.getTime() - dStart.getTime());
+
+						sb = null;
+					} else {
+						sb = DustUtils.sbAppend(sb, " ", false, line.trim());
+					}
+					break;
+				}
+			}
+			
+			optCreateTextEvent(DustUtils.toString(sb), dStart, durationMsec, hDurationUnit);
+		} catch (Throwable e) {
+
+		}
 	}
 }

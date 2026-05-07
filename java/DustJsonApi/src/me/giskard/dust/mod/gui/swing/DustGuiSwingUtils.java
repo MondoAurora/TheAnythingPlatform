@@ -10,6 +10,8 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.swing.AbstractButton;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,7 +25,9 @@ import javax.swing.border.TitledBorder;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.utils.DustUtils;
+import me.giskard.dust.core.utils.DustUtilsFactory;
 
+@SuppressWarnings("rawtypes")
 public class DustGuiSwingUtils implements DustGuiSwingConsts {
 
 	public static JComponent setTitle(JComponent comp, String title) {
@@ -76,11 +80,11 @@ public class DustGuiSwingUtils implements DustGuiSwingConsts {
 
 	public static JComponent createToolbar(ActionListener al, String prefix, int count) {
 		JPanel pnlTB = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		
-		for ( int i = 1; i <= count; ++i) {
+
+		for (int i = 1; i <= count; ++i) {
 			pnlTB.add(createBtn(prefix + " " + i, al, JButton.class));
 		}
-		
+
 		return pnlTB;
 	}
 
@@ -108,36 +112,76 @@ public class DustGuiSwingUtils implements DustGuiSwingConsts {
 	public static String optSetLookAndFeel() throws Exception {
 		List<String> lnf = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_SWING_LOOKANDFEEL);
 
-		for ( String lcn : lnf ) {
+		for (String lcn : lnf) {
 			try {
 				UIManager.setLookAndFeel(lcn);
 				Dust.log(TOKEN_LEVEL_INFO, "Swing L&F selected:", lcn);
 				return lcn;
-				
+
 			} catch (Throwable e) {
 				Dust.log(TOKEN_LEVEL_WARNING, "FAILED selecting Swing L&F:", lcn, e);
 			}
 		}
-		
-		String lcn = null;
 
-//		UIManager.LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();
-//		int i = Integer.MAX_VALUE;
-//
-//		for (UIManager.LookAndFeelInfo look : looks) {
-//			String cn = look.getClassName();
-//			int p = lnf.indexOf(cn);
-//			if ((0 <= p) && (p < i)) {
-//				i = p;
-//				lcn = cn;
-//			}
-//		}
-//
-//		if (null != lcn) {
-//			UIManager.setLookAndFeel(lcn);
-//			Dust.log(TOKEN_LEVEL_INFO, "Swing L&F selected:", lcn);
-//		}
+		String lcn = null;
 
 		return lcn;
 	}
+	
+	public static class ActionControlFactory extends DustUtilsFactory<String, JComponent> {
+		ActionListener al;
+
+		public ActionControlFactory(ActionListener al) {
+			super(new DustCreator<JComponent>() {
+				@Override
+				public JComponent create(Object key, Object... hints) {
+					if (0 == hints.length) {
+						return DustGuiSwingUtils.createBtn((String) key, al, JButton.class);
+					}
+					return null;
+				}
+			});
+
+			this.al = al;
+		}
+	};
+
+
+	public static class ToolbarFactory extends DustUtilsFactory<String, JComponent> {
+		ActionControlFactory acf;
+		
+		public ToolbarFactory(ActionControlFactory acf) {
+			super(new DustCreator<JComponent>() {
+				@Override
+				public JComponent create(Object key, Object... hints) {
+					JPanel pnl = new JPanel(null);
+
+					int a = DustUtils.optGet(hints, 0, BoxLayout.PAGE_AXIS);
+					pnl.setLayout(new BoxLayout(pnl, a));
+					return pnl;
+				}
+			});
+			
+			this.acf = acf;
+		}
+		
+		public void fillToolbar(String tb, Object... cmds) {
+			JComponent pnl = get(tb);
+			pnl.removeAll();
+
+			for (Object o : cmds) {
+				if (null == o) {
+					pnl.add(Box.createRigidArea(new Dimension(10, 10)));
+				} else if (o instanceof JComponent) {
+					pnl.add((JComponent) o);
+					if (o instanceof JComboBox) {
+						((JComboBox) o).addActionListener(acf.al);
+					}
+				} else if (o instanceof String) {
+					pnl.add(acf.get((String) o));
+				}
+			}
+		}
+	};
+
 }

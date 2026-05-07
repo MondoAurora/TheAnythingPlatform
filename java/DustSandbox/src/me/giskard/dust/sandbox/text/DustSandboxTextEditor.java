@@ -2,7 +2,6 @@ package me.giskard.dust.sandbox.text;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
@@ -16,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -27,9 +27,7 @@ import javax.swing.BoxLayout;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -80,7 +78,8 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 	JFrame frm;
 
-	JTextField tfUnit = new JTextField("test.1");
+	JTextField tfUnit = new JTextField("TudasEsInformatika_hu.1");
+//	JTextField tfUnit = new JTextField("test.1");
 	JTextField tfFind = new JTextField();
 
 	JTree docStruct;
@@ -146,26 +145,27 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 	DustSandboxTextSelectionManager selMgr;
 	DustSandboxTextHtmlGenerator htmlGen;
 
-	DustUtilsFactory<String, JComponent> factToolbars = new DustUtilsFactory<String, JComponent>(new DustCreator<JComponent>() {
-		@Override
-		public JComponent create(Object key, Object... hints) {
-			JPanel pnl = new JPanel(null);
 
-			int a = DustUtils.optGet(hints, 0, BoxLayout.PAGE_AXIS);
-			pnl.setLayout(new BoxLayout(pnl, a));
-			return pnl;
-		}
-	});
+//	DustUtilsFactory<String, JComponent> factToolbars = new DustUtilsFactory<String, JComponent>(new DustCreator<JComponent>() {
+//		@Override
+//		public JComponent create(Object key, Object... hints) {
+//			JPanel pnl = new JPanel(null);
+//
+//			int a = DustUtils.optGet(hints, 0, BoxLayout.PAGE_AXIS);
+//			pnl.setLayout(new BoxLayout(pnl, a));
+//			return pnl;
+//		}
+//	});
 
-	DustUtilsFactory<String, JComponent> factActionControls = new DustUtilsFactory<String, JComponent>(new DustCreator<JComponent>() {
-		@Override
-		public JComponent create(Object key, Object... hints) {
-			if (0 == hints.length) {
-				return DustGuiSwingUtils.createBtn((String) key, al, JButton.class);
-			}
-			return null;
-		}
-	});
+//	DustUtilsFactory<String, JComponent> factActionControls = new DustUtilsFactory<String, JComponent>(new DustCreator<JComponent>() {
+//		@Override
+//		public JComponent create(Object key, Object... hints) {
+//			if (0 == hints.length) {
+//				return DustGuiSwingUtils.createBtn((String) key, al, JButton.class);
+//			}
+//			return null;
+//		}
+//	});
 
 	ActionListener al = new ActionListener() {
 
@@ -203,7 +203,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					refresh = true;
 					break;
 				case "Load":
-					loadDoc(tfUnit.getText());
+					loadDoc();
 					refresh = true;
 					break;
 				case "Save":
@@ -311,13 +311,13 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 						String txt = doc.getText(fwd ? cp + 1 : 0, fwd ? li - cp : cp - 1).toLowerCase();
 						find = find.toLowerCase();
-						
+
 						idx = fwd ? txt.indexOf(find) : txt.lastIndexOf(find);
 
 						if (-1 == idx) {
 							Toolkit.getDefaultToolkit().beep();
 						} else {
-							int so = fwd ? idx + cp + 1: idx;
+							int so = fwd ? idx + cp + 1 : idx;
 							docEditor.select(so, so + find.length());
 						}
 					}
@@ -413,6 +413,16 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 						refresh = true;
 					}
 					break;
+				case "evtToNext":
+				case "evtToPrev":
+				case "evtSplit":
+				case "evtMergeNext":
+				case "evtMergePrev":
+					idx = selMgr.getCaretPos() - selMgr.eFocus.getStartOffset();
+					txtAgent.manageEvent(EventCommand.valueOf(cmd), hThis, idx, hParent);
+					
+					refresh = true;
+					break;
 				case "PnlHtml":
 					Dust.log(TOKEN_LEVEL_INFO, docEditor.getText());
 					break;
@@ -484,50 +494,74 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 			try {
 
-				for (DataFlavor df : support.getDataFlavors()) {
+				if (t.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
+					List l = (List) t.getTransferData(DataFlavor.javaFileListFlavor);
+					if (l.size() != 1) {
+						Toolkit.getDefaultToolkit().beep();
+						return false;
+					} else {
+						File f = (File) l.get(0);
+						Dust.log(TOKEN_LEVEL_INFO, "Dropped to read", f);
 
-					pt = df.getPrimaryType();
-					st = df.getSubType();
+						String u = DustUtils.cutPostfix(f.getName(), ".") + ".1";
+						u = JOptionPane.showInputDialog(docEditor, "Unit name?", u);
 
-					if ("image".equals(pt)) {
-						Object o = t.getTransferData(df);
-						if (o instanceof Image) {
-							DustHandle hImg = txtAgent.insertImage(selMgr.hfParent, selMgr.hfBlock, (Image) o);
-							int ri = resArr.size();
-							resArr.add(hImg);
-							resModel.fireTableRowsInserted(ri, ri);
+						if (null != u) {
+							tfUnit.setText(u);
+							loadDoc();
+
+							txtAgent.importFile(f);
+
 							inserted = true;
 						}
 					}
+				} else {
 
-					if ("text".equals(pt)) {
-						if ("plain".equals(st)) {
+					DataFlavor[] dataFlavors = support.getDataFlavors();
+					for (DataFlavor df : dataFlavors) {
+
+						pt = df.getPrimaryType();
+						st = df.getSubType();
+
+						if ("image".equals(pt)) {
 							Object o = t.getTransferData(df);
-							if (o instanceof String) {
-								String str = (String) o;
+							if (o instanceof Image) {
+								DustHandle hImg = txtAgent.insertImage(selMgr.hfParent, selMgr.hfBlock, (Image) o);
+								int ri = resArr.size();
+								resArr.add(hImg);
+								resModel.fireTableRowsInserted(ri, ri);
+								inserted = true;
+							}
+						} else if ("text".equals(pt)) {
+							if ("plain".equals(st)) {
+								Object o = t.getTransferData(df);
+								if (o instanceof String) {
+									String str = (String) o;
 
-								if (-1 == str.indexOf("\n")) {
-									doc.insertString(selMgr.getCaretPos(), str, null);
-									return true;
-								} else {
-									DustHandle hThis = selMgr.getFocusedBlock();
-									DustHandle hParent = selMgr.getFocusedParent();
+									if (-1 == str.indexOf("\n")) {
+										doc.insertString(selMgr.getCaretPos(), str, null);
+										return true;
+									} else {
+										DustHandle hThis = selMgr.getFocusedBlock();
+										DustHandle hParent = selMgr.getFocusedParent();
 
-									txtAgent.insertLongText(hParent, hThis, str);
+										txtAgent.insertLongText(hParent, hThis, str);
 
-									inserted = true;
+										inserted = true;
+									}
 								}
 							}
 						}
 					}
-
-					if (inserted) {
-						updateDocEditor();
-						updateStruct();
-
-						return true;
-					}
 				}
+				
+				if (inserted) {
+					updateDocEditor();
+					updateStruct();
+
+					return true;
+				}
+
 			} catch (Throwable e) {
 				DustException.wrap(e, TOKEN_LEVEL_INFO, "DF", pt, st, e);
 			}
@@ -538,8 +572,18 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		@Override
 		public boolean canImport(TransferSupport support) {
 			for (DataFlavor df : support.getDataFlavors()) {
+				try {
+					Dust.log(TOKEN_LEVEL_TRACE, "canImport", "PT", df.getPrimaryType(), "ST", df.getSubType(), "Class", df.getRepresentationClass());
+				} catch (Exception e) {
+					DustException.swallow(e);
+				}
 				if ("text".equals(df.getPrimaryType())) {
 					if ("plain".equals(df.getSubType())) {
+						return true;
+					}
+				}
+				if ("application".equals(df.getPrimaryType())) {
+					if ("x-java-file-list".equals(df.getSubType())) {
 						return true;
 					}
 				}
@@ -641,6 +685,10 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 			}
 		}
 	};
+	
+	DustGuiSwingUtils.ActionControlFactory factActionControls = new DustGuiSwingUtils.ActionControlFactory(al);
+	DustGuiSwingUtils.ToolbarFactory factToolbars = new DustGuiSwingUtils.ToolbarFactory(factActionControls);
+
 
 	protected void read() {
 		String str = docEditor.getText();
@@ -691,11 +739,59 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 		factToolbars.get("tbTop", BoxLayout.LINE_AXIS);
 
-		loadDoc(tfUnit.getText());
+		loadDoc();
 
 		buildGui();
 
 		frm.setVisible(true);
+
+		tfUnit.setTransferHandler(new TransferHandler() {
+			@Override
+			public boolean canImport(TransferSupport support) {
+				for (DataFlavor df : support.getDataFlavors()) {
+					try {
+						Dust.log(TOKEN_LEVEL_TRACE, "canImport", "PT", df.getPrimaryType(), "ST", df.getSubType(), "Class", df.getRepresentationClass());
+					} catch (Exception e) {
+						DustException.swallow(e);
+					}
+					if ("application".equals(df.getPrimaryType())) {
+						if ("x-java-file-list".equals(df.getSubType())) {
+							return true;
+						}
+					}
+				}
+				return false;
+			}
+
+			@Override
+			public boolean importData(TransferSupport support) {
+				Transferable t = support.getTransferable();
+				String pt = null;
+				String st = null;
+
+				try {
+					for (DataFlavor df : support.getDataFlavors()) {
+						pt = df.getPrimaryType();
+						st = df.getSubType();
+
+						if ("application".equals(pt)) {
+							if ("x-java-file-list".equals(st)) {
+								List l = (List) t.getTransferData(df);
+								if (l.size() != 1) {
+									Toolkit.getDefaultToolkit().beep();
+								} else {
+									Dust.log(TOKEN_LEVEL_INFO, "would read", l.get(0));
+								}
+							}
+						}
+					}
+				} catch (Throwable e) {
+					DustException.wrap(e, TOKEN_LEVEL_INFO, "DF", pt, st, e);
+				}
+
+				return false;
+			}
+		});
 	};
 
 	void updateDocEditor() {
@@ -705,7 +801,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		docPreview.setText(htmlContent);
 	};
 
-	void loadDoc(String docUnit) {
+	void loadDoc() {
 		txtAgent.load(tfUnit.getText(), hCurrentLayout, hLang);
 
 		styleArr.clear();
@@ -862,6 +958,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		JScrollPane scpDocEd = new JScrollPane(docEditor);
 		right.add(scpDocEd, BorderLayout.CENTER);
 		right.add(factToolbars.get("tbDoc"), BorderLayout.WEST);
+		right.add(new JLabel("Event editor"), BorderLayout.SOUTH);
 
 		JTabbedPane tpRight = new JTabbedPane();
 		tpRight.add("Edit", right);
@@ -879,9 +976,11 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		cbLang.setSelectedItem(hLang);
 		cbLayout.setSelectedItem(hCurrentLayout);
 
-		fillToolbar("tbTop", "Rebuild", "Reset", null, new JLabel("Unit:"), tfUnit, "Load", "Save", null, new JLabel("Find:"),tfFind, "<- Find", "Find ->", null, cbLang, cbLayout);
-		fillToolbar("tbDoc", null, "<-", "->", null, "Delete", "UnderFirst", null, "Bullet", "Number", "Local", null, "Resp", "Table", "Merge", null, "Style ->",
-				"<- Style", "Apply", "Update", "New", "Drop", null, "ResInsert", null, "PnlHtml", "GenHtml", Box.createGlue(), "Translate", "ExtRes", null);
+		factToolbars.fillToolbar("tbTop", "Rebuild", "Reset", null, new JLabel("Unit:"), tfUnit, "Load", "Save", null, new JLabel("Find:"), tfFind, "<- Find", "Find ->", null,
+				cbLang, cbLayout);
+		factToolbars.fillToolbar("tbDoc", null, "<-", "->", null, "Delete", "UnderFirst", null, "Bullet", "Number", "Local", null, "Resp", "Table", /*"Merge",*/ null, "Style ->",
+				"<- Style", "Apply", "Update", /*"New", "Drop",*/ null, "ResInsert", null, "evtToNext", "evtToPrev", "evtSplit", "evtMergeNext", "evtMergePrev", null, 
+				"PnlHtml", "GenHtml", Box.createGlue(), "Translate", "ExtRes", null);
 
 		frm.getContentPane().revalidate();
 
@@ -900,7 +999,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 			opts.put((String) field, o);
 		} else {
 			lv = new Vector(o.length);
-			for ( DustHandle h : o ) {
+			for (DustHandle h : o) {
 				lv.add(h);
 			}
 		}
@@ -910,23 +1009,23 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		return cb;
 	}
 
-	void fillToolbar(String tb, Object... cmds) {
-		JComponent pnl = factToolbars.get(tb);
-		pnl.removeAll();
-
-		for (Object o : cmds) {
-			if (null == o) {
-				pnl.add(Box.createRigidArea(new Dimension(10, 10)));
-			} else if (o instanceof JComponent) {
-				pnl.add((JComponent) o);
-				if (o instanceof JComboBox) {
-					((JComboBox) o).addActionListener(al);
-				}
-			} else if (o instanceof String) {
-				pnl.add(factActionControls.get((String) o));
-			}
-		}
-	}
+//	void fillToolbar(String tb, Object... cmds) {
+//		JComponent pnl = factToolbars.get(tb);
+//		pnl.removeAll();
+//
+//		for (Object o : cmds) {
+//			if (null == o) {
+//				pnl.add(Box.createRigidArea(new Dimension(10, 10)));
+//			} else if (o instanceof JComponent) {
+//				pnl.add((JComponent) o);
+//				if (o instanceof JComboBox) {
+//					((JComboBox) o).addActionListener(al);
+//				}
+//			} else if (o instanceof String) {
+//				pnl.add(factActionControls.get((String) o));
+//			}
+//		}
+//	}
 
 	public void updateStruct() {
 		rootNode.removeAllChildren();

@@ -12,6 +12,8 @@ public interface DustConsts {
 
 	String DUST_CHARSET_UTF8 = StandardCharsets.UTF_8.name();// "UTF-8";
 	String DUST_FMT_TIMESTAMP = "yyyyMMdd'T'HHmmss'Z'";
+	String DUST_FMT_DATE = "yyyy-MM-dd";
+	String DUST_FMT_TIME = "HH:mm:ss.SSS'Z'";
 
 	int DUST_DEF_ID_BYTES = 4;
 
@@ -122,6 +124,13 @@ public interface DustConsts {
 	String TOKEN_RESULT_READ = DUST_UNIT_DUST + DUST_SEP_TOKEN + "Read";
 	String TOKEN_RESULT_READACCEPT = DUST_UNIT_DUST + DUST_SEP_TOKEN + "ReadAccept";
 	String TOKEN_RESULT_ACCEPT = DUST_UNIT_DUST + DUST_SEP_TOKEN + "Accept";
+
+	String TOKEN_EVENT = DUST_UNIT_DUST + DUST_SEP_TOKEN + "Event";
+	String TOKEN_EVENT_DATE = DUST_UNIT_DUST + DUST_SEP_TOKEN + "date";
+	String TOKEN_EVENT_TIME = DUST_UNIT_DUST + DUST_SEP_TOKEN + "time";
+	String TOKEN_EVENT_DURATION = DUST_UNIT_DUST + DUST_SEP_TOKEN + "duration";
+	String TOKEN_EVENT_DURATION_UNIT = DUST_UNIT_DUST + DUST_SEP_TOKEN + "durationUnit";
+	String TOKEN_EVENT_DURATION_UNIT_MSEC = DUST_UNIT_DUST + DUST_SEP_TOKEN + "unitMsec";
 
 	String TOKEN_LEVEL_TRACE = DUST_UNIT_DUST + DUST_SEP_TOKEN + "Trace";
 	String TOKEN_LEVEL_INFO = DUST_UNIT_DUST + DUST_SEP_TOKEN + "Info";
