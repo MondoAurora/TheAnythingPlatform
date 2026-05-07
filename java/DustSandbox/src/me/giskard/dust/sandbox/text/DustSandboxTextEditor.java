@@ -115,6 +115,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 	HTMLDocument doc;
 	JEditorPane docEditor;
 	JTextPane docPreview;
+	DustSandboxTextEventPanel evtPanel;
 
 	ArrayList<DustHandle> styleArr = new ArrayList<>();
 	JTable styleTable;
@@ -716,6 +717,8 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		docEditor = new JEditorPane();
 		docEditor.setContentType("text/html");
 		docEditor.setTransferHandler(cbTransferHandler);
+		
+		evtPanel = new DustSandboxTextEventPanel(txtAgent);
 
 		doc = (HTMLDocument) docEditor.getDocument();
 		doc.setBase(txtAgent.docUrl);
@@ -958,7 +961,9 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		JScrollPane scpDocEd = new JScrollPane(docEditor);
 		right.add(scpDocEd, BorderLayout.CENTER);
 		right.add(factToolbars.get("tbDoc"), BorderLayout.WEST);
-		right.add(new JLabel("Event editor"), BorderLayout.SOUTH);
+		
+		right.add(evtPanel, BorderLayout.SOUTH);
+		evtPanel.buildGui();
 
 		JTabbedPane tpRight = new JTabbedPane();
 		tpRight.add("Edit", right);
@@ -1034,6 +1039,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 		structModel.nodeStructureChanged(rootNode);
 
+		evtPanel.updateLabels();
 	}
 
 	public DefaultMutableTreeNode loadNode(DefaultMutableTreeNode p, DustHandle h) {
