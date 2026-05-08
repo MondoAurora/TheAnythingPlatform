@@ -1,9 +1,11 @@
 package me.giskard.dust.core.utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import me.giskard.dust.core.Dust;
+import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.mind.DustMindConsts;
 
 public class DustUtilsData implements DustUtilsConsts, DustMindConsts {
@@ -19,14 +21,32 @@ public class DustUtilsData implements DustUtilsConsts, DustMindConsts {
 	private static SimpleDateFormat sdfEventTime = new SimpleDateFormat(DUST_FMT_TIME);
 	private static SimpleDateFormat sdfEventDateTime = new SimpleDateFormat(DUST_FMT_DATE + "'T'" + DUST_FMT_TIME);
 
-	private static String NO_DATE = "1970-01-01";
-	private static String NO_TIME = "00:00:00.000Z";
+	public final static String NO_DATE = "1970-01-01";
+	public final static String NO_TIME = "00:00:00.000Z";
+
+	public static Date getEventZeroDate() {
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat(DUST_FMT_DATE);
+			return sdf.parse(DustUtilsData.NO_DATE);
+		} catch (ParseException e) {
+			return DustException.wrap(e);
+		}
+	};
 
 	public static DustHandle createEvent(DustHandle hUnit, DustHandle hTarget, Date dStart, long duration, DustHandle durationUnit) {
 
 		DustHandle hEvent = Dust.getHandle(hUnit, TOKEN_EVENT, null, DustOptCreate.Primary);
 		Dust.access(DustAccess.Set, hTarget, hEvent, TOKEN_TARGET);
 
+		Dust.access(DustAccess.Set, duration, hEvent, TOKEN_EVENT_DURATION);
+		Dust.access(DustAccess.Set, durationUnit, hEvent, TOKEN_EVENT_DURATION_UNIT);
+		
+		setEventDate(hEvent, dStart);
+
+		return hEvent;
+	}
+
+	public static void setEventDate(DustHandle hEvent, Date dStart) {
 		String strDate = sdfEventDate.format(dStart);
 		if (!DustUtils.isEqual(NO_DATE, strDate)) {
 			Dust.access(DustAccess.Set, strDate, hEvent, TOKEN_EVENT_DATE);
@@ -35,23 +55,18 @@ public class DustUtilsData implements DustUtilsConsts, DustMindConsts {
 		if (!DustUtils.isEqual(NO_TIME, strTime)) {
 			Dust.access(DustAccess.Set, strTime, hEvent, TOKEN_EVENT_TIME);
 		}
-
-		Dust.access(DustAccess.Set, duration, hEvent, TOKEN_EVENT_DURATION);
-		Dust.access(DustAccess.Set, durationUnit, hEvent, TOKEN_EVENT_DURATION_UNIT);
-
-		return hEvent;
 	}
 
-	public static Date getEventDate(DustHandle hEvent) throws Exception {
+	public static Date getEventDate(DustHandle hEvent) {
 		Date d = null;
 
 		if (null != hEvent) {
 			SimpleDateFormat sdf;
 			String str;
-			
+
 			String strDate = Dust.access(DustAccess.Peek, "", hEvent, TOKEN_EVENT_DATE);
 			String strTime = Dust.access(DustAccess.Peek, "", hEvent, TOKEN_EVENT_TIME);
-			
+
 			if (DustUtils.isEmpty(strDate)) {
 				str = strTime;
 				sdf = sdfEventTime;
@@ -60,11 +75,15 @@ public class DustUtilsData implements DustUtilsConsts, DustMindConsts {
 				sdf = sdfEventDate;
 			} else {
 				str = strDate + "T" + strTime;
-				sdf = sdfEventDateTime;				
+				sdf = sdfEventDateTime;
 			}
-			
+
 			if (!DustUtils.isEmpty(str)) {
-				d = sdf.parse(str);
+				try {
+					d = sdf.parse(str);
+				} catch (ParseException e) {
+					DustException.wrap(e);
+				}
 			}
 		}
 

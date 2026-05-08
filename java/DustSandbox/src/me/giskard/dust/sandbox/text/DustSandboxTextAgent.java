@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
@@ -34,6 +35,7 @@ import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.mind.DustMindUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsData;
+import me.giskard.dust.core.utils.DustUtilsFile;
 
 public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextConsts {
 
@@ -42,6 +44,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 	String unitId;
 	DustHandle hUnit;
 	DustHandle hRes;
+	DustHandle hStrings;
 
 	Set<DustHandle> toSave = new HashSet<DustHandle>();
 
@@ -55,16 +58,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 	DustHandle hLayout;
 
 	DustHandle hLang;
-//	DustUtilsFactory<DustHandle, DustHandle> factLang = new DustUtilsFactory<DustHandle, DustHandle>(new DustCreator<DustHandle>() {
-//		@Override
-//		public DustHandle create(Object key, Object... hints) {
-//			String langId = DustUtils.getPostfix(hLang.getId(), DUST_SEP_TOKEN);
-//			int p = unitId.lastIndexOf(".");
-//			String langUnitId = unitId.substring(0, p) + "_" + langId + unitId.substring(0, p);
-//
-//			return Dust.getUnit(langUnitId, true);
-//		}
-//	}, false);
+	Map<DustHandle, Map<DustHandle, DustHandle>> mapStrings = new HashMap<>();
 
 	File docPath;
 	URL docUrl;
@@ -114,6 +108,18 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 			hDoc = Dust.getHandle(hUnit, TOKEN_TEXT_DOC, null, DustOptCreate.Primary);
 		}
 
+		StringBuilder stringUnit = new StringBuilder(DustUtils.getPrefix((String) unitId, DUST_SEP_TOKEN));
+		int i = stringUnit.indexOf(".");
+		stringUnit.insert(i, "_str");
+
+		hStrings = Dust.getUnit(stringUnit.toString(), true);
+
+		for (DustHandle hr : DustMindUtils.getUnitMembers(hStrings)) {
+			DustHandle hl = Dust.access(DustAccess.Peek, null, hr, TOKEN_TEXT_LANG);
+			DustHandle ht = Dust.access(DustAccess.Peek, null, hr, TOKEN_TARGET);
+			Dust.access(DustAccess.Set, hr, mapStrings, hl, ht);
+		}
+
 	}
 
 	public void updateStyleDef(DustHandle hStyle) {
@@ -140,6 +146,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		}
 
 		toSave.add(hUnit);
+		toSave.add(hStrings);
 		for (DustHandle h : toSave) {
 			sp.put(TOKEN_KEY, h.getId());
 			sp.put(TOKEN_DATA, h);
@@ -147,10 +154,6 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		}
 
 		toSave.clear();
-
-//		sp.put(TOKEN_KEY, hUnit.getId());
-//		sp.put(TOKEN_DATA, hUnit);
-//		Dust.access(DustAccess.Process, sp, defaultSerializer);
 	};
 
 	public DustHandle insertNode(DustHandle hParent, int idx, String type) {
@@ -199,56 +202,68 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 //	DustUtilsFactory<DustHandle, DustUtilsFactory<String, DustHandle>> factText = new DustUtilsFactory<DustHandle, DustUtilsFactory<String, DustHandle>>(
 //			resFactCreator);
 
-	String accessText(DustAccess access, String val, String key) {
-		return accessTextExt(access, hLang, val, key);
+	String accessText(DustAccess access, String val, DustHandle hTxt) {
+		return accessTextExt(access, hLang, val, hTxt);
 //		DustHandle hNode = Dust.getHandle(hUnit, null, key, DustOptCreate.None);
 //		return Dust.access(access, val, hNode, TOKEN_TEXT_TEXT);
 	};
 
-	String accessTextExt(DustAccess access, DustHandle hLang, String val, String key) {
-		StringBuilder resUnit = new StringBuilder(DustUtils.getPrefix((String) key, DUST_SEP_TOKEN));
-		int i = resUnit.indexOf(".");
-		resUnit.insert(i, "_res");
+	String accessTextExt(DustAccess access, DustHandle hLang, String val, DustHandle hTxt) {
+		DustHandle hString = Dust.access(DustAccess.Peek, null, mapStrings, hLang, hTxt);
 
-		DustHandle hRes = Dust.getUnit(resUnit.toString(), true);
-
-		switch (access) {
-		case Delete:
-		case Insert:
-		case Reset:
-		case Set:
-			toSave.add(hRes);
-			break;
-		default:
-			break;
-		}
-
-		DustHandle hTxt = null;
-
-		for (DustHandle h : DustMindUtils.getUnitMembers(hRes)) {
-			if ((boolean) Dust.access(DustAccess.Check, hLang, h, TOKEN_TEXT_LANG)) {
-				if ((boolean) Dust.access(DustAccess.Check, key, h, TOKEN_TARGET, TOKEN_ID)) {
-					hTxt = h;
-					break;
-				}
+		if (null == hString) {
+			if (access.creator) {
+				hString = Dust.getHandle(hStrings, TOKEN_TEXT_STRING, null, DustOptCreate.Primary);
+				Dust.access(DustAccess.Set, hTxt, hString, TOKEN_TARGET);
+				Dust.access(DustAccess.Set, hLang, hString, TOKEN_TEXT_LANG);
+				Dust.access(DustAccess.Set, hString, mapStrings, hLang, hTxt);
 			}
 		}
 
-		if ((null == hTxt) && access.creator) {
-			hTxt = Dust.getHandle(hRes, TOKEN_TEXT_STRING, null, DustOptCreate.Primary);
-			DustHandle hNode = Dust.getHandle(hUnit, null, key, DustOptCreate.None);
-			Dust.access(DustAccess.Set, hNode, hTxt, TOKEN_TARGET);
-			Dust.access(DustAccess.Set, hLang, hTxt, TOKEN_TEXT_LANG);
-		}
-
-		return Dust.access(access, val, hTxt, TOKEN_TEXT_TEXT);
+		return Dust.access(access, val, hString, TOKEN_TEXT_TEXT);
+//		StringBuilder resUnit = new StringBuilder(DustUtils.getPrefix((String) key, DUST_SEP_TOKEN));
+//		int i = resUnit.indexOf(".");
+//		resUnit.insert(i, "_res");
+//
+//		DustHandle hRes = Dust.getUnit(resUnit.toString(), true);
+//
+//		switch (access) {
+//		case Delete:
+//		case Insert:
+//		case Reset:
+//		case Set:
+//			toSave.add(hRes);
+//			break;
+//		default:
+//			break;
+//		}
+//
+//		DustHandle hTxt = null;
+//
+//		for (DustHandle h : DustMindUtils.getUnitMembers(hRes)) {
+//			if ((boolean) Dust.access(DustAccess.Check, hLang, h, TOKEN_TEXT_LANG)) {
+//				if ((boolean) Dust.access(DustAccess.Check, key, h, TOKEN_TARGET, TOKEN_ID)) {
+//					hTxt = h;
+//					break;
+//				}
+//			}
+//		}
+//
+//		if ((null == hTxt) && access.creator) {
+//			hTxt = Dust.getHandle(hRes, TOKEN_TEXT_STRING, null, DustOptCreate.Primary);
+//			DustHandle hNode = Dust.getHandle(hUnit, null, key, DustOptCreate.None);
+//			Dust.access(DustAccess.Set, hNode, hTxt, TOKEN_TARGET);
+//			Dust.access(DustAccess.Set, hLang, hTxt, TOKEN_TEXT_LANG);
+//		}
+//
+//		return Dust.access(access, val, hTxt, TOKEN_TEXT_TEXT);
 	};
 
 	public String getShortText(DustHandle h, int maxLen) {
 		String ht = h.getType().getId();
 		int c = Dust.access(DustAccess.Peek, 0, h, TOKEN_MEMBERS, KEY_SIZE);
 		String ph = (0 < c) ? "Inline group" : "placeholder";
-		String txt = accessText(DustAccess.Peek, DustUtils.isEqual(TOKEN_TEXT_BLOCK, ht) ? ph : ht, h.getId());
+		String txt = accessText(DustAccess.Peek, DustUtils.isEqual(TOKEN_TEXT_BLOCK, ht) ? ph : ht, h);
 		if (txt.length() > maxLen) {
 			txt = txt.substring(0, maxLen - 3) + "...";
 		} else {
@@ -329,7 +344,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		int idx = Dust.access(DustAccess.Peek, hThis, hParent, TOKEN_MEMBERS, KEY_INDEXOF);
 
 		boolean insert = (++idx < len);
-		boolean override = DustUtils.isEqual(hThis, hParent) ? false : DustUtils.isEmpty(accessText(DustAccess.Peek, null, hThis.getId()));
+		boolean override = DustUtils.isEqual(hThis, hParent) ? false : DustUtils.isEmpty(accessText(DustAccess.Peek, null, hThis));
 
 		String[] lines = str.split("\n");
 		StringBuilder sb = new StringBuilder();
@@ -348,7 +363,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 						id = null;
 					}
 					DustHandle h = Dust.getHandle(hUnit, TOKEN_TEXT_BLOCK, id, DustOptCreate.Primary);
-					accessText(DustAccess.Set, sb.toString(), h.getId());
+					accessText(DustAccess.Set, sb.toString(), h);
 					sb.setLength(0);
 
 					if (override) {
@@ -368,8 +383,8 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		DustHandle hNew = Dust.getHandle(hUnit, TOKEN_TEXT_BLOCK, null, DustOptCreate.Primary);
 		Dust.access(DustAccess.Insert, hNew, hParent, TOKEN_MEMBERS, idx + 1);
 
-		accessText(DustAccess.Set, remain, hThis.getId());
-		accessText(DustAccess.Set, move, hNew.getId());
+		accessText(DustAccess.Set, remain, hThis);
+		accessText(DustAccess.Set, move, hNew);
 	}
 
 	public void insertTable(DustHandle hResp, DustHandle hCurrentLayout, Long dataRows, Long dataCols, Long headRows, Long headCols) {
@@ -406,7 +421,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 
 	public void addCell(DustHandle hResp, DustHandle hTbl, ArrayList<Long> pos, String txt) {
 		DustHandle hTxt = Dust.getHandle(hUnit, TOKEN_TEXT_BLOCK, null, DustOptCreate.Primary);
-		accessText(DustAccess.Set, txt, hTxt.getId());
+		accessText(DustAccess.Set, txt, hTxt);
 		Dust.access(DustAccess.Insert, hTxt, hResp, TOKEN_MEMBERS, KEY_ADD);
 
 		DustHandle hCell = Dust.getHandle(hUnit, TOKEN_LAYOUT_CELL, null, DustOptCreate.Primary);
@@ -423,7 +438,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		int idx;
 		if (!inlineNow) {
 			Dust.access(DustAccess.Set, hTagInline, hThis, TOKEN_TEXT_GROUP);
-			accessText(DustAccess.Set, null, hThis.getId());
+			accessText(DustAccess.Set, null, hThis);
 			hParent = hThis;
 
 			hThis = Dust.getHandle(hUnit, TOKEN_TEXT_BLOCK, null, DustOptCreate.Primary);
@@ -454,7 +469,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 				hTxt = Dust.getHandle(hUnit, TOKEN_TEXT_BLOCK, null, DustOptCreate.Primary);
 				Dust.access(DustAccess.Insert, hTxt, hParent, TOKEN_MEMBERS, idx);
 			}
-			accessText(DustAccess.Set, txt, hTxt.getId());
+			accessText(DustAccess.Set, txt, hTxt);
 			hTxt = null;
 		}
 
@@ -469,7 +484,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		StringBuilder sb = new StringBuilder("<html><body>\n");
 		for (DustHandle s : hSel) {
 			String id = s.getId();
-			String txt = accessText(DustAccess.Peek, "", id);
+			String txt = accessText(DustAccess.Peek, "", s);
 			if (!DustUtils.isEmpty(txt)) {
 				DustUtils.sbAppend(sb, "", false, "<span id=\"", id, "\">", txt, "</span>\n");
 			}
@@ -497,7 +512,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 					eo = dl;
 				}
 				String tt = newTxt.substring(so, eo);
-				accessTextExt(DustAccess.Set, tLan, tt, k);
+				accessTextExt(DustAccess.Set, tLan, tt, s);
 			}
 		}
 
@@ -506,49 +521,48 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		return true;
 	}
 
-	public DustHandle optCreateTextEvent(String txt, Date dStart, long duration, DustHandle durationUnit) {
+	public DustHandle optCreateTextEvent(DustHandle hParent, int idx, String txt, Date dStart, long duration, DustHandle durationUnit) {
 		if (DustUtils.isEmpty(txt)) {
 			return null;
 		}
-		
+
 		Dust.log(TOKEN_LEVEL_TRACE, txt);
 
 		DustHandle hTxt = Dust.getHandle(hUnit, TOKEN_TEXT_BLOCK, null, DustOptCreate.Primary);
-		Dust.access(DustAccess.Insert, hTxt, hDoc, TOKEN_MEMBERS, KEY_ADD);
-		accessText(DustAccess.Set, txt, hTxt.getId());
+		Dust.access(DustAccess.Insert, hTxt, hParent, TOKEN_MEMBERS, idx);
+		accessText(DustAccess.Set, txt, hTxt);
 
-		DustUtilsData.createEvent(hUnit, hTxt, dStart, duration, durationUnit);
+		DustHandle hEvt = DustUtilsData.createEvent(hUnit, hTxt, dStart, duration, durationUnit);
+
+		events.put(hTxt, hEvt);
 
 		return hTxt;
 	}
 
 	public void manageEvent(EventCommand eCmd, DustHandle hTxt, int pos, DustHandle hParent) throws Exception {
 		int idx = Dust.access(DustAccess.Peek, hTxt, hParent, TOKEN_MEMBERS, KEY_INDEXOF);
-		
-		String tId = hTxt.getId();
-		String txt = accessText(DustAccess.Peek, null, tId);
-		double ratio = (double) pos / (double) txt.length();
-		
+
 		DustHandle eTxt = events.get(hTxt);
-		DustHandle e2;
-		
 		Date timeTxt = DustUtilsData.getEventDate(eTxt);
+		long durationTxt = Dust.access(DustAccess.Peek, -1L, eTxt, TOKEN_EVENT_DURATION);
+
+		String txt = accessText(DustAccess.Peek, null, hTxt);
+		double ratio = 1 - ((double) pos / (double) txt.length());
+		long delta = (long) (ratio * (double) durationTxt);
+
+		DustHandle e2;
 		Date time2;
-		
-		long durationTxt;
 		long duration2;
-		
+
 		DustHandle hUnit;
-		
+
 		DustHandle h2;
-		String i2;
 		String t2;
-		
+
 		String tt;
 
 		Dust.log(TOKEN_LEVEL_TRACE, "manageEvent", eCmd, hTxt, pos, hParent, idx, txt);
-		
-		
+
 		switch (eCmd) {
 		case evtMergeNext:
 			break;
@@ -556,30 +570,104 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 			break;
 		case evtSplit:
 			tt = txt.substring(pos).trim();
-			
-			accessText(DustAccess.Set, txt.substring(0, pos), tId);
+
+			accessText(DustAccess.Set, txt.substring(0, pos).trim(), hTxt);
+			durationTxt -= delta;
+			Dust.access(DustAccess.Set, durationTxt, eTxt, TOKEN_EVENT_DURATION);
+
+			hUnit = Dust.access(DustAccess.Peek, null, eTxt, TOKEN_EVENT_DURATION_UNIT);
+
+			time2 = new Date(timeTxt.getTime() + durationTxt);
+			optCreateTextEvent(hParent, idx + 1, tt, time2, delta, hUnit);
 
 			break;
 		case evtToNext:
-			h2 = Dust.access(DustAccess.Peek, null, hParent, TOKEN_MEMBERS, idx+1);
-			if ( null == h2 ) {
-				
+			h2 = Dust.access(DustAccess.Peek, null, hParent, TOKEN_MEMBERS, idx + 1);
+			if (null == h2) {
+
 			} else {
-				i2 = h2.getId();
-				t2 = accessText(DustAccess.Peek, null, i2);
-				
+				t2 = accessText(DustAccess.Peek, null, h2);
+
 				tt = txt.substring(pos).trim();
 				t2 = tt + " " + t2.trim();
-				
-				accessText(DustAccess.Set, t2, i2);
-				accessText(DustAccess.Set, txt.substring(0, pos), tId);
+
+				accessText(DustAccess.Set, t2, h2);
+				accessText(DustAccess.Set, txt.substring(0, pos).trim(), hTxt);
+
+				Dust.access(DustAccess.Set, durationTxt - delta, eTxt, TOKEN_EVENT_DURATION);
+
+				e2 = events.get(h2);
+				time2 = DustUtilsData.getEventDate(e2);
+				Date dd = new Date(time2.getTime() - delta);
+				DustUtilsData.setEventDate(e2, dd);
+				duration2 = Dust.access(DustAccess.Peek, -1L, e2, TOKEN_EVENT_DURATION);
+				Dust.access(DustAccess.Set, duration2 + delta, e2, TOKEN_EVENT_DURATION);
 			}
 			break;
 		case evtToPrev:
+			h2 = Dust.access(DustAccess.Peek, null, hParent, TOKEN_MEMBERS, idx - 1);
+			if (null == h2) {
+
+			} else {
+				tt = txt.substring(0, pos).trim();
+
+				t2 = accessText(DustAccess.Peek, null, h2);
+				t2 = t2.trim() + " " + tt;
+
+				accessText(DustAccess.Set, t2, h2);
+				accessText(DustAccess.Set, txt.substring(pos).trim(), hTxt);
+
+				ratio = ((double) pos / (double) txt.length());
+				delta = (long) (ratio * (double) durationTxt);
+
+				e2 = events.get(h2);
+				duration2 = Dust.access(DustAccess.Peek, -1L, e2, TOKEN_EVENT_DURATION);
+				Dust.access(DustAccess.Set, duration2 + delta, e2, TOKEN_EVENT_DURATION);
+
+				Date dd = new Date(timeTxt.getTime() + delta);
+				DustUtilsData.setEventDate(eTxt, dd);
+				Dust.access(DustAccess.Set, durationTxt - delta, eTxt, TOKEN_EVENT_DURATION);
+			}
+
 			break;
 		default:
 			break;
-		
+
+		}
+	}
+
+	public void exportFile(File f) throws Exception {
+		DustUtilsFile.ensureDir(f.getParentFile());
+		String type = DustUtils.getPostfix(f.getName(), ".").toLowerCase();
+
+		try (FileWriter fw = new FileWriter(f)) {
+			switch (type) {
+			case "sbv":
+				Map<Date, DustHandle> evts = new TreeMap<>();
+
+				for (DustHandle hEvt : events.values()) {
+					evts.put(DustUtilsData.getEventDate(hEvt), hEvt);
+				}
+
+				SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
+
+				for (Map.Entry<Date, DustHandle> ee : evts.entrySet()) {
+					Date d = ee.getKey();
+					DustHandle hEvt = ee.getValue();
+					DustHandle hTxt = Dust.access(DustAccess.Peek, null, hEvt, TOKEN_TARGET);
+					String str = accessText(DustAccess.Peek, null, hTxt);
+
+					if (!DustUtils.isEmpty(str)) {
+						long duration = Dust.access(DustAccess.Peek, -1L, hEvt, TOKEN_EVENT_DURATION);
+						Date d2 = new Date(d.getTime() + duration);
+
+						fw.append(sdf.format(d)).append(",").append(sdf.format(d2)).append("\n").append(str).append("\n\n");
+
+						fw.flush();
+					}
+				}
+				break;
+			}
 		}
 	}
 
@@ -607,7 +695,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 					Matcher m = pt1.matcher(line);
 
 					if (m.matches()) {
-						optCreateTextEvent(DustUtils.toString(sb), dStart, durationMsec, hDurationUnit);
+						optCreateTextEvent(hDoc, KEY_ADD, DustUtils.toString(sb), dStart, durationMsec, hDurationUnit);
 
 						String[] strRange = line.split(",");
 						dStart = df1.parse(strRange[0].trim());
@@ -621,8 +709,8 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 					break;
 				}
 			}
-			
-			optCreateTextEvent(DustUtils.toString(sb), dStart, durationMsec, hDurationUnit);
+
+			optCreateTextEvent(hDoc, KEY_ADD, DustUtils.toString(sb), dStart, durationMsec, hDurationUnit);
 		} catch (Throwable e) {
 
 		}

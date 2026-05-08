@@ -386,7 +386,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 							refresh = true;
 						}
 						if (null != hThis) {
-							Dust.log(TOKEN_LEVEL_TRACE, "Setting style", hS, txtAgent.accessText(DustAccess.Peek, "", hThis.getId()));
+							Dust.log(TOKEN_LEVEL_TRACE, "Setting style", hS, txtAgent.accessText(DustAccess.Peek, "", hThis));
 							Dust.access(DustAccess.Insert, hS, hThis, TOKEN_TEXT_STYLES);
 							refresh = true;
 						}
@@ -436,15 +436,23 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 						out.close();
 					}
 					break;
+				case "Export":
+					String fName = JOptionPane.showInputDialog("Export file name?", tfUnit.getText() + ".sbv");
+					
+					if ( !DustUtils.isEmpty(fName) ) {
+						txtAgent.exportFile(new File(txtAgent.resRoot, fName));
+					}
+
+					break;
 				case "ExtRes":
 					for (DustHandle h : DustMindUtils.getUnitMembers(txtAgent.hUnit)) {
 						String ht = h.getType().getId();
 
 						switch (ht) {
 						case TOKEN_TEXT_BLOCK:
-							String txt = txtAgent.accessText(DustAccess.Peek, null, h.getId());
+							String txt = txtAgent.accessText(DustAccess.Peek, null, h);
 							if (!DustUtils.isEmpty(txt)) {
-								txtAgent.accessTextExt(DustAccess.Set, hLang, txt, h.getId());
+								txtAgent.accessTextExt(DustAccess.Set, hLang, txt, h);
 								DustHandle hNode = Dust.getHandle(txtAgent.hUnit, null, h.getId(), DustOptCreate.None);
 								Dust.access(DustAccess.Delete, null, hNode, TOKEN_TEXT_TEXT);
 							}
@@ -677,7 +685,8 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					String txt = doc.getText(so, len);
 					String id = DustSandboxTextUtils.getId(es);
 
-					txtAgent.accessText(DustAccess.Set, txt, id);
+					DustHandle hTxt = txtAgent.getNode(id);
+					txtAgent.accessText(DustAccess.Set, txt, hTxt);
 
 					updateStruct();
 				}
@@ -718,8 +727,6 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		docEditor.setContentType("text/html");
 		docEditor.setTransferHandler(cbTransferHandler);
 		
-		evtPanel = new DustSandboxTextEventPanel(txtAgent);
-
 		doc = (HTMLDocument) docEditor.getDocument();
 		doc.setBase(txtAgent.docUrl);
 		doc.setDocumentFilter(df);
@@ -739,6 +746,8 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		selMgr.attach(docStruct);
 		selMgr.attach(docEditor);
 		selMgr.attach(docPreview);
+		
+		evtPanel = new DustSandboxTextEventPanel(txtAgent, selMgr);
 
 		factToolbars.get("tbTop", BoxLayout.LINE_AXIS);
 
@@ -963,7 +972,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		right.add(factToolbars.get("tbDoc"), BorderLayout.WEST);
 		
 		right.add(evtPanel, BorderLayout.SOUTH);
-		evtPanel.buildGui();
+//		evtPanel.buildGui();
 
 		JTabbedPane tpRight = new JTabbedPane();
 		tpRight.add("Edit", right);
@@ -985,7 +994,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 				cbLang, cbLayout);
 		factToolbars.fillToolbar("tbDoc", null, "<-", "->", null, "Delete", "UnderFirst", null, "Bullet", "Number", "Local", null, "Resp", "Table", /*"Merge",*/ null, "Style ->",
 				"<- Style", "Apply", "Update", /*"New", "Drop",*/ null, "ResInsert", null, "evtToNext", "evtToPrev", "evtSplit", "evtMergeNext", "evtMergePrev", null, 
-				"PnlHtml", "GenHtml", Box.createGlue(), "Translate", "ExtRes", null);
+				"PnlHtml", "GenHtml", Box.createGlue(), "Translate", "ExtRes", "Export", null);
 
 		frm.getContentPane().revalidate();
 

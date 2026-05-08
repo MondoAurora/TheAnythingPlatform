@@ -148,7 +148,7 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 				container = "span";
 			}
 
-			String txt = txtAgent.accessText(DustAccess.Peek, null, id);
+			String txt = txtAgent.accessText(DustAccess.Peek, null, h);
 			if (DustUtils.isEmpty(txt) || Character.isLetterOrDigit(txt.charAt(0))) {
 				sb.append("\n");
 			}

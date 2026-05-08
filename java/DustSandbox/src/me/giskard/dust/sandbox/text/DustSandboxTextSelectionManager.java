@@ -313,6 +313,8 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 						c.requestFocusInWindow();
 					}
 
+				} else {
+					c.repaint();
 				}
 			}
 		}

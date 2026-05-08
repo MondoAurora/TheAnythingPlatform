@@ -1,133 +1,134 @@
 package me.giskard.dust.sandbox.text;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.Date;
 import java.util.Map;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.JComponent;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.utils.DustUtilsData;
-import me.giskard.dust.core.utils.DustUtilsFactory;
-import me.giskard.dust.mod.gui.swing.DustGuiSwingUtils;
 
-public class DustSandboxTextEventPanel extends JPanel implements DustSandboxTextConsts {
+public class DustSandboxTextEventPanel extends JComponent implements DustSandboxTextConsts {
 	private static final long serialVersionUID = 1L;
 
-	Dimension dimTimeline = new Dimension(3000, 30);
-
-	JPanel pnlTimeline;
-	JScrollPane scpTimeline;
-	
-	double begin;
-	double length;
-	double zoom = 1.0;
+	long zero;
+	long begin;
+	long length;
 
 	DustSandboxTextAgent txtAgent;
+	DustSandboxTextSelectionManager selMgr;
 
-	ActionListener al = new ActionListener() {
+	public DustSandboxTextEventPanel(DustSandboxTextAgent txtAgent, DustSandboxTextSelectionManager selMgr) {
+		this.txtAgent = txtAgent;
+		this.selMgr = selMgr;
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			String cmd = e.getActionCommand();
+		zero = DustUtilsData.getEventZeroDate().getTime();
 
-			switch ( cmd ) {
-			case "aaa":
-				break;
+		setPreferredSize(new Dimension(800, 30));
 
-			default:
-				break;
+		selMgr.attach(this);
+	}
+
+	@Override
+	protected void paintComponent(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+
+		DustHandle hSelTxt = selMgr.hfBlock;
+		if (null == hSelTxt) {
+			hSelTxt = Dust.access(DustAccess.Peek, null, txtAgent.hDoc, TOKEN_MEMBERS, 0);
+
+			if (null == hSelTxt) {
+				return;
 			}
 		}
-	};
 
-	DustGuiSwingUtils.ActionControlFactory factActionControls = new DustGuiSwingUtils.ActionControlFactory(al);
-	DustGuiSwingUtils.ToolbarFactory factToolbars = new DustGuiSwingUtils.ToolbarFactory(factActionControls);
-	
-	DustUtilsFactory<DustHandle, JLabel> factLabels = new DustUtilsFactory.Simple<DustHandle, JLabel>(false, JLabel.class);
+		long zoom = 20;
 
-	public DustSandboxTextEventPanel(DustSandboxTextAgent txtAgent) {
-		super(new BorderLayout());
+		DustHandle hSelEvt = txtAgent.events.get(hSelTxt);
+		long start = DustUtilsData.getEventDate(hSelEvt).getTime();
+		start -= zero;
 
-		this.txtAgent = txtAgent;
+		long w = getWidth() * zoom;
 
-		pnlTimeline = new JPanel(null);
-		
-		buildGui();
-		
-		pnlTimeline.setSize(dimTimeline);
+		start -= (w / 4);
+		if (start < 0) {
+			start = 0;
+		}
+		long end = start + w;
 
-		scpTimeline = new JScrollPane(pnlTimeline);
+		int ry = 2;
+		int rh = getHeight() - (2 * ry);
 
-		add(scpTimeline, BorderLayout.CENTER);
-		add(factToolbars.get("tbMain"), BorderLayout.WEST);
-	};
+		for (DustHandle hEvt : txtAgent.events.values()) {
+			long s = DustUtilsData.getEventDate(hEvt).getTime() - zero;
+			if (s < end) {
+				long duration = Dust.access(DustAccess.Peek, 0L, hEvt, TOKEN_EVENT_DURATION);
+				long e = s + duration;
+				if (e > start) {
+					int rx = (int) ((s - start) / zoom);
+					int rw = (int) (duration / zoom);
 
-	void buildGui() {
-		factToolbars.fillToolbar("tbMain", "Zoom In", "Zoom Out");
-		updateLabels();
+					if (hEvt == hSelEvt) {
+						g2.fillRect(rx, ry, rw, rh);
+					} else {
+						g2.drawRect(rx, ry, rw, rh);
+					}
+				}
+			}
+		}
+
+//		g2.setPaint(new GradientPaint(0, 0, Color.red, getWidth(), getHeight(), Color.blue, true));
+//		g2.fillRect(5, 5, getWidth() - 5, getHeight() - 5);
 	}
 
 	public void updateLabels() {
 		begin = Long.MAX_VALUE;
 		long end = Long.MIN_VALUE;
-		
-		for (DustHandle hEvt: txtAgent.events.values() ) {
-			try {
-				Date start = DustUtilsData.getEventDate(hEvt);
-				long s = start.getTime();
-				if ( s < begin ) {
-					begin = s;
-				}
 
-				long duration = Dust.access(DustAccess.Peek, 0L, hEvt, TOKEN_EVENT_DURATION);
-				long e = s + duration;
-				if ( e > end ) {
-					end = e;
-				}
-			} catch (Exception e) {
-				DustException.swallow(e);
-				continue;
+		for (DustHandle hEvt : txtAgent.events.values()) {
+			Date start = DustUtilsData.getEventDate(hEvt);
+			long s = start.getTime();
+			if (s < begin) {
+				begin = s;
+			}
+
+			long duration = Dust.access(DustAccess.Peek, 0L, hEvt, TOKEN_EVENT_DURATION);
+			long e = s + duration;
+			if (e > end) {
+				end = e;
 			}
 		}
-		
+
 		length = end - begin;
-		zoom = 0.001;
-		
-		dimTimeline.width = (int) ( zoom * (double) length);
-		pnlTimeline.setSize(dimTimeline);
-		
-		pnlTimeline.removeAll();
-		
-		for (Map.Entry<DustHandle, DustHandle> ee: txtAgent.events.entrySet() ) {
+
+		long offset = begin - zero;
+
+		for (Map.Entry<DustHandle, DustHandle> ee : txtAgent.events.entrySet()) {
 			DustHandle hEvt = ee.getValue();
 
 			try {
 				Date start = DustUtilsData.getEventDate(hEvt);
-				long s = (long) (zoom * (double) (start.getTime() - (long) begin));
+				long s = start.getTime() - begin;
 				long duration = Dust.access(DustAccess.Peek, 0L, hEvt, TOKEN_EVENT_DURATION);
-				
+
 				DustHandle hTxt = ee.getKey();
 				String tId = hTxt.getId();
 				String txt = tId; // txtAgent.accessText(DustAccess.Peek, "", tId);
-				JLabel lbl = factLabels.get(hTxt);
-				
-				lbl.setBounds((int) s, 2, (int)(zoom * (double) duration), 26);
-				lbl.setText(txt);
-				
-				pnlTimeline.add(lbl);
+//				JLabel lbl = factLabels.get(hTxt);
+
+//				lbl.setBounds((int) s, 2, (int) (zoom * (double) duration), 26);
+//				lbl.setText(txt);
+
+//				pnlTimeline.add(lbl);
 			} catch (Exception e) {
 				DustException.swallow(e);
 				continue;
 			}
 		}
-		
 
 	}
 }
