@@ -1,0 +1,2961 @@
+00:00:00.320,00:00:04.787
+Szeretettel köszöntök minden kedves résztvevőt a mai előadásunkon.
+
+00:00:04.787,00:00:07.480
+A mai előadónk Kedves Loránd lesz,
+
+00:00:07.480,00:00:13.722
+aki a Mesterséges Intelligencia Nemzeti Laboratórium projekt keretében
+
+00:00:13.722,00:00:18.003
+tudás és informatika címmel fogja megtartani az előadását,
+
+00:00:18.003,00:00:22.179
+aminek az alcíme a történet, alapelvek és gyakorlati példák.
+
+00:00:22.179,00:00:24.849
+És akkor szeretném szólítani Lorándot,
+
+00:00:24.849,00:00:31.400
+hogy legyen szíves feloldani a némítást és megtartani az előadását.
+
+00:00:31.400,00:00:34.440
+Köszönöm szépen. Látható, hallható vagyok?
+
+00:00:34.440,00:00:37.291
+Teljes mértékben. Annyit szeretnék még hozzáfűzni,
+
+00:00:37.291,00:00:40.462
+hogyha valakinek az előadás közben kérdése merül fel,
+
+00:00:40.462,00:00:43.280
+akkor azt nyugodtan a csevegésbe meg lehet írni,
+
+00:00:43.280,00:00:48.440
+és akkor az előadás végén pedig az előadó tud rá válaszolni.
+
+00:00:48.440,00:00:49.863
+Akkor bele is vágnék.
+
+00:00:49.863,00:00:53.986
+Tehát köszönöm szépen a szervezést és a megtisztelő felkérést
+
+00:00:53.986,00:00:57.199
+és üdvözlöm a kedves érdeklődőket.
+
+00:00:57.199,00:01:00.674
+Kedves Loránd vagyok, 30 éve dolgozom informatikusként
+
+00:01:00.674,00:01:02.778
+fejlesztő, tervező és elemző szerepben
+
+00:01:02.778,00:01:06.700
+jellemzően céges környezetben startuptól multinacionális cégekig.
+
+00:01:06.700,00:01:09.314
+Jelenleg a Széchenyi Egyetem munkatársaként
+
+00:01:09.314,00:01:12.467
+Tóth Árpád és Suta Alex kutatásai céljainak mentén
+
+00:01:12.467,00:01:17.063
+XBRL formátumú üzleti jelentéseket kezelő informatikai platformot fejlesztek.
+
+00:01:17.063,00:01:19.125
+Na most ez annyira jó mondat volt,
+
+00:01:19.125,00:01:23.360
+hogy le kellett írnom, mert ez így így volt az igazi.
+
+00:01:23.360,00:01:26.940
+Az elkövetkező órát tehát azzal fogjuk tölteni,
+
+00:01:26.940,00:01:30.295
+hogy én fogok a beszélni, reményeim szerint.
+
+00:01:30.295,00:01:34.880
+Egy kicsit rekedt vagyok meg ilyenek, ezért előre is elnézést kérek.
+
+00:01:34.880,00:01:38.337
+Ezeket a dolgokat szeretném itt hirtelen tisztázni.
+
+00:01:38.337,00:01:43.080
+Az első az, hogy az XBRL betű szó valószínűleg önöknek sem mond sokkal többet,
+
+00:01:43.080,00:01:46.281
+mint nekem mondott idén májusig.
+
+00:01:46.281,00:01:49.190
+Tehát igazából nem gondoltam,
+
+00:01:49.190,00:01:51.929
+hogy ezzel egyből terhelném önöket.
+
+00:01:51.929,00:01:55.960
+Viszont az a tény, hogy ebből az állapotból mostanáig
+
+00:01:55.960,00:01:57.396
+eljutottunk arra a pontra,
+
+00:01:57.396,00:01:59.957
+hogy van egy belső informatikai portálunk,
+
+00:01:59.957,00:02:02.637
+a kutatók saját kereséseket tudnak indítani,
+
+00:02:02.637,00:02:06.039
+a leválogatott adatokkal, publikációk jelennek meg,
+
+00:02:06.039,00:02:08.525
+illetve konferenciákon vesznek részt.
+
+00:02:08.525,00:02:13.742
+Ez a fejlesztési sebesség és módszertan valószínűleg érdekelheti önöket,
+
+00:02:13.742,00:02:15.766
+és remélhetőleg nem jelent problémát,
+
+00:02:15.766,00:02:22.426
+hogyha én itt közben majd JSON-t, XML-t, Java kódot meg ilyesmiket fogok mutogatni.
+
+00:02:22.426,00:02:25.280
+Úgyhogy ezzel szeretnék foglalkozni.
+
+00:02:25.280,00:02:28.912
+A magamról nagyon röviden csak annyit,
+
+00:02:28.912,00:02:34.048
+hogy ez a mellékelt újságkép, nem Photoshop filtertől ilyen sárga,
+
+00:02:34.048,00:02:37.774
+hanem azért, mert 23 évvel ezelőtt készült.
+
+00:02:37.774,00:02:45.613
+A piros karikával jelölt, akkor még sok hajjal rendelkező 27 éves fiatalember én vagyok.
+
+00:02:45.613,00:02:49.840
+De nem ez az érdekes, hanem a cikknek a szövege.
+
+00:02:49.840,00:02:51.887
+Maga a cég, a Cygron Kft.
+
+00:02:51.887,00:02:57.852
+akkori definíció szerint mesterséges intelligenciával, adatbányászattal,
+
+00:02:57.852,00:03:03.972
+később mesterséges ügynöktechnológiával, szövegértéssel, szöveggenerálással stb. foglalkozott,
+
+00:03:03.972,00:03:06.375
+amíg el nem vitte a dotcom crash.
+
+00:03:06.375,00:03:12.765
+Viszont visszatérve erre a cikkre, tehát a szöveget akár ma is írhatták volna,
+
+00:03:12.765,00:03:14.785
+ugyanis lényegében arról beszélünk,
+
+00:03:14.785,00:03:19.688
+hogy az én tapasztalataim vagy meglátásom szerint minden informatikai rendszer arról szól,
+
+00:03:19.688,00:03:23.819
+hogy van egy bizonyos kontextus, amelyből adatokat szeretnék gyűjteni.
+
+00:03:23.819,00:03:28.894
+Ezeket az adatokat valahogy a felhasználó igényeiknek megfelelően tudássá alakítjuk,
+
+00:03:28.894,00:03:33.720
+aminek segítségével ők át tudják látni annak a rendszernek az aktuális állapotát,
+
+00:03:33.720,00:03:37.078
+terveket tudnak készíteni, vagy be tudnak avatkozni
+
+00:03:37.078,00:03:40.306
+annak érdekében, hogy ez a kívánt irányba menjen.
+
+00:03:40.306,00:03:44.199
+Ez lehet egy járműnek az automatikus vezérlőrends zere,
+
+00:03:44.199,00:03:50.319
+lehet egy, mit tudom én, egyetemnek a resource management-je, vagy akár egy játék is.
+
+00:03:50.319,00:03:52.486
+Mindig ugyanarról beszélünk.
+
+00:03:52.486,00:03:57.614
+A problémám nekem az volt, hogy ugye ez 23 évvel ezelőtt volt,
+
+00:03:57.614,00:04:02.408
+és onnantól kezdve lényegében ugyanazokat a feladatokat oldottam meg
+
+00:04:02.408,00:04:05.985
+mindenféle ipari környezetben, különféle témákban.
+
+00:04:05.985,00:04:11.667
+Amikor ez nagyon kezdett zavarni, akkor visszatértem az egyetemre.
+
+00:04:11.667,00:04:16.051
+Megszereztem az MSC-t, utána egy fél doktorim is volt.
+
+00:04:16.051,00:04:21.395
+És ennek a kutatásnak a során igazából válaszokat találtam arra,
+
+00:04:21.395,00:04:24.189
+hogy mi ennek a helyzetnek az oka.
+
+00:04:24.189,00:04:30.120
+És erről szeretnék a elsősorban, vagy hát bevezetőként beszélni itt az alábbi módon.
+
+00:04:30.120,00:04:32.078
+Amikor túljutunk a bevezetésen,
+
+00:04:32.078,00:04:37.246
+akkor egy nagyon rövid összefoglalót szeretnék adni azokról a történelmi találmányokról,
+
+00:04:37.246,00:04:38.911
+amiket én itt összeszedtem.
+
+00:04:38.911,00:04:43.009
+Aztán arról, hogy ezek a hétköznapi fejlesztésben hogyan használhatók,
+
+00:04:43.009,00:04:49.643
+és végül az XBRL fejlesztést mint gyakorlati alkalmazást szeretném majd bemutatni.
+
+00:04:49.643,00:04:52.415
+Az elejét megpróbálom majd megpörgetni,
+
+00:04:52.415,00:04:57.903
+tehát azok a percek igazából csak nekem szólnak és tájékoztató jellegűek.
+
+00:04:57.903,00:05:03.207
+A hivatkozások ott lesznek a végén egy külön dián, tehát nem kell ezeket felírni.
+
+00:05:03.207,00:05:07.446
+Viszont hogyha bármilyen kérdés, egyet nem értés stb. megfogalmazódik,
+
+00:05:07.446,00:05:11.941
+arra nagyon-nagyon kíváncsi lennék, végülis én ebből tanulok.
+
+00:05:11.941,00:05:12.901
+Még egy apróság.
+
+00:05:12.901,00:05:16.788
+Az ugye látszik, hogy a diákat én folyamatosan így fogom használni,
+
+00:05:16.788,00:05:19.532
+tehát menet közben jelenítem meg a tartalmakat,
+
+00:05:19.532,00:05:24.629
+hogy az olvasás és a hallgatás ne versenyezzen egymással.
+
+00:05:24.629,00:05:30.156
+A monitor ikonnal azt jelölöm, amikor képernyőt váltok, például így.
+
+00:05:30.156,00:05:36.342
+Hogyha valakit ez zavar, akkor akkor tud pislogni.
+
+00:05:36.342,00:05:38.039
+És kezdjük is.
+
+00:05:38.039,00:05:44.919
+Tehát itt igazából egy ilyen kis időutazást szeretnék indítani.
+
+00:05:44.919,00:05:48.290
+Az alapvető kérdés tehát az, hogy az informatikáról mindig azt tudjuk,
+
+00:05:48.290,00:05:52.120
+hogy villámgyorsan fejlődik és egy nagyon fiatal tudomány.
+
+00:05:52.120,00:05:56.472
+Az én meglátásom, meg hát igazából kutatásomnak az eredménye az volt,
+
+00:05:56.472,00:06:02.440
+hogy nem, csak az informatikának nagyon rövid, és nagyon sűrű a történelme.
+
+00:06:02.440,00:06:06.566
+... és nem nagyon találkozunk vele,
+
+00:06:06.566,00:06:11.596
+a hétköznapokban ugye fejlesztő eszközöket meg cloudot meg ilyesmit hallunk róla
+
+00:06:11.596,00:06:13.427
+és a hátteret nem igazán.
+
+00:06:13.427,00:06:17.300
+Ezért gondoltam, hogy ebből egy kis felvezetést adnék.
+
+00:06:17.300,00:06:21.531
+Az egyik tehát az, hogy az informatika deklarált célja, azt majd mindjárt megmutatom,
+
+00:06:21.531,00:06:26.062
+a tudásnak a helyes kezelése, vagy hát ilyen technológiai segítségnyújtás.
+
+00:06:26.062,00:06:31.436
+És az első kérdés nyilván az, hogy mit tudunk a tudásról, mik ezek a korlátok?
+
+00:06:31.436,00:06:34.531
+A görögöknél kezdjük, mert az egy jó kiindulópont.
+
+00:06:34.531,00:06:37.720
+Ugye Platon-nak van egy olyan hasonlata,
+
+00:06:37.720,00:06:42.160
+hogy gondolkodó ember tulajdonképpen a olyan, mintha egy barlangban ülne,
+
+00:06:42.160,00:06:47.293
+ahol a háta mögött égő tűz árnyékot vet az előtte lévő falra,
+
+00:06:47.293,00:06:50.588
+és ő ebből próbálja levezetni az aktuális állapotot,
+
+00:06:50.588,00:06:56.479
+következtetni arra, hogy valójában mi történik körülötte.
+
+00:06:56.479,00:06:58.925
+Ez ilyen nagyon átfogónak hangzik,
+
+00:06:58.925,00:07:03.587
+de valójában, ha belegondolunk mondjuk a fizika fejlődés történetébe...
+
+00:07:03.587,00:07:06.651
+Egy adott tudományág, például a fizika,
+
+00:07:06.651,00:07:11.247
+egy adott fogalomkészletet hoz létre a helyzetek leírására,
+
+00:07:11.247,00:07:16.751
+és ezt a fogalomkészletet használja arra, hogy egy adott szituációt modellezzen,
+
+00:07:16.751,00:07:20.313
+döntéseket hozzon, eszközöket készítsen és így tovább.
+
+00:07:20.313,00:07:25.010
+A minősége ennek a fogalomkészletnek az ami folyamatosan fejlődik.
+
+00:07:25.010,00:07:29.022
+Így jutunk el Newton mechanikájától Einstein relativitás elméletéig,
+
+00:07:29.022,00:07:32.411
+de ma sem tudjuk, hogy a fény az most hullám vagy részecske.
+
+00:07:32.411,00:07:36.080
+Tehát nyilvánvalóan ugyanúgy korlátos ez a fajta tudásunk,
+
+00:07:36.080,00:07:38.888
+amelyet majd folyamatosan fejleszteni fogunk,
+
+00:07:38.888,00:07:41.182
+de a valósággal sosincs igazi kapcsolatunk,
+
+00:07:41.182,00:07:45.214
+mindig a saját fogalomkészletünkön keresztül tudjuk csak értelmezni.
+
+00:07:45.214,00:07:49.423
+A következő urak: Gödel, Chomsky és Turing ugye arra híresek,
+
+00:07:49.423,00:07:54.636
+hogy ők matematikai bizonyítást adtak arra, hogy ez mindig korlátozott lesz,
+
+00:07:54.636,00:07:57.830
+tehát soha nem tudjuk ellentmondásmentesen
+
+00:07:57.830,00:08:02.830
+vagy teljes mértékben eldönthetően kezelni a saját tudásunkat.
+
+00:08:02.830,00:08:06.560
+Hiába fejlesztjük az eszköztárunkat akármeddig.
+
+00:08:06.560,00:08:09.512
+Ugye ez egy ilyen elvi, elméleti korlát.
+
+00:08:09.512,00:08:12.176
+Aztán vannak sajnos emberi korlátok.
+
+00:08:12.176,00:08:15.110
+Én például nagyon szeretnék nagyon-nagyon sok mindent tudni,
+
+00:08:15.110,00:08:20.759
+de sajnos az én agyam is eléggé korlátos. Így aztán kevés dolog fér bele egyszerre.
+
+00:08:20.759,00:08:24.589
+Tehát amikor az emberiség tudásáról, vagy úgy általában tudásról beszélünk,
+
+00:08:24.589,00:08:27.150
+akkor sohasem egy egyéni jelenségről,
+
+00:08:27.150,00:08:33.159
+hanem egy közösség által birtokolt fogalomkészletről és helyzetmodellezésről beszélünk.
+
+00:08:33.159,00:08:37.156
+Szeretnénk ennek a korlátait kiterjeszteni, de ezek mindig ott vannak.
+
+00:08:37.156,00:08:41.240
+Tehát, hogyha belegondolunk régi időkben, ezek fizikai korlátok voltak,
+
+00:08:41.240,00:08:45.321
+tehát könyveket vagy mondjuk üzeneteket eljuttatni 100 km-es távolságra,
+
+00:08:45.321,00:08:47.472
+adott ponton lehetetlen volt.
+
+00:08:47.472,00:08:51.223
+De nem csak ez az érdekes, hanem az a jelrendszer és nyelv,
+
+00:08:51.223,00:08:53.411
+amellyel ezt a tudást rögzítettük.
+
+00:08:53.411,00:08:57.162
+Tehát például ismerjük-e azt a nyelvet, amin a könyvet írták,
+
+00:08:57.162,00:09:02.102
+vagy mondjuk az algebra egyenletekben ugyanazokat a jelölésrendszereket használják-e.
+
+00:09:02.102,00:09:03.308
+Ez sem volt jellemző.
+
+00:09:03.308,00:09:07.200
+Ma ott tartunk, hogy ez egy globális eszköztár, de nem volt mindig így.
+
+00:09:07.200,00:09:13.449
+Amikor ezeken túl tudunk jutni, tehát képesek vagyunk létrehozni egy olyan eszköztárat,
+
+00:09:13.449,00:09:18.000
+amely hatalmas mennyiségű tudást juttat el hozzánk,
+
+00:09:18.000,00:09:21.140
+akkor viszont megint beleütközünk az emberi korlátba,
+
+00:09:21.140,00:09:26.200
+a tudás felfogásának, feldolgozásának, közösségi kezelésének a kérdéseivel.
+
+00:09:26.200,00:09:30.680
+Ezzel kapcsolatos problémákat nagyon sokat lehet olvasni majd Neil Postmannél,
+
+00:09:30.680,00:09:34.468
+hogyha valakit érdekel. És a másik probléma pedig az,
+
+00:09:34.468,00:09:38.346
+hogy ha egy gépi eszköztárral, infrastruktúrával,
+
+00:09:38.346,00:09:44.452
+ennek a segítségével lépünk kapcsolatba gyakorlatilag kezelhetetlen mennyiségű tudással,
+
+00:09:44.452,00:09:48.804
+annak emberi és közösségi következményei vannak.
+
+00:09:48.804,00:09:52.000
+Erről ír Turing, illetve Weizenbaum.
+
+00:09:52.160,00:09:53.791
+Nos, tehát ennyi a tudásról.
+
+00:09:53.791,00:09:56.039
+Most át átugrunk a technológiai részbe.
+
+00:09:56.039,00:09:59.291
+Ez is megint egy egyfajta kis időutazás lenne.
+
+00:09:59.291,00:10:03.783
+1945 van, most fejeződött be a második világháború.
+
+00:10:03.783,00:10:10.960
+Vannevar Bush a szövetséges haderő tudományos kutató csoportjának a legmagasabb szintű adminisztratív vezetője,
+
+00:10:10.960,00:10:16.129
+ül az íróasztalánál (jó, képletesen), és egy problémával szembesül.
+
+00:10:16.129,00:10:21.257
+Ő tudja, hogy a világháború alatt hihetetlen tudományos fejlődés zajlott le
+
+00:10:21.257,00:10:26.501
+igazából mind a két oldalon, de most a szövetségeseket figyeljük,
+
+00:10:26.501,00:10:33.505
+merthogy a legnagyobb koponyákat össze lehetett gyűjteni egyetlen helyre, egyetlen szobába,
+
+00:10:33.505,00:10:36.026
+közvetlen kommunikációra lehetett őket rávenni
+
+00:10:36.026,00:10:40.899
+és viszonylag nagy költségvetést kaptak arra, hogy a kutatásaikat végezzék.
+
+00:10:40.899,00:10:41.800
+Béke lesz.
+
+00:10:41.800,00:10:47.307
+Ezek az emberek szépen csomagolnak, és mindenki hazamegy.
+
+00:10:47.307,00:10:48.966
+Az a globális agy,
+
+00:10:48.966,00:10:56.560
+az a csoportos hihetetlen teljesítményű, együtt gondolkodó szervezet megszűnik létezni.
+
+00:10:56.560,00:11:01.595
+Igazából persze az egyéni kutatók folytatják a munkájukat,
+
+00:11:01.595,00:11:06.302
+de a kommunikációs csatornának a sávszélessége veszélyessé válik.
+
+00:11:06.302,00:11:10.515
+És nem is az, hogy az egyes kutatók nem tudják leírni,
+
+00:11:10.515,00:11:14.133
+vagy nem tudják folytatni a kutatási folyamataikat,
+
+00:11:14.133,00:11:17.103
+hanem az, hogy a többi kutató hogyan tud olvasni,
+
+00:11:17.103,00:11:23.514
+tehát milyen tempóval tudja feldolgozni a mások által létrehozott tudást.
+
+00:11:23.514,00:11:29.125
+Ennek a megoldására Vannevar Bush 1945-ben leírja a Memex nevű környezetet,
+
+00:11:29.125,00:11:33.216
+"Memory extension", egy rövidítés, amely tulajdonképpen arról szól,
+
+00:11:33.216,00:11:37.917
+hogy a kutatók úgy férjenek hozzá a velük együtt dolgozó kutatók munkájához,
+
+00:11:37.917,00:11:42.190
+mintha emlékeznének rá, mintha az ő memóriájuk, a saját megélésük lenne,
+
+00:11:42.190,00:11:46.233
+ennek az eszköztárát írja le nagy részletességgel.
+
+00:11:46.233,00:11:48.886
+JCR Licklider a következő szereplőnk,
+
+00:11:48.886,00:11:55.480
+aki az amerikai kormány megbízásából Bush Memex ötletének a megvalósíthatóságát tanulmányozza.
+
+00:11:55.480,00:12:00.883
+Nagyon fontos, hogy ő elkülöníti a transferable és a nontransferable knowledge fogalmát.
+
+00:12:00.883,00:12:04.091
+Transferable-nek tartja az objektív, ellenőrizhető,
+
+00:12:04.091,00:12:08.831
+számításokra, mérnöki munkákra, kutatásra használható részét az emberi tudásnak.
+
+00:12:08.831,00:12:13.443
+Tehát ahol nem a vélemény, az érzések és egyebek dominálnak.
+
+00:12:13.443,00:12:15.567
+Karakterszámra meghatározza,
+
+00:12:15.567,00:12:21.279
+hogy körülbelül mekkora az emberiség teljes transferable knowledge mennyisége,
+
+00:12:21.279,00:12:23.816
+figyeli az informatikai infrastruktúra fejlődését,
+
+00:12:23.816,00:12:27.460
+és ebből körülbelül megállapítja, hogy 2000-es évek környékére
+
+00:12:27.460,00:12:32.040
+az emberiség teljes globális tudása elérhetővé válik majd informatikai rendszerben,
+
+00:12:32.040,00:12:35.292
+és az ezzel kapcsolatos szolgáltatásokat dolgozza ki.
+
+00:12:35.292,00:12:39.555
+Nagyon fontos, hogy ő szövegalapú rendszerben gondolkozik.
+
+00:12:39.555,00:12:44.297
+Ivan Sutherland a másik oldalon, ő az interaktív oldalra figyel.
+
+00:12:44.297,00:12:46.923
+Ő radar operátor volt annak idején,
+
+00:12:46.923,00:12:49.990
+és a Sketchpad nevezetű alkalmazást készítette,
+
+00:12:49.990,00:12:52.610
+amely az első interaktív user interface,
+
+00:12:52.610,00:12:58.664
+gyakorlatilag egy oszcilloszkóp és egy fénytoll segítségével lehet beszélgetni a géppel.
+
+00:12:58.664,00:13:01.219
+És szakértői rendszereket lehet vele készíteni,
+
+00:13:01.219,00:13:04.007
+statikai modelleket, áramkörmodelleket és így tovább.
+
+00:13:04.007,00:13:07.950
+Ahogy ugyebár én összerakok a fénytoll segítségével mondjuk egy áramkört,
+
+00:13:07.950,00:13:11.447
+a számítógép pedig kiszámolja, hogy ez hogyan fog viselkedni.
+
+00:13:11.447,00:13:14.380
+Ugye ez egy elképzelhetetlen fejlődés ahhoz képest,
+
+00:13:14.380,00:13:16.624
+hogy valaki lyukártyákat készít,
+
+00:13:16.624,00:13:19.785
+vagy mondjuk billentyűzeten gépel be valamit,
+
+00:13:19.785,00:13:22.259
+és egy papíron kapja meg a választ.
+
+00:13:22.259,00:13:29.500
+Douglas Engelbart az Augmenting Human Intellect című elemzésében azzal foglalkozik,
+
+00:13:29.500,00:13:34.461
+hogyha ezt az interaktív számítógépes eszközt konkrétan a tudásmenedzsmentre,
+
+00:13:34.461,00:13:38.072
+egy csoport tudásmenedzsmentjére használjuk,
+
+00:13:38.072,00:13:45.047
+akkor gyakorlatilag az eszköznek a fejlesztésére ugyanezt, önmagát használjuk
+
+00:13:45.047,00:13:47.639
+(ez a Bootstrap fogalom nála)
+
+00:13:47.639,00:13:52.212
+akkor hihetetlen gyorsan leszünk képesek létre létrehozni
+
+00:13:52.212,00:13:56.523
+egy nagyon magas színvonalú informatikai környezetet.
+
+00:13:56.523,00:14:00.164
+Ezt ő demonstrálta is 1968-ban, ez a Mother of Demos,
+
+00:14:00.164,00:14:05.682
+amelyben gyakorlatilag azt mutatja meg, hogy egy teljesen általános,
+
+00:14:05.682,00:14:12.037
+emberi, hétköznapi problémamegoldásra egy interaktív számítógépes rendszer
+
+00:14:12.037,00:14:15.680
+egy csoport együttműködését tudja segíteni.
+
+00:14:15.680,00:14:21.126
+Hypertext kezelés, ide-oda ugrálás, közös munka ugyanazon a dokumentumon,
+
+00:14:21.126,00:14:23.171
+videokonferencia satöbbi.
+
+00:14:23.171,00:14:28.751
+Ismétlem, 1968-ban vagyunk, tehát még ARPANET sincs ebben a pillanatban.
+
+00:14:28.751,00:14:30.279
+És végül Ted Nelson.
+
+00:14:30.279,00:14:33.709
+Ted Nelson egy fantasztikus forradalmár,
+
+00:14:33.709,00:14:37.787
+tényleg nagyon ajánlom az előadásainak a megnézését.
+
+00:14:37.787,00:14:42.113
+Ő tulajdonképpen egy alternatív web létrehozásában gondolkodott,
+
+00:14:42.113,00:14:45.240
+egyébként az általunk ismert webbel egy időben.
+
+00:14:45.240,00:14:47.606
+Xanadu a projekt neve.
+
+00:14:47.606,00:14:52.410
+Alapvetően ugyanúgy hypertext-ről beszélünk,
+
+00:14:52.410,00:14:56.532
+csak míg a szokványos web a fogyasztásra koncentrál,
+
+00:14:56.532,00:14:59.954
+tehát ahogy én nézem az adott dokumentumot.
+
+00:14:59.954,00:15:03.296
+Gyakorlatilag a hivatkozásokon keresztül
+
+00:15:03.296,00:15:08.802
+egy dokumentumot a népszerűsége, nézettsége határoz meg, értékel.
+
+00:15:08.802,00:15:13.639
+Ezzel szemben ő a dokumentumnak a generálására koncentrál.
+
+00:15:13.639,00:15:18.199
+Tehát az, hogy hogyan szerzek én meg tudásarabokat különféle dokumentumokból,
+
+00:15:18.199,00:15:22.279
+azokat rendezem össze egy új tudássá, egy új szöveggé.
+
+00:15:22.279,00:15:24.487
+A múlt heti előadásban érdekes volt nézni,
+
+00:15:24.487,00:15:29.207
+hogy a különféle tudományos adatbázisok, illetve hivatkozási módszertanokkal szemben,
+
+00:15:29.207,00:15:31.913
+ugye itt most arról beszélünk, hogy a Xanadu környezetben
+
+00:15:31.913,00:15:36.226
+belelépek ebbe a bizonyos Licklider által elképzelt globális tudásba,
+
+00:15:36.226,00:15:40.374
+kiválasztom megfelelő részhalmazokat és tovább építem őket.
+
+00:15:40.374,00:15:42.171
+Elképesztő az az előadás.
+
+00:15:42.171,00:15:45.801
+Hát igazából ennyi lenne erről a történetről.
+
+00:15:45.801,00:15:50.822
+És reményeim szerint ezzel egy kicsit sikerült azt demonstrálnom,
+
+00:15:50.822,00:15:55.587
+hogy a tudáskezelés egy informatikai rendszerben egy nagyon fontos feladat.
+
+00:15:55.587,00:15:58.933
+És most áttérnék egy kicsit szokványosabb környezetbe:
+
+00:15:58.933,00:16:04.723
+hogyan használjuk ezt informatikai rendszerfejlesztésben, absztrakt szinten
+
+00:16:04.723,00:16:11.312
+az egyes informatikusi szerepek tekintetében és magában a fejlesztési folyamatban.
+
+00:16:11.312,00:16:15.694
+Arról beszélünk, hogy szeretnénk csinálni egy informatikai rendszert.
+
+00:16:15.694,00:16:19.031
+Ehhez ugyebár van egy megrendelőnk, ahol van sok-sok ember,
+
+00:16:19.031,00:16:21.514
+és az ő fejükben ugye különféle megértések,
+
+00:16:21.514,00:16:24.830
+tudás darabkák, amiket valahogy szeretnénk elrendezni.
+
+00:16:24.830,00:16:31.680
+Elkezdünk beszélgetni, telefonálunk, emaileket írunk, dokumentumokat készítünk, stb., stb.
+
+00:16:31.680,00:16:35.529
+Ha most mindettől elvonatkoztatunk és megpróbáljuk elképzelni azt,
+
+00:16:35.529,00:16:38.524
+hogy hogyan nézne ki az összegyűjtött tudás,
+
+00:16:38.524,00:16:42.522
+akkor valójában egy nagyon nagy táblát tudunk elképzelni
+
+00:16:42.522,00:16:46.570
+rajta egy rá sárga post-it note-tal, ilyen kis szövegdarabkákkal,
+
+00:16:46.570,00:16:49.452
+amelyeket különféle forrásokból begyűjtöttünk.
+
+00:16:49.452,00:16:53.328
+Na most ez még nem egy működő informatikai rendszer.
+
+00:16:53.328,00:16:57.424
+Amikor ezt lefordítjuk működő informatikai rendszerré,
+
+00:16:57.424,00:17:02.040
+akkor valójában ezt a szöveget egy gráf struktúrába rendezzük.
+
+00:17:02.040,00:17:02.724
+Mi van ezen?
+
+00:17:02.724,00:17:05.480
+Igazából először is csinálunk egy fogalomkészletet,
+
+00:17:05.480,00:17:08.659
+tehát hogy milyen típusú objektumokkal szeretnénk dolgozni,
+
+00:17:08.659,00:17:10.798
+azoknak milyen attribútumai vannak
+
+00:17:10.798,00:17:16.995
+és milyen jellegű kapcsolatok lehetnek ezek között között az objektumok között.
+
+00:17:16.995,00:17:23.235
+Ezzel gyakorlatilag ilyen üres property sheet template-eket hoztunk tulajdonképpen létre.
+
+00:17:23.235,00:17:28.824
+Hívhatjuk persze class definíciónak, adatbázistáblának, stb., de mindig ugyanarról beszélünk.
+
+00:17:28.824,00:17:32.693
+Ennek a segítségével ugye modellezzük a rendszerünket.
+
+00:17:32.693,00:17:38.063
+Gyakorlatilag ezeket a template-eket kitöltjük a konkrét objektumok leírásaival
+
+00:17:38.063,00:17:41.224
+az adott eszköztár vagy hát fogalomkészletnek megfelelően.
+
+00:17:41.224,00:17:44.633
+Létrehozzuk az ő kapcsolataikat és így tovább.
+
+00:17:44.633,00:17:48.056
+Definiálunk rajtuk műveleteket, egyrészt validációs műveleteket,
+
+00:17:48.056,00:17:52.057
+tehát hogy mi a helyes leírás és mi az, ami helytelen,
+
+00:17:52.057,00:17:58.826
+másrészt olyan műveleteket, amelyek ezt a rendszert egyik állapotból egyik állapotból a másikba átviszik.
+
+00:17:58.826,00:18:03.679
+Fontos megfigyelni, hogy a műveleteknél igazából nem foglalkozunk az aktuális állapottal.
+
+00:18:03.679,00:18:07.559
+A művelet leíráshoz elég a fogalomkészletet ismernünk.
+
+00:18:07.559,00:18:10.333
+És a rendszer működése közben tapasztalatot szerzünk.
+
+00:18:10.333,00:18:13.259
+Gyakorlatilag ugye logok keletkeznek, vagy vélemények,
+
+00:18:13.259,00:18:17.324
+amelyeket azért szerencsés ugyanebbe a tudás rendszerbe visszacsorgatni.
+
+00:18:17.324,00:18:17.714
+Miért?
+
+00:18:17.714,00:18:20.296
+Azért, mert az első kísérletünk valószínűleg nem jó.
+
+00:18:20.296,00:18:26.480
+Tehát menet közben folyamatosan szeretnénk majd frissíteni a fogalomkészletet és a műveletkészleteinket.
+
+00:18:26.480,00:18:29.718
+Az állapotok általában rendben vannak.
+
+00:18:29.718,00:18:34.789
+Na most ha ezt megpróbáljuk informatikai nyelven elmondani,
+
+00:18:34.789,00:18:38.000
+akkor a következő problémába ütközünk,
+
+00:18:38.000,00:18:41.080
+hogy ennek a kis ábrának a közepén ez a saját rendszer,
+
+00:18:41.080,00:18:44.898
+ez az absztrakt leírás a felső négy gombócnak a segítségével,
+
+00:18:44.898,00:18:49.137
+amelyet el kell helyeznünk ebben a külső környezetben.
+
+00:18:49.137,00:18:54.015
+Külső szabványok, fájlformátumok, külső fogalomkészletek, külső rendszerek,
+
+00:18:54.015,00:18:56.867
+ahonnan adatokat szerzünk és adatokat küldünk.
+
+00:18:56.867,00:19:00.083
+A saját rendszerünk is (ahhoz, hogy működjön) egy adott
+
+00:19:00.083,00:19:06.078
+vagy akár több futató környezetbe (szerver-kliens megoldás esetén) kell elhelyeznünk,
+
+00:19:06.078,00:19:09.704
+és valószínűleg nem akarjuk kifejleszteni a teljes rendszert saját magunk,
+
+00:19:09.704,00:19:14.720
+tehát föl fogunk használni különféle modulokat is ezekben a futtatókörnyezetekben.
+
+00:19:14.720,00:19:19.640
+Valójában amikor fejlesztünk, akkor erőforrásmenedzsmentet hajtunk végre.
+
+00:19:19.640,00:19:24.039
+Valamilyen módon szeretnénk tervezhetővé tenni a fejlesztési folyamatot,
+
+00:19:24.039,00:19:27.010
+és két módon közelíthetjük meg a történetet.
+
+00:19:27.010,00:19:32.055
+Egyrészt, amit mi magunk csinálunk, ahhoz saját magunknak kell erőforrást allokálni,
+
+00:19:32.055,00:19:35.461
+saját magunk vállalunk kockázatot és így tovább.
+
+00:19:35.461,00:19:39.877
+Amit ilyen módon nem szeretnénk kezelni, azt megpróbáljuk ugye kiszervezni.
+
+00:19:39.877,00:19:45.636
+Nem írunk futtatókörnyezetet, és sok-sok modult igénybe veszünk ugye külső szolgáltatótól.
+
+00:19:45.636,00:19:49.493
+Viszont ebben az esetben egyrészt egy függőségi gráfot hozunk be,
+
+00:19:49.493,00:19:51.807
+de hát ezt sem kell nagyon részleteznem.
+
+00:19:51.807,00:19:54.904
+Tehát hogyha egy adott modult én integrálok a rendszerembe,
+
+00:19:54.904,00:19:56.551
+akkor az más modulokra épül.
+
+00:19:56.551,00:19:58.880
+Ott esetleg konfliktusokat kell kezelnem.
+
+00:19:58.880,00:20:02.746
+És az a probléma, hogy annak a külső rendszernek saját életciklusa van.
+
+00:20:02.746,00:20:06.114
+Tehát igen, meg fognak jelenni az új verziók az operációs rendszerből,
+
+00:20:06.114,00:20:09.934
+igen, meg fognak jelenni az új kommunikációs szabványok,
+
+00:20:09.934,00:20:12.480
+meg fognak jelenni az új modulverziók.
+
+00:20:12.480,00:20:17.360
+Na most itt gyakorlatilag egy nem menedzselt külső kockázatról beszélünk,
+
+00:20:17.360,00:20:21.399
+hiszen nem tőlünk függ, hogy mikor jelennek meg ezek a változások,
+
+00:20:21.399,00:20:22.971
+hogyan kell hozzájuk alkalmazkodni,
+
+00:20:22.971,00:20:28.240
+vagy esetleg milyen problémákat okoznak a rendszerünkben, akár fordítási, akár futásidőben.
+
+00:20:28.240,00:20:33.367
+Ezért ez egy nagyon érzékeny döntési és elemzési feladat,
+
+00:20:33.367,00:20:38.000
+hogy meghatározzam, hogy melyik részével foglalkozom.
+
+00:20:38.000,00:20:43.108
+A következő ábrán az látszik, hogy milyen szerepek vannak az informatikai fejlesztésben.
+
+00:20:43.108,00:20:48.000
+Ugye ez a nagyon egyszerű kép: van egy rendszertervem, van az informatikusom,
+
+00:20:48.000,00:20:53.122
+aki ebből egy működő a gépen futó alkalmazást készít.
+
+00:20:53.122,00:20:54.501
+Mi ezzel a probléma?
+
+00:20:54.501,00:21:00.983
+Az a probléma, hogy az a zöldel bekarikázott rendszerterv az valójában nem létezik.
+
+00:21:00.983,00:21:06.223
+Ezt nekünk kell valamilyen módon kiemelni a a megrendelőből,
+
+00:21:06.223,00:21:12.977
+figyelembe véve azt is, hogy ő egyrészt nem tud a informatikai precizitással fogalmazni,
+
+00:21:12.977,00:21:17.799
+másrészt ennek ellenére megpróbál a fejükkel gondolkodni és költséget csökkenteni.
+
+00:21:17.799,00:21:21.171
+Tehát nagyon gyakran a legkritikusabb feladatokat nem fogja elmondani,
+
+00:21:21.171,00:21:24.840
+csak később derül ki, hogy "de még ezt is szeretnénk".
+
+00:21:24.840,00:21:29.134
+És ennek, hogyha ezen a ponton félreértések, problémák vannak,
+
+00:21:29.134,00:21:33.666
+akkor az rendkívül drága, sokkal drágább, mint egy konkrét fejlesztési hiba.
+
+00:21:33.666,00:21:37.322
+És az a probléma, hogy amíg csak ennyit látunk ebből az ábrából,
+
+00:21:37.322,00:21:39.327
+addig erre a műveletre fókuszálunk.
+
+00:21:39.327,00:21:46.083
+Tehát hogyan fordítjuk le a rendszer tervét a működő alkalmazásra, CI/CD-től akármeddig,
+
+00:21:46.083,00:21:49.710
+de a támogatás valójában egy magasabb szinten szükséges.
+
+00:21:49.710,00:21:55.516
+Ezért én általában egy kicsit bonyolultabb ábrával szoktam ezt szemléltetni.
+
+00:21:55.516,00:21:57.400
+Ez körülbelül így néz ki.
+
+00:21:57.400,00:22:03.595
+Tehát három nagyon egyértelmű és jól elkülöníthető szerep van egy informatikai fejlesztésben.
+
+00:22:03.595,00:22:07.666
+Az elemzőnek az a dolga, hogy beszélgessen a klienssel,
+
+00:22:07.666,00:22:12.600
+megértse az ő szavajárását, fölrajzolja azt az absztrakt modellt,
+
+00:22:12.600,00:22:17.126
+amivel a kliens a végén szembesülni szeretne.
+
+00:22:17.126,00:22:22.308
+Az ő dolga az, hogy ebből az informatikai precizitású modellből
+
+00:22:22.308,00:22:28.281
+visszagenerálja a requirement listát, és ellenőrizze, hogy ez tényleg lefedhető-e,
+
+00:22:28.281,00:22:34.243
+adott esetben megtaláljuk ellentmondásokat, vagy feltételezhető további kéréseket.
+
+00:22:34.243,00:22:36.055
+Nagyon-nagyon fontos szerep,
+
+00:22:36.055,00:22:40.240
+de nagyon fontos, hogy az elemzőnek csak ezzel szabad foglalkoznia.
+
+00:22:40.240,00:22:44.817
+A következő szereplő ez a bizonyos tervező.
+
+00:22:44.817,00:22:46.885
+Ezek mindig saját fogalmak.
+
+00:22:46.885,00:22:53.398
+A tervezőnek az a dolga, hogy ő ismeri az adott informatikai cégnek az eszköztárát.
+
+00:22:53.398,00:22:56.855
+Itt nyilván konkrét mondjuk licenszelt modulokról
+
+00:22:56.855,00:23:01.970
+és fejlesztői tapasztalatról, fejlesztői erőforrásról egyaránt beszélünk.
+
+00:23:01.970,00:23:04.351
+Ő gyakorlatilag a rendszernek a tervét megkapja
+
+00:23:04.351,00:23:08.024
+és megpróbálja lefordítani ezekre a komponensekre.
+
+00:23:08.024,00:23:12.377
+Ez egy nagy átfogó terv, nem micromanagement meg ilyesmi.
+
+00:23:12.377,00:23:18.584
+Fejlesztési tervet készít, erőforrásokat allokál és átadja a részfeladatokat a fejlesztőknek,
+
+00:23:18.584,00:23:22.234
+akik aztán utána azt a részfeladatot implementálják.
+
+00:23:22.234,00:23:27.396
+Ez nem egy sorfolytonos történet, tehát nem egymásutániságról beszélünk.
+
+00:23:27.396,00:23:30.659
+A fejlesztőnél olyan tapasztalatok keletkeznek,
+
+00:23:30.659,00:23:35.862
+amelyeknek hatalmas jelentősége van akár a tervezési, akár az elemzési szintnél.
+
+00:23:35.862,00:23:41.388
+Például egy non-functional requirement nem teljesíthető az adott infrastruktúrán.
+
+00:23:41.388,00:23:45.874
+Ezek tehát egy állandó kommunikációt, tiszta kommunikációt igényelnek.
+
+00:23:45.874,00:23:50.795
+És a legfontosabb történet, hogy így már értelmezhető ez a bizonyos zöld kör a közepén.
+
+00:23:50.795,00:23:54.470
+Tehát a rendszerfejlesztések tulajdonképpen ez a célja.
+
+00:23:54.470,00:23:58.479
+És tisztában vagyunk azzal, hogy a kliens elvárásai változni fognak,
+
+00:23:58.479,00:24:02.984
+a felhasználható eszköztár változni fog, a futtatókörnyezet változni fog.
+
+00:24:02.984,00:24:05.362
+De ha a tudásunk elkészült ezen a középső szinten,
+
+00:24:05.362,00:24:08.661
+akkor valószínűleg jobb helyzetben vagyunk,
+
+00:24:08.661,00:24:12.559
+mintogyha nagyon fókusztáltunk volna erre a rétegre.
+
+00:24:13.120,00:24:15.886
+És jöjjenek a fejlesztési módszertanok.
+
+00:24:15.886,00:24:21.116
+Itt a bal oldalon ezek általában ismertek, főleg az első kettő.
+
+00:24:21.116,00:24:28.318
+Tehát azt mondhatjuk, hogy a waterfall / V-modell fejlesztést ugye elavultnak szokták hívni,
+
+00:24:28.318,00:24:32.901
+nagy cégeknél jellemzően mégis sokszor találkozunk vele.
+
+00:24:32.901,00:24:33.464
+Miért?
+
+00:24:33.464,00:24:37.101
+Azért, mert hatalmas fejlesztői gárdával rendelkeznek,
+
+00:24:37.101,00:24:40.342
+nagy feladatokat meg, nagy szerződéseket kötnek,
+
+00:24:40.342,00:24:43.403
+és nagyon könnyű nagyon csúnyán megcsúszni.
+
+00:24:43.403,00:24:47.388
+Ezért egy igen erős igény él a vezetésben aziránt,
+
+00:24:47.388,00:24:52.992
+hogy legyen egy jól átlátható, egyértelműen fölrajzolható roadmap
+
+00:24:52.992,00:24:58.000
+kis színekkel, meg ábrákkal, milestone-okkal, minden egyéb.
+
+00:24:58.000,00:25:01.708
+Ami egyik oldalról nagyon jó, a másik oldalról viszont az a probléma,
+
+00:25:01.708,00:25:06.360
+hogy minél nagyobb a rendszer, annál több egyedi tapasztalat jelentkezik ugye
+
+00:25:06.360,00:25:09.598
+a tervezői és a fejlesztői szinten az előző ára szerint,
+
+00:25:09.598,00:25:13.102
+amelyet ez a megközelítés nem tud jól kezelni.
+
+00:25:13.102,00:25:17.838
+Ezért általában elő is jön ez a "too big succeed situation",
+
+00:25:17.838,00:25:22.186
+tehát hogy túl nagy a terv és túl sok csúszás van benne,
+
+00:25:22.186,00:25:25.619
+és a végén nem szerencsés állapotok keletkeznek.
+
+00:25:25.619,00:25:29.405
+Ez egy tudott tulajdonsága ennek a megközelítésnek.
+
+00:25:29.405,00:25:33.039
+Ugye az ellenkező oldal az agile módszertan.
+
+00:25:33.039,00:25:35.837
+Ezt azt hiszem, hogy nem kell részletesen mesélgetnem,
+
+00:25:35.837,00:25:38.957
+hiszen mindenki nagyon jól ismeri. Az érdekes az az,
+
+00:25:38.957,00:25:43.537
+hogy az Agile Manifesto írói nem túlzottan elégedettek azzal az állapottal,
+
+00:25:43.537,00:25:45.639
+amivel ma agile néven találkozunk.
+
+00:25:45.639,00:25:49.000
+Érdemes meghallgatni egy-egy ezzel kapcsolatos előadást.
+
+00:25:49.000,00:25:51.455
+A problémát én abban látom,
+
+00:25:51.455,00:25:56.336
+hogy ugye agile környezetben lebontjuk a nagy feladatot kis user storykra,
+
+00:25:56.336,00:25:59.720
+amelyeket a fejlesztők megoldanak, és úgy gondoljuk,
+
+00:25:59.720,00:26:04.440
+hogy ebből ki fog emelkedni egy absztrakt struktúra.
+
+00:26:04.440,00:26:05.820
+Ez nagyon-nagyon nehéz.
+
+00:26:05.820,00:26:09.683
+Ugye itt történik az, hogy amikor vannak átfedések a user storyk között,
+
+00:26:09.683,00:26:14.110
+akkor user story szinten nagyon nehéz megtalálni ezeket az átfedő elemeket.
+
+00:26:14.110,00:26:18.486
+Ha vannak párhuzamosságok, azokat nagyon nehéz így utólag kiemelgetni.
+
+00:26:18.486,00:26:23.150
+Komoly refaktorral, komoly kockázattal jár, és általában elmarad.
+
+00:26:23.150,00:26:28.251
+Tehát igazából a big picture nem nő ki ebből a megközelítésből.
+
+00:26:28.251,00:26:32.356
+És a harmadik meg történet, ez talán kevésbé ismert.
+
+00:26:32.356,00:26:35.996
+A CMMI módszertan az gyakorlatilag arról szól,
+
+00:26:35.996,00:26:42.734
+hogy egy ilyen audit jelleggel a szoftver létrehozást mint egy gyártási folyamatot tekinti,
+
+00:26:42.734,00:26:48.291
+és azt vizsgálja, hogy mennyire rugalmas, mennyire hibatűrő maga a gyártási folyamat.
+
+00:26:48.291,00:26:51.353
+Ugye nulladik szint, ha el se készül a termék.
+
+00:26:51.353,00:26:54.040
+Az első szint, amikor elkészült,
+
+00:26:54.040,00:26:58.435
+de hát igazából nagyon örülünk, hogy kitoltuk a kapun,
+
+00:26:58.435,00:27:00.406
+és voltak necces dolgok.
+
+00:27:00.406,00:27:04.840
+A menedzselt az, amikor látjuk felülről a folyamatot,
+
+00:27:04.840,00:27:08.581
+tehát legalább van egy task tervünk, látjuk, hogy csúszunk,
+
+00:27:08.581,00:27:11.010
+tudunk átrendezni erőforrásokat.
+
+00:27:11.010,00:27:13.816
+Definiált az, amikor már felülről nézve előre,
+
+00:27:13.816,00:27:17.840
+tehát a a szoftverfejlesztés elején egy rendszertervet készítünk,
+
+00:27:17.840,00:27:21.399
+most csúszunk egy kicsit át a V-modellbe,
+
+00:27:21.399,00:27:23.976
+de nem, igazából a CMMI-nak mindegy,
+
+00:27:23.976,00:27:27.874
+az a lényeg, hogy legyen definiálva ez a módszertan.
+
+00:27:27.874,00:27:32.360
+Aztán utána gyakorlatilag a negyedik ötödik az... na mindegy.
+
+00:27:32.360,00:27:36.799
+Szóval a nagy szoftvergyártásból vezethető le.
+
+00:27:36.799,00:27:38.020
+A lényeg viszont az,
+
+00:27:38.020,00:27:42.928
+hogy legalább a tervezés és az oda-vissza kommunikáció az egyes komponensek között,
+
+00:27:42.928,00:27:47.024
+ennek fontossága legalább egyértelmű a CMMI megközelítésben.
+
+00:27:47.024,00:27:48.955
+Na most mindezekkel ellentétben
+
+00:27:48.955,00:27:53.840
+én a Tracer Bullet Development módszertant követem és ajánlom szíves figyelmükbe.
+
+00:27:53.840,00:27:59.799
+Ott alul látszik a The Pragmatic Programmer című könyv, amelyben olvasható.
+
+00:27:59.799,00:28:03.922
+Az alaphozzáállás itt az, hogy az informatikus (tehát én),
+
+00:28:03.922,00:28:06.920
+és a kliens (aki tőlem szeretne valamit),
+
+00:28:06.920,00:28:10.559
+nem egymással szemben állunk, hanem egymás mellett.
+
+00:28:10.559,00:28:13.514
+Gyakorlatilag előttünk van egy nagyon közös cél,
+
+00:28:13.514,00:28:17.313
+ami mind a kettőnk fejében él valamilyen szinten,
+
+00:28:17.313,00:28:21.061
+de én informatikusként elemző sapkában azon dolgozom,
+
+00:28:21.061,00:28:25.348
+hogy a mellettem álló kliens körbe tudja rajzolni a célterületet,
+
+00:28:25.348,00:28:27.166
+megmondja, hogy mire lövünk.
+
+00:28:27.166,00:28:31.783
+Tervezőként ki kell tudnom választani azokat az eszközöket,
+
+00:28:31.783,00:28:35.380
+amelyek pont megfelelő méretűek és hatékonyságúak
+
+00:28:35.380,00:28:40.756
+a megjelölt célok eltalálására. És fejlesztőként elkezdek lövöldözni:
+
+00:28:40.756,00:28:46.486
+lehetőleg minél hamarabb működő, bemutatható termékeket előállítani.
+
+00:28:46.486,00:28:50.065
+Biztos, hogy nem lesz jó, biztos, hogy nem lesz kész.
+
+00:28:50.065,00:28:54.993
+De látok egy nagy célt, látom a "big picture"-t, van egy architektúrám,
+
+00:28:54.993,00:28:59.618
+viszont a konkrét implementációval egyrészt működő tapasztalatokat szerzek,
+
+00:28:59.618,00:29:05.699
+valós adatokkal dolgozom, nem egy nevetséges részalmazzal vagy generált adatokkal,
+
+00:29:05.699,00:29:07.958
+és tapasztalatot szerzünk.
+
+00:29:07.958,00:29:13.922
+Tudjuk azt, hogy mit kell változtatnunk ahhoz képest, amit először megpróbáltunk.
+
+00:29:13.922,00:29:20.780
+Ezek azok a szempontok, amelyek hát eléggé fontosak egy tracer bullet developmentnél.
+
+00:29:20.780,00:29:24.137
+No, és egész jól állok időben.
+
+00:29:24.857,00:29:28.353
+Áttérnék tehát a gyakorlati alkalmazásra.
+
+00:29:28.353,00:29:31.090
+Itt arról szeretnék egy kicsit beszélni,
+
+00:29:31.090,00:29:35.250
+hogy ezeket a szerepeket, ezt a gondolkodásmódot és módszertant
+
+00:29:35.250,00:29:40.602
+hogyan használtam idén májustól kezdve az XBRL környezet a
+
+00:29:40.602,00:29:48.440
+feltárására, fejlesztésre, és hosszútávú stratégiai tervek kialakítására.
+
+00:29:48.519,00:29:50.305
+Először nézzük az elemzést.
+
+00:29:50.305,00:29:55.009
+Ezek a pontok azt is tükrözik, legalábbis jól láthatóvá teszik szerintem,
+
+00:29:55.009,00:30:00.402
+hogy az elemzés nem áll le, tehát nem nem egy kezdeti történet.
+
+00:30:00.402,00:30:04.808
+Elemzőként én folyamatosan figyelem a rendszer fejlődését,
+
+00:30:04.808,00:30:08.882
+és egy bizonyos ponton nekem elemzőként kell döntéseket hoznom:
+
+00:30:08.882,00:30:14.274
+mivel milyen mértékben szabad foglalkozni, mi az, amit el lehet engedni.
+
+00:30:14.274,00:30:16.971
+De természetesen az elemző első pontja az,
+
+00:30:16.971,00:30:20.400
+amikor elkezdünk ismerkedni egy helyzettel.
+
+00:30:20.400,00:30:22.115
+Szóval mi az az XBRL?
+
+00:30:22.115,00:30:26.011
+Most végre fél óra után feltesszük ezt a kérdést.
+
+00:30:26.011,00:30:27.463
+Az XBRL arról szól,
+
+00:30:27.463,00:30:33.493
+hogy különféle cégek, különféle szervezetek számára bizonyos jelentéseket készítenek.
+
+00:30:33.493,00:30:38.439
+Nyilván elsősorban pénzügyi meg gazdasági jelentésekről beszélünk,
+
+00:30:38.439,00:30:44.173
+amelyeket egy irányító szervezet, például egy állam, adóhivatal satöbbi szeretne összesíteni
+
+00:30:44.173,00:30:48.254
+ennek alapján döntéseket hozni, terveket készíteni és így tovább.
+
+00:30:48.254,00:30:49.098
+A probléma az,
+
+00:30:49.098,00:30:54.722
+hogy ezeket a jelentéseket nyilván az egyes cégek mind a saját szájuk íze szerint valahogy leadják.
+
+00:30:54.722,00:30:58.007
+Ebből sok mindent nem lehet kihozni.
+
+00:30:58.007,00:31:00.582
+Ezért született meg az XBRL,
+
+00:31:00.582,00:31:06.533
+amely tehát egy egységes jelentési formátumot, módszertant definiál.
+
+00:31:06.533,00:31:08.639
+Kiadja az egyes cégeknek,
+
+00:31:08.639,00:31:13.013
+hogy tessék kérem szépen XBRL-ben leadni a jelentést,
+
+00:31:13.013,00:31:16.735
+és onnantól kezdve erre egy nagyon komoly ökoszisztéma fölépíthető,
+
+00:31:16.735,00:31:22.919
+amely ezeket a jelentéseket fel tudja dolgozni, adatokat kiemelni, összesíteni és így tovább.
+
+00:31:22.919,00:31:25.921
+Ami nagyon tetszik ebben, az az,
+
+00:31:25.921,00:31:30.141
+hogy itt egyértelműen egy tudásorientált feladatról van szó.
+
+00:31:30.141,00:31:36.016
+Tehát gyakorlatilag a nagy mennyiségű szövegből, amit a cégek előállítanak,
+
+00:31:36.016,00:31:42.588
+az XBRL az az eszköztár, amivel kezelhető, rendszerrel megoldható tudást szeretne kiemelni.
+
+00:31:42.588,00:31:44.160
+Ezért nagyon tetszik.
+
+00:31:44.160,00:31:53.639
+Nagyon fontos itt figyelembe venni azt, hogy két részre vágja ez az egész megközelítés az üzleti jelentést.
+
+00:31:53.639,00:31:56.562
+Az egyik az az, hogy mi van egy jelentésben.
+
+00:31:56.562,00:32:01.120
+És akkor most mutatok is kis képernyőt.
+
+00:32:01.120,00:32:10.163
+Tehát azt tudom mondani, hogy egy jelentés az gyakorlatilag tényadatoknak a felsorolását tartalmazza.
+
+00:32:10.163,00:32:16.080
+Tehát azt mondja, hogy mondjuk cash at bank balance tarararam,
+
+00:32:16.080,00:32:19.245
+egy bizonyos kontextusban ennyi.
+
+00:32:19.245,00:32:25.530
+És az XBRL jelentés az tulajdonképpen ilyen tényadatoknak a halmaza.
+
+00:32:25.530,00:32:29.838
+Amit érdemes még tudni, hogy igen, a többi az micsoda?
+
+00:32:29.838,00:32:33.519
+Tehát az, hogy itt van egy szám, annak örülünk.
+
+00:32:33.519,00:32:39.634
+A kontextus azt mondja meg, hogy milyen időpontban?,
+
+00:32:39.634,00:32:41.290
+milyen bejelentő által?...
+
+00:32:41.290,00:32:44.723
+vannak még egyéb részletek, de lényegében erről beszél.
+
+00:32:44.723,00:32:47.335
+Tehát például jelen esetben ez a kontext,
+
+00:32:47.335,00:32:53.341
+a C2-es kontext az ez az entitás, ez konkrétan a Bank of Tirol akárki,
+
+00:32:53.341,00:32:58.029
+2020. 12. 31-ére vonatkozó időpontra vonatkozó adata.
+
+00:32:58.029,00:33:03.479
+Lehet időpontra vagy időintervallumra vonatkozó adatot megadni.
+
+00:33:03.479,00:33:10.113
+illetve a unitRef pedig azt mondja meg, hogy milyen mértékegységgel dolgozunk.
+
+00:33:10.113,00:33:12.632
+Jelen esetben a unit az euro.
+
+00:33:12.632,00:33:16.203
+Ez például nagyon sokat segített volna abban az esetben,
+
+00:33:16.203,00:33:18.720
+amikor mondjuk egy űrszonda elvesztését okozta az,
+
+00:33:18.720,00:33:25.346
+hogy nem azonos unitokban dolgozott a különféle fejlesztő, tehát a két elválasztott fejlesztő csapat.
+
+00:33:25.346,00:33:30.679
+Szóval ezeket a dolgokat gyakorlatilag az XBRL kikerüli.
+
+00:33:30.679,00:33:35.399
+Na most a következő érdekesség pedig ez a bizonyos név, amit itt megadok.
+
+00:33:35.399,00:33:40.758
+Ez ugye egyedi azonosító arra az adatra nézve, amit én most itt jelentek.
+
+00:33:40.758,00:33:47.385
+Ennek kell legyen egy definíciója. És itt van az XBRL következő nagy találmánya,
+
+00:33:47.385,00:33:54.112
+hogy ő gyakorlatilag a taxonómiától (ezt hívjuk taxonómiának) teljesen független.
+
+00:33:54.112,00:33:55.715
+Tehát ő csak annyit mond,
+
+00:33:55.715,00:34:02.797
+hogy valamilyen taxonómiában szerepelni fog ez a név, és ennek ez az értéke.
+
+00:34:02.797,00:34:09.399
+Vagyis a szabvány maga nem függ attól, hogy milyen tartalmat jelentünk.
+
+00:34:09.399,00:34:14.815
+Ennek (átugrunk a másik oldalra...) az eredménye az,
+
+00:34:14.815,00:34:21.199
+hogy az XBRL szabvány 2003-ban jelent meg, 2013-ban jött az utolsó verziója,
+
+00:34:21.199,00:34:22.969
+azóta teljesen változatlan.
+
+00:34:22.969,00:34:30.638
+Tehát minden informatikai eszköz ugyanabban a formában tudja kezelni az XBRL jelentéseket,
+
+00:34:30.638,00:34:35.999
+és az XBRL alapszintű fogalom készlete ennyi.
+
+00:34:35.999,00:34:38.871
+Nyilván nem megyünk most bele a részletekbe.
+
+00:34:38.871,00:34:44.268
+Az a lényeg, hogy ezekkel a fogalmakkal ír le bármit az XBRL,
+
+00:34:44.268,00:34:48.918
+és hogy miről beszél, az viszont a taxonómiában található.
+
+00:34:48.918,00:34:55.167
+Tehát például az IFRS az pénzügyi adatok jelentésére szóló ilyen nemzetközi szabvány.
+
+00:34:55.167,00:35:00.310
+Ez a taxonómia tartalmazza például a revenue-nak a definícióját.
+
+00:35:00.310,00:35:03.857
+El tudja mondani, hogy hogy ez most éppen micsoda.
+
+00:35:03.857,00:35:05.248
+Vannak hivatkozások.
+
+00:35:05.248,00:35:10.283
+Ezek ugyanolyan hivatkozások, mint egy mint egy publikációnál.
+
+00:35:10.283,00:35:16.415
+Tehát ezek konkrétan azok a törvényhelyek meg egyebek, ahol ezek ez definiálva van,
+
+00:35:16.415,00:35:21.017
+és meg tudja mutatni, hogy milyen környezetben használjuk fel,
+
+00:35:21.017,00:35:23.280
+és milyen módon számolunk vele.
+
+00:35:23.280,00:35:25.172
+Ebben nyilván nem megyek bele részletesen,
+
+00:35:25.172,00:35:29.139
+mert sem nekem, sem önöknek nem nem mond sokkal többet,
+
+00:35:29.139,00:35:34.948
+de pénzügyi elemzők ezekre a csoportokra, ezekre a fogalmakra tudnak építeni.
+
+00:35:34.948,00:35:39.021
+És még egyszer, az aki ismeri ezt az IFRS taxonómiát,
+
+00:35:39.021,00:35:43.053
+az minden egyes cég XBRL-ben leadott pénzügyi jelentését,
+
+00:35:43.053,00:35:46.850
+(amely szintén IRS taxonómiát használ), kezelni tud,
+
+00:35:46.850,00:35:49.265
+homogén módon összesíteni tud,
+
+00:35:49.265,00:35:54.698
+és ezeket az elemzéseket, a számításokat, validációt, minden egyebet
+
+00:35:54.698,00:35:57.926
+függetlenül a forrástól tudja elvégezni.
+
+00:35:57.926,00:36:05.235
+Csak így próbából, tehát itt látszik, hogy mondjuk itt látunk egy ilyen pénzügyi jelentést.
+
+00:36:05.235,00:36:11.040
+Itt van az egyik, aztán mondjuk itt van egy másik pénzügyi jelentés.
+
+00:36:11.040,00:36:13.265
+Nagyon messze vannak egymástól formátumban,
+
+00:36:13.265,00:36:21.040
+de mivel XBRL-kompatibilisek ezért homogén módon kezelhetőek.
+
+00:36:21.200,00:36:22.500
+Ez tehát nagyon jó.
+
+00:36:22.500,00:36:26.271
+Aztán utána jön az a rész, ami már nem annyira boldogító.
+
+00:36:26.271,00:36:31.440
+Az első az az, hogy különféle formátumban szerepelhetnek az XBRL jelentések.
+
+00:36:31.440,00:36:34.240
+Lehet XML, mint ez.
+
+00:36:34.240,00:36:39.371
+Ez gyakorlatilag a létrehozásra orientált,
+
+00:36:39.371,00:36:44.421
+tehát a lépthozó szempontjából egyszerű formátum, de adatformátum.
+
+00:36:44.421,00:36:50.000
+Tehát ennek a megjelenéshez semmi köze, ez csak egy nyers adathalmaz.
+
+00:36:50.000,00:36:53.697
+A JSON feldolgozásra optimalizált.
+
+00:36:53.697,00:36:57.720
+Tehát mutatok mindjárt egy olyat is.
+
+00:36:57.720,00:37:02.520
+Itt gyakorlatilag a fact-ek teljesen önállóan jelennek meg.
+
+00:37:02.520,00:37:06.526
+Ez tehát egy feldolgozó kódnak egyszerű,
+
+00:37:06.526,00:37:11.178
+viszont generálásnál nagyon nehézkes és borzasztóan bőbeszédű,
+
+00:37:11.178,00:37:13.319
+tehát sokkal több sorból áll.
+
+00:37:13.319,00:37:16.744
+És van az XHTML,
+
+00:37:16.744,00:37:23.383
+amely pedig gyakorlatilag egy HTML belsejéből emel ki a XBRL tag-eket.
+
+00:37:23.383,00:37:27.066
+Mindjárt mutatok is rá egy példát. Ez ilyen.
+
+00:37:27.066,00:37:33.172
+Tehát hogyha megnézzük mondjuk az előbbi JSON tartalmat,
+
+00:37:33.172,00:37:37.438
+ez ugyanaz a jelentés XHTML-ben, mint XBRL-ben.
+
+00:37:37.438,00:37:43.481
+És akkor itt látszik például, hogy itt van egy ComprehensiveIncome,
+
+00:37:43.481,00:37:45.978
+és akkor ennek az értéke 17 millió.
+
+00:37:45.978,00:37:47.712
+Ilyen formátumok vannak.
+
+00:37:47.712,00:37:51.286
+Ezenkívül van egy CSV-JSON, amire (szintén elemzőként) azt mondtam,
+
+00:37:51.286,00:37:56.280
+hogy ezzel nem kell foglalkozni, mert még most van fejlesztés alatt.
+
+00:37:56.280,00:37:59.319
+A taxonómia leírás meglehetősen bonyolult.
+
+00:37:59.319,00:38:02.277
+Itt két dolgot érdemes tudni.
+
+00:38:02.277,00:38:07.934
+Tehát az egyik az az, hogy nagyon figyeltek arra azért szabvány létrehozói,
+
+00:38:07.934,00:38:11.470
+hogy standard eszközöket használjanak.
+
+00:38:11.470,00:38:17.802
+Xlink, illetve szabványos HTML, namespace és hasonló eszköztárral dolgoztak.
+
+00:38:17.802,00:38:28.839
+Ugyanakkor ez rendkívül a bonyolulttá, hosszadalmassá tette magát a leírás módszertanát.
+
+00:38:29.400,00:38:31.733
+Mutatok is egy példát rá.
+
+00:38:31.733,00:38:34.780
+Tehát gyakorlatilag amikor van egy taxonómiám,
+
+00:38:34.780,00:38:37.956
+tehát mondjuk egy IFR-es taxonómiáról beszélünk,
+
+00:38:37.956,00:38:41.384
+akkor a bejárat az, hogy van egy taxonomy package,
+
+00:38:41.384,00:38:44.240
+ami megmondja (ez egy "lokális nyelv"),
+
+00:38:44.240,00:38:48.880
+hogy milyen belépési pontjai vannak ennek a ennek a taxonómiának.
+
+00:38:48.880,00:38:54.880
+Egy taxonómia különféle részhalmazoknak szolgáltat ugye ilyen item halmazt.
+
+00:38:54.880,00:39:02.880
+Aztán utána van az entitás.
+
+00:39:02.880,00:39:08.702
+Tehát ez a belépési pont, ami gyakorlatilag további hivatkozásokat tartalmaz,
+
+00:39:08.702,00:39:13.560
+szintén ilyen link, xlink referenciákat különféle részhalmazokra.
+
+00:39:13.560,00:39:16.669
+Aztán utána belemegyünk egy konkrét ilyen elembe.
+
+00:39:16.669,00:39:19.905
+Itt látszik az, hogy hát na benne vannak azok az itemek.
+
+00:39:19.905,00:39:24.790
+Ugye az előbb láttuk azt az "ifrs-full" akármit, ők innen származnak.
+
+00:39:24.790,00:39:28.906
+Meglehetősen sokan vannak, nem is görgetek le az aljára.
+
+00:39:28.906,00:39:34.303
+És amikor a taxonómiából ilyen hierarchiákat, fákat meg egyébeket építek,
+
+00:39:34.303,00:39:38.401
+akkor gyakorlatilag azt is xlinkek segítségével hozzuk létre,
+
+00:39:38.401,00:39:42.366
+amelyek kapcsolatokat hoznak létre az egyes node-ok között.
+
+00:39:42.366,00:39:43.780
+A méretek itt borzasztóak.
+
+00:39:43.780,00:39:48.482
+Egy pillanat, ha megnézik ezt bal oldalon ahogy itt lenyitottuk az IFRS taxonómiát.
+
+00:39:48.482,00:39:52.007
+Tehát ugye ott kezdtük, hogy voltak belépési pontjaink,
+
+00:39:52.007,00:39:56.570
+aztán a belépési pontból eljutottam egy ilyen részhalmazba.
+
+00:39:56.570,00:40:02.649
+Elég sokan vannak ők is, és aztán ezalatt még itt vannak ezek az XML-ek.
+
+00:40:02.649,00:40:05.480
+Nagyon nagyon nagyon sokan vannak.
+
+00:40:05.480,00:40:08.814
+Elemzőként ugye ilyenkor egy kicsit megijedünk,
+
+00:40:08.814,00:40:12.417
+tehát hogy borzasztó sok XML-t kell feldolgozni,
+
+00:40:12.417,00:40:16.702
+de ugyanakkor arra is gondolunk, hogy igen ám, de ez 20 éve létezik,
+
+00:40:16.702,00:40:21.602
+nagyon-nagyon sokan dolgoztak vele, tehát valószínűleg jó minőségű ez az input.
+
+00:40:21.602,00:40:26.146
+Tehát hogyha csinálunk egy eszközt rá, akkor az rendben fog működni.
+
+00:40:26.146,00:40:29.596
+Hú, szerintem egy kicsit föl kell gyorsítanom.
+
+00:40:29.596,00:40:34.157
+Itt az előbb mutattam, tehát hogy ezek az ilyen méretek,
+
+00:40:34.157,00:40:40.001
+tehát például 36672 darab kapcsolat van az IFRS taxonómia különféle elemei között.
+
+00:40:40.001,00:40:42.817
+Emberileg nyilván nem nagyon kezelhető,
+
+00:40:42.817,00:40:45.456
+de egy gép azért ezt elég jól tudja kezelni.
+
+00:40:45.456,00:40:47.566
+A jelentések mennyisége is érdekes.
+
+00:40:47.566,00:40:51.222
+Ugye az első körben Európai Uniós adatokkal kezdtünk foglalkozni.
+
+00:40:51.222,00:40:56.720
+Kiderült, hogy tudunk, tehát van egy olyan hely, ahonnan le tudjuk ezeket tölteni.
+
+00:40:56.720,00:40:59.719
+Összesen körülbelül 12000 lett azóta.
+
+00:40:59.719,00:41:07.162
+Viszont hosszútávú elemzésekhez meg például nyelvi modellek készítéséhez ez meglehetősen kevés.
+
+00:41:07.162,00:41:10.041
+Az EDGAR nevezetű rendszer, ez az SEC-nek,
+
+00:41:10.041,00:41:14.409
+az amerikai tőzsdefelügyeletnek a informatikai rendszere.
+
+00:41:14.409,00:41:19.012
+Na ők 20 éve jelentik, 20 éve gyűjtik a jelentéseket,
+
+00:41:19.012,00:41:23.359
+komoly mennyiségű XBR-rel formátumú jelentésük van.
+
+00:41:23.359,00:41:28.480
+Látszanak a számok, tehát azért ez egy komoly kihívás.
+
+00:41:28.480,00:41:29.957
+És vannak nehézségek.
+
+00:41:29.957,00:41:33.239
+Ezek a nehézségek, ezek például ilyenek,
+
+00:41:33.239,00:41:38.891
+hogy nagyon sok esetben nem élből XBRL formátumban hozzák létre a jelentéseket,
+
+00:41:38.891,00:41:41.717
+hanem például PDF-ből visszagenerálják.
+
+00:41:41.717,00:41:44.400
+Mutatok is rá itt hirtelen egy példát.
+
+00:41:44.400,00:41:55.015
+Ugye itt látszik, hogyha megnézzük ezt a szegény jelentést, ő gyakorlatilag...
+
+00:41:55.015,00:41:57.200
+Hogy is vagyunk?
+
+00:41:57.200,00:42:01.880
+De szeretnék erre most hirtelen ránézni...
+
+00:42:01.920,00:42:03.207
+Scroll into view.
+
+00:42:03.207,00:42:04.423
+Na, megtaláltam.
+
+00:42:04.423,00:42:14.720
+Tehát ugye itt látszik az, hogy gyakorlatilag az XBRL elemek soronként szerepelnek benne.
+
+00:42:14.720,00:42:18.400
+Nem túlzottan szerencsés.
+
+00:42:18.800,00:42:22.625
+A másik: az Európai Unióban elkezdődött egy olyan folyamat,
+
+00:42:22.625,00:42:30.840
+hogy minden ország hadd jelentse a saját dátumformátumában a dátum típusú adatokat.
+
+00:42:30.840,00:42:34.422
+Na most én egy kicsit megnéztem az összes európai uniós jelentést,
+
+00:42:34.422,00:42:37.304
+és ennek alapján ezt eléggé elhibázott gondolatnak tartom.
+
+00:42:37.304,00:42:40.323
+Ugye itt látszik egy rövid kis összefoglaló arról,
+
+00:42:40.323,00:42:48.274
+hogy egy 1000 elemes listában 380000 numerikus satöbbi egyéb típusú fact-et
+
+00:42:48.274,00:42:51.846
+és összesen 99 dátum típusú fact-et találtam,
+
+00:42:51.846,00:42:56.491
+amelyek viszont 12 különböző formátumban jelennek meg.
+
+00:42:56.491,00:42:59.781
+Egyrészt borzasztóan csúnya a eldolgozó kód,
+
+00:42:59.781,00:43:03.655
+amely ezeket a dátumformátumokat értelmezi.
+
+00:43:03.655,00:43:05.328
+Mutatnám a példát.
+
+00:43:05.328,00:43:12.836
+Tehát ez a definíciója az egyik ország (cseh talán?) a lehetséges dátum formátumainak,
+
+00:43:12.836,00:43:19.040
+de nyilván minden országra ugyanilyen blokkok keletkeznek az XML-es leírásban.
+
+00:43:19.040,00:43:22.601
+A processzor kódban ugyanez történik.
+
+00:43:22.601,00:43:26.223
+Szóval ez például egy nem túlzottan szerencsés megoldás,
+
+00:43:26.223,00:43:30.164
+úgyhogy ott például nem is szabványszerű megoldást használok.
+
+00:43:30.164,00:43:32.134
+Ez megint egy elemzői feladat.
+
+00:43:32.134,00:43:34.445
+Elemzőként úgy döntöttem,
+
+00:43:34.445,00:43:42.000
+hogy a dátumformátumokat nem szabványos módon kell kezelnem, mert... mert nem szabad.
+
+00:43:42.000,00:43:46.680
+Az EDGAR... érdekes formátumban dolgozik,
+
+00:43:46.680,00:43:47.735
+két érdekesség van.
+
+00:43:47.735,00:43:56.157
+Az egyik az az, hogy mivel hatalmas mennyiségű adattal dolgoznak, ezért hivatalosan (mutatom...)
+
+00:43:58.958,00:44:05.532
+10 request per másodperccel lehet csak megtámadni az EDGAR site-ját.
+
+00:44:05.532,00:44:09.079
+Tehát nem lehet több kérdést indítani.
+
+00:44:09.079,00:44:16.285
+Ha viszont le akarom tölteni az EDGAR-ról az ott összegyűjtött jelentés adatokat,
+
+00:44:16.285,00:44:20.558
+akkor hatalmas méretű fájlokkal találkozom.
+
+00:44:20.558,00:44:29.559
+Tehát például (... na mutatom...)
+
+00:44:30.559,00:44:37.247
+Tehát mondjuk a submission zip az egy 1,29 GB-os zip fájl.
+
+00:44:37.247,00:44:40.023
+A companys egy 1,16 GB-os fájl.
+
+00:44:40.023,00:44:44.640
+Nem is ez a fő probléma velük, hanem az,
+
+00:44:44.640,00:44:52.520
+hogy egyetlen könyvtárban a 870000, sőt valami 900000 körüli fájl van.
+
+00:44:52.520,00:44:58.000
+Tehát gyakorlatilag normál zip kicsomagolás sem működik rá.
+
+00:44:58.000,00:45:03.880
+Tehát így néz ki egy elemzői szemmel a az XBR-rel környezet.
+
+00:45:03.880,00:45:09.813
+Ha átnézek tervezői oldalra, ugye tervezőként az a dolgom,
+
+00:45:09.813,00:45:15.512
+hogy valamilyen módon infrastruktúra elemekre próbáljam lefordítani azt a tudást,
+
+00:45:15.512,00:45:17.858
+amit elemzőként megszereztem.
+
+00:45:17.858,00:45:22.900
+Ez az ábra lényegben az XBRL-el való foglalkozásnak a kezdetén született.
+
+00:45:22.900,00:45:28.447
+Tehát engem tulajdonképpen ez vezérelt az egész fejlesztés során.
+
+00:45:28.447,00:45:33.720
+Az egyes komponensek... tehát ugye ezek az infrastruktúra komponensek.
+
+00:45:33.720,00:45:34.936
+Itt az a nehéz,
+
+00:45:34.936,00:45:41.411
+hogy valamilyen módon a külső forrásból származó jelentéseket le kell tudnom gyűjteni,
+
+00:45:41.411,00:45:44.165
+és lokálisan szeretném őket tárolni.
+
+00:45:44.165,00:45:50.464
+Nyilván, hiszen nem akarok annyiszor hozzáfordulni az eredeti jelentés forráshoz,
+
+00:45:50.464,00:45:54.000
+ahányszor hozzám valamilyen kérdés beérkezik.
+
+00:45:54.000,00:45:58.045
+Különféle source konnektorokat szeretnék létrehozni.
+
+00:45:58.045,00:46:00.916
+Az első ez az Európai Uniós Source Connector.
+
+00:46:00.916,00:46:04.885
+Közben egyébként megszületett az EDGAR-os konnektor.
+
+00:46:04.885,00:46:08.622
+A lényeg ugye az, hogy arra számíthatok,
+
+00:46:08.622,00:46:14.551
+hogy a végül a jelentés vagy XHTML, vagy XML, vagy JSON formátumú,
+
+00:46:14.551,00:46:17.838
+XBRL módon feldolgozható szöveges fájl lesz.
+
+00:46:17.838,00:46:22.061
+Tehát ezeket különféle módokon fogom tudni megszerezni,
+
+00:46:22.061,00:46:25.680
+és a végén egyetetlen cache-be fogom begyűjteni.
+
+00:46:25.680,00:46:27.858
+És ezenkívül persze lehetőséget kell nyújtanom arra,
+
+00:46:27.858,00:46:30.422
+hogy valaki kézzel is feltöltsön valamilyen jelentést.
+
+00:46:30.422,00:46:34.232
+Ugye itt az egyedi azonosítás lesz majd érdekes kérdés.
+
+00:46:34.232,00:46:37.054
+Amikor feldolgozom az XBRL adatokat,
+
+00:46:37.054,00:46:43.041
+akkor feltételeztem egyébként, hogy valamilyen módon XML az alapelv,
+
+00:46:43.041,00:46:47.230
+tehát ott vannak az alapvető fogalmak,
+
+00:46:47.391,00:46:55.475
+tehát az XBR jelentés alap fogalomkészletét (tag, context, fact, ilyesmik) tartalmazza.
+
+00:46:55.475,00:46:59.934
+Ezek valamilyen módon megjelennek egy XML környezetben,
+
+00:46:59.934,00:47:03.102
+és feltételezhető, hogy az XHTML-ben hasonló,
+
+00:47:03.102,00:47:08.980
+csak valamilyen szintű kis fordítással kell tudnom majd behozni ugyanebbe a feldolgozóba.
+
+00:47:08.980,00:47:11.853
+A JSON-nek egy teljesen más szerkezete van,
+
+00:47:11.853,00:47:15.019
+tehát ott valahogy máshogy kell játszanom,
+
+00:47:15.019,00:47:19.476
+de az a lényeg, hogy a végén XBRL-szerűnek kell kinéznie,
+
+00:47:19.476,00:47:24.767
+és abból valamilyen módon egy homogén adatcsomagot kell készítenem.
+
+00:47:24.767,00:47:27.614
+Ezt ki kell egészíteni a taxonómiákkal,
+
+00:47:27.614,00:47:31.534
+és aztán utána ez a kettő gyakorlatilag az adattartalom,
+
+00:47:31.534,00:47:34.285
+("tudásbázis" az én fogalmaim szerint),
+
+00:47:34.285,00:47:37.926
+amelyre majd kliens szolgáltatásokat fogok nyújtani.
+
+00:47:37.926,00:47:41.539
+Az egyszerű kliens szolgáltatás nyilván az,
+
+00:47:41.539,00:47:44.659
+hogy a browse-olni tudom a tartalmát.
+
+00:47:44.659,00:47:52.494
+Komplex szolgáltatásnál pedig összesített exportokat, kereséseket, elemzéseket, vizualizációkat stb.-t készítek rá.
+
+00:47:52.494,00:47:58.139
+Ugye ezek gyakorlatilag az üzleti felhasználásai ennek az eszköznek.
+
+00:47:58.139,00:47:59.849
+Örömmel jelentem,
+
+00:47:59.849,00:48:05.705
+hogy ez a májusban elkészített ábra teljes mértékben túlélte az elmúlt néhány hónapot.
+
+00:48:05.705,00:48:10.319
+Az egyes komponenseit sikerült szépen fölépítenem.
+
+00:48:10.319,00:48:12.555
+A tervezés másik oldala pedig az,
+
+00:48:12.555,00:48:16.003
+hogy (ugye ez az bizonyos tracer bullet development),
+
+00:48:16.003,00:48:20.528
+tehát hogy az jó, hogy én tudok egy szép zöld-sárga ábrát rajzolni,
+
+00:48:20.528,00:48:26.317
+de vajon az egyes feltételezések, amelyekkel ott éltem, tényleg megállják-e a helyüket.
+
+00:48:26.317,00:48:30.807
+Tehát például tudom-e jól kezelni az adott formátumokat.
+
+00:48:30.807,00:48:35.216
+Erre példa (...csak gyorsan beleugrunk forráskódokba...)
+
+00:48:35.216,00:48:38.116
+Először úgy úgy álltam hozzá,
+
+00:48:38.116,00:48:44.880
+hogy a tudásbázisomban valójában a jelentések maguk fognak szerepelni.
+
+00:48:44.880,00:48:50.400
+Itt nagyon fontos figyelembe venni, hogy ugye sok adatról beszélünk.
+
+00:48:50.400,00:48:54.520
+Tehát... (ja, nem, ezt majd az implementációnál mondom inkább), szóval,
+
+00:48:54.520,00:48:57.343
+hogy itt az volt az eredeti feltételezésem,
+
+00:48:57.343,00:49:01.829
+hogy az XML az valószínűleg közel áll a közös formátumhoz,
+
+00:49:01.829,00:49:06.611
+és valóban egy viszonylag rövid kóddarabkával sikerült.
+
+00:49:06.611,00:49:09.691
+Ugye ezek gyakorlatilag a konkrét szövegek,
+
+00:49:09.691,00:49:13.331
+amiket ugye lefordítok a saját kis nyelvkészletemre.
+
+00:49:13.331,00:49:19.573
+Én ugye ezekre a tagekre hivatkozom, és ezzel át tudom tölteni egy közös tárolóba.
+
+00:49:19.573,00:49:28.601
+Ügyesen meg tudtam csinálni azt, hogy az XHTML parser az gyakorlatilag az XML leszármazottja.
+
+00:49:28.601,00:49:32.655
+Tehát gyakorlatilag csak egy preprocessing van itt az XHTML oldaláról,
+
+00:49:32.655,00:49:36.187
+mert egy kicsit máshogy nevezi a különféle elemeket,
+
+00:49:36.187,00:49:39.723
+de utána gyakorlatilag az XML handler-rel tudtam dolgozni.
+
+00:49:39.723,00:49:43.814
+A JSON handler nyilván egy jóval bonyolultabb történet,
+
+00:49:43.814,00:49:51.122
+hiszen ott tulajdonképpen nemcsak azzal kellett foglalkoznom,
+
+00:49:51.122,00:49:55.250
+hogy a szöveges formátumból egy adatformátumot készítsek,
+
+00:49:55.250,00:49:59.976
+hanem azzal is, hogy a JSON-nek a struktúrája alapvetően más,
+
+00:49:59.976,00:50:04.974
+hiszen míg az XML-ben ugye ki van emelve szépen az egésznek a tetejére,
+
+00:50:04.974,00:50:08.869
+hogy milyen kontextusaim vannak, és utána ezekre hivatkozom.
+
+00:50:08.869,00:50:10.720
+A JSON esetében ez nincs így.
+
+00:50:10.720,00:50:15.694
+Gyakorlatilag a kontextusnak a tartalma benne van minden egyes JSON objektumban.
+
+00:50:15.694,00:50:20.849
+Tehát értelemszerűen a JSON feldolgozó egy strukturális átalakítást is végzett.
+
+00:50:20.849,00:50:22.783
+De mi a lényeg?
+
+00:50:22.783,00:50:28.692
+A lényeg az, hogy ez a három komponens a forrásformátum,
+
+00:50:28.692,00:50:35.532
+tehát XHTML, XML vagy JSON származást teljes mértékben lenyelte.
+
+00:50:35.532,00:50:40.940
+Tehát ezen a ponton egy homogén XBRL adat szerkezettel tudtam dolgozni,
+
+00:50:40.940,00:50:44.319
+amiből tehát keletkezett ez a bizonyos cache.
+
+00:50:44.319,00:50:48.980
+Első körben úgy gondoltam, hogy ezt ilyen módon a fogom lementeni.
+
+00:50:48.980,00:50:50.850
+Ez később nem így alakult.
+
+00:50:50.850,00:50:52.235
+Gyorsan átpörgetem.
+
+00:50:52.235,00:50:56.288
+Most szerintem nem is mutogatok nagyon többet.
+
+00:50:56.288,00:50:58.730
+A forráskeresésben az volt az érdekes,
+
+00:50:58.730,00:51:02.792
+hogy tehát a legérdekesebb feladat az XBRL kezelésben az lett volna,
+
+00:51:02.792,00:51:05.909
+hogy nagyon sok jelentéssel tudjunk egyszerre dolgozni.
+
+00:51:05.909,00:51:10.746
+Ehhez azonban egy jó forrást kell találnunk, kézzel nem tudjuk alátenni.
+
+00:51:10.746,00:51:15.713
+Szerencsére az Európai Uniós jelentéseket ez a filings.xbrl.org gyűjti.
+
+00:51:15.713,00:51:21.619
+Ez gyakorlatilag egy nyílt portál, és nagyon-nagyon jó tulajdonságuk,
+
+00:51:21.619,00:51:26.922
+hogy ők legalábbis ezt a felületet egy JSON:API interfésszel töltik.
+
+00:51:26.922,00:51:30.492
+Tehát ez gyakorlatilag egy lokális JavaScript-es kis táblázat.
+
+00:51:30.492,00:51:37.091
+A szerverrel, amikor kommunikálnak, hogy (gyakorlatilag a keresőfeltétel meg a lapozás)
+
+00:51:37.091,00:51:42.640
+egy JSON:API szabvány request-et küld a szervernek és kap úgy egy választ.
+
+00:51:42.640,00:51:45.733
+(Ez azért is jó, mert én akkor így találkoztam a JSON:API-val.)
+
+00:51:45.733,00:51:48.365
+Másrészt nagyon egyszerűen meg lehetett azt csinálni,
+
+00:51:48.365,00:51:55.280
+hogy amikor elindítom a kis portálomat, akkor (ezt végülis el is indíthatom most),
+
+00:51:55.280,00:51:57.729
+akkor a következőt csinálja.
+
+00:51:57.729,00:52:02.265
+Először is a fölcsatlakozik erre a bizonyos portálra,
+
+00:52:02.265,00:52:08.560
+megpingeli őt, hogy van-e új jelentés az általam eddig ismerthez képest.
+
+00:52:08.560,00:52:16.175
+Ha ha van, akkor azokat letölti, feldolgozza, és utána indul el.
+
+00:52:16.175,00:52:22.475
+Tehát ez a megoldás egy kényelmes frissítési lehetőséget adott.
+
+00:52:22.475,00:52:24.640
+A tudásbázis építés...
+
+00:52:24.640,00:52:27.470
+Ez egy tervezői döntés.
+
+00:52:27.470,00:52:30.854
+Ugye itt arról van szó, hogy azon gondolkoznánk,
+
+00:52:30.854,00:52:33.064
+hogy sok adatot kell kezelnünk,
+
+00:52:33.064,00:52:38.662
+akkor ez ugye mai fejjel cloudot jelent, meg S3 bucketeket, meg mit tudom én.
+
+00:52:38.662,00:52:42.181
+Ugye ezeket a szokásos nagy adattárolókat.
+
+00:52:42.181,00:52:44.635
+A probléma ezekkel mindig az,
+
+00:52:44.635,00:52:50.280
+hogy a nagy tömegű adatot nekem el is kell juttatni ebbe a környezetbe.
+
+00:52:50.280,00:52:55.640
+A feldolgozó kódot ebben a környezetben kell létrehoznom és futtatnom.
+
+00:52:55.640,00:53:00.051
+És tehát tehát mindig függök egyfajta kommunikációs lag-től,
+
+00:53:00.051,00:53:04.129
+és ráadásul ha én egyszer beépülök egy adott cloud szolgáltatóba,
+
+00:53:04.129,00:53:07.376
+akkor onnan nagyon nehéz átmenni mondjuk egy másikba.
+
+00:53:07.376,00:53:09.830
+Ha én arra rá szeretnék tenni egy interface-t,
+
+00:53:09.830,00:53:14.304
+annak a fejlesztési, tervezési költsége egyszerűen vállalhatatlan.
+
+00:53:14.304,00:53:16.640
+Na most ehhez képest úgy gondoltam,
+
+00:53:16.640,00:53:23.221
+hogy ameddig belefér, addig csinálok egy saját adattárolót,
+
+00:53:23.221,00:53:31.000
+és ha nem fér bele, akkor utána lépek tovább egy hivatalos megoldásra.
+
+00:53:31.000,00:53:35.153
+Jelentem nem csak túlélte az Európai Uniós adatoknak a tárolását ez a tároló,
+
+00:53:35.153,00:53:41.084
+hanem ugyanazzal a szolgáltatással nagyszerűen tudom kezelni
+
+00:53:41.084,00:53:44.584
+az EDGAR-nak a teljes adattartalmát.
+
+00:53:44.584,00:53:45.954
+Mit csinálok?
+
+00:53:45.954,00:53:48.613
+Végtelen egyszerű megoldást használok.
+
+00:53:48.613,00:53:54.310
+Gyakorlatilag file system szinten tárolom ezeket a a fájlokat.
+
+00:53:54.310,00:54:00.644
+Tehát például itt van az EDGAR adattartalom, azon belül mondjuk a reports.
+
+00:54:00.644,00:54:05.918
+Ugye itt van az az érdekesség, hogy nagyon-nagyon sok fájlról beszélünk,
+
+00:54:05.918,00:54:10.319
+ezt már az operációs rendszer file system-e nem szereti.
+
+00:54:10.319,00:54:14.936
+Én egy kétlépéses cache-t használok rá.
+
+00:54:14.936,00:54:21.965
+Tehát gyakorlatilag a objektumazonosítóból képezek egy kétszintű hash könyvtárat,
+
+00:54:21.965,00:54:27.064
+és azon belül fogok majd a cégre vonatkozó jelentéseket tárolni,
+
+00:54:27.064,00:54:29.876
+és ebben vannak maguk a jelentések.
+
+00:54:29.876,00:54:34.742
+Na most ezzel nyugodt lélekkel meg lehet enni azt a rettenetes mennyiséget.
+
+00:54:34.742,00:54:39.198
+Tehát ebben elvileg 20 millió jelentésnek az adatai vannak,
+
+00:54:39.198,00:54:41.271
+különösebben nem fáj neki.
+
+00:54:41.271,00:54:42.960
+Miért érdekes ez még?
+
+00:54:42.960,00:54:49.000
+Teljesítmény szempontból. Ugyanis ahhoz, hogy én...
+
+00:54:49.000,00:54:53.588
+tehát hogyha én egyszerre szeretnék egy ilyen átfogó keresést indítani
+
+00:54:53.588,00:54:55.317
+például ebben a tudásbázisban,
+
+00:54:55.317,00:54:57.492
+akkor hogyha ez egy külső szolgáltató,
+
+00:54:57.492,00:55:00.293
+gyakorlatilag van egyetlen vékony csövem,
+
+00:55:00.293,00:55:04.213
+és reménykedem abban, hogy a szolgáltató gyorsan fog ott dolgozni.
+
+00:55:04.213,00:55:05.851
+Ehhez képest én azt mondom,
+
+00:55:05.851,00:55:08.872
+hogy itt van egy file system benne egy csomó fájl.
+
+00:55:08.872,00:55:11.240
+Gyakorlatilag fájlonként tudok indítani,
+
+00:55:11.240,00:55:14.031
+tehát számos thread-et tudok elindítani párhuzamosan,
+
+00:55:14.031,00:55:17.692
+amely nekem összegyűjtögetik az adatokat.
+
+00:55:17.692,00:55:21.440
+Jól skálázódik. Na, magyarul erről van szó.
+
+00:55:21.920,00:55:23.576
+Üzleti logika kiszervezés.
+
+00:55:23.576,00:55:26.150
+Ezt még ezt mindenképpen el kell mondani.
+
+00:55:26.150,00:55:30.240
+Ugye itt az az érdekes, hogyha az előző ábrát megfigyeljük,
+
+00:55:30.240,00:55:36.165
+itt a felhasználó oldalán nagyon komoly tudás van.
+
+00:55:36.165,00:55:41.100
+Tehát én egy infrastruktúrát építek, egy tudásbázist hozok létre,
+
+00:55:41.100,00:55:46.877
+de valójában üzleti elemzők, a kutatók stb. emberek fognak üldögélni azon az oldalon,
+
+00:55:46.877,00:55:49.957
+akik a tudásbázist használni szeretnénk.
+
+00:55:49.957,00:55:53.396
+Na most ezt úgy megfogni, hogy adok neki egy API-t,
+
+00:55:53.396,00:56:00.554
+ami mondjuk Python-ban vagy valamiben el tud kezdeni kódolgatni és összegyűjteni adatokat, nem szerencsés.
+
+00:56:00.554,00:56:04.271
+Az a szerencsés, hogyha én létrehozok egy portált,
+
+00:56:04.271,00:56:10.111
+amely ezt az adathalmazt szolgáltatja, megjeleníti, és lehetőséget adok arra,
+
+00:56:10.111,00:56:17.427
+hogy a felhasználó, tehát például egy kutató, egy elemző scriptet betöltsön ebbe a portálba,
+
+00:56:17.427,00:56:22.839
+és a portál ezt belül futtassa.
+
+00:56:22.839,00:56:24.735
+Ez nem tudom mennyire hangzik idegenül,
+
+00:56:24.735,00:56:28.685
+én mostanában nem nagyon találkoztam ilyen jellegű eszközökkel,
+
+00:56:28.685,00:56:35.071
+viszont tíz évvel ezelőtt megjelent egy MVEL nevezetű eszköztár,
+
+00:56:35.071,00:56:37.920
+amely pontosan erre alkalmas.
+
+00:56:37.920,00:56:41.681
+Az integrációja pedig... hogy is mondjam csak?
+
+00:56:41.681,00:56:43.757
+Szóval szégyeletesen egyszerű.
+
+00:56:43.757,00:56:48.655
+A következő történik, egyetlen sort hozzácsapok ehhez a projekthez.
+
+00:56:48.655,00:56:53.346
+Kapok egy stringet, az MVEL-t megkérem, hogy fordítsa le ezt a stringet.
+
+00:56:53.346,00:56:55.723
+Ez gyakorlatilag egy kis kódrészlet.
+
+00:56:55.723,00:56:58.112
+Csinál nekem belőle egy objektumot.
+
+00:56:58.112,00:57:00.876
+És amikor nekem erre szükségem van,
+
+00:57:00.876,00:57:04.638
+akkor azt mondom, hogy "MVEL.executeExpression":
+
+00:57:04.638,00:57:08.854
+a lefordított objektumot ebben a bizonyos környezetben futassa le.
+
+00:57:08.854,00:57:11.096
+Ez egyébként egy egyszerű map,
+
+00:57:11.096,00:57:14.776
+amibe belerakom a reportnak az adatait, háttéradokat,
+
+00:57:14.776,00:57:19.749
+meg egyébként egy bizonyos környezetben az aktuális fact-nek az adatait.
+
+00:57:19.749,00:57:22.859
+Ezt most nyilván technikai részletek,
+
+00:57:22.859,00:57:24.659
+de a lényeg tehát az,
+
+00:57:24.659,00:57:30.720
+hogy egy pár soros integrációnak a segítségével megkapom azt a szolgáltatást,
+
+00:57:30.720,00:57:35.200
+hogy a felhasználó egy tetszőleges üzleti
+
+00:57:35.200,00:57:38.449
+logikát be tud tolni a portálba,
+
+00:57:38.449,00:57:40.319
+hogy ott fusson le.
+
+00:57:40.319,00:57:46.160
+Nyilvánvalóan egy ilyen eszközt használunk, és nagyon jó lesz.
+
+00:57:47.000,00:57:50.300
+... És most van 11 óra.
+
+00:57:50.300,00:57:53.727
+Szeretném kérdezni, hogy folytassuk-e...
+
+00:57:53.727,00:57:57.071
+gyorsan átkattogok még ezeken a diákon.
+
+00:57:57.071,00:57:59.376
+Tehát validáció itt az az érdekes,
+
+00:57:59.376,00:58:02.141
+hogy amikor nagyon sok adattal dolgozunk,
+
+00:58:02.141,00:58:04.490
+akkor rettenetesen nehéz validálni.
+
+00:58:04.490,00:58:08.208
+Ráadásul ugye itt komplex feldolgozó algoritmusok vannak.
+
+00:58:08.208,00:58:10.204
+A két módszertan a következőképpen néz ki.
+
+00:58:10.204,00:58:13.286
+Az egyik az az, hogy csinálj valahogy látható exportot.
+
+00:58:13.286,00:58:16.476
+Ehhez azt csináltam, hogy csináltam egy Excel exportot.
+
+00:58:16.476,00:58:19.399
+Tehát valamit lefuttatok, megkapom az eredmény Excelben,
+
+00:58:19.399,00:58:22.770
+és Excelben nagyon könnyű megnézni az adatokat,
+
+00:58:22.770,00:58:25.368
+összevetni valamilyen más forrással.
+
+00:58:25.368,00:58:28.028
+A másik pedig az, amikor egy algoritmust használok.
+
+00:58:28.028,00:58:32.006
+Tehát az az érdekes, hogy én írok egy feldolgozó algoritmust
+
+00:58:32.006,00:58:36.072
+és annak az eredményét tudom összevetni egy másik adatforrással,
+
+00:58:36.072,00:58:38.924
+ami elvileg ugyanazt az algoritmust futtatta le.
+
+00:58:38.924,00:58:42.562
+Jelen esetben arról van szó, hogy a jelentésnek a feldolgozása,
+
+00:58:42.562,00:58:46.066
+tehát például beolvasok én egy XHTML fájlt,
+
+00:58:46.066,00:58:49.672
+ugyanannak az XHTML-nek a feldolgozott tartalmát
+
+00:58:49.672,00:58:53.204
+el tudom kérni a filings-tól vagy az EDGAR-tól,
+
+00:58:53.204,00:58:54.793
+és össze tudom vetni,
+
+00:58:54.793,00:59:00.784
+hogy az ő általa elvégzett feldolgozás ugyanazt az eredményt adja-e, mint amit én.
+
+00:59:00.784,00:59:06.079
+Ezt nagyon érdemes megtenni, amennyiben van rá lehetőség.
+
+00:59:06.359,00:59:09.674
+Jó, taxonómiát most átugrom.
+
+00:59:09.674,00:59:11.160
+Megvalósítás.
+
+00:59:11.160,00:59:15.524
+Itt az arra szeretném fölhívni a figyelmet,
+
+00:59:15.524,00:59:20.722
+hogy gyakorlatilag az alkalmazásnak rétegei vannak.
+
+00:59:20.722,00:59:26.160
+Tehát az általános tudásbázis-kezelő szolgáltatásokat,
+
+00:59:26.160,00:59:28.668
+azokat én egy külön projektbe teszem.
+
+00:59:28.668,00:59:32.370
+Jelen esetben ez a DustSimple (ezt most nem fogom elmagyarázni),
+
+00:59:32.370,00:59:33.282
+de az a lényeg,
+
+00:59:33.282,00:59:37.890
+hogy ennek a rétegnek semmi köze nincsen az XBRL-hez.
+
+00:59:37.890,00:59:40.108
+Ez egy tudásbáziskezelés.
+
+00:59:40.108,00:59:47.754
+A cache, a HTTP address-ről letöltés, az MVEL integráció, a Jetty szerver indítás és a többi,
+
+00:59:47.754,00:59:52.025
+amely technológiai réteg, az ebben a projektben van.
+
+00:59:52.025,00:59:55.195
+Az XbrlCore és az XbrlTest közötti különbség pedig az,
+
+00:59:55.195,00:59:59.773
+hogy az XbrlTest gyakorlatilag a "tracer bullet" része a fejlesztésnek.
+
+00:59:59.773,01:00:02.571
+Tehát ez az, ahol szabad csúnya kódot írni.
+
+01:00:02.571,01:00:06.178
+Most nem akarok itt nagyon belemenni a részletekbe,
+
+01:00:06.178,01:00:10.354
+de hosszútávú fejlesztői szemmel borzasztóan ronda kódokat írok ilyenkor.
+
+01:00:10.354,01:00:13.711
+Ennek a célja a működés. És amikor működik,
+
+01:00:13.711,01:00:20.613
+akkor szolgáltatásokat, elemeket, utility függvényeket, segédosztályokat satöbbi emelek ki belőle.
+
+01:00:20.613,01:00:23.425
+Ez egy viszonylag egyszerű refaktor,
+
+01:00:23.425,01:00:26.769
+mert egy működőképes rendszert alakítok át,
+
+01:00:26.769,01:00:31.244
+és a kiemelt szolgáltatások kerülnek át az XbrlCore-ba,
+
+01:00:31.244,01:00:38.185
+amely viszont a hosszú távon megtartandó változata ugyanennek a rendszernek.
+
+01:00:38.185,01:00:41.520
+Ez szerintem egy nagyon fontos trükk.
+
+01:00:41.520,01:00:46.762
+Hogyha elsőre próbálunk tökéletes kódot írni,
+
+01:00:46.762,01:00:50.453
+soha az életben nem írunk egyetlen működő sort sem.
+
+01:00:50.453,01:00:53.079
+Ha pedig ragaszkodunk ahhoz a kódhoz,
+
+01:00:53.079,01:00:55.569
+amit elsőre sikerült működésbe hozni,
+
+01:00:55.569,01:00:58.938
+akkor viszont borzasztóan ronda rendszerünk lesz,
+
+01:00:58.938,01:01:01.903
+és nagyon hamar fenntarthatatlanná válik.
+
+01:01:01.903,01:01:06.349
+Ez a fajta refaktoros, folyamatosan tisztuló a projektszerkezet
+
+01:01:06.349,01:01:12.280
+nagyon hosszú távon fenntartható a tapasztalataim szerint.
+
+01:01:16.200,01:01:19.952
+Hát szerintem most ezekbe én igazából nem megyek bele.
+
+01:01:19.952,01:01:26.257
+Itt a forrás, tehát itt gyakorlatilag a forráskonnektornak egy kis bemutatására gondoltam.
+
+01:01:26.257,01:01:29.677
+Itt arra, hogy hogy néz ki az aktuálisan futó portál.
+
+01:01:29.677,01:01:35.418
+Ezt körülbelül elmondtam, tehát ez a tudásbáziskezelésnek a része.
+
+01:01:35.418,01:01:38.712
+Az EDGAR-nak a részleteit mutattam volna itt meg,
+
+01:01:38.712,01:01:43.214
+tehát hogy milyen formátumban kapjuk az adatokat, és hogyan alakul ez át.
+
+01:01:43.214,01:01:47.377
+Illetve az IFRS taxonómiának a feldolgozása.
+
+01:01:47.377,01:01:52.526
+Én úgy gondolom, hogy hogyha esetleg kérdés van valamelyikkel kapcsolatban,
+
+01:01:52.526,01:01:55.621
+akkor arra a konkrét változatra rátérünk.
+
+01:01:55.621,01:01:58.642
+Jaj, nem, bocsánat, volt még egy rajzom,
+
+01:01:58.642,01:02:01.371
+ezt akkor még gyorsan itt fölvázalom.
+
+01:02:01.371,01:02:04.141
+Tehát ugye itt az az érdekes,
+
+01:02:04.141,01:02:09.495
+hogy most eljutottunk egy működő állapotba, örülünk neki,
+
+01:02:09.495,01:02:13.977
+generálunk adatokat, érdekes fejlesztési lehetőségeink vannak,
+
+01:02:13.977,01:02:21.036
+de a stratégiai célok gyakorlatilag az eredeti terven keresztül továbbra is fennállnak.
+
+01:02:21.036,01:02:25.000
+Tehát azok az eszközök, amelyeket eddig kialakítottunk,
+
+01:02:25.000,01:02:31.768
+folyamatosan csúsznak át a szolgáltatások a DustSimple, illetve XbrlCore szintre.
+
+01:02:31.768,01:02:35.781
+Az XbrlTest generálja a most használható adatokat,
+
+01:02:35.781,01:02:39.400
+de az XbrlCore-ban egy sokkal magasabb szintű,
+
+01:02:39.400,01:02:47.057
+általánosabb XBRL adatkezelő, vizualizációs, ellemző portálnak a terve van,
+
+01:02:47.057,01:02:51.680
+amelynek igazából ezek a következő lépései.
+
+01:02:51.680,01:02:54.426
+Megint, ugye itt az a nagyon fontos,
+
+01:02:54.426,01:02:59.189
+hogy a big picture továbbra is vezeti a fejlesztést annak ellenére,
+
+01:02:59.189,01:03:03.754
+hogy folyamatos kísérletezéssel, folyamatos belső átalakításokkal dolgozunk,
+
+01:03:03.754,01:03:06.823
+de ennek ellenére pontosan látható,
+
+01:03:06.823,01:03:12.279
+hogy miket fogunk a közeljövőben csinálni és mit várunk el tőle.
+
+01:03:12.279,01:03:15.750
+És akkor itt zárnám be ezt a történetet.
+
+01:03:15.750,01:03:19.638
+ezen a dián láthatóak azok a hivatkozások,
+
+01:03:19.638,01:03:23.525
+amelyekről itt most röviden szót ejtettem.
+
+01:03:23.525,01:03:28.278
+Az absztraktabb rész ez a tudás, tanulás, tanítás, kutatás szegmens.
+
+01:03:28.278,01:03:32.864
+Ugye ez nem elsősorban informatikai tartalom.
+
+01:03:32.864,01:03:39.880
+Az informatikai rész az pedig ez a másik hivatkozás csapat.
+
+01:03:39.880,01:03:44.150
+És akkor köszönöm szépen a figyelmet.
+
+01:03:44.150,01:03:48.960
+Remélem végig hallható voltam. És várom az esetleges kérdéseket.
+
+01:03:48.960,01:03:54.387
+Köszönjük szépen kedves Loránd az előadást.
+
+01:03:54.387,01:04:00.480
+Én is kérdezném a hallgatókat, hogy van-e esetleg kérdés.
+
+01:04:01.680,01:04:05.025
+Úgy látom, csevegésbe se érkezett most.
+
+01:04:05.025,01:04:09.770
+Őszintén szólva, én készültem még egy bónusz diával
+
+01:04:09.770,01:04:13.694
+arra az esetre, hogyha nagy lenne a csönd.
+
+01:04:13.694,01:04:18.355
+Ezt még akkor gyorsan átpörgetném. Ez ilyen, tehát azért,
+
+01:04:18.355,01:04:22.880
+hogy keretes szerkezete legyen a történetnek, mert ezt én nagyon szeretem.
+
+01:04:22.880,01:04:26.359
+Akkor ezt még megmutatnám.
+
+01:04:26.359,01:04:28.268
+Tehát ez megint egy kicsit filozófikusabb.
+
+01:04:28.268,01:04:34.946
+Azt szeretném, hogyha egy kicsit így megmaradna ez az érdekes gondolat a fejekben.
+
+01:04:34.986,01:04:38.820
+Amikor informatikai fejlesztésről beszélünk,
+
+01:04:38.820,01:04:42.577
+akkor nagyon sokszor használunk építészeti,
+
+01:04:42.577,01:04:48.559
+tehát építészeti tervezési "architecture" fogalmakat.
+
+01:04:48.559,01:04:51.404
+És ezen a téren ugye az az érdekes,
+
+01:04:51.404,01:04:57.296
+hogy amikor építkezünk, ugye az első épületek azok körülbelül így néztek ki.
+
+01:04:57.296,01:05:00.279
+Tehát megpróbáltunk körülbelül homogén,
+
+01:05:00.279,01:05:04.174
+egymáshoz illeszthető elemekből struktúrákat építeni.
+
+01:05:04.174,01:05:08.325
+Gyakorlatilag nem volt ennek semmilyen belső szerkezete, terve.
+
+01:05:08.325,01:05:14.279
+Egyszerűen csak a maga a fizikai törvények tartják egyben a piramis alakot.
+
+01:05:14.279,01:05:17.475
+Amikor elkezdünk célzottan építkezni, akkor látszik,
+
+01:05:17.475,01:05:19.856
+hogy nagyon komolyan dolgozunk azon,
+
+01:05:19.856,01:05:24.523
+hogy az egyes elemeket pontosan megformáljuk, egymás mellé építsük.
+
+01:05:24.523,01:05:28.640
+Sokkal kevesebb anyaggal sokkal magasabbra tudunk építkezni.
+
+01:05:28.640,01:05:31.022
+Viszont ezek az anyagok még mindig úgy nézek ki,
+
+01:05:31.022,01:05:33.435
+hogy a köveket egymás tetejére rakjuk
+
+01:05:33.435,01:05:37.309
+és gyakorlatilag a tömegvonzás tartja össze ezt az épületet,
+
+01:05:37.309,01:05:44.839
+és hogyha például földrengés van, akkor ennek a a stabilitása eléggé kérdéses.
+
+01:05:44.839,01:05:51.011
+Ezzel a módszertannal óriási épületeket tudunk építeni, ha emberi szemmel nézzük,
+
+01:05:51.011,01:05:55.799
+ugye nagyon magasak egy emberhez képest, és hatalmas hosszúságokat,
+
+01:05:55.799,01:05:58.460
+hatalmas méreteket tudunk vele bejárni.
+
+01:05:58.460,01:06:03.298
+De ha az a kérdés, hogy a technológia mit tesz számunkra lehetővé,
+
+01:06:03.298,01:06:05.680
+akkor módszertant kell váltanunk.
+
+01:06:05.680,01:06:08.401
+Erre példa ugye az Eiffel-torony,
+
+01:06:08.401,01:06:14.360
+ebben az esetben az építő elemeket már nem csak a gyakorlatilag az egymáshoz kötés
+
+01:06:14.360,01:06:18.559
+és a fizikai, tehát a gravitáció tartja össze,
+
+01:06:18.559,01:06:22.381
+hanem az egyes pontokon húzóerőt is képesek elviselni.
+
+01:06:22.381,01:06:28.365
+És gyakorlatilag az Eiffel-torony egy matematikai képletnek egy fizikai megjelenése lényegében,
+
+01:06:28.365,01:06:34.182
+hogy hogyan tudjuk ennek a szerkezetnek a tömegét biztonságosan eloszlatni úgy,
+
+01:06:34.182,01:06:36.799
+hogy ez az egész így állva maradjon.
+
+01:06:36.799,01:06:41.720
+Abban az esetben ugye még mindig szoftver architektúráról beszélünk valójában
+
+01:06:41.720,01:06:48.590
+és jelen esetben az én véleményem szerint körülbelül itt tart a szoftver tervezési módszertanunk
+
+01:06:48.590,01:06:51.480
+tehát hogy a modulokat szépen szigorúan
+
+01:06:51.480,01:06:55.680
+API-kon, függvényhívásokon, egyebeken keresztül összecsavarozzuk.
+
+01:06:55.680,01:06:57.657
+Ugye ezzel egy a baj, illetve több baj is van.
+
+01:06:57.657,01:07:00.386
+Az egyik az az, hogy rettenetes lesz a tömege.
+
+01:07:00.386,01:07:04.160
+A másik pedig az, hogy a változásokra borzasztóan rosszul reagál.
+
+01:07:04.160,01:07:08.039
+Hát gyakorlatilag nem tudunk változtatni ezen az Eiffel-tornyon.
+
+01:07:08.039,01:07:14.226
+Ahhoz, hogyha mi szeretnénk változtatni ezen, akkor két dolgot kell megnéznünk.
+
+01:07:14.226,01:07:18.467
+Az egyik az az, hogy mekkora tömeg szükséges feltétlenül ahhoz,
+
+01:07:18.467,01:07:21.080
+hogy egy adott magasságba elérjünk.
+
+01:07:21.080,01:07:23.039
+Ez a Snelson-féle tűtorony.
+
+01:07:23.039,01:07:27.810
+A kettő között architektúra szempontjából ez az integritásról beszél.
+
+01:07:27.810,01:07:33.063
+Tehát, hogy minden egyes elem ugyanúgy és ugyanolyan szögben találkozik a másik elemmel.
+
+01:07:33.063,01:07:35.952
+Ezt csavarok, szegecsek biztosítják.
+
+01:07:35.952,01:07:41.055
+Ez a modell, ez a Tensegrity nevezetű gondolkodásmódot közvetíti,
+
+01:07:41.055,01:07:48.838
+ami arról szól, hogy az egyes elemek vagy nyomást, vagy húzást tudnak elviselni.
+
+01:07:48.838,01:07:55.113
+Nyomást elviselő elemeket és húzást elviselő elemeket közvetlenül soha nem kötünk össze,
+
+01:07:55.113,01:07:57.961
+hanem köztük egy ilyen rugalmas kapcsolatot,
+
+01:07:57.961,01:08:03.350
+tehát a nyomást elviselő elemeket csak húzást elviselő elemekkel kötünk össze.
+
+01:08:03.350,01:08:11.760
+Ez gyakorlatilag ez informatikátra lefordítva late binding, dynamic loading és hasonló elemek.
+
+01:08:11.760,01:08:14.675
+És a jobb szélről nyilván hiányzik még egy ábra.
+
+01:08:14.675,01:08:22.199
+Ez az informatikai rendszer, amely a földdel egészen sajátos kapcsolatot ápol.
+
+01:08:22.199,01:08:27.640
+És valójában amikor mesterséges intelligenciáról beszélünk,
+
+01:08:27.640,01:08:31.880
+akkor ehelyett a modell helyett,
+
+01:08:31.880,01:08:38.311
+tehát amikor amikor ugyanazzal megszokott eszköztárral egyre nagyobb tömeget tudunk feldolgozni,
+
+01:08:38.311,01:08:42.440
+sokkal inkább erre a modellre fókuszálnék,
+
+01:08:42.440,01:08:48.507
+amely tulajdonképpen a a saját súlyának az elviselésére, megemelésére képes rendszer.
+
+01:08:48.507,01:08:53.159
+És ezzel szerettem volna zárni.
+
