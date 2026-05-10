@@ -1,26 +1,35 @@
 package me.giskard.dust.sandbox.text;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
+import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.html.HTML;
+import javax.swing.text.html.HTMLDocument;
+import javax.swing.text.html.HTMLEditorKit;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.net.DustNetUtils;
 import me.giskard.dust.core.utils.DustUtils;
+import me.giskard.dust.core.utils.DustUtilsFile;
 import me.giskard.dust.mod.utils.DustUtilsJson;
 
 public class DustSandboxTextUtils implements DustSandboxTextConsts {
@@ -30,6 +39,32 @@ public class DustSandboxTextUtils implements DustSandboxTextConsts {
 
 		return (null == id) ? (String) e.getAttributes().getAttribute(HTML.Attribute.ID) : id;
 	}
+	
+	public static void processTranslated(DustSandboxTextAgent txtAgent, String ttxt, DustHandle tLan, Collection<DustHandle> hSel) throws IOException, BadLocationException {
+		Reader stringReader = new StringReader(ttxt);
+		HTMLEditorKit htmlKit = new HTMLEditorKit();
+		HTMLDocument htmlDoc = (HTMLDocument) htmlKit.createDefaultDocument();
+		htmlKit.read(stringReader, htmlDoc, 0);
+
+		int dl = htmlDoc.getLength();
+		String newTxt = htmlDoc.getText(0, dl);
+
+		for (DustHandle s : hSel) {
+			String k = s.getId();
+			Element te = htmlDoc.getElement(k);
+			if ( null != te ) {
+				int so = te.getStartOffset();
+				int eo = te.getEndOffset();
+				if ( dl < eo ) {
+					eo = dl;
+				}
+				String tt = newTxt.substring(so, eo);
+				txtAgent.accessTextExt(DustAccess.Set, tLan, tt, s);
+			}
+		}
+	}
+
+
 
 	public static String translateLibreLocal(DustHandle hFrom, DustHandle hTo, String format, String content) {
 		return translateLibre("http://localhost:5000/translate", "", hFrom, hTo, format, content);
@@ -37,6 +72,12 @@ public class DustSandboxTextUtils implements DustSandboxTextConsts {
 
 	public static String translateLibre(String address, String apiKey, DustHandle hFrom, DustHandle hTo, String format, String content) {
 		try {
+			File dir = new File("work");
+			DustUtilsFile.ensureDir(dir);
+			try ( FileWriter fw = new FileWriter(new File(dir, "translating." + format))) {
+				fw.append(content);
+				fw.flush();
+			}
 			Map<String, Object> msg = new TreeMap<>();
 
 			msg.put("q", content);

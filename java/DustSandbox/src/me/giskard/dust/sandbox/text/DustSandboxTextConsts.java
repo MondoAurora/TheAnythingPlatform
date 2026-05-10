@@ -9,4 +9,5 @@ public interface DustSandboxTextConsts extends DustConsts, DustNetConsts {
 		evtToNext, evtToPrev, evtSplit, evtMergeNext, evtMergePrev
 	}
 
+	char[] SENTENCE_SPLIT = {'.', '?', '!'};
 }
