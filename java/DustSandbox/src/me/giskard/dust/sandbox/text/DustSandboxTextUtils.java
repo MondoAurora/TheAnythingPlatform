@@ -94,7 +94,7 @@ public class DustSandboxTextUtils implements DustSandboxTextConsts {
 			URL url = new URL(address);
 			Set<String> hdrs = new HashSet<String>();
 			hdrs.add("Content-Type: application/json");
-			HttpURLConnection http = DustNetUtils.getConn(url, 5000, hdrs);
+			HttpURLConnection http = DustNetUtils.getConn(url, 0, hdrs);
 			
 			http.setRequestMethod("POST"); // PUT is another valid option
 			http.setDoOutput(true);

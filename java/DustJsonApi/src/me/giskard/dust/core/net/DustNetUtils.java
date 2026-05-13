@@ -69,10 +69,13 @@ public class DustNetUtils implements DustNetConsts {
 			conn.setRequestProperty(key, val);
 		}
 
-		if (-1 != timeout) {
-			conn.setConnectTimeout(timeout);
-			conn.setReadTimeout(timeout);
+		if (0 > timeout) {
+			timeout = 0;
 		}
+
+		conn.setConnectTimeout(timeout);
+		conn.setReadTimeout(timeout);
+		
 		return conn;
 	}
 
@@ -83,7 +86,7 @@ public class DustNetUtils implements DustNetConsts {
 		URL url = new URL(urlStr);
 		HttpURLConnection conn = getConn(url, timeout, (null == headers) ? Collections.EMPTY_LIST : headers);
 
-        String protocol = url.getProtocol().toLowerCase();
+		String protocol = url.getProtocol().toLowerCase();
 		if ("http".equals(protocol) || "https".equals(protocol)) {
 			conn.setInstanceFollowRedirects(false);
 			conn.connect();
@@ -100,8 +103,8 @@ public class DustNetUtils implements DustNetConsts {
 				conn = getConn(url, timeout, headers);
 			}
 		} else {
-            conn.connect();
-        }
+			conn.connect();
+		}
 
 		InputStream is = conn.getInputStream();
 
@@ -111,7 +114,7 @@ public class DustNetUtils implements DustNetConsts {
 			}
 		} else {
 			try (BufferedInputStream in = new BufferedInputStream(is)) {
-                success = DustStreamUtils.copyStream(in, target);
+				success = DustStreamUtils.copyStream(in, target);
 			}
 		}
 
@@ -119,35 +122,38 @@ public class DustNetUtils implements DustNetConsts {
 	}
 
 	public static void sslHack() throws Exception {
-		
-    SSLContext ctx = SSLContext.getDefault();
-    for (String s : ctx.getSupportedSSLParameters().getCipherSuites()) {
-      if (s.contains("AES_256_CBC_SHA"))
-        System.out.println(s);
-    }
-		
-    TrustManager[] trustAllCerts = new TrustManager[]{
-        new X509TrustManager() {
-            public X509Certificate[] getAcceptedIssuers() { return null; }
-            public void checkClientTrusted(X509Certificate[] certs, String authType) {}
-            public void checkServerTrusted(X509Certificate[] certs, String authType) {}
-        }
-    };
 
-    // 2. Install the all-trusting trust manager
-    SSLContext sc = SSLContext.getInstance("SSL");
-    sc.init(null, trustAllCerts, new java.security.SecureRandom());
-    HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+		SSLContext ctx = SSLContext.getDefault();
+		for (String s : ctx.getSupportedSSLParameters().getCipherSuites()) {
+			if (s.contains("AES_256_CBC_SHA"))
+				System.out.println(s);
+		}
 
-    // 3. Create all-trusting host name verifier
-    HostnameVerifier allHostsValid = (hostname, session) -> true;
+		TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+			public X509Certificate[] getAcceptedIssuers() {
+				return null;
+			}
 
-    // 4. Install the all-trusting host verifier
-    HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
-    
+			public void checkClientTrusted(X509Certificate[] certs, String authType) {
+			}
+
+			public void checkServerTrusted(X509Certificate[] certs, String authType) {
+			}
+		} };
+
+		// 2. Install the all-trusting trust manager
+		SSLContext sc = SSLContext.getInstance("SSL");
+		sc.init(null, trustAllCerts, new java.security.SecureRandom());
+		HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+
+		// 3. Create all-trusting host name verifier
+		HostnameVerifier allHostsValid = (hostname, session) -> true;
+
+		// 4. Install the all-trusting host verifier
+		HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
+
 		System.setProperty("jdk.tls.client.enableSessionTicketExtension", "false");
 
-		
 	}
 
 }

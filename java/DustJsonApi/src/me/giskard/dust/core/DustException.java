@@ -10,7 +10,7 @@ public final class DustException extends RuntimeException implements DustConsts 
 	static PrintStream DUMP_STACK_TRACE = System.err;
 
 	private DustException(Throwable src, Object... params) {
-		super(DustUtils.sbAppend(null, ",", false, params).toString(), src);
+		super(DustUtils.toString(DustUtils.sbAppend(null, ",", false, params)), src);
 
 		log(true, src, getMessage());
 	}
