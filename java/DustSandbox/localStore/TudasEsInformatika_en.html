@@ -1,0 +1,2079 @@
+<html class="translated-ltr"><head><meta charset="utf-8"/></head><body>
+<p>
+<span id="TudasEsInformatika_hu.1$fc220103">I warmly welcome all the participants in our presentation today.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c02bd1eb">Our speaker today will be Loránd Kedves, </span>
+<span id="TudasEsInformatika_hu.1$915c1c75">who will give a presentation on the topic of knowledge and informatics, </span>
+<span id="TudasEsInformatika_hu.1$d3cecc27">subtitled history, principles and practical examples, </span>
+<span id="TudasEsInformatika_hu.1$8ca49f61">as part of the Artificial Intelligence National Laboratory project.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$7aaf0eb0">And then I would like to ask Loránd </span>
+<span id="TudasEsInformatika_hu.1$616ffb36">to please unmute and give his presentation.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$edb33533">Thank you very much.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ca57a915">Can I be seen and heard?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$791f2383">Fully.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$3cc4ffe4">I would like to add that </span>
+<span id="TudasEsInformatika_hu.1$6d0ac85f">if someone has a question during the presentation, </span>
+<span id="TudasEsInformatika_hu.1$c2655e0a">feel free to write it in the chat, </span>
+<span id="TudasEsInformatika_hu.1$e077b74a">and then the presenter can answer it at the end of the presentation.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d4bea33e">Then I would get started.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$56f9a5f9">So thank you very much for the organization and the honorable invitation, </span>
+<span id="TudasEsInformatika_hu.1$15e52b2f">and I welcome all those interested.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$3450c73a">My name is Loránd, and I have been working as an IT specialist for 30 years </span>
+<span id="TudasEsInformatika_hu.1$f03b2f6c">in development, design, and analysis roles, </span>
+<span id="TudasEsInformatika_hu.1$cbe67d33">typically in corporate environments, from startups to multinational companies.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f457587b">Currently, as a colleague at Széchenyi University, </span>
+<span id="TudasEsInformatika_hu.1$ba5cb464">I am developing an IT platform for managing business reports in XBRL format, </span>
+<span id="TudasEsInformatika_hu.1$6bf4d762">following the research goals of Árpád Tóth and Alex Suta .</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$66c417b2">Now that was such a good sentence </span>
+<span id="TudasEsInformatika_hu.1$3fa14300">that I had to write it down, because it was so true.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2070d847">So we're going to spend the next hour with me </span>
+<span id="TudasEsInformatika_hu.1$41c9bd1d">doing the talking, I hope.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$8f25dfbc">I'm a bit stuck, so I apologize in advance.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$405b358f">I would like to clarify these things here.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$27e0a505">The first is that the word XBRL probably doesn't mean much more to you </span>
+<span id="TudasEsInformatika_hu.1$81ea42dd">than it did to me until May of this year.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$eea1e38e">So I really didn't think </span>
+<span id="TudasEsInformatika_hu.1$ed07d343">I would burden you with this right away.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f8ac3d05">However, the fact is that we have now </span>
+<span id="TudasEsInformatika_hu.1$6729f1d9">reached the point </span>
+<span id="TudasEsInformatika_hu.1$98574f82">where we have an internal IT portal, </span>
+<span id="TudasEsInformatika_hu.1$fbe5aa68">researchers can launch their own searches, </span>
+<span id="TudasEsInformatika_hu.1$d6b6f927">publish papers with the selected data, </span>
+<span id="TudasEsInformatika_hu.1$c66e9888">and participate in conferences.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d3f6362d">This development speed and methodology may probably interest you, </span>
+<span id="TudasEsInformatika_hu.1$360ec92f">and hopefully you don't mind </span>
+<span id="TudasEsInformatika_hu.1$45dd40cf">if I show you JSON, XML, Java code, and the like.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$bb09f72e">So I want to deal with that.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$5e6643d4">Very briefly about myself, I'll just say </span>
+<span id="TudasEsInformatika_hu.1$42c86da8">that this attached newspaper photo is not so yellow because of a Photoshop filter, </span>
+<span id="TudasEsInformatika_hu.1$4c80b12a">but because it was taken 23 years ago.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$0fd6e4b2">The 27-year-old young man with much more hair, marked with a red circle, is me.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$eef8e7bd">But that's not what's interesting, it's the text of the article.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$0dafb678">The company itself, Cygron Ltd., </span>
+<span id="TudasEsInformatika_hu.1$f701deb0">by definition at the time, </span>
+<span id="TudasEsInformatika_hu.1$67d7604e">dealt with artificial intelligence, data mining, and later artificial agent technology, text understanding, text generation, etc. </span>
+<span id="TudasEsInformatika_hu.1$afa24d19">until it was taken away by the dotcom crash.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$25f148e0">But returning to this article, the text could have been written today, </span>
+<span id="TudasEsInformatika_hu.1$b4c099ec">because we are essentially talking about the fact that, </span>
+<span id="TudasEsInformatika_hu.1$15051427">in my experience or in my opinion, every IT system is about </span>
+<span id="TudasEsInformatika_hu.1$a72c1476">having a certain context from which I want to collect data.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$138ac45d">We somehow transform this data into knowledge according to the user's needs, </span>
+<span id="TudasEsInformatika_hu.1$d4bd0fef">which helps them understand the current state of that system, </span>
+<span id="TudasEsInformatika_hu.1$b8b06e8c">make plans, or intervene to ensure </span>
+<span id="TudasEsInformatika_hu.1$6ebe7cf0">that it goes in the desired direction.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$6a9f10c6">This could be the automatic control system of a vehicle, </span>
+<span id="TudasEsInformatika_hu.1$8c70e128">it could be the resource management of a university, or even a game.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$0f1f0fa8">We always talk about the same thing.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c1523dc4">My problem was that this was 23 years ago, </span>
+<span id="TudasEsInformatika_hu.1$cb99c91b">and since then I have essentially solved the same tasks </span>
+<span id="TudasEsInformatika_hu.1$e8d5f174">in all kinds of industrial environments, on various topics.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$8afcf7d0">When this really started to bother me, I returned to university.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$252bddf4">I got my MSC, and then I had half a doctorate.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a4638448">And during this research, I actually found answers to </span>
+<span id="TudasEsInformatika_hu.1$f6befc85">what is causing this situation.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$bfc82777">And this is what I would like to talk about primarily, in the following way.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$22c98e32">When we get past the introduction, </span>
+<span id="TudasEsInformatika_hu.1$242f878e">I'd like to give a very brief summary of the historical inventions </span>
+<span id="TudasEsInformatika_hu.1$c7f39ac1">that I've collected here.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c21428e0">Then I would like to talk about how these can be used in everyday development, </span>
+<span id="TudasEsInformatika_hu.1$fa08d137">and finally I would like to introduce XBRL development as a practical application.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$3b4af074">I'll try to spin the beginning, </span>
+<span id="TudasEsInformatika_hu.1$2ad26256">so those minutes are really just for me and are for informational purposes.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$dcdb298f">The references will be there at the end on a separate slide, so you don't need to write them down.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$43029e6b">However, if any questions, disagreements, etc. arise, </span>
+<span id="TudasEsInformatika_hu.1$668ee282">I would be very, very curious, because after all, this is how I learn.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$4e22c2b2">One more little thing.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$89a48925">It's obvious that I'll be using the slides this way all the time, </span>
+<span id="TudasEsInformatika_hu.1$9b41b2c6">display the content as I go </span>
+<span id="TudasEsInformatika_hu.1$4c5446e2">so that reading and listening don't compete with each other.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9b2fe0de">I use the monitor icon to indicate when I switch screens, like this.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f061ce5d">If this bothers anyone, they can blink.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$41d6fa96">And let's begin.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$76d9b905">I actually want to start with a little time travel.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$caa061c3">The fundamental statement we always make about computer science is that </span>
+<span id="TudasEsInformatika_hu.1$8466cabd">it is developing at lightning speed and is a very young science.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f4a7bac6">My observation, and actually the result of my research, was that no,</span>
+<span id="TudasEsInformatika_hu.1$5bf61991">it's just that computer science has a very short and very dense history.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$69b3e1ed">... but this does not come across much. </span>
+<span id="TudasEsInformatika_hu.1$7c962bf6">In everyday life we hear about development tools and cloud and stuff like that </span>
+<span id="TudasEsInformatika_hu.1$8e6f31b5">and not really the background.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ef7ad73c">That's why I thought I'd give you a little introduction to that.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$15deb8c2">The first step is that the declared goal of information technology, as I will show you in a moment, </span>
+<span id="TudasEsInformatika_hu.1$93d37e36">is the correct management of knowledge, or rather to provide technological assistance.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$cd5265df">And the first question is obviously what do we know about knowledge, what are our limits?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b33b38d1">We'll start with the Greeks, because that's a good starting point.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$07169eaa">Plato has an analogy </span>
+<span id="TudasEsInformatika_hu.1$802c89e1">that a thinking person is actually like sitting in a cave, </span>
+<span id="TudasEsInformatika_hu.1$271fe0b2">where the fire burning behind him casts a shadow on the wall in front of him, </span>
+<span id="TudasEsInformatika_hu.1$bf9e29fa">and he tries to deduce the current state from this, </span>
+<span id="TudasEsInformatika_hu.1$b2e228a3">to conclude what is actually happening around him.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$7f77277b">This sounds quite vague, </span>
+<span id="TudasEsInformatika_hu.1$6407b42d">but actually, if we think about the history of the development of physics...</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$68726c60">A particular discipline, such as physics, </span>
+<span id="TudasEsInformatika_hu.1$1eaf055d">creates a specific set of concepts to describe situations </span>
+<span id="TudasEsInformatika_hu.1$9481a331">and uses this set of concepts to model a given situation, </span>
+<span id="TudasEsInformatika_hu.1$83545306">make decisions, create tools, and so on.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$7b6a56ce">The quality of this set of concepts is constantly evolving.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e34b952a">This is how we get from Newton's mechanics to Einstein's theory of relativity, </span>
+<span id="TudasEsInformatika_hu.1$3efc9369">but even today we still don't know whether light is a wave or a particle.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f1fcb701">So obviously, this kind of knowledge is also limited, </span>
+<span id="TudasEsInformatika_hu.1$c294ea5e">and we will continue to develop it, </span>
+<span id="TudasEsInformatika_hu.1$5578d148">but we never have a true connection with reality, </span>
+<span id="TudasEsInformatika_hu.1$b950dbe8">we can only interpret it through our own set of concepts.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a93c3804">The following gentlemen: Gödel, Chomsky and Turing are famous </span>
+<span id="TudasEsInformatika_hu.1$690520c9">for providing mathematical proof that this will always be limited, </span>
+<span id="TudasEsInformatika_hu.1$7c0d19b1">so we can never handle our own knowledge </span>
+<span id="TudasEsInformatika_hu.1$1aeb965e">in a consistent or completely decidable manner.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$4709c352">It's in vain that we develop our toolbox no matter how far we go.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$53dd8ca7">This is such a principled, theoretical limit, isn't it?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$eeb79fce">Then, unfortunately, there are human limitations.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$337b528f">For example, I really want to know a lot of things, </span>
+<span id="TudasEsInformatika_hu.1$9fdaefd7">but unfortunately my brain is quite limited.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$6394dffa">So few things can fit in at once.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$64ac3749">So when we talk about the knowledge of humanity, or knowledge in general, </span>
+<span id="TudasEsInformatika_hu.1$ecef6440">we never talk about an individual phenomenon, </span>
+<span id="TudasEsInformatika_hu.1$772425ef">but about a set of concepts and situation models possessed by a community.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b345b3e4">We would like to expand the limits of this, but they are always there.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9efa9cae">Also, if you think about it, in the old days, there were physical limitations, </span>
+<span id="TudasEsInformatika_hu.1$90a0f50e">like sending books or messages over a distance of 100 km </span>
+<span id="TudasEsInformatika_hu.1$568e5337">was impossible at a given point.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$cf60d5f9">Beyond this, the symbol system and language is also interesting, </span>
+<span id="TudasEsInformatika_hu.1$83c1d198">with which we recorded this knowledge.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$359679fc">So, for example, do we know the language in which the book was written, </span>
+<span id="TudasEsInformatika_hu.1$8a80375b">or do they use the same notation systems in the algebra equations?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$3e2f306c">This was not typical either.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2148f6e7">Today we are at a point where it is a global toolbox, but it wasn't always like that.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d2c33359">When we can get beyond these, that is, we are able to create a toolkit </span>
+<span id="TudasEsInformatika_hu.1$95301bb5">that delivers a huge amount of knowledge to us, </span>
+<span id="TudasEsInformatika_hu.1$9a726b7b">then we again run into human limitations, </span>
+<span id="TudasEsInformatika_hu.1$a0a881ff">with the issues of understanding, processing, and community management of knowledge.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$53f63227">You can read a lot about problems related to this in Neil Postman, </span>
+<span id="TudasEsInformatika_hu.1$02001dbe">if anyone is interested.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$948e8283">And the other problem is that if we interact </span>
+<span id="TudasEsInformatika_hu.1$ee1b6548">with a practically unmanageable amount of knowledge using </span>
+<span id="TudasEsInformatika_hu.1$86a52964">a machine toolbox and infrastructure, </span>
+<span id="TudasEsInformatika_hu.1$c975add4">it has human and societal consequences.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$6b07bff4">Turing and Weizenbaum write about this.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$bcccd800">Well, so that's all about knowledge.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$21ddcd25">Now we'll jump into the technology part.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e34871d5">This would again be a kind of little time travel.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d82ecd11">It's 1945, World War II has just ended.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$fca35794">Vannevar Bush, the highest-ranking administrative leader of the Office of Scientific Research and Development (OSRD), </span>
+<span id="TudasEsInformatika_hu.1$5433d1f8">sits at his desk (well, figuratively speaking) and is faced with a problem.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$25e82fea">He knows that during World War II, there were incredible scientific advances </span>
+<span id="TudasEsInformatika_hu.1$c79a6221">(on both sides, but now we're looking at the Allies) </span>
+<span id="TudasEsInformatika_hu.1$ac2938cc">because they could gather the largest skulls in one place, in one room, </span>
+<span id="TudasEsInformatika_hu.1$491813f0">they could be made to communicate directly, </span>
+<span id="TudasEsInformatika_hu.1$e697c315">and they were given a relatively large budget to conduct their research.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9a633400">There will be peace.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$80997ed3">These people pack up and everyone goes home.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e688eb25">That global brain, that collective organization </span>
+<span id="TudasEsInformatika_hu.1$bddee85f">with incredible performance to think together, will cease to exist.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$746153f7">In reality, of course, individual researchers continue their work, </span>
+<span id="TudasEsInformatika_hu.1$a0110baa">but the bandwidth of the communication channel becomes narrow.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$315f98f0">And it's not that individual researchers can't share </span>
+<span id="TudasEsInformatika_hu.1$60858a4e">or continue their research processes, </span>
+<span id="TudasEsInformatika_hu.1$9e98bdcb">but rather how other researchers can read, </span>
+<span id="TudasEsInformatika_hu.1$d68a938a">and therefore at what pace they can process the knowledge created by others.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f74626ef">To solve this, Vannevar Bush describes an environment called Memex in 1945, </span>
+<span id="TudasEsInformatika_hu.1$2b70829b">an abbreviation for "Memory Extension", which is actually about </span>
+<span id="TudasEsInformatika_hu.1$bf078c46">allowing researchers to access the work of researchers working with them </span>
+<span id="TudasEsInformatika_hu.1$62673368">as if they remembered it, as if it were their own memory, their own experience, </span>
+<span id="TudasEsInformatika_hu.1$3429a391">and he describes the required tools in great detail.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9d1ec762">JCR Licklider is our next character, </span>
+<span id="TudasEsInformatika_hu.1$0b1e1abf">who was commissioned by the US government to study the feasibility of Bush's Memex idea.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$50dd7176">It is very important that he distinguishes between the concepts of transferable and nontransferable knowledge.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$608666eb">He considers transferable the part of human knowledge that is objective, verifiable, </span>
+<span id="TudasEsInformatika_hu.1$c7c61e15">and usable for calculations, engineering, and research.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$198c219b">So where opinions, feelings and other things do not count.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$8c9fb5cc">He determines the approximate amount </span>
+<span id="TudasEsInformatika_hu.1$db087406">of humanity's total transferable knowledge in terms of character count, </span>
+<span id="TudasEsInformatika_hu.1$351f7475">monitors the development of IT infrastructure, </span>
+<span id="TudasEsInformatika_hu.1$8f462253">and from this determines that by around the year 2000, </span>
+<span id="TudasEsInformatika_hu.1$b2fa75d1">humanity's entire global knowledge will be available in an IT system, </span>
+<span id="TudasEsInformatika_hu.1$204ce94c">and develops related services.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$1bd57b9f">It is very important that he thinks in a text-based system.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$128031da">Ivan Sutherland is on the other side, he's looking at the interactive side.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$7538dee3">He was a radar operator at the time, </span>
+<span id="TudasEsInformatika_hu.1$dac71811">and he created an application called Sketchpad, </span>
+<span id="TudasEsInformatika_hu.1$37af180d">which was the first interactive user interface, </span>
+<span id="TudasEsInformatika_hu.1$ae45a59f">essentially using an oscilloscope and a light pen to talk to the machine.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d65ecb2e">And you can use it to create expert systems, </span>
+<span id="TudasEsInformatika_hu.1$39c763be">static models, circuit models, and so on.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$1cf63940">For example, you draw an electric circuit using a light pen, </span>
+<span id="TudasEsInformatika_hu.1$3114072c">and the computer calculates how it will behave.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$168f4a07">Isn't this an unimaginable development </span>
+<span id="TudasEsInformatika_hu.1$6f9dfdf2">compared to someone making punch cards </span>
+<span id="TudasEsInformatika_hu.1$9a9cbbf4">or, say, typing something on a keyboard </span>
+<span id="TudasEsInformatika_hu.1$f94aff1f">and getting the answer on a piece of paper?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$1aba7386">In his analysis of Augmenting Human Intellect, Douglas Engelbart discusses </span>
+<span id="TudasEsInformatika_hu.1$f0a8a3cf">how to use this interactive computer tool specifically </span>
+<span id="TudasEsInformatika_hu.1$609d2904">for collaborative knowledge management of a group, </span>
+<span id="TudasEsInformatika_hu.1$923100cf">so we practically use the tool to improve the tool itself</span>
+<span id="TudasEsInformatika_hu.1$876f117b">(this is the concept of Bootstrap in his case) </span>
+<span id="TudasEsInformatika_hu.1$5452d23b">then we will be able to create </span>
+<span id="TudasEsInformatika_hu.1$c42143ea">a very high-quality IT environment incredibly quickly.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$039075bc">He demonstrated this in 1968, in the Mother of Demos, </span>
+<span id="TudasEsInformatika_hu.1$a071d671">in which he practically shows how </span>
+<span id="TudasEsInformatika_hu.1$38154add">an interactive computer system can help a group collaborate </span>
+<span id="TudasEsInformatika_hu.1$63663050">to solve a completely general, human, everyday problem.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$8be79100">Hypertext management, jumping back and forth, working together on the same document, </span>
+<span id="TudasEsInformatika_hu.1$3d498017">video conferencing, and more.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$048d46f3">Again, this is 1968, so there isn't even ARPANET at this point.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$12128c38">And finally, Ted Nelson.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$6be15975">Ted Nelson is a fantastic revolutionary, </span>
+<span id="TudasEsInformatika_hu.1$ec43ec93">I really recommend watching his lectures.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$670d4ec9">He was actually thinking about creating an alternative web, </span>
+<span id="TudasEsInformatika_hu.1$f6d10ea5">at the same time as the web we know.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$98400a25">The name of the project was Xanadu.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$575c00cf">Basically, we're talking about hypertext in the same way, </span>
+<span id="TudasEsInformatika_hu.1$4cca1ebb">but the regular web focuses on consumption, </span>
+<span id="TudasEsInformatika_hu.1$66cafd6f">that is, how I view a given document.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ee560bc0">In practice, a document is evaluated </span>
+<span id="TudasEsInformatika_hu.1$7dbb8bb4">by its popularity and views through reference counts.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$18902e4a">In contrast, he focuses on generating the document:</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f6aa1ec8">How I acquire pieces of knowledge from various documents </span>
+<span id="TudasEsInformatika_hu.1$1130a7cb">to organize them into a new piece of knowledge, a new text.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$8b9f4df9">In last week's lecture, it was interesting to see </span>
+<span id="TudasEsInformatika_hu.1$ac1ea1de">that here, in contrast to various scientific databases and reference methodologies, </span>
+<span id="TudasEsInformatika_hu.1$dd902359">we are talking about entering this global knowledge space,</span>
+<span id="TudasEsInformatika_hu.1$1670eedb">as imagined by Licklider, in the Xanadu environment, </span>
+<span id="TudasEsInformatika_hu.1$54792d7a">selecting appropriate subsets and building on them.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a29ec36b">That performance is amazing.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$24d29e56">Well, that's all about history for now.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$8c21a680">I hope that I have managed to demonstrate a little bit </span>
+<span id="TudasEsInformatika_hu.1$6f555ed0">that knowledge management is a very important task in an IT system.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$448315d2">And now I would like to move to a slightly more conventional context: </span>
+<span id="TudasEsInformatika_hu.1$372c6474">how we use this in IT system development, both at an abstract level, </span>
+<span id="TudasEsInformatika_hu.1$f56faf74">in terms of individual IT roles and in the development process itself.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$5fc959d6">We are talking about wanting to create an IT system.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$98855c79">For this, we have a client, where there are many, many people, </span>
+<span id="TudasEsInformatika_hu.1$6ca61cf2">and in their heads there are various understandings </span>
+<span id="TudasEsInformatika_hu.1$4be816f7">and bits of knowledge that we would like to arrange somehow.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$978040dc">We start talking, making phone calls, writing emails, creating documents, etc., etc.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$cc415981">If we now abstract from all of this and try to imagine </span>
+<span id="TudasEsInformatika_hu.1$4c1c7163">what the collected knowledge would look like, </span>
+<span id="TudasEsInformatika_hu.1$0c40c5c8">we can actually imagine a very large board </span>
+<span id="TudasEsInformatika_hu.1$b0e3038c">with many yellow post-it notes on it, little pieces of text </span>
+<span id="TudasEsInformatika_hu.1$8f763c17">that we have collected from various sources.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$45c28162">Now, this is not yet a functioning IT system.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$01d06203">When we translate this into a working IT system, </span>
+<span id="TudasEsInformatika_hu.1$dc94083c">we are actually organizing this text into a graph structure.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$52282e3f">What's in this graph?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$eb4eac39">First, we create a set of concepts, </span>
+<span id="TudasEsInformatika_hu.1$153fa812">meaning, what types of objects we want to work with, </span>
+<span id="TudasEsInformatika_hu.1$405ac5ee">what attributes they have, </span>
+<span id="TudasEsInformatika_hu.1$2f0c1631">and what kind of relationships are allowed among these objects.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$562e1962">With this, we have practically created property sheet templates.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2805c3df">Of course, we can call them class or database table definition, etc., but we always talk about the same thing.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$fb615670">With them, we model our system.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$12df3d7e">In practice, we fill these templates with descriptions of specific objects </span>
+<span id="TudasEsInformatika_hu.1$46762694">according to the given toolkit or set of concepts.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$247226cc">We create their connections and so on.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$22fbca40">We define operations on them, both validation operations, </span>
+<span id="TudasEsInformatika_hu.1$d8aae107">(so what is a correct description and what is incorrect), </span>
+<span id="TudasEsInformatika_hu.1$483c9c28">and operations that transfer this system from one coherent state to another.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f7979bc7">It is important to note that in operations we are not concerned with any specific state.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$7c699aed">To describe the operation, it is enough to know the set of concepts.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$418798ad">And we gain experience while the system is operating.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$cf4736e3">In practice, logs or opinions are created, </span>
+<span id="TudasEsInformatika_hu.1$cec3b8e4">which we should fed back into the same knowledge system.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a08ba56e">Why?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d7cbc611">Because our first attempt probably won't be good.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$76b0555d">So we will want to continuously update our concept and operation sets as we go.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$1ebd28d5">(The conditions are generally fine.)</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e5e5ca76">Now, if we try to explain this in IT language, </span>
+<span id="TudasEsInformatika_hu.1$6ab6b904">we run into the following problem: </span>
+<span id="TudasEsInformatika_hu.1$314139f9">our system is in the middle of this little diagram, </span>
+<span id="TudasEsInformatika_hu.1$277fbc0f">(the abstract description with the help of the four boxes above, </span>
+<span id="TudasEsInformatika_hu.1$1af98b6b">which we have to place in this external environment.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c828580a">External standards, file formats, external concept sets, </span>
+<span id="TudasEsInformatika_hu.1$28c63885">and external systems from which we obtain and send data.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e8a5e9b3">We also need to place our own system (in order for it to work) in a specific </span>
+<span id="TudasEsInformatika_hu.1$54633789">or even multiple runtime environments (in the case of a server-client solution), </span>
+<span id="TudasEsInformatika_hu.1$cba31f46">and we probably don't want to develop the entire system ourselves, </span>
+<span id="TudasEsInformatika_hu.1$a456b28a">so we will also use various modules in these runtime environments.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ccaff25e">In fact, when we develop, we perform resource management.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$5762edd6">We want to make the development process somewhat predictable, </span>
+<span id="TudasEsInformatika_hu.1$c6442fe8">and we can approach the story in two ways.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c31f0377">On the one hand, what we do ourselves, we have to allocate our own resources, </span>
+<span id="TudasEsInformatika_hu.1$43fc4bcc">we take all risks, and so on.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2fdee2e2">What we don't want to handle in this way, we try to outsource.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$164d1e46">We don't write a runtime environment, and we use many modules from external providers.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$06cedbae">However, in this case, on the one hand, we introduce a dependency graph, </span>
+<span id="TudasEsInformatika_hu.1$31b41006">but I don't need to go into much detail about that either.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$3afd6072">So if I integrate a given module into my system, </span>
+<span id="TudasEsInformatika_hu.1$d1fdebd4">it is built on other modules.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$538d78bc">I may have to deal with conflicts there.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b943e620">And the problem is that that external system has its own lifecycle.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$51740fd0">So yes, new versions of the operating system will appear, </span>
+<span id="TudasEsInformatika_hu.1$3307c077">yes, new communication standards will appear, </span>
+<span id="TudasEsInformatika_hu.1$b1fdd207">new module versions will appear.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$494fafe3">Now, we are practically talking about an unmanaged external risk here, </span>
+<span id="TudasEsInformatika_hu.1$a8435583">since it is not up to us when these changes appear, </span>
+<span id="TudasEsInformatika_hu.1$c9a8c1d3">how to adapt to them, </span>
+<span id="TudasEsInformatika_hu.1$7c9a864a">or what problems they may cause in our system, whether at compile time or runtime.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c4cf6d5f">Therefore, it is a very sensitive decision and analysis task </span>
+<span id="TudasEsInformatika_hu.1$00dcafcc">to determine which part I will deal with.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$0ed6322f">The following figure shows the roles in IT development.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ac9f5009">This is a very simple picture: I have a system plan, I have an IT specialist </span>
+<span id="TudasEsInformatika_hu.1$7a0555bd">who creates a working application that runs on the machine.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$839d409d">What's the problem with this?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f94a98ca">The problem is that the system plan circled in green doesn't actually exist.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$5aa785e3">We have to somehow extract this from the client, </span>
+<span id="TudasEsInformatika_hu.1$cfef72fe">taking into account that on the one hand they cannot express themselves with IT precision, </span>
+<span id="TudasEsInformatika_hu.1$f1ead27b">and on the other hand they still try to think with our heads and reduce costs.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2af83011">So very often they won't tell you the most critical tasks, </span>
+<span id="TudasEsInformatika_hu.1$289e1686">only to later find out "but we also want this."</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d28327b4">And if there are misunderstandings or problems at this point, </span>
+<span id="TudasEsInformatika_hu.1$b3ec1646">it is extremely expensive, much more expensive than a specific development error.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9e68386f">And the problem is that as long as we see only this much of this diagram, </span>
+<span id="TudasEsInformatika_hu.1$1203b710">we focus on this single operation:</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f53f226a">how do we translate the system design into a working application, from CI/CD to whatever, </span>
+<span id="TudasEsInformatika_hu.1$c9f45ed7">but support is actually needed at a higher level.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$8c178759">That's why I usually illustrate this with a slightly more complicated diagram.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$8bcf1ded">This is what it looks like.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f90b8e02">So there are three very clear and distinct roles in IT development.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$0f331469">The analyst's job is to talk to the client, </span>
+<span id="TudasEsInformatika_hu.1$f55eaf4f">understand their language, and draw the abstract model </span>
+<span id="TudasEsInformatika_hu.1$859f25f1">that the client would like to meet in the end.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$6b647014">His job is to re-generate the requirements list </span>
+<span id="TudasEsInformatika_hu.1$90129047">from this IT-precise model and check whether it can really be covered, </span>
+<span id="TudasEsInformatika_hu.1$29398c3d">also find contradictions or possible additional requests.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$cc7edf56">It's a very, very important role, </span>
+<span id="TudasEsInformatika_hu.1$02f4faeb">but it's very important that the analyst is only allowed to deal with this.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b5729345">The next character is the architect.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$033c1fb4">(These are always my own concepts.)</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2f40ce2e">The architect's job is to know the toolset of the given IT company.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f36c05fe">Here we are obviously talking about specific, say, licensed modules, </span>
+<span id="TudasEsInformatika_hu.1$afc6b202">as well as developer experience and developer resources.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2c4f97ac">He practically receives the design of the system </span>
+<span id="TudasEsInformatika_hu.1$cabd9ba7">and tries to translate it into these components.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$97fc525c">This is a big overall plan, not micromanagement or anything like that.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b77d4e43">He creates a development plan, allocates resources, and hands over subtasks to developers, </span>
+<span id="TudasEsInformatika_hu.1$b8d9fc4b">who then implement that subtask.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$15c3a438">This is not a simple linear story, we are not talking about succession.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e60bd291">The developer gains experiences </span>
+<span id="TudasEsInformatika_hu.1$1d8d62fa">that are of great importance at both the design and analysis levels.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a299e104">For example, a non-functional requirement cannot be fulfilled on the given infrastructure.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$23ffc36b">So these require continuous, clear communication.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$fde1c37a">The key is that this is how that green circle in the middle can be interpreted.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$cdb04fc3">So this is actually the goal of system development.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9f536b47">And we are aware that client expectations will change, </span>
+<span id="TudasEsInformatika_hu.1$bdf3d706">the toolset available will change, the runtime environment will change.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c88e54c7">But if our knowledge is completed at this middle level, </span>
+<span id="TudasEsInformatika_hu.1$aeaa3fbe">then we are probably in a better position </span>
+<span id="TudasEsInformatika_hu.1$69ee14e5">than if we had focused very much on this layer.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$1d82e9b3">And let the development methodologies come.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f02ed0ec">Here on the left, these are generally known, especially the first two.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2854175d">So we can say that waterfall / V-model development is often called outdated, </span>
+<span id="TudasEsInformatika_hu.1$c3987190">but we still often encounter it in large companies.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$84339a5f">Why?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$cd1b9b14">Because they have a huge team of developers, </span>
+<span id="TudasEsInformatika_hu.1$d6720e8f">they take on big tasks and big contracts, </span>
+<span id="TudasEsInformatika_hu.1$0bdcfd3f">and it's very easy to lose control seriously.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2218d6fe">Therefore, there is a very strong demand in management </span>
+<span id="TudasEsInformatika_hu.1$465e07cf">for a clearly visible, clearly delineated roadmap </span>
+<span id="TudasEsInformatika_hu.1$6ca3842f">with small colors, diagrams, milestones, and everything else.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$71547bec">Which is very good on one hand, but on the other hand, the problem is </span>
+<span id="TudasEsInformatika_hu.1$d8436c40">that the larger the system, the more unique experiences emerge </span>
+<span id="TudasEsInformatika_hu.1$49ffa991">at the design and development levels, according to the previous diagram, </span>
+<span id="TudasEsInformatika_hu.1$0382dd73">which this approach cannot handle well.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e743b8f5">That's why this "too big succeed situation" usually occurs, </span>
+<span id="TudasEsInformatika_hu.1$a8c6aced">meaning that the plan is too big and there are too many slippages in it, </span>
+<span id="TudasEsInformatika_hu.1$1f1822f0">and in the end, unfortunate situations arise.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$69bbc8bb">This is a known feature of this approach.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$88d5ca37">The opposite side is the agile methodology.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f77da763">I don't think I need to tell you this in detail, </span>
+<span id="TudasEsInformatika_hu.1$779fc2e8">as everyone knows it very well.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$372208b4">What is interesting is that the writers of the Agile Manifesto </span>
+<span id="TudasEsInformatika_hu.1$58a61534">are not overly satisfied with the state </span>
+<span id="TudasEsInformatika_hu.1$755a5cef">we encounter today under the name agile.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d25bc65d">It is worth listening to a lecture on this topic.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$29bc29a4">I see the problem in the fact that in an agile environment </span>
+<span id="TudasEsInformatika_hu.1$5af17d85">we break down the big task into small user stories </span>
+<span id="TudasEsInformatika_hu.1$f9a57396">that the developers solve, and we think </span>
+<span id="TudasEsInformatika_hu.1$af4d43c5">that an abstract structure will emerge from this.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b3a191b9">This is very, very difficult.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c8bce54a">What happens here is that when there are overlaps between user stories, </span>
+<span id="TudasEsInformatika_hu.1$8bfa3c49">it is very difficult to find these overlapping elements at the user story level.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$3ed4f684">If there are parallels, it is very difficult to highlight them afterwards.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$26410b20">It involves serious refactoring, serious risk, and is usually delayed.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$86212481">So the big picture doesn't really grow out of this approach.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d22a2658">And the third story is perhaps less well known.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d68f3e0f">The CMMI methodology is practically about viewing software creation </span>
+<span id="TudasEsInformatika_hu.1$867735f9">as a manufacturing process, with such an audit, </span>
+<span id="TudasEsInformatika_hu.1$3c6b56fd">and examining how flexible and error-tolerant the manufacturing process itself is.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$349a3b0f">It's level zero if the product isn't even ready.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$0d5b98ad">The first level, when it was finished, </span>
+<span id="TudasEsInformatika_hu.1$f0d56b78">but we're actually really glad we pushed it out the gate, </span>
+<span id="TudasEsInformatika_hu.1$2fd48f05">and there were some weird things.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$fe55fb82">Managed is when we see the process from above, </span>
+<span id="TudasEsInformatika_hu.1$b99c173c">so at least we have a task plan, we see that we are slipping, </span>
+<span id="TudasEsInformatika_hu.1$9fee8287">we can rearrange resources.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c2357097">It is defined when we look ahead from above, </span>
+<span id="TudasEsInformatika_hu.1$55126f0d">so at the beginning of software development we create a system plan, </span>
+<span id="TudasEsInformatika_hu.1$0101b8a8">now we slide a little into the V-model, </span>
+<span id="TudasEsInformatika_hu.1$e4a0ace8">but no, CMMI doesn't really care, </span>
+<span id="TudasEsInformatika_hu.1$aaa1c76e">the point is that this methodology is defined.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a45a3eb6">And then after that, practically the fourth or fifth... whatever.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e3f9e231">So it can be derived from large software production.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$23794943">The point is, however, that at least </span>
+<span id="TudasEsInformatika_hu.1$ade9a92d">the importance of planning and back-and-forth communication </span>
+<span id="TudasEsInformatika_hu.1$f01d33be">between the individual components is clear in the CMMI approach.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e1834317">Now, contrary to all of this, I follow </span>
+<span id="TudasEsInformatika_hu.1$274cf4b2">the Tracer Bullet Development methodology and recommend it to your attention.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$93b17def">Below you can see the book The Pragmatic Programmer, to read about it.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ad3581ce">The basic attitude here is that the IT specialist (i.e. me) </span>
+<span id="TudasEsInformatika_hu.1$0dfa2171">and the client (who wants something from me) </span>
+<span id="TudasEsInformatika_hu.1$667ff78f">are not opposed to each other, but rather stand side by side.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f4c8b2b6">In practice, we have a very common goal in front of us, </span>
+<span id="TudasEsInformatika_hu.1$e57551d7">which is in both of our minds to some extent, </span>
+<span id="TudasEsInformatika_hu.1$7006e870">but as an IT specialist, I work in an analyst's hat </span>
+<span id="TudasEsInformatika_hu.1$1ddaf129">so that the client standing next to me can draw a circle around the target area and </span>
+<span id="TudasEsInformatika_hu.1$e79c3efb">tell us what we are shooting at.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a930b5e8">As an architect, I need to be able to select tools </span>
+<span id="TudasEsInformatika_hu.1$40682476">that are just the right size and efficiency </span>
+<span id="TudasEsInformatika_hu.1$9650aa00">to achieve the goals we set.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a39c4f2f">And as a developer, I start shooting: </span>
+<span id="TudasEsInformatika_hu.1$4018ced1">to produce working, presentable products as soon as possible.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$34452210">It's definitely not going to be good, it's definitely not going to be ready.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ac782aef">But I see goals, I see the "big picture", I have an architecture, </span>
+<span id="TudasEsInformatika_hu.1$96405ddf">and with the specific implementation, I gain working experience, </span>
+<span id="TudasEsInformatika_hu.1$43029269">I work with real data, not a ridiculous subset or generated data, </span>
+<span id="TudasEsInformatika_hu.1$0f50206a">and we gain experience.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d80e7651">We know what we need to change compared to what we first tried.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$24a75aac">These are the aspects that are quite important in tracer bullet development.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$67d4f3b3">Well, and I'm pretty good on time.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$69cfe48b">So I would like to move on to practical application.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$7d0d021c">Here I would like to talk a little about how I have used </span>
+<span id="TudasEsInformatika_hu.1$2ac63124">these roles, this mindset and methodology </span>
+<span id="TudasEsInformatika_hu.1$5511beae">since May of this year to explore, design and develop </span>
+<span id="TudasEsInformatika_hu.1$d9bbfdc2">long-term strategic plans in the XBRL environment.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f145ef45">Let's look at the analysis first.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ebeeb0ae">These points also reflect, or at least make it clear in my opinion, </span>
+<span id="TudasEsInformatika_hu.1$9344cdae">that the analysis does not stop, so it is not an initial story.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$eb0e9d1d">As an analyst, I constantly monitor the development of the system, </span>
+<span id="TudasEsInformatika_hu.1$5a05f91e">and at a certain point, as an analyst, I have to make decisions: </span>
+<span id="TudasEsInformatika_hu.1$e7ed0d35">to what extent I can engage, what can be let go.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f88027ca">But of course, the first point of the analyst is </span>
+<span id="TudasEsInformatika_hu.1$83d53716">when we begin to familiarize ourselves with a situation.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$637a04fa">So what is XBRL?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$635f7e81">Now, finally, after half an hour, we are asking this question.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ba7f9314">XBRL is about creating certain reports </span>
+<span id="TudasEsInformatika_hu.1$58ead4d4">for various companies and various organizations.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$5553d384">Obviously, we are primarily talking about financial and economic reports </span>
+<span id="TudasEsInformatika_hu.1$6e7303d0">that a governing organization, such as a state, tax office, etc., would like to collect </span>
+<span id="TudasEsInformatika_hu.1$3b0d582e">in order to make decisions, prepare plans, and so on.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ebec5538">The problem is that these reports are submitted </span>
+<span id="TudasEsInformatika_hu.1$c7d361f9">by independent companies in a way that suits their own taste.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$62f5c740">Not much can be gained from this.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$088ed6f8">That is why XBRL was born, </span>
+<span id="TudasEsInformatika_hu.1$4a54fe5b">to define a uniform reporting format and methodology.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$bda52ad9">It tells individual companies </span>
+<span id="TudasEsInformatika_hu.1$158963b6">to please submit their reports in XBRL, </span>
+<span id="TudasEsInformatika_hu.1$c069341a">and from there, a very serious ecosystem can be built </span>
+<span id="TudasEsInformatika_hu.1$e7cce697">that can process these reports, extract data, aggregate them, and so on.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$98856ccf">What I really like about this is </span>
+<span id="TudasEsInformatika_hu.1$9e4668e4">that it is clearly a knowledge-oriented task.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a4691d63">So, practically, from the large amount of text that companies produce, </span>
+<span id="TudasEsInformatika_hu.1$2b83b0bd">XBRL is the toolbox that aims to extract manageable, system-solvable knowledge.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e11773d2">That's why I like it so much.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$1ff607a5">It is very important to realize that this approach divides the business report into two parts.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ca2e1e8f">One is what is in a report.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$8e2e4600">And now I'll show you another screen.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a2409615">So I can say that a report is a list of practically factual data.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$8456d786">So it says, let's say cash at bank balance tarararam, </span>
+<span id="TudasEsInformatika_hu.1$031d06b3">that's it in a certain context.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$586f6ef2">And the XBRL report is actually a set of such factual data.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d2d8a1a6">What else is worth knowing, yes, what is the rest?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$1e32d781">So we're happy that there's a number here.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$27d7edc8">The context tells us: At what time? </span>
+<span id="TudasEsInformatika_hu.1$71fc0b32">By what reporter?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e2b5190e">There are other details, but that's essentially what it is talking about.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$bf86f62e">So, for example, in this case, this context, </span>
+<span id="TudasEsInformatika_hu.1$87f2f51d">the C2 context, is this entity, this is specifically </span>
+<span id="TudasEsInformatika_hu.1$413f815a">the data of the Bank of Tirol, for the date 12/31/2020.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$6dabb5e7">You can enter data for a time or a time interval.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9d316b22">Then, unitRef tells us what unit of measurement we are working with.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$3473f809">In this case, the unit is the Euro.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$387899d3">This would have been very helpful, for example, in the case </span>
+<span id="TudasEsInformatika_hu.1$3b190b0c">where a spacecraft was lost because different developers, </span>
+<span id="TudasEsInformatika_hu.1$8ac8254c">in separate development teams, were working with different units.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$65b8f5f4">So these things are practically avoided by XBRL.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b8dc5f38">Now the next interesting thing is this particular name that I'm giving here.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$51f0ccc3">This is a unique identifier for the data I am reporting here.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e6b1de68">This must have a definition.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$61532934">And here is the next great invention of XBRL, </span>
+<span id="TudasEsInformatika_hu.1$e09fa8f8">that it is completely independent of the taxonomy (we call it taxonomy).</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2100ca3c">So this line states that this name </span>
+<span id="TudasEsInformatika_hu.1$68db4e97">will be included in some taxonomy, and this is its value.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$af22239a">That is, the standard itself does not depend on what content we report.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$273de6de">The result of this (we'll skip to the other side...) is </span>
+<span id="TudasEsInformatika_hu.1$fec0b16f">that the XBRL standard was published in 2003, its last version came in 2013, </span>
+<span id="TudasEsInformatika_hu.1$2cd18afd">and it has remained completely unchanged since then.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f91a1629">So, all IT tools can handle XBRL reports in the same format. </span>
+<span id="TudasEsInformatika_hu.1$e0c85fc8">And this is the basic set of all XBRL terms.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b885b4a4">Obviously we won't go into details now.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$6e81ae23">The point is that XBRL describes anything with these concepts, </span>
+<span id="TudasEsInformatika_hu.1$bffdcb0c">and what it talks about can be found in the taxonomy.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$bdcda8e9">So, for example, IFRS is such an international standard for reporting financial data.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$434adf0d">This taxonomy includes, for example, the definition of Revenue.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$bdaff052">Here is everything we should know about it.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d2180115">There are references.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$37119bf9">These are the same references as in a publication.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$320e5420">They point to the legal provisions and other places where Revenue is defined, </span>
+<span id="TudasEsInformatika_hu.1$0afe588e">and in what context it can appear </span>
+<span id="TudasEsInformatika_hu.1$c920d65f">and how we take it into account.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$434b26ba">I won't go into detail about this, obviously, </span>
+<span id="TudasEsInformatika_hu.1$5bcd6168">because it doesn't tell you or me much more than that, </span>
+<span id="TudasEsInformatika_hu.1$763d4459">but financial analysts can build on these groups and these concepts.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$183eee24">And once again, someone who knows this IFRS taxonomy can manage </span>
+<span id="TudasEsInformatika_hu.1$e2bfce7e">each company's financial report submitted in XBRL </span>
+<span id="TudasEsInformatika_hu.1$ea8e589d">(which also uses the IRS taxonomy), </span>
+<span id="TudasEsInformatika_hu.1$b5a46de9">can aggregate it in a homogeneous way, </span>
+<span id="TudasEsInformatika_hu.1$bd278c53">and can perform these analyses, calculations, validation, </span>
+<span id="TudasEsInformatika_hu.1$01098378">and everything else independently of the source.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$88b7b331">Just for testing, so here you can see such a financial report.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$8f3c76e0">Here's one, and then let's say here's another financial report.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$6a336d12">They are very different in format, but since they are XBRL-compatible, </span>
+<span id="TudasEsInformatika_hu.1$b42527fb">they can be handled in a homogeneous manner.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2ebeb2e1">So that's very good.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$455bec7f">Then comes the part that's not so happy.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$efeacf5b">The first is that XBRL reports can be in different formats.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$8a00a5ba">It could be XML like this.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$3df73b07">This is practically a creation-oriented, </span>
+<span id="TudasEsInformatika_hu.1$87e3fd9a">so simple format from the point of view of the programmer, but it is a data format.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$305409fa">So this has nothing to do with appearance, it's just a raw data set.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$973db646">The JSON is optimized for processing.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d81b074f">So I'll show you one right now.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$6c61c18f">Here, the facts practically appear completely independently.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$df99e10a">So this is simple for a processing code, </span>
+<span id="TudasEsInformatika_hu.1$296fd371">but very cumbersome and terribly verbose for generation, </span>
+<span id="TudasEsInformatika_hu.1$12398a0d">so it consists of many more lines.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$5430eb2b">And there is XHTML, </span>
+<span id="TudasEsInformatika_hu.1$c22b7d21">which practically extracts data from HTML by XBRL tags.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c12f67b3">I'll show you an example right now.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$37572109">This is like that.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b513b50b">So if we look at the JSON content above, </span>
+<span id="TudasEsInformatika_hu.1$d0326dec">the same report that you saw in XHTML and in XBRL.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$eda41072">And then here you can see, for example, that there is a ComprehensiveIncome, </span>
+<span id="TudasEsInformatika_hu.1$a958b344">and then its value is 17 million.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$fe73a545">There are such formats.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a4af4e0d">There is also a CSV-JSON, which I (also as an analyst) said </span>
+<span id="TudasEsInformatika_hu.1$4dcfadaf">doesn't need to be addressed because it is still under development.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$1772928e">The taxonomy description is quite complicated.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b27544e0">There are two things worth knowing here.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$30b5b41d">One is that the XBRL standard creators were very careful </span>
+<span id="TudasEsInformatika_hu.1$d36f3e9c">to use standard tools.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e5563f70">They worked with Xlink, standard HTML, namespaces, and similar tools.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c7f0c99c">At the same time, this made the methodology of the description itself complicated and lengthy.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$081c118e">I'll show you an example of that.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9e5e6d8c">So practically when I have a taxonomy, </span>
+<span id="TudasEsInformatika_hu.1$6474f8d2">let's say we're talking about the IFRS taxonomy, </span>
+<span id="TudasEsInformatika_hu.1$0812dfdb">the entry point is a taxonomy package </span>
+<span id="TudasEsInformatika_hu.1$c92d8893">that tells me (this is a "local language") </span>
+<span id="TudasEsInformatika_hu.1$44a8e9f9">what entry points this taxonomy has.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$bf07c32c">A taxonomy provides such an item set for various subsets.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$bf56bf87">Then there is the entity.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$377bd862">So this entry point, which practically contains additional links, </span>
+<span id="TudasEsInformatika_hu.1$72d9a71c">also such link / xlink references to various subsets.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$3b50774a">Then we'll go into a specific element like that.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$0f08699c">Here you can see that those items are in there.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$7e510cfa">We saw that "ifrs-full" thing earlier, right? They're from here.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c2463106">There are quite a few, I won't even scroll down to the bottom.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$7a2f5da0">And when I build such hierarchies, trees, etc. from taxonomy, </span>
+<span id="TudasEsInformatika_hu.1$6b40fb14">we practically create them using xlinks, </span>
+<span id="TudasEsInformatika_hu.1$0f695e48">which create connections between the nodes.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$59d7f793">The sizes here are horrendous.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$8d50e492">Take a moment, if you look at this on the left side, as we've opened up the IFRS taxonomy here.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$88e9eff2">So we started with entry points, right? </span>
+<span id="TudasEsInformatika_hu.1$e0a06b91">Then from the entry point I got to a subset like this.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c69a4a0e">There are quite a few of them, and then there are these XMLs.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$5abc7eab">There are very, very, very many files.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$48456c9f">As analysts, we get a little scared at this point, </span>
+<span id="TudasEsInformatika_hu.1$c2b32cf2">thinking that there's an awful lot of XML to process, </span>
+<span id="TudasEsInformatika_hu.1$1e0b9326">but at the same time we also think, "Oh, but this has been around for 20 years, </span>
+<span id="TudasEsInformatika_hu.1$ab824844">a lot of people have worked with it, so this input is probably of good quality."</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$14c98525">So if we make a tool for it, it will work fine.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$4ab7e4a4">Wow, I think I need to speed things up a bit.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$1c53e8ad">I showed you earlier that there are these dimensions, </span>
+<span id="TudasEsInformatika_hu.1$6b1d894a">for example, 36,672 connections between the various elements of the IFRS taxonomy.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c129589c">It's obviously not very manageable for humans, </span>
+<span id="TudasEsInformatika_hu.1$0cda8830">but a machine can handle it quite well.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$1518f274">The volume of reports is also interesting.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ca4a9440">In the first round, we started dealing with European Union data.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$07013836">It turns out we can, so there's a place where we can download these.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c36c94a0">The total has since grown to about 12,000.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$cc62f15f">However, this is quite insufficient for long-term analyses and, for example, for creating language models.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$712f00f0">There is another system called EDGAR, it is the IT system </span>
+<span id="TudasEsInformatika_hu.1$6dbf9d19">of the SEC, the US stock exchange regulator.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$eaaaa8cd">Well, they've been reporting and collecting reports for 20 years, </span>
+<span id="TudasEsInformatika_hu.1$b654b659">they have a significant amount of reports in XBRL format.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$42073589">You see the numbers, this is a serious challenge.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$1a5d375c">And there are difficulties.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b7d12949">These difficulties, for example, are such that in many cases </span>
+<span id="TudasEsInformatika_hu.1$e9c4db50">the reports are not created in XBRL format, </span>
+<span id="TudasEsInformatika_hu.1$0b7353b6">but are re-generated from PDF, for example.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$da56b4ec">I'll give you a quick example here.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b917b5d4">You can see here that if we look at this poor report, it practically...</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f369091c">Where are we?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b4ee56cc">I want to take a quick look at this now...</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$38860eaf">Scroll into view.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$6466479d">Well, I found it.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$24d627a8">So you can see here that the XBRL elements are practically listed line by line.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$0f59a27a">Not too nice.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a49b27e4">The other: a process has begun in the European Union </span>
+<span id="TudasEsInformatika_hu.1$9bb1065c">to allow each country to report date-type data in its own date format.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a879acd5">Now, I've looked at all the European Union reports, </span>
+<span id="TudasEsInformatika_hu.1$737cccc2">and based on that, I think this is a pretty flawed idea.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$5bc3edca">Here you can see a short statistics of 1000 reports,</span>
+<span id="TudasEsInformatika_hu.1$3c83c01c">where I found 380000 numeric and other types of facts, </span>
+<span id="TudasEsInformatika_hu.1$6c9c2148">and only 99 facts of date type, </span>
+<span id="TudasEsInformatika_hu.1$57d6b153">but which are displayed in 12 different formats.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a7058aaf">For one thing, the processing code </span>
+<span id="TudasEsInformatika_hu.1$0958dfa8">that interprets these date formats is really ugly.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$7651069f">I would show you an example.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a4ff85dd">So this is the definition of possible date formats for one country (Czech maybe?), </span>
+<span id="TudasEsInformatika_hu.1$97e5d7a1">but obviously the same blocks are created for every country in the XML description.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$023bdab8">The same thing happens in the processor code.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$4f7658d5">So this is not a very lucky solution, </span>
+<span id="TudasEsInformatika_hu.1$dcd16755">so I'm not using a standard solution there.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f14d59f7">This is again an analytical task.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$778996d8">As an analyst, I decided that I had to handle date formats </span>
+<span id="TudasEsInformatika_hu.1$6ff94130">in a non-standard way because... because I shouldn't.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$7d687ce6">EDGAR... works in an interesting format, </span>
+<span id="TudasEsInformatika_hu.1$97334284">there are two interesting things.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$83e3ee5d">One is that since they work with a huge amount of data, officially (I'll show you...) </span>
+<span id="TudasEsInformatika_hu.1$9c58024c">you can send the EDGAR site maximum 10 requests per second.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e92fef77">So no more questions can be sent.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c1f35c42">However, if I want to download the report data collected by EDGAR, </span>
+<span id="TudasEsInformatika_hu.1$b875227c">I encounter huge files.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$470794d4">So for example (... let me show you...) </span>
+<span id="TudasEsInformatika_hu.1$47088b2e">So the submission zip is a 1.29 GB zip file.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$5fbdb2ab">The companyfacts is a 1.16 GB file.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$588feb15">This is not the main problem with them, but the fact </span>
+<span id="TudasEsInformatika_hu.1$94b387f8">that they contain around 870,000, or even 900,000 files in a single directory.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d4b863da">So, practically, normal zip extraction doesn't work on it either.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$73caad63">So this is what the XBR environment looks like from an analyst's perspective.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$555fcdea">If I look at it from a architect perspective, my job as an architect </span>
+<span id="TudasEsInformatika_hu.1$4804417c">is to somehow try to translate the knowledge </span>
+<span id="TudasEsInformatika_hu.1$7358d8a0">I gained as an analyst into infrastructure elements.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$0c5efc0e">This diagram was essentially created at the beginning of working with XBRL.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$af63c26a">So that's actually what guided me throughout the entire development.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$009b22dc">The individual components... so these are the infrastructure components.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$255570c4">The difficult part here is that </span>
+<span id="TudasEsInformatika_hu.1$a79214c9">I somehow need to collect reports from external sources </span>
+<span id="TudasEsInformatika_hu.1$796b110a">and store them locally.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c14befe0">Obviously, I don't want to have to go back to the original source of the report </span>
+<span id="TudasEsInformatika_hu.1$59fccc43">every time I receive a question.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$fa5c0aa6">I want to create various source connectors.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$3471abf1">The first is the European Union Source Connector.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$85d1f760">Meanwhile, the EDGAR connector was born.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$985920e9">The point is, I can expect that the report </span>
+<span id="TudasEsInformatika_hu.1$89f31121">will ultimately be a text file in XHTML, XML, </span>
+<span id="TudasEsInformatika_hu.1$b091220d">or JSON format that can be processed in the XBRL format.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$435a6251">So I will be able to obtain these in various ways, </span>
+<span id="TudasEsInformatika_hu.1$c8d5307d">and in the end I will collect them in a single cache.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$312aab31">And of course, I need to provide the option for </span>
+<span id="TudasEsInformatika_hu.1$bbf4cffc">someone to manually upload a report.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b1ff6caf">Unique identification will be an interesting question here.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$0d415961">When I process XBRL data, </span>
+<span id="TudasEsInformatika_hu.1$18862485">I assumed that XML is somehow the basic principle, </span>
+<span id="TudasEsInformatika_hu.1$03f7d825">so the basic concepts are there, </span>
+<span id="TudasEsInformatika_hu.1$8eac3c6e"> the XBR report contains the basic set of concepts (tag, context, fact, etc.).</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$5e8324d4">These appear in an XML environment in some way, </span>
+<span id="TudasEsInformatika_hu.1$c4490637">and it can be assumed that in XHTML it is similar, </span>
+<span id="TudasEsInformatika_hu.1$c2413340">I can use the same processor with some minor translation.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$0f143d50">JSON has a completely different structure, </span>
+<span id="TudasEsInformatika_hu.1$be39b514">so I have to play around with it somehow, </span>
+<span id="TudasEsInformatika_hu.1$483eab1b">but the point is that in the end it has to look like XBRL, </span>
+<span id="TudasEsInformatika_hu.1$51bc56f2">and I have to somehow create a homogeneous data package from it.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$6725efd2">This needs to be supplemented with taxonomies, </span>
+<span id="TudasEsInformatika_hu.1$d696bd39">and then these two are practically the data content </span>
+<span id="TudasEsInformatika_hu.1$2593ec52">("knowledge base" in my terms) </span>
+<span id="TudasEsInformatika_hu.1$a51722ca">for which I will provide client services.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$0b278802">The simple client service is obviously that </span>
+<span id="TudasEsInformatika_hu.1$edf29f2e">I can browse its content.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c72a3f7b">For complex services, I create aggregated exports, searches, analyses, visualizations, etc.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$1fe6f078">These are practically the business uses of this tool.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$7ad44c87">I'm happy to report that this illustration, </span>
+<span id="TudasEsInformatika_hu.1$4ba2d5f9">created in May, has fully survived the past few months.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ae5a8505">I managed to build each of its components nicely.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9642417b">The other side of planning is that </span>
+<span id="TudasEsInformatika_hu.1$1b440193">(this is tracer bullet development), </span>
+<span id="TudasEsInformatika_hu.1$8f0b99df">so it's good that I can draw a nice green-yellow diagram, </span>
+<span id="TudasEsInformatika_hu.1$a6af9f49">but do the assumptions I made there really hold up?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$23651c4e">So, for example, can I handle the given formats well?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9d03ea30">Here's an example (...just jumping into source code quickly...) </span>
+<span id="TudasEsInformatika_hu.1$d9e0d5dc">At first, I thought that my knowledge base </span>
+<span id="TudasEsInformatika_hu.1$713406a8">would actually contain the reports themselves.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$079e9ff6">It is very important to consider here that we are talking about a lot of data.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$1905d01c">So... (yeah, no, I'll say this more in the implementation...) </span>
+<span id="TudasEsInformatika_hu.1$7da535e7">so, my original assumption here was </span>
+<span id="TudasEsInformatika_hu.1$4afd2731">that XML was probably close to the common format, </span>
+<span id="TudasEsInformatika_hu.1$40de1412">and it was indeed possible with a relatively short piece of code.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ee0f4576">These are practically the specific texts </span>
+<span id="TudasEsInformatika_hu.1$37a6a1c4">that I translate into my own small language set.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$8f09f91b">I refer to these names, and with that I can transfer them to a shared repository.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ff72d46f">I was able to make out that the XHTML parser is a descendant of the XML parser.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$65e55bfa">So there's practically only one preprocessing here from the XHTML side, </span>
+<span id="TudasEsInformatika_hu.1$3c143e14">because it names the various elements a little differently, </span>
+<span id="TudasEsInformatika_hu.1$29f111f8">but afterwards I was practically able to work with the XML handler.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2bfe25a9">The JSON handler is obviously a much more complicated story, </span>
+<span id="TudasEsInformatika_hu.1$f9b73498">because there I actually had to deal not only with </span>
+<span id="TudasEsInformatika_hu.1$f77b563c">creating a data format from a text format, </span>
+<span id="TudasEsInformatika_hu.1$901b89f6">but also with the fact that the structure of JSON is fundamentally different, </span>
+<span id="TudasEsInformatika_hu.1$75cdc5c0">since in XML, contexts are nicely extracted to the top </span>
+<span id="TudasEsInformatika_hu.1$fd028724"> and then the fact elements only refer to them.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$fccca274">This is not the case with JSON.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f1714d8d">In practice, the content of the context is included in each JSON object.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a27611e5">So, naturally, the JSON processor also performs a structural transformation.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$949ba40b">But what's the point?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$39a7e471">The point is that these three components completely "swallow"</span>
+<span id="TudasEsInformatika_hu.1$8b8ef077">the source format, i.e. the XHTML, XML or JSON origin.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c62f8c99">So at this point I was able to work with a homogeneous XBRL data structure, </span>
+<span id="TudasEsInformatika_hu.1$2107f59f">which is where this particular cache was created.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2a5687a8">At first I thought I would just save it this way.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ca225428">This did happened to change later.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$3af34384">I'll quickly scroll through it.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$bea77ff9">I don't think I'll show much more of it now.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$11b1af51">The reason for searching XBRL sources was that... </span>
+<span id="TudasEsInformatika_hu.1$decda55a">the most interesting goal of this XBRL management would have been </span>
+<span id="TudasEsInformatika_hu.1$ec847063">to work with a lot of reports at the same time.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$4a60e400">However, we needed a good source for this, we can't build it manually.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$bad651b1">Fortunately, European Union reports are collected by filings.xbrl.org.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$bc2b41f7">This is practically an open portal, and a very, very good feature </span>
+<span id="TudasEsInformatika_hu.1$0ad83ce1">is that they at least fill this interface with a JSON:API interface.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$3d52d567">So this is basically a local JavaScript table.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c1e8a309">When communicating with the server (practically the search condition and the paging), </span>
+<span id="TudasEsInformatika_hu.1$92849721">it sends a JSON:API standard request to the server and processes the response.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d127eb6a">(This is also good because that's how I came across JSON:API.) </span>
+<span id="TudasEsInformatika_hu.1$042e6591">On the other hand, it was very easy to make it </span>
+<span id="TudasEsInformatika_hu.1$a7f035a0">so that when I start my little portal (I can finally start it now), </span>
+<span id="TudasEsInformatika_hu.1$db2429f4">it would do the following.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$033da6aa">First, it connects to this particular portal, </span>
+<span id="TudasEsInformatika_hu.1$c0ba4f2b">pings it to see if there is any new information compared to what I know so far.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9b7cf94b">If there are any, it downloads and processes them, and then starts.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a0e49617">So this solution provided a convenient update option.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ba1aa587">Building a knowledge base...</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2e56527d">This is a architect decision.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f4a8943b">The point here is that if we think about </span>
+<span id="TudasEsInformatika_hu.1$225ba743">having to manage a lot of data, </span>
+<span id="TudasEsInformatika_hu.1$6aa9c06d">then in today's terms this means cloud, S3 buckets, and whatnot.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f8ab5fef">These are the usual large data storages, right?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$6e854fd9">The problem with these is always </span>
+<span id="TudasEsInformatika_hu.1$85b04054">that I have to transfer large amount of data to that environment.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$32957341">I need to create and run the processing code in that environment.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$1ccc96d9">And so I'm always dependent on a kind of communication lag, </span>
+<span id="TudasEsInformatika_hu.1$c3aba8c0">and on top of that, once I integrate into a given cloud provider, </span>
+<span id="TudasEsInformatika_hu.1$28ef8c8b">it's very difficult to switch to, say, another one.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$35dbe950">If I wanted to add an interface to it, </span>
+<span id="TudasEsInformatika_hu.1$2fb2dc02">the development and design costs would simply be unaffordable.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$31e08130">Now, compared to this, I thought </span>
+<span id="TudasEsInformatika_hu.1$c884132d">that as long as it work, I would create my own data storage, </span>
+<span id="TudasEsInformatika_hu.1$019c3885">and if it doesn't work, then I would move on to an official solution.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$6b2165c0">Now, not only has this repository survived the storage of European Union data, </span>
+<span id="TudasEsInformatika_hu.1$947bd44d">but I can also manage the entire data content </span>
+<span id="TudasEsInformatika_hu.1$a9d9bc9c">of EDGAR with the same service.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e0565c7d">What am I doing?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e4914182">I use an infinitely simple solution.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c3cef19f">I practically store these files at the file system level.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e713a31b">So, for example, here is the EDGAR data content, including reports.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$64688e47">The interesting thing here is that we are talking about a lot of files, </span>
+<span id="TudasEsInformatika_hu.1$e70b43bc">and the operating system's file system doesn't like that.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b85675ad">I use a two-step cache for it.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ed2639ee">So, I'm basically creating a two-level hash directory from the object identifier, </span>
+<span id="TudasEsInformatika_hu.1$d4f1bf46">and within that I'll store the reports for the company, </span>
+<span id="TudasEsInformatika_hu.1$ff55e4a5">and that's where the reports themselves are.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9e8740b4">Now this can eat that terrible amount of data with ease.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$54acae29">So, in principle, this contains the data of 20 million reports, </span>
+<span id="TudasEsInformatika_hu.1$4daf923e">so it doesn't hurt much.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$53bff91f">Why is this even more interesting?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c9d91f69">For performance.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f9488cd3">Because in order for me to...</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$dc5aa7f1">So if I want to launch a comprehensive search </span>
+<span id="TudasEsInformatika_hu.1$2d474e78">in this knowledge base at once, for example, </span>
+<span id="TudasEsInformatika_hu.1$61cfea2f">then if it's an external service provider, </span>
+<span id="TudasEsInformatika_hu.1$a6667129">I practically have a single, thin pipe, </span>
+<span id="TudasEsInformatika_hu.1$1d6de664">and I hope that the service provider will work there quickly.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$48923a56">In comparison, I say </span>
+<span id="TudasEsInformatika_hu.1$068bd4da">that there is a file system with a lot of files in it.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$69f94ca9">I can practically start it per file, </span>
+<span id="TudasEsInformatika_hu.1$4c691795">so I can start several threads in parallel </span>
+<span id="TudasEsInformatika_hu.1$8ff177fc">that collect the data for me.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e388f1c1">It scales well.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ba02b3c3">Well, that's what it's about in a nutshell.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$585facb9">Business logic outsourcing.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$969ccb47">I definitely need to talk about this.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$39d98874">The interesting thing here is that if we look at the previous figure, </span>
+<span id="TudasEsInformatika_hu.1$1f8d44df">there is very serious knowledge on the user's side.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$503bb823">So I build an infrastructure, create a knowledge base, </span>
+<span id="TudasEsInformatika_hu.1$5e9f095a">but in reality, business analysts, researchers, etc. will sit on the other side, </span>
+<span id="TudasEsInformatika_hu.1$fdc78d7c">people who want to use the knowledge base.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$542cf395">Now, to approach this by providing an API </span>
+<span id="TudasEsInformatika_hu.1$8385a9fc">so they can start coding and collecting data in, say, Python or something, is not good.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$58cc6755">The good thing is that I create a portal that provides and displays this data set, </span>
+<span id="TudasEsInformatika_hu.1$8ac4e25b">and I give the user, for example a researcher, </span>
+<span id="TudasEsInformatika_hu.1$a948fbe5">the opportunity to load an analysis script into this portal </span>
+<span id="TudasEsInformatika_hu.1$1149df0d">and have the portal run it internally.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e056ea8b">I don't know how strange this sounds, </span>
+<span id="TudasEsInformatika_hu.1$db4afada">I haven't come across many tools of this kind recently, </span>
+<span id="TudasEsInformatika_hu.1$c263e73d">but ten years ago a toolbox called MVEL was released </span>
+<span id="TudasEsInformatika_hu.1$1c75bacc">that is suitable for exactly this.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$71990b89">And its integration... how should I put it?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$719a709a">So embarrassingly simple.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$118fe454">What happens next is I add a single line to this project.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2aad60ae">I get a string, I ask MVEL to translate this string.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$301c430b">This is practically a small snippet of code.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$23e334f3">Make an object out of it for me.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$0e7b44eb">And when I need this, </span>
+<span id="TudasEsInformatika_hu.1$c9d310a9">I say "MVEL.executeExpression": </span>
+<span id="TudasEsInformatika_hu.1$0ba83458">run the compiled object in this particular environment.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a792edf6">This is a simple map, </span>
+<span id="TudasEsInformatika_hu.1$6c21e4cc">in which I put the report's data, background data, </span>
+<span id="TudasEsInformatika_hu.1$95a1236f">and in a certain environment, the data of the current fact.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$315342e5">This is obviously a technical detail, </span>
+<span id="TudasEsInformatika_hu.1$d600536e">but the point is that </span>
+<span id="TudasEsInformatika_hu.1$42779c17">with a few lines of integration, </span>
+<span id="TudasEsInformatika_hu.1$54e7c52f">I get the service that the user can push </span>
+<span id="TudasEsInformatika_hu.1$c31e49fc">any business logic into the portal </span>
+<span id="TudasEsInformatika_hu.1$1ec9f906">to run there.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f63d6d0f">Obviously we're going to use a tool like that and it's going to be really good.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$eac9467c">... And now it's 11 o'clock.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$98d18dba">I would like to ask if we should continue...</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9e701424">I'll quickly click through these slides.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ddd7e9e8">So the interesting thing about validation here is </span>
+<span id="TudasEsInformatika_hu.1$e0fa8b81">that when we work with a lot of data, </span>
+<span id="TudasEsInformatika_hu.1$89093536">it's terribly difficult to validate.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a68d9913">Moreover, there are complex processing algorithms here.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$476f1e42">The two methodologies look like this.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$dcdf2e7c">One is to do some kind of visible export.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$79788e0e">What I did to do this was to create an Excel export.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$8569b97d">So I run something, I get the result in Excel, </span>
+<span id="TudasEsInformatika_hu.1$cd5d710a">and in Excel it's very easy to look at the data, </span>
+<span id="TudasEsInformatika_hu.1$659f2cd0">compare it with some other source.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$4d40b427">The other is when I use an algorithm.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2d04874d">So what's interesting is that I write a processing algorithm </span>
+<span id="TudasEsInformatika_hu.1$679fe441">and I can compare its results with another data source </span>
+<span id="TudasEsInformatika_hu.1$ff102881">that, in principle, ran the same algorithm.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$4ee37fb4">In this case, the point is that the processing of the report, </span>
+<span id="TudasEsInformatika_hu.1$7c5495c9">for example, I read an XHTML file, I can download </span>
+<span id="TudasEsInformatika_hu.1$9e4edc8d">the processed content of the same XHTML </span>
+<span id="TudasEsInformatika_hu.1$dfb9db52">from the filings or EDGAR site, </span>
+<span id="TudasEsInformatika_hu.1$2d2fc47d">and I can compare whether the processing performed by them </span>
+<span id="TudasEsInformatika_hu.1$a2a3909c">yields the same result as mine.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$697649a0">This is very worth doing if you have the opportunity.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$fadfdd58">Okay, I'll skip taxonomy for now.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$44772d7e">Implementation.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$829e5cd0">Here I would like to draw attention to the fact </span>
+<span id="TudasEsInformatika_hu.1$615e71b3">that the application practically has layers.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f276ec97">So I put the general knowledge base management services </span>
+<span id="TudasEsInformatika_hu.1$bab27495">in a separate project.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$78b20654">In this case, it's DustSimple (I won't explain that now), </span>
+<span id="TudasEsInformatika_hu.1$6da8514e">but the point is </span>
+<span id="TudasEsInformatika_hu.1$d5faf1cb">that this layer has nothing to do with XBRL.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ccf37bf8">This is pure knowledge base management.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c762fa89">The cache, downloading from HTTP address, MVEL integration, Jetty server startup </span>
+<span id="TudasEsInformatika_hu.1$2db28cbb">and the rest, which are technology layers, are in this project.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b7faef76">The difference between XbrlCore and XbrlTest is </span>
+<span id="TudasEsInformatika_hu.1$69023f23">that XbrlTest is practically the "tracer bullet" part of the development.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9aad93f5">So this is where you are allowed to write ugly code.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$eb9fea98">I don't want to go into too much detail here, </span>
+<span id="TudasEsInformatika_hu.1$ee70ff4b">but from a long-term developer's perspective, I write terrible codes at this time.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9b991f22">Their sole purpose is to do the job.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9c82b4bc">And when it works, </span>
+<span id="TudasEsInformatika_hu.1$9ca74217">I extract services, elements, utility functions, helper classes, and more from it.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$85aeb703">This is a relatively simple refactor </span>
+<span id="TudasEsInformatika_hu.1$85813b36">because I am converting a working system, </span>
+<span id="TudasEsInformatika_hu.1$13343275">and the core features are moved to XbrlCore, </span>
+<span id="TudasEsInformatika_hu.1$713e8b1d">which is the long-term version of the same system.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b8d5c5f9">I think this is a very important trick.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$cd331b29">If we try to write perfect code the first time, </span>
+<span id="TudasEsInformatika_hu.1$61e20d0e">we will never write a single working line in our life.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d29cca88">If we stick to the code </span>
+<span id="TudasEsInformatika_hu.1$694e7e69">that we managed to get working the first time, </span>
+<span id="TudasEsInformatika_hu.1$80c6e211">we will have a terribly ugly system </span>
+<span id="TudasEsInformatika_hu.1$b314d94f">and it will very quickly become unsustainable.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d825ae40">This kind of refactored, continuously cleaned project structure </span>
+<span id="TudasEsInformatika_hu.1$66175e13">is sustainable in the long term, in my experience.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$50e6ab53">Well, I don't think I'll really get into that now.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$59d0032e">Here is the source, so here I thought I would practically give a little introduction to the source connector.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$1a31f44c">Here's what the currently running portal looks like.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$828a0a2e">I've said this about, so this is part of knowledge base management.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9004f494">I would have shown the details of EDGAR here, </span>
+<span id="TudasEsInformatika_hu.1$60ad6692">i.e. in what format we receive the data and how it is transformed.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$e0e0b9d4">Also, the processing of the IFRS taxonomy.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d31edcba">I think that if there is a question about one of them, </span>
+<span id="TudasEsInformatika_hu.1$7a2c98af">we will turn to that specific part.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$cd23e230">Oh, no, sorry, I had another drawing, </span>
+<span id="TudasEsInformatika_hu.1$9a5ddadb">I'll quickly show it here.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2f24f603">So, the interesting thing here is </span>
+<span id="TudasEsInformatika_hu.1$fd998904">that we have now reached a working state, we are happy about it, </span>
+<span id="TudasEsInformatika_hu.1$185b488c">we are generating data, we have interesting development opportunities, </span>
+<span id="TudasEsInformatika_hu.1$43399dbf">but the strategic goals practically continue to exist through the original plan.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b881b522">So, the tools we have developed so far </span>
+<span id="TudasEsInformatika_hu.1$fdf55797">are constantly moving their services to the DustSimple and XbrlCore levels.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$57ab5ea8">XbrlTest generates the data that can be used now, </span>
+<span id="TudasEsInformatika_hu.1$c7813c55">but XbrlCore has a plan for a much higher-level, </span>
+<span id="TudasEsInformatika_hu.1$9d7c8af6">more general XBRL data management, visualization, and analysis portal, </span>
+<span id="TudasEsInformatika_hu.1$656f7e2a">of which these are actually the next steps.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c1d5c933">Again, the important thing here </span>
+<span id="TudasEsInformatika_hu.1$cfb22d66">is that the big picture continues to drive development, even though </span>
+<span id="TudasEsInformatika_hu.1$975afd65">we are working with continuous experimentation and internal transformations, </span>
+<span id="TudasEsInformatika_hu.1$cdd33422">but despite this, it is clear </span>
+<span id="TudasEsInformatika_hu.1$4a51bbda">what we will do in the near future and what we expect from it.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$77e46c70">And then I would end this story here.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$20ba57ec">This slide shows the references </span>
+<span id="TudasEsInformatika_hu.1$9bb5ce17">that I briefly mentioned here.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b7deacec">The more abstract part is this knowledge, learning, teaching, research segment.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$6f901b75">This is not primarily IT content, is it?</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d730563e">The IT department is this other reference group.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$b9859fbe">And then thank you very much for your attention.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$5606603b">I hope I was audible throughout.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d72c27c8">And I look forward to any questions.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$24be61b1">Thank you very much, dear Loránd, for the presentation.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d20edb5e">I would also ask the students if they have any questions.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$8320b5cb">I see nothing appeared over the chat yet.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$3cbc9c48">Honestly, I prepared with a bonus slide </span>
+<span id="TudasEsInformatika_hu.1$8a3bccff">in case there was a lot of silence.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$6f02964b">I would still quickly go through this.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$203f0a8d">To somewhat frame this story </span>
+<span id="TudasEsInformatika_hu.1$4d966252">because I really like that.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$cc66b46b">Then I would show you this.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$7cc1b4cb">So this is again a little more philosophical.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$07a3a705">I would like this interesting thought to remain in people's minds for a while.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$21a5971e">When we talk about IT development, </span>
+<span id="TudasEsInformatika_hu.1$775dddea">we often use terms from </span>
+<span id="TudasEsInformatika_hu.1$92ff9057">"architecture" and "architectural design".</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$a3039d6c">And the interesting thing about this </span>
+<span id="TudasEsInformatika_hu.1$5300b86e">is that the first buildings looked something like this.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$92a4c241">So we tried to build structures </span>
+<span id="TudasEsInformatika_hu.1$61a1508f">from approximately homogeneous, interlocking elements.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$bbff72c4">It had practically no internal structure or plan.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$057a5753">It is simply the laws of physics themselves that hold the pyramid shape together.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$9170da72">When we start building purposefully, it becomes clear </span>
+<span id="TudasEsInformatika_hu.1$167b48cc">that we are working very seriously </span>
+<span id="TudasEsInformatika_hu.1$948317db">to precisely shape the individual elements and stick them to each other.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$aa25e01f">We can build much higher with much less material.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$4aa4f870">However, these materials still look like </span>
+<span id="TudasEsInformatika_hu.1$edf59eee">we're stacking stones on top of each other </span>
+<span id="TudasEsInformatika_hu.1$045d343e">and gravity is basically holding this building together, </span>
+<span id="TudasEsInformatika_hu.1$b562a15d">and if there's an earthquake, for example, its stability is quite questionable.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$f67a74b4">With this methodology, we can build enormous buildings from a human perspective, </span>
+<span id="TudasEsInformatika_hu.1$70ad0589">they are very tall compared to a person, </span>
+<span id="TudasEsInformatika_hu.1$dd6e11a4">and we can cover large distances and dimensions with them.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$2100cbf3">But if the question is what technology enables us, </span>
+<span id="TudasEsInformatika_hu.1$36d5960c">then we need to change our methodology.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$10d3f74c">An example of this is the Eiffel Tower, in which case </span>
+<span id="TudasEsInformatika_hu.1$292c7960">the building elements are not only held together by practical connections </span>
+<span id="TudasEsInformatika_hu.1$734ed897">and physical forces, i.e. gravity, </span>
+<span id="TudasEsInformatika_hu.1$6af3ac96">but they are also able to withstand tensile forces at individual points.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$c7daf329">And effectively, the Eiffel Tower is a physical manifestation of </span>
+<span id="TudasEsInformatika_hu.1$df87d487">a mathematical formula, essentially, how can we safely distribute </span>
+<span id="TudasEsInformatika_hu.1$04938618">the mass of this structure so that it stays standing like this.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$d93d560f">We are still talking about software architecture, right? </span>
+<span id="TudasEsInformatika_hu.1$7bf1e8ed">In my opinion, this is how our software design methodology works, </span>
+<span id="TudasEsInformatika_hu.1$4b380929">namely, that we tightly connect</span>
+<span id="TudasEsInformatika_hu.1$08102ee5">the modules through APIs, function calls, etc.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$10c56efb">There is one problem with this, or there are several problems.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$05016eb2">One is that its mass will be terrible.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$0323cda2">The other is that it reacts terribly poorly to changes.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$faab1d25">Well, we can't practically change this Eiffel Tower.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ac31714c">If we want to change this, we need to look at two things.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ea56633a">One is how much mass is absolutely necessary </span>
+<span id="TudasEsInformatika_hu.1$abe3c600">to reach a given height.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$ae0e62f8">This is the Snelson needle tower.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$7a1c0ac8">Between the two, from an architectural perspective, Eiffel speaks to integrity.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$3477ca25">So that each element meets the other element in the same way and at the same angle.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$455cff8b">This is secured by screws and rivets.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$6ff72f71">The Snelson model conveys a way of thinking called Tensegrity, </span>
+<span id="TudasEsInformatika_hu.1$12a8e1dc">which is about how individual elements can withstand either pressure or pull.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$753ec99c">We never connect compression-bearing elements and tension-bearing elements directly, </span>
+<span id="TudasEsInformatika_hu.1$8a1a47ac">but rather use a flexible connection between them, </span>
+<span id="TudasEsInformatika_hu.1$5c1c8f6a">meaning, compression-bearing elements are only connected to tension-bearing elements.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$49b7c6b9">This is practically translated into computer science into late binding, dynamic loading and alike.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$fd505d7c">And there's obviously another figure missing from the right edge.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$65915615">This is an IT system that has a very special relationship with the earth.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$766a224c">And actually, when we talk about artificial intelligence, </span>
+<span id="TudasEsInformatika_hu.1$c24cf2d2">instead of the (standard, integrity) model, </span>
+<span id="TudasEsInformatika_hu.1$9dcabe46">so when we can process more and more mass with the same familiar toolbox, </span>
+<span id="TudasEsInformatika_hu.1$c6ab52d0">I would focus much more on this (rocket) model, </span>
+<span id="TudasEsInformatika_hu.1$dfc360c7">which is actually a system that can bear and lift its own weight.</span>
+</p>
+<p>
+<span id="TudasEsInformatika_hu.1$560e1d68">And I wanted to close with this. Thank you.</span>
+</p>
+
+</body></html>
