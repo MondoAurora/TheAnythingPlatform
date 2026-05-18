@@ -1,17 +1,14 @@
 package me.giskard.dust.sandbox.text;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
@@ -39,7 +36,7 @@ public class DustSandboxTextUtils implements DustSandboxTextConsts {
 
 		return (null == id) ? (String) e.getAttributes().getAttribute(HTML.Attribute.ID) : id;
 	}
-	
+
 	public static void processTranslated(DustSandboxTextAgent txtAgent, String ttxt, DustHandle tLan, Collection<DustHandle> hSel) throws IOException, BadLocationException {
 		Reader stringReader = new StringReader(ttxt);
 		HTMLEditorKit htmlKit = new HTMLEditorKit();
@@ -48,6 +45,10 @@ public class DustSandboxTextUtils implements DustSandboxTextConsts {
 
 		int dl = htmlDoc.getLength();
 		String newTxt = htmlDoc.getText(0, dl);
+		
+		if ( null == hSel ) {
+			hSel = txtAgent.events.keySet();
+		}
 
 		for (DustHandle s : hSel) {
 			String k = s.getId();
@@ -59,12 +60,12 @@ public class DustSandboxTextUtils implements DustSandboxTextConsts {
 					eo = dl;
 				}
 				String tt = newTxt.substring(so, eo);
-				txtAgent.accessTextExt(DustAccess.Set, tLan, tt, s);
+				if ( !DustUtils.isEmpty(tt) ) {
+					txtAgent.accessTextExt(DustAccess.Set, tLan, tt, s);
+				}
 			}
 		}
 	}
-
-
 
 	public static String translateLibreLocal(DustHandle hFrom, DustHandle hTo, String format, String content) {
 		return translateLibre("http://localhost:5000/translate", "", hFrom, hTo, format, content);
@@ -74,7 +75,7 @@ public class DustSandboxTextUtils implements DustSandboxTextConsts {
 		try {
 			File dir = new File("work");
 			DustUtilsFile.ensureDir(dir);
-			try ( FileWriter fw = new FileWriter(new File(dir, "translating." + format))) {
+			try (FileWriter fw = new FileWriter(new File(dir, "translating." + format))) {
 				fw.append(content);
 				fw.flush();
 			}
@@ -95,7 +96,7 @@ public class DustSandboxTextUtils implements DustSandboxTextConsts {
 			Set<String> hdrs = new HashSet<String>();
 			hdrs.add("Content-Type: application/json");
 			HttpURLConnection http = DustNetUtils.getConn(url, 0, hdrs);
-			
+
 			http.setRequestMethod("POST"); // PUT is another valid option
 			http.setDoOutput(true);
 
@@ -106,15 +107,9 @@ public class DustSandboxTextUtils implements DustSandboxTextConsts {
 
 			InputStream is = http.getInputStream();
 
-			StringBuilder sb = new StringBuilder();
-			try (Reader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
-				int c = 0;
-				while ((c = reader.read()) != -1) {
-					sb.append((char) c);
-				}
-			}
+			String fs = DustUtilsFile.readStream(is);
 
-			Map<String, Object> jsonResp = DustUtilsJson.parseJson(sb.toString());
+			Map<String, Object> jsonResp = DustUtilsJson.parseJson(fs);
 
 			return (String) jsonResp.get("translatedText");
 

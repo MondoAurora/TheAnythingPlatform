@@ -64,6 +64,7 @@ import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.mind.DustMindUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
+import me.giskard.dust.core.utils.DustUtilsFile;
 import me.giskard.dust.mod.gui.swing.DustGuiSwingUtils;
 import me.giskard.dust.mod.utils.DustUtilsJson;
 
@@ -471,6 +472,13 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					tLan = (DustHandle) JOptionPane.showInputDialog((Component) e.getSource(), "Target?", "Translate selected", JOptionPane.QUESTION_MESSAGE, null, opts.get(TOKEN_LANG_SUPPORTED), null);
 					if ( null != tLan ) {
 						txtAgent.translate(tLan, hLang, selMgr.hSel);
+					}
+					break;
+				case "LoadTranslate":
+					fName = (String) JOptionPane.showInputDialog((Component) e.getSource(), "File name?", "localStore/TudasEsInformatika_en.html");
+					String fc = DustUtilsFile.readFile(fName);
+					if ( !DustUtils.isEmpty(fc) ) {
+						DustSandboxTextUtils.processTranslated(txtAgent, fc, hLang, null);
 					}
 					break;
 				default:
@@ -996,7 +1004,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		factToolbars.fillToolbar("tbTop", "Rebuild", "Reset", null, new JLabel("Unit:"), tfUnit, "Load", "Save", null, new JLabel("Find:"), tfFind, "<- Find", "Find ->", null, cbLang, cbLayout);
 		factToolbars.fillToolbar("tbDoc", null, "<-", "->", null, "Delete", "UnderFirst", null, "Bullet", "Number", "Local", null, "Resp", "Table", /* "Merge", */ null, "Style ->", "<- Style", "Apply",
 				"Update", /* "New", "Drop", */ null, "ResInsert", null, "evtToNext", "evtToPrev", "evtSplit", "evtMergeNext", "evtMergePrev", "evtTranslate", null, "PnlHtml", "GenHtml", Box.createGlue(),
-				"Translate", "ExtRes", "Export", null);
+				"Translate", "LoadTranslate", "ExtRes", "Export", null);
 
 		frm.getContentPane().revalidate();
 

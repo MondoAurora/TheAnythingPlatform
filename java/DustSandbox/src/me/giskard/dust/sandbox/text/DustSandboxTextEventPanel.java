@@ -4,12 +4,10 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Date;
-import java.util.Map;
 
 import javax.swing.JComponent;
 
 import me.giskard.dust.core.Dust;
-import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.utils.DustUtilsData;
 
 public class DustSandboxTextEventPanel extends JComponent implements DustSandboxTextConsts {
@@ -105,30 +103,30 @@ public class DustSandboxTextEventPanel extends JComponent implements DustSandbox
 
 		length = end - begin;
 
-		long offset = begin - zero;
+//		long offset = begin - zero;
 
-		for (Map.Entry<DustHandle, DustHandle> ee : txtAgent.events.entrySet()) {
-			DustHandle hEvt = ee.getValue();
-
-			try {
-				Date start = DustUtilsData.getEventDate(hEvt);
-				long s = start.getTime() - begin;
-				long duration = Dust.access(DustAccess.Peek, 0L, hEvt, TOKEN_EVENT_DURATION);
-
-				DustHandle hTxt = ee.getKey();
-				String tId = hTxt.getId();
-				String txt = tId; // txtAgent.accessText(DustAccess.Peek, "", tId);
+//		for (Map.Entry<DustHandle, DustHandle> ee : txtAgent.events.entrySet()) {
+//			DustHandle hEvt = ee.getValue();
+//
+//			try {
+//				Date start = DustUtilsData.getEventDate(hEvt);
+//				long s = start.getTime() - begin;
+//				long duration = Dust.access(DustAccess.Peek, 0L, hEvt, TOKEN_EVENT_DURATION);
+//
+//				DustHandle hTxt = ee.getKey();
+//				String tId = hTxt.getId();
+//				String txt = tId; // txtAgent.accessText(DustAccess.Peek, "", tId);
 //				JLabel lbl = factLabels.get(hTxt);
-
+//
 //				lbl.setBounds((int) s, 2, (int) (zoom * (double) duration), 26);
 //				lbl.setText(txt);
-
+//
 //				pnlTimeline.add(lbl);
-			} catch (Exception e) {
-				DustException.swallow(e);
-				continue;
-			}
-		}
+//			} catch (Exception e) {
+//				DustException.swallow(e);
+//				continue;
+//			}
+//		}
 
 	}
 }

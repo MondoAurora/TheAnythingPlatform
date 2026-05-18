@@ -6,7 +6,10 @@ import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustException;
@@ -188,6 +191,34 @@ public class DustUtilsFile extends DustUtils implements DustUtilsConsts {
 		}
 
 		return null;
+	}
+
+
+	public static String readFile(String fName) throws Exception {
+		return DustUtils.isEmpty(fName) ? null : readFile(new File(fName));
+	}
+
+	public static String readFile(File f) throws Exception {
+		if ( !f.isFile() ) {
+			return null;
+		}
+		
+		try ( FileInputStream fis = new FileInputStream(f) ) {
+			return readStream(fis);
+		}
+	}
+
+
+	public static String readStream(InputStream is) throws Exception {
+		StringBuilder sb = new StringBuilder();
+		try (Reader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
+			int c = 0;
+			while ((c = reader.read()) != -1) {
+				sb.append((char) c);
+			}
+		}
+
+		return sb.toString();
 	}
 
 }
