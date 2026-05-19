@@ -47,33 +47,35 @@ public class DustSandboxTextEventPanel extends JComponent implements DustSandbox
 		long zoom = 20;
 
 		DustHandle hSelEvt = txtAgent.events.get(hSelTxt);
-		long start = DustUtilsData.getEventDate(hSelEvt).getTime();
-		start -= zero;
+		if (null != hSelEvt) {
+			long start = DustUtilsData.getEventDate(hSelEvt).getTime();
+			start -= zero;
 
-		long w = getWidth() * zoom;
+			long w = getWidth() * zoom;
 
-		start -= (w / 4);
-		if (start < 0) {
-			start = 0;
-		}
-		long end = start + w;
+			start -= (w / 4);
+			if (start < 0) {
+				start = 0;
+			}
+			long end = start + w;
 
-		int ry = 2;
-		int rh = getHeight() - (2 * ry);
+			int ry = 2;
+			int rh = getHeight() - (2 * ry);
 
-		for (DustHandle hEvt : txtAgent.events.values()) {
-			long s = DustUtilsData.getEventDate(hEvt).getTime() - zero;
-			if (s < end) {
-				long duration = Dust.access(DustAccess.Peek, 0L, hEvt, TOKEN_EVENT_DURATION);
-				long e = s + duration;
-				if (e > start) {
-					int rx = (int) ((s - start) / zoom);
-					int rw = (int) (duration / zoom);
+			for (DustHandle hEvt : txtAgent.events.values()) {
+				long s = DustUtilsData.getEventDate(hEvt).getTime() - zero;
+				if (s < end) {
+					long duration = Dust.access(DustAccess.Peek, 0L, hEvt, TOKEN_EVENT_DURATION);
+					long e = s + duration;
+					if (e > start) {
+						int rx = (int) ((s - start) / zoom);
+						int rw = (int) (duration / zoom);
 
-					if (hEvt == hSelEvt) {
-						g2.fillRect(rx, ry, rw, rh);
-					} else {
-						g2.drawRect(rx, ry, rw, rh);
+						if (hEvt == hSelEvt) {
+							g2.fillRect(rx, ry, rw, rh);
+						} else {
+							g2.drawRect(rx, ry, rw, rh);
+						}
 					}
 				}
 			}

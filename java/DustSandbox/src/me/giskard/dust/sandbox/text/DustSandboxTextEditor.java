@@ -85,7 +85,8 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 	JTree docStruct;
 	DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode();
-	DustUtilsFactory<DustHandle, DefaultMutableTreeNode> structNodeFactory = new DustUtilsFactory.Simple<DustHandle, DefaultMutableTreeNode>(false, DefaultMutableTreeNode.class);
+	DustUtilsFactory<DustHandle, DefaultMutableTreeNode> structNodeFactory = new DustUtilsFactory.Simple<DustHandle, DefaultMutableTreeNode>(false,
+			DefaultMutableTreeNode.class);
 	DefaultTreeModel structModel = new DefaultTreeModel(rootNode);
 	DefaultTreeCellRenderer structRenderer = new DefaultTreeCellRenderer() {
 		public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
@@ -100,10 +101,10 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 	ListCellRenderer listRenderer = new DefaultListCellRenderer() {
 		public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-			if ( value instanceof DustHandle ) {
+			if (value instanceof DustHandle) {
 				DustHandle h = (DustHandle) value;
 				value = Dust.access(DustAccess.Peek, DustUtils.getPostfix(h.getId(), DUST_SEP_TOKEN), h, TOKEN_NAME);
-			} else if ( null == value ) {
+			} else if (null == value) {
 				value = "<not set>";
 			}
 			Component ret = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
@@ -178,6 +179,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 			DustHandle tLan;
 
 			int idx;
+			String fName;
 
 			boolean refresh = false;
 
@@ -185,7 +187,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 			try {
 
-				switch ( cmd ) {
+				switch (cmd) {
 				case "Rebuild":
 					buildGui();
 					break;
@@ -235,9 +237,9 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					refresh = true;
 					break;
 				case "Resp":
-					Object defLayout = JOptionPane.showInputDialog((Component) e.getSource(), "Default layout?", "Create responsive block", JOptionPane.QUESTION_MESSAGE, null,
-							opts.get(TOKEN_LAYOUT_LAYOUT_OTPIONS), null);
-					if ( null != defLayout ) {
+					Object defLayout = JOptionPane.showInputDialog((Component) e.getSource(), "Default layout?", "Create responsive block", JOptionPane.QUESTION_MESSAGE,
+							null, opts.get(TOKEN_LAYOUT_LAYOUT_OTPIONS), null);
+					if (null != defLayout) {
 						idx = Dust.access(DustAccess.Peek, hThis, hParent, TOKEN_MEMBERS, KEY_INDEXOF);
 						DustHandle hResp = txtAgent.insertNode(hParent, idx, TOKEN_LAYOUT_RESPONSIVE);
 						Dust.access(DustAccess.Set, defLayout, hResp, TOKEN_LAYOUT_LAYOUT);
@@ -246,7 +248,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					break;
 				case "Table":
 					String resp = JOptionPane.showInputDialog("Table dimensions? row / col / hdrRow / hdrCol / layout end");
-					if ( null == resp ) {
+					if (null == resp) {
 						return;
 					}
 
@@ -259,21 +261,21 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 					String ln = DustUtils.optGet(dim, 4, "").trim();
 					DustHandle hLayout = null;
-					if ( !DustUtils.isEmpty(ln) ) {
+					if (!DustUtils.isEmpty(ln)) {
 						for (DustHandle hl : opts.get(TOKEN_LAYOUT_LAYOUT_OTPIONS)) {
-							if ( hl.getId().endsWith(ln) ) {
+							if (hl.getId().endsWith(ln)) {
 								hLayout = hl;
 								break;
 							}
 						}
 					}
 
-					if ( null == hLayout ) {
+					if (null == hLayout) {
 						hLayout = hCurrentLayout;
 					}
 
 					DustHandle hResp;
-					if ( TOKEN_LAYOUT_RESPONSIVE.equals(hThis.getType().getId()) ) {
+					if (TOKEN_LAYOUT_RESPONSIVE.equals(hThis.getType().getId())) {
 						hResp = hThis;
 					} else {
 						idx = Dust.access(DustAccess.Peek, hThis, hParent, TOKEN_MEMBERS, KEY_INDEXOF);
@@ -306,7 +308,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					fwd = false;
 				case "Find ->":
 					String find = tfFind.getText();
-					if ( !DustUtils.isEmpty(find) ) {
+					if (!DustUtils.isEmpty(find)) {
 						int li = doc.getLength() - 1;
 						int cp = docEditor.getCaretPosition();
 
@@ -315,7 +317,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 						idx = fwd ? txt.indexOf(find) : txt.lastIndexOf(find);
 
-						if ( -1 == idx ) {
+						if (-1 == idx) {
 							Toolkit.getDefaultToolkit().beep();
 						} else {
 							int so = fwd ? idx + cp + 1 : idx;
@@ -329,21 +331,21 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					fwd = false;
 				case "Style ->":
 					idx = styleTable.getSelectedRow();
-					if ( -1 != idx ) {
+					if (-1 != idx) {
 						DustHandle hS = styleArr.get(idx);
 						Set<String> match = new HashSet<>();
 						for (DustHandle h : DustMindUtils.getUnitMembers(txtAgent.hUnit)) {
 							Set oo = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, h, TOKEN_TEXT_STYLES);
-							if ( !oo.isEmpty() ) {
+							if (!oo.isEmpty()) {
 								Dust.log(TOKEN_LEVEL_TRACE, oo);
 
-								if ( (boolean) Dust.access(DustAccess.Check, hS, h, TOKEN_TEXT_STYLES) ) {
+								if ((boolean) Dust.access(DustAccess.Check, hS, h, TOKEN_TEXT_STYLES)) {
 									match.add(h.getId());
 								}
 							}
 						}
 
-						if ( match.isEmpty() ) {
+						if (match.isEmpty()) {
 							Toolkit.getDefaultToolkit().beep();
 						} else {
 							int li = doc.getLength() - 1;
@@ -355,13 +357,13 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 							for (int pos = fwd ? cp + 1 : cp - 1; fwd ? (pos <= li) : (0 <= pos);) {
 								ep = doc.getCharacterElement(pos);
-								if ( null == ep ) {
+								if (null == ep) {
 									pos += fwd ? 1 : -1;
 								} else {
 									id = DustSandboxTextUtils.getId(ep);
 
 									int eo = ep.getEndOffset();
-									if ( match.contains(id) ) {
+									if (match.contains(id)) {
 										docEditor.setCaretPosition(ep.getStartOffset());
 //										docEditor.moveCaretPosition(ep.getStartOffset());
 //										docEditor.setCaretPosition((eo < li) ? eo - 1 : li);
@@ -379,13 +381,13 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					break;
 				case "Apply":
 					idx = styleTable.getSelectedRow();
-					if ( -1 != idx ) {
+					if (-1 != idx) {
 						DustHandle hS = styleArr.get(idx);
 						for (DustHandle hn : selMgr.hSel) {
 							Dust.access(DustAccess.Insert, hS, hn, TOKEN_TEXT_STYLES);
 							refresh = true;
 						}
-						if ( null != hThis ) {
+						if (null != hThis) {
 							Dust.log(TOKEN_LEVEL_TRACE, "Setting style", hS, txtAgent.accessText(DustAccess.Peek, "", hThis));
 							Dust.access(DustAccess.Insert, hS, hThis, TOKEN_TEXT_STYLES);
 							refresh = true;
@@ -394,7 +396,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					break;
 				case "Update":
 					idx = styleTable.getSelectedRow();
-					if ( -1 != idx ) {
+					if (-1 != idx) {
 						DustHandle hS = styleArr.get(idx);
 						String txt = styleEditor.getText();
 						Object def = DustUtilsJson.parseJson(txt);
@@ -405,11 +407,11 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					break;
 				case "ResInsert":
 					int sr = resTable.getSelectedRow();
-					if ( -1 != sr ) {
+					if (-1 != sr) {
 						DustHandle hR = resArr.get(sr);
 						idx = Dust.access(DustAccess.Peek, hThis, hParent, TOKEN_MEMBERS, KEY_INDEXOF);
-						DustHandle hRef = txtAgent.insertNode(hParent, idx, TOKEN_STREAM_REF);
-						Dust.access(DustAccess.Set, hR, hRef, TOKEN_TARGET);
+						DustHandle hRef = txtAgent.insertNode(hParent, idx, TOKEN_TEXT_TRANSCLUSION);
+						Dust.access(DustAccess.Insert, hRef, hR, TOKEN_APPEARS);
 
 						refresh = true;
 					}
@@ -425,27 +427,32 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					refresh = true;
 					break;
 				case "evtTranslate":
-					tLan = (DustHandle) JOptionPane.showInputDialog((Component) e.getSource(), "Target?", "Translate selected", JOptionPane.QUESTION_MESSAGE, null, opts.get(TOKEN_LANG_SUPPORTED), null);
-					if ( null != tLan ) {
+					tLan = (DustHandle) JOptionPane.showInputDialog((Component) e.getSource(), "Target?", "Translate selected", JOptionPane.QUESTION_MESSAGE, null,
+							opts.get(TOKEN_LANG_SUPPORTED), null);
+					if (null != tLan) {
 						txtAgent.translateSubtitles(tLan);
 					}
 					break;
-				case "PnlHtml":
+				case "Magic!":
 					Dust.log(TOKEN_LEVEL_INFO, docEditor.getText());
 					break;
 				case "GenHtml":
-					String html = htmlGen.generateHtml(txtAgent);
-					Dust.log(TOKEN_LEVEL_INFO, html);
+					fName = JOptionPane.showInputDialog("HTML file name?", tfUnit.getText() + "_gen.html");
 
-					try (PrintWriter out = new PrintWriter(new File(txtAgent.docPath, "test.html"))) {
-						out.println(html);
-						out.close();
+					if (!DustUtils.isEmpty(fName)) {
+						String html = htmlGen.generateHtml(txtAgent);
+						Dust.log(TOKEN_LEVEL_INFO, html);
+
+						try (PrintWriter out = new PrintWriter(new File(txtAgent.docPath, fName))) {
+							out.println(html);
+							out.close();
+						}
 					}
 					break;
 				case "Export":
-					String fName = JOptionPane.showInputDialog("Export file name?", tfUnit.getText() + ".sbv");
+					fName = JOptionPane.showInputDialog("Export file name?", tfUnit.getText() + ".sbv");
 
-					if ( !DustUtils.isEmpty(fName) ) {
+					if (!DustUtils.isEmpty(fName)) {
 						txtAgent.exportFile(new File(txtAgent.resRoot, fName));
 					}
 
@@ -454,10 +461,10 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					for (DustHandle h : DustMindUtils.getUnitMembers(txtAgent.hUnit)) {
 						String ht = h.getType().getId();
 
-						switch ( ht ) {
+						switch (ht) {
 						case TOKEN_TEXT_BLOCK:
 							String txt = txtAgent.accessText(DustAccess.Peek, null, h);
-							if ( !DustUtils.isEmpty(txt) ) {
+							if (!DustUtils.isEmpty(txt)) {
 								txtAgent.accessTextExt(DustAccess.Set, hLang, txt, h);
 								DustHandle hNode = Dust.getHandle(txtAgent.hUnit, null, h.getId(), DustOptCreate.None);
 								Dust.access(DustAccess.Delete, null, hNode, TOKEN_TEXT_TEXT);
@@ -469,15 +476,16 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					txtAgent.save();
 					break;
 				case "Translate":
-					tLan = (DustHandle) JOptionPane.showInputDialog((Component) e.getSource(), "Target?", "Translate selected", JOptionPane.QUESTION_MESSAGE, null, opts.get(TOKEN_LANG_SUPPORTED), null);
-					if ( null != tLan ) {
+					tLan = (DustHandle) JOptionPane.showInputDialog((Component) e.getSource(), "Target?", "Translate selected", JOptionPane.QUESTION_MESSAGE, null,
+							opts.get(TOKEN_LANG_SUPPORTED), null);
+					if (null != tLan) {
 						txtAgent.translate(tLan, hLang, selMgr.hSel);
 					}
 					break;
 				case "LoadTranslate":
 					fName = (String) JOptionPane.showInputDialog((Component) e.getSource(), "File name?", "localStore/TudasEsInformatika_en.html");
 					String fc = DustUtilsFile.readFile(fName);
-					if ( !DustUtils.isEmpty(fc) ) {
+					if (!DustUtils.isEmpty(fc)) {
 						DustSandboxTextUtils.processTranslated(txtAgent, fc, hLang, null);
 					}
 					break;
@@ -485,12 +493,12 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					Dust.log(TOKEN_LEVEL_WARNING, "Command not handled", cmd);
 				}
 
-				if ( refresh ) {
+				if (refresh) {
 					int cp = docEditor.getCaretPosition();
 					updateDocEditor();
 					updateStruct();
 					int l = docEditor.getText().length();
-					if ( cp >= l ) {
+					if (cp >= l) {
 						cp = l - 1;
 					}
 					docEditor.setCaretPosition(cp);
@@ -515,9 +523,9 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 			try {
 
-				if ( t.isDataFlavorSupported(DataFlavor.javaFileListFlavor) ) {
+				if (t.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
 					List l = (List) t.getTransferData(DataFlavor.javaFileListFlavor);
-					if ( l.size() != 1 ) {
+					if (l.size() != 1) {
 						Toolkit.getDefaultToolkit().beep();
 						return false;
 					} else {
@@ -527,7 +535,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 						String u = DustUtils.cutPostfix(f.getName(), ".") + ".1";
 						u = JOptionPane.showInputDialog(docEditor, "Unit name?", u);
 
-						if ( null != u ) {
+						if (null != u) {
 							tfUnit.setText(u);
 							loadDoc();
 
@@ -544,22 +552,22 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 						pt = df.getPrimaryType();
 						st = df.getSubType();
 
-						if ( "image".equals(pt) ) {
+						if ("image".equals(pt)) {
 							Object o = t.getTransferData(df);
-							if ( o instanceof Image ) {
+							if (o instanceof Image) {
 								DustHandle hImg = txtAgent.insertImage(selMgr.hfParent, selMgr.hfBlock, (Image) o);
 								int ri = resArr.size();
 								resArr.add(hImg);
 								resModel.fireTableRowsInserted(ri, ri);
 								inserted = true;
 							}
-						} else if ( "text".equals(pt) ) {
-							if ( "plain".equals(st) ) {
+						} else if ("text".equals(pt)) {
+							if ("plain".equals(st)) {
 								Object o = t.getTransferData(df);
-								if ( o instanceof String ) {
+								if (o instanceof String) {
 									String str = (String) o;
 
-									if ( -1 == str.indexOf("\n") ) {
+									if (-1 == str.indexOf("\n")) {
 										doc.insertString(selMgr.getCaretPos(), str, null);
 										return true;
 									} else {
@@ -576,7 +584,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					}
 				}
 
-				if ( inserted ) {
+				if (inserted) {
 					updateDocEditor();
 					updateStruct();
 
@@ -598,13 +606,13 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 				} catch (Exception e) {
 					DustException.swallow(e);
 				}
-				if ( "text".equals(df.getPrimaryType()) ) {
-					if ( "plain".equals(df.getSubType()) ) {
+				if ("text".equals(df.getPrimaryType())) {
+					if ("plain".equals(df.getSubType())) {
 						return true;
 					}
 				}
-				if ( "application".equals(df.getPrimaryType()) ) {
-					if ( "x-java-file-list".equals(df.getSubType()) ) {
+				if ("application".equals(df.getPrimaryType())) {
+					if ("x-java-file-list".equals(df.getSubType())) {
 						return true;
 					}
 				}
@@ -619,7 +627,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
 			try {
 				selMgr.selUpdating = docEditor;
-				if ( string.contains("\n") ) {
+				if (string.contains("\n")) {
 					Toolkit.getDefaultToolkit().beep();
 				}
 				super.insertString(fb, offset, string, attr);
@@ -648,18 +656,18 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 				Element es = doc.getCharacterElement(offset);
 				Element ee = doc.getCharacterElement(offset + length);
 
-				if ( ee != es ) {
+				if (ee != es) {
 					skip = true;
 				} else {
-					if ( text.contains("\n") ) {
-						if ( text.length() == 1 ) {
+					if (text.contains("\n")) {
+						if (text.length() == 1) {
 							int dl = doc.getLength();
 							int to = Math.max(0, offset - 2);
 							int tl = Math.min(dl - to + 1, 4);
 
 							String s = doc.getText(to, tl);
 
-							if ( -1 != s.indexOf("\n\n") ) {
+							if (-1 != s.indexOf("\n\n")) {
 								skip = true;
 							} else {
 								int so = es.getStartOffset();
@@ -687,7 +695,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					}
 				}
 
-				if ( skip ) {
+				if (skip) {
 					Toolkit.getDefaultToolkit().beep();
 				} else {
 					fb.replace(offset, length, text, attrs);
@@ -777,8 +785,8 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					} catch (Exception e) {
 						DustException.swallow(e);
 					}
-					if ( "application".equals(df.getPrimaryType()) ) {
-						if ( "x-java-file-list".equals(df.getSubType()) ) {
+					if ("application".equals(df.getPrimaryType())) {
+						if ("x-java-file-list".equals(df.getSubType())) {
 							return true;
 						}
 					}
@@ -797,10 +805,10 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 						pt = df.getPrimaryType();
 						st = df.getSubType();
 
-						if ( "application".equals(pt) ) {
-							if ( "x-java-file-list".equals(st) ) {
+						if ("application".equals(pt)) {
+							if ("x-java-file-list".equals(st)) {
 								List l = (List) t.getTransferData(df);
-								if ( l.size() != 1 ) {
+								if (l.size() != 1) {
 									Toolkit.getDefaultToolkit().beep();
 								} else {
 									Dust.log(TOKEN_LEVEL_INFO, "would read", l.get(0));
@@ -831,7 +839,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		for (DustHandle hr : DustMindUtils.getUnitMembers(txtAgent.hUnit)) {
 			String ht = hr.getType().getId();
 
-			switch ( ht ) {
+			switch (ht) {
 			case TOKEN_TEXT_STYLE:
 				styleArr.add(hr);
 				break;
@@ -843,7 +851,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		for (DustHandle hr : DustMindUtils.getUnitMembers(txtAgent.hRes)) {
 			String ht = hr.getType().getId();
 
-			switch ( ht ) {
+			switch (ht) {
 			case TOKEN_STREAM:
 				resArr.add(hr);
 				break;
@@ -890,16 +898,16 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		lsm.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				if ( !e.getValueIsAdjusting() ) {
+				if (!e.getValueIsAdjusting()) {
 					int sr = styleTable.getSelectedRow();
 					Icon icon = null;
-					if ( -1 != sr ) {
+					if (-1 != sr) {
 						DustHandle hStyle = styleArr.get(sr);
 						Map<String, Object> def = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, hStyle, TOKEN_TEXT_STYLE_DEF);
 
 						StringBuilder sb = null;
 						for (Map.Entry<String, Object> de : def.entrySet()) {
-							if ( null == sb ) {
+							if (null == sb) {
 								sb = new StringBuilder("{\n  ");
 							} else {
 								sb.append(",\n  ");
@@ -947,21 +955,21 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		lsm.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				if ( !e.getValueIsAdjusting() ) {
+				if (!e.getValueIsAdjusting()) {
 					int sr = resTable.getSelectedRow();
 					Icon icon = null;
-					if ( -1 != sr ) {
+					if (-1 != sr) {
 						DustHandle hRes = resArr.get(sr);
 						icon = resIconFactory.get(hRes);
 
 						for (DustHandle h : DustMindUtils.getUnitMembers(txtAgent.hUnit)) {
-							if ( (boolean) Dust.access(DustAccess.Check, hRes, h, TOKEN_TARGET) ) {
+							if ((boolean) Dust.access(DustAccess.Check, hRes, h, TOKEN_TARGET)) {
 								String id = h.getId();
 
 								Dust.log(TOKEN_LEVEL_TRACE, "Selected image ref id", id);
 								Element eRef = doc.getElement(id);
 
-								if ( null != eRef ) {
+								if (null != eRef) {
 									docEditor.setCaretPosition(eRef.getStartOffset());
 								}
 								break;
@@ -1001,10 +1009,11 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		cbLang.setSelectedItem(hLang);
 		cbLayout.setSelectedItem(hCurrentLayout);
 
-		factToolbars.fillToolbar("tbTop", "Rebuild", "Reset", null, new JLabel("Unit:"), tfUnit, "Load", "Save", null, new JLabel("Find:"), tfFind, "<- Find", "Find ->", null, cbLang, cbLayout);
-		factToolbars.fillToolbar("tbDoc", null, "<-", "->", null, "Delete", "UnderFirst", null, "Bullet", "Number", "Local", null, "Resp", "Table", /* "Merge", */ null, "Style ->", "<- Style", "Apply",
-				"Update", /* "New", "Drop", */ null, "ResInsert", null, "evtToNext", "evtToPrev", "evtSplit", "evtMergeNext", "evtMergePrev", "evtTranslate", null, "PnlHtml", "GenHtml", Box.createGlue(),
-				"Translate", "LoadTranslate", "ExtRes", "Export", null);
+		factToolbars.fillToolbar("tbTop", "Rebuild", "Reset", null, new JLabel("Unit:"), tfUnit, "Load", "Save", null, new JLabel("Find:"), tfFind, "<- Find",
+				"Find ->", null, cbLang, cbLayout);
+		factToolbars.fillToolbar("tbDoc", null, "<-", "->", null, "Delete", "UnderFirst", null, "Bullet", "Number", "Local", null, "Resp", "Table",
+				/* "Merge", */ null, "Style ->", "<- Style", "Apply", "Update", /* "New", "Drop", */ null, "ResInsert", null, "evtToNext", "evtToPrev", "evtSplit",
+				"evtMergeNext", "evtMergePrev", "evtTranslate", null, "Magic!", "GenHtml", Box.createGlue(), "Translate", "LoadTranslate", "ExtRes", "Export", null);
 
 		frm.getContentPane().revalidate();
 
@@ -1016,7 +1025,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		Vector lv;
 		DustHandle[] o = opts.get((String) field);
 
-		if ( null == o ) {
+		if (null == o) {
 			lv = new Vector(Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, field));
 			o = new DustHandle[lv.size()];
 			o = (DustHandle[]) lv.toArray(o);
@@ -1056,20 +1065,20 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 	public DefaultMutableTreeNode loadElement(DefaultMutableTreeNode p, Element e) {
 		String s = e.toString();
 
-		if ( e instanceof LeafElement ) {
+		if (e instanceof LeafElement) {
 			LeafElement le = (LeafElement) e;
 			try {
 				int start = le.getStartOffset();
 				int end = le.getEndOffset();
 				s = doc.getText(start, end - start);
 				int maxLen = 50;
-				if ( s.length() > maxLen ) {
+				if (s.length() > maxLen) {
 					s = s.substring(0, maxLen - 3) + "...";
 				} else {
 					s = s.trim();
 				}
 
-				if ( !DustUtils.isEmpty(s) ) {
+				if (!DustUtils.isEmpty(s)) {
 					p = new DefaultMutableTreeNode(s);
 				}
 			} catch (Throwable e1) {
@@ -1079,8 +1088,8 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 			for (int i = 0; i < e.getElementCount(); ++i) {
 				Element eChild = e.getElement(i);
 				DefaultMutableTreeNode pc = loadElement(null, eChild);
-				if ( null != pc ) {
-					if ( null == p ) {
+				if (null != pc) {
+					if (null == p) {
 						p = new DefaultMutableTreeNode(s);
 					}
 					p.add(pc);

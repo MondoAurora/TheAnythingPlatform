@@ -147,7 +147,7 @@ public interface DustConsts {
 	String TOKEN_LASTCHANGED = DUST_UNIT_DUST + DUST_SEP_TOKEN + "lastChanged";
 	
 	String TOKEN_STREAM = DUST_UNIT_DUST + DUST_SEP_TOKEN + "Stream";
-	String TOKEN_STREAM_REF = DUST_UNIT_DUST + DUST_SEP_TOKEN + "StreamRef";
+//	String TOKEN_STREAM_REF = DUST_UNIT_DUST + DUST_SEP_TOKEN + "StreamRef";
 	
 	String TOKEN_STREAM_IMAGE = DUST_UNIT_DUST + DUST_SEP_TOKEN + "Image";
 	
@@ -164,6 +164,8 @@ public interface DustConsts {
 	String TOKEN_TEXT_STYLES = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "styles";
 
 	String TOKEN_TEXT_LANG = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "lang";
+	
+	String TOKEN_TEXT_TRANSCLUSION = DUST_UNIT_DUST + DUST_SEP_TOKEN + "Transclusion";
 
 
 	String TOKEN_TEXT_GROUP = DUST_UNIT_TEXT + DUST_SEP_TOKEN + "group";
