@@ -40,12 +40,12 @@ public class DustStreamUtils implements DustUtilsConsts, DustMindConsts, DustStr
 
 	}
 
-	public static boolean copyStream(InputStream source, OutputStream target) throws IOException {
+	public static boolean copyStream(InputStream is, OutputStream os) throws IOException {
 		boolean success = false;
 		byte dataBuffer[] = new byte[1024];
 		int bytesRead;
-		while ((bytesRead = source.read(dataBuffer, 0, 1024)) != -1) {
-			target.write(dataBuffer, 0, bytesRead);
+		while ((bytesRead = is.read(dataBuffer, 0, 1024)) != -1) {
+			os.write(dataBuffer, 0, bytesRead);
 			success = true;
 		}
 		return success;

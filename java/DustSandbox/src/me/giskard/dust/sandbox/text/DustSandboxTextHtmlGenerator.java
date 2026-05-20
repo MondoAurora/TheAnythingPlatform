@@ -1,5 +1,8 @@
 package me.giskard.dust.sandbox.text;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -8,9 +11,12 @@ import java.util.Stack;
 import java.util.TreeMap;
 
 import me.giskard.dust.core.Dust;
+import me.giskard.dust.core.DustException;
+import me.giskard.dust.core.stream.DustStreamConsts.StreamProcessor;
 import me.giskard.dust.core.stream.DustStreamUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
+import me.giskard.dust.core.utils.DustUtilsFile;
 
 @SuppressWarnings({ "unchecked" })
 public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
@@ -20,7 +26,16 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 	Stack<Integer> headStack = new Stack<Integer>();
 	int lp = 0;
 
+	String fnImg = "gen/img";
+	File dirImg = new File("localStore/" + fnImg);
+
 	String generateHtml(DustSandboxTextAgent txtAgent) {
+		try {
+			DustUtilsFile.ensureDir(dirImg);
+		} catch (Exception e) {
+			DustException.wrap(e);
+		}
+
 		StringBuilder sb = new StringBuilder();
 		headStack.clear();
 
@@ -61,13 +76,44 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 //			String path = Dust.access(DustAccess.Peek, null, h, TOKEN_TARGET, TOKEN_PATH);
 			DustHandle hStream = txtAgent.getStream(h);
 			String path = Dust.access(DustAccess.Peek, null, hStream, TOKEN_PATH);
-			
 
-			if (!DustUtils.isEmpty(path)) {
-				DustUtils.sbAppend(sb, "", false, "<img src=\"", path, "\" ", "id=\"" + id + "\" ");
-				optAddStyleClass(h, sb);
-				sb.append("/>\n");
+			boolean image = Dust.access(DustAccess.Check, DustUtils.CONST_HANDLES.get(TOKEN_STREAM_IMAGE, TOKEN_KBMETA_TAG), hStream, TOKEN_TAGS);
+
+			if (image) {
+				if (!DustUtils.isEmpty(path)) {
+					StringBuilder fn = new StringBuilder(DustUtils.getPostfix(id, DUST_SEP_TOKEN));
+
+					StreamProcessor sp = new StreamProcessor() {
+						@Override
+						public boolean readStream(InputStream is, Map<String, Object> data) throws Exception {
+							fn.append(".").append(data.get("format"));
+							File f = new File(dirImg, fn.toString());
+
+							try (FileOutputStream os = new FileOutputStream(f)) {
+								DustStreamUtils.copyStream(is, os);
+							}
+							return true;
+						}
+					};
+
+					try {
+						txtAgent.processStream(hStream, sp);
+					} catch (Exception e) {
+						DustException.wrap(e);
+					}
+
+					DustUtils.sbAppend(sb, "", false, "<img src=\"", fnImg, "/", fn, "\" ", "id=\"" + id + "\" ");
+					optAddStyleClass(h, sb);
+					sb.append("/>\n");
+				}
+
 			}
+
+//			if (!DustUtils.isEmpty(path)) {
+//				DustUtils.sbAppend(sb, "", false, "<img src=\"", path, "\" ", "id=\"" + id + "\" ");
+//				optAddStyleClass(h, sb);
+//				sb.append("/>\n");
+//			}
 
 			return;
 		}

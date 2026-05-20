@@ -67,7 +67,6 @@ import me.giskard.dust.core.utils.DustUtilsFactory;
 import me.giskard.dust.core.utils.DustUtilsFile;
 import me.giskard.dust.mod.gui.swing.DustGuiSwingUtils;
 import me.giskard.dust.mod.utils.DustUtilsJson;
-import me.giskard.dust.sandbox.db.DustSandboxSQLAgent;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextConsts {
@@ -147,8 +146,6 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 	DustSandboxTextSelectionManager selMgr;
 	DustSandboxTextHtmlGenerator htmlGen;
-
-	DustSandboxSQLAgent sqla;
 
 	ActionListener al = new ActionListener() {
 
@@ -417,22 +414,8 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					break;
 				case "Magic!":
 //					Dust.log(TOKEN_LEVEL_INFO, docEditor.getText());
-					
-					Set<DustHandle> streamColl = new HashSet<>();
-					for (DustHandle h : DustMindUtils.getUnitMembers(txtAgent.hRes)) {
-						String ht = h.getType().getId();
-						if (DustUtils.isEqual(TOKEN_STREAM, ht)) {
-							streamColl.add(h);
-						}
-					}
-					
-					if ( !streamColl.isEmpty() ) {
-						if ( null == sqla ) {
-							sqla = new DustSandboxSQLAgent();
-							sqla.initSql(DustSandboxSQLAgent.TEST_URL, DustSandboxSQLAgent.DEF_TABLE, DustSandboxSQLAgent.DEF_COLS, 2);
-						}
-						sqla.update(streamColl);
-					}
+
+					txtAgent.updateDB();
 
 					break;
 				case "GenHtml":
@@ -961,19 +944,30 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 						DustHandle hRes = resArr.get(sr);
 						icon = resIconFactory.get(hRes);
 
-						for (DustHandle h : DustMindUtils.getUnitMembers(txtAgent.hUnit)) {
-							if ((boolean) Dust.access(DustAccess.Check, hRes, h, TOKEN_TARGET)) {
-								String id = h.getId();
+						for (DustHandle h : (Iterable<DustHandle>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, hRes, TOKEN_APPEARS)) {
+							String id = h.getId();
 
-								Dust.log(TOKEN_LEVEL_TRACE, "Selected image ref id", id);
-								Element eRef = doc.getElement(id);
+							Dust.log(TOKEN_LEVEL_TRACE, "Selected image ref id", id);
+							Element eRef = doc.getElement(id);
 
-								if (null != eRef) {
-									docEditor.setCaretPosition(eRef.getStartOffset());
-								}
-								break;
+							if (null != eRef) {
+								docEditor.setCaretPosition(eRef.getStartOffset());
 							}
+							break;
 						}
+//						for (DustHandle h : DustMindUtils.getUnitMembers(txtAgent.hUnit)) {
+//							if ((boolean) Dust.access(DustAccess.Check, hRes, h, TOKEN_TARGET)) {
+//								String id = h.getId();
+//
+//								Dust.log(TOKEN_LEVEL_TRACE, "Selected image ref id", id);
+//								Element eRef = doc.getElement(id);
+//
+//								if (null != eRef) {
+//									docEditor.setCaretPosition(eRef.getStartOffset());
+//								}
+//								break;
+//							}
+//						}
 					}
 					resPreview.setIcon(icon);
 				}

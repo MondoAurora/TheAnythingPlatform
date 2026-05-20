@@ -29,9 +29,11 @@ import javax.swing.text.BadLocationException;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.mind.DustMindUtils;
+import me.giskard.dust.core.stream.DustStreamConsts.StreamProcessor;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsData;
 import me.giskard.dust.core.utils.DustUtilsFile;
+import me.giskard.dust.sandbox.db.DustSandboxSQLAgent;
 
 @SuppressWarnings("unchecked")
 public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextConsts {
@@ -52,6 +54,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 	Map<String, String> styles = new TreeMap<>();
 	Map<DustHandle, DustHandle> events = new HashMap<>();
 	Map<DustHandle, Set<DustHandle>> streamRefs = new HashMap<>();
+	DustSandboxSQLAgent sqla;
 
 	DustHandle hLayout;
 
@@ -791,5 +794,32 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 	public DustHandle getStream(DustHandle h) {
 		DustHandle stream = streamRefs.get(h).iterator().next();
 		return stream;
+	}
+
+	public void updateDB() throws Exception {
+		Set<DustHandle> streamColl = new HashSet<>();
+		for (DustHandle h : DustMindUtils.getUnitMembers(hRes)) {
+			String ht = h.getType().getId();
+			if (DustUtils.isEqual(TOKEN_STREAM, ht)) {
+				streamColl.add(h);
+			}
+		}
+		
+		if ( !streamColl.isEmpty() ) {
+			getSqla();
+			sqla.update(streamColl);
+		}
+	}
+	
+	public void processStream(DustHandle hStream, StreamProcessor sp) throws Exception {
+		getSqla().processStream(hStream, sp);
+	}
+
+	public DustSandboxSQLAgent getSqla() throws Exception {
+		if ( null == sqla ) {
+			sqla = new DustSandboxSQLAgent();
+			sqla.initSql(DustSandboxSQLAgent.TEST_URL, DustSandboxSQLAgent.DEF_TABLE, DustSandboxSQLAgent.DEF_COLS, 2);
+		}
+		return sqla;
 	}
 }

@@ -3,18 +3,25 @@ package me.giskard.dust.sandbox.db;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.net.URI;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts;
+import me.giskard.dust.core.stream.DustStreamConsts.StreamProcessor;
+import me.giskard.dust.core.stream.DustStreamUtils;
 import me.giskard.dust.core.utils.DustUtils;
 
 public class DustSandboxSQLAgent implements DustConsts {
@@ -34,6 +41,8 @@ public class DustSandboxSQLAgent implements DustConsts {
 
 	Set<String> dbHandles = new HashSet<>();
 
+	private String sqlRead;
+
 	public static void main(String[] args) throws Exception {
 		DustSandboxSQLAgent sqla = new DustSandboxSQLAgent();
 
@@ -45,7 +54,7 @@ public class DustSandboxSQLAgent implements DustConsts {
 		File f = new File(fName);
 
 		values[1] = "image";
-		values[2] = "png";
+		values[2] = DustUtils.getPostfix(fName, ".");
 		values[3] = "file://" + f.getCanonicalPath();
 		values[5] = "streams.1";
 		values[6] = "testImg01";
@@ -59,7 +68,6 @@ public class DustSandboxSQLAgent implements DustConsts {
 		Object[] values = new Object[colNames.length + 1];
 
 		values[1] = "image";
-		values[2] = "png";
 		values[5] = "streams.1";
 
 		try (Connection conn = DriverManager.getConnection(url)) {
@@ -70,6 +78,7 @@ public class DustSandboxSQLAgent implements DustConsts {
 
 				String fName = Dust.access(DustAccess.Peek, null, hStream, TOKEN_PATH);
 				File f = new File("localStore/" + fName);
+				values[2] = DustUtils.getPostfix(fName, ".");
 
 				values[3] = "file://" + f.getCanonicalPath();
 				doUpdate(conn, values);
@@ -77,18 +86,15 @@ public class DustSandboxSQLAgent implements DustConsts {
 		}
 	}
 
-	public void doUpdate(Connection conn, Object[] values) throws Exception {
+	private void doUpdate(Connection conn, Object[] values) throws Exception {
 		URI fUri = new URI((String) values[3]);
 
 		File f = new File(fUri);
 		if (f.isFile()) {
 			ByteArrayOutputStream bos = null;
 			try (FileInputStream fis = new FileInputStream(f)) {
-				byte[] buffer = new byte[1024];
 				bos = new ByteArrayOutputStream();
-				for (int len; (len = fis.read(buffer)) != -1;) {
-					bos.write(buffer, 0, len);
-				}
+				DustStreamUtils.copyStream(fis, bos);
 			}
 
 			byte[] data = bos.toByteArray();
@@ -111,6 +117,44 @@ public class DustSandboxSQLAgent implements DustConsts {
 			}
 		} else {
 			Dust.log(TOKEN_LEVEL_ERROR, "Missing file", f.getCanonicalPath());
+		}
+	}
+
+	public void processStream(DustHandle hStream, StreamProcessor sp) throws Exception {
+
+		try (Connection conn = DriverManager.getConnection(url)) {
+			String id = hStream.getId();
+			try (PreparedStatement pstmt = conn.prepareStatement(sqlRead)) {
+				pstmt.setObject(1, DustUtils.getPrefix(id, DUST_SEP_TOKEN));
+				pstmt.setObject(2, DustUtils.getPostfix(id, DUST_SEP_TOKEN));
+
+				ResultSet rs = pstmt.executeQuery();
+				Map<String, Object> data = new TreeMap<>();
+
+				ResultSetMetaData md = rs.getMetaData();
+				int cc = md.getColumnCount();
+				int bc = -1;
+				for (int i = 1; i <= cc; ++i) {
+					if (Types.BLOB == md.getColumnType(i)) {
+						bc = i;
+						break;
+					}
+				}
+
+				while (rs.next()) {
+
+					data.clear();
+					for (int i = 1; i <= cc; ++i) {
+						if (i != bc) {
+							data.put(md.getColumnName(i), rs.getObject(i));
+						}
+					}
+
+					InputStream is = rs.getBinaryStream(bc);
+
+					sp.readStream(is, data);
+				}
+			}
 		}
 	}
 
@@ -151,6 +195,7 @@ public class DustSandboxSQLAgent implements DustConsts {
 
 		sqlList = DustUtils.sbAppend(null, " ", true, "SELECT", sbId, "FROM", tblName).toString();
 		sqlInsert = DustUtils.sbAppend(null, " ", true, "INSERT INTO", tblName, "(", sbAll, ") VALUES (", sbVal, ")").toString();
+		sqlRead = DustUtils.sbAppend(null, " ", true, "SELECT", sbAll, "FROM", tblName, "WHERE", sbWhere).toString();
 		sqlUpdate = DustUtils.sbAppend(null, " ", true, "UPDATE", tblName, "SET", sbUpdate, "WHERE", sbWhere).toString();
 
 		try (Connection conn = DriverManager.getConnection(url)) {
