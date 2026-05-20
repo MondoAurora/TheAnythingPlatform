@@ -788,8 +788,8 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		}
 	}
 
-	public String getStreamPath(DustHandle h) {
+	public DustHandle getStream(DustHandle h) {
 		DustHandle stream = streamRefs.get(h).iterator().next();
-		return Dust.access(DustAccess.Peek, null, stream, TOKEN_PATH);
+		return stream;
 	}
 }

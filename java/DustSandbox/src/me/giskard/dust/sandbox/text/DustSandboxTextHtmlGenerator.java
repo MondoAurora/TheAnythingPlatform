@@ -59,7 +59,8 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 
 		if (DustUtils.isEqual(TOKEN_TEXT_TRANSCLUSION, ht)) {
 //			String path = Dust.access(DustAccess.Peek, null, h, TOKEN_TARGET, TOKEN_PATH);
-			String path = txtAgent.getStreamPath(h);
+			DustHandle hStream = txtAgent.getStream(h);
+			String path = Dust.access(DustAccess.Peek, null, hStream, TOKEN_PATH);
 			
 
 			if (!DustUtils.isEmpty(path)) {

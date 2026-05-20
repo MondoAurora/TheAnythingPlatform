@@ -67,6 +67,7 @@ import me.giskard.dust.core.utils.DustUtilsFactory;
 import me.giskard.dust.core.utils.DustUtilsFile;
 import me.giskard.dust.mod.gui.swing.DustGuiSwingUtils;
 import me.giskard.dust.mod.utils.DustUtilsJson;
+import me.giskard.dust.sandbox.db.DustSandboxSQLAgent;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextConsts {
@@ -147,26 +148,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 	DustSandboxTextSelectionManager selMgr;
 	DustSandboxTextHtmlGenerator htmlGen;
 
-//	DustUtilsFactory<String, JComponent> factToolbars = new DustUtilsFactory<String, JComponent>(new DustCreator<JComponent>() {
-//		@Override
-//		public JComponent create(Object key, Object... hints) {
-//			JPanel pnl = new JPanel(null);
-//
-//			int a = DustUtils.optGet(hints, 0, BoxLayout.PAGE_AXIS);
-//			pnl.setLayout(new BoxLayout(pnl, a));
-//			return pnl;
-//		}
-//	});
-
-//	DustUtilsFactory<String, JComponent> factActionControls = new DustUtilsFactory<String, JComponent>(new DustCreator<JComponent>() {
-//		@Override
-//		public JComponent create(Object key, Object... hints) {
-//			if (0 == hints.length) {
-//				return DustGuiSwingUtils.createBtn((String) key, al, JButton.class);
-//			}
-//			return null;
-//		}
-//	});
+	DustSandboxSQLAgent sqla;
 
 	ActionListener al = new ActionListener() {
 
@@ -434,7 +416,24 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					}
 					break;
 				case "Magic!":
-					Dust.log(TOKEN_LEVEL_INFO, docEditor.getText());
+//					Dust.log(TOKEN_LEVEL_INFO, docEditor.getText());
+					
+					Set<DustHandle> streamColl = new HashSet<>();
+					for (DustHandle h : DustMindUtils.getUnitMembers(txtAgent.hRes)) {
+						String ht = h.getType().getId();
+						if (DustUtils.isEqual(TOKEN_STREAM, ht)) {
+							streamColl.add(h);
+						}
+					}
+					
+					if ( !streamColl.isEmpty() ) {
+						if ( null == sqla ) {
+							sqla = new DustSandboxSQLAgent();
+							sqla.initSql(DustSandboxSQLAgent.TEST_URL, DustSandboxSQLAgent.DEF_TABLE, DustSandboxSQLAgent.DEF_COLS, 2);
+						}
+						sqla.update(streamColl);
+					}
+
 					break;
 				case "GenHtml":
 					fName = JOptionPane.showInputDialog("HTML file name?", tfUnit.getText() + "_gen.html");
