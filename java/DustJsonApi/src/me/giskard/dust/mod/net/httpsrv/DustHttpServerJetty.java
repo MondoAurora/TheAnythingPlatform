@@ -81,7 +81,7 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 //			Object dispatch = Dust.access(DustAccess.Peek, null, null, TOKEN_MEMBERS);
 
 //			ctxHandler.addServlet(new ServletHolder(new DustHttpServletDispatcher(dispatch)), "/*");
-			Object cfg =  Dust.access(DustAccess.Peek, null, null);
+			Object cfg = Dust.access(DustAccess.Peek, null, null);
 			ctxHandler.addServlet(new ServletHolder(new DustHttpServletDispatcher(cfg)), "/*");
 
 			jetty.setHandler(handlers);
@@ -92,36 +92,43 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 	@Override
 	protected Object process(DustAccess access) throws Exception {
 		Commands cmd = Commands.info;
-		String str = Dust.access(DustAccess.Peek, "", null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
-		String[] path = str.split("/");
-		if (0 < path.length) {
+		String str = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
+		if (null != str) {
 			try {
-				cmd = Commands.valueOf(path[0]);
+				cmd = Commands.valueOf(str);
 			} catch (Exception e) {
-//							DustException.swallow(e);
+				DustException.swallow(e);
 			}
 		}
+
+//		String str = Dust.access(DustAccess.Peek, "", null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
+//		String[] path = str.split("/");
+//		if (0 < path.length) {
+//			try {
+//				cmd = Commands.valueOf(path[0]);
+//			} catch (Exception e) {
+////							DustException.swallow(e);
+//			}
+//		}
 
 		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
 		if (null == response) {
 			Dust.log(TOKEN_LEVEL_ERROR, "no response given?");
 		}
 
+		response.setContentType(MEDIATYPE_UTF8_HTML);
+		PrintWriter out = response.getWriter();
+
 		String head = "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>" + name + "</title>\n</head>\n<body>\n";
 
 		switch (cmd) {
 		case stop:
-
-			if (null != response) {
-				response.setContentType(MEDIATYPE_UTF8_HTML);
-				PrintWriter out = response.getWriter();
 
 				out.println(head);
 				out.println("<h2>Server shutdown initiated.</h2>\n");
 				out.println("</body></html>\n");
 
 				out.flush();
-			}
 
 			new Thread() {
 				@Override
@@ -137,9 +144,6 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 			}.start();
 			break;
 		case info:
-			response = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
-
-			if (null != response) {
 				Properties pp = System.getProperties();
 
 				StringBuilder sb = new StringBuilder(head);
@@ -162,11 +166,9 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 				sb.append("</ul>");
 
 				sb.append("</body></html>");
-				response.setContentType(MEDIATYPE_UTF8_HTML);
-				PrintWriter out = response.getWriter();
+//				response.setContentType(MEDIATYPE_UTF8_HTML);
 
 				out.println(sb.toString());
-			}
 			break;
 		}
 

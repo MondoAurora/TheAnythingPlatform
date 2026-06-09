@@ -48,6 +48,7 @@ public class DustStreamUtils implements DustUtilsConsts, DustMindConsts, DustStr
 			os.write(dataBuffer, 0, bytesRead);
 			success = true;
 		}
+		os.flush();
 		return success;
 	}
 

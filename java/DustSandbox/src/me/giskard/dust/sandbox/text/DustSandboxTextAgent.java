@@ -201,29 +201,6 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		return docUrl;
 	}
 
-//	DustCreator<DustHandle> resUnitCreator = new DustCreator<DustHandle>() {
-//		@Override
-//		public DustHandle create(Object key, Object... hints) {
-//			StringBuilder resUnit = new StringBuilder(DustUtils.getPrefix((String) key, DUST_SEP_TOKEN));
-//			int i = resUnit.indexOf(".");
-//			resUnit.insert(i, "_res");
-//
-//			DustHandle hRes = Dust.getUnit(resUnit.toString(), true);
-//			
-//			return null;
-//		}
-//	};
-//
-//	DustCreator<DustUtilsFactory<String, DustHandle>> resFactCreator = new DustCreator<DustUtilsFactory<String, DustHandle>>() {
-//		@Override
-//		public DustUtilsFactory<String, DustHandle> create(Object key, Object... hints) {
-//			return new DustUtilsFactory<String, DustHandle>(resUnitCreator);
-//		}
-//	};
-//
-//	DustUtilsFactory<DustHandle, DustUtilsFactory<String, DustHandle>> factText = new DustUtilsFactory<DustHandle, DustUtilsFactory<String, DustHandle>>(
-//			resFactCreator);
-
 	String accessText(DustAccess access, String val, DustHandle hTxt) {
 		return accessTextExt(access, hLang, val, hTxt);
 //		DustHandle hNode = Dust.getHandle(hUnit, null, key, DustOptCreate.None);
@@ -243,42 +220,6 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		}
 
 		return Dust.access(access, val, hString, TOKEN_TEXT_TEXT);
-//		StringBuilder resUnit = new StringBuilder(DustUtils.getPrefix((String) key, DUST_SEP_TOKEN));
-//		int i = resUnit.indexOf(".");
-//		resUnit.insert(i, "_res");
-//
-//		DustHandle hRes = Dust.getUnit(resUnit.toString(), true);
-//
-//		switch (access) {
-//		case Delete:
-//		case Insert:
-//		case Reset:
-//		case Set:
-//			toSave.add(hRes);
-//			break;
-//		default:
-//			break;
-//		}
-//
-//		DustHandle hTxt = null;
-//
-//		for (DustHandle h : DustMindUtils.getUnitMembers(hRes)) {
-//			if ((boolean) Dust.access(DustAccess.Check, hLang, h, TOKEN_TEXT_LANG)) {
-//				if ((boolean) Dust.access(DustAccess.Check, key, h, TOKEN_TARGET, TOKEN_ID)) {
-//					hTxt = h;
-//					break;
-//				}
-//			}
-//		}
-//
-//		if ((null == hTxt) && access.creator) {
-//			hTxt = Dust.getHandle(hRes, TOKEN_TEXT_STRING, null, DustOptCreate.Primary);
-//			DustHandle hNode = Dust.getHandle(hUnit, null, key, DustOptCreate.None);
-//			Dust.access(DustAccess.Set, hNode, hTxt, TOKEN_TARGET);
-//			Dust.access(DustAccess.Set, hLang, hTxt, TOKEN_TEXT_LANG);
-//		}
-//
-//		return Dust.access(access, val, hTxt, TOKEN_TEXT_TEXT);
 	};
 
 	public String getShortText(DustHandle h, int maxLen) {

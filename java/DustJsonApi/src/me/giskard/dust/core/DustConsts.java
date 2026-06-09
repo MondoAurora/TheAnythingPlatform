@@ -95,6 +95,7 @@ public interface DustConsts {
 	String TOKEN_MAIL = DUST_UNIT_DUST + DUST_SEP_TOKEN + "mail";
 
 	String TOKEN_KEY = DUST_UNIT_DUST + DUST_SEP_TOKEN + "key";
+	String TOKEN_AUTHOR = DUST_UNIT_DUST + DUST_SEP_TOKEN + "author";
 	String TOKEN_UNIT = DUST_UNIT_DUST + DUST_SEP_TOKEN + "unit";
 	String TOKEN_META = DUST_UNIT_DUST + DUST_SEP_TOKEN + "meta";
 	String TOKEN_DATA = DUST_UNIT_DUST + DUST_SEP_TOKEN + "data";
@@ -109,6 +110,8 @@ public interface DustConsts {
 	String TOKEN_MAPPING = DUST_UNIT_DUST + DUST_SEP_TOKEN + "mapping";
 	String TOKEN_CONSTS = DUST_UNIT_DUST + DUST_SEP_TOKEN + "consts";
 	String TOKEN_OPTIONS = DUST_UNIT_DUST + DUST_SEP_TOKEN + "options";
+	String TOKEN_DEFAULT = DUST_UNIT_DUST + DUST_SEP_TOKEN + "default";
+	String TOKEN_SEPARATOR = DUST_UNIT_DUST + DUST_SEP_TOKEN + "separator";
 
 	String TOKEN_POSITION = DUST_UNIT_DUST + DUST_SEP_TOKEN + "position";
 	String TOKEN_SPAN = DUST_UNIT_DUST + DUST_SEP_TOKEN + "span";
