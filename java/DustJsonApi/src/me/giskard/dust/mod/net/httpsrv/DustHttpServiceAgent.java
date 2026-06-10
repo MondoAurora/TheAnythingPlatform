@@ -1,5 +1,7 @@
 package me.giskard.dust.mod.net.httpsrv;
 
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.Map;
@@ -11,6 +13,7 @@ import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.mind.DustMindUtils;
 import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.stream.DustStreamConsts;
+import me.giskard.dust.core.stream.DustStreamUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsConstsJson;
 
@@ -21,11 +24,27 @@ public class DustHttpServiceAgent extends DustAgent implements DustNetConsts, Du
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-//
-//		String accept = Dust.access(DustAccess.Peek, "", null, TOKEN_TARGET, TOKEN_NET_SRVCALL_HEADERS, "Accept");
-//		boolean isHtml = accept.toLowerCase().contains("html");
 
 		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+
+		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
+
+		if (!DustUtils.isEmpty(cmd)) {
+			// new TAP path
+			switch (cmd) {
+			case TOKEN_CMD_RESPOND:
+				String mt = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_MIMETYPE);
+				response.setContentType(mt);
+				OutputStream out = response.getOutputStream();
+
+				InputStream is = Dust.access(DustAccess.Peek, null, null, TOKEN_INPUT_STREAM);
+				DustStreamUtils.copyStream(is, out);
+				out.close();
+				break;
+			}
+
+			return null;
+		}
 
 		if (null != response) {
 			String pi = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
@@ -71,7 +90,7 @@ public class DustHttpServiceAgent extends DustAgent implements DustNetConsts, Du
 
 			} else {
 				try {
-					String cmd = path[0];
+					cmd = path[0];
 					DustHandle svc = Dust.getHandle(source, null, path[1], DustOptCreate.None);
 					if (null == svc) {
 						return TOKEN_RESULT_REJECT;
@@ -84,7 +103,7 @@ public class DustHttpServiceAgent extends DustAgent implements DustNetConsts, Du
 						break;
 					case "show":
 						Map<String, String> input = Dust.access(DustAccess.Peek, null, svc, TOKEN_PAYLOAD);
-						
+
 						String i = DustUtils.getPostfix(svc.getId(), DUST_SEP_TOKEN);
 
 						sb = new StringBuilder(

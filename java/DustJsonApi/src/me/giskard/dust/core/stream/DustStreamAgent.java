@@ -1,12 +1,9 @@
 package me.giskard.dust.core.stream;
 
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-import javax.servlet.http.HttpServletResponse;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
@@ -20,17 +17,16 @@ public class DustStreamAgent extends DustAgent implements DustMind.StreamSource,
 	@Override
 	protected Object process(DustAccess access) throws Exception {
 		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
-		
+
 		String author = Dust.access(DustAccess.Peek, null, null, TOKEN_AUTHOR);
 //		String unit = Dust.access(DustAccess.Peek, null, null, TOKEN_UNIT);
 		String id = Dust.access(DustAccess.Peek, null, null, TOKEN_ID);
-		
+
 		String unitId = author + "_streams.1";
 		String streamId = author + "_streams.1$" + id;
-		
+
 		DustHandle hUnit = Dust.getUnit(unitId, true);
 		DustHandle hStream = Dust.getHandle(hUnit, null, streamId, DustOptCreate.None);
-		
 
 		String root = Dust.access(DustAccess.Peek, ".", null, TOKEN_STREAM_ROOTFOLDER);
 		File r = getRootFolder(root);
@@ -54,7 +50,7 @@ public class DustStreamAgent extends DustAgent implements DustMind.StreamSource,
 
 			if (f.isDirectory()) {
 				for (File ff : f.listFiles()) {
-						Dust.access(DustAccess.Insert, ff.getCanonicalPath().substring(rpl), DustContext.Input, TOKEN_MEMBERS);
+					Dust.access(DustAccess.Insert, ff.getCanonicalPath().substring(rpl), DustContext.Input, TOKEN_MEMBERS);
 				}
 			} else {
 				String unitName = DustUtils.cutPostfix(f.getName(), ".");
@@ -64,27 +60,42 @@ public class DustStreamAgent extends DustAgent implements DustMind.StreamSource,
 			break;
 		}
 
-		Object stream = null;
+		Closeable stream = null;
 
 		if (null != token) {
 			stream = optGetStream(cmd, root, path);
-			
-			HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
-			if (null == response) {
-				Dust.log(TOKEN_LEVEL_ERROR, "no response given?");
+
+			String mimeType = "image/png";
+
+			if (null != stream) {
+				try {
+					DustHandle target = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET);
+					Dust.access(DustAccess.Set, stream, target, TOKEN_INPUT_STREAM);
+					Dust.access(DustAccess.Set, mimeType, target, TOKEN_STREAM_MIMETYPE);
+
+					Dust.access(DustAccess.Process, null, target);
+				} finally {
+					stream.close();
+				}
+
 			}
 
-			response.setContentType("image/png");
-			OutputStream out = response.getOutputStream();
-			
-			InputStream is = (InputStream) stream;
-			DustStreamUtils.copyStream(is, out);
-			is.close();
-
-			Dust.access(DustAccess.Set, stream, null, token);
+//			HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+//			if (null == response) {
+//				Dust.log(TOKEN_LEVEL_ERROR, "no response given?");
+//			}
+//
+//			response.setContentType("image/png");
+//			OutputStream out = response.getOutputStream();
+//
+//			InputStream is = (InputStream) stream;
+//			DustStreamUtils.copyStream(is, out);
+//			is.close();
+//
+//			Dust.access(DustAccess.Set, stream, null, token);
 		}
 
-		return stream;
+		return null;
 	}
 
 	protected File getRootFolder(String root) {

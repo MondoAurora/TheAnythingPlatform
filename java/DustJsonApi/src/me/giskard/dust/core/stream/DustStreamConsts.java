@@ -13,6 +13,7 @@ public interface DustStreamConsts extends DustConsts {
 
 	String TOKEN_STREAM_ROOTFOLDER = DUST_UNIT_DUST + DUST_SEP_TOKEN + "rootFolder";
 	String TOKEN_STREAM_URL = DUST_UNIT_DUST + DUST_SEP_TOKEN + "url";
+	String TOKEN_STREAM_MIMETYPE = DUST_UNIT_DUST + DUST_SEP_TOKEN + "mimeType";
 	String TOKEN_STREAM_ENCODING = DUST_UNIT_DUST + DUST_SEP_TOKEN + "encoding";
 
 	String TOKEN_STREAM_WRITER = DUST_UNIT_DUST + DUST_SEP_TOKEN + "writer";

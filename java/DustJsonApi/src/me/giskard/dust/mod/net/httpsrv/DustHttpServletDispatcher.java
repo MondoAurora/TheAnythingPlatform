@@ -100,7 +100,8 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 						params.put(field, val);
 					}
 					
-					Dust.access(DustAccess.Set, response, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+//					Dust.access(DustAccess.Set, response, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+					Dust.access(DustAccess.Set, response, hRelay, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
 
 				} else {
 					Dust.access(DustAccess.Set, url, params, TOKEN_TARGET, TOKEN_STREAM_URL);

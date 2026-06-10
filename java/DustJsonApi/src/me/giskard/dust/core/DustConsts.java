@@ -45,6 +45,7 @@ public interface DustConsts {
 	String TOKEN_CMD_SAVE = DUST_UNIT_DUST + DUST_SEP_TOKEN + "save";
 	String TOKEN_CMD_INFO = DUST_UNIT_DUST + DUST_SEP_TOKEN + "info";
 	String TOKEN_CMD_REFRESH = DUST_UNIT_DUST + DUST_SEP_TOKEN + "refresh";
+	String TOKEN_CMD_RESPOND = DUST_UNIT_DUST + DUST_SEP_TOKEN + "respond";
 	String TOKEN_CMD_TEST = DUST_UNIT_DUST + DUST_SEP_TOKEN + "test";
 
 	String TOKEN_VALTYPE = DUST_UNIT_DUST + DUST_SEP_TOKEN + "valtype";
