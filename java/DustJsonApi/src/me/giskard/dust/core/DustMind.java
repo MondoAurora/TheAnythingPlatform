@@ -9,7 +9,7 @@ public abstract class DustMind extends DustConsts.DustAgent implements DustConst
 	}
 	
 	public interface Bootloader {
-		void loadFile(DustHandle unit, InputStream is) throws Exception;
+		void loadStreamBoot(DustHandle unit, InputStream is) throws Exception;
 	}
 	
 	protected abstract DustHandle bootLoadAppUnit(DustHandle appUnit, String unitId, InputStream is, Bootloader bootLoader) throws Exception;

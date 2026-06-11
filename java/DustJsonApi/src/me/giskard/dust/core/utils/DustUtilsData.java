@@ -3,11 +3,14 @@ package me.giskard.dust.core.utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.mind.DustMindConsts;
 
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustUtilsData implements DustUtilsConsts, DustMindConsts {
 
 	public static DustHandle getAtt(DustHandle meta, DustHandle type, String attName) {
@@ -89,5 +92,43 @@ public class DustUtilsData implements DustUtilsConsts, DustMindConsts {
 
 		return d;
 	}
+	
+	public static Map optLoadMapping(Object src, Map params) {
+		Map<String, Map<String, Object>> mapping = Dust.access(DustAccess.Peek, null, src, TOKEN_MAPPING);
+
+		if (null != mapping) {
+			Map mp = new HashMap();
+
+			for (Map.Entry<String, Map<String, Object>> mfe : mapping.entrySet()) {
+				String field = mfe.getKey();
+				Map<String, Object> def = mfe.getValue();
+				Object val = null;
+
+				if (null == def) {
+					val = Dust.access(DustAccess.Peek, null, params, field);
+				} else {
+					val = Dust.access(DustAccess.Peek, null, params, def.get(TOKEN_SOURCE));
+
+					switch ((String) def.getOrDefault(TOKEN_CMD, "")) {
+					case "split":
+						String sep = (String) def.get(TOKEN_SEPARATOR);
+						int idx = ((Number) def.get(TOKEN_INDEX)).intValue();
+						String str = (String) val;
+						val = DustUtils.isEmpty(str) ? def.get(TOKEN_DEFAULT) : DustUtils.optGet(str.split(sep), idx, def.get(TOKEN_DEFAULT));
+						break;
+					}
+				}
+
+				if (null != val) {
+					mp.put(field, val);
+				}
+			}
+
+			params = mp;
+		}
+		
+		return params;
+	}
+
 
 }

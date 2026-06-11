@@ -4,22 +4,30 @@ import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.Map;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.DustMind;
 import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.utils.DustUtils;
+import me.giskard.dust.core.utils.DustUtilsData;
 import me.giskard.dust.core.utils.DustUtilsFile;
 
+@SuppressWarnings("rawtypes")
 public class DustStreamAgent extends DustAgent implements DustMind.StreamSource, DustStreamConsts, DustNetConsts {
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
 		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
 
+		String unit = Dust.access(DustAccess.Peek, null, null, TOKEN_UNIT);
+		if (DustUtils.isEmpty(unit)) {
+			// access control mock
+			return null;
+		}
+
 		String author = Dust.access(DustAccess.Peek, null, null, TOKEN_AUTHOR);
-//		String unit = Dust.access(DustAccess.Peek, null, null, TOKEN_UNIT);
 		String id = Dust.access(DustAccess.Peek, null, null, TOKEN_ID);
 
 		String unitId = author + "_streams.1";
@@ -72,8 +80,10 @@ public class DustStreamAgent extends DustAgent implements DustMind.StreamSource,
 					DustHandle target = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET);
 					Dust.access(DustAccess.Set, stream, target, TOKEN_INPUT_STREAM);
 					Dust.access(DustAccess.Set, mimeType, target, TOKEN_STREAM_MIMETYPE);
+					
+					Map params = DustUtilsData.optLoadMapping(target, null);
 
-					Dust.access(DustAccess.Process, null, target);
+					Dust.access(DustAccess.Process, params, target);
 				} finally {
 					stream.close();
 				}

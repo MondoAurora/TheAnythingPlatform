@@ -775,7 +775,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			this.unitApp = getUnitIdea(unitId, true);
 			appUnit = this.unitApp.mh;
 		}
-		bootLoader.loadFile(appUnit, is);
+		bootLoader.loadStreamBoot(appUnit, is);
 
 		return appUnit;
 	}

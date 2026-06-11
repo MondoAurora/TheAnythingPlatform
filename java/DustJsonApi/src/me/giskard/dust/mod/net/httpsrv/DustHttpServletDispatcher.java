@@ -16,6 +16,7 @@ import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.stream.DustStreamConsts;
 import me.giskard.dust.core.utils.DustUtils;
+import me.giskard.dust.core.utils.DustUtilsData;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, DustStreamConsts {
@@ -74,68 +75,44 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 //				
 				Map params = new HashMap();
 
-				Map<String, Map<String, Object>> mapping = Dust.access(DustAccess.Peek, null, hRelay, TOKEN_MAPPING);
+				Dust.access(DustAccess.Set, url, params, TOKEN_STREAM_URL);
+				Dust.access(DustAccess.Set, pathInfo, params, TOKEN_NET_SRVCALL_PATHINFO);
 
-				if (null != mapping) {
-					for (Map.Entry<String, Map<String, Object>> mfe : mapping.entrySet()) {
-						String field = mfe.getKey();
-						Map<String, Object> def = mfe.getValue();
-						Object val = null;
+				Dust.access(DustAccess.Set, request, params, TOKEN_NET_SRVCALL_REQUEST);
+				Dust.access(DustAccess.Set, response, params, TOKEN_NET_SRVCALL_RESPONSE);
 
-						switch ((String) def.get(TOKEN_SOURCE)) {
-						case TOKEN_NET_SRVCALL_PATHINFO:
-							val = pathInfo;
-							break;
-						}
-						
-						switch ((String) def.get(TOKEN_CMD)) {
-						case "split":
-							String sep = (String) def.get(TOKEN_SEPARATOR);
-							int idx = ((Number) def.get(TOKEN_INDEX)).intValue();
-							String str = (String)val;
-							val = DustUtils.isEmpty(str) ? def.get(TOKEN_DEFAULT) : DustUtils.optGet(str.split(sep), idx, def.get(TOKEN_DEFAULT));
-							break;
-						}
-						
-						params.put(field, val);
-					}
-					
-//					Dust.access(DustAccess.Set, response, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
-					Dust.access(DustAccess.Set, response, hRelay, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+				Dust.access(DustAccess.Set, request.getMethod(), params, TOKEN_NET_SRVCALL_METHOD);
 
-				} else {
-					Dust.access(DustAccess.Set, url, params, TOKEN_TARGET, TOKEN_STREAM_URL);
-					Dust.access(DustAccess.Set, pathInfo, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
+				Enumeration<String> ee;
+				String n = null;
 
-					Dust.access(DustAccess.Set, request, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_REQUEST);
-					Dust.access(DustAccess.Set, response, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
-
-					Dust.access(DustAccess.Set, request.getMethod(), params, TOKEN_TARGET, TOKEN_NET_SRVCALL_METHOD);
-
-					Enumeration<String> ee;
-					String n = null;
-
-					for (ee = request.getAttributeNames(); ee.hasMoreElements();) {
-						n = ee.nextElement();
-						optAdd(params, TOKEN_NET_SRVCALL_ATTRIBUTES, n, request.getAttribute(n));
-					}
-
-					for (ee = request.getParameterNames(); ee.hasMoreElements();) {
-						n = ee.nextElement();
-						optAdd(params, TOKEN_PAYLOAD, n, request.getParameter(n));
-					}
-
-					for (ee = request.getHeaderNames(); ee.hasMoreElements();) {
-						n = ee.nextElement();
-						optAdd(params, TOKEN_NET_SRVCALL_HEADERS, n, request.getHeader(n));
-					}
-
-					String cmd = (String) params.get(TOKEN_CMD);
-					if (null == cmd) {
-						cmd = DustUtils.getPrefix(pathInfo, "/");
-						params.put(TOKEN_CMD, cmd);
-					}
+				for (ee = request.getAttributeNames(); ee.hasMoreElements();) {
+					n = ee.nextElement();
+					optAdd(params, TOKEN_NET_SRVCALL_ATTRIBUTES, n, request.getAttribute(n));
 				}
+
+				for (ee = request.getParameterNames(); ee.hasMoreElements();) {
+					n = ee.nextElement();
+					optAdd(params, TOKEN_PAYLOAD, n, request.getParameter(n));
+				}
+
+				for (ee = request.getHeaderNames(); ee.hasMoreElements();) {
+					n = ee.nextElement();
+					optAdd(params, TOKEN_NET_SRVCALL_HEADERS, n, request.getHeader(n));
+				}
+
+				String cmd = (String) params.get(TOKEN_CMD);
+				if (null == cmd) {
+					cmd = DustUtils.getPrefix(pathInfo, "/");
+					params.put(TOKEN_CMD, cmd);
+				}
+
+				params = DustUtilsData.optLoadMapping(hRelay, params);
+
+				// Dust.access(DustAccess.Set, response, params, TOKEN_TARGET,
+				// TOKEN_NET_SRVCALL_RESPONSE);
+				Dust.access(DustAccess.Set, response, hRelay, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+
 				Dust.access(DustAccess.Process, params, hRelay);
 
 				int status = Dust.access(DustAccess.Peek, HttpServletResponse.SC_OK, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_STATUS);
@@ -155,6 +132,6 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 	}
 
 	private void optAdd(Object params, Object kind, String name, Object val) {
-		Dust.access(DustAccess.Set, val, params, TOKEN_TARGET, kind, name);
+		Dust.access(DustAccess.Set, val, params, kind, name);
 	}
 }
