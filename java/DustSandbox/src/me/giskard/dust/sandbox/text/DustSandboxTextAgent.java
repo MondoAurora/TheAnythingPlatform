@@ -697,7 +697,11 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 			String line;
 			StringBuilder sb = null;
 			Date dStart = null;
+			Date dEnd = null;
 			long durationMsec = 0;
+
+			Date prevStart = null;
+			Date prevEnd = null;
 
 			while ((line = br.readLine()) != null) {
 				line = line.trim();
@@ -711,13 +715,21 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 					Matcher m = pt1.matcher(line);
 
 					if (m.matches()) {
-						optCreateTextEvent(hDoc, KEY_ADD, DustUtils.toString(sb), dStart, durationMsec, hDurationUnit);
+						prevStart = dStart;
+						prevEnd = dEnd;
 
 						String[] strRange = line.split(",");
 						dStart = df1.parse(strRange[0].trim());
-						Date dEnd = df1.parse(strRange[1].trim());
-						durationMsec = Math.abs(dEnd.getTime() - dStart.getTime());
+						dEnd = df1.parse(strRange[1].trim());
 
+						if (0 > DustUtils.safeCompare(dStart, prevEnd)) {
+							prevEnd = dStart;
+						}
+
+						if (null != prevStart) {
+							durationMsec = Math.abs(prevEnd.getTime() - prevStart.getTime());
+							optCreateTextEvent(hDoc, KEY_ADD, DustUtils.toString(sb), prevStart, durationMsec, hDurationUnit);
+						}
 						sb = null;
 					} else {
 						sb = DustUtils.sbAppend(sb, " ", false, line.trim());
@@ -745,19 +757,19 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 				streamColl.add(h);
 			}
 		}
-		
-		if ( !streamColl.isEmpty() ) {
+
+		if (!streamColl.isEmpty()) {
 			getSqla();
 			sqla.update(streamColl);
 		}
 	}
-	
+
 	public void processStream(DustHandle hStream, StreamProcessor sp) throws Exception {
 		getSqla().processStream(hStream, sp);
 	}
 
 	public DustSandboxSQLAgent getSqla() throws Exception {
-		if ( null == sqla ) {
+		if (null == sqla) {
 			sqla = new DustSandboxSQLAgent();
 			sqla.initSql(DustSandboxSQLAgent.TEST_URL, DustSandboxSQLAgent.DEF_TABLE, DustSandboxSQLAgent.DEF_COLS, 2);
 		}

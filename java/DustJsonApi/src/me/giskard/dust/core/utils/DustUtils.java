@@ -48,7 +48,7 @@ public class DustUtils implements DustUtilsConsts {
 	}
 
 	public static int safeCompare(Object v1, Object v2) {
-		return (null == v1) ? (null == v2) ? 0 : 1 : (null == v2) ? 1 : ((Comparable) v1).compareTo(v2);
+		return (null == v1) ? (null == v2) ? 0 : 1 : (null == v2) ? -1 : ((Comparable) v1).compareTo(v2);
 	};
 
 	public static String toString(Object ob) {
