@@ -38,7 +38,7 @@ import me.giskard.dust.mod.mvel.DustExprMvelUtils;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 //@SuppressWarnings({ "unchecked" })
-public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent implements DustSwingBrowserConsts, DustUtilsConsts {
+public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent implements DustGuiSwingBrowserConsts, DustUtilsConsts {
 
 	DustHandle selUnit;
 

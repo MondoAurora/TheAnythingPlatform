@@ -14,8 +14,11 @@
 					"sandbox.1$FileStreamSource": {
 						"dust.1$binary": "me.giskard.dust.core.stream.DustStreamSrcFileAgent"
 					},
-					"dust.1$Browser": {
+					"sandbox.1$Browser": {
 						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserFrameAgent"
+					},
+					"sandbox.1$GraphEditor": {
+						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingGraphEditor"
 					},
 					"sandbox.1$AppFrame": {
 						"dust.1$binary": "me.giskard.dust.sandbox.DustSandboxAppFrameAgent"

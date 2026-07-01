@@ -17,7 +17,7 @@ import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.mod.gui.swing.DustGuiSwingConsts;
 
 //@SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustGuiSwingGridPanel extends DustGuiSwingConsts.JPanelAgent implements DustSwingBrowserConsts {
+public class DustGuiSwingGridPanel extends DustGuiSwingConsts.JPanelAgent implements DustGuiSwingBrowserConsts {
 	
 	DustHandle unit;
 	DustProcessor<Boolean> extFilter = NO_FILTER;
