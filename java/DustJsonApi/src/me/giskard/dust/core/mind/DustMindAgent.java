@@ -786,6 +786,27 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		case Process:
 			String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
 			switch (cmd) {
+			default:
+				Dust.log(TOKEN_LEVEL_WARNING, "MindAgent not handling command", cmd);
+				break;
+			case TOKEN_KBMETA_CMD_GETHANDLE:
+				String hId = Dust.access(DustAccess.Peek, null, DustContext.Input, TOKEN_GLOBALID);
+				
+				String[] parts = hId.split("\\$");
+				DustHandle hh = getUnit(parts[0], true);
+				hh = getHandle(hh, null, parts[1], DustOptCreate.None);
+				Dust.access(DustAccess.Set, hh, DustContext.Input, TOKEN_TARGET);
+				// getHandle(null, null, hId, DustOptCreate.None);
+				break;
+			case TOKEN_KBMETA_CMD_LISTUNITS:
+				Map<String, ? extends DustHandle> um = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unitMind.content, TOKEN_UNIT_REFS);
+				Dust.access(DustAccess.Delete, null, DustContext.Input, TOKEN_TARGET);
+				
+				for ( DustHandle dh : um.values() ) {
+					Dust.access(DustAccess.Insert, dh, DustContext.Input, TOKEN_TARGET);
+				}
+//				Dust.log(TOKEN_LEVEL_TRACE, "listUnits", o);
+				break;
 			case TOKEN_CMD_INFO:
 
 				DustHandle info = Dust.access(DustAccess.Peek, null, DustContext.Agent, TOKEN_CMD_INFO);

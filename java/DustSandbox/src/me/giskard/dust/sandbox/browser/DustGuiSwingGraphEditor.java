@@ -7,6 +7,12 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
@@ -32,29 +38,61 @@ import me.giskard.dust.mod.gui.swing.DustGuiSwingUtils;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustGuiSwingGraphEditor extends DustAgent implements DustGuiSwingBrowserConsts {
 
+	DustHandle hMindAPI;
+
+	Set<DustHandle> unitSel = new HashSet<>();
+	ArrayList<DustHandle> unitArr = new ArrayList<>();
+
 	JFrame frm;
 
-	ActionListener al = new ActionListener() {
+	JTextField tfHandle = new JTextField();
+	JComboBox<String> cbFilter = new JComboBox<String>();
+	JComboBox<String> cbGraph = new JComboBox<String>();
 
+	JComponent cmpGraph = new JComponent() {
+		@Override
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+		}
+
+		@Override
+		protected void paintChildren(Graphics g) {
+			// TODO Auto-generated method stub
+			super.paintChildren(g);
+		}
+	};
+	
+	
+	AbstractTableModel unitTblModel = new AbstractTableModel() {
+		@Override
+		public int getRowCount() {
+			return unitArr.size();
+		}
+
+		@Override
+		public int getColumnCount() {
+			return 1;
+		}
+
+		@Override
+		public Object getValueAt(int rowIndex, int columnIndex) {
+			DustHandle hs = unitArr.get(rowIndex);
+			switch ( columnIndex ) {
+			case 0:
+				return hs;
+			}
+			return Dust.access(DustAccess.Peek, null, hs, TOKEN_PATH);
+		}
+	};
+
+
+	ActionListener al = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String cmd = e.getActionCommand();
 
-			boolean refresh = false;
-
 			try {
-
-				switch (cmd) {
-				case "Rebuild":
-					buildGui();
-					break;
-
-				default:
-					Dust.log(TOKEN_LEVEL_WARNING, "Command not handled", cmd);
-				}
-
-				if (refresh) {
-				}
+				execCmd(cmd);
 			} catch (Throwable ex) {
 				DustException.swallow(ex, cmd);
 			}
@@ -66,6 +104,8 @@ public class DustGuiSwingGraphEditor extends DustAgent implements DustGuiSwingBr
 
 	@Override
 	protected void init() throws Exception {
+
+		hMindAPI = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET);
 
 		DustGuiSwingUtils.optSetLookAndFeel();
 
@@ -90,28 +130,74 @@ public class DustGuiSwingGraphEditor extends DustAgent implements DustGuiSwingBr
 
 	};
 
+	public void execCmd(String cmd) {
+		Map params = new HashMap();
+
+		boolean refresh = true;
+
+		switch (cmd) {
+		case "Rebuild":
+			buildGui();
+			break;
+
+		case "Load Handle":
+			Dust.access(DustAccess.Set, TOKEN_KBMETA_CMD_GETHANDLE, params, TOKEN_CMD);
+			Dust.access(DustAccess.Set, tfHandle.getText(), params, TOKEN_GLOBALID);
+			Dust.access(DustAccess.Process, params, hMindAPI);
+
+			Object hRet = Dust.access(DustAccess.Peek, null, params, TOKEN_TARGET);
+
+			if (null != hRet) {
+				Dust.log(TOKEN_LEVEL_INFO, "MindAgent responded", hRet);
+				execCmd("Update Units");
+			}
+			break;
+
+		case "Update Units":
+			Dust.access(DustAccess.Set, TOKEN_KBMETA_CMD_LISTUNITS, params, TOKEN_CMD);
+			Dust.access(DustAccess.Process, params, hMindAPI);
+
+			Collection<DustHandle> units = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, params, TOKEN_TARGET);
+			for ( DustHandle hu : units ) {
+				if ( !unitArr.contains(hu)) {
+					refresh = true;
+					unitArr.add(hu);
+				}
+			}
+			
+			if (refresh) {
+				unitTblModel.fireTableDataChanged();
+			}
+
+			break;
+
+		default:
+			Dust.log(TOKEN_LEVEL_WARNING, "execCmd() Command not handled", cmd);
+		}
+
+	}
+
 	void buildGui() {
+		tfHandle.setText("5ElemCsikung.1$000a6c1e");
+		cbFilter.setEditable(true);
+		cbGraph.setEditable(true);
+
+		factToolbars.fillToolbar("tbTop", "Rebuild", null, new JLabel("Handle ID:"), tfHandle, "Load Handle", null, "Rollback", "Commit"
+//				, null, new JLabel("Graph"), tfGraph, "Load Graph", "Merge"
+		);
+		factToolbars.fillToolbar("tbUnit", "Update Units", "Drop Unit", null, "New handle");
+		factToolbars.fillToolbar("tbProp", "Update Handle", "Reload Handle");
+		factToolbars.fillToolbar("tbGraph", cbGraph, null, "Align left", "Align right");
+		factToolbars.fillToolbar("tbGrid", "Whatever", "Also");
+		factToolbars.fillToolbar("tbFilter", "Search", null, cbFilter, "Save filter", "Load filter", "Drop filter");
+
 		Container cp = frm.getContentPane();
 		cp.removeAll();
 
 		JPanel pnlMain = new JPanel(new BorderLayout());
 		pnlMain.add(factToolbars.get("tbTop"), BorderLayout.NORTH);
-		JTextField tfHandle = new JTextField();
-//		JTextField tfGraph = new JTextField();
 
-		factToolbars.fillToolbar("tbTop", "Rebuild", null, new JLabel("Handle ID:"), tfHandle, "Load Handle", null, "Rollback", "Commit"
-//				, null, new JLabel("Graph"), tfGraph, "Load Graph", "Merge"
-		);
 		
-		JComboBox<String> cbFilter = new JComboBox<String>();
-		cbFilter.setEditable(true);
-
-		factToolbars.fillToolbar("tbUnit", "Drop Unit", "Reload Unit", null, "New handle");
-		factToolbars.fillToolbar("tbProp", "Update Handle", "Reload Handle");
-		factToolbars.fillToolbar("tbGraph", "Align left", "Align right");
-		factToolbars.fillToolbar("tbGrid", "Whatever", "Also");
-		factToolbars.fillToolbar("tbFilter", "Search", null, cbFilter, "Save filter", "Load filter", "Drop filter");
-
 		JTextArea propEditor = new JTextArea();
 		propEditor.setEditable(false);
 
@@ -119,33 +205,18 @@ public class DustGuiSwingGraphEditor extends DustAgent implements DustGuiSwingBr
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
-					int sr = ((JTable) e.getSource()).getSelectedRow();
-					if (-1 != sr) {
-					}
+					Object o = e.getSource();
+					
+					Dust.log(TOKEN_LEVEL_TRACE, "grid selection", o);
+//					int sr = ((JTable) e.getSource()).getSelectedRow();
+//					if (-1 != sr) {
+//					}
 				}
 			}
 		};
 
-		ArrayList<DustHandle> unitArr = new ArrayList<>();
-		TableModel unitTblModel = new AbstractTableModel() {
-			@Override
-			public int getRowCount() {
-				return unitArr.size();
-			}
-
-			@Override
-			public int getColumnCount() {
-				return 1;
-			}
-
-			@Override
-			public Object getValueAt(int rowIndex, int columnIndex) {
-				DustHandle hs = unitArr.get(rowIndex);
-				return Dust.access(DustAccess.Peek, null, hs, TOKEN_PATH);
-			}
-		};
 		JTable unitTable = new JTable(unitTblModel);
-
+		
 		ListSelectionModel lsm = unitTable.getSelectionModel();
 		lsm.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		lsm.addListSelectionListener(lslSelector);
@@ -197,23 +268,10 @@ public class DustGuiSwingGraphEditor extends DustAgent implements DustGuiSwingBr
 		taFilter.setRows(3);
 		pnlFilter.add(new JScrollPane(taFilter), BorderLayout.CENTER);
 		pnlFilter.add(factToolbars.get("tbFilter"), BorderLayout.SOUTH);
-		
+
 		pnlGrid.add(pnlFilter, BorderLayout.NORTH);
 		pnlGrid.add(new JScrollPane(handleTable), BorderLayout.CENTER);
 		pnlGrid.add(factToolbars.get("tbGrid"), BorderLayout.SOUTH);
-
-		JComponent cmpGraph = new JComponent() {
-			@Override
-			protected void paintComponent(Graphics g) {
-				super.paintComponent(g);
-			}
-
-			@Override
-			protected void paintChildren(Graphics g) {
-				// TODO Auto-generated method stub
-				super.paintChildren(g);
-			}
-		};
 
 		cmpGraph.setPreferredSize(new Dimension(2000, 1000));
 

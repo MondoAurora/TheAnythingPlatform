@@ -83,6 +83,8 @@ public interface DustConsts {
 	String TOKEN_ID = DUST_UNIT_DUST + DUST_SEP_TOKEN + "id";
 	String TOKEN_TYPE = DUST_UNIT_DUST + DUST_SEP_TOKEN + "type";
 	String TOKEN_TAGS = DUST_UNIT_DUST + DUST_SEP_TOKEN + "tags";
+
+	String TOKEN_GLOBALID = DUST_UNIT_DUST + DUST_SEP_TOKEN + "globalId";
 	String TOKEN_NAME = DUST_UNIT_DUST + DUST_SEP_TOKEN + "name";
 	String TOKEN_DESC = DUST_UNIT_DUST + DUST_SEP_TOKEN + "desc";
 	String TOKEN_PAYLOAD = DUST_UNIT_DUST + DUST_SEP_TOKEN + "payload";

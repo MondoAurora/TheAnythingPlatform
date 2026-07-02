@@ -26,12 +26,37 @@
 			"id": "sandbox.1$GraphEditor",
 			"attributes": {
 				"dust.1$name": "DustSandbox Graph Editor",
-				"dust.1$info": "dust.1$MiND",
+				"dust.1$target": "sandbox.1$MiNDAPI",
 				"dust.1$lookAndFeel": [
 					"com.formdev.flatlaf.FlatLightLaf",
 					"com.apple.laf.AquaLookAndFeel",
 					"javax.swing.plaf.nimbus.NimbusLookAndFeel"
 				]
+			},
+			"relationships": {
+				"dust.1$target": {
+					"data": {
+						"type": "dust.1$Service",
+						"id": "sandbox.1$MiNDAPI"
+					}			
+				}
+			}
+		},
+		{
+			"type": "dust.1$Service",
+			"id": "sandbox.1$MiNDAPI",
+			"relationships": {
+				"dust.1$listeners": {
+					"data": [
+						{
+							"type": "dust.1$Agent",
+							"id": "dust.1$MiND",
+							"meta": {
+								"key": -1
+							}
+						}
+					]
+				}
 			}
 		},
 		{
