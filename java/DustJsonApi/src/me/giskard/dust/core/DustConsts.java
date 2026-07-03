@@ -9,6 +9,7 @@ public interface DustConsts {
 	String DUST_UNIT_TEXT = "text.1";
 	String DUST_UNIT_LAYOUT = "layout.1";
 	String DUST_UNIT_LANG = "lang.1";
+	String DUST_UNIT_GEOMETRY = "geometry.1";
 
 	String DUST_CHARSET_UTF8 = StandardCharsets.UTF_8.name();// "UTF-8";
 	String DUST_FMT_TIMESTAMP = "yyyyMMdd'T'HHmmss'Z'";
@@ -184,6 +185,8 @@ public interface DustConsts {
 	String TOKEN_LAYOUT_CELL = DUST_UNIT_LAYOUT + DUST_SEP_TOKEN + "Cell";
 	String TOKEN_LAYOUT_LAYOUT = DUST_UNIT_LAYOUT + DUST_SEP_TOKEN + "layout";
 	String TOKEN_LAYOUT_LAYOUT_OTPIONS = DUST_UNIT_LAYOUT + DUST_SEP_TOKEN + "layoutOptions";
+
+	String TOKEN_GEOMETRY_NODE = DUST_UNIT_GEOMETRY + DUST_SEP_TOKEN + "Node";
 
 	String TOKEN_LANG_LANGUAGE = DUST_UNIT_LANG + DUST_SEP_TOKEN + "Language";
 	String TOKEN_LANG_SUPPORTED = DUST_UNIT_LANG + DUST_SEP_TOKEN + "supported";
