@@ -18,7 +18,7 @@
 						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserFrameAgent"
 					},
 					"sandbox.1$GraphEditor": {
-						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingGraphEditor"
+						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserPanel"
 					},
 					"sandbox.1$AppFrame": {
 						"dust.1$binary": "me.giskard.dust.sandbox.DustSandboxAppFrameAgent"
