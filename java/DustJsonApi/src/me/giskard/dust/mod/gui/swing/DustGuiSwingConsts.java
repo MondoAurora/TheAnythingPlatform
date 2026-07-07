@@ -7,10 +7,10 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import me.giskard.dust.core.DustConsts;
+import me.giskard.dust.core.gui.DustGuiConsts;
 import me.giskard.dust.core.mind.DustMindConsts;
 
-public interface DustGuiSwingConsts extends DustConsts, DustMindConsts {
-	String TOKEN_SWING_LOOKANDFEEL = DUST_UNIT_DUST + DUST_SEP_TOKEN + "lookAndFeel";
+public interface DustGuiSwingConsts extends DustConsts, DustMindConsts, DustGuiConsts {
 	
 	public abstract class JCompAgent<CompClass extends JComponent> extends DustAgent {
 		protected final CompClass comp;

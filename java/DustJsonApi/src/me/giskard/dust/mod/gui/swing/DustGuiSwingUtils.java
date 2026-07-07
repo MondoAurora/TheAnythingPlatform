@@ -110,7 +110,7 @@ public class DustGuiSwingUtils implements DustGuiSwingConsts {
 	}
 
 	public static String optSetLookAndFeel() throws Exception {
-		List<String> lnf = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_SWING_LOOKANDFEEL);
+		List<String> lnf = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_GUI_LOOKANDFEEL);
 
 		for (String lcn : lnf) {
 			try {

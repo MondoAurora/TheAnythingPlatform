@@ -34,7 +34,8 @@ public class DustUtils implements DustUtilsConsts {
 
 	public static DustCollType getCollType(Object coll) {
 		DustCollType ret = (null == coll) ? DustCollType.One
-				: (coll instanceof ArrayList) ? DustCollType.Arr : (coll instanceof Map) ? DustCollType.Map : (coll instanceof Set) ? DustCollType.Set : DustCollType.One;
+				: (coll instanceof ArrayList) ? DustCollType.Arr
+						: (coll instanceof Map) ? DustCollType.Map : (coll instanceof Set) ? DustCollType.Set : DustCollType.One;
 
 		return ret;
 	}
@@ -56,15 +57,15 @@ public class DustUtils implements DustUtilsConsts {
 	}
 
 	public static String toString(Object ob, String sep) {
-		if ( null == ob ) {
+		if (null == ob) {
 			return "";
-		} else if ( ob.getClass().isArray() ) {
+		} else if (ob.getClass().isArray()) {
 			StringBuilder sb = null;
 			for (Object oo : (Object[]) ob) {
 				sb = sbAppend(sb, sep, false, oo);
 			}
 			return (null == sb) ? "" : sb.toString();
-		} else if ( ob instanceof DustHandle ) {
+		} else if (ob instanceof DustHandle) {
 			return ((DustHandle) ob).getId();
 		} else {
 			return ob.toString();
@@ -121,11 +122,11 @@ public class DustUtils implements DustUtilsConsts {
 		for (Object ob : objects) {
 			String str = toString(ob);
 
-			if ( strict || (0 < str.length()) ) {
-				if ( null == sb ) {
+			if (strict || (0 < str.length())) {
+				if (null == sb) {
 					sb = new StringBuilder(str);
 				} else {
-					if ( 0 < sb.length() ) {
+					if (0 < sb.length()) {
 						sb.append(sep);
 					}
 					sb.append(str);
@@ -140,15 +141,15 @@ public class DustUtils implements DustUtilsConsts {
 		Object curr = root;
 
 		for (Object p : path) {
-			if ( null == curr ) {
+			if (null == curr) {
 				break;
 			}
-			if ( p instanceof Integer ) {
+			if (p instanceof Integer) {
 				int idx = (Integer) p;
 				ArrayList l = (ArrayList) curr;
 				curr = ((0 <= idx) && (idx < l.size())) ? l.get(idx) : null;
 			} else {
-				if ( p instanceof Enum ) {
+				if (p instanceof Enum) {
 					p = ((Enum) p).name();
 				}
 
@@ -160,10 +161,10 @@ public class DustUtils implements DustUtilsConsts {
 	}
 
 	public static int indexOf(Object item, Object... options) {
-		if ( (null != options) && (0 < options.length) ) {
+		if ((null != options) && (0 < options.length)) {
 			int i = 0;
 			for (Object o : options) {
-				if ( isEqual(item, o) ) {
+				if (isEqual(item, o)) {
 					return i;
 				}
 				++i;
@@ -183,7 +184,7 @@ public class DustUtils implements DustUtilsConsts {
 		synchronized (m) {
 			ret = (RetType) m.get(key);
 
-			if ( null == ret ) {
+			if (null == ret) {
 				ret = creator.create(key, hints);
 				m.put(key, ret);
 				creator.initNew(ret, key, hints);
@@ -197,12 +198,12 @@ public class DustUtils implements DustUtilsConsts {
 		int idx;
 		int s = arr.size();
 
-		if ( KEY_ADD == index ) {
+		if (KEY_ADD == index) {
 			idx = s;
 			arr.add(value);
 		} else {
-			if ( index < s ) {
-				if ( overwrite ) {
+			if (index < s) {
+				if (overwrite) {
 					arr.set(index, value);
 				} else {
 					arr.add(index, value);
@@ -239,12 +240,12 @@ public class DustUtils implements DustUtilsConsts {
 //	}
 
 	public static Object getSample(Object val) {
-		if ( val instanceof Map ) {
+		if (val instanceof Map) {
 			val = ((Map) val).values();
 		}
-		if ( val instanceof Collection ) {
+		if (val instanceof Collection) {
 			Iterator it = ((Collection) val).iterator();
-			if ( it.hasNext() ) {
+			if (it.hasNext()) {
 				return it.next();
 			}
 		}
@@ -281,11 +282,30 @@ public class DustUtils implements DustUtilsConsts {
 		pos = -1;
 		for (char c : chrs) {
 			int i = txt.lastIndexOf(c);
-			if ( i > pos ) {
+			if (i > pos) {
 				pos = i;
 			}
 		}
 		return pos;
+	}
+
+	public static <ValType> void visit(Object val, DustProcessor<ValType, Object> processor) {
+		if (val instanceof Map) {
+			val = ((Map) val).values();
+		}
+		if (val instanceof Collection) {
+			Collection coll = (Collection) val;
+			if (coll.isEmpty()) {
+				return;
+			}
+			processor.begin();
+			for (Object lt : coll) {
+				processor.process((ValType) lt);
+			}
+			processor.end();
+		} else {
+			processor.process((ValType) val);
+		}
 	}
 
 }

@@ -91,10 +91,10 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 	public DustMindAgent() {
 		unitMind = new DustMindIdea(new DustMindHandle(this, null, null, NAME_MIND));
 		initUnit(unitMind, true);
-		unitMeta = new DustMindIdea(new DustMindHandle(this, unitMind, null, DUST_UNIT_DUST));
+		unitMeta = new DustMindIdea(new DustMindHandle(this, unitMind, null, UNIT_DUST));
 		initUnit(unitMeta, false);
 
-		((Map) unitMind.content.get(TOKEN_UNIT_REFS)).put(DUST_UNIT_DUST, unitMeta.mh);
+		((Map) unitMind.content.get(TOKEN_UNIT_REFS)).put(UNIT_DUST, unitMeta.mh);
 		((Map) unitMind.content.get(TOKEN_UNIT_OBJECTS)).put(unitMeta.mh, unitMeta);
 
 		typeType = safeGetIdea(unitMeta, null, TOKEN_KBMETA_TYPE, DustOptCreate.Meta).mh;
@@ -105,7 +105,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 		unitMind.mh.init(unitMind, typeUnit, NAME_MIND);
 		unitMind.loadMh();
-		unitMeta.mh.init(unitMind, typeUnit, DUST_UNIT_DUST);
+		unitMeta.mh.init(unitMind, typeUnit, UNIT_DUST);
 		unitMeta.loadMh();
 	}
 
@@ -113,7 +113,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 	protected void init() {
 		DustHandle mind = getHandle(unitApp.mh, null, TOKEN_MIND, DustOptCreate.None);
 		defaultSerializer = access(DustAccess.Peek, null, mind, TOKEN_SERIALIZER);
-		optLoadUnit(DUST_UNIT_DUST, unitMeta);
+		optLoadUnit(UNIT_DUST, unitMeta);
 	}
 
 	private void initUnit(DustMindIdea iUnit, boolean weak) {
@@ -857,7 +857,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 						continue;
 					}
 
-					if (DustUtils.isEqual(DUST_UNIT_DUST, un)) {
+					if (DustUtils.isEqual(UNIT_DUST, un)) {
 						Dust.log(TOKEN_LEVEL_TRACE, "SKIPPING unit info", un);
 						continue;
 					}
@@ -963,7 +963,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 				params.put(TOKEN_CMD, TOKEN_CMD_SAVE);
 
 				for (String mu : metaUnitsGlobal) {
-					if (DustUtils.isEqual(DUST_UNIT_DUST, mu)) {
+					if (DustUtils.isEqual(UNIT_DUST, mu)) {
 						continue;
 					}
 					Dust.access(DustAccess.Set, mu, info, TOKEN_META, KEY_ADD);

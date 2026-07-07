@@ -69,8 +69,8 @@ public class DustUtilsFactory<KeyType, ValType> implements DustUtilsConsts {
 		content.put(key, value);
 	}
 
-	public void remove(KeyType key) {
-		content.remove(key);
+	public ValType remove(KeyType key) {
+		return content.remove(key);
 	}
 
 	public boolean drop(ValType value) {

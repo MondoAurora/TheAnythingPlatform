@@ -20,7 +20,7 @@ import me.giskard.dust.mod.gui.swing.DustGuiSwingConsts;
 public class DustGuiSwingGridPanel extends DustGuiSwingConsts.JPanelAgent implements DustGuiSwingBrowserConsts {
 	
 	DustHandle unit;
-	DustProcessor<Boolean> extFilter = NO_FILTER;
+	DustProcessor<DustHandle, Boolean> extFilter = NO_FILTER;
 
 	private final ArrayList<DustHandle> allData = new ArrayList<>();
 	private final ArrayList<DustHandle> display = new ArrayList<>();
@@ -97,7 +97,7 @@ public class DustGuiSwingGridPanel extends DustGuiSwingConsts.JPanelAgent implem
 		comp.add(scp, BorderLayout.CENTER);
 	}
 	
-	public void setExtFilter(DustProcessor<Boolean> extFilter) {
+	public void setExtFilter(DustProcessor<DustHandle, Boolean> extFilter) {
 		this.extFilter = (null == extFilter) ? NO_FILTER : extFilter;
 	}
 	
@@ -127,7 +127,7 @@ public class DustGuiSwingGridPanel extends DustGuiSwingConsts.JPanelAgent implem
 			allData.add(h);
 			for (String a : DustMindUtils.getAttNames(h)) {
 				String p = DustUtils.getPrefix(a, DUST_SEP_TOKEN);
-				if (DUST_UNIT_DUST.equals(p)) {
+				if (UNIT_DUST.equals(p)) {
 //					continue;
 				}
 				allAtts.add(a);

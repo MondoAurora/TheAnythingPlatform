@@ -30,8 +30,8 @@ import javax.swing.tree.TreePath;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsConsts;
-import me.giskard.dust.core.utils.DustUtilsFactory;
 import me.giskard.dust.core.utils.DustUtilsConstsJson.JsonApiFilter;
+import me.giskard.dust.core.utils.DustUtilsFactory;
 import me.giskard.dust.mod.gui.swing.DustGuiSwingConsts;
 import me.giskard.dust.mod.gui.swing.DustGuiSwingUtils;
 import me.giskard.dust.mod.mvel.DustExprMvelUtils;
@@ -109,7 +109,7 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 
 	private DustHandle mindInfo;
 
-	DustProcessor<Boolean> gridFilter = new DustProcessor<Boolean>() {
+	DustProcessor<DustHandle, Boolean> gridFilter = new DustProcessor<DustHandle, Boolean>() {
 		@Override
 		public Boolean process(DustHandle handle, Object... hints) {
 			boolean ret = true;

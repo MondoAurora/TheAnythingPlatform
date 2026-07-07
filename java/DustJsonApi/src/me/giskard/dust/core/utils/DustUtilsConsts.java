@@ -14,20 +14,29 @@ import me.giskard.dust.core.DustException;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public interface DustUtilsConsts extends DustConsts {
 	
-	String TOKEN_PREPROCESS = DUST_UNIT_DUST + DUST_SEP_TOKEN + "preProcess";
-	String TOKEN_UPPERCASE = DUST_UNIT_DUST + DUST_SEP_TOKEN + "upperCase";
-	String TOKEN_INNERJSON = DUST_UNIT_DUST + DUST_SEP_TOKEN + "innerJson";
+	String TOKEN_PREPROCESS = UNIT_DUST + DUST_SEP_TOKEN + "preProcess";
+	String TOKEN_UPPERCASE = UNIT_DUST + DUST_SEP_TOKEN + "upperCase";
+	String TOKEN_INNERJSON = UNIT_DUST + DUST_SEP_TOKEN + "innerJson";
+	
+	
+	String TOKEN_SQLMETA_SELECT = UNIT_DUST + DUST_SEP_TOKEN + "Select";
+
+	String TOKEN_SQL_TABLE_MAP = UNIT_DUST + DUST_SEP_TOKEN + "tableMap";
+	String TOKEN_SQL_COLUMN_MAP = UNIT_DUST + DUST_SEP_TOKEN + "columnMap";
+	
+	String TOKEN_SQL = UNIT_DUST + DUST_SEP_TOKEN + "sql";
+
 	
 	Object[] DUST_BOOL = {DUST_CONST_TRUE, DUST_CONST_FALSE, "yes", "no"};
 
 	
-	interface DustProcessor<Type> {
-		Type process(DustHandle handle, Object... hints);
+	interface DustProcessor<ValType, RetType> {
+		RetType process(ValType handle, Object... hints);
 		default void begin(Object... hints) {}
 		default void end(Object... hints) {}
 	}
 	
-	DustProcessor<Boolean> NO_FILTER = new DustProcessor<Boolean>() {
+	DustProcessor<DustHandle, Boolean> NO_FILTER = new DustProcessor<DustHandle, Boolean>() {
 		@Override
 		public Boolean process(DustHandle handle, Object... hints) {
 			return true;

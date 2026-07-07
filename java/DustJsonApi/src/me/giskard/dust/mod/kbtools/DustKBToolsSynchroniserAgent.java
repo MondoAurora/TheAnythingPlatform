@@ -24,7 +24,7 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 		StringBuilder sb = null;
 
 		switch (cmd) {
-		case TOKEN_KBT_CMD_LOADALL:
+		case TOKEN_CMD_LOADALL:
 			DustHandle uTarget = loadAll();
 			int size = DustMindUtils.getUnitSize(uTarget);
 			sb = DustUtils.sbAppend(null, " ", false, size);

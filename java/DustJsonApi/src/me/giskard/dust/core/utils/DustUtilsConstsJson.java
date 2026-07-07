@@ -11,7 +11,7 @@ import me.giskard.dust.core.DustConsts;
 import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.mind.DustMindUtils;
 
-public interface DustUtilsConstsJson extends DustConsts {
+public interface DustUtilsConstsJson extends DustConsts, DustUtilsConsts {
 
 //https://jsonapi.org/format/
 	String JSONAPI_VERSION = "1.1";

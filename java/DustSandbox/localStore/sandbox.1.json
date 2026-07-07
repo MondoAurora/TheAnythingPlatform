@@ -27,10 +27,19 @@
 			"attributes": {
 				"dust.1$name": "DustSandbox Graph Editor",
 				"dust.1$target": "sandbox.1$MiNDAPI",
-				"dust.1$lookAndFeel": [
-					"com.formdev.flatlaf.FlatLightLaf",
+				"gui.1$lookAndFeel": [
 					"com.apple.laf.AquaLookAndFeel",
-					"javax.swing.plaf.nimbus.NimbusLookAndFeel"
+					"javax.swing.plaf.nimbus.NimbusLookAndFeel",
+					"com.formdev.flatlaf.FlatLightLaf"
+				],
+				"dev.1$classes": [
+					"me.giskard.dust.core.DustConsts",
+					"me.giskard.dust.core.dev.DustDevConsts",
+					"me.giskard.dust.core.gui.DustGuiConsts",
+					"me.giskard.dust.core.mind.DustMindConsts",
+					"me.giskard.dust.core.net.DustNetConsts",
+					"me.giskard.dust.core.stream.DustStreamConsts",
+					"me.giskard.dust.core.utils.DustUtilsConsts"
 				]
 			},
 			"relationships": {
@@ -134,7 +143,7 @@
 			"id": "sandbox.1$SandboxTextAgent",
 			"attributes": {
 				"dust.1$name": "DustSandbox Text editor",
-				"dust.1$lookAndFeel": [
+				"gui.1$lookAndFeel": [
 					"com.formdev.flatlaf.FlatLightLaf",
 					"com.apple.laf.AquaLookAndFeel",
 					"javax.swing.plaf.nimbus.NimbusLookAndFeel"
@@ -211,7 +220,7 @@
 			"attributes": {
 				"dust.1$skip": false,
 				"dust.1$cmd": "LnF",
-				"dust.1$lookAndFeel": [
+				"gui.1$lookAndFeel": [
 					"com.apple.laf.AquaLookAndFeel",
 					"javax.swing.plaf.nimbus.NimbusLookAndFeel"
 				]
