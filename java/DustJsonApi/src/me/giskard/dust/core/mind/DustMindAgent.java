@@ -102,6 +102,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		typeUnit = safeGetIdea(unitMeta, typeType, TOKEN_KBMETA_UNIT, DustOptCreate.Meta).mh;
 
 		typeType.init(unitMeta, typeType, TOKEN_KBMETA_TYPE);
+		safeGetIdea(unitMeta, typeType).loadMh();
 
 		unitMind.mh.init(unitMind, typeUnit, NAME_MIND);
 		unitMind.loadMh();
@@ -159,7 +160,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 			DustMindIdea ui;
 
-			if (DustUtils.isEqual(typeUnit, type)) {
+			if ((null != type) && DustUtils.isEqual(typeUnit, type)) {
 				ui = unitMind;
 			} else {
 				if (-1 == sep) {
@@ -182,7 +183,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		return idea.getContent();
 	}
 
-	private DustMindIdea safeGetIdea(DustMindIdea unit, DustHandle type, String id, DustOptCreate optCreate) {
+	private DustMindIdea safeGetIdea(DustMindIdea unit, Object type, String id, DustOptCreate optCreate) {
 		DustMindIdea ret = null;
 
 		synchronized (unit) {
@@ -467,24 +468,38 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		 */
 
 		Boolean change = null;
+		boolean itemDel = false;
 
 		switch (access) {
 		case Delete:
 			if (curr != null) {
-				switch (collType) {
-				case Arr:
-					int lk = (int) lastKey;
-					change = (0 <= lk) && (lk < ((ArrayList) prevColl).size());
-					break;
-				case Map:
-					change = ((Map) prevColl).containsKey(lastKey);
-					break;
-				case One:
-					change = true;
-					break;
-				case Set:
-					change = ((Set) prevColl).contains(curr);
-					break;
+				if (null != val) {
+					if (curr instanceof Collection) {
+						Collection pc = (Collection) curr;
+						change = pc.contains(val);
+						itemDel = true;
+					} else if (curr instanceof Map) {
+						change = ((Map) curr).containsValue(val);
+						itemDel = true;
+					}
+				}
+
+				if (!itemDel) {
+					switch (collType) {
+					case Arr:
+						int lk = (int) lastKey;
+						change = (0 <= lk) && (lk < ((ArrayList) prevColl).size());
+						break;
+					case Map:
+						change = ((Map) prevColl).containsKey(lastKey);
+						break;
+					case One:
+						change = true;
+						break;
+					case Set:
+						change = ((Set) prevColl).contains(curr);
+						break;
+					}
 				}
 			}
 
@@ -556,18 +571,26 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			break;
 		case Delete:
 			if (curr != null) {
-				switch (collType) {
-				case Arr:
-					((ArrayList) prevColl).remove((int) lastKey);
-					break;
-				case Map:
-					((Map) prevColl).remove(lastKey);
-					break;
-				case One:
-					break;
-				case Set:
-					((Set) prevColl).remove(val);
-					break;
+				if (itemDel) {
+					if (curr instanceof Collection) {
+						((Collection) curr).remove(val);
+					} else if (curr instanceof Map) {
+						((Map) curr).values().remove(val);
+					}
+				} else {
+					switch (collType) {
+					case Arr:
+						((ArrayList) prevColl).remove((int) lastKey);
+						break;
+					case Map:
+						((Map) prevColl).remove(lastKey);
+						break;
+					case One:
+						break;
+					case Set:
+						((Set) prevColl).remove(val);
+						break;
+					}
 				}
 			}
 			ret = curr;
@@ -791,7 +814,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 				break;
 			case TOKEN_KBMETA_CMD_GETHANDLE:
 				String hId = Dust.access(DustAccess.Peek, null, DustContext.Input, TOKEN_GLOBALID);
-				
+
 				String[] parts = hId.split("\\$");
 				DustHandle hh = getUnit(parts[0], true);
 				hh = getHandle(hh, null, parts[1], DustOptCreate.None);
@@ -801,8 +824,8 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			case TOKEN_KBMETA_CMD_LISTUNITS:
 				Map<String, ? extends DustHandle> um = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unitMind.content, TOKEN_UNIT_REFS);
 				Dust.access(DustAccess.Delete, null, DustContext.Input, TOKEN_TARGET);
-				
-				for ( DustHandle dh : um.values() ) {
+
+				for (DustHandle dh : um.values()) {
 					Dust.access(DustAccess.Insert, dh, DustContext.Input, TOKEN_TARGET);
 				}
 //				Dust.log(TOKEN_LEVEL_TRACE, "listUnits", o);

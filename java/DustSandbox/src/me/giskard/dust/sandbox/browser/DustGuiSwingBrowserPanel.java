@@ -25,6 +25,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -118,11 +119,11 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 						}
 						if (val instanceof Collection) {
 							for (Object lt : (Collection) val) {
-								optDrawLine(l, lt, g2d, rct, pt1);
+								optDrawLine(h, l, lt, g2d, rct, pt1);
 							}
 						}
 						if (val instanceof DustHandle) {
-							optDrawLine(l, val, g2d, rct, pt1);
+							optDrawLine(h, l, val, g2d, rct, pt1);
 						}
 					}
 				}
@@ -132,22 +133,28 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				g2d.setTransform(at);
 			}
 
-			public void optDrawLine(String l, Object target, Graphics2D g2d, Rectangle rct, Point from) {
+			public void optDrawLine(DustHandle hSrc, String l, Object target, Graphics2D g2d, Rectangle rct, Point from) {
 				DustHandle ht = factNodes.peek((DustHandle) target);
 				JComponent tc = comps.peek(ht);
 
 				if (null != tc) {
-					tc.getBounds(rct);
-					int toX = (int) rct.getCenterX();
-					int toY = (int) rct.getCenterY();
-					g2d.drawLine(from.x, from.y, toX, toY);
-
-					double d = 50.0 / from.distance(toX, toY);
-					int px = from.x + (int) (d * (toX - from.x));
-					int py = from.y + (int) (d * (toY - from.y));
-
 					String lbl = attTypes.get(l).name() + " " + l;
-					g2d.drawString(lbl, px, py);
+
+					if (hSrc == target) {
+						g2d.drawOval(from.x - 15, from.y - 50, 30, 50);
+						g2d.drawString(lbl, from.x, from.y - 50);
+					} else {
+						tc.getBounds(rct);
+						int toX = (int) rct.getCenterX();
+						int toY = (int) rct.getCenterY();
+						g2d.drawLine(from.x, from.y, toX, toY);
+
+						double d = 50.0 / from.distance(toX, toY);
+						int px = from.x + (int) (d * (toX - from.x));
+						int py = from.y + (int) (d * (toY - from.y));
+
+						g2d.drawString(lbl, px, py);
+					}
 				}
 			}
 		};
@@ -158,7 +165,81 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		int dx = 0;
 		int dy = 0;
 
+		String[] GRAPH_MODES = { "Select", "Remove Link", "Create Link" };
+		JComboBox<String> cbMode = new JComboBox<String>(GRAPH_MODES);
+
 		MouseInputAdapter ma = new MouseInputAdapter() {
+
+			@Override
+			public void mouseClicked(java.awt.event.MouseEvent e) {
+				DustHandle h = findHandle(e);
+//				int mod = e.getModifiersEx();
+
+				if (null != h) {
+
+					switch ((String) cbMode.getSelectedItem()) {
+					case "Select":
+						if (selected.contains(h)) {
+							selected.remove(h);
+						} else {
+							if (!e.isShiftDown()) {
+								selected.clear();
+							}
+
+							selected.add(h);
+						}
+						break;
+
+					case "Remove Link":
+						for (String l : showLinks) {
+							for (DustHandle hs : selected) {
+								Dust.access(DustAccess.Delete, h, hs, l);
+							}
+						}
+
+						break;
+
+					case "Create Link":
+						if (1 != showLinks.size()) {
+							JOptionPane.showMessageDialog(cmpGraph, "Only works with one selected link", "Create link error", JOptionPane.ERROR_MESSAGE);
+							break;
+						}
+						String l = showLinks.iterator().next();
+						DustCollType ct = attTypes.get(l);
+						String key = null;
+						if (ct == DustCollType.Map) {
+							key = JOptionPane.showInputDialog(cmpGraph, "Key?", "Create Map link", JOptionPane.QUESTION_MESSAGE);
+							if (DustUtils.isEmpty(key)) {
+								break;
+							}
+						}
+						for (DustHandle hs : selected) {
+							switch (ct) {
+							case Arr:
+								Dust.access(DustAccess.Insert, h, hs, l, KEY_ADD);
+								break;
+							case Map:
+								Dust.access(DustAccess.Insert, h, hs, l, key);
+								break;
+							case One:
+								Dust.access(DustAccess.Set, h, hs, l);
+								break;
+							case Set:
+								Dust.access(DustAccess.Insert, h, hs, l);
+								break;
+							}
+						}
+
+						break;
+					}
+
+					if (!e.isShiftDown()) {
+						cbMode.setSelectedIndex(0);
+					}
+					repaintGraph();
+					updatePropPanel();
+				}
+			};
 
 			Point getModelPoint(Point pt) {
 				int x = (int) ((double) pt.x / zoomFactor);
@@ -224,26 +305,6 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 //				DustHandle h = findHandle(e);
 			}
 
-			@Override
-			public void mouseClicked(java.awt.event.MouseEvent e) {
-				DustHandle h = findHandle(e);
-//				int mod = e.getModifiersEx();
-
-				if (null != h) {
-					if (selected.contains(h)) {
-						selected.remove(h);
-					} else {
-						if (!e.isShiftDown()) {
-							selected.clear();
-						}
-
-						selected.add(h);
-					}
-
-					repaintGraph();
-					updatePropPanel();
-				}
-			};
 		};
 
 		public DustGuiSwingGraphPanel(Set<String> allLinks, Collection<DustHandle> selected) {
@@ -255,6 +316,8 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 			cmpGraph.addMouseWheelListener(ma);
 
 			cmpGraph.setPreferredSize(new Dimension(2000, 1000));
+
+			cbMode.setSelectedIndex(0);
 		}
 
 		public void setFactNodes(DustUtilsFactory<DustHandle, DustHandle> factNodes) {
@@ -686,7 +749,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 	protected void init() throws Exception {
 
 		hMindAPI = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET);
-		
+
 		tokenClasses = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, null, TOKEN_DEV_CLASSES);
 
 		DustGuiSwingUtils.optSetLookAndFeel();
@@ -829,7 +892,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		);
 		factToolbars.fillToolbar("tbUnit", "Update Units", "Drop Unit", null, "New handle");
 		factToolbars.fillToolbar("tbProp", "Update Handle", "Reload Handle");
-		factToolbars.fillToolbar("tbGraph", cbGraph, null, "+", ".", "-", "Random", "Load Refs", "Drop Selected");
+		factToolbars.fillToolbar("tbGraph", cbGraph, null, "+", ".", "-", "Random", "Load Refs", "Drop Selected", graphPanel.cbMode);
 		factToolbars.fillToolbar("tbGrid", "Whatever", "Also");
 		factToolbars.fillToolbar("tbFilter", "Search", null, cbFilter, "Save filter", "Load filter", "Drop filter");
 
