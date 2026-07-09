@@ -28,10 +28,10 @@ public interface DustMindConsts extends DustConsts, DustUtilsConsts {
 	class DustMindHandle implements DustHandle {
 		final DustMindAgent mind;
 
-		private DustMindIdea unit;
-		private DustMindHandle type;
-		private String id;
-		
+		DustMindIdea unit;
+		DustMindHandle type;
+		String id;
+
 		DustMindHandle(DustMindAgent mind) {
 			this.mind = mind;
 		}

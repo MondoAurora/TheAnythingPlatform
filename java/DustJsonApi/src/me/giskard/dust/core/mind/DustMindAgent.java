@@ -88,6 +88,8 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		};
 	};
 
+	private Map<String, DustMindIdea> bootRefUnits;
+
 	public DustMindAgent() {
 		unitMind = new DustMindIdea(new DustMindHandle(this, null, null, NAME_MIND));
 		initUnit(unitMind, true);
@@ -115,6 +117,14 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		DustHandle mind = getHandle(unitApp.mh, null, TOKEN_MIND, DustOptCreate.None);
 		defaultSerializer = access(DustAccess.Peek, null, mind, TOKEN_SERIALIZER);
 		optLoadUnit(UNIT_DUST, unitMeta);
+		if (null != bootRefUnits) {
+			for (Map.Entry<String, DustMindIdea> be : bootRefUnits.entrySet()) {
+				optLoadUnit(be.getKey(), be.getValue());
+			}
+			
+			bootRefUnits = null;
+		}
+
 	}
 
 	private void initUnit(DustMindIdea iUnit, boolean weak) {
@@ -232,20 +242,26 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 	}
 
 	private void optLoadUnit(String unitId, DustMindIdea unit) {
-		Object ser = access(DustAccess.Peek, defaultSerializer, unitMind, TOKEN_UNIT_OBJECTS, unitId, TOKEN_SERIALIZER);
+		if (!DustUtils.isEmpty(unitId)) {
+			Object ser = access(DustAccess.Peek, defaultSerializer, unitMind, TOKEN_UNIT_OBJECTS, unitId, TOKEN_SERIALIZER);
 
-		if ((null != ser) && !DustUtils.isEmpty(unitId)) {
-			Map<String, Object> params = new HashMap<>();
+			if (null != ser) {
+				Map<String, Object> params = new HashMap<>();
 
-			params.put(TOKEN_CMD, TOKEN_CMD_LOAD);
-			params.put(TOKEN_KEY, unitId);
-			params.put(TOKEN_DATA, unit.mh);
+				params.put(TOKEN_CMD, TOKEN_CMD_LOAD);
+				params.put(TOKEN_KEY, unitId);
+				params.put(TOKEN_DATA, unit.mh);
 
-			try {
-				loadingUnit.get().add(unit.mh);
-				access(DustAccess.Process, params, ser);
-			} finally {
-				loadingUnit.get().remove(unit.mh);
+				try {
+					loadingUnit.get().add(unit.mh);
+					access(DustAccess.Process, params, ser);
+				} finally {
+					loadingUnit.get().remove(unit.mh);
+				}
+			} else {
+				if (null != bootRefUnits) {
+					bootRefUnits.put(unitId, unit);
+				}
 			}
 		}
 	}
@@ -268,7 +284,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		long start = System.currentTimeMillis();
 		Object ret = null;
 		DustUtilsFactory<DustContext, Object> ctx = CTX;
-		Set<DustHandle> chg = changedUnits;
+//		Set<DustHandle> chg = changedUnits;
 
 		try {
 			CTX = new DustUtilsFactory(MAP_CREATOR);
@@ -276,37 +292,45 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			CTX.put(DustContext.Service, service);
 			CTX.put(DustContext.Input, params);
 
-			changedUnits = new HashSet<>();
-
+//			boolean save = Dust.access(DustAccess.Check, TOKEN_CMD_SAVE, params, TOKEN_CMD);
+//			if (!save) {
+//				changedUnits = new HashSet<>();
+//			}
 			ret = super.callAgent(hAgent, action, access);
 
-			Map<String, Object> sp = null;
-
-			for (DustHandle hChg : changedUnits) {
-				if ((unitApp.mh == hChg) || (DustUtils.isEmpty(hChg.getId()))) {
-					continue;
-				}
-
-//				Dust.log(TOKEN_LEVEL_INFO, "Would save changed unit", hChg.getId());
-
-				if (null == sp) {
-					sp = new HashMap<String, Object>();
-					sp.put(TOKEN_CMD, TOKEN_CMD_SAVE);
-				}
-
-				sp.put(TOKEN_KEY, hChg.getId());
-				sp.put(TOKEN_DATA, hChg);
-				Dust.access(DustAccess.Process, sp, defaultSerializer);
-			}
+//			saveChanges();
 		} catch (Throwable e) {
 			DustException.wrap(e, "sendMessage failed", agent, "service", service, "params", params);
 		} finally {
 			Dust.log(TOKEN_LEVEL_TRACE, "Message processed", System.currentTimeMillis() - start, "msec.");
 			CTX = ctx;
-			changedUnits = chg;
+//			changedUnits = chg;
 		}
 
 		return (RetType) ret;
+	}
+
+	public void saveChanges() {
+		Map<String, Object> sp = null;
+
+		for (DustHandle hChg : changedUnits) {
+			if ((unitApp.mh == hChg) || (DustUtils.isEmpty(hChg.getId()))) {
+				continue;
+			}
+
+//				Dust.log(TOKEN_LEVEL_INFO, "Would save changed unit", hChg.getId());
+
+			if (null == sp) {
+				sp = new HashMap<String, Object>();
+				sp.put(TOKEN_CMD, TOKEN_CMD_SAVE);
+			}
+
+			sp.put(TOKEN_KEY, hChg.getId());
+			sp.put(TOKEN_DATA, hChg);
+			Dust.access(DustAccess.Process, sp, defaultSerializer);
+		}
+
+		changedUnits.clear();
 	}
 
 	private void registerChange(DustHandle agent, DustAccess acess, DustHandle handle, DustHandle att, Object lastKey, Object oldVal, Object newVal)
@@ -648,6 +672,9 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 				case Map:
 					if (!DustUtils.isEqual(curr, val)) {
 						((Map) prevColl).put(lastKey, val);
+						if (DustUtils.isEqual(TOKEN_TYPE, lastKey)) {
+							((DustMindHandle) lastHandle).type = (DustMindHandle) val;
+						}
 					}
 					break;
 				case One:
@@ -791,12 +818,13 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 	@Override
 	protected synchronized DustHandle bootLoadAppUnit(DustHandle appUnit, String path, InputStream is, Bootloader bootLoader) throws Exception {
 		if (null == appUnit) {
-//				String unitId = DustUtils.cutPostfix(f.getName(), ".");
 			int u = path.lastIndexOf("/");
 			String unitId = DustUtils.cutPostfix(path.substring(u + 1), ".");
 
 			this.unitApp = getUnitIdea(unitId, true);
 			appUnit = this.unitApp.mh;
+			
+			bootRefUnits = new TreeMap<>();
 		}
 		bootLoader.loadStreamBoot(appUnit, is);
 
@@ -811,6 +839,9 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			switch (cmd) {
 			default:
 				Dust.log(TOKEN_LEVEL_WARNING, "MindAgent not handling command", cmd);
+				break;
+			case TOKEN_CMD_SAVE:
+				saveChanges();
 				break;
 			case TOKEN_KBMETA_CMD_GETHANDLE:
 				String hId = Dust.access(DustAccess.Peek, null, DustContext.Input, TOKEN_GLOBALID);
