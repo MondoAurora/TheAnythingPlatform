@@ -48,9 +48,106 @@
 						"type": "dust.1$Service",
 						"id": "sandbox.1$MiNDAPI"
 					}			
+				},
+				"dust.1$genSrc": {
+					"data": {
+						"type": "dust.1$Service",
+						"id": "sandbox.1$ForAll"
+					}			
 				}
 			}
 		},
+
+
+		{
+			"type": "dust.1$Service",
+			"id": "sandbox.1$ForAll",
+			"relationships": {
+				"dust.1$listeners": {
+					"data": [
+						{
+							"type": "dust.1$Agent",
+							"id": "sandbox.1$ForAll",
+							"meta": {
+								"key": -1
+							}
+						}
+					]
+				}
+			}
+		},
+		{
+			"type": "dust.1$Agent",
+			"id": "sandbox.1$ForAll",
+			"relationships": {
+				"dust.1$next": {
+					"data": {
+						"type": "dust.1$Service",
+						"id": "sandbox.1$Filter"
+					}
+				}
+			}
+		},
+		{
+			"type": "dust.1$Service",
+			"id": "sandbox.1$Filter",
+			"relationships": {
+				"dust.1$listeners": {
+					"data": [
+						{
+							"type": "dust.1$Agent",
+							"id": "sandbox.1$Filter",
+							"meta": {
+								"key": -1
+							}
+						}
+					]
+				}
+			}
+		},
+		{
+			"type": "dust.1$Agent",
+			"id": "sandbox.1$Filter",
+			"relationships": {
+				"dust.1$next": {
+					"data": {
+						"type": "dust.1$Service",
+						"id": "sandbox.1$GenSourceToken"
+					}
+				}
+			}
+		},
+		{
+			"type": "dust.1$Service",
+			"id": "sandbox.1$GenSourceToken",
+			"relationships": {
+				"dust.1$listeners": {
+					"data": [
+						{
+							"type": "dust.1$Agent",
+							"id": "sandbox.1$GenSourceToken",
+							"meta": {
+								"key": -1
+							}
+						}
+					]
+				}
+			}
+		},
+		{
+			"type": "dust.1$Agent",
+			"id": "sandbox.1$GenSourceToken",
+			"relationships": {
+				"dust.1$serializer": {
+					"data": {
+						"type": "dust.1$Service",
+						"id": "sandbox.1$GenSourceRoot"
+					}
+				}
+			}
+		},
+
+
 		{
 			"type": "dust.1$Service",
 			"id": "sandbox.1$MiNDAPI",
@@ -119,6 +216,26 @@
 			"id": "sandbox.1$UnitCacheRoot",
 			"attributes": {
 				"dust.1$rootFolder": "localStore"
+			},
+			"relationships": {
+				"dust.1$listeners": {
+					"data": [
+						{
+							"type": "dust.1$Agent",
+							"id": "sandbox.1$FileStreamSource",
+							"meta": {
+								"key": -1
+							}
+						}
+					]
+				}
+			}
+		},
+		{
+			"type": "dust.1$Service",
+			"id": "sandbox.1$GenSourceRoot",
+			"attributes": {
+				"dust.1$rootFolder": "gen"
 			},
 			"relationships": {
 				"dust.1$listeners": {

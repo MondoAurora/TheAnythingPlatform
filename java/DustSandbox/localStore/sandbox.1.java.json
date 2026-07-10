@@ -20,6 +20,15 @@
 					"sandbox.1$GraphEditor": {
 						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserPanel"
 					},
+					"sandbox.1$ForAll": {
+						"dust.1$binary": "me.giskard.dust.core.mind.DustMindNarrative$ForAll"
+					},
+					"sandbox.1$Filter": {
+						"dust.1$binary": "me.giskard.dust.core.mind.DustMindNarrative$Filter"
+					},
+					"sandbox.1$GenSourceToken": {
+						"dust.1$binary": "me.giskard.dust.core.dev.DustDevGenSourceTokenAgent"
+					},
 					"sandbox.1$AppFrame": {
 						"dust.1$binary": "me.giskard.dust.sandbox.DustSandboxAppFrameAgent"
 					},

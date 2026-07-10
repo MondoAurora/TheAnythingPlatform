@@ -160,7 +160,7 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 				}
 
 				if (val.contains(LDAP_SINGLE_VALUE)) {
-					Dust.access(DustAccess.Set, true, h, TOKEN_COLLTYPE_SINGLE);
+					Dust.access(DustAccess.Set, true, h, TOKEN_COLLTYPE_ONE);
 				}
 			}
 		}

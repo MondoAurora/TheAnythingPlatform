@@ -53,17 +53,18 @@ public interface DustConsts {
 	String TOKEN_CMD_LOADALL = UNIT_DUST + DUST_SEP_TOKEN + "loadAll";
 
 	String TOKEN_VALTYPE = UNIT_DUST + DUST_SEP_TOKEN + "valtype";
-	String TOKEN_VALTYPE_STRING = TOKEN_VALTYPE + "String";
-	String TOKEN_VALTYPE_REFERENCE = TOKEN_VALTYPE + "Reference";
-	String TOKEN_VALTYPE_LONG = TOKEN_VALTYPE + "Long";
+	String TOKEN_VALTYPE_HANDLE = TOKEN_VALTYPE + "Handle";
+	String TOKEN_VALTYPE_INTEGER = TOKEN_VALTYPE + "Integer";
 	String TOKEN_VALTYPE_REAL = TOKEN_VALTYPE + "Real";
+	String TOKEN_VALTYPE_STRING = TOKEN_VALTYPE + "String";
 	String TOKEN_VALTYPE_BOOL = TOKEN_VALTYPE + "Bool";
+	String TOKEN_VALTYPE_STREAM = TOKEN_VALTYPE + "Stream";
 	String TOKEN_VALTYPE_RAW = TOKEN_VALTYPE + "Raw";
 
 	String TOKEN_COLLTYPE = UNIT_DUST + DUST_SEP_TOKEN + "colltype";
-	String TOKEN_COLLTYPE_SINGLE = TOKEN_COLLTYPE + "Single";
+	String TOKEN_COLLTYPE_ONE = TOKEN_COLLTYPE + "One";
 	String TOKEN_COLLTYPE_MAP = TOKEN_COLLTYPE + "Map";
-	String TOKEN_COLLTYPE_ARRAY = TOKEN_COLLTYPE + "Array";
+	String TOKEN_COLLTYPE_ARR = TOKEN_COLLTYPE + "Arr";
 	String TOKEN_COLLTYPE_SET = TOKEN_COLLTYPE + "Set";
 
 	String TOKEN_PREFIX = UNIT_DUST + DUST_SEP_TOKEN + "prefix";
@@ -78,7 +79,6 @@ public interface DustConsts {
 	String TOKEN_BINARY_RESOLVER = UNIT_DUST + DUST_SEP_TOKEN + "binaryResolver";
 	String TOKEN_BINARY = UNIT_DUST + DUST_SEP_TOKEN + "binary";
 
-//	String TOKEN_PARAMS = DUST_UNIT_ID + DUST_SEP_TOKEN + "params";
 	String TOKEN_LISTENERS = UNIT_DUST + DUST_SEP_TOKEN + "listeners";
 	String TOKEN_ALIAS = UNIT_DUST + DUST_SEP_TOKEN + "alias";
 	String TOKEN_SOURCE = UNIT_DUST + DUST_SEP_TOKEN + "source";
@@ -108,6 +108,7 @@ public interface DustConsts {
 	String TOKEN_DATA = UNIT_DUST + DUST_SEP_TOKEN + "data";
 
 	String TOKEN_PARENT = UNIT_DUST + DUST_SEP_TOKEN + "parent";
+	String TOKEN_NEXT = UNIT_DUST + DUST_SEP_TOKEN + "next";
 	String TOKEN_TARGET = UNIT_DUST + DUST_SEP_TOKEN + "target";
 	String TOKEN_MEMBERS = UNIT_DUST + DUST_SEP_TOKEN + "members";
 	String TOKEN_CHILDMAP = UNIT_DUST + DUST_SEP_TOKEN + "childMap";
@@ -221,7 +222,7 @@ public interface DustConsts {
 	};
 
 	enum DustValType {
-		Handle, Integer, Real, Identifier, Stream, Raw;
+		Handle, Integer, Real, String, Bool, Stream, Raw;
 	};
 
 	public interface DustHandle {

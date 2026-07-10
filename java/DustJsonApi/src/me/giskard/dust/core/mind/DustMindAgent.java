@@ -72,7 +72,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 			DustMindIdea ret = new DustMindIdea(h);
 
-			if (DustUtils.isEqual(typeUnit, h.getType())) {
+			if ((null != typeUnit) && DustUtils.isEqual(typeUnit, h.getType())) {
 				initUnit(ret, false);
 			}
 
@@ -104,7 +104,8 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		typeUnit = safeGetIdea(unitMeta, typeType, TOKEN_KBMETA_UNIT, DustOptCreate.Meta).mh;
 
 		typeType.init(unitMeta, typeType, TOKEN_KBMETA_TYPE);
-		safeGetIdea(unitMeta, typeType).loadMh();
+		DustMindIdea typeIdea = safeGetIdea(unitMeta, typeType);
+		typeIdea.loadMh();
 
 		unitMind.mh.init(unitMind, typeUnit, NAME_MIND);
 		unitMind.loadMh();
@@ -954,7 +955,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 							if (val instanceof Set) {
 								collType = TOKEN_COLLTYPE_SET;
 							} else if (val instanceof Collection) {
-								collType = TOKEN_COLLTYPE_ARRAY;
+								collType = TOKEN_COLLTYPE_ARR;
 							} else if (val instanceof Map) {
 								collType = TOKEN_COLLTYPE_MAP;
 							}
@@ -973,9 +974,9 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 										valType = TOKEN_VALTYPE_STRING;
 									}
 								} else if (val instanceof DustHandle) {
-									valType = TOKEN_VALTYPE_REFERENCE;
+									valType = TOKEN_VALTYPE_HANDLE;
 								} else if (val instanceof Long) {
-									valType = TOKEN_VALTYPE_LONG;
+									valType = TOKEN_VALTYPE_INTEGER;
 								} else if (val instanceof Double) {
 									valType = TOKEN_VALTYPE_REAL;
 								} else {
