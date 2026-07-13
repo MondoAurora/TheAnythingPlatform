@@ -971,10 +971,11 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				}
 				
 				Dust.access(DustAccess.Set, TOKEN_CMD_TEST, params, TOKEN_CMD);
+				Dust.access(DustAccess.Set, TOKEN_UNIT_REFS, params, TOKEN_PATH, KEY_ADD);
 				for ( DustHandle hu : filterUnit ) {
-					Dust.access(DustAccess.Set, hu, params, TOKEN_TARGET);
-					Dust.access(DustAccess.Process, params, hSrcGen);
+					Dust.access(DustAccess.Insert, hu, params, TOKEN_MEMBERS);
 				}
+				Dust.access(DustAccess.Process, params, hSrcGen);
 				
 				break;
 			default:

@@ -47,21 +47,22 @@
 					"data": {
 						"type": "dust.1$Service",
 						"id": "sandbox.1$MiNDAPI"
-					}			
+					}
 				},
 				"dust.1$genSrc": {
 					"data": {
 						"type": "dust.1$Service",
-						"id": "sandbox.1$ForAll"
-					}			
+						"id": "sandbox.1$SrcGenEntry"
+					}
 				}
 			}
 		},
-
-
 		{
 			"type": "dust.1$Service",
-			"id": "sandbox.1$ForAll",
+			"id": "sandbox.1$SrcGenEntry",
+			"attributes": {
+				"dust.1$transactionHead": true
+			},
 			"relationships": {
 				"dust.1$listeners": {
 					"data": [
@@ -83,14 +84,25 @@
 				"dust.1$next": {
 					"data": {
 						"type": "dust.1$Service",
-						"id": "sandbox.1$Filter"
+						"id": "sandbox.1$SrcGenFilter"
 					}
 				}
 			}
 		},
 		{
 			"type": "dust.1$Service",
-			"id": "sandbox.1$Filter",
+			"id": "sandbox.1$SrcGenFilter",
+			"attributes": {
+				"dust.1$filter": {
+					"dust.1$name": true,
+					"dust.1$type": [
+						"dust.1$Unit",
+						"dust.1$Type",
+						"dust.1$Attribute",
+						"dust.1$Tag"
+					]
+				}
+			},
 			"relationships": {
 				"dust.1$listeners": {
 					"data": [
@@ -112,14 +124,23 @@
 				"dust.1$next": {
 					"data": {
 						"type": "dust.1$Service",
-						"id": "sandbox.1$GenSourceToken"
+						"id": "sandbox.1$GenSourceTokenSvc"
 					}
 				}
 			}
 		},
 		{
 			"type": "dust.1$Service",
-			"id": "sandbox.1$GenSourceToken",
+			"id": "sandbox.1$GenSourceTokenSvc",
+			"attributes": {
+				"dust.1$transactionItem": true,
+				"dust.1$members": [
+					"dust.1$Unit",
+					"dust.1$Type",
+					"dust.1$Attribute",
+					"dust.1$Tag"
+				]
+			},
 			"relationships": {
 				"dust.1$listeners": {
 					"data": [
@@ -137,6 +158,14 @@
 		{
 			"type": "dust.1$Agent",
 			"id": "sandbox.1$GenSourceToken",
+			"attributes": {
+				"dust.1$members": [
+					"dust.1$Unit",
+					"dust.1$Type",
+					"dust.1$Attribute",
+					"dust.1$Tag"
+				]
+			},
 			"relationships": {
 				"dust.1$serializer": {
 					"data": {
@@ -146,8 +175,6 @@
 				}
 			}
 		},
-
-
 		{
 			"type": "dust.1$Service",
 			"id": "sandbox.1$MiNDAPI",

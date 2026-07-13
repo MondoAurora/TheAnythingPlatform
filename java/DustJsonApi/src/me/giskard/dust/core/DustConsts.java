@@ -1,7 +1,5 @@
 package me.giskard.dust.core;
 
-import java.nio.charset.StandardCharsets;
-
 public interface DustConsts {
 	String DUST_CRED_FILE = "credentials.json";
 
@@ -13,7 +11,7 @@ public interface DustConsts {
 	String UNIT_LANG = "lang.1";
 	String UNIT_GEOMETRY = "geometry.1";
 
-	String DUST_CHARSET_UTF8 = StandardCharsets.UTF_8.name();// "UTF-8";
+	String DUST_CHARSET_UTF8 = "UTF-8";
 	String DUST_FMT_TIMESTAMP = "yyyyMMdd'T'HHmmss'Z'";
 	String DUST_FMT_DATE = "yyyy-MM-dd";
 	String DUST_FMT_TIME = "HH:mm:ss.SSS'Z'";
@@ -79,6 +77,9 @@ public interface DustConsts {
 	String TOKEN_BINARY_RESOLVER = UNIT_DUST + DUST_SEP_TOKEN + "binaryResolver";
 	String TOKEN_BINARY = UNIT_DUST + DUST_SEP_TOKEN + "binary";
 
+	String TOKEN_TRANSACTION_HEAD = UNIT_DUST + DUST_SEP_TOKEN + "transactionHead";
+	String TOKEN_TRANSACTION_ITEM = UNIT_DUST + DUST_SEP_TOKEN + "transactionItem";
+	
 	String TOKEN_LISTENERS = UNIT_DUST + DUST_SEP_TOKEN + "listeners";
 	String TOKEN_ALIAS = UNIT_DUST + DUST_SEP_TOKEN + "alias";
 	String TOKEN_SOURCE = UNIT_DUST + DUST_SEP_TOKEN + "source";

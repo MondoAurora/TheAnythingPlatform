@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 import java.util.TreeMap;
 import java.util.WeakHashMap;
 
@@ -24,6 +25,7 @@ import me.giskard.dust.core.utils.DustUtilsFactory;
 class DustMindAgent extends DustMind implements DustMindConsts {
 
 	DustUtilsFactory<DustContext, Object> CTX = new DustUtilsFactory(MAP_CREATOR);
+	Stack<ArrayList<DustHandle>> transactionStack = new Stack<ArrayList<DustHandle>>();
 
 	ThreadLocal<Set<DustHandle>> loadingUnit = new ThreadLocal<Set<DustHandle>>() {
 		protected Set<DustHandle> initialValue() {
@@ -122,7 +124,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			for (Map.Entry<String, DustMindIdea> be : bootRefUnits.entrySet()) {
 				optLoadUnit(be.getKey(), be.getValue());
 			}
-			
+
 			bootRefUnits = null;
 		}
 
@@ -278,19 +280,34 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 	}
 
 	@Override
-	protected <RetType> RetType notifyAgent(DustHandle hAgent, DustAction action, DustAccess access, DustHandle service, Object params) {
+	protected <RetType> RetType notifyAgent(DustHandle hAgent, DustAction action, DustAccess access, DustHandle hService, Object params) {
 		String agent = hAgent.getId();
-		Dust.log(TOKEN_LEVEL_TRACE, "Message to agent", agent, "service", service, "params", params);
+		Dust.log(TOKEN_LEVEL_TRACE, "Message to agent", agent, "service", hService, "params", params);
 
 		long start = System.currentTimeMillis();
 		Object ret = null;
 		DustUtilsFactory<DustContext, Object> ctx = CTX;
 //		Set<DustHandle> chg = changedUnits;
 
+		boolean tHead = Dust.access(DustAccess.Peek, false, hService, TOKEN_TRANSACTION_HEAD);
+		if (tHead) {
+			transactionStack.push(new ArrayList<DustHandle>());
+		}
+
+		boolean tItem = Dust.access(DustAccess.Peek, false, hService, TOKEN_TRANSACTION_ITEM);
+		if (tItem) {
+			ArrayList<DustHandle> ts = transactionStack.peek();
+			if (!ts.contains(hAgent)) {
+				ts.add(0, hAgent);
+			}
+		}
+
+		Throwable exc = null;
+
 		try {
 			CTX = new DustUtilsFactory(MAP_CREATOR);
 			CTX.put(DustContext.Agent, hAgent);
-			CTX.put(DustContext.Service, service);
+			CTX.put(DustContext.Service, hService);
 			CTX.put(DustContext.Input, params);
 
 //			boolean save = Dust.access(DustAccess.Check, TOKEN_CMD_SAVE, params, TOKEN_CMD);
@@ -301,11 +318,26 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 //			saveChanges();
 		} catch (Throwable e) {
-			DustException.wrap(e, "sendMessage failed", agent, "service", service, "params", params);
+			exc = e;
+			DustException.wrap(e, "sendMessage failed", agent, "service", hService, "params", params);
 		} finally {
 			Dust.log(TOKEN_LEVEL_TRACE, "Message processed", System.currentTimeMillis() - start, "msec.");
+
+			if (tHead) {
+				CTX.clear();
+				ArrayList<DustHandle> transactionItems = transactionStack.pop();
+				for (DustHandle ht : transactionItems) {
+					CTX.put(DustContext.Agent, ht);
+					try {
+						super.callAgent(ht, DustAction.End, (null == exc) ? DustAccess.Commit : DustAccess.Rollback);
+					} catch (Throwable e) {
+						DustException.wrap(e, "sendMessage failed", agent, "service", hService, "params", params);
+					}
+				}
+			}
+
 			CTX = ctx;
-//			changedUnits = chg;
+//		changedUnits = chg;
 		}
 
 		return (RetType) ret;
@@ -824,7 +856,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 			this.unitApp = getUnitIdea(unitId, true);
 			appUnit = this.unitApp.mh;
-			
+
 			bootRefUnits = new TreeMap<>();
 		}
 		bootLoader.loadStreamBoot(appUnit, is);
