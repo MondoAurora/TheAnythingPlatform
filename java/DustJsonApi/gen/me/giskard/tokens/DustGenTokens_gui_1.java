@@ -1,4 +1,4 @@
-package me.giskard.gen;
+package me.giskard.tokens;
 
 public interface DustGenTokens_gui_1 {
 // Attributes

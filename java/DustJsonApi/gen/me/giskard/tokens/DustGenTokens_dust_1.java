@@ -1,20 +1,26 @@
-package me.giskard.gen;
+package me.giskard.tokens;
 
 public interface DustGenTokens_dust_1 {
 // Types
 	String TOKEN_STREAM = "dust.1$Stream";
 	String TOKEN_KBMETA_TYPE = "dust.1$Type";
 	String TOKEN_DESC = "dust.1$desc";
+	String TOKEN_COLLTYPE_ONE = "dust.1$colltypeOne";
 	String TOKEN_KBMETA_ATTRIBUTE = "dust.1$Attribute";
 	String TOKEN_SQLMETA_SELECT = "dust.1$Select";
+	String TOKEN_ATTRIBUTES = "dust.1$attributes";
+	String TOKEN_VALTYPE_HANDLE = "dust.1$valtypeHandle";
 	String TOKEN_TYPE_APP = "dust.1$Application";
 	String TOKEN_KBMETA_UNIT = "dust.1$Unit";
 	String TOKEN_KBMETA_TAG = "dust.1$Tag";
 	String TOKEN_TYPE_SERVICE = "dust.1$Service";
 	String TOKEN_TYPE_AGENT = "dust.1$Agent";
+	String TOKEN_COLLTYPE_ARR = "dust.1$colltypeArr";
+	String TOKEN_VALTYPE_INTEGER = "dust.1$valtypeInteger";
 	String TOKEN_TEXT_TRANSCLUSION = "dust.1$Transclusion";
 	String TOKEN_EVENT = "dust.1$Event";
 	String TOKEN_DEFAULT = "dust.1$default";
+	String TOKEN_VALTYPE_STREAM = "dust.1$valtypeStream";
 
 // Attributes
 	String TOKEN_COUNT = "dust.1$count";
@@ -59,13 +65,16 @@ public interface DustGenTokens_dust_1 {
 	String TOKEN_AUTHOR = "dust.1$author";
 	String TOKEN_CMD = "dust.1$cmd";
 	String TOKEN_LISTENERS = "dust.1$listeners";
+	String TOKEN_NEXT = "dust.1$next";
 	String TOKEN_ROOT = "dust.1$root";
 	String TOKEN_KB_KNOWNUNITS = "dust.1$knownUnits";
 	String TOKEN_NET_SRVCALL_STATUS = "dust.1$status";
 	String TOKEN_STREAM_ROOTFOLDER = "dust.1$rootFolder";
 	String TOKEN_PREFIX = "dust.1$prefix";
+	String TOKEN_TRANSACTION_HEAD = "dust.1$transactionHead";
 	String TOKEN_NET_SRVCALL_PATHINFO = "dust.1$pathInfo";
 	String TOKEN_INPUT_STREAM = "dust.1$inputStream";
+	String TOKEN_TRANSACTION_ITEM = "dust.1$transactionItem";
 	String TOKEN_KEY = "dust.1$key";
 	String TOKEN_NET_KNOWN_HOST = "dust.1$knownHost";
 	String TOKEN_SOURCE = "dust.1$source";
@@ -75,7 +84,6 @@ public interface DustGenTokens_dust_1 {
 	String TOKEN_SPAN = "dust.1$span";
 	String TOKEN_NET_HOST_PORT = "dust.1$port";
 	String TOKEN_USER = "dust.1$user";
-	String TOKEN_NET_SRVCALL_ATTRIBUTES = "dust.1$attributes";
 	String TOKEN_MEMBERS = "dust.1$members";
 	String TOKEN_PARENT = "dust.1$parent";
 	String TOKEN_STREAM_COLSEP = "dust.1$colSep";
@@ -101,6 +109,7 @@ public interface DustGenTokens_dust_1 {
 	String TOKEN_INNERJSON = "dust.1$innerJson";
 	String TOKEN_NET_SRVCALL_HEADERS = "dust.1$headers";
 	String TOKEN_STREAM_ENCODING = "dust.1$encoding";
+	String TOKEN_CMD_GENSRC = "dust.1$genSrc";
 	String TOKEN_PATH = "dust.1$path";
 	String TOKEN_APPEARS = "dust.1$appears";
 	String TOKEN_STREAM_SOURCE = "dust.1$streamSource";
@@ -143,4 +152,7 @@ public interface DustGenTokens_dust_1 {
 	String TOKEN_COLLTYPE_MAP = "dust.1$colltypeMap";
 	String TOKEN_COLLTYPE_SINGLE = "dust.1$colltypeSingle";
 	String TOKEN_VALTYPE_REAL = "dust.1$valtypeReal";
+
+// Agents
+	String TOKEN_MIND = "dust.1$MiND";
 }

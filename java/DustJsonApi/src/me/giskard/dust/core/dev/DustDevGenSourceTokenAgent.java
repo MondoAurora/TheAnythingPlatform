@@ -13,15 +13,24 @@ import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFile;
 
 @SuppressWarnings("rawtypes")
-public class DustDevGenSourceTokenAgent extends DustAgent {
+public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevConsts {
 
 	Collection<String> types;
+	String targetPackage;
+	File root;
+
 	Map temp = new HashMap();
 
 	@Override
 	protected void init() throws Exception {
 		super.init();
 		types = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_MEMBERS);
+		targetPackage = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_DEV_PACKAGE);
+
+		String projectRoot = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_PATH);
+		root = new File(new File(projectRoot), targetPackage.replace('.', '/'));
+
+		DustUtilsFile.ensureDir(root);
 	}
 
 	@Override
@@ -55,11 +64,6 @@ public class DustDevGenSourceTokenAgent extends DustAgent {
 
 		Dust.log(TOKEN_LEVEL_TRACE, "Generate sources from", tokens);
 
-		String pName = "me.giskard.gen";
-
-		File root = new File(new File("gen"), pName.replace('.', '/'));
-		DustUtilsFile.ensureDir(root);
-
 		for (Map.Entry<String, Object> ue : tokens.entrySet()) {
 			PrintStream ps = null;
 
@@ -81,7 +85,7 @@ public class DustDevGenSourceTokenAgent extends DustAgent {
 								ps = new PrintStream(f);
 
 								ps.print("package ");
-								ps.print(pName);
+								ps.print(targetPackage);
 								ps.print(";");
 								ps.println();
 								ps.println();

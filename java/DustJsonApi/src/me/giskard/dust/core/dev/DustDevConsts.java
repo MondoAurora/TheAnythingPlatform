@@ -4,7 +4,8 @@ import me.giskard.dust.core.DustConsts;
 import me.giskard.dust.core.mind.DustMindConsts;
 
 public interface DustDevConsts extends DustConsts, DustMindConsts {
+	String TOKEN_DEV_PACKAGE = UNIT_DEV + DUST_SEP_TOKEN + "package";
 	String TOKEN_DEV_CLASSES = UNIT_DEV + DUST_SEP_TOKEN + "classes";
-	String TOKEN_CMD_GENSRC = UNIT_DUST + DUST_SEP_TOKEN + "genSrc";
+	String TOKEN_CMD_GENSRC = UNIT_DEV + DUST_SEP_TOKEN + "genSrc";
 
 }

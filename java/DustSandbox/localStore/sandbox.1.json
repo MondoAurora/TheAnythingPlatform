@@ -49,7 +49,7 @@
 						"id": "sandbox.1$MiNDAPI"
 					}
 				},
-				"dust.1$genSrc": {
+				"dev.1$genSrc": {
 					"data": {
 						"type": "dust.1$Service",
 						"id": "sandbox.1$SrcGenEntry"
@@ -95,11 +95,12 @@
 			"attributes": {
 				"dust.1$filter": {
 					"dust.1$name": true,
-					"dust.1$type": [
+					"dust.1$typeX": [
 						"dust.1$Unit",
 						"dust.1$Type",
 						"dust.1$Attribute",
-						"dust.1$Tag"
+						"dust.1$Tag",
+						"dust.1$Agent"
 					]
 				}
 			},
@@ -133,13 +134,7 @@
 			"type": "dust.1$Service",
 			"id": "sandbox.1$GenSourceTokenSvc",
 			"attributes": {
-				"dust.1$transactionItem": true,
-				"dust.1$members": [
-					"dust.1$Unit",
-					"dust.1$Type",
-					"dust.1$Attribute",
-					"dust.1$Tag"
-				]
+				"dust.1$transactionItem": true
 			},
 			"relationships": {
 				"dust.1$listeners": {
@@ -159,11 +154,14 @@
 			"type": "dust.1$Agent",
 			"id": "sandbox.1$GenSourceToken",
 			"attributes": {
+				"dev.1$package": "me.giskard.tokens",
+				"dust.1$path": "../DustJsonApi/gen",
 				"dust.1$members": [
 					"dust.1$Unit",
 					"dust.1$Type",
 					"dust.1$Attribute",
-					"dust.1$Tag"
+					"dust.1$Tag",
+					"dust.1$Agent"
 				]
 			},
 			"relationships": {
@@ -226,7 +224,7 @@
 						}
 					]
 				},
-				"dust.1$streamSource": {
+				"stream.1$streamSource": {
 					"data": {
 						"type": "dust.1$Service",
 						"id": "sandbox.1$UnitCacheRoot"
@@ -242,7 +240,7 @@
 			"type": "dust.1$Service",
 			"id": "sandbox.1$UnitCacheRoot",
 			"attributes": {
-				"dust.1$rootFolder": "localStore"
+				"stream.1$rootFolder": "localStore"
 			},
 			"relationships": {
 				"dust.1$listeners": {
@@ -262,7 +260,7 @@
 			"type": "dust.1$Service",
 			"id": "sandbox.1$GenSourceRoot",
 			"attributes": {
-				"dust.1$rootFolder": "gen"
+				"stream.1$rootFolder": "gen"
 			},
 			"relationships": {
 				"dust.1$listeners": {
