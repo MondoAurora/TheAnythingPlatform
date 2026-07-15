@@ -6,21 +6,9 @@ import me.giskard.dust.core.utils.DustUtilsConsts;
 public interface DustMindConsts extends DustConsts, DustUtilsConsts {
 
 	String NAME_MIND = "MiND";
+	
+//	String TOKEN_MIND = UNIT_DUST + DUST_SEP_TOKEN + NAME_MIND;
 
-	String TOKEN_MIND = UNIT_DUST + DUST_SEP_TOKEN + NAME_MIND;
-
-	String TOKEN_TYPES = UNIT_DUST + DUST_SEP_TOKEN + "types";
-	String TOKEN_ATTRIBUTES = UNIT_DUST + DUST_SEP_TOKEN + "attributes";
-
-	String TOKEN_KB_KNOWNUNITS = UNIT_DUST + DUST_SEP_TOKEN + "knownUnits";
-
-	String TOKEN_KBMETA_CMD_GETHANDLE = UNIT_DUST + DUST_SEP_TOKEN + "getHandle";
-	String TOKEN_KBMETA_CMD_LISTUNITS = UNIT_DUST + DUST_SEP_TOKEN + "listUnits";
-
-	String TOKEN_KBMETA_UNIT = UNIT_DUST + DUST_SEP_TOKEN + "Unit";
-	String TOKEN_KBMETA_TYPE = UNIT_DUST + DUST_SEP_TOKEN + "Type";
-	String TOKEN_KBMETA_ATTRIBUTE = UNIT_DUST + DUST_SEP_TOKEN + "Attribute";
-	String TOKEN_KBMETA_TAG = UNIT_DUST + DUST_SEP_TOKEN + "Tag";
 
 	class DustMindHandle implements DustHandle {
 		final DustMindAgent mind;

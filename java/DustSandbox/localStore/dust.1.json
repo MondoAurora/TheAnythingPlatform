@@ -378,13 +378,6 @@
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_CMD_GENSRC"
-			},
-			"id": "dust.1$genSrc",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
 				"dust.1$name": "TOKEN_KBMETA_CMD_GETHANDLE"
 			},
 			"id": "dust.1$getHandle",
@@ -423,13 +416,6 @@
 				"dust.1$name": "TOKEN_INIT"
 			},
 			"id": "dust.1$init",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_INNERJSON"
-			},
-			"id": "dust.1$innerJson",
 			"type": "dust.1$Attribute"
 		},
 		{
@@ -588,13 +574,6 @@
 				"dust.1$name": "TOKEN_POSTFIX"
 			},
 			"id": "dust.1$postfix",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_PREPROCESS"
-			},
-			"id": "dust.1$preProcess",
 			"type": "dust.1$Attribute"
 		},
 		{
@@ -788,13 +767,6 @@
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_UPPERCASE"
-			},
-			"id": "dust.1$upperCase",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
 				"dust.1$name": "TOKEN_USER"
 			},
 			"id": "dust.1$user",
@@ -830,13 +802,6 @@
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_VALTYPE_LONG"
-			},
-			"id": "dust.1$valtypeLong",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
 				"dust.1$name": "TOKEN_VALTYPE_RAW"
 			},
 			"id": "dust.1$valtypeRaw",
@@ -847,13 +812,6 @@
 				"dust.1$name": "TOKEN_VALTYPE_REAL"
 			},
 			"id": "dust.1$valtypeReal",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_VALTYPE_REFERENCE"
-			},
-			"id": "dust.1$valtypeReference",
 			"type": "dust.1$Tag"
 		},
 		{
@@ -872,6 +830,6 @@
 		}
 	],
 	"meta": {
-		"count": 123
+		"count": 117
 	}
 }

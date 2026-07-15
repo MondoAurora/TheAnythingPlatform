@@ -65,7 +65,6 @@ public interface DustGenTokens_dust_1 {
 	String TOKEN_SQL_TABLE_MAP = "dust.1$tableMap";
 	String TOKEN_SQL = "dust.1$sql";
 	String TOKEN_EVENT_DATE = "dust.1$date";
-	String TOKEN_PREPROCESS = "dust.1$preProcess";
 	String TOKEN_TYPE = "dust.1$type";
 	String TOKEN_SEPARATOR = "dust.1$separator";
 	String TOKEN_CHILDMAP = "dust.1$childMap";
@@ -78,15 +77,12 @@ public interface DustGenTokens_dust_1 {
 	String TOKEN_MAIL = "dust.1$mail";
 	String TOKEN_CMD_SAVE = "dust.1$save";
 	String TOKEN_MAPPING = "dust.1$mapping";
-	String TOKEN_INNERJSON = "dust.1$innerJson";
-	String TOKEN_CMD_GENSRC = "dust.1$genSrc";
 	String TOKEN_PATH = "dust.1$path";
 	String TOKEN_APPEARS = "dust.1$appears";
 	String TOKEN_AUTH = "dust.1$auth";
 
 // Tags
 	String TOKEN_FINAL = "dust.1$final";
-	String TOKEN_UPPERCASE = "dust.1$upperCase";
 	String TOKEN_VALTYPE_RAW = "dust.1$valtypeRaw";
 	String TOKEN_MANDATORY = "dust.1$mandatory";
 	String TOKEN_RESULT_READACCEPT = "dust.1$ReadAccept";
@@ -99,7 +95,6 @@ public interface DustGenTokens_dust_1 {
 	String TOKEN_CMD_LOAD = "dust.1$load";
 	String TOKEN_VALTYPE_HANDLE = "dust.1$valtypeHandle";
 	String TOKEN_LEVEL_INFO = "dust.1$Info";
-	String TOKEN_VALTYPE_LONG = "dust.1$valtypeLong";
 	String TOKEN_RESULT_REJECT = "dust.1$Reject";
 	String TOKEN_VALTYPE_INTEGER = "dust.1$valtypeInteger";
 	String TOKEN_OPTIONAL = "dust.1$optional";
@@ -114,7 +109,6 @@ public interface DustGenTokens_dust_1 {
 	String TOKEN_RESULT_READ = "dust.1$Read";
 	String TOKEN_RESULT_ACCEPT = "dust.1$Accept";
 	String TOKEN_VALTYPE_STRING = "dust.1$valtypeString";
-	String TOKEN_VALTYPE_REFERENCE = "dust.1$valtypeReference";
 	String TOKEN_KBMETA_CMD_LISTUNITS = "dust.1$listUnits";
 	String TOKEN_RESULT_PASS = "dust.1$Pass";
 	String TOKEN_CMD_DELETE = "dust.1$delete";

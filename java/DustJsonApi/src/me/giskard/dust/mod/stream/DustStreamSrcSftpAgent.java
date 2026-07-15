@@ -65,7 +65,7 @@ public class DustStreamSrcSftpAgent extends DustAgent implements DustMind.Stream
 					java.util.Vector<ChannelSftp.LsEntry> vv = channelSftp.ls(path);
 					if (vv != null) {
 						for (ChannelSftp.LsEntry le : vv) {
-							Dust.log(TOKEN_INFO, le.getLongname());
+							Dust.log(TOKEN_LEVEL_INFO, le.getLongname());
 							
 							String fn = le.getFilename();
 							

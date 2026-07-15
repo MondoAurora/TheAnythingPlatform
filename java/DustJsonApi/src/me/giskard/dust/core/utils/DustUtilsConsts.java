@@ -14,13 +14,8 @@ import me.giskard.dust.core.DustException;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public interface DustUtilsConsts extends DustConsts {
 	
-	String TOKEN_PREPROCESS = UNIT_MISC + DUST_SEP_TOKEN + "preProcess";
-	String TOKEN_UPPERCASE = UNIT_MISC + DUST_SEP_TOKEN + "upperCase";
-	String TOKEN_INNERJSON = UNIT_MISC + DUST_SEP_TOKEN + "innerJson";
-	
 	Object[] DUST_BOOL = {DUST_CONST_TRUE, DUST_CONST_FALSE, "yes", "no"};
 
-	
 	interface DustProcessor<ValType, RetType> {
 		RetType process(ValType handle, Object... hints);
 		default void begin(Object... hints) {}
