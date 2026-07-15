@@ -821,6 +821,8 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		buildGui();
 
 		frm.setVisible(true);
+		
+		execCmd("Update Units");
 	};
 
 	public void execCmd(String cmd) {
@@ -940,7 +942,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 				break;
 			case "Delete Selected":
-				Dust.access(DustAccess.Set, TOKEN_CMD_TEST, params, TOKEN_CMD);
+				Dust.access(DustAccess.Set, TOKEN_CMD_DELETE, params, TOKEN_CMD);
 				Dust.access(DustAccess.Set, selected, params, TOKEN_MEMBERS);
 				Dust.access(DustAccess.Process, params, hMindAPI);
 

@@ -49,6 +49,7 @@ public interface DustConsts {// extends DustGenTokens_dust_1 {
 	String TOKEN_CMD_LOAD = UNIT_DUST + DUST_SEP_TOKEN + "load";
 	String TOKEN_CMD_SAVE = UNIT_DUST + DUST_SEP_TOKEN + "save";
 	String TOKEN_CMD_INFO = UNIT_DUST + DUST_SEP_TOKEN + "info";
+	String TOKEN_CMD_DELETE = UNIT_DUST + DUST_SEP_TOKEN + "delete";
 	String TOKEN_CMD_REFRESH = UNIT_DUST + DUST_SEP_TOKEN + "refresh";
 	String TOKEN_CMD_RESPOND = UNIT_DUST + DUST_SEP_TOKEN + "respond";
 	String TOKEN_CMD_TEST = UNIT_DUST + DUST_SEP_TOKEN + "test";
@@ -77,6 +78,9 @@ public interface DustConsts {// extends DustGenTokens_dust_1 {
 	String TOKEN_INIT = UNIT_DUST + DUST_SEP_TOKEN + "init";
 	String TOKEN_AGENT = UNIT_DUST + DUST_SEP_TOKEN + "agent";
 	String TOKEN_SKIP = UNIT_DUST + DUST_SEP_TOKEN + "skip";
+	
+	String TOKEN_UNIT_OBJECTS = UNIT_DUST + DUST_SEP_TOKEN + "unitObjects";
+	String TOKEN_UNIT_REFS = UNIT_DUST + DUST_SEP_TOKEN + "unitRefs";
 
 	String TOKEN_BINARY_RESOLVER = UNIT_DUST + DUST_SEP_TOKEN + "binaryResolver";
 	String TOKEN_BINARY = UNIT_DUST + DUST_SEP_TOKEN + "binary";

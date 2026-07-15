@@ -705,8 +705,18 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 				case Map:
 					if (!DustUtils.isEqual(curr, val)) {
 						((Map) prevColl).put(lastKey, val);
-						if (DustUtils.isEqual(TOKEN_TYPE, lastKey)) {
+						
+						int specIdx = DustUtils.indexOf(lastKey, TOKEN_TYPE, TOKEN_ID, TOKEN_UNIT);
+						switch (specIdx) {
+						case 0:
 							((DustMindHandle) lastHandle).type = (DustMindHandle) val;
+							break;
+						case 1:
+							((DustMindHandle) lastHandle).id = (String) val;
+							break;
+						case 2:
+							((DustMindHandle) lastHandle).unit = getUnitIdea(((DustMindHandle) val).getId(), true);
+							break;
 						}
 					}
 					break;
@@ -885,13 +895,15 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 				Dust.access(DustAccess.Set, hh, DustContext.Input, TOKEN_TARGET);
 				// getHandle(null, null, hId, DustOptCreate.None);
 				break;
-			case TOKEN_CMD_TEST:
+			case TOKEN_CMD_DELETE:
 				Collection<DustHandle> toDel = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, DustContext.Input, TOKEN_MEMBERS);
 				Dust.access(DustAccess.Delete, null, DustContext.Input, TOKEN_TARGET);
 
 				for (DustHandle dh : toDel) {
 					Object old;
-					DustMindIdea ui = getUnitIdea(dh.getUnit().getId(), false);
+					DustHandle hu = dh.getUnit();
+					DustMindIdea ui = getUnitIdea(hu.getId(), false);
+					changedUnits.add(hu);
 
 					old = ((Map) ui.content.get(TOKEN_UNIT_REFS)).remove(dh.getId());
 					old = ((Map) ui.content.get(TOKEN_UNIT_OBJECTS)).remove(dh);

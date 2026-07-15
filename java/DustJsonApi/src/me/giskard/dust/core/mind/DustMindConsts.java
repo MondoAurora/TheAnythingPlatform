@@ -22,9 +22,6 @@ public interface DustMindConsts extends DustConsts, DustUtilsConsts {
 	String TOKEN_KBMETA_ATTRIBUTE = UNIT_DUST + DUST_SEP_TOKEN + "Attribute";
 	String TOKEN_KBMETA_TAG = UNIT_DUST + DUST_SEP_TOKEN + "Tag";
 
-	String TOKEN_UNIT_OBJECTS = UNIT_DUST + DUST_SEP_TOKEN + "UnitObjects";
-	String TOKEN_UNIT_REFS = UNIT_DUST + DUST_SEP_TOKEN + "UnitRefs";
-
 	class DustMindHandle implements DustHandle {
 		final DustMindAgent mind;
 
