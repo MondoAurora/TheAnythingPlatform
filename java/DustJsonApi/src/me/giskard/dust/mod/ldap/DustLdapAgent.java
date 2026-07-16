@@ -28,16 +28,16 @@ public class DustLdapAgent extends DustAgent implements DustLdapNewConsts {
 
 		Hashtable<String, String> environment = new Hashtable<String, String>();
 
-		DustHandle accInfo = Dust.access(DustAccess.Peek, null, null, TOKEN_ACCESS);
+		DustHandle accInfo = Dust.access(DustAccess.Peek, null, null, TOKEN_AAA_ATT_ACCESS);
 
-		String url = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_STREAM_URL);
-		String user = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_USER);
-		String pass = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_PASSWORD);
-		String auth = Dust.access(DustAccess.Peek, CONST_LDAP_SIMPLE, accInfo, TOKEN_AUTH);
+		String url = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_STREAM_ATT_URL);
+		String user = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_AAA_ATT_USERID);
+		String pass = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_AAA_ATT_PASSWORD);
+		String auth = Dust.access(DustAccess.Peek, CONST_LDAP_SIMPLE, accInfo, TOKEN_AAA_ATT_AUTH);
 
-		url = Dust.access(DustAccess.Peek, url, null, TOKEN_STREAM_URL);
-		user = Dust.access(DustAccess.Peek, user, null, TOKEN_USER);
-		pass = Dust.access(DustAccess.Peek, pass, null, TOKEN_PASSWORD);
+		url = Dust.access(DustAccess.Peek, url, null, TOKEN_STREAM_ATT_URL);
+		user = Dust.access(DustAccess.Peek, user, null, TOKEN_AAA_ATT_USERID);
+		pass = Dust.access(DustAccess.Peek, pass, null, TOKEN_AAA_ATT_PASSWORD);
 
 		environment.put(Context.INITIAL_CONTEXT_FACTORY, CONST_LDAP_DEF_CTX_FACTORY);
 //		environment.put(Context.SECURITY_PROTOCOL, "ssl");
@@ -53,18 +53,18 @@ public class DustLdapAgent extends DustAgent implements DustLdapNewConsts {
 		try {
 			ldapCtx = new InitialDirContext(environment);
 
-			String filter = Dust.access(DustAccess.Peek, null, null, TOKEN_FILTER);
+			String filter = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_FILTER);
 
 			SearchControls searchControls = new SearchControls();
 
-			Collection<String> m = Dust.access(DustAccess.Peek, null, null, TOKEN_MEMBERS);
+			Collection<String> m = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_MEMBERS);
 			if (null != m) {
 				String[] attrIDs = new String[m.size()];
 				m.toArray(attrIDs);
 				searchControls.setReturningAttributes(attrIDs);
 			}
 			searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
-			Long count = Dust.access(DustAccess.Peek, 0L, null, TOKEN_COUNT);
+			Long count = Dust.access(DustAccess.Peek, 0L, null, TOKEN_MISC_ATT_COUNT);
 			if (null != count) {
 				searchControls.setCountLimit(count);
 			}
@@ -74,14 +74,14 @@ public class DustLdapAgent extends DustAgent implements DustLdapNewConsts {
 				filter = "(" + cn + ")";
 			}
 
-			String root = Dust.access(DustAccess.Peek, "", null, TOKEN_ROOT);
+			String root = Dust.access(DustAccess.Peek, "", null, TOKEN_MISC_ATT_ROOT);
 			NamingEnumeration<SearchResult> searchResults = ldapCtx.search(root, filter, searchControls);
 
 			String distinguishedName = null;
 
 			if (searchResults.hasMore()) {
 
-				String fileName = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
+				String fileName = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_PATH);
 				OutputStream os = null;
 				PrintWriter pw = null;
 				int lc = 0;
@@ -89,7 +89,7 @@ public class DustLdapAgent extends DustAgent implements DustLdapNewConsts {
 				try {
 					while (searchResults.hasMore()) {
 						if (0 == (++lc % 100)) {
-							Dust.log(TOKEN_LEVEL_TRACE, "record", lc);
+							Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "record", lc);
 						}
 
 						SearchResult result = searchResults.next();
@@ -98,7 +98,7 @@ public class DustLdapAgent extends DustAgent implements DustLdapNewConsts {
 						distinguishedName = result.getNameInNamespace();
 						
 						if (null == pw) {
-							os = DustStreamUtils.getStream(TOKEN_CMD_SAVE, fileName);
+							os = DustStreamUtils.getStream(TOKEN_MISC_TAG_CMD_SAVE, fileName);
 							pw = new PrintWriter(os);
 						} else {
 							pw.println();
@@ -129,13 +129,13 @@ public class DustLdapAgent extends DustAgent implements DustLdapNewConsts {
 						os.close();
 					}
 					
-					Dust.log(TOKEN_LEVEL_INFO, "Loaded count", lc);
+					Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Loaded count", lc);
 				}
 			}
 		} finally {
 			if (null != ldapCtx) {
 				ldapCtx.close();
-				Dust.log(TOKEN_LEVEL_INFO, "LDAP context closed.");
+				Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "LDAP context closed.");
 			}
 		}
 

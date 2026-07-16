@@ -76,7 +76,7 @@ public class DustSandboxSQLAgent implements DustConsts {
 				values[5] = DustUtils.getPrefix(id, DUST_SEP_TOKEN);
 				values[6] = DustUtils.getPostfix(id, DUST_SEP_TOKEN);
 
-				String fName = Dust.access(DustAccess.Peek, null, hStream, TOKEN_PATH);
+				String fName = Dust.access(DustAccess.Peek, null, hStream, TOKEN_MISC_ATT_PATH);
 				File f = new File("localStore/" + fName);
 				values[2] = DustUtils.getPostfix(fName, ".");
 
@@ -113,10 +113,10 @@ public class DustSandboxSQLAgent implements DustConsts {
 				pstmt.executeUpdate();
 
 				values[4] = data.length + " bytes";
-				Dust.log(TOKEN_LEVEL_TRACE, insert ? "Inserted" : "Updated", id, values);
+				Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, insert ? "Inserted" : "Updated", id, values);
 			}
 		} else {
-			Dust.log(TOKEN_LEVEL_ERROR, "Missing file", f.getCanonicalPath());
+			Dust.log(TOKEN_MISC_TAG_LEVEL_ERROR, "Missing file", f.getCanonicalPath());
 		}
 	}
 
@@ -211,13 +211,13 @@ public class DustSandboxSQLAgent implements DustConsts {
 			}
 			if (tExists) {
 				try (PreparedStatement pstmt = conn.prepareStatement(sqlList)) {
-					Dust.log(TOKEN_LEVEL_TRACE, "Running query", sqlList);
+					Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Running query", sqlList);
 					ResultSet rs = pstmt.executeQuery();
 
 					while (rs.next()) {
 						String id = rs.getString("srcunit") + DUST_SEP_TOKEN + rs.getString("srcid");
 						dbHandles.add(id);
-						Dust.log(TOKEN_LEVEL_TRACE, rs.getString("srcunit"), rs.getString("srcid"));
+						Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, rs.getString("srcunit"), rs.getString("srcid"));
 					}
 				}
 			} else {

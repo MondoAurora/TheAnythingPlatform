@@ -19,13 +19,13 @@ public class DustHttpFileAgent extends DustAgent implements DustNetConsts {
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET, TOKEN_NET_ATT_SRVCALL_RESPONSE);
 
 		if (null != response) {
-			String path = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
+			String path = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET, TOKEN_NET_ATT_SRVCALL_PATHINFO);
 
 			if (DustUtils.isEmpty(path)) {
-				path = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
+				path = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_PATH);
 			}
 
 			if (!DustUtilsFile.checkPathBound(path, false)) {
@@ -33,7 +33,7 @@ public class DustHttpFileAgent extends DustAgent implements DustNetConsts {
 				return null;
 			}
 
-			Collection<Object> roots = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_SOURCE);
+			Collection<Object> roots = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_MISC_ATT_SOURCE);
 
 			File f = null;
 
@@ -54,7 +54,7 @@ public class DustHttpFileAgent extends DustAgent implements DustNetConsts {
 
 			if (null == f) {
 				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-				return TOKEN_RESULT_REJECT;
+				return TOKEN_MIND_TAG_RESULT_REJECT;
 			}
 
 			String ct = DustNetUtils.getContentType(f);
@@ -66,7 +66,7 @@ public class DustHttpFileAgent extends DustAgent implements DustNetConsts {
 			out.flush();
 		}
 
-		return TOKEN_RESULT_ACCEPT;
+		return TOKEN_MIND_TAG_RESULT_ACCEPT;
 	}
 
 }

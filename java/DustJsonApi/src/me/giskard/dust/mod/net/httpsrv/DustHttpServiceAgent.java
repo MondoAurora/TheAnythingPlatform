@@ -25,19 +25,19 @@ public class DustHttpServiceAgent extends DustAgent implements DustNetConsts, Du
 	@Override
 	protected Object process(DustAccess access) throws Exception {
 
-		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET, TOKEN_NET_ATT_SRVCALL_RESPONSE);
 
-		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
+		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
 
 		if (!DustUtils.isEmpty(cmd)) {
 			// new TAP path
 			switch (cmd) {
-			case TOKEN_CMD_RESPOND:
-				String mt = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_MIMETYPE);
+			case TOKEN_MISC_TAG_CMD_RESPOND:
+				String mt = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_MIMETYPE);
 				response.setContentType(mt);
 				OutputStream out = response.getOutputStream();
 
-				InputStream is = Dust.access(DustAccess.Peek, null, null, TOKEN_INPUT_STREAM);
+				InputStream is = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_INPUT);
 				DustStreamUtils.copyStream(is, out);
 				out.close();
 				break;
@@ -47,7 +47,7 @@ public class DustHttpServiceAgent extends DustAgent implements DustNetConsts, Du
 		}
 
 		if (null != response) {
-			String pi = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
+			String pi = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET, TOKEN_NET_ATT_SRVCALL_PATHINFO);
 
 			String[] path = pi.split("/");
 			int pl = path.length;
@@ -56,27 +56,27 @@ public class DustHttpServiceAgent extends DustAgent implements DustNetConsts, Du
 				pl = 0;
 			}
 
-			String srcName = Dust.access(DustAccess.Peek, "", null, TOKEN_SOURCE);
+			String srcName = Dust.access(DustAccess.Peek, "", null, TOKEN_MISC_ATT_SOURCE);
 			DustHandle source = Dust.getUnit(srcName, true);
 
 			DustHandle unit = null;
 			StringBuilder sb = null;
 
 			if (0 == pl) {
-//				String m = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_METHOD);
+//				String m = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_ATT_SRVCALL_METHOD);
 
 				sb = new StringBuilder(
 						"<!doctype html>\n" + "<html lang=\"en\">\n" + "<head>\n<meta charset=\"utf-8\">\n<title>Service list</title>\n</head>\n" + "<body>");
 
 				sb.append("<h2>Services</h2><ul>");
 
-				String url = Dust.access(DustAccess.Peek, "", null, TOKEN_TARGET, TOKEN_STREAM_URL);
+				String url = Dust.access(DustAccess.Peek, "", null, TOKEN_MISC_ATT_TARGET, TOKEN_STREAM_ATT_URL);
 
 				for (DustHandle h : DustMindUtils.getUnitMembers(source)) {
 					DustHandle t = h.getType();
-					if (DustUtils.isEqual(TOKEN_TYPE_SERVICE, t.getId())) {
+					if (DustUtils.isEqual(TOKEN_MIND_ASP_SERVICE, t.getId())) {
 						String i = h.getId();
-						Object params = Dust.access(DustAccess.Peek, null, h, TOKEN_PAYLOAD);
+						Object params = Dust.access(DustAccess.Peek, null, h, TOKEN_MISC_ATT_PAYLOAD);
 
 						String c = (null == params) ? "exec/" : "show/";
 						String e = (null == params) ? " [!!!]" : "";
@@ -93,16 +93,16 @@ public class DustHttpServiceAgent extends DustAgent implements DustNetConsts, Du
 					cmd = path[0];
 					DustHandle svc = Dust.getHandle(source, null, path[1], DustOptCreate.None);
 					if (null == svc) {
-						return TOKEN_RESULT_REJECT;
+						return TOKEN_MIND_TAG_RESULT_REJECT;
 					}
 
 					switch (cmd) {
 					case "exec":
-						Map<String, String> params = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null, TOKEN_TARGET, TOKEN_PAYLOAD);
+						Map<String, String> params = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null, TOKEN_MISC_ATT_TARGET, TOKEN_MISC_ATT_PAYLOAD);
 						Dust.access(DustAccess.Process, params, svc);
 						break;
 					case "show":
-						Map<String, String> input = Dust.access(DustAccess.Peek, null, svc, TOKEN_PAYLOAD);
+						Map<String, String> input = Dust.access(DustAccess.Peek, null, svc, TOKEN_MISC_ATT_PAYLOAD);
 
 						String i = DustUtils.getPostfix(svc.getId(), DUST_SEP_TOKEN);
 
@@ -135,7 +135,7 @@ public class DustHttpServiceAgent extends DustAgent implements DustNetConsts, Du
 			}
 		}
 
-		return TOKEN_RESULT_ACCEPT;
+		return TOKEN_MIND_TAG_RESULT_ACCEPT;
 	}
 
 }

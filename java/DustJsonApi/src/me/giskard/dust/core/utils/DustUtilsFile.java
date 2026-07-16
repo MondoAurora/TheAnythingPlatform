@@ -41,7 +41,7 @@ public class DustUtilsFile extends DustUtils implements DustUtilsConsts {
 	public static File getFile(Object root, Object... path) throws Exception {
 
 		String fileName = Dust.access(DustAccess.Peek, null, root, path);
-		Dust.log(TOKEN_LEVEL_TRACE, "Accessing file", fileName);
+		Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Accessing file", fileName);
 
 		File f;
 		if ( fileName.startsWith(File.separator) ) {

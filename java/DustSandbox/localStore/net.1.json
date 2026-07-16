@@ -5,112 +5,112 @@
 	"data": [
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_NET_SRVCALL_ATTRIBUTES"
+				"dust.1$name": "TOKEN_NET_ATT_SRVCALL_ATTRIBUTES"
 			},
 			"id": "net.1$attributes",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_NET_SRVCALL_HEADERS"
+				"dust.1$name": "TOKEN_NET_ATT_SRVCALL_HEADERS"
 			},
 			"id": "net.1$headers",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_NET_KNOWN_HOST"
+				"dust.1$name": "TOKEN_NET_ATT_KNOWN_HOST"
 			},
 			"id": "net.1$knownHost",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_NET_SRVCALL_METHOD"
+				"dust.1$name": "TOKEN_NET_ATT_SRVCALL_METHOD"
 			},
 			"id": "net.1$method",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_NET_SRVCALL_PATHINFO"
+				"dust.1$name": "TOKEN_NET_ATT_SRVCALL_PATHINFO"
 			},
 			"id": "net.1$pathInfo",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_NET_HOST_PORT"
+				"dust.1$name": "TOKEN_NET_ATT_HOST_PORT"
 			},
 			"id": "net.1$port",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_NET_SRVCALL_REQUEST"
+				"dust.1$name": "TOKEN_NET_ATT_SRVCALL_REQUEST"
 			},
 			"id": "net.1$request",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_NET_SRVRESP_HEADER"
+				"dust.1$name": "TOKEN_NET_ATT_SRVRESP_HEADER"
 			},
 			"id": "net.1$respHeader",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_NET_SRVRESP_STATUS"
+				"dust.1$name": "TOKEN_NET_ATT_SRVRESP_STATUS"
 			},
 			"id": "net.1$respStatus",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_NET_SRVRESP_TYPE"
+				"dust.1$name": "TOKEN_NET_ATT_SRVRESP_TYPE"
 			},
 			"id": "net.1$respType",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_NET_SRVCALL_RESPONSE"
+				"dust.1$name": "TOKEN_NET_ATT_SRVCALL_RESPONSE"
 			},
 			"id": "net.1$response",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_NET_SSLINFO_KEYMANAGERPASS"
+				"dust.1$name": "TOKEN_NET_ATT_SSLINFO_KEYMANAGERPASS"
 			},
 			"id": "net.1$sslKeyMgrPass",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_NET_SSLINFO_PORT"
+				"dust.1$name": "TOKEN_NET_ATT_SSLINFO_PORT"
 			},
 			"id": "net.1$sslPort",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_NET_SSLINFO_STOREPASS"
+				"dust.1$name": "TOKEN_NET_ATT_SSLINFO_STOREPASS"
 			},
 			"id": "net.1$sslStorePass",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_NET_SSLINFO_STOREPATH"
+				"dust.1$name": "TOKEN_NET_ATT_SSLINFO_STOREPATH"
 			},
 			"id": "net.1$sslStorePath",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_NET_SRVCALL_STATUS"
+				"dust.1$name": "TOKEN_NET_ATT_SRVCALL_STATUS"
 			},
 			"id": "net.1$status",
 			"type": "dust.1$Attribute"

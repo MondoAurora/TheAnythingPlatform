@@ -57,7 +57,7 @@ class DustMSGraphUtils implements DustMSGraphConsts {
 		if ((httpResponseCode == HTTPResponse.SC_OK) || (httpResponseCode == HTTPResponse.SC_CREATED)) {
 			return conn.getInputStream();
 		} else {
-			Dust.log(TOKEN_LEVEL_WARNING, "Not handled response code", httpResponseCode);
+			Dust.log(TOKEN_MISC_TAG_LEVEL_WARNING, "Not handled response code", httpResponseCode);
 			return null;
 		}
 	}

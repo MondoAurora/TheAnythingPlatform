@@ -10,7 +10,7 @@ public class DustSandboxTestAgent extends DustAgent implements DustSandboxConsts
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		String cmd = Dust.access(DustAccess.Peek, "", null, TOKEN_CMD);
+		String cmd = Dust.access(DustAccess.Peek, "", null, TOKEN_MIND_ATT_CMD);
 //		StringBuilder sb = null;
 
 		switch (cmd) {

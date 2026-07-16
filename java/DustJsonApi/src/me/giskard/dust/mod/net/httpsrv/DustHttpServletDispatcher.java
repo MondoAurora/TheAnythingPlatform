@@ -28,7 +28,7 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 	public DustHttpServletDispatcher(Object dispatch) {
 		super();
 		hCfg = (DustHandle) dispatch;
-		agents = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, dispatch, TOKEN_MEMBERS);
+		agents = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, dispatch, TOKEN_MISC_ATT_MEMBERS);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 			DustHandle hRelay = null;
 
 			for (DustHandle agent : agents) {
-				String p = Dust.access(DustAccess.Get, "@@@", agent, TOKEN_PREFIX);
+				String p = Dust.access(DustAccess.Get, "@@@", agent, TOKEN_MISC_ATT_PREFIX);
 
 				if (pathInfo.startsWith(p)) {
 					hRelay = agent;
@@ -75,47 +75,47 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 //				
 				Map params = new HashMap();
 
-				Dust.access(DustAccess.Set, url, params, TOKEN_STREAM_URL);
-				Dust.access(DustAccess.Set, pathInfo, params, TOKEN_NET_SRVCALL_PATHINFO);
+				Dust.access(DustAccess.Set, url, params, TOKEN_STREAM_ATT_URL);
+				Dust.access(DustAccess.Set, pathInfo, params, TOKEN_NET_ATT_SRVCALL_PATHINFO);
 
-				Dust.access(DustAccess.Set, request, params, TOKEN_NET_SRVCALL_REQUEST);
-				Dust.access(DustAccess.Set, response, params, TOKEN_NET_SRVCALL_RESPONSE);
+				Dust.access(DustAccess.Set, request, params, TOKEN_NET_ATT_SRVCALL_REQUEST);
+				Dust.access(DustAccess.Set, response, params, TOKEN_NET_ATT_SRVCALL_RESPONSE);
 
-				Dust.access(DustAccess.Set, request.getMethod(), params, TOKEN_NET_SRVCALL_METHOD);
+				Dust.access(DustAccess.Set, request.getMethod(), params, TOKEN_NET_ATT_SRVCALL_METHOD);
 
 				Enumeration<String> ee;
 				String n = null;
 
 				for (ee = request.getAttributeNames(); ee.hasMoreElements();) {
 					n = ee.nextElement();
-					optAdd(params, TOKEN_NET_SRVCALL_ATTRIBUTES, n, request.getAttribute(n));
+					optAdd(params, TOKEN_NET_ATT_SRVCALL_ATTRIBUTES, n, request.getAttribute(n));
 				}
 
 				for (ee = request.getParameterNames(); ee.hasMoreElements();) {
 					n = ee.nextElement();
-					optAdd(params, TOKEN_PAYLOAD, n, request.getParameter(n));
+					optAdd(params, TOKEN_MISC_ATT_PAYLOAD, n, request.getParameter(n));
 				}
 
 				for (ee = request.getHeaderNames(); ee.hasMoreElements();) {
 					n = ee.nextElement();
-					optAdd(params, TOKEN_NET_SRVCALL_HEADERS, n, request.getHeader(n));
+					optAdd(params, TOKEN_NET_ATT_SRVCALL_HEADERS, n, request.getHeader(n));
 				}
 
-				String cmd = (String) params.get(TOKEN_CMD);
+				String cmd = (String) params.get(TOKEN_MIND_ATT_CMD);
 				if (null == cmd) {
 					cmd = DustUtils.getPrefix(pathInfo, "/");
-					params.put(TOKEN_CMD, cmd);
+					params.put(TOKEN_MIND_ATT_CMD, cmd);
 				}
 
 				params = DustUtilsData.optLoadMapping(hRelay, params);
 
 				// Dust.access(DustAccess.Set, response, params, TOKEN_TARGET,
-				// TOKEN_NET_SRVCALL_RESPONSE);
-				Dust.access(DustAccess.Set, response, hRelay, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+				// TOKEN_NET_ATT_SRVCALL_RESPONSE);
+				Dust.access(DustAccess.Set, response, hRelay, TOKEN_MISC_ATT_TARGET, TOKEN_NET_ATT_SRVCALL_RESPONSE);
 
 				Dust.access(DustAccess.Process, params, hRelay);
 
-				int status = Dust.access(DustAccess.Peek, HttpServletResponse.SC_OK, params, TOKEN_TARGET, TOKEN_NET_SRVCALL_STATUS);
+				int status = Dust.access(DustAccess.Peek, HttpServletResponse.SC_OK, params, TOKEN_MISC_ATT_TARGET, TOKEN_NET_ATT_SRVCALL_STATUS);
 
 				response.setStatus(status);
 			}

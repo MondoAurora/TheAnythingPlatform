@@ -18,8 +18,8 @@ import me.giskard.dust.mod.utils.DustUtilsJson;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustMSGraphAgent extends DustAgent implements DustMSGraphConsts, DustStreamConsts {
-//	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
-//	DustHandle typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
+//	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_MIND_ATTRIBUTE);
+//	DustHandle typeType = DustUtils.getMindMeta(TOKEN_MIND_TYPE);
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
@@ -29,27 +29,27 @@ public class DustMSGraphAgent extends DustAgent implements DustMSGraphConsts, Du
 		String secret = Dust.access(DustAccess.Peek, null, null, TOKEN_MSGRAPH_SECRET);
 		String scope = Dust.access(DustAccess.Peek, null, null, TOKEN_MSGRAPH_SCOPE);
 
-		String defMetaId = Dust.access(DustAccess.Peek, null, null, TOKEN_META);
-		String defKey = Dust.access(DustAccess.Peek, null, null, TOKEN_KEY);
+		String defMetaId = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_META);
+		String defKey = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_KEY);
 
 		String accessToken = DustMSGraphUtils.getAccessToken(authority, clientId, secret, scope);
 
-		String cmd = Dust.access(DustAccess.Peek, TOKEN_CMD_INFO, null, TOKEN_CMD);
+		String cmd = Dust.access(DustAccess.Peek, TOKEN_MISC_TAG_CMD_INFO, null, TOKEN_MIND_ATT_CMD);
 
-		for (Map<String, Object> src : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, null, TOKEN_SOURCE))) {
+		for (Map<String, Object> src : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, null, TOKEN_MISC_ATT_SOURCE))) {
 
 			String request = Dust.access(DustAccess.Peek, null, src, TOKEN_MSGRAPH_REQUEST);
 
-			String key = Dust.access(DustAccess.Peek, defKey, src, TOKEN_KEY);
+			String key = Dust.access(DustAccess.Peek, defKey, src, TOKEN_MISC_ATT_KEY);
 
-			String metaId = Dust.access(DustAccess.Peek, defMetaId, src, TOKEN_META);
+			String metaId = Dust.access(DustAccess.Peek, defMetaId, src, TOKEN_MISC_ATT_META);
 			DustHandle meta = Dust.getUnit(metaId, true);
 
-			String dataId = Dust.access(DustAccess.Peek, null, src, TOKEN_DATA);
+			String dataId = Dust.access(DustAccess.Peek, null, src, TOKEN_MISC_ATT_DATA);
 			DustHandle data = Dust.getUnit(dataId, true);
 
-			String typeId = Dust.access(DustAccess.Peek, null, src, TOKEN_TYPE);
-			DustHandle type = Dust.getHandle(meta, TOKEN_KBMETA_TYPE, typeId, DustOptCreate.Meta);
+			String typeId = Dust.access(DustAccess.Peek, null, src, TOKEN_MIND_ATT_TYPE);
+			DustHandle type = Dust.getHandle(meta, TOKEN_MIND_ASP_TYPE, typeId, DustOptCreate.Meta);
 
 			Object response;
 
@@ -59,7 +59,7 @@ public class DustMSGraphAgent extends DustAgent implements DustMSGraphConsts, Du
 
 				response = DustUtilsJson.readJson(is, DUST_CHARSET_UTF8);
 
-//				Dust.log(TOKEN_LEVEL_INFO, response);
+//				Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, response);
 
 			} finally {
 				if (null != is) {
@@ -68,7 +68,7 @@ public class DustMSGraphAgent extends DustAgent implements DustMSGraphConsts, Du
 			}
 
 			switch (cmd) {
-			case TOKEN_CMD_LOAD:
+			case TOKEN_MISC_TAG_CMD_LOAD:
 				for (Map<String, Object> ob : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, response, MSGRAPH_value))) {
 					Object id = ob.get(key);
 					DustHandle hTarget = Dust.getHandle(data, type, (String) id, DustOptCreate.Primary);
@@ -83,13 +83,13 @@ public class DustMSGraphAgent extends DustAgent implements DustMSGraphConsts, Du
 					}
 				}
 				break;
-			case TOKEN_CMD_SAVE:
-				String localDataId = Dust.access(DustAccess.Peek, null, src, TOKEN_CMD_SAVE);
+			case TOKEN_MISC_TAG_CMD_SAVE:
+				String localDataId = Dust.access(DustAccess.Peek, null, src, TOKEN_MISC_TAG_CMD_SAVE);
 				if (!DustUtils.isEmpty(localDataId)) {
 					DustHandle localUnit = Dust.getUnit(localDataId, true);
-					String mail = Dust.access(DustAccess.Peek, null, src, TOKEN_MAIL);
-					String principalPostfix = Dust.access(DustAccess.Peek, "", src, TOKEN_POSTFIX);
-					String mailPostfix = Dust.access(DustAccess.Peek, "", src, TOKEN_FILTER);
+					String mail = Dust.access(DustAccess.Peek, null, src, TOKEN_MISC_ATT_MAIL);
+					String principalPostfix = Dust.access(DustAccess.Peek, "", src, TOKEN_MISC_ATT_POSTFIX);
+					String mailPostfix = Dust.access(DustAccess.Peek, "", src, TOKEN_MISC_ATT_FILTER);
 
 					mailPostfix = mailPostfix.toLowerCase();
 
@@ -108,7 +108,7 @@ public class DustMSGraphAgent extends DustAgent implements DustMSGraphConsts, Du
 						String goodMail = null;
 
 						if (0 == (++lc % 1000)) {
-							Dust.log(TOKEN_LEVEL_TRACE, "item", lc);
+							Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "item", lc);
 						}
 
 						if (m instanceof String) {
@@ -136,7 +136,7 @@ public class DustMSGraphAgent extends DustAgent implements DustMSGraphConsts, Du
 							if (null == ext) {
 								createMap.put(pkey, h);
 							} else {
-								Dust.log(TOKEN_LEVEL_INFO, "Object found", DustUtilsJson.toJson(ext));
+								Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Object found", DustUtilsJson.toJson(ext));
 							}
 						}
 					}
@@ -145,7 +145,7 @@ public class DustMSGraphAgent extends DustAgent implements DustMSGraphConsts, Du
 				}
 
 				break;
-			case TOKEN_CMD_INFO:
+			case TOKEN_MISC_TAG_CMD_INFO:
 
 				break;
 			}
@@ -162,11 +162,11 @@ public class DustMSGraphAgent extends DustAgent implements DustMSGraphConsts, Du
 
 		long apiTime = 0;
 
-		Dust.log(TOKEN_LEVEL_INFO, "Would create", createMap.size(), "items, limited to", limit);
+		Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Would create", createMap.size(), "items, limited to", limit);
 
-		String metaId = Dust.access(DustAccess.Peek, null, src, TOKEN_META);
-		Map<String, String> mapping = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, src, TOKEN_MAPPING);
-		Map<String, Object> consts = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, src, TOKEN_CONSTS);
+		String metaId = Dust.access(DustAccess.Peek, null, src, TOKEN_MISC_ATT_META);
+		Map<String, String> mapping = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, src, TOKEN_MISC_ATT_MAPPING);
+		Map<String, Object> consts = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, src, TOKEN_MISC_ATT_CONSTS);
 
 		Map<String, Object> saveData = new TreeMap<>();
 
@@ -205,18 +205,18 @@ public class DustMSGraphAgent extends DustAgent implements DustMSGraphConsts, Du
 				if (count < limit) {
 					++count;
 
-					Dust.log(TOKEN_LEVEL_INFO, "Would create", DustUtilsJson.toJson(saveData));
+					Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Would create", DustUtilsJson.toJson(saveData));
 					long ts2 = System.currentTimeMillis();
 
 					InputStream is = DustMSGraphUtils.callGraphAPI(accessToken, "POST", request, saveData);
 					Object response = DustUtilsJson.readJson(is, DUST_CHARSET_UTF8);
-					Dust.log(TOKEN_LEVEL_INFO, "Creation returned", response);
+					Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Creation returned", response);
 
 					apiTime += System.currentTimeMillis() - ts2;
 				}
 			}
 		}
 
-		Dust.log(TOKEN_LEVEL_INFO, "Saved", count, "in", System.currentTimeMillis() - ts, "msec, save API time", apiTime);
+		Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Saved", count, "in", System.currentTimeMillis() - ts, "msec, save API time", apiTime);
 	}
 }

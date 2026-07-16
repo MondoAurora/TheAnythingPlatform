@@ -17,11 +17,11 @@ public class DustStreamJsonApiSerializerAgent extends DustStreamJsonApiAgent imp
 	@Override
 	protected Object process(DustAccess access) throws Exception {
 
-		String unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_KEY);
-		DustHandle unit = Dust.access(DustAccess.Peek, null, null, TOKEN_DATA);
-		Dust.access(DustAccess.Delete, null, null, TOKEN_DATA);
+		String unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_KEY);
+		DustHandle unit = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_DATA);
+		Dust.access(DustAccess.Delete, null, null, TOKEN_MISC_ATT_DATA);
 
-		Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_SOURCE);
+		Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_SOURCE);
 		Map<String, Object> sp = new HashMap<String, Object>();
 
 		String fileName = null;
@@ -31,30 +31,30 @@ public class DustStreamJsonApiSerializerAgent extends DustStreamJsonApiAgent imp
 				unit = Dust.getUnit(unitId, true);
 			}
 
-			String fn = Dust.access(DustAccess.Peek, unitId, null, TOKEN_ALIAS);
+			String fn = Dust.access(DustAccess.Peek, unitId, null, TOKEN_MISC_ATT_ALIAS);
 			if (fn.contains("{")) {
 				fn = MessageFormat.format(fn, unitId);
 			}
 			fileName = fn + DUST_EXT_JSON;
 
-//			fileName = DustUtils.sbAppend(null, "/", false, Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ROOTFOLDER), fn + DUST_EXT_JSON).toString();
+//			fileName = DustUtils.sbAppend(null, "/", false, Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_ROOTFOLDER), fn + DUST_EXT_JSON).toString();
 //			f = new File(fileName);
 		}
 
-		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
+		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
 
 		switch (cmd) {
-		case TOKEN_CMD_INFO:
+		case TOKEN_MISC_TAG_CMD_INFO:
 
-			fileName = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ROOTFOLDER);
+			fileName = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_ROOTFOLDER);
 
-			sp.put(TOKEN_CMD, TOKEN_CMD_INFO);
-			sp.put(TOKEN_STREAM_ROOTFOLDER, fileName);
+			sp.put(TOKEN_MIND_ATT_CMD, TOKEN_MISC_TAG_CMD_INFO);
+			sp.put(TOKEN_STREAM_ATT_ROOTFOLDER, fileName);
 
 			Dust.access(DustAccess.Process, sp, streamSource);
 
-			Object files = sp.get(TOKEN_MEMBERS);
-			Dust.access(DustAccess.Set, files, DustContext.Input, TOKEN_MEMBERS);
+			Object files = sp.get(TOKEN_MISC_ATT_MEMBERS);
+			Dust.access(DustAccess.Set, files, DustContext.Input, TOKEN_MISC_ATT_MEMBERS);
 
 //			f = new File(fileName);
 //
@@ -70,29 +70,29 @@ public class DustStreamJsonApiSerializerAgent extends DustStreamJsonApiAgent imp
 //			}
 
 			break;
-		case TOKEN_CMD_LOAD:
-//			sp.put(TOKEN_CMD, TOKEN_CMD_LOAD);
+		case TOKEN_MISC_TAG_CMD_LOAD:
+//			sp.put(TOKEN_CMD, TOKEN_MISC_TAG_CMD_LOAD);
 //			sp.put(TOKEN_PATH, fileName);
 //
 //			InputStream is = Dust.access(DustAccess.Process, sp, streamSource);
 
-			try (InputStream is = DustStreamUtils.getStream(TOKEN_CMD_LOAD, fileName)) {
+			try (InputStream is = DustStreamUtils.getStream(TOKEN_MISC_TAG_CMD_LOAD, fileName)) {
 				loadStream(unit, is);
 			}
 			break;
-		case TOKEN_CMD_SAVE:
+		case TOKEN_MISC_TAG_CMD_SAVE:
 			Map<String, Object> target = storeUnit(unit);
 
 			if (null == fileName) {
-				Writer w = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_WRITER);
+				Writer w = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_WRITER);
 				DustUtilsJson.writeJson(w, target);
 			} else {
-//				sp.put(TOKEN_CMD, TOKEN_CMD_SAVE);
+//				sp.put(TOKEN_CMD, TOKEN_MISC_TAG_CMD_SAVE);
 //				sp.put(TOKEN_PATH, fileName);
 //
 //				OutputStream os = Dust.access(DustAccess.Process, sp, streamSource);
 
-				try (OutputStream os = DustStreamUtils.getStream(TOKEN_CMD_SAVE, fileName)) {
+				try (OutputStream os = DustStreamUtils.getStream(TOKEN_MISC_TAG_CMD_SAVE, fileName)) {
 					DustUtilsJson.writeJson(os, target, DUST_CHARSET_UTF8);
 				}
 			}

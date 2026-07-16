@@ -90,7 +90,7 @@ public class DustSandboxTextUtils implements DustSandboxTextConsts {
 
 			String json = DustUtilsJson.toJson(msg);
 
-			Dust.log(TOKEN_LEVEL_TRACE, "translating... \n", json);
+			Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "translating... \n", json);
 
 			URL url = new URL(address);
 			Set<String> hdrs = new HashSet<String>();

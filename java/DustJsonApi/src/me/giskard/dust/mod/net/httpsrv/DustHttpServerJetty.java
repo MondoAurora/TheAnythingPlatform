@@ -38,9 +38,9 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 			jetty = new Server();
 			handlers = new HandlerList();
 
-			name = Dust.access(DustAccess.Peek, null, null, TOKEN_NAME);
+			name = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_NAME);
 
-			long port = Dust.access(DustAccess.Peek, 8080L, null, TOKEN_NET_HOST_PORT);
+			long port = Dust.access(DustAccess.Peek, 8080L, null, TOKEN_NET_ATT_HOST_PORT);
 			HttpConfiguration http = new HttpConfiguration();
 
 			ServerConnector connector = new ServerConnector(jetty);
@@ -52,7 +52,7 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 
 			System.out.println("Connector: " + connector);
 
-			Long sslPort = Dust.access(DustAccess.Peek, null, null, TOKEN_NET_SSLINFO_PORT);
+			Long sslPort = Dust.access(DustAccess.Peek, null, null, TOKEN_NET_ATT_SSLINFO_PORT);
 
 			if (null != sslPort) {
 				HttpConfiguration https = new HttpConfiguration();
@@ -61,11 +61,11 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 				SslContextFactory sslContextFactory = new SslContextFactory();
 
 				String str;
-				str = Dust.access(DustAccess.Peek, null, null, TOKEN_NET_SSLINFO_STOREPATH);
+				str = Dust.access(DustAccess.Peek, null, null, TOKEN_NET_ATT_SSLINFO_STOREPATH);
 				sslContextFactory.setKeyStorePath(ClassLoader.getSystemResource(str).toExternalForm());
-				str = Dust.access(DustAccess.Peek, null, null, TOKEN_NET_SSLINFO_STOREPASS);
+				str = Dust.access(DustAccess.Peek, null, null, TOKEN_NET_ATT_SSLINFO_STOREPASS);
 				sslContextFactory.setKeyStorePassword(str);
-				str = Dust.access(DustAccess.Peek, null, null, TOKEN_NET_SSLINFO_KEYMANAGERPASS);
+				str = Dust.access(DustAccess.Peek, null, null, TOKEN_NET_ATT_SSLINFO_KEYMANAGERPASS);
 				sslContextFactory.setKeyManagerPassword(str);
 
 				ServerConnector sslConnector = new ServerConnector(jetty, new SslConnectionFactory(sslContextFactory, "http/1.1"), new HttpConnectionFactory(https));
@@ -92,7 +92,7 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 	@Override
 	protected Object process(DustAccess access) throws Exception {
 		Commands cmd = Commands.info;
-		String str = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
+		String str = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
 		if (null != str) {
 			try {
 				cmd = Commands.valueOf(str);
@@ -101,7 +101,7 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 			}
 		}
 
-//		String str = Dust.access(DustAccess.Peek, "", null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
+//		String str = Dust.access(DustAccess.Peek, "", null, TOKEN_TARGET, TOKEN_NET_ATT_SRVCALL_PATHINFO);
 //		String[] path = str.split("/");
 //		if (0 < path.length) {
 //			try {
@@ -111,9 +111,9 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 //			}
 //		}
 
-		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET, TOKEN_NET_ATT_SRVCALL_RESPONSE);
 		if (null == response) {
-			Dust.log(TOKEN_LEVEL_ERROR, "no response given?");
+			Dust.log(TOKEN_MISC_TAG_LEVEL_ERROR, "no response given?");
 		}
 
 		response.setContentType(MEDIATYPE_UTF8_HTML);
@@ -134,9 +134,9 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 				@Override
 				public void run() {
 					try {
-						Dust.log(TOKEN_LEVEL_TRACE, "Shutting down Jetty server...");
+						Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Shutting down Jetty server...");
 						release();
-						Dust.log(TOKEN_LEVEL_INFO, "Jetty server shutdown OK.");
+						Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Jetty server shutdown OK.");
 					} catch (Exception ex) {
 						DustException.wrap(ex, "Failed to stop Jetty");
 					}

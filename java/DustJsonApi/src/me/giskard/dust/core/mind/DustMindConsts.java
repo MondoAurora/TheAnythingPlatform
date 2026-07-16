@@ -7,6 +7,11 @@ public interface DustMindConsts extends DustConsts, DustUtilsConsts {
 
 	String NAME_MIND = "MiND";
 	
+//	String TOKEN_MIND_TYPE = "dust.1$Type";
+//	String TOKEN_MIND_UNIT = "dust.1$Unit";
+//	String TOKEN_MIND_ATTRIBUTE = "dust.1$Attribute";
+//	String TOKEN_MIND_TAG = "dust.1$Tag";
+
 //	String TOKEN_MIND = UNIT_DUST + DUST_SEP_TOKEN + NAME_MIND;
 
 

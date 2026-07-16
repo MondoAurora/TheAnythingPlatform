@@ -8,7 +8,7 @@ import me.giskard.dust.core.DustConsts;
 import me.giskard.tokens.DustGenTokens_stream_1;
 
 public interface DustStreamConsts extends DustConsts, DustGenTokens_stream_1 {
-
+	
 	public interface StreamProcessor {
 		default boolean readStream(InputStream is, Map<String, Object> data) throws Exception {
 			return false;

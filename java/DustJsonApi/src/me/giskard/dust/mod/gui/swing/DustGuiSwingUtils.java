@@ -110,16 +110,16 @@ public class DustGuiSwingUtils implements DustGuiSwingConsts {
 	}
 
 	public static String optSetLookAndFeel() throws Exception {
-		List<String> lnf = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_GUI_LOOKANDFEEL);
+		List<String> lnf = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_GUI_ATT_LOOKANDFEEL);
 
 		for (String lcn : lnf) {
 			try {
 				UIManager.setLookAndFeel(lcn);
-				Dust.log(TOKEN_LEVEL_INFO, "Swing L&F selected:", lcn);
+				Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Swing L&F selected:", lcn);
 				return lcn;
 
 			} catch (Throwable e) {
-				Dust.log(TOKEN_LEVEL_WARNING, "FAILED selecting Swing L&F:", lcn, e);
+				Dust.log(TOKEN_MISC_TAG_LEVEL_WARNING, "FAILED selecting Swing L&F:", lcn, e);
 			}
 		}
 

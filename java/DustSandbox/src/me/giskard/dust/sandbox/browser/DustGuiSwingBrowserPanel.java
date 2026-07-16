@@ -262,7 +262,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					rct = c.getBounds(rct);
 
 					if (rct.contains(pt)) {
-						h = Dust.access(DustAccess.Peek, null, h, TOKEN_TARGET);
+						h = Dust.access(DustAccess.Peek, null, h, TOKEN_MISC_ATT_TARGET);
 						return h;
 					}
 				}
@@ -334,7 +334,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		DustUtilsFactory<DustHandle, JComponent> comps = new DustUtilsFactory(new DustCreator<JComponent>() {
 			@Override
 			public JComponent create(Object key, Object... hints) {
-				DustHandle ht = Dust.access(DustAccess.Peek, null, key, TOKEN_TARGET);
+				DustHandle ht = Dust.access(DustAccess.Peek, null, key, TOKEN_MISC_ATT_TARGET);
 				String txt = (null == ht) ? "??"
 						: new StringBuilder("<html><center>").append(ht.toString().replace(" [", "<br/>[")).append("</center></html>").toString();
 				JLabel lbl = new JLabel(txt);
@@ -452,8 +452,8 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 			DustHandle hNode = nodePool.remove(key);
 
 			if (null == hNode) {
-				hNode = Dust.getHandle(hDocUnit, TOKEN_GEOMETRY_NODE, null, DustOptCreate.Primary);
-				Dust.access(DustAccess.Set, key, hNode, TOKEN_TARGET);
+				hNode = Dust.getHandle(hDocUnit, TOKEN_GEOMETRY_ASP_NODE, null, DustOptCreate.Primary);
+				Dust.access(DustAccess.Set, key, hNode, TOKEN_MISC_ATT_TARGET);
 
 				// set location
 			}
@@ -534,7 +534,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 			case 2:
 				return hs.getId();
 			case 3:
-				return Dust.access(DustAccess.Peek, -1, hs, TOKEN_UNIT_REFS, KEY_SIZE);
+				return Dust.access(DustAccess.Peek, -1, hs, TOKEN_DUST_ATT_UNIT_REFS, KEY_SIZE);
 			}
 
 			return "???";
@@ -748,7 +748,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				continue;
 			}
 
-			Map<String, DustHandle> members = Dust.access(DustAccess.Peek, -1, hu, TOKEN_UNIT_REFS);
+			Map<String, DustHandle> members = Dust.access(DustAccess.Peek, -1, hu, TOKEN_DUST_ATT_UNIT_REFS);
 			for (DustHandle h : members.values()) {
 				gridArr.add(h);
 
@@ -796,16 +796,16 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 	@Override
 	protected void init() throws Exception {
 
-		hMindAPI = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET);
-		hSrcGen = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD_GENSRC);
+		hMindAPI = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET);
+		hSrcGen = Dust.access(DustAccess.Peek, null, null, TOKEN_DEV_CMD_GENSRC);
 
-		tokenClasses = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, null, TOKEN_DEV_CLASSES);
+		tokenClasses = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, null, TOKEN_DEV_ATT_CLASSES);
 
 		DustGuiSwingUtils.optSetLookAndFeel();
 
 		frm = new JFrame();
 
-		frm.setTitle(Dust.access(DustAccess.Peek, "Text editor", null, TOKEN_NAME));
+		frm.setTitle(Dust.access(DustAccess.Peek, "Text editor", null, TOKEN_MISC_ATT_NAME));
 
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -841,29 +841,29 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				break;
 
 			case "Commit":
-				Dust.access(DustAccess.Set, TOKEN_CMD_SAVE, params, TOKEN_CMD);
+				Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_SAVE, params, TOKEN_MIND_ATT_CMD);
 				Dust.access(DustAccess.Process, params, hMindAPI);
 
 				break;
 
 			case "Load Handle":
-				Dust.access(DustAccess.Set, TOKEN_KBMETA_CMD_GETHANDLE, params, TOKEN_CMD);
-				Dust.access(DustAccess.Set, tfHandle.getText(), params, TOKEN_GLOBALID);
+				Dust.access(DustAccess.Set, TOKEN_MIND_CMD_GETHANDLE, params, TOKEN_MIND_ATT_CMD);
+				Dust.access(DustAccess.Set, tfHandle.getText(), params, TOKEN_MISC_ATT_GLOBALID);
 				Dust.access(DustAccess.Process, params, hMindAPI);
 
-				Object hRet = Dust.access(DustAccess.Peek, null, params, TOKEN_TARGET);
+				Object hRet = Dust.access(DustAccess.Peek, null, params, TOKEN_MISC_ATT_TARGET);
 
 				if (null != hRet) {
-					Dust.log(TOKEN_LEVEL_INFO, "MindAgent responded", hRet);
+					Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "MindAgent responded", hRet);
 					execCmd("Update Units");
 				}
 				break;
 
 			case "Update Units":
-				Dust.access(DustAccess.Set, TOKEN_KBMETA_CMD_LISTUNITS, params, TOKEN_CMD);
+				Dust.access(DustAccess.Set, TOKEN_MIND_CMD_LISTUNITS, params, TOKEN_MIND_ATT_CMD);
 				Dust.access(DustAccess.Process, params, hMindAPI);
 
-				Collection<DustHandle> units = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, params, TOKEN_TARGET);
+				Collection<DustHandle> units = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, params, TOKEN_MISC_ATT_TARGET);
 				for (DustHandle hu : units) {
 					if (!unitArr.contains(hu)) {
 						refresh = true;
@@ -942,14 +942,14 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 				break;
 			case "Delete Selected":
-				Dust.access(DustAccess.Set, TOKEN_CMD_DELETE, params, TOKEN_CMD);
-				Dust.access(DustAccess.Set, selected, params, TOKEN_MEMBERS);
+				Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_DELETE, params, TOKEN_MIND_ATT_CMD);
+				Dust.access(DustAccess.Set, selected, params, TOKEN_MISC_ATT_MEMBERS);
 				Dust.access(DustAccess.Process, params, hMindAPI);
 
-				hRet = Dust.access(DustAccess.Peek, null, params, TOKEN_TARGET);
+				hRet = Dust.access(DustAccess.Peek, null, params, TOKEN_MISC_ATT_TARGET);
 
 				if (null != hRet) {
-					Dust.log(TOKEN_LEVEL_INFO, "MindAgent responded", hRet);
+					Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "MindAgent responded", hRet);
 					refillGrid();
 					graphPanel.repaintGraph();					
 				}
@@ -1011,16 +1011,16 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					execCmd("Commit"); // "autosave"
 				}
 
-				Dust.access(DustAccess.Set, TOKEN_CMD_TEST, params, TOKEN_CMD);
-				Dust.access(DustAccess.Set, TOKEN_UNIT_REFS, params, TOKEN_PATH, KEY_ADD);
+				Dust.access(DustAccess.Set, TOKEN_DEV_TAG_CMD_TEST, params, TOKEN_MIND_ATT_CMD);
+				Dust.access(DustAccess.Set, TOKEN_DUST_ATT_UNIT_REFS, params, TOKEN_MISC_ATT_PATH, KEY_ADD);
 				for (DustHandle hu : filterUnit) {
-					Dust.access(DustAccess.Insert, hu, params, TOKEN_MEMBERS);
+					Dust.access(DustAccess.Insert, hu, params, TOKEN_MISC_ATT_MEMBERS);
 				}
 				Dust.access(DustAccess.Process, params, hSrcGen);
 
 				break;
 			default:
-				Dust.log(TOKEN_LEVEL_WARNING, "execCmd() Command not handled", cmd);
+				Dust.log(TOKEN_MISC_TAG_LEVEL_WARNING, "execCmd() Command not handled", cmd);
 			}
 		} catch (Throwable t) {
 			DustException.wrap(t);

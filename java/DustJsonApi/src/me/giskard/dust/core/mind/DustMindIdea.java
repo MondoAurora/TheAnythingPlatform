@@ -22,9 +22,9 @@ class DustMindIdea implements DustMindConsts {
 	};
 
 	void loadMh() {
-		content.put(TOKEN_UNIT, mh.getUnit());
-		content.put(TOKEN_TYPE, mh.getType());
-		content.put(TOKEN_ID, mh.getId());
+		content.put(TOKEN_MIND_ATT_UNIT, mh.getUnit());
+		content.put(TOKEN_MIND_ATT_TYPE, mh.getType());
+		content.put(TOKEN_MIND_ATT_ID, mh.getId());
 	}
 
 	@Override

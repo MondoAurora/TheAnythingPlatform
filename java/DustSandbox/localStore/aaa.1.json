@@ -5,37 +5,37 @@
 	"data": [
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_GUI_ATT_FOCUS"
+				"dust.1$name": "TOKEN_AAA_ATT_ACCESS"
 			},
-			"id": "gui.1$guiFocus",
+			"id": "aaa.1$access",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_GUI_ATT_MAIN"
+				"dust.1$name": "TOKEN_AAA_ATT_AUTH"
 			},
-			"id": "gui.1$guiMain",
+			"id": "aaa.1$auth",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_GUI_ATT_PROGRESS"
+				"dust.1$name": "TOKEN_AAA_ATT_PASSWORD"
 			},
-			"id": "gui.1$guiProgress",
+			"id": "aaa.1$password",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_GUI_ATT_TOP_MENU"
+				"dust.1$name": "TOKEN_AAA_ATT_READABLETO"
 			},
-			"id": "gui.1$guiTopMenu",
+			"id": "aaa.1$readableTo",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_GUI_ATT_LOOKANDFEEL"
+				"dust.1$name": "TOKEN_AAA_ATT_USERID"
 			},
-			"id": "gui.1$lookAndFeel",
+			"id": "aaa.1$userId",
 			"type": "dust.1$Attribute"
 		}
 	],

@@ -46,7 +46,7 @@ public class DustDevUtils implements DustDevConsts {
 				if ( fn.startsWith("TOKEN") && String.class.equals(fc)) {
 					String fv = (String) f.get(null);
 					DustHandle h = Dust.getHandle(null, null, fv, DustOptCreate.Meta);
-					Dust.access(DustAccess.Set, fn, h, TOKEN_NAME);
+					Dust.access(DustAccess.Set, fn, h, TOKEN_MISC_ATT_NAME);
 				}
 			}
 		}

@@ -7,13 +7,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+import me.giskard.dust.core.dev.DustDevConsts;
 import me.giskard.dust.core.dev.DustDevUtils;
 import me.giskard.dust.core.mind.DustMindConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class Dust implements DustConsts, DustMindConsts {
+public class Dust implements DustConsts, DustMindConsts, DustDevConsts {
 
 	private static DustHandle appUnit;
 	private static DustHandle appHandle;
@@ -63,7 +64,7 @@ public class Dust implements DustConsts, DustMindConsts {
 			try {
 				MIND.notifyAgent(hCfg, DustAction.Init, null, null, null);
 
-				if ((Boolean) access(DustAccess.Peek, false, hCfg, TOKEN_TYPE_RELEASEONSHUTDOWN)) {
+				if ((Boolean) access(DustAccess.Peek, false, hCfg, TOKEN_DUST_ATT_RELEASEONSHUTDOWN)) {
 					registerToRelease(a);
 				}
 			} catch (Throwable e) {
@@ -112,7 +113,7 @@ public class Dust implements DustConsts, DustMindConsts {
 //			MIND.bootLoadAppUnit(appUnit, new File(DUST_CRED_FILE), bootLoader);
 
 //			DustHandle appType = DustUtils.getMindMeta(TOKEN_TYPE_APP);
-			appHandle = getHandle(appUnit, TOKEN_TYPE_APP, appName, DustOptCreate.None);
+			appHandle = getHandle(appUnit, TOKEN_DUST_ASP_APP, appName, DustOptCreate.None);
 
 //			int s = appUnitPath.lastIndexOf(".");
 //			File fBin = new File(appUnitPath.substring(0, s) + "." + DUST_PLATFORM_JAVA + appUnitPath.substring(s));
@@ -120,34 +121,34 @@ public class Dust implements DustConsts, DustMindConsts {
 			String binPath = new StringBuilder(appUnitPath).insert(s, "." + platform).toString();
 			optExtAppUnit(null, binPath, streamSource, bootLoader);
 			
-			Dust.log(TOKEN_LEVEL_INFO, "MemInfo before init", DustDevUtils.memInfo());
+			Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "MemInfo before init", DustDevUtils.memInfo());
 
 			MIND.init();
 
-			for (DustHandle ca : ((Collection<DustHandle>) access(DustAccess.Peek, Collections.EMPTY_LIST, appHandle, TOKEN_INIT))) {
+			for (DustHandle ca : ((Collection<DustHandle>) access(DustAccess.Peek, Collections.EMPTY_LIST, appHandle, TOKEN_MISC_ATT_INIT))) {
 
 				String type = ca.getType().getId();
 				String an = ca.getId();
 
-				DustHandle h = (TOKEN_TYPE_AGENT == type) ? getHandle(appUnit, null, an, DustOptCreate.None) : ca;
-				boolean skip = access(DustAccess.Check, true, h, TOKEN_SKIP);
+				DustHandle h = (TOKEN_MIND_ASP_AGENT == type) ? getHandle(appUnit, null, an, DustOptCreate.None) : ca;
+				boolean skip = access(DustAccess.Check, true, h, TOKEN_DEV_ATT_SKIP);
 				if (skip) {
 					continue;
 				}
 
 				switch (type) {
-				case TOKEN_TYPE_AGENT:
+				case TOKEN_MIND_ASP_AGENT:
 					getAgent(ca.getId());
 					break;
-				case TOKEN_TYPE_SERVICE:
+				case TOKEN_MIND_ASP_SERVICE:
 					access(DustAccess.Process, null, ca);
 					break;
 				}
 
-				Dust.log(TOKEN_LEVEL_INFO, "MemInfo after " + ca.getId(), DustDevUtils.memInfo());
+				Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "MemInfo after " + ca.getId(), DustDevUtils.memInfo());
 			}
 		} finally {
-			Dust.log(TOKEN_LEVEL_TRACE, "Dust finished", System.currentTimeMillis() - start, "msec.");
+			Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Dust finished", System.currentTimeMillis() - start, "msec.");
 		}
 
 		return appHandle;
@@ -155,7 +156,7 @@ public class Dust implements DustConsts, DustMindConsts {
 
 	public static DustHandle optExtAppUnit(String root, String file, DustMind.StreamSource streamSource, DustMind.Bootloader bootLoader)
 			throws Exception, IOException {
-		try (InputStream is = streamSource.optGetStream(TOKEN_CMD_LOAD, root, file)) {
+		try (InputStream is = streamSource.optGetStream(TOKEN_MISC_TAG_CMD_LOAD, root, file)) {
 			return (null == is) ? null : MIND.bootLoadAppUnit(appUnit, file, is, bootLoader);
 		}
 	}
@@ -173,7 +174,7 @@ public class Dust implements DustConsts, DustMindConsts {
 	}
 
 	public static <RetType> Class<RetType> getBinary(Object key) {
-		String cn = access(DustAccess.Peek, null, appHandle, TOKEN_BINARY_RESOLVER, key, TOKEN_BINARY);
+		String cn = access(DustAccess.Peek, null, appHandle, TOKEN_DUST_ATT_BINARY_RESOLVER, key, TOKEN_DUST_ATT_BINARY);
 		try {
 			return (Class<RetType>) Class.forName(cn);
 		} catch (Exception e) {

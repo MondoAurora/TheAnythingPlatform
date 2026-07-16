@@ -25,9 +25,9 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMindConsts,
 	private static final Set<String> SKIP_KEYS = new HashSet<String>();
 
 	static {
-		SKIP_KEYS.add(TOKEN_ID);
-		SKIP_KEYS.add(TOKEN_TYPE);
-		SKIP_KEYS.add(TOKEN_UNIT);
+		SKIP_KEYS.add(TOKEN_MIND_ATT_ID);
+		SKIP_KEYS.add(TOKEN_MIND_ATT_TYPE);
+		SKIP_KEYS.add(TOKEN_MIND_ATT_UNIT);
 	}
 
 	public DustStreamJsonApiAgent() {
@@ -36,19 +36,19 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMindConsts,
 	@Override
 	protected Object process(DustAccess access) throws Exception {
 
-		String unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_KEY);
-		DustHandle unit = (null == unitId) ?  Dust.access(DustAccess.Peek, null, null, TOKEN_DATA) : Dust.getUnit(unitId, true);
-		Dust.access(DustAccess.Delete, null, null, TOKEN_DATA);
+		String unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_KEY);
+		DustHandle unit = (null == unitId) ?  Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_DATA) : Dust.getUnit(unitId, true);
+		Dust.access(DustAccess.Delete, null, null, TOKEN_MISC_ATT_DATA);
 
-		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
+		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
 
 		switch (cmd) {
-		case TOKEN_CMD_LOAD:
-			InputStream is = Dust.access(DustAccess.Peek, null, null, TOKEN_INPUT_STREAM);
+		case TOKEN_MISC_TAG_CMD_LOAD:
+			InputStream is = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_INPUT);
 			loadStream(unit, is);
 			break;
-		case TOKEN_CMD_SAVE:
-			OutputStream os = Dust.access(DustAccess.Peek, null, null, TOKEN_OUTPUT_STREAM);
+		case TOKEN_MISC_TAG_CMD_SAVE:
+			OutputStream os = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_OUTPUT);
 			Map<String, Object> target = storeUnit(unit);
 
 			DustUtilsJson.writeJson(os, target, DUST_CHARSET_UTF8);
@@ -69,7 +69,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMindConsts,
 			if (!DustUtils.isEqual(-1, metaKey)) {
 				Dust.access(DustAccess.Set, metaKey, head, JsonApiMember.meta, EXT_JSONAPI_KEY);
 			} else {
-				Dust.log(TOKEN_LEVEL_TRACE, "hmm");
+				Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "hmm");
 			}
 		}
 		return head;
@@ -170,7 +170,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMindConsts,
 	static void loadDataSegment(DustHandle unit, Map<String, Object> data, boolean included) {
 
 		String type = DustUtils.simpleGet(data, JsonApiMember.type);
-		DustHandle tType = Dust.getHandle(unit, TOKEN_KBMETA_TYPE, type, DustOptCreate.Meta);
+		DustHandle tType = Dust.getHandle(unit, TOKEN_MIND_ASP_TYPE, type, DustOptCreate.Meta);
 
 		String id = DustUtils.simpleGet(data, JsonApiMember.id);
 		DustHandle target = Dust.getHandle(unit, tType, id, DustOptCreate.Primary);
@@ -179,7 +179,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMindConsts,
 		if (null != atts) {
 			for (Map.Entry<String, Object> ae : atts.entrySet()) {
 				String rk = ae.getKey();
-				DustHandle tAtt = Dust.getHandle(unit, TOKEN_KBMETA_ATTRIBUTE, rk, DustOptCreate.Meta);
+				DustHandle tAtt = Dust.getHandle(unit, TOKEN_MIND_ASP_ATTRIBUTE, rk, DustOptCreate.Meta);
 				Dust.access(DustAccess.Set, ae.getValue(), target, tAtt);
 			}
 		}
@@ -188,7 +188,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMindConsts,
 		if (null != rels) {
 			for (Map.Entry<String, Object> re : rels.entrySet()) {
 				String rk = re.getKey();
-				DustHandle tAtt = Dust.getHandle(unit, TOKEN_KBMETA_ATTRIBUTE, rk, DustOptCreate.Meta);
+				DustHandle tAtt = Dust.getHandle(unit, TOKEN_MIND_ASP_ATTRIBUTE, rk, DustOptCreate.Meta);
 
 				Object rv = re.getValue();
 				Object rd = DustUtils.simpleGet(rv, JsonApiMember.data);
@@ -196,7 +196,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMindConsts,
 				if (rd instanceof Collection) {
 					for (Object rdd : (Collection) rd) {
 						String rt = DustUtils.simpleGet(rdd, JsonApiMember.type);
-						DustHandle tTypeRef = Dust.getHandle(unit, TOKEN_KBMETA_TYPE, rt, DustOptCreate.Meta);
+						DustHandle tTypeRef = Dust.getHandle(unit, TOKEN_MIND_ASP_TYPE, rt, DustOptCreate.Meta);
 
 						String ri = DustUtils.simpleGet(rdd, JsonApiMember.id);
 
@@ -212,7 +212,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMindConsts,
 					}
 				} else {
 					String rt = DustUtils.simpleGet(rd, JsonApiMember.type);
-					DustHandle tTypeRef = Dust.getHandle(unit, TOKEN_KBMETA_TYPE, rt, DustOptCreate.Meta);
+					DustHandle tTypeRef = Dust.getHandle(unit, TOKEN_MIND_ASP_TYPE, rt, DustOptCreate.Meta);
 					String ri = DustUtils.simpleGet(rd, JsonApiMember.id);
 
 					DustHandle rh = Dust.getHandle(unit, tTypeRef, ri, DustOptCreate.Reference);

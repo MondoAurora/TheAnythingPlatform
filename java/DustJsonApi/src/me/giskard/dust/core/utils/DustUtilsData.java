@@ -14,9 +14,9 @@ import me.giskard.dust.core.mind.DustMindConsts;
 public class DustUtilsData implements DustUtilsConsts, DustMindConsts {
 
 	public static DustHandle getAtt(DustHandle meta, DustHandle type, String attName) {
-		DustHandle att = Dust.getHandle(meta, TOKEN_KBMETA_ATTRIBUTE, meta.getId() + DUST_SEP_TOKEN + attName, DustOptCreate.Meta);
-		Dust.access(DustAccess.Insert, type, att, TOKEN_APPEARS);
-		Dust.access(DustAccess.Set, att, type, TOKEN_CHILDMAP, attName);
+		DustHandle att = Dust.getHandle(meta, TOKEN_MIND_ASP_ATTRIBUTE, meta.getId() + DUST_SEP_TOKEN + attName, DustOptCreate.Meta);
+		Dust.access(DustAccess.Insert, type, att, TOKEN_MISC_ATT_APPEARS);
+		Dust.access(DustAccess.Set, att, type, TOKEN_MISC_ATT_CHILDMAP, attName);
 		return att;
 	}
 
@@ -38,11 +38,11 @@ public class DustUtilsData implements DustUtilsConsts, DustMindConsts {
 
 	public static DustHandle createEvent(DustHandle hUnit, DustHandle hTarget, Date dStart, long duration, DustHandle durationUnit) {
 
-		DustHandle hEvent = Dust.getHandle(hUnit, TOKEN_EVENT, null, DustOptCreate.Primary);
-		Dust.access(DustAccess.Set, hTarget, hEvent, TOKEN_TARGET);
+		DustHandle hEvent = Dust.getHandle(hUnit, TOKEN_MISC_ASP_EVENT, null, DustOptCreate.Primary);
+		Dust.access(DustAccess.Set, hTarget, hEvent, TOKEN_MISC_ATT_TARGET);
 
-		Dust.access(DustAccess.Set, duration, hEvent, TOKEN_EVENT_DURATION);
-		Dust.access(DustAccess.Set, durationUnit, hEvent, TOKEN_EVENT_DURATION_UNIT);
+		Dust.access(DustAccess.Set, duration, hEvent, TOKEN_MISC_ATT_EVENT_DURATION);
+		Dust.access(DustAccess.Set, durationUnit, hEvent, TOKEN_MISC_TAG_EVENT_DURATION_UNIT);
 		
 		setEventDate(hEvent, dStart);
 
@@ -52,11 +52,11 @@ public class DustUtilsData implements DustUtilsConsts, DustMindConsts {
 	public static void setEventDate(DustHandle hEvent, Date dStart) {
 		String strDate = sdfEventDate.format(dStart);
 		if (!DustUtils.isEqual(NO_DATE, strDate)) {
-			Dust.access(DustAccess.Set, strDate, hEvent, TOKEN_EVENT_DATE);
+			Dust.access(DustAccess.Set, strDate, hEvent, TOKEN_MISC_ATT_EVENT_DATE);
 		}
 		String strTime = sdfEventTime.format(dStart);
 		if (!DustUtils.isEqual(NO_TIME, strTime)) {
-			Dust.access(DustAccess.Set, strTime, hEvent, TOKEN_EVENT_TIME);
+			Dust.access(DustAccess.Set, strTime, hEvent, TOKEN_MISC_ATT_EVENT_TIME);
 		}
 	}
 
@@ -67,8 +67,8 @@ public class DustUtilsData implements DustUtilsConsts, DustMindConsts {
 			SimpleDateFormat sdf;
 			String str;
 
-			String strDate = Dust.access(DustAccess.Peek, "", hEvent, TOKEN_EVENT_DATE);
-			String strTime = Dust.access(DustAccess.Peek, "", hEvent, TOKEN_EVENT_TIME);
+			String strDate = Dust.access(DustAccess.Peek, "", hEvent, TOKEN_MISC_ATT_EVENT_DATE);
+			String strTime = Dust.access(DustAccess.Peek, "", hEvent, TOKEN_MISC_ATT_EVENT_TIME);
 
 			if (DustUtils.isEmpty(strDate)) {
 				str = strTime;
@@ -94,7 +94,7 @@ public class DustUtilsData implements DustUtilsConsts, DustMindConsts {
 	}
 	
 	public static Map optLoadMapping(Object src, Map params) {
-		Map<String, Map<String, Object>> mapping = Dust.access(DustAccess.Peek, null, src, TOKEN_MAPPING);
+		Map<String, Map<String, Object>> mapping = Dust.access(DustAccess.Peek, null, src, TOKEN_MISC_ATT_MAPPING);
 
 		if (null != mapping) {
 			Map mp = new HashMap();
@@ -107,14 +107,14 @@ public class DustUtilsData implements DustUtilsConsts, DustMindConsts {
 				if (null == def) {
 					val = Dust.access(DustAccess.Peek, null, params, field);
 				} else {
-					val = Dust.access(DustAccess.Peek, null, params, def.get(TOKEN_SOURCE));
+					val = Dust.access(DustAccess.Peek, null, params, def.get(TOKEN_MISC_ATT_SOURCE));
 
-					switch ((String) def.getOrDefault(TOKEN_CMD, "")) {
+					switch ((String) def.getOrDefault(TOKEN_MIND_ATT_CMD, "")) {
 					case "split":
-						String sep = (String) def.get(TOKEN_SEPARATOR);
-						int idx = ((Number) def.get(TOKEN_INDEX)).intValue();
+						String sep = (String) def.get(TOKEN_MISC_ATT_SEPARATOR);
+						int idx = ((Number) def.get(TOKEN_MISC_ATT_INDEX)).intValue();
 						String str = (String) val;
-						val = DustUtils.isEmpty(str) ? def.get(TOKEN_DEFAULT) : DustUtils.optGet(str.split(sep), idx, def.get(TOKEN_DEFAULT));
+						val = DustUtils.isEmpty(str) ? def.get(TOKEN_MISC_ATT_DEFAULT) : DustUtils.optGet(str.split(sep), idx, def.get(TOKEN_MISC_ATT_DEFAULT));
 						break;
 					}
 				}

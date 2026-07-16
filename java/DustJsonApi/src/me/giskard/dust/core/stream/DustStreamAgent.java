@@ -19,16 +19,16 @@ public class DustStreamAgent extends DustAgent implements DustMind.StreamSource,
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
+		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
 
-		String unit = Dust.access(DustAccess.Peek, null, null, TOKEN_UNIT);
+		String unit = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_UNIT);
 		if (DustUtils.isEmpty(unit)) {
 			// access control mock
 			return null;
 		}
 
-		String author = Dust.access(DustAccess.Peek, null, null, TOKEN_AUTHOR);
-		String id = Dust.access(DustAccess.Peek, null, null, TOKEN_ID);
+		String author = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_AUTHOR);
+		String id = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_ID);
 
 		String unitId = author + "_streams.1";
 		String streamId = author + "_streams.1$" + id;
@@ -36,33 +36,33 @@ public class DustStreamAgent extends DustAgent implements DustMind.StreamSource,
 		DustHandle hUnit = Dust.getUnit(unitId, true);
 		DustHandle hStream = Dust.getHandle(hUnit, null, streamId, DustOptCreate.None);
 
-		String root = Dust.access(DustAccess.Peek, ".", null, TOKEN_STREAM_ROOTFOLDER);
+		String root = Dust.access(DustAccess.Peek, ".", null, TOKEN_STREAM_ATT_ROOTFOLDER);
 		File r = getRootFolder(root);
 
-		String path = Dust.access(DustAccess.Peek, null, hStream, TOKEN_PATH);
+		String path = Dust.access(DustAccess.Peek, null, hStream, TOKEN_MISC_ATT_PATH);
 		File f = DustUtils.isEmpty(path) ? r : new File(r, path);
 
 		String token = null;
 		switch (cmd) {
-		case TOKEN_CMD_LOAD:
-			token = TOKEN_INPUT_STREAM;
+		case TOKEN_MISC_TAG_CMD_LOAD:
+			token = TOKEN_STREAM_ATT_INPUT;
 			break;
-		case TOKEN_CMD_SAVE:
-			token = TOKEN_OUTPUT_STREAM;
+		case TOKEN_MISC_TAG_CMD_SAVE:
+			token = TOKEN_STREAM_ATT_OUTPUT;
 			break;
-		case TOKEN_CMD_INFO:
+		case TOKEN_MISC_TAG_CMD_INFO:
 			DustUtilsFile.checkPathBound(f, r, true);
 
-			Dust.access(DustAccess.Reset, null, DustContext.Input, TOKEN_MEMBERS);
+			Dust.access(DustAccess.Reset, null, DustContext.Input, TOKEN_MISC_ATT_MEMBERS);
 			int rpl = r.getCanonicalPath().length();
 
 			if (f.isDirectory()) {
 				for (File ff : f.listFiles()) {
-					Dust.access(DustAccess.Insert, ff.getCanonicalPath().substring(rpl), DustContext.Input, TOKEN_MEMBERS);
+					Dust.access(DustAccess.Insert, ff.getCanonicalPath().substring(rpl), DustContext.Input, TOKEN_MISC_ATT_MEMBERS);
 				}
 			} else {
 				String unitName = DustUtils.cutPostfix(f.getName(), ".");
-				Dust.access(DustAccess.Insert, unitName, DustContext.Input, TOKEN_MEMBERS);
+				Dust.access(DustAccess.Insert, unitName, DustContext.Input, TOKEN_MISC_ATT_MEMBERS);
 			}
 
 			break;
@@ -77,9 +77,9 @@ public class DustStreamAgent extends DustAgent implements DustMind.StreamSource,
 
 			if (null != stream) {
 				try {
-					DustHandle target = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET);
-					Dust.access(DustAccess.Set, stream, target, TOKEN_INPUT_STREAM);
-					Dust.access(DustAccess.Set, mimeType, target, TOKEN_STREAM_MIMETYPE);
+					DustHandle target = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET);
+					Dust.access(DustAccess.Set, stream, target, TOKEN_STREAM_ATT_INPUT);
+					Dust.access(DustAccess.Set, mimeType, target, TOKEN_STREAM_ATT_MIMETYPE);
 					
 					Map params = DustUtilsData.optLoadMapping(target, null);
 
@@ -90,9 +90,9 @@ public class DustStreamAgent extends DustAgent implements DustMind.StreamSource,
 
 			}
 
-//			HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+//			HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_ATT_SRVCALL_RESPONSE);
 //			if (null == response) {
-//				Dust.log(TOKEN_LEVEL_ERROR, "no response given?");
+//				Dust.log(TOKEN_MISC_TAG_LEVEL_ERROR, "no response given?");
 //			}
 //
 //			response.setContentType("image/png");
@@ -128,10 +128,10 @@ public class DustStreamAgent extends DustAgent implements DustMind.StreamSource,
 		Object stream = null;
 
 		switch (cmd) {
-		case TOKEN_CMD_LOAD:
+		case TOKEN_MISC_TAG_CMD_LOAD:
 			stream = f.isFile() ? new FileInputStream(f) : null;
 			break;
-		case TOKEN_CMD_SAVE:
+		case TOKEN_MISC_TAG_CMD_SAVE:
 			File p = f.getParentFile();
 			DustUtilsFile.ensureDir(p);
 			stream = new FileOutputStream(f);

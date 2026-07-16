@@ -30,10 +30,10 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		String unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_DATA);
+		String unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_DATA);
 
 		if ( null == unitId ) {
-			unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
+			unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
 		}
 
 		DustHandle unit = Dust.getUnit(unitId, false);
@@ -42,10 +42,10 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 
 		int lc = 0;
 
-		Dust.log(TOKEN_LEVEL_TRACE, "Reading meta", unitId);
+		Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Reading meta", unitId);
 		for (DustHandle h : DustMindUtils.getUnitMembers(unit)) {
 			if ( 0 == (++lc % 10000) ) {
-				Dust.log(TOKEN_LEVEL_TRACE, "line", lc);
+				Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "line", lc);
 			}
 
 			Set<String> flds = meta.get(h.getType().getId());
@@ -54,7 +54,7 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 			}
 		}
 
-		String fName = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
+		String fName = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_PATH);
 		if ( null == fName ) {
 			fName = unitId + ".xlsx";
 		}
@@ -84,12 +84,12 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 				rowHeight = row.getHeightInPoints();
 			}
 
-			Dust.log(TOKEN_LEVEL_TRACE, "Generating Excel");
+			Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Generating Excel");
 
 			lc = 0;
 			for (DustHandle h : DustMindUtils.getUnitMembers(unit)) {
 				if ( 0 == (++lc % 10000) ) {
-					Dust.log(TOKEN_LEVEL_TRACE, "line", lc);
+					Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "line", lc);
 				}
 
 				String t = h.getType().getId();
@@ -141,14 +141,14 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 				Sheet sheet = sheets.get(sn);
 				int cc = meta.peek(sn).size();
 				for (int ci = 0; ci < cc; ++ci) {
-					Dust.log(TOKEN_LEVEL_TRACE, "Column sizing", ci);
+					Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Column sizing", ci);
 					sheet.autoSizeColumn(ci);
 				}
 			}
 
-			Dust.log(TOKEN_LEVEL_TRACE, "Saving Excel", fName);
+			Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Saving Excel", fName);
 
-			try (OutputStream os = DustStreamUtils.getStream(TOKEN_CMD_SAVE, fName)) {
+			try (OutputStream os = DustStreamUtils.getStream(TOKEN_MISC_TAG_CMD_SAVE, fName)) {
 				wb.write(os);
 				os.flush();
 			}

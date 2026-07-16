@@ -77,7 +77,7 @@ public interface DustUtilsConstsJson extends DustConsts, DustUtilsConsts {
 			this.handle = h;
 			values = DustMindUtils.getValues(h, values, true);
 
-			Object typeAtts = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h.getType(), TOKEN_CHILDMAP, KEY_MAP_KEYS);
+			Object typeAtts = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h.getType(), TOKEN_MISC_ATT_CHILDMAP, KEY_MAP_KEYS);
 			if (typeAtts instanceof Collection) {
 				for (Object att : ((Collection) typeAtts)) {
 					values.putIfAbsent(att, null);

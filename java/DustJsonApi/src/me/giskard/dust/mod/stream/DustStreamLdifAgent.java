@@ -22,55 +22,55 @@ import me.giskard.dust.mod.ldap.DustLdapNewConsts;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, DustMindConsts, DustLdapNewConsts {
 
-//	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
-//	DustHandle typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
+//	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_MIND_ATTRIBUTE);
+//	DustHandle typeType = DustUtils.getMindMeta(TOKEN_MIND_TYPE);
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
 
-		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
-		Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_SOURCE);
+		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
+		Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_SOURCE);
 		Map<String, Object> sp = new HashMap<String, Object>();
 
 		switch (cmd) {
-		case TOKEN_CMD_LOAD:
+		case TOKEN_MISC_TAG_CMD_LOAD:
 
-			String unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_META, TOKEN_KEY);
+			String unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_META, TOKEN_MISC_ATT_KEY);
 			DustHandle unitMeta = Dust.getUnit(unitId, true);
 
-			String metaPath = Dust.access(DustAccess.Peek, null, null, TOKEN_META, TOKEN_PATH);
+			String metaPath = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_META, TOKEN_MISC_ATT_PATH);
 
 			if (!DustUtils.isEmpty(metaPath)) {				
-				sp.put(TOKEN_CMD, TOKEN_CMD_INFO);
-				sp.put(TOKEN_PATH, metaPath);
+				sp.put(TOKEN_MIND_ATT_CMD, TOKEN_MISC_TAG_CMD_INFO);
+				sp.put(TOKEN_MISC_ATT_PATH, metaPath);
 
 				Dust.access(DustAccess.Process, sp, streamSource);
 
-				Collection<String> metaNames = (Collection<String>) sp.get(TOKEN_MEMBERS);
+				Collection<String> metaNames = (Collection<String>) sp.get(TOKEN_MISC_ATT_MEMBERS);
 				
 				for (String mn  : metaNames) {
 					if ( mn.endsWith(DUST_EXT_LDIF) ) {
-						try ( InputStream is = DustStreamUtils.getStream(TOKEN_CMD_LOAD, mn, streamSource) ) {
+						try ( InputStream is = DustStreamUtils.getStream(TOKEN_MISC_TAG_CMD_LOAD, mn, streamSource) ) {
 							readSchemaLdif(unitMeta, mn, is);
 						}
 					}
 				}
 			}
 
-			for (Map<String, Object> src : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, null, TOKEN_SOURCE))) {
+			for (Map<String, Object> src : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, null, TOKEN_MISC_ATT_SOURCE))) {
 
-				String fileName = Dust.access(DustAccess.Peek, null, src, TOKEN_PATH);
+				String fileName = Dust.access(DustAccess.Peek, null, src, TOKEN_MISC_ATT_PATH);
 
-				unitId = Dust.access(DustAccess.Peek, null, src, TOKEN_DATA);
+				unitId = Dust.access(DustAccess.Peek, null, src, TOKEN_MISC_ATT_DATA);
 				DustHandle unit = Dust.getUnit(unitId, true);
 				
-				try ( InputStream is = DustStreamUtils.getStream(TOKEN_CMD_LOAD, fileName, streamSource) ) {
+				try ( InputStream is = DustStreamUtils.getStream(TOKEN_MISC_TAG_CMD_LOAD, fileName, streamSource) ) {
 					readDataLdif(unit, unitMeta, src, is);
 				}
 			}
 
 			break;
-		case TOKEN_CMD_SAVE:
+		case TOKEN_MISC_TAG_CMD_SAVE:
 
 			break;
 
@@ -108,10 +108,10 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 
 					switch (key) {
 					case LDAP_ATTRIBUTE_TYPES:
-						type = TOKEN_KBMETA_ATTRIBUTE;
+						type = TOKEN_MIND_ASP_ATTRIBUTE;
 						break;
 					case LDAP_OBJECT_CLASSES:
-						type = TOKEN_KBMETA_TYPE;
+						type = TOKEN_MIND_ASP_TYPE;
 						break;
 					default:
 						continue;
@@ -123,13 +123,13 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 				if (m.matches()) {
 					str = m.group(1);
 					h = Dust.getHandle(unit, type, str, DustOptCreate.Meta);
-					Dust.access(DustAccess.Set, str, h, TOKEN_KEY);
-					Dust.access(DustAccess.Set, DustUtils.cutPostfix(fileName, "."), h, TOKEN_PARENT);
+					Dust.access(DustAccess.Set, str, h, TOKEN_MISC_ATT_KEY);
+					Dust.access(DustAccess.Set, DustUtils.cutPostfix(fileName, "."), h, TOKEN_MISC_ATT_PARENT);
 				}
 
 				m = ptDesc.matcher(val);
 				if (m.matches()) {
-					Dust.access(DustAccess.Set, m.group(1), h, TOKEN_DESC);
+					Dust.access(DustAccess.Set, m.group(1), h, TOKEN_MISC_ATT_DESC);
 				}
 
 				m = ptMust.matcher(val);
@@ -138,10 +138,10 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 
 					for (String a : members) {
 						String attName = a.trim();
-						DustHandle ah = Dust.getHandle(unit, TOKEN_KBMETA_ATTRIBUTE, attName, DustOptCreate.Primary);
-						Dust.access(DustAccess.Insert, ah, h, TOKEN_MANDATORY);
-						Dust.access(DustAccess.Insert, h, ah, TOKEN_APPEARS);
-						Dust.access(DustAccess.Set, ah, h, TOKEN_CHILDMAP, attName);
+						DustHandle ah = Dust.getHandle(unit, TOKEN_MIND_ASP_ATTRIBUTE, attName, DustOptCreate.Primary);
+						Dust.access(DustAccess.Insert, ah, h, TOKEN_MIND_TAG_MANDATORY);
+						Dust.access(DustAccess.Insert, h, ah, TOKEN_MISC_ATT_APPEARS);
+						Dust.access(DustAccess.Set, ah, h, TOKEN_MISC_ATT_CHILDMAP, attName);
 
 					}
 				}
@@ -152,15 +152,15 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 
 					for (String a : members) {
 						String attName = a.trim();
-						DustHandle ah = Dust.getHandle(unit, TOKEN_KBMETA_ATTRIBUTE, attName, DustOptCreate.Primary);
-						Dust.access(DustAccess.Insert, ah, h, TOKEN_OPTIONAL);
-						Dust.access(DustAccess.Insert, h, ah, TOKEN_APPEARS);
-						Dust.access(DustAccess.Set, ah, h, TOKEN_CHILDMAP, attName);
+						DustHandle ah = Dust.getHandle(unit, TOKEN_MIND_ASP_ATTRIBUTE, attName, DustOptCreate.Primary);
+						Dust.access(DustAccess.Insert, ah, h, TOKEN_MIND_TAG_OPTIONAL);
+						Dust.access(DustAccess.Insert, h, ah, TOKEN_MISC_ATT_APPEARS);
+						Dust.access(DustAccess.Set, ah, h, TOKEN_MISC_ATT_CHILDMAP, attName);
 					}
 				}
 
 				if (val.contains(LDAP_SINGLE_VALUE)) {
-					Dust.access(DustAccess.Set, true, h, TOKEN_COLLTYPE_ONE);
+					Dust.access(DustAccess.Set, true, h, TOKEN_MIND_TAG_COLLTYPE_ONE);
 				}
 			}
 		}
@@ -183,10 +183,10 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 			this.unit = unit;
 			this.unitMeta = unitMeta;
 
-			String typeName = Dust.access(DustAccess.Peek, "???", params, TOKEN_TYPE);
-			type = Dust.getHandle(unitMeta, TOKEN_KBMETA_TYPE, typeName, DustOptCreate.Meta);
+			String typeName = Dust.access(DustAccess.Peek, "???", params, TOKEN_MIND_ATT_TYPE);
+			type = Dust.getHandle(unitMeta, TOKEN_MIND_ASP_TYPE, typeName, DustOptCreate.Meta);
 
-			encoding = Dust.access(DustAccess.Peek, DUST_CHARSET_UTF8, params, TOKEN_STREAM_ENCODING);
+			encoding = Dust.access(DustAccess.Peek, DUST_CHARSET_UTF8, params, TOKEN_STREAM_ATT_ENCODING);
 		}
 
 		public void processLine(String line) {
@@ -227,12 +227,12 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 					currHandle = Dust.getHandle(unit, type, optId, DustOptCreate.Primary);
 				}
 
-				Object k = Dust.getHandle(unitMeta, TOKEN_KBMETA_ATTRIBUTE, key, DustOptCreate.Meta);
-				Dust.access(DustAccess.Insert, type, k, TOKEN_APPEARS);
-				Dust.access(DustAccess.Set, k, type, TOKEN_CHILDMAP, key);
+				Object k = Dust.getHandle(unitMeta, TOKEN_MIND_ASP_ATTRIBUTE, key, DustOptCreate.Meta);
+				Dust.access(DustAccess.Insert, type, k, TOKEN_MISC_ATT_APPEARS);
+				Dust.access(DustAccess.Set, k, type, TOKEN_MISC_ATT_CHILDMAP, key);
 
 				if (LDAP_OBJECTCLASS.equals(key)) {
-					Dust.getHandle(unitMeta, TOKEN_KBMETA_TYPE, optId, DustOptCreate.Meta);
+					Dust.getHandle(unitMeta, TOKEN_MIND_ASP_TYPE, optId, DustOptCreate.Meta);
 				}
 
 //				String k = unitMeta.getUnitId() + DUST_SEP_TOKEN + key;
@@ -275,7 +275,7 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 
 			while ((line = br.readLine()) != null) {
 				if (0 == (++lc % 10000)) {
-					Dust.log(TOKEN_LEVEL_TRACE, "line", lc);
+					Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "line", lc);
 				}
 
 				block.processLine(line);

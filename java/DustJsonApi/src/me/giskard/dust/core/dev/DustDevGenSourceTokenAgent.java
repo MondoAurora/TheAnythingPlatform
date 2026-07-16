@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeSet;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
@@ -24,10 +25,10 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 	@Override
 	protected void init() throws Exception {
 		super.init();
-		types = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_MEMBERS);
-		targetPackage = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_DEV_PACKAGE);
+		types = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_MISC_ATT_MEMBERS);
+		targetPackage = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_DEV_ATT_PACKAGE);
 
-		String projectRoot = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_PATH);
+		String projectRoot = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_MISC_ATT_PATH);
 		root = new File(new File(projectRoot), targetPackage.replace('.', '/'));
 
 		DustUtilsFile.ensureDir(root);
@@ -43,26 +44,26 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 	protected Object process(DustAccess access) throws Exception {
 //		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
 
-		DustHandle data = Dust.access(DustAccess.Peek, null, null, TOKEN_DATA);
+		DustHandle data = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_DATA);
 
 		if (null != data) {
 			String unit = data.getUnit().getId();
 			String type = data.getType().getId();
-			String name = Dust.access(DustAccess.Peek, null, data, TOKEN_NAME);
+			String name = Dust.access(DustAccess.Peek, null, data, TOKEN_MISC_ATT_NAME);
 
-			Dust.access(DustAccess.Set, data, temp, TOKEN_DATA, unit, type, name);
+			Dust.access(DustAccess.Set, data, temp, TOKEN_MISC_ATT_DATA, unit, type, name);
 		}
 
-		Dust.log(TOKEN_LEVEL_TRACE, "Source generator received", data);
+		Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Source generator received", data);
 
 		return null;
 	}
 
 	@Override
 	protected Object end(boolean commit) throws Exception {
-		Map<String, Object> tokens = Dust.access(DustAccess.Peek, null, temp, TOKEN_DATA);
+		Map<String, Object> tokens = Dust.access(DustAccess.Peek, null, temp, TOKEN_MISC_ATT_DATA);
 
-		Dust.log(TOKEN_LEVEL_TRACE, "Generate sources from", tokens);
+		Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Generate sources from", tokens);
 
 		for (Map.Entry<String, Object> ue : tokens.entrySet()) {
 			PrintStream ps = null;
@@ -75,8 +76,11 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 				boolean first = true;
 
 				if (null != tm) {
+					
+					Collection<String> keys = new TreeSet<>();
+					keys.addAll(tm.keySet());
 
-					for (Map.Entry<String, DustHandle> te : tm.entrySet()) {
+					for (String key : keys ) {
 						if (first) {
 							first = false;
 
@@ -104,9 +108,9 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 						}
 
 						ps.print("\tString ");
-						ps.print(te.getKey());
+						ps.print(key);
 						ps.print(" = \"");
-						ps.print(te.getValue().getId());
+						ps.print(tm.get(key).getId());
 						ps.print("\";");
 						ps.println();
 					}

@@ -64,7 +64,7 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 						DefaultMutableTreeNode n = (DefaultMutableTreeNode) sp.getLastPathComponent();
 
 						DustHandle h = (DustHandle) n.getUserObject();
-						DustHandle t = Dust.access(DustAccess.Peek, h, h, DustSandboxTextEditor.TOKEN_TARGET); // opt relay from table cell
+						DustHandle t = Dust.access(DustAccess.Peek, h, h, DustSandboxTextEditor.TOKEN_MISC_ATT_TARGET); // opt relay from table cell
 						hfBlock = (null == t) ? h : t;
 
 						eSelByHandle(hfBlock);
@@ -165,7 +165,7 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 							extendSel = true;
 						}
 
-						Dust.log(DustSandboxTextEditor.TOKEN_LEVEL_TRACE, "select", b, e, selBegin, selEnd);
+						Dust.log(DustSandboxTextEditor.TOKEN_MISC_TAG_LEVEL_TRACE, "select", b, e, selBegin, selEnd);
 
 						updateFocus();
 

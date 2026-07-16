@@ -22,20 +22,20 @@ public class DustStreamSrcSftpAgent extends DustAgent implements DustMind.Stream
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		String cmd = Dust.access(DustAccess.Peek, TOKEN_CMD_INFO, null, TOKEN_CMD);
+		String cmd = Dust.access(DustAccess.Peek, TOKEN_MISC_TAG_CMD_INFO, null, TOKEN_MIND_ATT_CMD);
 
-		String knownHosts = Dust.access(DustAccess.Peek, "~/.ssh/known_hosts", null, TOKEN_NET_KNOWN_HOST);
+		String knownHosts = Dust.access(DustAccess.Peek, "~/.ssh/known_hosts", null, TOKEN_NET_ATT_KNOWN_HOST);
 
-		String root = Dust.access(DustAccess.Peek, ".", null, TOKEN_STREAM_ROOTFOLDER);
-		String p1 = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
+		String root = Dust.access(DustAccess.Peek, ".", null, TOKEN_STREAM_ATT_ROOTFOLDER);
+		String p1 = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_PATH);
 
 		String path = DustUtils.sbAppend(null, "/", false, root, p1).toString();
 
-		DustHandle accInfo = Dust.access(DustAccess.Peek, null, null, TOKEN_ACCESS);
+		DustHandle accInfo = Dust.access(DustAccess.Peek, null, null, TOKEN_AAA_ATT_ACCESS);
 
-		String url = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_STREAM_URL);
-		String user = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_USER);
-		String pass = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_PASSWORD);
+		String url = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_STREAM_ATT_URL);
+		String user = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_AAA_ATT_USERID);
+		String pass = Dust.access(DustAccess.Peek, null, accInfo, TOKEN_AAA_ATT_PASSWORD);
 
 		JSch jsch = null;
 		Session jschSession = null;
@@ -54,18 +54,18 @@ public class DustStreamSrcSftpAgent extends DustAgent implements DustMind.Stream
 
 //			String token = null;
 			switch (cmd) {
-			case TOKEN_CMD_LOAD:
+			case TOKEN_MISC_TAG_CMD_LOAD:
 //				token = TOKEN_INPUT_STREAM;
 				break;
-			case TOKEN_CMD_SAVE:
+			case TOKEN_MISC_TAG_CMD_SAVE:
 //				token = TOKEN_OUTPUT_STREAM;
 				break;
-			case TOKEN_CMD_INFO:
+			case TOKEN_MISC_TAG_CMD_INFO:
 				try {
 					java.util.Vector<ChannelSftp.LsEntry> vv = channelSftp.ls(path);
 					if (vv != null) {
 						for (ChannelSftp.LsEntry le : vv) {
-							Dust.log(TOKEN_LEVEL_INFO, le.getLongname());
+							Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, le.getLongname());
 							
 							String fn = le.getFilename();
 							
@@ -123,10 +123,10 @@ public class DustStreamSrcSftpAgent extends DustAgent implements DustMind.Stream
 		Object stream = null;
 
 		switch (cmd) {
-		case TOKEN_CMD_LOAD:
+		case TOKEN_MISC_TAG_CMD_LOAD:
 			stream = f.isFile() ? new FileInputStream(f) : null;
 			break;
-		case TOKEN_CMD_SAVE:
+		case TOKEN_MISC_TAG_CMD_SAVE:
 			File p = f.getParentFile();
 			DustUtilsFile.ensureDir(p);
 			stream = new FileOutputStream(f);

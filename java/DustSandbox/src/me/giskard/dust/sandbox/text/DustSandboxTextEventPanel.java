@@ -37,7 +37,7 @@ public class DustSandboxTextEventPanel extends JComponent implements DustSandbox
 
 		DustHandle hSelTxt = selMgr.hfBlock;
 		if (null == hSelTxt) {
-			hSelTxt = Dust.access(DustAccess.Peek, null, txtAgent.hDoc, TOKEN_MEMBERS, 0);
+			hSelTxt = Dust.access(DustAccess.Peek, null, txtAgent.hDoc, TOKEN_MISC_ATT_MEMBERS, 0);
 
 			if (null == hSelTxt) {
 				return;
@@ -65,7 +65,7 @@ public class DustSandboxTextEventPanel extends JComponent implements DustSandbox
 			for (DustHandle hEvt : txtAgent.events.values()) {
 				long s = DustUtilsData.getEventDate(hEvt).getTime() - zero;
 				if (s < end) {
-					long duration = Dust.access(DustAccess.Peek, 0L, hEvt, TOKEN_EVENT_DURATION);
+					long duration = Dust.access(DustAccess.Peek, 0L, hEvt, TOKEN_MISC_ATT_EVENT_DURATION);
 					long e = s + duration;
 					if (e > start) {
 						int rx = (int) ((s - start) / zoom);
@@ -96,7 +96,7 @@ public class DustSandboxTextEventPanel extends JComponent implements DustSandbox
 				begin = s;
 			}
 
-			long duration = Dust.access(DustAccess.Peek, 0L, hEvt, TOKEN_EVENT_DURATION);
+			long duration = Dust.access(DustAccess.Peek, 0L, hEvt, TOKEN_MISC_ATT_EVENT_DURATION);
 			long e = s + duration;
 			if (e > end) {
 				end = e;

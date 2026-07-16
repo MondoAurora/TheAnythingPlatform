@@ -16,7 +16,7 @@ public interface DustMindNarrative extends DustMindConsts {
 
 		@Override
 		protected void init() throws Exception {
-			hNext = Dust.access(DustAccess.Peek, null, null, TOKEN_NEXT);
+			hNext = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_NEXT);
 		};
 
 	}
@@ -30,26 +30,26 @@ public interface DustMindNarrative extends DustMindConsts {
 
 		@Override
 		protected Object process(DustAccess access) throws Exception {
-			String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
+			String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
 			Map params = new HashMap();
 
-			Collection path = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
+			Collection path = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_PATH);
 
 			if (null != path) {
-				Dust.access(DustAccess.Set, cmd, params, TOKEN_CMD);
+				Dust.access(DustAccess.Set, cmd, params, TOKEN_MIND_ATT_CMD);
 
 				Object[] p = path.toArray();
-				Collection<DustHandle> target = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_MEMBERS);
+				Collection<DustHandle> target = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_MISC_ATT_MEMBERS);
 
 				for (DustHandle ht : target) {
-					Dust.access(DustAccess.Set, ht, params, TOKEN_TARGET);
+					Dust.access(DustAccess.Set, ht, params, TOKEN_MISC_ATT_TARGET);
 
 					Object data = Dust.access(DustAccess.Peek, null, ht, p);
 
 					DustUtils.visit(data, new DustProcessor<Object, Object>() {
 						@Override
 						public Object process(Object handle, Object... hints) {
-							Dust.access(DustAccess.Set, handle, params, TOKEN_DATA);
+							Dust.access(DustAccess.Set, handle, params, TOKEN_MISC_ATT_DATA);
 							Dust.access(DustAccess.Process, params, hNext);
 							return null;
 						}
@@ -69,18 +69,18 @@ public interface DustMindNarrative extends DustMindConsts {
 		@Override
 		protected void init() throws Exception {
 			super.init();
-			conditions = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null, TOKEN_FILTER);
+			conditions = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null, TOKEN_MISC_ATT_FILTER);
 		}
 
 		@Override
 		protected Object process(DustAccess access) throws Exception {
-			String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
+			String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
 			
-			Object data = Dust.access(DustAccess.Peek, null, null, TOKEN_DATA);
+			Object data = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_DATA);
 			
 			if ( null != data ) {
 				Map params = new HashMap();
-				Dust.access(DustAccess.Set, cmd, params, TOKEN_CMD);
+				Dust.access(DustAccess.Set, cmd, params, TOKEN_MIND_ATT_CMD);
 
 				boolean pass = true;
 
@@ -101,7 +101,7 @@ public interface DustMindNarrative extends DustMindConsts {
 				}
 				
 				if ( pass ) {
-					Dust.access(DustAccess.Set, data, params, TOKEN_DATA);
+					Dust.access(DustAccess.Set, data, params, TOKEN_MISC_ATT_DATA);
 					Dust.access(DustAccess.Process, params, hNext);					
 				}
 			}

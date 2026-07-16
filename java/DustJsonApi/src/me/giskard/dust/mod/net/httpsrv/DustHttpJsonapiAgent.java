@@ -28,10 +28,10 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 	@Override
 	protected Object process(DustAccess access) throws Exception {
 
-		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_RESPONSE);
+		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET, TOKEN_NET_ATT_SRVCALL_RESPONSE);
 
 		if (null != response) {
-			String pi = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_PATHINFO);
+			String pi = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET, TOKEN_NET_ATT_SRVCALL_PATHINFO);
 
 			String[] path = pi.split("/");
 			int pl = path.length;
@@ -41,7 +41,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 			DustHandle unit = null;
 
 			if (0 == pl) {
-				String m = Dust.access(DustAccess.Peek, null, null, TOKEN_TARGET, TOKEN_NET_SRVCALL_METHOD);
+				String m = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET, TOKEN_NET_ATT_SRVCALL_METHOD);
 
 				StringBuilder sb = new StringBuilder(
 						"<!doctype html>\n" + "<html lang=\"en\">\n" + "<head>\n<meta charset=\"utf-8\">\n<title>DustTracer JSON:API</title>\n</head>\n" + "<body>");
@@ -58,7 +58,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 			} else {
 				try {
 					Pattern ptFilter = Pattern.compile("fields\\[(.*)\\]");
-					Map<String, String> params = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null, TOKEN_TARGET, TOKEN_PAYLOAD);
+					Map<String, String> params = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null, TOKEN_MISC_ATT_TARGET, TOKEN_MISC_ATT_PAYLOAD);
 					Map<String, String[]> atts = new TreeMap<String, String[]>();
 
 					String cmd = path[0];
@@ -138,12 +138,12 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 						response.setContentType(MEDIATYPE_JSONAPI);
 						PrintWriter out = response.getWriter();
 
-						Object ser = Dust.access(DustAccess.Peek, null, null, TOKEN_SERIALIZER);
+						Object ser = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_SERIALIZER);
 
 						Map<String, Object> ps = new HashMap<>();
-						ps.put(TOKEN_CMD, TOKEN_CMD_SAVE);
-						ps.put(TOKEN_DATA, unit);
-						ps.put(TOKEN_STREAM_WRITER, out);
+						ps.put(TOKEN_MIND_ATT_CMD, TOKEN_MISC_TAG_CMD_SAVE);
+						ps.put(TOKEN_MISC_ATT_DATA, unit);
+						ps.put(TOKEN_STREAM_ATT_WRITER, out);
 
 						Dust.access(DustAccess.Process, ps, ser);
 
@@ -157,7 +157,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 			}
 		}
 
-		return TOKEN_RESULT_ACCEPT;
+		return TOKEN_MIND_TAG_RESULT_ACCEPT;
 	}
 
 	private static final String[] NOFILTER = new String[] {};

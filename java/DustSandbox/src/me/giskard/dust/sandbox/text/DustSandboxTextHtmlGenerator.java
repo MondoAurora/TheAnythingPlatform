@@ -66,18 +66,18 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 	void appendHandle(DustSandboxTextAgent txtAgent, DustHandle h, StringBuilder sb, String specGroup) {
 		String id = h.getId();
 		String ht = h.getType().getId();
-		Collection<DustHandle> members = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h, TOKEN_MEMBERS);
+		Collection<DustHandle> members = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h, TOKEN_MISC_ATT_MEMBERS);
 		boolean empty = members.isEmpty();
 		String container = "div";
 
 		DustHandle hLayoutParent = null;
 
-		if (DustUtils.isEqual(TOKEN_TEXT_TRANSCLUSION, ht)) {
+		if (DustUtils.isEqual(TOKEN_TEXT_ASP_TRANSCLUSION, ht)) {
 //			String path = Dust.access(DustAccess.Peek, null, h, TOKEN_TARGET, TOKEN_PATH);
 			DustHandle hStream = txtAgent.getStream(h);
-			String path = Dust.access(DustAccess.Peek, null, hStream, TOKEN_PATH);
+			String path = Dust.access(DustAccess.Peek, null, hStream, TOKEN_MISC_ATT_PATH);
 
-			boolean image = Dust.access(DustAccess.Check, DustUtils.CONST_HANDLES.get(TOKEN_STREAM_IMAGE, TOKEN_KBMETA_TAG), hStream, TOKEN_TAGS);
+			boolean image = Dust.access(DustAccess.Check, DustUtils.CONST_HANDLES.get(TOKEN_STREAM_TAG_IMAGE, TOKEN_MIND_ASP_TAG), hStream, TOKEN_MIND_ATT_TAGS);
 
 			if (image) {
 				if (!DustUtils.isEmpty(path)) {
@@ -118,15 +118,15 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 			return;
 		}
 
-		if (DustUtils.isEqual(TOKEN_LAYOUT_RESPONSIVE, ht)) {
-			Collection<DustHandle> options = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h, TOKEN_OPTIONS);
+		if (DustUtils.isEqual(TOKEN_LAYOUT_ASP_RESPONSIVE, ht)) {
+			Collection<DustHandle> options = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h, TOKEN_MISC_ATT_OPTIONS);
 			for (DustHandle ho : options) {
-				DustHandle hl = Dust.access(DustAccess.Peek, txtAgent.hLayout, ho, TOKEN_LAYOUT_LAYOUT);
+				DustHandle hl = Dust.access(DustAccess.Peek, txtAgent.hLayout, ho, TOKEN_LAYOUT_TAG_LAYOUT);
 				if (txtAgent.hLayout == hl) {
 					hLayoutParent = h;
 					h = ho;
 					ht = h.getType().getId();
-					members = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h, TOKEN_MEMBERS);
+					members = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h, TOKEN_MISC_ATT_MEMBERS);
 					break;
 				}
 			}
@@ -136,7 +136,7 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 			}
 		}
 
-		if (DustUtils.isEqual(TOKEN_LAYOUT_TABLE, ht)) {
+		if (DustUtils.isEqual(TOKEN_LAYOUT_ASP_TABLE, ht)) {
 			container = "table";
 			DustUtilsFactory<Long, Map<Long, String>> factTableRows = new DustUtilsFactory.Simple<Long, Map<Long, String>>(true,
 					(Class<? extends Map<Long, String>>) TreeMap.class);
@@ -144,9 +144,9 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 			DustUtils.sbAppend(sb, "", false, "<", container, " id=\"", id, "\"", "style=\"padding-left:", lp, "px\" >\n");
 
 			for (DustHandle hc : members) {
-				ArrayList<Long> pos = Dust.access(DustAccess.Peek, null, hc, TOKEN_POSITION);
+				ArrayList<Long> pos = Dust.access(DustAccess.Peek, null, hc, TOKEN_MISC_ATT_POSITION);
 				StringBuilder sbc = new StringBuilder();
-				DustHandle targetTxt = Dust.access(DustAccess.Peek, null, hc, TOKEN_TARGET);
+				DustHandle targetTxt = Dust.access(DustAccess.Peek, null, hc, TOKEN_MISC_ATT_TARGET);
 				appendHandle(txtAgent, targetTxt, sbc, null);
 				factTableRows.get(pos.get(0)).put(pos.get(1), sbc.toString());
 			}
@@ -154,7 +154,7 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 // will be needed for missing / spanned cells
 //			ArrayList<Long> tblSpan = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, TOKEN_SPAN);
 
-			ArrayList<Long> tblDataOffset = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, TOKEN_POSITION);
+			ArrayList<Long> tblDataOffset = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, TOKEN_MISC_ATT_POSITION);
 
 			Long headOffsetRow = tblDataOffset.get(0);
 			Long headOffsetCol = tblDataOffset.get(1);
@@ -185,13 +185,13 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 			boolean hdr = !empty && (0 < depth);
 			int mi = 0;
 
-			String hGroup = Dust.access(DustAccess.Peek, null, h, TOKEN_TEXT_GROUP, TOKEN_ID);
+			String hGroup = Dust.access(DustAccess.Peek, null, h, TOKEN_TEXT_TAG_GROUP, TOKEN_MIND_ATT_ID);
 
 			if (null != hGroup) {
 				hdr = false;
 			}
 
-			if (DustUtils.isEqual(TOKEN_TEXT_GROUP_INLINE, specGroup)) {
+			if (DustUtils.isEqual(TOKEN_TEXT_TAG_GROUP_INLINE, specGroup)) {
 
 //			if (editor.hTagInline == specGroup) {
 				container = "span";
@@ -224,9 +224,9 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 					}
 					DustUtils.sbAppend(sb, "", false, "<span class=\"tap_head", depth, "\"> ", headNum, " ");
 				} else if (null != specGroup) {
-					if (DustUtils.isEqual(TOKEN_TEXT_GROUP_BULLET, specGroup)) {
+					if (DustUtils.isEqual(TOKEN_TEXT_TAG_GROUP_BULLET, specGroup)) {
 						sb.append(" - ");
-					} else if (DustUtils.isEqual(TOKEN_TEXT_GROUP_NUMBER, specGroup)) {
+					} else if (DustUtils.isEqual(TOKEN_TEXT_TAG_GROUP_NUMBER, specGroup)) {
 						DustUtils.sbAppend(sb, "", false, " ", headStack.peek(), ". ");
 					}
 				}
@@ -239,7 +239,7 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 			}
 
 			for (DustHandle hc : members) {
-				int cc = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, hc, TOKEN_MEMBERS, KEY_SIZE);
+				int cc = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, hc, TOKEN_MISC_ATT_MEMBERS, KEY_SIZE);
 				if ((0 < cc) || (null != hGroup)) {
 					try {
 						++mi;
@@ -269,12 +269,12 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 	}
 
 	private void optAddStyleClass(DustHandle h, StringBuilder sb) {
-		Collection<DustHandle> styles = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, h, TOKEN_TEXT_STYLES);
+		Collection<DustHandle> styles = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, h, TOKEN_TEXT_ATT_STYLES);
 
 		if (!styles.isEmpty()) {
 			StringBuilder sc = null;
 			for (DustHandle hs : styles) {
-				String name = (String) Dust.access(DustAccess.Peek, "", hs, TOKEN_NAME);
+				String name = (String) Dust.access(DustAccess.Peek, "", hs, TOKEN_MISC_ATT_NAME);
 				name = DustUtils.getPostfix(name, ".");
 				sc = DustUtils.sbAppend(sc, " ", false, name);
 //					sb.append(name);

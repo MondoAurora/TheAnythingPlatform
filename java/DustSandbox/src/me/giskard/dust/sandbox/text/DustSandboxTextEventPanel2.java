@@ -86,7 +86,7 @@ public class DustSandboxTextEventPanel2 extends JPanel implements DustSandboxTex
 					begin = s;
 				}
 
-				long duration = Dust.access(DustAccess.Peek, 0L, hEvt, TOKEN_EVENT_DURATION);
+				long duration = Dust.access(DustAccess.Peek, 0L, hEvt, TOKEN_MISC_ATT_EVENT_DURATION);
 				long e = s + duration;
 				if ( e > end ) {
 					end = e;
@@ -111,7 +111,7 @@ public class DustSandboxTextEventPanel2 extends JPanel implements DustSandboxTex
 			try {
 				Date start = DustUtilsData.getEventDate(hEvt);
 				long s = (long) (zoom * (double) (start.getTime() - (long) begin));
-				long duration = Dust.access(DustAccess.Peek, 0L, hEvt, TOKEN_EVENT_DURATION);
+				long duration = Dust.access(DustAccess.Peek, 0L, hEvt, TOKEN_MISC_ATT_EVENT_DURATION);
 				
 				DustHandle hTxt = ee.getKey();
 				String tId = hTxt.getId();

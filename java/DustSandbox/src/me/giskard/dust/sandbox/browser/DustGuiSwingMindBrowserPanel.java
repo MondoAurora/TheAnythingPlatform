@@ -46,7 +46,7 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 		@Override
 		public DefaultMutableTreeNode create(Object key, Object... hints) {
 			DefaultMutableTreeNode ret = new DefaultMutableTreeNode(key);
-			Map<String, Object> unitInfo = Dust.access(DustAccess.Peek, null, mindInfo, TOKEN_KB_KNOWNUNITS, key);
+			Map<String, Object> unitInfo = Dust.access(DustAccess.Peek, null, mindInfo, TOKEN_MIND_ATT_KNOWNUNITS, key);
 
 			for (Map.Entry<String, Object> eui : unitInfo.entrySet()) {
 				DefaultMutableTreeNode k = new DefaultMutableTreeNode(eui.getKey());
@@ -92,7 +92,7 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 		public void actionPerformed(ActionEvent e) {
 			String cmd = e.getActionCommand();
 			switch (cmd) {
-			case TOKEN_UNIT:
+			case TOKEN_MIND_ATT_UNIT:
 				String su = (String) cbUnit.getSelectedItem();
 				selUnit = Dust.getUnit(su, true);
 				grid.setUnit(selUnit);
@@ -100,7 +100,7 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 //				trUnitInfo.setRootVisible(false);
 				tm.setRoot(roots.get(su));
 
-				lbCount.setText(DustUtils.toString(Dust.access(DustAccess.Peek, "?", mindInfo, TOKEN_KB_KNOWNUNITS, selUnit, TOKEN_COUNT)));
+				lbCount.setText(DustUtils.toString(Dust.access(DustAccess.Peek, "?", mindInfo, TOKEN_MIND_ATT_KNOWNUNITS, selUnit, TOKEN_MISC_ATT_COUNT)));
 
 				break;
 			}
@@ -114,7 +114,7 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 		public Boolean process(DustHandle handle, Object... hints) {
 			boolean ret = true;
 
-			Set<String> s = metaFilter.get(TOKEN_ATTRIBUTES);
+			Set<String> s = metaFilter.get(TOKEN_MISC_ATT_ATTRIBUTES);
 
 			if (!s.isEmpty()) {
 				ret = false;
@@ -140,7 +140,7 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 
 	@Override
 	protected void init() throws Exception {
-		String iId = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD_INFO);
+		String iId = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_TAG_CMD_INFO);
 		String[] i = iId.split("\\$");
 
 		DustHandle uInfo = Dust.getUnit(i[0], true);
@@ -152,7 +152,7 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 		
 		Set<String> units = new TreeSet<String>();
 		for (Map.Entry<String, Object> eUnit : (Iterable<Map.Entry<String, Object>>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, mindInfo,
-				TOKEN_KB_KNOWNUNITS)) {
+				TOKEN_MIND_ATT_KNOWNUNITS)) {
 			String key = eUnit.getKey();
 			if (key.contains("Meta.")) {
 //				continue;
@@ -165,7 +165,7 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 		}
 
 		cbUnit.addActionListener(al);
-		cbUnit.setActionCommand(TOKEN_UNIT);
+		cbUnit.setActionCommand(TOKEN_MIND_ATT_UNIT);
 
 		if (0 < cbUnit.getItemCount()) {
 			cbUnit.setSelectedIndex(0);
@@ -218,18 +218,18 @@ public class DustGuiSwingMindBrowserPanel extends DustGuiSwingConsts.JPanelAgent
 		JPanel pnSearch = new JPanel(new BorderLayout());
 		pnSearch.add(new JScrollPane(taSearch), BorderLayout.CENTER);
 
-		DustHandle test = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD_TEST);
+		DustHandle test = Dust.access(DustAccess.Peek, null, null, TOKEN_DEV_TAG_CMD_TEST);
 		if (null != test) {
 			JPanel pnlBtns = new JPanel(new FlowLayout());
 			ActionListener testDispatch = new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Dust.access(DustAccess.Set, e.getActionCommand(), test, TOKEN_CMD);
+					Dust.access(DustAccess.Set, e.getActionCommand(), test, TOKEN_MIND_ATT_CMD);
 					Dust.access(DustAccess.Process, null, test);
 				}
 			};
 
-			Collection<String> tm = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, test, TOKEN_MEMBERS);
+			Collection<String> tm = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, test, TOKEN_MISC_ATT_MEMBERS);
 			for (String tc : tm) {
 				JButton bt = DustGuiSwingUtils.createBtn(tc, testDispatch, JButton.class);
 				pnlBtns.add(bt);

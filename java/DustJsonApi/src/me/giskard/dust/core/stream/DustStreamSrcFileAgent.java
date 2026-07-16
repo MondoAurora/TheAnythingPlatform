@@ -24,35 +24,35 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustMind.Stream
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
+		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
 
-		String root = Dust.access(DustAccess.Peek, defRoot, null, TOKEN_STREAM_ROOTFOLDER);
+		String root = Dust.access(DustAccess.Peek, defRoot, null, TOKEN_STREAM_ATT_ROOTFOLDER);
 		File r = getRootFolder(root);
 
-		String path = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
+		String path = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_PATH);
 		File f = DustUtils.isEmpty(path) ? r : new File(r, path);
 
 		String token = null;
 		switch (cmd) {
-		case TOKEN_CMD_LOAD:
-			token = TOKEN_INPUT_STREAM;
+		case TOKEN_MISC_TAG_CMD_LOAD:
+			token = TOKEN_STREAM_ATT_INPUT;
 			break;
-		case TOKEN_CMD_SAVE:
-			token = TOKEN_OUTPUT_STREAM;
+		case TOKEN_MISC_TAG_CMD_SAVE:
+			token = TOKEN_STREAM_ATT_OUTPUT;
 			break;
-		case TOKEN_CMD_INFO:
+		case TOKEN_MISC_TAG_CMD_INFO:
 			DustUtilsFile.checkPathBound(f, r, true);
 
-			Dust.access(DustAccess.Reset, null, DustContext.Input, TOKEN_MEMBERS);
+			Dust.access(DustAccess.Reset, null, DustContext.Input, TOKEN_MISC_ATT_MEMBERS);
 			int rpl = r.getCanonicalPath().length();
 
 			if (f.isDirectory()) {
 				for (File ff : f.listFiles()) {
-						Dust.access(DustAccess.Insert, ff.getCanonicalPath().substring(rpl), DustContext.Input, TOKEN_MEMBERS);
+						Dust.access(DustAccess.Insert, ff.getCanonicalPath().substring(rpl), DustContext.Input, TOKEN_MISC_ATT_MEMBERS);
 				}
 			} else {
 				String unitName = DustUtils.cutPostfix(f.getName(), ".");
-				Dust.access(DustAccess.Insert, unitName, DustContext.Input, TOKEN_MEMBERS);
+				Dust.access(DustAccess.Insert, unitName, DustContext.Input, TOKEN_MISC_ATT_MEMBERS);
 			}
 
 			break;
@@ -88,10 +88,10 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustMind.Stream
 		Object stream = null;
 
 		switch (cmd) {
-		case TOKEN_CMD_LOAD:
+		case TOKEN_MISC_TAG_CMD_LOAD:
 			stream = f.isFile() ? new FileInputStream(f) : null;
 			break;
-		case TOKEN_CMD_SAVE:
+		case TOKEN_MISC_TAG_CMD_SAVE:
 			File p = f.getParentFile();
 			DustUtilsFile.ensureDir(p);
 			stream = new FileOutputStream(f);

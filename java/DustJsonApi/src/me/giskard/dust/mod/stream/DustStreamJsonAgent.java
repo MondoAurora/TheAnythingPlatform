@@ -17,39 +17,39 @@ import me.giskard.dust.mod.utils.DustUtilsJson;
 @SuppressWarnings({ "unchecked" })
 public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, DustMindConsts {
 
-//	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_KBMETA_ATTRIBUTE);
-//	DustHandle typeType = DustUtils.getMindMeta(TOKEN_KBMETA_TYPE);
+//	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_MIND_ATTRIBUTE);
+//	DustHandle typeType = DustUtils.getMindMeta(TOKEN_MIND_TYPE);
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
 
-		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
+		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
 
 		switch (cmd) {
-		case TOKEN_CMD_LOAD:
+		case TOKEN_MISC_TAG_CMD_LOAD:
 
-			for (Map<String, Object> src : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, null, TOKEN_SOURCE))) {
-				String metaId = Dust.access(DustAccess.Peek, null, src, TOKEN_META);
+			for (Map<String, Object> src : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, null, TOKEN_MISC_ATT_SOURCE))) {
+				String metaId = Dust.access(DustAccess.Peek, null, src, TOKEN_MISC_ATT_META);
 				DustHandle meta = Dust.getUnit(metaId, true);
 
-				String type = Dust.access(DustAccess.Peek, null, src, TOKEN_TYPE);
-				DustHandle tType = Dust.getHandle(meta, TOKEN_KBMETA_TYPE, type, DustOptCreate.Meta);
+				String type = Dust.access(DustAccess.Peek, null, src, TOKEN_MIND_ATT_TYPE);
+				DustHandle tType = Dust.getHandle(meta, TOKEN_MIND_ASP_TYPE, type, DustOptCreate.Meta);
 
-				String unitId = Dust.access(DustAccess.Peek, null, src, TOKEN_DATA);
+				String unitId = Dust.access(DustAccess.Peek, null, src, TOKEN_MISC_ATT_DATA);
 				DustHandle unit = Dust.getUnit(unitId, true);
 
-				String fileName = Dust.access(DustAccess.Peek, null, src, TOKEN_PATH);
-				String encoding = Dust.access(DustAccess.Peek, DUST_CHARSET_UTF8, src, TOKEN_STREAM_ENCODING);
+				String fileName = Dust.access(DustAccess.Peek, null, src, TOKEN_MISC_ATT_PATH);
+				String encoding = Dust.access(DustAccess.Peek, DUST_CHARSET_UTF8, src, TOKEN_STREAM_ATT_ENCODING);
 				
 				Map<String, Object> content = null;
-				try (InputStream is = DustStreamUtils.getStream(TOKEN_CMD_LOAD, fileName)) {
+				try (InputStream is = DustStreamUtils.getStream(TOKEN_MISC_TAG_CMD_LOAD, fileName)) {
 					content = DustUtilsJson.readJson(is, encoding);
 				}
-				String collId = Dust.access(DustAccess.Peek, null, src, TOKEN_SOURCE);
+				String collId = Dust.access(DustAccess.Peek, null, src, TOKEN_MISC_ATT_SOURCE);
 				Collection<Map<String, Object>> arr = DustUtils.simpleGet(content, collId);
 
-				String idKey = Dust.access(DustAccess.Peek, null, src, TOKEN_ID);
-				Map<String, String> preProcess = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, src, TOKEN_PREPROCESS);
+				String idKey = Dust.access(DustAccess.Peek, null, src, TOKEN_MIND_ATT_ID);
+				Map<String, String> preProcess = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, src, TOKEN_ATT_PREPROCESS);
 
 				for (Map<String, Object> o : arr) {
 					Object id = o.get(idKey);
@@ -62,7 +62,7 @@ public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, 
 
 						String pp = preProcess.getOrDefault(attName, "");
 						switch (pp) {
-						case TOKEN_INNERJSON:
+						case TOKEN_ATT_INNERJSON:
 							Map<String, Object> v = DustUtilsJson.parseJson((String) val);
 							for (Map.Entry<String, Object> ve : v.entrySet()) {
 								DustHandle att = getAtt(meta, tType, attName + "::" + ve.getKey());
@@ -79,7 +79,7 @@ public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, 
 			}
 
 			break;
-		case TOKEN_CMD_SAVE:
+		case TOKEN_MISC_TAG_CMD_SAVE:
 
 			break;
 
@@ -88,9 +88,9 @@ public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, 
 	}
 
 	public DustHandle getAtt(DustHandle meta, DustHandle tType, String attName) {
-		DustHandle att = Dust.getHandle(meta, TOKEN_KBMETA_ATTRIBUTE, attName, DustOptCreate.Meta);
-		Dust.access(DustAccess.Insert, tType, att, TOKEN_APPEARS);
-		Dust.access(DustAccess.Set, att, tType, TOKEN_CHILDMAP, attName);
+		DustHandle att = Dust.getHandle(meta, TOKEN_MIND_ASP_ATTRIBUTE, attName, DustOptCreate.Meta);
+		Dust.access(DustAccess.Insert, tType, att, TOKEN_MISC_ATT_APPEARS);
+		Dust.access(DustAccess.Set, att, tType, TOKEN_MISC_ATT_CHILDMAP, attName);
 		return att;
 	}
 

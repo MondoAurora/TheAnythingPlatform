@@ -1,17 +1,1 @@
-{
-	"jsonapi": {
-		"version": "1.1"
-	},
-	"data": [
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_GEOMETRY_NODE"
-			},
-			"id": "geometry.1$Node",
-			"type": "dust.1$Type"
-		}
-	],
-	"meta": {
-		"count": 1
-	}
-}
+{"jsonapi":{"version":"1.1"},"data":[{"attributes":{"dust.1$name":"TOKEN_GEOMETRY_ASP_NODE"},"id":"geometry.1$Node","type":"dust.1$Type"}],"meta":{"count":1}}

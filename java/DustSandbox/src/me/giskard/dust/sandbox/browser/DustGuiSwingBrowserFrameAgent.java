@@ -20,7 +20,7 @@ public class DustGuiSwingBrowserFrameAgent extends DustAgent implements DustGuiS
 		
 		frm = new JFrame();
 		
-		frm.setTitle( Dust.access(DustAccess.Peek, "App frame", null, TOKEN_NAME));
+		frm.setTitle( Dust.access(DustAccess.Peek, "App frame", null, TOKEN_MISC_ATT_NAME));
 		
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -42,7 +42,7 @@ public class DustGuiSwingBrowserFrameAgent extends DustAgent implements DustGuiS
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		String cmd = Dust.access(DustAccess.Peek, "", null, TOKEN_CMD);
+		String cmd = Dust.access(DustAccess.Peek, "", null, TOKEN_MIND_ATT_CMD);
 //		StringBuilder sb = null;
 
 		switch (cmd) {

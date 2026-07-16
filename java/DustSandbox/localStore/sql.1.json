@@ -5,30 +5,30 @@
 	"data": [
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ASP_EVENT"
+				"dust.1$name": "TOKEN_SQL_ASP_SELECT"
 			},
-			"id": "misc.1$Event",
+			"id": "sql.1$Select",
 			"type": "dust.1$Type"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_ATT_INNERJSON"
+				"dust.1$name": "TOKEN_SQL_ATT_COLUMN_MAP"
 			},
-			"id": "misc.1$innerJson",
+			"id": "sql.1$columnMap",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_ATT_PREPROCESS"
+				"dust.1$name": "TOKEN_SQL_ATT_SQL"
 			},
-			"id": "misc.1$preProcess",
+			"id": "sql.1$sql",
 			"type": "dust.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_ATT_UPPERCASE"
+				"dust.1$name": "TOKEN_SQL_ATT_TABLE_MAP"
 			},
-			"id": "misc.1$upperCase",
+			"id": "sql.1$tableMap",
 			"type": "dust.1$Attribute"
 		}
 	],

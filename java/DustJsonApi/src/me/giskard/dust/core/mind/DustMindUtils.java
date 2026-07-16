@@ -14,11 +14,11 @@ import me.giskard.dust.core.DustException;
 public class DustMindUtils implements DustMindConsts {
 
 	public static Integer getUnitSize(DustHandle unit) {
-		return Dust.access(DustAccess.Peek, 0, unit, TOKEN_UNIT_OBJECTS, KEY_SIZE);
+		return Dust.access(DustAccess.Peek, 0, unit, TOKEN_DUST_ATT_UNIT_OBJECTS, KEY_SIZE);
 	}
 
 	public static Iterable<DustHandle> getUnitMembers(DustHandle unit) {
-		Map<String, DustHandle> m = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unit, TOKEN_UNIT_REFS);
+		Map<String, DustHandle> m = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unit, TOKEN_DUST_ATT_UNIT_REFS);
 		return m.values();
 	}
 

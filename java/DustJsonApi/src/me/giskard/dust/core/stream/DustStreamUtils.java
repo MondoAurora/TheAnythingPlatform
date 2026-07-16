@@ -17,15 +17,15 @@ import me.giskard.dust.core.utils.DustUtilsConsts;
 public class DustStreamUtils implements DustUtilsConsts, DustMindConsts, DustStreamConsts {
 
 	public static <RetType> RetType getStream() {
-		Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_SOURCE);
-		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_CMD);
-		String fileName = Dust.access(DustAccess.Peek, null, null, TOKEN_PATH);
+		Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_SOURCE);
+		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
+		String fileName = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_PATH);
 
 		return getStream(cmd, fileName, streamSource);
 	}
 
 	public static <RetType> RetType getStream(String cmd, String fileName) {
-		Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_SOURCE);
+		Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_SOURCE);
 
 		return getStream(cmd, fileName, streamSource);
 	}
@@ -33,8 +33,8 @@ public class DustStreamUtils implements DustUtilsConsts, DustMindConsts, DustStr
 	public static <RetType> RetType getStream(String cmd, String fileName, Object streamSource) {
 		Map<String, Object> sp = new HashMap<String, Object>();
 
-		sp.put(TOKEN_CMD, cmd);
-		sp.put(TOKEN_PATH, fileName);
+		sp.put(TOKEN_MIND_ATT_CMD, cmd);
+		sp.put(TOKEN_MISC_ATT_PATH, fileName);
 
 		return Dust.access(DustAccess.Process, sp, streamSource);
 

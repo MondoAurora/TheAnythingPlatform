@@ -38,6 +38,7 @@
 					"me.giskard.dust.core.gui.DustGuiConsts",
 					"me.giskard.dust.core.mind.DustMindConsts",
 					"me.giskard.dust.core.net.DustNetConsts",
+					"me.giskard.dust.core.text.DustTextConsts",
 					"me.giskard.dust.core.stream.DustStreamConsts",
 					"me.giskard.dust.core.utils.DustUtilsConsts"
 				]
@@ -360,7 +361,7 @@
 			"type": "dust.1$Service",
 			"id": "sandbox.1$SandboxTest1",
 			"attributes": {
-				"dust.1$skip": false,
+				"dev.1$skip": false,
 				"dust.1$cmd": "LnF",
 				"gui.1$lookAndFeel": [
 					"com.apple.laf.AquaLookAndFeel",
