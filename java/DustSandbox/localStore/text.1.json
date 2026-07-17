@@ -5,101 +5,101 @@
 	"data": [
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_TEXT_ASP_BLOCK"
+				"misc.1$name": "TOKEN_TEXT_ASP_BLOCK"
 			},
 			"id": "text.1$Block",
-			"type": "dust.1$Type"
+			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_TEXT_ASP_DOC"
+				"misc.1$name": "TOKEN_TEXT_ASP_DOC"
 			},
 			"id": "text.1$Document",
-			"type": "dust.1$Type"
+			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_TEXT_ASP_STRING"
+				"misc.1$name": "TOKEN_TEXT_ASP_STRING"
 			},
 			"id": "text.1$String",
-			"type": "dust.1$Type"
+			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_TEXT_ASP_STYLE"
+				"misc.1$name": "TOKEN_TEXT_ASP_STYLE"
 			},
 			"id": "text.1$Style",
-			"type": "dust.1$Type"
+			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_TEXT_ASP_TRANSCLUSION"
+				"misc.1$name": "TOKEN_TEXT_ASP_TRANSCLUSION"
 			},
 			"id": "text.1$Transclusion",
-			"type": "dust.1$Type"
+			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_TEXT_TAG_GROUP"
+				"misc.1$name": "TOKEN_TEXT_TAG_GROUP"
 			},
 			"id": "text.1$group",
-			"type": "dust.1$Tag"
+			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_TEXT_TAG_GROUP_BULLET"
+				"misc.1$name": "TOKEN_TEXT_TAG_GROUP_BULLET"
 			},
 			"id": "text.1$groupBullet",
-			"type": "dust.1$Tag"
+			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_TEXT_TAG_GROUP_INLINE"
+				"misc.1$name": "TOKEN_TEXT_TAG_GROUP_INLINE"
 			},
 			"id": "text.1$groupInline",
-			"type": "dust.1$Tag"
+			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_TEXT_TAG_GROUP_NUMBER"
+				"misc.1$name": "TOKEN_TEXT_TAG_GROUP_NUMBER"
 			},
 			"id": "text.1$groupNumber",
-			"type": "dust.1$Tag"
+			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_TEXT_ATT_LANG"
+				"misc.1$name": "TOKEN_TEXT_ATT_LANG"
 			},
 			"id": "text.1$lang",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_TEXT_ATT_ORPHANS"
+				"misc.1$name": "TOKEN_TEXT_ATT_ORPHANS"
 			},
 			"id": "text.1$orphans",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_TEXT_ATT_STYLE_DEF"
+				"misc.1$name": "TOKEN_TEXT_ATT_STYLE_DEF"
 			},
 			"id": "text.1$styleDef",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_TEXT_ATT_STYLES"
+				"misc.1$name": "TOKEN_TEXT_ATT_STYLES"
 			},
 			"id": "text.1$styles",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_TEXT_ATT_TEXT"
+				"misc.1$name": "TOKEN_TEXT_ATT_TEXT"
 			},
 			"id": "text.1$text",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		}
 	],
 	"meta": {

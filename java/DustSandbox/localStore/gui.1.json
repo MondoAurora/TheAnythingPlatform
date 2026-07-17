@@ -5,38 +5,38 @@
 	"data": [
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_GUI_ATT_FOCUS"
+				"misc.1$name": "TOKEN_GUI_ATT_FOCUS"
 			},
 			"id": "gui.1$guiFocus",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_GUI_ATT_MAIN"
+				"misc.1$name": "TOKEN_GUI_ATT_MAIN"
 			},
 			"id": "gui.1$guiMain",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_GUI_ATT_PROGRESS"
+				"misc.1$name": "TOKEN_GUI_ATT_PROGRESS"
 			},
 			"id": "gui.1$guiProgress",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_GUI_ATT_TOP_MENU"
+				"misc.1$name": "TOKEN_GUI_ATT_TOP_MENU"
 			},
 			"id": "gui.1$guiTopMenu",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_GUI_ATT_LOOKANDFEEL"
+				"misc.1$name": "TOKEN_GUI_ATT_LOOKANDFEEL"
 			},
 			"id": "gui.1$lookAndFeel",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		}
 	],
 	"meta": {

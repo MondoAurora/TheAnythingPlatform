@@ -5,38 +5,38 @@
 	"data": [
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_AAA_ATT_ACCESS"
+				"misc.1$name": "TOKEN_AAA_ATT_ACCESS"
 			},
 			"id": "aaa.1$access",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_AAA_ATT_AUTH"
+				"misc.1$name": "TOKEN_AAA_ATT_AUTH"
 			},
 			"id": "aaa.1$auth",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_AAA_ATT_PASSWORD"
+				"misc.1$name": "TOKEN_AAA_ATT_PASSWORD"
 			},
 			"id": "aaa.1$password",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_AAA_ATT_READABLETO"
+				"misc.1$name": "TOKEN_AAA_ATT_READABLETO"
 			},
 			"id": "aaa.1$readableTo",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_AAA_ATT_USERID"
+				"misc.1$name": "TOKEN_AAA_ATT_USERID"
 			},
 			"id": "aaa.1$userId",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		}
 	],
 	"meta": {

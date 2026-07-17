@@ -5,701 +5,76 @@
 	"data": [
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_RESULT_ACCEPT"
-			},
-			"id": "dust.1$Accept",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ASP_AGENT"
-			},
-			"id": "dust.1$Agent",
-			"type": "dust.1$Type"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_DUST_ASP_APP"
+				"misc.1$name": "TOKEN_DUST_ASP_APP"
 			},
 			"id": "dust.1$Application",
-			"type": "dust.1$Type"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ASP_ATTRIBUTE"
-			},
-			"id": "dust.1$Attribute",
-			"type": "dust.1$Type"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_TAG_LEVEL_ERROR"
-			},
-			"id": "dust.1$Error",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_TAG_LEVEL_INFO"
-			},
-			"id": "dust.1$Info",
-			"type": "dust.1$Tag"
+			"type": "mind.1$Type"
 		},
 		{
 			"relationships": {
-				"dust.1$serializer": {
+				"mind.1$serializer": {
 					"data": {
 						"id": "sandbox.1$SerializeDefault",
-						"type": "dust.1$Service"
+						"type": "mind.1$Service"
 					}
 				}
 			},
 			"attributes": {
-				"dust.1$meta": "dust.1",
-				"dust.1$name": "TOKEN_MIND"
+				"misc.1$meta": "dust.1",
+				"misc.1$name": "TOKEN_MIND"
 			},
 			"id": "dust.1$MiND",
-			"type": "dust.1$Agent"
+			"type": "mind.1$Agent"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_RESULT_PASS"
-			},
-			"id": "dust.1$Pass",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_RESULT_READ"
-			},
-			"id": "dust.1$Read",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_RESULT_READACCEPT"
-			},
-			"id": "dust.1$ReadAccept",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_RESULT_REJECT"
-			},
-			"id": "dust.1$Reject",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ASP_SERVICE"
-			},
-			"id": "dust.1$Service",
-			"type": "dust.1$Type"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ASP_TAG"
-			},
-			"id": "dust.1$Tag",
-			"type": "dust.1$Type"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_TAG_LEVEL_TRACE"
-			},
-			"id": "dust.1$Trace",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ASP_TYPE"
-			},
-			"id": "dust.1$Type",
-			"type": "dust.1$Type"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ASP_UNIT"
-			},
-			"id": "dust.1$Unit",
-			"type": "dust.1$Type"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_TAG_LEVEL_WARNING"
-			},
-			"id": "dust.1$Warning",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_ALIAS"
-			},
-			"id": "dust.1$alias",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_APPEARS"
-			},
-			"id": "dust.1$appears",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_ATTRIBUTES"
-			},
-			"id": "dust.1$attributes",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ATT_AUTHOR"
-			},
-			"id": "dust.1$author",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_DUST_ATT_BINARY"
+				"misc.1$name": "TOKEN_DUST_ATT_BINARY"
 			},
 			"id": "dust.1$binary",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_DUST_ATT_BINARY_RESOLVER"
+				"misc.1$name": "TOKEN_DUST_ATT_BINARY_RESOLVER"
 			},
 			"id": "dust.1$binaryResolver",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_CHILDMAP"
-			},
-			"id": "dust.1$childMap",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ATT_CMD"
-			},
-			"id": "dust.1$cmd",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_COLLTYPE"
-			},
-			"id": "dust.1$colltype",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_COLLTYPE_ARR"
-			},
-			"id": "dust.1$colltypeArr",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_COLLTYPE_ARRAY"
-			},
-			"id": "dust.1$colltypeArray",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_COLLTYPE_MAP"
-			},
-			"id": "dust.1$colltypeMap",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_COLLTYPE_ONE"
-			},
-			"id": "dust.1$colltypeOne",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_COLLTYPE_SET"
-			},
-			"id": "dust.1$colltypeSet",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_COLLTYPE_SINGLE"
-			},
-			"id": "dust.1$colltypeSingle",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_CONSTS"
-			},
-			"id": "dust.1$consts",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_COUNT"
-			},
-			"id": "dust.1$count",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_DATA"
-			},
-			"id": "dust.1$data",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_EVENT_DATE"
-			},
-			"id": "dust.1$date",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_DEFAULT"
-			},
-			"id": "dust.1$default",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_TAG_CMD_DELETE"
-			},
-			"id": "dust.1$delete",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_DESC"
-			},
-			"id": "dust.1$desc",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_EVENT_DURATION"
-			},
-			"id": "dust.1$duration",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_TAG_EVENT_DURATION_UNIT"
-			},
-			"id": "dust.1$durationUnit",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_FILTER"
-			},
-			"id": "dust.1$filter",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_FINAL"
-			},
-			"id": "dust.1$final",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_GLOBALID"
-			},
-			"id": "dust.1$globalId",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ATT_ID"
-			},
-			"id": "dust.1$id",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_INDEX"
-			},
-			"id": "dust.1$index",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_TAG_CMD_INFO"
-			},
-			"id": "dust.1$info",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_INIT"
-			},
-			"id": "dust.1$init",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_KEY"
-			},
-			"id": "dust.1$key",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ATT_KNOWNUNITS"
-			},
-			"id": "dust.1$knownUnits",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_LASTCHANGED"
-			},
-			"id": "dust.1$lastChanged",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ATT_LISTENERS"
-			},
-			"id": "dust.1$listeners",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_TAG_CMD_LOAD"
-			},
-			"id": "dust.1$load",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_TAG_CMD_LOADALL"
-			},
-			"id": "dust.1$loadAll",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_MAIL"
-			},
-			"id": "dust.1$mail",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_MANDATORY"
-			},
-			"id": "dust.1$mandatory",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_MAPPING"
-			},
-			"id": "dust.1$mapping",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_MEMBERS"
-			},
-			"id": "dust.1$members",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_META"
-			},
-			"id": "dust.1$meta",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_NAME"
-			},
-			"id": "dust.1$name",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ATT_NEXT"
-			},
-			"id": "dust.1$next",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_OPTIONAL"
-			},
-			"id": "dust.1$optional",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_OPTIONS"
-			},
-			"id": "dust.1$options",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_PARENT"
-			},
-			"id": "dust.1$parent",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_PATH"
-			},
-			"id": "dust.1$path",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_PAYLOAD"
-			},
-			"id": "dust.1$payload",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_POSITION"
-			},
-			"id": "dust.1$position",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_POSTFIX"
-			},
-			"id": "dust.1$postfix",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_PREFIX"
-			},
-			"id": "dust.1$prefix",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_RANGE"
-			},
-			"id": "dust.1$range",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_TAG_CMD_REFRESH"
-			},
-			"id": "dust.1$refresh",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_DUST_ATT_RELEASEONSHUTDOWN"
+				"misc.1$name": "TOKEN_DUST_ATT_RELEASEONSHUTDOWN"
 			},
 			"id": "dust.1$releaseOnShutdown",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_MISC_TAG_CMD_RESPOND"
-			},
-			"id": "dust.1$respond",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_ROOT"
-			},
-			"id": "dust.1$root",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_TAG_CMD_SAVE"
-			},
-			"id": "dust.1$save",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_SEPARATOR"
-			},
-			"id": "dust.1$separator",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ATT_SERIALIZER"
-			},
-			"id": "dust.1$serializer",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_SOURCE"
-			},
-			"id": "dust.1$source",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_SPAN"
-			},
-			"id": "dust.1$span",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ATT_TAGS"
-			},
-			"id": "dust.1$tags",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_TARGET"
-			},
-			"id": "dust.1$target",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_EVENT_TIME"
-			},
-			"id": "dust.1$time",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ATT_TRANSACTION_HEAD"
-			},
-			"id": "dust.1$transactionHead",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ATT_TRANSACTION_ITEM"
-			},
-			"id": "dust.1$transactionItem",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ATT_TYPE"
-			},
-			"id": "dust.1$type",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_ATT_TYPES"
-			},
-			"id": "dust.1$types",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_ATT_UNIT"
-			},
-			"id": "dust.1$unit",
-			"type": "dust.1$Attribute"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MISC_TAG_EVENT_DURATION_UNIT_MSEC"
-			},
-			"id": "dust.1$unitMsec",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_DUST_ATT_UNIT_OBJECTS"
+				"misc.1$name": "TOKEN_DUST_ATT_UNIT_OBJECTS"
 			},
 			"id": "dust.1$unitObjects",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_DUST_ATT_UNIT_REFS"
+				"misc.1$name": "TOKEN_DUST_ATT_UNIT_REFS"
 			},
 			"id": "dust.1$unitRefs",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_VALTYPE"
-			},
-			"id": "dust.1$valtype",
-			"type": "dust.1$Tag"
+			"id": "mind.1$Attribute",
+			"type": "mind.1$Type"
 		},
 		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_VALTYPE_BOOL"
-			},
-			"id": "dust.1$valtypeBool",
-			"type": "dust.1$Tag"
+			"id": "mind.1$Type",
+			"type": "mind.1$Type"
 		},
 		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_VALTYPE_HANDLE"
-			},
-			"id": "dust.1$valtypeHandle",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_VALTYPE_INTEGER"
-			},
-			"id": "dust.1$valtypeInteger",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_VALTYPE_RAW"
-			},
-			"id": "dust.1$valtypeRaw",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_VALTYPE_REAL"
-			},
-			"id": "dust.1$valtypeReal",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_VALTYPE_STREAM"
-			},
-			"id": "dust.1$valtypeStream",
-			"type": "dust.1$Tag"
-		},
-		{
-			"attributes": {
-				"dust.1$name": "TOKEN_MIND_TAG_VALTYPE_STRING"
-			},
-			"id": "dust.1$valtypeString",
-			"type": "dust.1$Tag"
+			"id": "mind.1$Unit",
+			"type": "mind.1$Type"
 		}
 	],
 	"meta": {
-		"count": 98
+		"count": 10
 	}
 }

@@ -3,9 +3,11 @@ package me.giskard.dust.sandbox.temp;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -54,20 +56,18 @@ public class DustSandboxTempDustRefactor implements DustConsts {
 							String labelUnit = m.group(1).toLowerCase();
 							String id = m.group(2);
 
-							if (id.toLowerCase().startsWith(labelUnit)) {
-								continue;
+							if (!id.toLowerCase().startsWith(labelUnit)) {
+								int sep = id.indexOf(".");
+
+								String toId = labelUnit + id.substring(sep);
+
+								refactor.put(id, toId);
+
+								units.put(DustUtils.getPrefix(id, DUST_SEP_TOKEN), null);
+								units.put(DustUtils.getPrefix(toId, DUST_SEP_TOKEN), null);
+
+								line = line.replace(id, toId);
 							}
-
-							int sep = id.indexOf(".");
-
-							String toId = labelUnit + id.substring(sep);
-
-							refactor.put(id, toId);
-
-							units.put(DustUtils.getPrefix(id, DUST_SEP_TOKEN), null);
-							units.put(DustUtils.getPrefix(toId, DUST_SEP_TOKEN), null);
-
-							line = line.replace(id, toId);
 						}
 					}
 
@@ -77,6 +77,9 @@ public class DustSandboxTempDustRefactor implements DustConsts {
 		}
 
 		File root = new File("localStore");
+		File save = new File("save");
+
+		DustUtilsFile.ensureDir(save);
 
 		DustUtilsFile.procRecursive(root, new FileProcessor() {
 
@@ -85,17 +88,19 @@ public class DustSandboxTempDustRefactor implements DustConsts {
 				try {
 					String fn = f.getName();
 
-					ps.println("\n\n Reading file" + fn);
+					ps.println("\n\n Reading file " + fn);
 
 					ArrayList<String> content = new ArrayList<String>();
 					boolean changed = false;
+					int lc;
 
 					try (InputStream is = new FileInputStream(f)) {
 
 						try (BufferedReader br = new BufferedReader(new InputStreamReader(is, DUST_CHARSET_UTF8))) {
 							String line = null;
-
+							lc = 0;
 							while ((line = br.readLine()) != null) {
+								++lc;
 								if (!DustUtils.isEmpty(line)) {
 									for (Map.Entry<String, String> re : refactor.entrySet()) {
 										String key = re.getKey();
@@ -115,24 +120,25 @@ public class DustSandboxTempDustRefactor implements DustConsts {
 					if (changed) {
 						ps.println("\n\n*** BEGIN ***\n");
 
-//						f.renameTo(new File(f.getAbsolutePath() + ".bak"));
+//						f.renameTo(new File(save, f.getName()));
+						File f1 = new File(save, f.getName());
 
-//						try (PrintWriter fw = new PrintWriter(f)) {
+						try (PrintWriter fw = new PrintWriter(f1)) {
 							for (String c : content) {
-//								fw.println(c);
+								fw.println(c);
 								ps.println(c);
 							}
 
-//						}
+						}
 
-						ps.println("*** END  ***");
+						ps.println("*** END " + lc + " ***");
 
 						String un = DustUtils.cutPostfix(fn, ".");
 						if (units.containsKey(un)) {
-							units.put(un, f);
+							units.put(un, f1);
 						}
 					} else {
-						ps.println("\n\n*** UNCHANGED ***\n");
+						ps.println("\n\n*** UNCHANGED " + lc + " ***\n");
 
 					}
 				} catch (Throwable ex) {
@@ -166,9 +172,19 @@ public class DustSandboxTempDustRefactor implements DustConsts {
 					di.remove();
 
 					String tid = DustUtils.getPrefix(id, DUST_SEP_TOKEN);
+					
+					ArrayList td = (ArrayList) unitData.get(tid).get("data");
 
-					Dust.access(DustAccess.Insert, idea, unitData, tid, "data", KEY_ADD);
+					td.add(idea);
 				}
+			}
+		}
+
+		for (Map.Entry<String, File> ue : units.entrySet()) {
+			try (FileWriter fw = new FileWriter(ue.getValue())) {
+				DustUtilsJson.writeJson(fw, unitData.get(ue.getKey()));
+			} catch (Throwable ex) {
+				DustException.wrap(ex, ue.getKey(), ue.getValue().getAbsolutePath());
 			}
 		}
 	}

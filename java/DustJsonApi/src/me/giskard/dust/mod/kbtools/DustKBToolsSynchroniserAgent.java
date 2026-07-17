@@ -196,10 +196,10 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 		}
 
 		if (null != val) {
-			String preProcess = Dust.access(DustAccess.Peek, "", null, TOKEN_ATT_PREPROCESS, fldTarget);
+			String preProcess = Dust.access(DustAccess.Peek, "", null, TOKEN_MISC_ATT_PREPROCESS, fldTarget);
 
 			switch (preProcess) {
-			case TOKEN_ATT_UPPERCASE:
+			case TOKEN_MISC_ATT_UPPERCASE:
 				val = val.toUpperCase();
 				break;
 			case "":

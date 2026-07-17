@@ -95,7 +95,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 	public DustMindAgent() {
 		unitMind = new DustMindIdea(new DustMindHandle(this, null, null, NAME_MIND));
 		initUnit(unitMind, true);
-		unitMeta = new DustMindIdea(new DustMindHandle(this, unitMind, null, UNIT_DUST));
+		unitMeta = new DustMindIdea(new DustMindHandle(this, unitMind, null, UNIT_MIND));
 		initUnit(unitMeta, false);
 
 		((Map) unitMind.content.get(TOKEN_DUST_ATT_UNIT_REFS)).put(UNIT_DUST, unitMeta.mh);

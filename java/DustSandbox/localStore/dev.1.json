@@ -5,42 +5,42 @@
 	"data": [
 		{
 			"id": "dev.1$JavaGen",
-			"type": "dust.1$Type"
+			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_DEV_ATT_CLASSES"
+				"misc.1$name": "TOKEN_DEV_ATT_CLASSES"
 			},
 			"id": "dev.1$classes",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_DEV_CMD_GENSRC"
+				"misc.1$name": "TOKEN_DEV_CMD_GENSRC"
 			},
 			"id": "dev.1$genSrc",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_DEV_ATT_PACKAGE"
+				"misc.1$name": "TOKEN_DEV_ATT_PACKAGE"
 			},
 			"id": "dev.1$package",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_DEV_ATT_SKIP"
+				"misc.1$name": "TOKEN_DEV_ATT_SKIP"
 			},
 			"id": "dev.1$skip",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_DEV_TAG_CMD_TEST"
+				"misc.1$name": "TOKEN_DEV_TAG_CMD_TEST"
 			},
 			"id": "dev.1$test",
-			"type": "dust.1$Tag"
+			"type": "mind.1$Tag"
 		}
 	],
 	"meta": {

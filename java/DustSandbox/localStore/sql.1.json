@@ -5,31 +5,31 @@
 	"data": [
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_SQL_ASP_SELECT"
+				"misc.1$name": "TOKEN_SQL_ASP_SELECT"
 			},
 			"id": "sql.1$Select",
-			"type": "dust.1$Type"
+			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_SQL_ATT_COLUMN_MAP"
+				"misc.1$name": "TOKEN_SQL_ATT_COLUMN_MAP"
 			},
 			"id": "sql.1$columnMap",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_SQL_ATT_SQL"
+				"misc.1$name": "TOKEN_SQL_ATT_SQL"
 			},
 			"id": "sql.1$sql",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_SQL_ATT_TABLE_MAP"
+				"misc.1$name": "TOKEN_SQL_ATT_TABLE_MAP"
 			},
 			"id": "sql.1$tableMap",
-			"type": "dust.1$Attribute"
+			"type": "mind.1$Attribute"
 		}
 	],
 	"meta": {

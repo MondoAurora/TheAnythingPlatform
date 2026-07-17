@@ -49,7 +49,7 @@ public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, 
 				Collection<Map<String, Object>> arr = DustUtils.simpleGet(content, collId);
 
 				String idKey = Dust.access(DustAccess.Peek, null, src, TOKEN_MIND_ATT_ID);
-				Map<String, String> preProcess = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, src, TOKEN_ATT_PREPROCESS);
+				Map<String, String> preProcess = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, src, TOKEN_MISC_ATT_PREPROCESS);
 
 				for (Map<String, Object> o : arr) {
 					Object id = o.get(idKey);
@@ -62,7 +62,7 @@ public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, 
 
 						String pp = preProcess.getOrDefault(attName, "");
 						switch (pp) {
-						case TOKEN_ATT_INNERJSON:
+						case TOKEN_MISC_ATT_INNERJSON:
 							Map<String, Object> v = DustUtilsJson.parseJson((String) val);
 							for (Map.Entry<String, Object> ve : v.entrySet()) {
 								DustHandle att = getAtt(meta, tType, attName + "::" + ve.getKey());

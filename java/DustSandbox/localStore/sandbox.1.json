@@ -4,13 +4,13 @@
 			"type": "dust.1$Application",
 			"id": "sandbox.1$Sandbox",
 			"attributes": {
-				"dust.1$name": "DustSandbox"
+				"misc.1$name": "DustSandbox"
 			},
 			"relationships": {
-				"dust.1$init": {
+				"misc.1$init": {
 					"data": [
 						{
-							"type": "dust.1$Agent",
+							"type": "mind.1$Agent",
 							"id": "sandbox.1$GraphEditor",
 							"idx": "sandbox.1$SandboxTextAgent",
 							"meta": {
@@ -22,11 +22,11 @@
 			}
 		},
 		{
-			"type": "dust.1$Agent",
+			"type": "mind.1$Agent",
 			"id": "sandbox.1$GraphEditor",
 			"attributes": {
-				"dust.1$name": "DustSandbox Graph Editor",
-				"dust.1$target": "sandbox.1$MiNDAPI",
+				"misc.1$name": "DustSandbox Graph Editor",
+				"misc.1$target": "sandbox.1$MiNDAPI",
 				"gui.1$lookAndFeel": [
 					"com.apple.laf.AquaLookAndFeel",
 					"javax.swing.plaf.nimbus.NimbusLookAndFeel",
@@ -44,31 +44,31 @@
 				]
 			},
 			"relationships": {
-				"dust.1$target": {
+				"misc.1$target": {
 					"data": {
-						"type": "dust.1$Service",
+						"type": "mind.1$Service",
 						"id": "sandbox.1$MiNDAPI"
 					}
 				},
 				"dev.1$genSrc": {
 					"data": {
-						"type": "dust.1$Service",
+						"type": "mind.1$Service",
 						"id": "sandbox.1$SrcGenEntry"
 					}
 				}
 			}
 		},
 		{
-			"type": "dust.1$Service",
+			"type": "mind.1$Service",
 			"id": "sandbox.1$SrcGenEntry",
 			"attributes": {
-				"dust.1$transactionHead": true
+				"mind.1$transactionHead": true
 			},
 			"relationships": {
-				"dust.1$listeners": {
+				"mind.1$listeners": {
 					"data": [
 						{
-							"type": "dust.1$Agent",
+							"type": "mind.1$Agent",
 							"id": "sandbox.1$ForAll",
 							"meta": {
 								"key": -1
@@ -79,37 +79,37 @@
 			}
 		},
 		{
-			"type": "dust.1$Agent",
+			"type": "mind.1$Agent",
 			"id": "sandbox.1$ForAll",
 			"relationships": {
-				"dust.1$next": {
+				"mind.1$next": {
 					"data": {
-						"type": "dust.1$Service",
+						"type": "mind.1$Service",
 						"id": "sandbox.1$SrcGenFilter"
 					}
 				}
 			}
 		},
 		{
-			"type": "dust.1$Service",
+			"type": "mind.1$Service",
 			"id": "sandbox.1$SrcGenFilter",
 			"attributes": {
-				"dust.1$filter": {
-					"dust.1$name": true,
-					"dust.1$typeX": [
-						"dust.1$Unit",
-						"dust.1$Type",
-						"dust.1$Attribute",
-						"dust.1$Tag",
-						"dust.1$Agent"
+				"misc.1$filter": {
+					"misc.1$name": true,
+					"mind.1$typeX": [
+						"mind.1$Unit",
+						"mind.1$Type",
+						"mind.1$Attribute",
+						"mind.1$Tag",
+						"mind.1$Agent"
 					]
 				}
 			},
 			"relationships": {
-				"dust.1$listeners": {
+				"mind.1$listeners": {
 					"data": [
 						{
-							"type": "dust.1$Agent",
+							"type": "mind.1$Agent",
 							"id": "sandbox.1$Filter",
 							"meta": {
 								"key": -1
@@ -120,28 +120,28 @@
 			}
 		},
 		{
-			"type": "dust.1$Agent",
+			"type": "mind.1$Agent",
 			"id": "sandbox.1$Filter",
 			"relationships": {
-				"dust.1$next": {
+				"mind.1$next": {
 					"data": {
-						"type": "dust.1$Service",
+						"type": "mind.1$Service",
 						"id": "sandbox.1$GenSourceTokenSvc"
 					}
 				}
 			}
 		},
 		{
-			"type": "dust.1$Service",
+			"type": "mind.1$Service",
 			"id": "sandbox.1$GenSourceTokenSvc",
 			"attributes": {
-				"dust.1$transactionItem": true
+				"mind.1$transactionItem": true
 			},
 			"relationships": {
-				"dust.1$listeners": {
+				"mind.1$listeners": {
 					"data": [
 						{
-							"type": "dust.1$Agent",
+							"type": "mind.1$Agent",
 							"id": "sandbox.1$GenSourceToken",
 							"meta": {
 								"key": -1
@@ -152,36 +152,36 @@
 			}
 		},
 		{
-			"type": "dust.1$Agent",
+			"type": "mind.1$Agent",
 			"id": "sandbox.1$GenSourceToken",
 			"attributes": {
 				"dev.1$package": "me.giskard.tokens",
-				"dust.1$path": "../DustJsonApi/gen",
-				"dust.1$members": [
-					"dust.1$Unit",
-					"dust.1$Type",
-					"dust.1$Attribute",
-					"dust.1$Tag",
-					"dust.1$Agent"
+				"misc.1$path": "../DustJsonApi/gen",
+				"misc.1$members": [
+					"mind.1$Unit",
+					"mind.1$Type",
+					"mind.1$Attribute",
+					"mind.1$Tag",
+					"mind.1$Agent"
 				]
 			},
 			"relationships": {
-				"dust.1$serializer": {
+				"mind.1$serializer": {
 					"data": {
-						"type": "dust.1$Service",
+						"type": "mind.1$Service",
 						"id": "sandbox.1$GenSourceRoot"
 					}
 				}
 			}
 		},
 		{
-			"type": "dust.1$Service",
+			"type": "mind.1$Service",
 			"id": "sandbox.1$MiNDAPI",
 			"relationships": {
-				"dust.1$listeners": {
+				"mind.1$listeners": {
 					"data": [
 						{
-							"type": "dust.1$Agent",
+							"type": "mind.1$Agent",
 							"id": "dust.1$MiND",
 							"meta": {
 								"key": -1
@@ -192,32 +192,32 @@
 			}
 		},
 		{
-			"type": "dust.1$Agent",
+			"type": "mind.1$Agent",
 			"id": "dust.1$MiND",
 			"attributes": {
-				"dust.1$meta": "dust.1"
+				"misc.1$meta": "dust.1"
 			},
 			"relationships": {
-				"dust.1$serializer": {
+				"mind.1$serializer": {
 					"data": {
-						"type": "dust.1$Service",
+						"type": "mind.1$Service",
 						"id": "sandbox.1$SerializeDefault"
 					}
 				}
 			}
 		},
 		{
-			"type": "dust.1$Agent",
+			"type": "mind.1$Agent",
 			"id": "sandbox.1$SerializeJsonApi"
 		},
 		{
-			"type": "dust.1$Service",
+			"type": "mind.1$Service",
 			"id": "sandbox.1$SerializeDefault",
 			"relationships": {
-				"dust.1$listeners": {
+				"mind.1$listeners": {
 					"data": [
 						{
-							"type": "dust.1$Agent",
+							"type": "mind.1$Agent",
 							"id": "sandbox.1$SerializeJsonApi",
 							"meta": {
 								"key": -1
@@ -227,27 +227,27 @@
 				},
 				"stream.1$streamSource": {
 					"data": {
-						"type": "dust.1$Service",
+						"type": "mind.1$Service",
 						"id": "sandbox.1$UnitCacheRoot"
 					}
 				}
 			}
 		},
 		{
-			"type": "dust.1$Agent",
+			"type": "mind.1$Agent",
 			"id": "sandbox.1$FileStreamSource"
 		},
 		{
-			"type": "dust.1$Service",
+			"type": "mind.1$Service",
 			"id": "sandbox.1$UnitCacheRoot",
 			"attributes": {
 				"stream.1$rootFolder": "localStore"
 			},
 			"relationships": {
-				"dust.1$listeners": {
+				"mind.1$listeners": {
 					"data": [
 						{
-							"type": "dust.1$Agent",
+							"type": "mind.1$Agent",
 							"id": "sandbox.1$FileStreamSource",
 							"meta": {
 								"key": -1
@@ -258,16 +258,16 @@
 			}
 		},
 		{
-			"type": "dust.1$Service",
+			"type": "mind.1$Service",
 			"id": "sandbox.1$GenSourceRoot",
 			"attributes": {
 				"stream.1$rootFolder": "gen"
 			},
 			"relationships": {
-				"dust.1$listeners": {
+				"mind.1$listeners": {
 					"data": [
 						{
-							"type": "dust.1$Agent",
+							"type": "mind.1$Agent",
 							"id": "sandbox.1$FileStreamSource",
 							"meta": {
 								"key": -1
@@ -278,14 +278,14 @@
 			}
 		},
 		{
-			"type": "dust.1$Agent",
+			"type": "mind.1$Agent",
 			"id": "sandbox.1$SandboxAgent"
 		},
 		{
-			"type": "dust.1$Agent",
+			"type": "mind.1$Agent",
 			"id": "sandbox.1$SandboxTextAgent",
 			"attributes": {
-				"dust.1$name": "DustSandbox Text editor",
+				"misc.1$name": "DustSandbox Text editor",
 				"gui.1$lookAndFeel": [
 					"com.formdev.flatlaf.FlatLightLaf",
 					"com.apple.laf.AquaLookAndFeel",
@@ -326,28 +326,28 @@
 				},
 				"layout.1$layout": {
 					"data": {
-						"type": "dust.1$Tag",
+						"type": "mind.1$Tag",
 						"id": "layout.1$Flow"
 					}
 				},
 				"layout.1$layoutOptions": {
 					"data": [
 						{
-							"type": "dust.1$Tag",
+							"type": "mind.1$Tag",
 							"id": "layout.1$Flow",
 							"meta": {
 								"key": -1
 							}
 						},
 						{
-							"type": "dust.1$Tag",
+							"type": "mind.1$Tag",
 							"id": "layout.1$A4Portrait",
 							"meta": {
 								"key": -1
 							}
 						},
 						{
-							"type": "dust.1$Tag",
+							"type": "mind.1$Tag",
 							"id": "layout.1$A4Landscape",
 							"meta": {
 								"key": -1
@@ -358,21 +358,21 @@
 			}
 		},
 		{
-			"type": "dust.1$Service",
+			"type": "mind.1$Service",
 			"id": "sandbox.1$SandboxTest1",
 			"attributes": {
 				"dev.1$skip": false,
-				"dust.1$cmd": "LnF",
+				"mind.1$cmd": "LnF",
 				"gui.1$lookAndFeel": [
 					"com.apple.laf.AquaLookAndFeel",
 					"javax.swing.plaf.nimbus.NimbusLookAndFeel"
 				]
 			},
 			"relationships": {
-				"dust.1$listeners": {
+				"mind.1$listeners": {
 					"data": [
 						{
-							"type": "dust.1$Agent",
+							"type": "mind.1$Agent",
 							"id": "sandbox.1$SandboxAgent",
 							"meta": {
 								"key": -1

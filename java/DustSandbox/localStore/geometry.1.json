@@ -5,10 +5,10 @@
 	"data": [
 		{
 			"attributes": {
-				"dust.1$name": "TOKEN_GEOMETRY_ASP_NODE"
+				"misc.1$name": "TOKEN_GEOMETRY_ASP_NODE"
 			},
 			"id": "geometry.1$Node",
-			"type": "dust.1$Type"
+			"type": "mind.1$Type"
 		}
 	],
 	"meta": {
