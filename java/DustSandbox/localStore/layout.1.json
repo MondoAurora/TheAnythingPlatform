@@ -1,1 +1,57 @@
-{"jsonapi":{"version":"1.1"},"data":[{"id":"layout.1$A4Landscape","type":"dust.1$Tag"},{"id":"layout.1$A4Portrait","type":"dust.1$Tag"},{"attributes":{"dust.1$name":"TOKEN_LAYOUT_ASP_CELL"},"id":"layout.1$Cell","type":"dust.1$Type"},{"id":"layout.1$Flow","type":"dust.1$Tag"},{"attributes":{"dust.1$name":"TOKEN_LAYOUT_ASP_RESPONSIVE"},"id":"layout.1$Responsive","type":"dust.1$Type"},{"attributes":{"dust.1$name":"TOKEN_LAYOUT_ASP_TABLE"},"id":"layout.1$Table","type":"dust.1$Type"},{"attributes":{"dust.1$name":"TOKEN_LAYOUT_TAG_LAYOUT"},"id":"layout.1$layout","type":"dust.1$Attribute"},{"attributes":{"dust.1$name":"TOKEN_LAYOUT_ATT_LAYOUT_OTPIONS"},"id":"layout.1$layoutOptions","type":"dust.1$Attribute"}],"meta":{"count":8}}
+{
+	"jsonapi": {
+		"version": "1.1"
+	},
+	"data": [
+		{
+			"id": "layout.1$A4Landscape",
+			"type": "dust.1$Tag"
+		},
+		{
+			"id": "layout.1$A4Portrait",
+			"type": "dust.1$Tag"
+		},
+		{
+			"attributes": {
+				"dust.1$name": "TOKEN_LAYOUT_ASP_CELL"
+			},
+			"id": "layout.1$Cell",
+			"type": "dust.1$Type"
+		},
+		{
+			"id": "layout.1$Flow",
+			"type": "dust.1$Tag"
+		},
+		{
+			"attributes": {
+				"dust.1$name": "TOKEN_LAYOUT_ASP_RESPONSIVE"
+			},
+			"id": "layout.1$Responsive",
+			"type": "dust.1$Type"
+		},
+		{
+			"attributes": {
+				"dust.1$name": "TOKEN_LAYOUT_ASP_TABLE"
+			},
+			"id": "layout.1$Table",
+			"type": "dust.1$Type"
+		},
+		{
+			"attributes": {
+				"dust.1$name": "TOKEN_LAYOUT_TAG_LAYOUT"
+			},
+			"id": "layout.1$layout",
+			"type": "dust.1$Attribute"
+		},
+		{
+			"attributes": {
+				"dust.1$name": "TOKEN_LAYOUT_ATT_LAYOUT_OTPIONS"
+			},
+			"id": "layout.1$layoutOptions",
+			"type": "dust.1$Attribute"
+		}
+	],
+	"meta": {
+		"count": 8
+	}
+}
