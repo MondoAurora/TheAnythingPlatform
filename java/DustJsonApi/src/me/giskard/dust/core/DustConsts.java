@@ -6,8 +6,7 @@ import me.giskard.tokens.DustGenTokens_mind_1;
 import me.giskard.tokens.DustGenTokens_misc_1;
 
 public interface DustConsts extends DustGenTokens_dust_1, DustGenTokens_misc_1, DustGenTokens_mind_1, DustGenTokens_aaa_1 {
-
-
+	
 	String DUST_CRED_FILE = "credentials.json";
 	
 	String UNIT_DUST = "dust.1";

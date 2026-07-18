@@ -5,13 +5,76 @@
 	"data": [
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_GEOMETRY_ASP_NODE"
+				"misc.1$name": "TOKEN_GEOMETRY_ASP_AREA"
 			},
-			"id": "geometry.1$Node",
+			"id": "geometry.1$Area",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GEOMETRY_TAG_AXIS"
+			},
+			"id": "geometry.1$Axis",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GEOMETRY_TAG_AXISUNIT"
+			},
+			"id": "geometry.1$AxisUnit",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GEOMETRY_ASP_COORD_SYS"
+			},
+			"id": "geometry.1$CoordSys",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GEOMETRY_ASP_LOCATION"
+			},
+			"id": "geometry.1$Location",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GEOMETRY_ATT_COORD_SYS"
+			},
+			"id": "geometry.1$coordSys",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GEOMETRY_ATT_POSITION_INT"
+			},
+			"id": "geometry.1$positionInt",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GEOMETRY_ATT_POSITION_REAL"
+			},
+			"id": "geometry.1$positionReal",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GEOMETRY_ATT_SIZE_INT"
+			},
+			"id": "geometry.1$sizeInt",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GEOMETRY_ATT_SIZE_REAL"
+			},
+			"id": "geometry.1$sizeReal",
 			"type": "mind.1$Type"
 		}
 	],
 	"meta": {
-		"count": 1
+		"count": 10
 	}
 }

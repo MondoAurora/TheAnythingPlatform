@@ -452,7 +452,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 			DustHandle hNode = nodePool.remove(key);
 
 			if (null == hNode) {
-				hNode = Dust.getHandle(hDocUnit, TOKEN_GEOMETRY_ASP_NODE, null, DustOptCreate.Primary);
+				hNode = Dust.getHandle(hDocUnit, TOKEN_GEOMETRY_ASP_LOCATION, null, DustOptCreate.Primary);
 				Dust.access(DustAccess.Set, key, hNode, TOKEN_MISC_ATT_TARGET);
 
 				// set location

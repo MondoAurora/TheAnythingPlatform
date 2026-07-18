@@ -26,6 +26,13 @@
 		},
 		{
 			"attributes": {
+				"misc.1$name": "TOKEN_MISC_TAG_SLAVE"
+			},
+			"id": "misc.1$Slave",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
 				"misc.1$name": "TOKEN_MISC_TAG_LEVEL_TRACE"
 			},
 			"id": "misc.1$Trace",
@@ -337,10 +344,7 @@
 			"type": "mind.1$Attribute"
 		},
 		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MISC_TAG_SLAVE"
-			},
-			"id": "misc.1$Slave",
+			"id": "misc.1$slave",
 			"type": "mind.1$Tag"
 		},
 		{
@@ -394,6 +398,6 @@
 		}
 	],
 	"meta": {
-		"count": 56
+		"count": 57
 	}
 }

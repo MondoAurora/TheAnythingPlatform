@@ -1,1 +1,164 @@
-{"jsonapi":{"version":"1.1"},"data":[{"attributes":{"misc.1$name":"TOKEN_GUI_ATT_FOCUS"},"id":"gui.1$guiFocus","type":"mind.1$Attribute"},{"attributes":{"misc.1$name":"TOKEN_GUI_ATT_MAIN"},"id":"gui.1$guiMain","type":"mind.1$Attribute"},{"attributes":{"misc.1$name":"TOKEN_GUI_ATT_PROGRESS"},"id":"gui.1$guiProgress","type":"mind.1$Attribute"},{"attributes":{"misc.1$name":"TOKEN_GUI_ATT_TOP_MENU"},"id":"gui.1$guiTopMenu","type":"mind.1$Attribute"},{"attributes":{"misc.1$name":"TOKEN_GUI_ATT_LOOKANDFEEL"},"id":"gui.1$lookAndFeel","type":"mind.1$Attribute"}],"meta":{"count":5}}
+{
+	"jsonapi": {
+		"version": "1.1"
+	},
+	"data": [
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_TAG_AXIS_SCREEN_X"
+			},
+			"id": "gui.1$AxisScreenX",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_TAG_AXIS_SCREEN_Y"
+			},
+			"id": "gui.1$AxisScreenY",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_TAG_AXISUNIT_PIXEL"
+			},
+			"id": "gui.1$AxisUnitPixel",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ASP_BUTTON"
+			},
+			"id": "gui.1$Button",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ASP_CALENDAR"
+			},
+			"id": "gui.1$Calendar",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ASP_COMBO"
+			},
+			"id": "gui.1$Combo",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ASP_DATAGRID"
+			},
+			"id": "gui.1$DataGrid",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ASP_LABEL"
+			},
+			"id": "gui.1$Label",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ASP_MEDIAPLAYER"
+			},
+			"id": "gui.1$MediaPlayer",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ASP_PANEL"
+			},
+			"id": "gui.1$Panel",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ASP_PROGRESS"
+			},
+			"id": "gui.1$Progress",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ASP_RICHTEXT"
+			},
+			"id": "gui.1$RichText",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ASP_SPLIT"
+			},
+			"id": "gui.1$Split",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ASP_TEXTAREA"
+			},
+			"id": "gui.1$TextArea",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ASP_TEXTFIELD"
+			},
+			"id": "gui.1$TextField",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ASP_TOOLBAR"
+			},
+			"id": "gui.1$Toolbar",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ASP_WINDOW"
+			},
+			"id": "gui.1$Window",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ATT_FOCUS"
+			},
+			"id": "gui.1$guiFocus",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ATT_MAIN"
+			},
+			"id": "gui.1$guiMain",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ATT_PROGRESS"
+			},
+			"id": "gui.1$guiProgress",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ATT_TOP_MENU"
+			},
+			"id": "gui.1$guiTopMenu",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ATT_LOOKANDFEEL"
+			},
+			"id": "gui.1$lookAndFeel",
+			"type": "mind.1$Attribute"
+		}
+	],
+	"meta": {
+		"count": 22
+	}
+}

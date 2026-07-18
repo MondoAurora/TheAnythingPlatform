@@ -1,1 +1,36 @@
-{"jsonapi":{"version":"1.1"},"data":[{"attributes":{"misc.1$name":"TOKEN_LANG_ASP_LANGUAGE"},"id":"lang.1$Language","type":"mind.1$Type"},{"id":"lang.1$en","type":"lang.1$Language"},{"id":"lang.1$es","type":"lang.1$Language"},{"id":"lang.1$hu","type":"lang.1$Language"},{"attributes":{"misc.1$name":"TOKEN_LANG_ATT_SUPPORTED"},"id":"lang.1$supported","type":"mind.1$Attribute"}],"meta":{"count":5}}
+{
+	"jsonapi": {
+		"version": "1.1"
+	},
+	"data": [
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_LANG_ASP_LANGUAGE"
+			},
+			"id": "lang.1$Language",
+			"type": "mind.1$Type"
+		},
+		{
+			"id": "lang.1$en",
+			"type": "lang.1$Language"
+		},
+		{
+			"id": "lang.1$es",
+			"type": "lang.1$Language"
+		},
+		{
+			"id": "lang.1$hu",
+			"type": "lang.1$Language"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_LANG_ATT_SUPPORTED"
+			},
+			"id": "lang.1$supported",
+			"type": "mind.1$Attribute"
+		}
+	],
+	"meta": {
+		"count": 5
+	}
+}

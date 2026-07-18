@@ -337,17 +337,17 @@
 						}
 					]
 				},
-				"layout.1$layout": {
+				"layout.1$Layout": {
 					"data": {
 						"type": "mind.1$Tag",
-						"id": "layout.1$Flow"
+						"id": "layout.1$LayoutFlow"
 					}
 				},
 				"layout.1$layoutOptions": {
 					"data": [
 						{
 							"type": "mind.1$Tag",
-							"id": "layout.1$Flow",
+							"id": "layout.1$LayoutFlow",
 							"meta": {
 								"key": -1
 							}
