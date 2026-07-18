@@ -3,12 +3,8 @@ package me.giskard.tokens;
 public interface DustGenTokens_misc_1 {
 // Types
 	String TOKEN_MISC_ASP_EVENT = "misc.1$Event";
-	String TOKEN_MISC_ATT_TYPES = "misc.1$types";
 
 // Attributes
-	String TOKEN_MISC_ATT_INNERJSON = "misc.1$innerJson";
-	String TOKEN_MISC_ATT_PREPROCESS = "misc.1$preProcess";
-	String TOKEN_MISC_ATT_UPPERCASE = "misc.1$upperCase";
 	String TOKEN_MISC_ATT_ALIAS = "misc.1$alias";
 	String TOKEN_MISC_ATT_APPEARS = "misc.1$appears";
 	String TOKEN_MISC_ATT_ATTRIBUTES = "misc.1$attributes";
@@ -25,6 +21,7 @@ public interface DustGenTokens_misc_1 {
 	String TOKEN_MISC_ATT_GLOBALID = "misc.1$globalId";
 	String TOKEN_MISC_ATT_INDEX = "misc.1$index";
 	String TOKEN_MISC_ATT_INIT = "misc.1$init";
+	String TOKEN_MISC_ATT_INNERJSON = "misc.1$innerJson";
 	String TOKEN_MISC_ATT_KEY = "misc.1$key";
 	String TOKEN_MISC_ATT_LASTCHANGED = "misc.1$lastChanged";
 	String TOKEN_MISC_ATT_MAIL = "misc.1$mail";
@@ -39,12 +36,15 @@ public interface DustGenTokens_misc_1 {
 	String TOKEN_MISC_ATT_POSITION = "misc.1$position";
 	String TOKEN_MISC_ATT_POSTFIX = "misc.1$postfix";
 	String TOKEN_MISC_ATT_PREFIX = "misc.1$prefix";
+	String TOKEN_MISC_ATT_PREPROCESS = "misc.1$preProcess";
 	String TOKEN_MISC_ATT_RANGE = "misc.1$range";
 	String TOKEN_MISC_ATT_ROOT = "misc.1$root";
 	String TOKEN_MISC_ATT_SEPARATOR = "misc.1$separator";
 	String TOKEN_MISC_ATT_SOURCE = "misc.1$source";
 	String TOKEN_MISC_ATT_SPAN = "misc.1$span";
 	String TOKEN_MISC_ATT_TARGET = "misc.1$target";
+	String TOKEN_MISC_ATT_TYPES = "misc.1$types";
+	String TOKEN_MISC_ATT_UPPERCASE = "misc.1$upperCase";
 
 // Tags
 	String TOKEN_MISC_TAG_CMD_DELETE = "misc.1$delete";
@@ -55,10 +55,10 @@ public interface DustGenTokens_misc_1 {
 	String TOKEN_MISC_TAG_CMD_RESPOND = "misc.1$respond";
 	String TOKEN_MISC_TAG_CMD_SAVE = "misc.1$save";
 	String TOKEN_MISC_TAG_EVENT_DURATION_UNIT = "misc.1$durationUnit";
+	String TOKEN_MISC_TAG_EVENT_DURATION_UNIT_MSEC = "misc.1$unitMsec";
 	String TOKEN_MISC_TAG_LEVEL_ERROR = "misc.1$Error";
 	String TOKEN_MISC_TAG_LEVEL_INFO = "misc.1$Info";
 	String TOKEN_MISC_TAG_LEVEL_TRACE = "misc.1$Trace";
 	String TOKEN_MISC_TAG_LEVEL_WARNING = "misc.1$Warning";
-	String TOKEN_MISC_TAG_EVENT_DURATION_UNIT_MSEC = "misc.1$unitMsec";
-
+	String TOKEN_MISC_TAG_SLAVE = "misc.1$Slave";
 }

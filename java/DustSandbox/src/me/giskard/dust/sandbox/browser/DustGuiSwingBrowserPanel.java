@@ -821,7 +821,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		buildGui();
 
 		frm.setVisible(true);
-		
+
 		execCmd("Update Units");
 	};
 
@@ -951,7 +951,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				if (null != hRet) {
 					Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "MindAgent responded", hRet);
 					refillGrid();
-					graphPanel.repaintGraph();					
+					graphPanel.repaintGraph();
 				}
 				break;
 			case "Select Handle":
@@ -1019,6 +1019,14 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				Dust.access(DustAccess.Process, params, hSrcGen);
 
 				break;
+			case "Activate":
+				if (null != focused) {
+					Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_REFRESH, params, TOKEN_MIND_ATT_CMD);
+					Dust.access(DustAccess.Insert, TOKEN_MISC_TAG_SLAVE, params, TOKEN_MIND_ATT_TAGS);
+
+					Dust.access(DustAccess.Process, params, focused);
+				}
+				break;
 			default:
 				Dust.log(TOKEN_MISC_TAG_LEVEL_WARNING, "execCmd() Command not handled", cmd);
 			}
@@ -1040,7 +1048,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		);
 		factToolbars.fillToolbar("tbUnit", "Update Units", "Load Unit", null, "Gen Src");
 		factToolbars.fillToolbar("tbProp", "Drop Att", "Update Value");
-		factToolbars.fillToolbar("tbGraph", cbGraph, null, "+", ".", "-", "Random", "Load Refs", "Drop Selected", graphPanel.cbMode);
+		factToolbars.fillToolbar("tbGraph", "Activate", "+", ".", "-", "Random", "Load Refs", "Drop Selected", graphPanel.cbMode);
 		factToolbars.fillToolbar("tbGrid", "Show Selected", "Hide Selected", null, "New handle", "Duplicate", "Delete Selected");
 		factToolbars.fillToolbar("tbFilter", new JLabel("Contains string:"), tfFilter, "Search");
 

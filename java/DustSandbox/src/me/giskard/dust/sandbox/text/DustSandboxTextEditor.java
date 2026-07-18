@@ -1095,7 +1095,29 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		// TODO Auto-generated method stub
+
+		switch (access) {
+		case Process:
+			String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
+			switch (cmd) {
+			default:
+				Dust.log(TOKEN_MISC_TAG_LEVEL_WARNING, "TextEditor not handling command", cmd);
+				break;
+			case TOKEN_MISC_TAG_CMD_REFRESH:
+				// Object hs = DustUtils.CONST_HANDLES.get(TOKEN_MISC_TAG_SLAVE,
+				// TOKEN_MIND_ASP_TAG);
+				boolean slave = Dust.access(DustAccess.Check, TOKEN_MISC_TAG_SLAVE, null, TOKEN_MIND_ATT_TAGS);
+
+				frm.setDefaultCloseOperation(slave ? JFrame.HIDE_ON_CLOSE : JFrame.EXIT_ON_CLOSE);
+				
+				frm.setVisible(true);
+				break;
+			}
+		default:
+			break;
+		}
+
+
 		return null;
 	}
 

@@ -278,8 +278,21 @@
 			}
 		},
 		{
-			"type": "mind.1$Agent",
-			"id": "sandbox.1$SandboxAgent"
+			"type": "mind.1$Service",
+			"id": "sandbox.1$TextEditor",
+			"relationships": {
+				"mind.1$listeners": {
+					"data": [
+						{
+							"type": "mind.1$Agent",
+							"id": "sandbox.1$SandboxTextAgent",
+							"meta": {
+								"key": -1
+							}
+						}
+					]
+				}
+			}
 		},
 		{
 			"type": "mind.1$Agent",
@@ -356,6 +369,10 @@
 					]
 				}
 			}
+		},
+		{
+			"type": "mind.1$Agent",
+			"id": "sandbox.1$SandboxAgent"
 		},
 		{
 			"type": "mind.1$Service",

@@ -28,6 +28,10 @@ public class DustSandboxTempDustRefactor implements DustConsts {
 
 	public static void main(String[] args) throws Exception {
 		String srcName = "../DustJsonApi/gen/me/giskard/tokens/DustGenTokens_dust_1.java";
+		
+		if ( !DustUtils.isEmpty(srcName) ) {
+			DustException.wrap(null, "refactor disabled");
+		}
 
 		File f = new File(srcName);
 
