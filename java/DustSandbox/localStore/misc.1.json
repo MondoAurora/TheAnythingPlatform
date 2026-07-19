@@ -5,9 +5,51 @@
 	"data": [
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_MISC_TAG_LEVEL_ERROR"
+				"misc.1$name": "TOKEN_MISC_TAG_CMD_DELETE"
 			},
-			"id": "misc.1$Error",
+			"id": "misc.1$CmdDelete",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MISC_TAG_CMD_INFO"
+			},
+			"id": "misc.1$CmdInfo",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MISC_TAG_CMD_LOAD"
+			},
+			"id": "misc.1$CmdLoad",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MISC_TAG_CMD_LOADALL"
+			},
+			"id": "misc.1$CmdLoadAll",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MISC_TAG_CMD_REFRESH"
+			},
+			"id": "misc.1$CmdRefresh",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MISC_TAG_CMD_RESPOND"
+			},
+			"id": "misc.1$CmdRespond",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MISC_TAG_CMD_SAVE"
+			},
+			"id": "misc.1$CmdSave",
 			"type": "mind.1$Tag"
 		},
 		{
@@ -19,9 +61,30 @@
 		},
 		{
 			"attributes": {
+				"misc.1$name": "TOKEN_MISC_TAG_LEVEL_ERROR"
+			},
+			"id": "misc.1$LevelError",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
 				"misc.1$name": "TOKEN_MISC_TAG_LEVEL_INFO"
 			},
-			"id": "misc.1$Info",
+			"id": "misc.1$LevelInfo",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MISC_TAG_LEVEL_TRACE"
+			},
+			"id": "misc.1$LevelTrace",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MISC_TAG_LEVEL_WARNING"
+			},
+			"id": "misc.1$LevelWarning",
 			"type": "mind.1$Tag"
 		},
 		{
@@ -29,20 +92,6 @@
 				"misc.1$name": "TOKEN_MISC_TAG_SLAVE"
 			},
 			"id": "misc.1$Slave",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MISC_TAG_LEVEL_TRACE"
-			},
-			"id": "misc.1$Trace",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MISC_TAG_LEVEL_WARNING"
-			},
-			"id": "misc.1$Warning",
 			"type": "mind.1$Tag"
 		},
 		{
@@ -74,10 +123,6 @@
 			"type": "mind.1$Attribute"
 		},
 		{
-			"id": "misc.1$cmd",
-			"type": "mind.1$Attribute"
-		},
-		{
 			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_CONSTS"
 			},
@@ -100,24 +145,10 @@
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_MISC_ATT_EVENT_DATE"
-			},
-			"id": "misc.1$date",
-			"type": "mind.1$Attribute"
-		},
-		{
-			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_DEFAULT"
 			},
 			"id": "misc.1$default",
 			"type": "mind.1$Attribute"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MISC_TAG_CMD_DELETE"
-			},
-			"id": "misc.1$delete",
-			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
@@ -128,17 +159,38 @@
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_MISC_ATT_EVENT_DURATION"
+				"misc.1$name": "TOKEN_MISC_ATT_EVENT_DATE"
 			},
-			"id": "misc.1$duration",
+			"id": "misc.1$eventDate",
 			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_MISC_TAG_EVENT_DURATION_UNIT"
+				"misc.1$name": "TOKEN_MISC_ATT_EVENT_DURATION"
 			},
-			"id": "misc.1$durationUnit",
+			"id": "misc.1$eventDuration",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MISC_ATT_EVENT_DURATION_UNIT"
+			},
+			"id": "misc.1$eventDurationUnit",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MISC_TAG_EVENT_DURATION_UNIT_MSEC"
+			},
+			"id": "misc.1$EventDurationUnitMsec",
 			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MISC_ATT_EVENT_TIME"
+			},
+			"id": "misc.1$eventTime",
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
@@ -160,13 +212,6 @@
 			},
 			"id": "misc.1$index",
 			"type": "mind.1$Attribute"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MISC_TAG_CMD_INFO"
-			},
-			"id": "misc.1$info",
-			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
@@ -195,20 +240,6 @@
 			},
 			"id": "misc.1$lastChanged",
 			"type": "mind.1$Attribute"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MISC_TAG_CMD_LOAD"
-			},
-			"id": "misc.1$load",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MISC_TAG_CMD_LOADALL"
-			},
-			"id": "misc.1$loadAll",
-			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
@@ -310,20 +341,6 @@
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_MISC_TAG_CMD_REFRESH"
-			},
-			"id": "misc.1$refresh",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MISC_TAG_CMD_RESPOND"
-			},
-			"id": "misc.1$respond",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_ROOT"
 			},
 			"id": "misc.1$root",
@@ -331,21 +348,10 @@
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_MISC_TAG_CMD_SAVE"
-			},
-			"id": "misc.1$save",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_SEPARATOR"
 			},
 			"id": "misc.1$separator",
 			"type": "mind.1$Attribute"
-		},
-		{
-			"id": "misc.1$slave",
-			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
@@ -370,24 +376,10 @@
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_MISC_ATT_EVENT_TIME"
-			},
-			"id": "misc.1$time",
-			"type": "mind.1$Attribute"
-		},
-		{
-			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_TYPES"
 			},
 			"id": "misc.1$types",
 			"type": "mind.1$Attribute"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MISC_TAG_EVENT_DURATION_UNIT_MSEC"
-			},
-			"id": "misc.1$unitMsec",
-			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
@@ -398,6 +390,6 @@
 		}
 	],
 	"meta": {
-		"count": 57
+		"count": 55
 	}
 }

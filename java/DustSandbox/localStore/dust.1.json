@@ -52,7 +52,7 @@
 				"misc.1$name": "TOKEN_DUST_ATT_UNIT_OBJECTS"
 			},
 			"id": "dust.1$unitObjects",
-			"type": "mind.1$Type"
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {

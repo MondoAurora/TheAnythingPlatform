@@ -14,9 +14,10 @@ public interface DustGenTokens_misc_1 {
 	String TOKEN_MISC_ATT_DATA = "misc.1$data";
 	String TOKEN_MISC_ATT_DEFAULT = "misc.1$default";
 	String TOKEN_MISC_ATT_DESC = "misc.1$desc";
-	String TOKEN_MISC_ATT_EVENT_DATE = "misc.1$date";
-	String TOKEN_MISC_ATT_EVENT_DURATION = "misc.1$duration";
-	String TOKEN_MISC_ATT_EVENT_TIME = "misc.1$time";
+	String TOKEN_MISC_ATT_EVENT_DATE = "misc.1$eventDate";
+	String TOKEN_MISC_ATT_EVENT_DURATION = "misc.1$eventDuration";
+	String TOKEN_MISC_ATT_EVENT_DURATION_UNIT = "misc.1$eventDurationUnit";
+	String TOKEN_MISC_ATT_EVENT_TIME = "misc.1$eventTime";
 	String TOKEN_MISC_ATT_FILTER = "misc.1$filter";
 	String TOKEN_MISC_ATT_GLOBALID = "misc.1$globalId";
 	String TOKEN_MISC_ATT_INDEX = "misc.1$index";
@@ -47,18 +48,17 @@ public interface DustGenTokens_misc_1 {
 	String TOKEN_MISC_ATT_UPPERCASE = "misc.1$upperCase";
 
 // Tags
-	String TOKEN_MISC_TAG_CMD_DELETE = "misc.1$delete";
-	String TOKEN_MISC_TAG_CMD_INFO = "misc.1$info";
-	String TOKEN_MISC_TAG_CMD_LOAD = "misc.1$load";
-	String TOKEN_MISC_TAG_CMD_LOADALL = "misc.1$loadAll";
-	String TOKEN_MISC_TAG_CMD_REFRESH = "misc.1$refresh";
-	String TOKEN_MISC_TAG_CMD_RESPOND = "misc.1$respond";
-	String TOKEN_MISC_TAG_CMD_SAVE = "misc.1$save";
-	String TOKEN_MISC_TAG_EVENT_DURATION_UNIT = "misc.1$durationUnit";
-	String TOKEN_MISC_TAG_EVENT_DURATION_UNIT_MSEC = "misc.1$unitMsec";
-	String TOKEN_MISC_TAG_LEVEL_ERROR = "misc.1$Error";
-	String TOKEN_MISC_TAG_LEVEL_INFO = "misc.1$Info";
-	String TOKEN_MISC_TAG_LEVEL_TRACE = "misc.1$Trace";
-	String TOKEN_MISC_TAG_LEVEL_WARNING = "misc.1$Warning";
+	String TOKEN_MISC_TAG_CMD_DELETE = "misc.1$CmdDelete";
+	String TOKEN_MISC_TAG_CMD_INFO = "misc.1$CmdInfo";
+	String TOKEN_MISC_TAG_CMD_LOAD = "misc.1$CmdLoad";
+	String TOKEN_MISC_TAG_CMD_LOADALL = "misc.1$CmdLoadAll";
+	String TOKEN_MISC_TAG_CMD_REFRESH = "misc.1$CmdRefresh";
+	String TOKEN_MISC_TAG_CMD_RESPOND = "misc.1$CmdRespond";
+	String TOKEN_MISC_TAG_CMD_SAVE = "misc.1$CmdSave";
+	String TOKEN_MISC_TAG_EVENT_DURATION_UNIT_MSEC = "misc.1$EventDurationUnitMsec";
+	String TOKEN_MISC_TAG_LEVEL_ERROR = "misc.1$LevelError";
+	String TOKEN_MISC_TAG_LEVEL_INFO = "misc.1$LevelInfo";
+	String TOKEN_MISC_TAG_LEVEL_TRACE = "misc.1$LevelTrace";
+	String TOKEN_MISC_TAG_LEVEL_WARNING = "misc.1$LevelWarning";
 	String TOKEN_MISC_TAG_SLAVE = "misc.1$Slave";
 }

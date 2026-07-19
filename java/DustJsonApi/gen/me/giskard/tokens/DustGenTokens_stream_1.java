@@ -10,6 +10,7 @@ public interface DustGenTokens_stream_1 {
 	String TOKEN_STREAM_ATT_INPUT = "stream.1$inputStream";
 	String TOKEN_STREAM_ATT_MIMETYPE = "stream.1$mimeType";
 	String TOKEN_STREAM_ATT_OUTPUT = "stream.1$outputStream";
+	String TOKEN_STREAM_ATT_READER = "stream.1$reader";
 	String TOKEN_STREAM_ATT_ROOTFOLDER = "stream.1$rootFolder";
 	String TOKEN_STREAM_ATT_ROWSEP = "stream.1$rowSep";
 	String TOKEN_STREAM_ATT_SAPFIRSTCOL = "stream.1$firstCol";

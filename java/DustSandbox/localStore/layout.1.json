@@ -20,13 +20,6 @@
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_LAYOUT_TAG_LAYOUT"
-			},
-			"id": "layout.1$Layout",
-			"type": "mind.1$Attribute"
-		},
-		{
-			"attributes": {
 				"misc.1$name": "TOKEN_LAYOUT_ASP_LAYOUT_CONFIG"
 			},
 			"id": "layout.1$LayoutConfig",
@@ -34,24 +27,31 @@
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_LAYOUT_TAG_LAYOUT_DIRECT"
+				"misc.1$name": "TOKEN_LAYOUT_TAG_LAYOUT_MODE"
 			},
-			"id": "layout.1$LayoutDirect",
-			"type": "mind.1$Type"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_LAYOUT_TAG_LAYOUT_FLOW"
-			},
-			"id": "layout.1$LayoutFlow",
+			"id": "layout.1$LayoutMode",
 			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_LAYOUT_TAG_LAYOUT_TABLE"
+				"misc.1$name": "TOKEN_LAYOUT_TAG_LAYOUT_MODE_DIRECT"
 			},
-			"id": "layout.1$LayoutTable",
-			"type": "mind.1$Type"
+			"id": "layout.1$LayoutModeDirect",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_LAYOUT_TAG_LAYOUT_MODE_FLOW"
+			},
+			"id": "layout.1$LayoutModeFlow",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_LAYOUT_TAG_LAYOUT_MODE_TABLE"
+			},
+			"id": "layout.1$LayoutModeTable",
+			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
@@ -72,7 +72,14 @@
 				"misc.1$name": "TOKEN_LAYOUT_ATT_AXIS_DISTRIBUTION"
 			},
 			"id": "layout.1$axisDistribution",
-			"type": "mind.1$Type"
+			"type": "mind.1$Attribute"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_LAYOUT_ATT_LAYOUT"
+			},
+			"id": "layout.1$layout",
+			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
@@ -83,6 +90,6 @@
 		}
 	],
 	"meta": {
-		"count": 12
+		"count": 13
 	}
 }

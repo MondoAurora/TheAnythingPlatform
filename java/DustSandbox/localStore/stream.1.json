@@ -65,6 +65,13 @@
 		},
 		{
 			"attributes": {
+				"misc.1$name": "TOKEN_STREAM_ATT_READER"
+			},
+			"id": "stream.1$reader",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ATT_ROOTFOLDER"
 			},
 			"id": "stream.1$rootFolder",
@@ -100,6 +107,6 @@
 		}
 	],
 	"meta": {
-		"count": 14
+		"count": 15
 	}
 }

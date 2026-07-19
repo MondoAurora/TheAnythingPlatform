@@ -121,7 +121,7 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 		if (DustUtils.isEqual(TOKEN_LAYOUT_ASP_RESPONSIVE, ht)) {
 			Collection<DustHandle> options = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h, TOKEN_MISC_ATT_OPTIONS);
 			for (DustHandle ho : options) {
-				DustHandle hl = Dust.access(DustAccess.Peek, txtAgent.hLayout, ho, TOKEN_LAYOUT_TAG_LAYOUT);
+				DustHandle hl = Dust.access(DustAccess.Peek, txtAgent.hLayout, ho, TOKEN_LAYOUT_TAG_LAYOUT_MODE);
 				if (txtAgent.hLayout == hl) {
 					hLayoutParent = h;
 					h = ho;
@@ -185,7 +185,7 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 			boolean hdr = !empty && (0 < depth);
 			int mi = 0;
 
-			String hGroup = Dust.access(DustAccess.Peek, null, h, TOKEN_TEXT_TAG_GROUP, TOKEN_MIND_ATT_ID);
+			String hGroup = Dust.access(DustAccess.Peek, null, h, TOKEN_TEXT_ATT_GROUP, TOKEN_MIND_ATT_ID);
 
 			if (null != hGroup) {
 				hdr = false;

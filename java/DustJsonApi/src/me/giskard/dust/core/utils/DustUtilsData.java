@@ -42,7 +42,7 @@ public class DustUtilsData implements DustUtilsConsts, DustMindConsts {
 		Dust.access(DustAccess.Set, hTarget, hEvent, TOKEN_MISC_ATT_TARGET);
 
 		Dust.access(DustAccess.Set, duration, hEvent, TOKEN_MISC_ATT_EVENT_DURATION);
-		Dust.access(DustAccess.Set, durationUnit, hEvent, TOKEN_MISC_TAG_EVENT_DURATION_UNIT);
+		Dust.access(DustAccess.Set, durationUnit, hEvent, TOKEN_MISC_ATT_EVENT_DURATION_UNIT);
 		
 		setEventDate(hEvent, dStart);
 

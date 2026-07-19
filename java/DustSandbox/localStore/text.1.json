@@ -1,1 +1,115 @@
-{"jsonapi":{"version":"1.1"},"data":[{"attributes":{"misc.1$name":"TOKEN_TEXT_ASP_BLOCK"},"id":"text.1$Block","type":"mind.1$Type"},{"attributes":{"misc.1$name":"TOKEN_TEXT_ASP_DOC"},"id":"text.1$Document","type":"mind.1$Type"},{"attributes":{"misc.1$name":"TOKEN_TEXT_ASP_STRING"},"id":"text.1$String","type":"mind.1$Type"},{"attributes":{"misc.1$name":"TOKEN_TEXT_ASP_STYLE"},"id":"text.1$Style","type":"mind.1$Type"},{"attributes":{"misc.1$name":"TOKEN_TEXT_ASP_TRANSCLUSION"},"id":"text.1$Transclusion","type":"mind.1$Type"},{"attributes":{"misc.1$name":"TOKEN_TEXT_TAG_GROUP"},"id":"text.1$group","type":"mind.1$Tag"},{"attributes":{"misc.1$name":"TOKEN_TEXT_TAG_GROUP_BULLET"},"id":"text.1$groupBullet","type":"mind.1$Tag"},{"attributes":{"misc.1$name":"TOKEN_TEXT_TAG_GROUP_INLINE"},"id":"text.1$groupInline","type":"mind.1$Tag"},{"attributes":{"misc.1$name":"TOKEN_TEXT_TAG_GROUP_NUMBER"},"id":"text.1$groupNumber","type":"mind.1$Tag"},{"attributes":{"misc.1$name":"TOKEN_TEXT_ATT_LANG"},"id":"text.1$lang","type":"mind.1$Attribute"},{"attributes":{"misc.1$name":"TOKEN_TEXT_ATT_ORPHANS"},"id":"text.1$orphans","type":"mind.1$Attribute"},{"attributes":{"misc.1$name":"TOKEN_TEXT_ATT_STYLE_DEF"},"id":"text.1$styleDef","type":"mind.1$Attribute"},{"attributes":{"misc.1$name":"TOKEN_TEXT_ATT_STYLES"},"id":"text.1$styles","type":"mind.1$Attribute"},{"attributes":{"misc.1$name":"TOKEN_TEXT_ATT_TEXT"},"id":"text.1$text","type":"mind.1$Attribute"}],"meta":{"count":14}}
+{
+	"jsonapi": {
+		"version": "1.1"
+	},
+	"data": [
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_TEXT_ASP_BLOCK"
+			},
+			"id": "text.1$Block",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_TEXT_ASP_DOC"
+			},
+			"id": "text.1$Document",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_TEXT_TAG_GROUP"
+			},
+			"id": "text.1$Group",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_TEXT_TAG_GROUP_BULLET"
+			},
+			"id": "text.1$GroupBullet",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_TEXT_TAG_GROUP_INLINE"
+			},
+			"id": "text.1$GroupInline",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_TEXT_TAG_GROUP_NUMBER"
+			},
+			"id": "text.1$GroupNumber",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_TEXT_ASP_STRING"
+			},
+			"id": "text.1$String",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_TEXT_ASP_STYLE"
+			},
+			"id": "text.1$Style",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_TEXT_ASP_TRANSCLUSION"
+			},
+			"id": "text.1$Transclusion",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_TEXT_ATT_GROUP"
+			},
+			"id": "text.1$group",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_TEXT_ATT_LANG"
+			},
+			"id": "text.1$lang",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_TEXT_ATT_ORPHANS"
+			},
+			"id": "text.1$orphans",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_TEXT_ATT_STYLE_DEF"
+			},
+			"id": "text.1$styleDef",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_TEXT_ATT_STYLES"
+			},
+			"id": "text.1$styles",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_TEXT_ATT_TEXT"
+			},
+			"id": "text.1$text",
+			"type": "mind.1$Attribute"
+		}
+	],
+	"meta": {
+		"count": 15
+	}
+}

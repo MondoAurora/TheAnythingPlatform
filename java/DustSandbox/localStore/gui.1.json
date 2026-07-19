@@ -8,111 +8,125 @@
 				"misc.1$name": "TOKEN_GUI_TAG_AXIS_SCREEN_X"
 			},
 			"id": "gui.1$AxisScreenX",
-			"type": "mind.1$Type"
+			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_GUI_TAG_AXIS_SCREEN_Y"
 			},
 			"id": "gui.1$AxisScreenY",
-			"type": "mind.1$Type"
+			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_GUI_TAG_AXISUNIT_PIXEL"
 			},
 			"id": "gui.1$AxisUnitPixel",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ASP_EDIT_COLL"
+			},
+			"id": "gui.1$EditColl",
 			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_GUI_ASP_BUTTON"
+				"misc.1$name": "TOKEN_GUI_ASP_EDIT_HANDLE"
 			},
-			"id": "gui.1$Button",
+			"id": "gui.1$EditHandle",
 			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_GUI_ASP_CALENDAR"
+				"misc.1$name": "TOKEN_GUI_ASP_EDIT_NUMBER"
 			},
-			"id": "gui.1$Calendar",
+			"id": "gui.1$EditNumber",
 			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_GUI_ASP_COMBO"
+				"misc.1$name": "TOKEN_GUI_ASP_EDIT_OPTION"
 			},
-			"id": "gui.1$Combo",
+			"id": "gui.1$EditOption",
 			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_GUI_ASP_DATAGRID"
+				"misc.1$name": "TOKEN_GUI_ASP_EDIT_TEXT"
 			},
-			"id": "gui.1$DataGrid",
+			"id": "gui.1$EditText",
 			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_GUI_ASP_LABEL"
+				"misc.1$name": "TOKEN_GUI_ASP_PANEL_CALENDAR"
 			},
-			"id": "gui.1$Label",
+			"id": "gui.1$PanelCalendar",
 			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_GUI_ASP_MEDIAPLAYER"
+				"misc.1$name": "TOKEN_GUI_ASP_PANEL_CONTAINER"
 			},
-			"id": "gui.1$MediaPlayer",
+			"id": "gui.1$PanelContainer",
 			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_GUI_ASP_PANEL"
+				"misc.1$name": "TOKEN_GUI_ASP_PANEL_IDEA_GRID"
 			},
-			"id": "gui.1$Panel",
+			"id": "gui.1$PanelIdeaGrid",
 			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_GUI_ASP_PROGRESS"
+				"misc.1$name": "TOKEN_GUI_ASP_PANEL_IDEA_PROPERTIES"
 			},
-			"id": "gui.1$Progress",
+			"id": "gui.1$PanelIdeaProperties",
 			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_GUI_ASP_RICHTEXT"
+				"misc.1$name": "TOKEN_GUI_ASP_PANEL_MEDIA_PLAYER"
 			},
-			"id": "gui.1$RichText",
+			"id": "gui.1$PanelMediaPlayer",
 			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_GUI_ASP_SPLIT"
+				"misc.1$name": "TOKEN_GUI_ASP_PANEL_SPLIT"
 			},
-			"id": "gui.1$Split",
+			"id": "gui.1$PanelSplit",
 			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_GUI_ASP_TEXTAREA"
+				"misc.1$name": "TOKEN_GUI_ASP_PANEL_TOOLBAR"
 			},
-			"id": "gui.1$TextArea",
+			"id": "gui.1$PanelToolbar",
 			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_GUI_ASP_TEXTFIELD"
+				"misc.1$name": "TOKEN_GUI_ASP_WIDGET_BUTTON"
 			},
-			"id": "gui.1$TextField",
+			"id": "gui.1$WidgetButton",
 			"type": "mind.1$Type"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_GUI_ASP_TOOLBAR"
+				"misc.1$name": "TOKEN_GUI_ASP_WIDGET_LABEL"
 			},
-			"id": "gui.1$Toolbar",
+			"id": "gui.1$WidgetLabel",
+			"type": "mind.1$Type"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_ASP_WIDGET_PROGRESS"
+			},
+			"id": "gui.1$WidgetProgress",
 			"type": "mind.1$Type"
 		},
 		{
@@ -124,34 +138,6 @@
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_GUI_ATT_FOCUS"
-			},
-			"id": "gui.1$guiFocus",
-			"type": "mind.1$Attribute"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_GUI_ATT_MAIN"
-			},
-			"id": "gui.1$guiMain",
-			"type": "mind.1$Attribute"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_GUI_ATT_PROGRESS"
-			},
-			"id": "gui.1$guiProgress",
-			"type": "mind.1$Attribute"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_GUI_ATT_TOP_MENU"
-			},
-			"id": "gui.1$guiTopMenu",
-			"type": "mind.1$Attribute"
-		},
-		{
-			"attributes": {
 				"misc.1$name": "TOKEN_GUI_ATT_LOOKANDFEEL"
 			},
 			"id": "gui.1$lookAndFeel",
@@ -159,6 +145,6 @@
 		}
 	],
 	"meta": {
-		"count": 22
+		"count": 20
 	}
 }

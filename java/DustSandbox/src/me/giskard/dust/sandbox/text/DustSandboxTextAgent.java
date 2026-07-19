@@ -96,7 +96,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 			switch (ht) {
 			case TOKEN_TEXT_ASP_DOC:
 				hDoc = h;
-				setLayout(Dust.access(DustAccess.Peek, hLayout, h, TOKEN_LAYOUT_TAG_LAYOUT));
+				setLayout(Dust.access(DustAccess.Peek, hLayout, h, TOKEN_LAYOUT_TAG_LAYOUT_MODE));
 				setLang(Dust.access(DustAccess.Peek, hLang, h, TOKEN_TEXT_ATT_LANG));
 				break;
 			case TOKEN_TEXT_ASP_STYLE:
@@ -266,7 +266,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 	}
 
 	public void setGroupType(DustHandle hTxt, String grpToken) {
-		Dust.access(DustAccess.Set, DustUtils.CONST_HANDLES.get(grpToken, TOKEN_MIND_ASP_TAG), hTxt, TOKEN_TEXT_TAG_GROUP);
+		Dust.access(DustAccess.Set, DustUtils.CONST_HANDLES.get(grpToken, TOKEN_MIND_ASP_TAG), hTxt, TOKEN_TEXT_ATT_GROUP);
 	}
 
 	public DustHandle insertImage(DustHandle hParent, DustHandle hThis, Image image) throws Exception {
@@ -366,7 +366,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		DustHandle hTbl = insertNode(hResp, KEY_ADD, TOKEN_LAYOUT_ASP_TABLE);
 		Dust.access(DustAccess.Insert, hTbl, hResp, TOKEN_MISC_ATT_OPTIONS);
 
-		Dust.access(DustAccess.Set, hCurrentLayout, hTbl, TOKEN_LAYOUT_TAG_LAYOUT);
+		Dust.access(DustAccess.Set, hCurrentLayout, hTbl, TOKEN_LAYOUT_TAG_LAYOUT_MODE);
 		Dust.access(DustAccess.Set, tblSpan, hTbl, TOKEN_MISC_ATT_SPAN);
 		Dust.access(DustAccess.Set, tblDataOffset, hTbl, TOKEN_MISC_ATT_POSITION);
 
@@ -397,11 +397,11 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 
 	public void splitInline(DustHandle hParent, DustHandle hThis, String origText, int selBegin, int selEnd) {
 		DustHandle hTagInline = DustUtils.CONST_HANDLES.get(TOKEN_TEXT_TAG_GROUP_INLINE, TOKEN_MIND_ASP_TAG);
-		boolean inlineNow = Dust.access(DustAccess.Check, hTagInline, hParent, TOKEN_TEXT_TAG_GROUP);
+		boolean inlineNow = Dust.access(DustAccess.Check, hTagInline, hParent, TOKEN_TEXT_ATT_GROUP);
 
 		int idx;
 		if (!inlineNow) {
-			Dust.access(DustAccess.Set, hTagInline, hThis, TOKEN_TEXT_TAG_GROUP);
+			Dust.access(DustAccess.Set, hTagInline, hThis, TOKEN_TEXT_ATT_GROUP);
 			accessText(DustAccess.Set, null, hThis);
 			hParent = hThis;
 
@@ -519,7 +519,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 			durationTxt -= delta;
 			Dust.access(DustAccess.Set, durationTxt, eTxt, TOKEN_MISC_ATT_EVENT_DURATION);
 
-			hUnit = Dust.access(DustAccess.Peek, null, eTxt, TOKEN_MISC_TAG_EVENT_DURATION_UNIT);
+			hUnit = Dust.access(DustAccess.Peek, null, eTxt, TOKEN_MISC_ATT_EVENT_DURATION_UNIT);
 
 			time2 = new Date(timeTxt.getTime() + durationTxt);
 			optCreateTextEvent(hParent, idx + 1, tt, time2, delta, hUnit);

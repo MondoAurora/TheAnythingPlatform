@@ -221,7 +221,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					if (null != defLayout) {
 						idx = Dust.access(DustAccess.Peek, hThis, hParent, TOKEN_MISC_ATT_MEMBERS, KEY_INDEXOF);
 						DustHandle hResp = txtAgent.insertNode(hParent, idx, TOKEN_LAYOUT_ASP_RESPONSIVE);
-						Dust.access(DustAccess.Set, defLayout, hResp, TOKEN_LAYOUT_TAG_LAYOUT);
+						Dust.access(DustAccess.Set, defLayout, hResp, TOKEN_LAYOUT_TAG_LAYOUT_MODE);
 					}
 					refresh = true;
 					break;
@@ -259,7 +259,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					} else {
 						idx = Dust.access(DustAccess.Peek, hThis, hParent, TOKEN_MISC_ATT_MEMBERS, KEY_INDEXOF);
 						hResp = txtAgent.insertNode(hParent, idx, TOKEN_LAYOUT_ASP_RESPONSIVE);
-						Dust.access(DustAccess.Set, hLayout, hResp, TOKEN_LAYOUT_TAG_LAYOUT);
+						Dust.access(DustAccess.Set, hLayout, hResp, TOKEN_LAYOUT_TAG_LAYOUT_MODE);
 					}
 
 					txtAgent.insertTable(hResp, hLayout, dataRows, dataCols, headRows, headCols);
@@ -711,7 +711,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 	protected void init() throws Exception {
 		txtAgent = new DustSandboxTextAgent();
 
-		hCurrentLayout = Dust.access(DustAccess.Peek, null, null, TOKEN_LAYOUT_TAG_LAYOUT);
+		hCurrentLayout = Dust.access(DustAccess.Peek, null, null, TOKEN_LAYOUT_TAG_LAYOUT_MODE);
 		hLang = Dust.access(DustAccess.Peek, null, null, TOKEN_TEXT_ATT_LANG);
 
 		DustGuiSwingUtils.optSetLookAndFeel();

@@ -5,13 +5,6 @@
 	"data": [
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_RESULT_ACCEPT"
-			},
-			"id": "mind.1$Accept",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ASP_AGENT"
 			},
 			"id": "mind.1$Agent",
@@ -26,30 +19,121 @@
 		},
 		{
 			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE"
+			},
+			"id": "mind.1$Colltype",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_ARR"
+			},
+			"id": "mind.1$ColltypeArr",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_ARRAY"
+			},
+			"id": "mind.1$ColltypeArray",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_MAP"
+			},
+			"id": "mind.1$ColltypeMap",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_ONE"
+			},
+			"id": "mind.1$ColltypeOne",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_SET"
+			},
+			"id": "mind.1$ColltypeSet",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_SINGLE"
+			},
+			"id": "mind.1$ColltypeSingle",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_FINAL"
+			},
+			"id": "mind.1$Final",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_CMD_GETHANDLE"
+			},
+			"id": "mind.1$GetHandle",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_CMD_LISTUNITS"
+			},
+			"id": "mind.1$ListUnits",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_MANDATORY"
+			},
+			"id": "mind.1$Mandatory",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_OPTIONAL"
+			},
+			"id": "mind.1$Optional",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_RESULT_ACCEPT"
+			},
+			"id": "mind.1$ResultAccept",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_RESULT_PASS"
 			},
-			"id": "mind.1$Pass",
+			"id": "mind.1$ResultPass",
 			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_RESULT_READ"
 			},
-			"id": "mind.1$Read",
+			"id": "mind.1$ResultRead",
 			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_RESULT_READACCEPT"
 			},
-			"id": "mind.1$ReadAccept",
+			"id": "mind.1$ResultReadAccept",
 			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_RESULT_REJECT"
 			},
-			"id": "mind.1$Reject",
+			"id": "mind.1$ResultReject",
 			"type": "mind.1$Tag"
 		},
 		{
@@ -82,6 +166,62 @@
 		},
 		{
 			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE"
+			},
+			"id": "mind.1$Valtype",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_BOOL"
+			},
+			"id": "mind.1$ValtypeBool",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_HANDLE"
+			},
+			"id": "mind.1$ValtypeHandle",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_INTEGER"
+			},
+			"id": "mind.1$ValtypeInteger",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_RAW"
+			},
+			"id": "mind.1$ValtypeRaw",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_REAL"
+			},
+			"id": "mind.1$ValtypeReal",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_STREAM"
+			},
+			"id": "mind.1$ValtypeStream",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_STRING"
+			},
+			"id": "mind.1$ValtypeString",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ATT_AUTHOR"
 			},
 			"id": "mind.1$author",
@@ -93,69 +233,6 @@
 			},
 			"id": "mind.1$cmd",
 			"type": "mind.1$Attribute"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE"
-			},
-			"id": "mind.1$colltype",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_ARR"
-			},
-			"id": "mind.1$colltypeArr",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_ARRAY"
-			},
-			"id": "mind.1$colltypeArray",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_MAP"
-			},
-			"id": "mind.1$colltypeMap",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_ONE"
-			},
-			"id": "mind.1$colltypeOne",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_SET"
-			},
-			"id": "mind.1$colltypeSet",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_SINGLE"
-			},
-			"id": "mind.1$colltypeSingle",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_FINAL"
-			},
-			"id": "mind.1$final",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_CMD_GETHANDLE"
-			},
-			"id": "mind.1$getHandle",
-			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
@@ -173,13 +250,6 @@
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_MIND_CMD_LISTUNITS"
-			},
-			"id": "mind.1$listUnits",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ATT_LISTENERS"
 			},
 			"id": "mind.1$listeners",
@@ -187,24 +257,10 @@
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_MANDATORY"
-			},
-			"id": "mind.1$mandatory",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ATT_NEXT"
 			},
 			"id": "mind.1$next",
 			"type": "mind.1$Attribute"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_OPTIONAL"
-			},
-			"id": "mind.1$optional",
-			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
@@ -255,62 +311,6 @@
 		{
 			"id": "mind.1$unitRefs",
 			"type": "mind.1$Attribute"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE"
-			},
-			"id": "mind.1$valtype",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_BOOL"
-			},
-			"id": "mind.1$valtypeBool",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_HANDLE"
-			},
-			"id": "mind.1$valtypeHandle",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_INTEGER"
-			},
-			"id": "mind.1$valtypeInteger",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_RAW"
-			},
-			"id": "mind.1$valtypeRaw",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_REAL"
-			},
-			"id": "mind.1$valtypeReal",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_STREAM"
-			},
-			"id": "mind.1$valtypeStream",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_STRING"
-			},
-			"id": "mind.1$valtypeString",
-			"type": "mind.1$Tag"
 		}
 	],
 	"meta": {

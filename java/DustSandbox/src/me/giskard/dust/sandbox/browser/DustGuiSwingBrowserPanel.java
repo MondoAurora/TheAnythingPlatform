@@ -934,6 +934,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					if (!DustUtils.isEmpty(id)) {
 						DustHandle sc = Dust.getHandle(s.getUnit(), s.getType(), id, DustOptCreate.Primary);
 						DustMindUtils.loadData(sc, s, false);
+						Dust.access(DustAccess.Set, id, sc, TOKEN_MIND_ATT_ID); // quick fix
 						graphPanel.showHandle(sc, true, false);
 						selected.add(sc);
 					}
