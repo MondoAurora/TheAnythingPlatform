@@ -68,6 +68,16 @@
 			"type": "mind.1$Type"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_LAYOUT_ATT_AXIS_DISTRIBUTION"
 			},
@@ -75,6 +85,16 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_LAYOUT_ATT_LAYOUT"
 			},
@@ -82,6 +102,16 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_LAYOUT_ATT_LAYOUT_OTPIONS"
 			},

@@ -31,6 +31,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
@@ -44,9 +45,9 @@ import javax.swing.table.TableRowSorter;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
+import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.dev.DustDevUtils;
 import me.giskard.dust.core.mind.DustMindUtils;
-import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
 import me.giskard.dust.mod.gui.swing.DustGuiSwingUtils;
@@ -435,8 +436,6 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 	Set<DustHandle> selected = new HashSet<>();
 
 	Map<String, DustCollType> attTypes = new TreeMap();
-	Set<String> allLinks = new HashSet<>();
-	Set<String> allAtts = new HashSet<>();
 
 	Set<String> showLinks = new HashSet<>();
 
@@ -735,7 +734,6 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		gridArr.clear();
 		gridCols.clear();
 		attTypes.clear();
-		allLinks.clear();
 
 		tblmAtts.setRowCount(0);
 		tblmLinks.setRowCount(0);
@@ -774,7 +772,6 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 					if (null == attTypes.put(a, ct)) {
 						if (val instanceof DustHandle) {
-							allLinks.add(a);
 							tblmLinks.addRow(new Object[] { a });
 						} else {
 							tblmAtts.addRow(new Object[] { a });
@@ -880,7 +877,16 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				break;
 
 			case "Load Unit":
-//				unitArr
+				String unitId = JOptionPane.showInputDialog(frm, "Unit ID?", "guiTest.1");
+
+				if (!DustUtils.isEmpty(unitId)) {
+					DustHandle hLoad = Dust.getUnit(unitId, true);
+					if (!unitArr.contains(hLoad)) {
+						unitArr.add(hLoad);
+						unitTblModel.fireTableDataChanged();
+						refillGrid();
+					}
+				}
 				break;
 
 			case "+":
@@ -939,8 +945,30 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 						selected.add(sc);
 					}
 				}
+				gridTblModel.fireTableDataChanged();
+				unitTblModel.fireTableDataChanged();
 				graphPanel.repaintGraph();
 
+				break;
+			case "New handle":
+				if (1 == selected.size()) {
+					DustHandle hu = selected.iterator().next();
+					boolean isUnit = Dust.access(DustAccess.Check, TOKEN_MIND_ASP_UNIT, hu, TOKEN_MIND_ATT_TYPE, TOKEN_MIND_ATT_ID);
+
+					if (isUnit) {
+						String id = JOptionPane.showInputDialog(frm, "New id?", "");
+						if (!DustUtils.isEmpty(id)) {
+//							DustHandle sc = Dust.getHandle(hu, s.getType(), id, DustOptCreate.Primary);
+//							DustMindUtils.loadData(sc, s, false);
+//							Dust.access(DustAccess.Set, id, sc, TOKEN_MIND_ATT_ID); // quick fix
+//							graphPanel.showHandle(sc, true, false);
+//							selected.add(sc);
+							gridTblModel.fireTableDataChanged();
+							unitTblModel.fireTableDataChanged();
+							graphPanel.repaintGraph();
+						}
+					}
+				}
 				break;
 			case "Delete Selected":
 				Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_DELETE, params, TOKEN_MIND_ATT_CMD);
@@ -967,8 +995,10 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				tblmData.fireTableDataChanged();
 				break;
 			case "Drop Att":
-				Dust.access(DustAccess.Delete, null, focused, focusedAtt);
-				tblmData.fireTableDataChanged();
+				if ((null != focused) && (null != focusedAtt)) {
+					Dust.access(DustAccess.Delete, null, focused, focusedAtt);
+					tblmData.fireTableDataChanged();
+				}
 				break;
 			case "Update Value":
 				if (-1 != focusedIdx) {
@@ -1031,7 +1061,9 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 			default:
 				Dust.log(TOKEN_MISC_TAG_LEVEL_WARNING, "execCmd() Command not handled", cmd);
 			}
-		} catch (Throwable t) {
+		} catch (
+
+		Throwable t) {
 			DustException.wrap(t);
 		}
 	}
@@ -1181,35 +1213,60 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		};
 
 		((TableRowSorter) handleTable.getRowSorter()).setRowFilter(rf);
-
-//		lsm = handleTable.getSelectionModel();
-//		lsm.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-//		lsm.addListSelectionListener(lslSelector);
 		JScrollPane scpTbl;
 
 		JPanel pnlGrid = new JPanel(new BorderLayout());
 		DustGuiSwingUtils.setTitle(pnlGrid, "Handle Grid");
-//		JPanel pnlFilter = new JPanel(new BorderLayout());
-//		DustGuiSwingUtils.setTitle(pnlFilter, "Filter");
-//		JTextArea taFilter = new JTextArea();
-//		taFilter.setRows(3);
-//		pnlFilter.add(new JScrollPane(taFilter), BorderLayout.CENTER);
-//		pnlFilter.add(factToolbars.get("tbFilter"), BorderLayout.SOUTH);
-//		pnlGrid.add(pnlFilter, BorderLayout.NORTH);
 
 		pnlGrid.add(factToolbars.get("tbFilter"), BorderLayout.NORTH);
 		pnlGrid.add(factToolbars.get("tbGrid"), BorderLayout.SOUTH);
 
+		ActionListener alShowAll = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JToggleButton btn = (JToggleButton) e.getSource();
+				boolean all = btn.isSelected();
+				DefaultTableModel tblm = null;
+				
+				String s = btn.getText();
+				switch (s) {
+				case "All Types":
+					tblm = tblmTypeFilter;
+					break;
+				case "All Atts":
+					tblm = tblmAtts;
+					break;
+				case "All Links":
+					tblm = tblmLinks;
+					break;
+				default:
+					DustException.wrap(null, "Should not be here");
+				}
+			}
+		};
+
 		JTable tblAtts = new JTable(tblmAtts);
 		scpTbl = new JScrollPane(tblAtts);
-		scpTbl.setMinimumSize(dimMin);
 
-		pnlGrid.add(DustGuiSwingUtils.createSplit(true, new JScrollPane(handleTable), scpTbl, 1.0), BorderLayout.CENTER);
+		JPanel pnlTbl = new JPanel(new BorderLayout());
+		pnlTbl.add(scpTbl, BorderLayout.CENTER);
+		JToggleButton tbAllAtts = new JToggleButton("All Atts");
+		tbAllAtts.addActionListener(alShowAll);
+		pnlTbl.add(tbAllAtts, BorderLayout.SOUTH);
+		pnlTbl.setMinimumSize(dimMin);
+		DustGuiSwingUtils.setTitle(pnlTbl, "Atts");
+
+		pnlGrid.add(DustGuiSwingUtils.createSplit(true, new JScrollPane(handleTable), pnlTbl, 1.0), BorderLayout.CENTER);
 
 		JTable tblTypeFilter = new JTable(tblmTypeFilter);
 		scpTbl = new JScrollPane(tblTypeFilter);
-		scpTbl.setMinimumSize(dimMin);
-		DustGuiSwingUtils.setTitle(scpTbl, "Type filter");
+		pnlTbl = new JPanel(new BorderLayout());
+		pnlTbl.add(scpTbl, BorderLayout.CENTER);
+		JToggleButton tbAllTypes = new JToggleButton("All Types");
+		tbAllTypes.addActionListener(alShowAll);
+		pnlTbl.add(tbAllTypes, BorderLayout.SOUTH);
+		pnlTbl.setMinimumSize(dimMin);
+		DustGuiSwingUtils.setTitle(pnlTbl, "Types");
 		lsm = tblTypeFilter.getSelectionModel();
 		lsm.addListSelectionListener(new ListSelectionListener() {
 			@Override
@@ -1250,7 +1307,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 			}
 		});
 
-		JComponent splGrid = DustGuiSwingUtils.createSplit(true, scpTbl, pnlGrid, 0.0);
+		JComponent splGrid = DustGuiSwingUtils.createSplit(true, pnlTbl, pnlGrid, 0.0);
 
 		graphPanel.setFactNodes(graphs.get(selGraph));
 
@@ -1259,7 +1316,13 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		pnlGraph.add(factToolbars.get("tbGraph"), BorderLayout.NORTH);
 		JTable tblLinks = new JTable(tblmLinks);
 		scpTbl = new JScrollPane(tblLinks);
-		scpTbl.setMinimumSize(dimMin);
+		pnlTbl = new JPanel(new BorderLayout());
+		pnlTbl.add(scpTbl, BorderLayout.CENTER);
+		JToggleButton tbAllLinks = new JToggleButton("All Links");
+		tbAllLinks.addActionListener(alShowAll);
+		pnlTbl.add(tbAllLinks, BorderLayout.SOUTH);
+		pnlTbl.setMinimumSize(dimMin);
+		DustGuiSwingUtils.setTitle(pnlTbl, "Links");
 
 		lsm = tblLinks.getSelectionModel();
 		lsm.addListSelectionListener(new ListSelectionListener() {
@@ -1279,7 +1342,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 			}
 		});
 
-		pnlGraph.add(DustGuiSwingUtils.createSplit(true, scpTbl, graphPanel.scpGraph, 0.0), BorderLayout.CENTER);
+		pnlGraph.add(DustGuiSwingUtils.createSplit(true, pnlTbl, graphPanel.scpGraph, 0.0), BorderLayout.CENTER);
 
 		JPanel pnlRight = new JPanel(new BorderLayout());
 		pnlRight.add(DustGuiSwingUtils.createSplit(false, splGrid, pnlGraph, 0.0), BorderLayout.CENTER);

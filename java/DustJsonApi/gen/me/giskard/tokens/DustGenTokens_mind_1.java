@@ -28,14 +28,13 @@ public interface DustGenTokens_mind_1 {
 	String TOKEN_MIND_CMD_LISTUNITS = "mind.1$ListUnits";
 	String TOKEN_MIND_TAG_COLLTYPE = "mind.1$Colltype";
 	String TOKEN_MIND_TAG_COLLTYPE_ARR = "mind.1$ColltypeArr";
-	String TOKEN_MIND_TAG_COLLTYPE_ARRAY = "mind.1$ColltypeArray";
 	String TOKEN_MIND_TAG_COLLTYPE_MAP = "mind.1$ColltypeMap";
 	String TOKEN_MIND_TAG_COLLTYPE_ONE = "mind.1$ColltypeOne";
 	String TOKEN_MIND_TAG_COLLTYPE_SET = "mind.1$ColltypeSet";
-	String TOKEN_MIND_TAG_COLLTYPE_SINGLE = "mind.1$ColltypeSingle";
 	String TOKEN_MIND_TAG_FINAL = "mind.1$Final";
 	String TOKEN_MIND_TAG_MANDATORY = "mind.1$Mandatory";
 	String TOKEN_MIND_TAG_OPTIONAL = "mind.1$Optional";
+	String TOKEN_MIND_TAG_RESULT = "mind.1$Result";
 	String TOKEN_MIND_TAG_RESULT_ACCEPT = "mind.1$ResultAccept";
 	String TOKEN_MIND_TAG_RESULT_PASS = "mind.1$ResultPass";
 	String TOKEN_MIND_TAG_RESULT_READ = "mind.1$ResultRead";

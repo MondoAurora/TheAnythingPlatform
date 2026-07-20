@@ -61,6 +61,13 @@
 		},
 		{
 			"attributes": {
+				"misc.1$name": "TOKEN_MISC_TAG_EVENT_DURATION_UNIT_MSEC"
+			},
+			"id": "misc.1$EventDurationUnitMsec",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
 				"misc.1$name": "TOKEN_MISC_TAG_LEVEL_ERROR"
 			},
 			"id": "misc.1$LevelError",
@@ -177,13 +184,6 @@
 			},
 			"id": "misc.1$eventDurationUnit",
 			"type": "mind.1$Attribute"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MISC_TAG_EVENT_DURATION_UNIT_MSEC"
-			},
-			"id": "misc.1$EventDurationUnitMsec",
-			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {

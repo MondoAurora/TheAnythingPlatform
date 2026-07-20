@@ -61,6 +61,140 @@
 		},
 		{
 			"attributes": {
+				"misc.1$name": "TOKEN_GUI_TAG_NUMBER_MODE"
+			},
+			"id": "gui.1$NumberMode",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "gui.1$NumberMode",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_TAG_NUMBER_MODE_SLIDER"
+			},
+			"id": "gui.1$NumberModeSlider",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "gui.1$NumberMode",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_TAG_NUMBER_MODE_SPINNER"
+			},
+			"id": "gui.1$NumberModeSpinner",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "gui.1$NumberMode",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_TAG_NUMBER_MODE_TEXT"
+			},
+			"id": "gui.1$NumberModeText",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_TAG_OPTION_MODE"
+			},
+			"id": "gui.1$OptionMode",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "gui.1$OptionMode",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_TAG_OPTION_MODE_COMBO"
+			},
+			"id": "gui.1$OptionModeCombo",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "gui.1$OptionMode",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_TAG_OPTION_MODE_LIST"
+			},
+			"id": "gui.1$OptionModeList",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "gui.1$OptionMode",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_TAG_OPTION_MODE_RADIO"
+			},
+			"id": "gui.1$OptionModeRadio",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "gui.1$OptionMode",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_TAG_OPTION_MODE_SLIDER"
+			},
+			"id": "gui.1$OptionModeSlider",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "gui.1$OptionMode",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_TAG_OPTION_MODE_TOGGLE"
+			},
+			"id": "gui.1$OptionModeToggle",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
 				"misc.1$name": "TOKEN_GUI_ASP_PANEL_CALENDAR"
 			},
 			"id": "gui.1$PanelCalendar",
@@ -110,6 +244,58 @@
 		},
 		{
 			"attributes": {
+				"misc.1$name": "TOKEN_GUI_TAG_TEXT_MODE"
+			},
+			"id": "gui.1$TextMode",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "gui.1$TextMode",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_TAG_TEXT_MODE_FORMATTED"
+			},
+			"id": "gui.1$TextModeFormatted",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "gui.1$TextMode",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_TAG_TEXT_MODE_MULTI_LINE"
+			},
+			"id": "gui.1$TextModeMultiLine",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "gui.1$TextMode",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_GUI_TAG_TEXT_MODE_SINGLE_LINE"
+			},
+			"id": "gui.1$TextModeSingleLine",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
 				"misc.1$name": "TOKEN_GUI_ASP_WIDGET_BUTTON"
 			},
 			"id": "gui.1$WidgetButton",
@@ -137,6 +323,16 @@
 			"type": "mind.1$Type"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeString",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_GUI_ATT_LOOKANDFEEL"
 			},
@@ -145,6 +341,6 @@
 		}
 	],
 	"meta": {
-		"count": 20
+		"count": 34
 	}
 }

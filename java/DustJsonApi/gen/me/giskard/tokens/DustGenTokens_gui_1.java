@@ -26,4 +26,18 @@ public interface DustGenTokens_gui_1 {
 	String TOKEN_GUI_TAG_AXISUNIT_PIXEL = "gui.1$AxisUnitPixel";
 	String TOKEN_GUI_TAG_AXIS_SCREEN_X = "gui.1$AxisScreenX";
 	String TOKEN_GUI_TAG_AXIS_SCREEN_Y = "gui.1$AxisScreenY";
+	String TOKEN_GUI_TAG_NUMBER_MODE = "gui.1$NumberMode";
+	String TOKEN_GUI_TAG_NUMBER_MODE_SLIDER = "gui.1$NumberModeSlider";
+	String TOKEN_GUI_TAG_NUMBER_MODE_SPINNER = "gui.1$NumberModeSpinner";
+	String TOKEN_GUI_TAG_NUMBER_MODE_TEXT = "gui.1$NumberModeText";
+	String TOKEN_GUI_TAG_OPTION_MODE = "gui.1$OptionMode";
+	String TOKEN_GUI_TAG_OPTION_MODE_COMBO = "gui.1$OptionModeCombo";
+	String TOKEN_GUI_TAG_OPTION_MODE_LIST = "gui.1$OptionModeList";
+	String TOKEN_GUI_TAG_OPTION_MODE_RADIO = "gui.1$OptionModeRadio";
+	String TOKEN_GUI_TAG_OPTION_MODE_SLIDER = "gui.1$OptionModeSlider";
+	String TOKEN_GUI_TAG_OPTION_MODE_TOGGLE = "gui.1$OptionModeToggle";
+	String TOKEN_GUI_TAG_TEXT_MODE = "gui.1$TextMode";
+	String TOKEN_GUI_TAG_TEXT_MODE_FORMATTED = "gui.1$TextModeFormatted";
+	String TOKEN_GUI_TAG_TEXT_MODE_MULTI_LINE = "gui.1$TextModeMultiLine";
+	String TOKEN_GUI_TAG_TEXT_MODE_SINGLE_LINE = "gui.1$TextModeSingleLine";
 }

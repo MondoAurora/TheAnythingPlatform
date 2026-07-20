@@ -25,6 +25,14 @@
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Colltype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_ARR"
 			},
@@ -32,13 +40,14 @@
 			"type": "mind.1$Tag"
 		},
 		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_ARRAY"
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Colltype",
+						"type": "mind.1$Tag"
+					}
+				}
 			},
-			"id": "mind.1$ColltypeArray",
-			"type": "mind.1$Tag"
-		},
-		{
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_MAP"
 			},
@@ -46,6 +55,14 @@
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Colltype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_ONE"
 			},
@@ -53,17 +70,18 @@
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Colltype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_SET"
 			},
 			"id": "mind.1$ColltypeSet",
-			"type": "mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_SINGLE"
-			},
-			"id": "mind.1$ColltypeSingle",
 			"type": "mind.1$Tag"
 		},
 		{
@@ -103,12 +121,35 @@
 		},
 		{
 			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_RESULT"
+			},
+			"id": "mind.1$Result",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Result",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_RESULT_ACCEPT"
 			},
 			"id": "mind.1$ResultAccept",
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Result",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_RESULT_PASS"
 			},
@@ -116,6 +157,14 @@
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Result",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_RESULT_READ"
 			},
@@ -123,6 +172,14 @@
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Result",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_RESULT_READACCEPT"
 			},
@@ -130,6 +187,14 @@
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Result",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_RESULT_REJECT"
 			},
@@ -172,6 +237,14 @@
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Valtype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_BOOL"
 			},
@@ -179,6 +252,14 @@
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Valtype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_HANDLE"
 			},
@@ -186,6 +267,14 @@
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Valtype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_INTEGER"
 			},
@@ -193,6 +282,14 @@
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Valtype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_RAW"
 			},
@@ -200,6 +297,14 @@
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Valtype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_REAL"
 			},
@@ -207,6 +312,14 @@
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Valtype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_STREAM"
 			},
@@ -214,6 +327,14 @@
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Valtype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_STRING"
 			},
@@ -221,6 +342,20 @@
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ATT_AUTHOR"
 			},
@@ -228,6 +363,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ATT_CMD"
 			},
@@ -235,6 +384,16 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeString",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ATT_ID"
 			},
@@ -242,6 +401,16 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ATT_KNOWNUNITS"
 			},
@@ -249,6 +418,16 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ATT_LISTENERS"
 			},
@@ -256,6 +435,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ATT_NEXT"
 			},
@@ -263,6 +456,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ATT_SERIALIZER"
 			},
@@ -270,6 +477,16 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ATT_TAGS"
 			},
@@ -277,6 +494,16 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeBool",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ATT_TRANSACTION_HEAD"
 			},
@@ -284,6 +511,16 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeBool",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ATT_TRANSACTION_ITEM"
 			},
@@ -291,6 +528,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ATT_TYPE"
 			},
@@ -298,6 +549,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ATT_UNIT"
 			},
@@ -314,6 +579,6 @@
 		}
 	],
 	"meta": {
-		"count": 45
+		"count": 44
 	}
 }
