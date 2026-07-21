@@ -69,7 +69,7 @@ public interface DustConsts extends DustGenTokens_dust_1, DustGenTokens_misc_1, 
 	};
 
 	enum DustValType {
-		Handle, Integer, Real, String, Bool, Stream, Raw;
+		Handle, Integer, Real, String, Bool, Raw;
 	};
 
 	public interface DustHandle {

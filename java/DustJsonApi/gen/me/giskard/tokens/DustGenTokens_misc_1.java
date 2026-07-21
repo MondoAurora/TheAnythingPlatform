@@ -56,6 +56,7 @@ public interface DustGenTokens_misc_1 {
 	String TOKEN_MISC_TAG_CMD_RESPOND = "misc.1$CmdRespond";
 	String TOKEN_MISC_TAG_CMD_SAVE = "misc.1$CmdSave";
 	String TOKEN_MISC_TAG_EVENT_DURATION_UNIT_MSEC = "misc.1$EventDurationUnitMsec";
+	String TOKEN_MISC_TAG_LEVEL = "misc.1$Level";
 	String TOKEN_MISC_TAG_LEVEL_ERROR = "misc.1$LevelError";
 	String TOKEN_MISC_TAG_LEVEL_INFO = "misc.1$LevelInfo";
 	String TOKEN_MISC_TAG_LEVEL_TRACE = "misc.1$LevelTrace";

@@ -46,6 +46,5 @@ public interface DustGenTokens_mind_1 {
 	String TOKEN_MIND_TAG_VALTYPE_INTEGER = "mind.1$ValtypeInteger";
 	String TOKEN_MIND_TAG_VALTYPE_RAW = "mind.1$ValtypeRaw";
 	String TOKEN_MIND_TAG_VALTYPE_REAL = "mind.1$ValtypeReal";
-	String TOKEN_MIND_TAG_VALTYPE_STREAM = "mind.1$ValtypeStream";
 	String TOKEN_MIND_TAG_VALTYPE_STRING = "mind.1$ValtypeString";
 }

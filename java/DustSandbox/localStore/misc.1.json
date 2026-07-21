@@ -68,12 +68,35 @@
 		},
 		{
 			"attributes": {
+				"misc.1$name": "TOKEN_MISC_TAG_LEVEL"
+			},
+			"id": "misc.1$Level",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "misc.1$Level",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
 				"misc.1$name": "TOKEN_MISC_TAG_LEVEL_ERROR"
 			},
 			"id": "misc.1$LevelError",
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "misc.1$Level",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MISC_TAG_LEVEL_INFO"
 			},
@@ -81,6 +104,14 @@
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "misc.1$Level",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MISC_TAG_LEVEL_TRACE"
 			},
@@ -88,6 +119,14 @@
 			"type": "mind.1$Tag"
 		},
 		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "misc.1$Level",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MISC_TAG_LEVEL_WARNING"
 			},
@@ -116,6 +155,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeSet",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_ATTRIBUTES"
 			},
@@ -123,6 +176,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeMap",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_CHILDMAP"
 			},
@@ -165,6 +232,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeRaw",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_EVENT_DATE"
 			},
@@ -172,6 +253,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeInteger",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_EVENT_DURATION"
 			},
@@ -179,6 +274,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_EVENT_DURATION_UNIT"
 			},
@@ -186,6 +295,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeRaw",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_EVENT_TIME"
 			},
@@ -200,6 +323,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeString",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_GLOBALID"
 			},
@@ -214,6 +351,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ColltypeArr",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_INIT"
 			},
@@ -256,6 +407,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ColltypeArr",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_MEMBERS"
 			},
@@ -270,6 +435,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeString",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_NAME"
 			},
@@ -284,6 +463,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_PARENT"
 			},
@@ -368,6 +561,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_TARGET"
 			},
@@ -375,6 +582,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeSet",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_MISC_ATT_TYPES"
 			},
@@ -390,6 +611,6 @@
 		}
 	],
 	"meta": {
-		"count": 55
+		"count": 56
 	}
 }

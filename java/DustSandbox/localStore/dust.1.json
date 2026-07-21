@@ -27,6 +27,20 @@
 			"type": "mind.1$Agent"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeString",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_DUST_ATT_BINARY"
 			},
@@ -34,6 +48,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeMap",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeRaw",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_DUST_ATT_BINARY_RESOLVER"
 			},
@@ -41,6 +69,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeBool",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_DUST_ATT_RELEASEONSHUTDOWN"
 			},
@@ -48,6 +90,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeMap",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeRaw",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_DUST_ATT_UNIT_OBJECTS"
 			},
@@ -58,6 +114,10 @@
 			"relationships": {
 				"mind.1$tags": {
 					"data": [
+						{
+							"id": "mind.1$ColltypeMap",
+							"type": "mind.1$Tag"
+						},
 						{
 							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"

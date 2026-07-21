@@ -14,6 +14,10 @@
 						{
 							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ColltypeSet",
+							"type": "mind.1$Tag"
 						}
 					]
 				}
@@ -25,6 +29,20 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
 			"attributes": {
 				"misc.1$name": "TOKEN_DEV_CMD_GENSRC"
 			},
@@ -35,6 +53,10 @@
 			"relationships": {
 				"mind.1$tags": {
 					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
 						{
 							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
@@ -52,6 +74,10 @@
 			"relationships": {
 				"mind.1$tags": {
 					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
 						{
 							"id": "mind.1$ValtypeBool",
 							"type": "mind.1$Tag"

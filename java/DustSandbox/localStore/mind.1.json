@@ -321,21 +321,6 @@
 				}
 			},
 			"attributes": {
-				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_STREAM"
-			},
-			"id": "mind.1$ValtypeStream",
-			"type": "mind.1$Tag"
-		},
-		{
-			"relationships": {
-				"misc.1$parent": {
-					"data": {
-						"id": "mind.1$Valtype",
-						"type": "mind.1$Tag"
-					}
-				}
-			},
-			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_STRING"
 			},
 			"id": "mind.1$ValtypeString",
@@ -346,11 +331,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -367,11 +352,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -387,6 +372,10 @@
 			"relationships": {
 				"mind.1$tags": {
 					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
 						{
 							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
@@ -404,6 +393,10 @@
 			"relationships": {
 				"mind.1$tags": {
 					"data": [
+						{
+							"id": "mind.1$ColltypeSet",
+							"type": "mind.1$Tag"
+						},
 						{
 							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
@@ -424,6 +417,10 @@
 						{
 							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ColltypeArr",
+							"type": "mind.1$Tag"
 						}
 					]
 				}
@@ -439,11 +436,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -460,11 +457,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -480,6 +477,10 @@
 			"relationships": {
 				"mind.1$tags": {
 					"data": [
+						{
+							"id": "mind.1$ColltypeSet",
+							"type": "mind.1$Tag"
+						},
 						{
 							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
@@ -498,6 +499,10 @@
 				"mind.1$tags": {
 					"data": [
 						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
 							"id": "mind.1$ValtypeBool",
 							"type": "mind.1$Tag"
 						}
@@ -514,6 +519,10 @@
 			"relationships": {
 				"mind.1$tags": {
 					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
 						{
 							"id": "mind.1$ValtypeBool",
 							"type": "mind.1$Tag"
@@ -532,11 +541,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -553,11 +562,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -579,6 +588,6 @@
 		}
 	],
 	"meta": {
-		"count": 44
+		"count": 43
 	}
 }

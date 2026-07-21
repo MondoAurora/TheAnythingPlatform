@@ -27,6 +27,10 @@
 				"mind.1$tags": {
 					"data": [
 						{
+							"id": "mind.1$ColltypeSet",
+							"type": "mind.1$Tag"
+						},
+						{
 							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
