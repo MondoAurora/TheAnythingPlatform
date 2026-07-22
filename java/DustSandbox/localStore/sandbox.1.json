@@ -28,9 +28,9 @@
 				"misc.1$name": "DustSandbox Graph Editor",
 				"misc.1$target": "sandbox.1$MiNDAPI",
 				"gui.1$lookAndFeel": [
+					"com.formdev.flatlaf.FlatLightLaf",
 					"com.apple.laf.AquaLookAndFeel",
-					"javax.swing.plaf.nimbus.NimbusLookAndFeel",
-					"com.formdev.flatlaf.FlatLightLaf"
+					"javax.swing.plaf.nimbus.NimbusLookAndFeel"
 				],
 				"dev.1$classes": [
 					"me.giskard.dust.core.DustConsts",

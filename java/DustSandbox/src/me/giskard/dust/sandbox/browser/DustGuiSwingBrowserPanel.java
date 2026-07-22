@@ -3,20 +3,15 @@ package me.giskard.dust.sandbox.browser;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Rectangle;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -35,10 +30,8 @@ import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.event.MouseInputAdapter;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -49,378 +42,14 @@ import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.dev.DustDevUtils;
 import me.giskard.dust.core.mind.DustMindUtils;
 import me.giskard.dust.core.utils.DustUtils;
-import me.giskard.dust.core.utils.DustUtilsFactory;
 import me.giskard.dust.mod.gui.swing.DustGuiSwingUtils;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingBrowserConsts {
 
-	class TableSelListener implements ListSelectionListener {
-		JTable tbl;
-		ArrayList<DustHandle> arr;
-
-		public TableSelListener(ArrayList<DustHandle> arr, JTable tbl, int selMode) {
-			this.tbl = tbl;
-			this.arr = arr;
-			ListSelectionModel lsm = tbl.getSelectionModel();
-			lsm.setSelectionMode(selMode);
-			lsm.addListSelectionListener(this);
-		}
-
-		@Override
-		public void valueChanged(ListSelectionEvent e) {
-			if (!e.getValueIsAdjusting()) {
-				ListSelectionModel lsm = (ListSelectionModel) e.getSource();
-
-				selected.clear();
-
-				for (int idx : lsm.getSelectedIndices()) {
-					int ri = tbl.convertRowIndexToModel(idx);
-					selected.add(arr.get(ri));
-				}
-
-				updatePropPanel();
-				graphPanel.repaintGraph();
-			}
-		}
-	};
-
-	class DustGuiSwingGraphPanel {
-		double zoomFactor = 1.0;
-
-		Collection<DustHandle> selected;
-		Set<String> showLinks;
-		DustUtilsFactory<DustHandle, DustHandle> factNodes;
-
-		JPanel cmpGraph = new JPanel(null) {
-
-			@Override
-			protected void paintChildren(Graphics g) {
-				Graphics2D g2d = (Graphics2D) g;
-
-				AffineTransform at = g2d.getTransform();
-
-				g2d.scale(zoomFactor, zoomFactor);
-
-				for (DustHandle h : factNodes.keys()) {
-					JComponent hc = comps.get(factNodes.get(h));
-					Rectangle rct = hc.getBounds(null);
-					Point pt1 = new Point((int) rct.getCenterX(), (int) rct.getCenterY());
-
-					if (selected.contains(h)) {
-						int sx = rct.x - 5;
-						int sy = rct.y - 5;
-						if (null != anchor) {
-							sx += dx;
-							sy += dy;
-						}
-						g2d.drawRoundRect(sx, sy, rct.width + 10, rct.height + 10, 4, 4);
-					}
-
-					for (String l : showLinks) {
-						Object val = Dust.access(DustAccess.Peek, null, h, l);
-
-						if (val instanceof Map) {
-							val = ((Map) val).values();
-						}
-						if (val instanceof Collection) {
-							for (Object lt : (Collection) val) {
-								optDrawLine(h, l, lt, g2d, rct, pt1);
-							}
-						}
-						if (val instanceof DustHandle) {
-							optDrawLine(h, l, val, g2d, rct, pt1);
-						}
-					}
-				}
-
-				super.paintChildren(g);
-
-				g2d.setTransform(at);
-			}
-
-			public void optDrawLine(DustHandle hSrc, String l, Object target, Graphics2D g2d, Rectangle rct, Point from) {
-				DustHandle ht = factNodes.peek((DustHandle) target);
-				JComponent tc = comps.peek(ht);
-
-				if (null != tc) {
-					String lbl = attTypes.get(l).name() + " " + l;
-
-					if (hSrc == target) {
-						g2d.drawOval(from.x - 15, from.y - 50, 30, 50);
-						g2d.drawString(lbl, from.x, from.y - 50);
-					} else {
-						tc.getBounds(rct);
-						int toX = (int) rct.getCenterX();
-						int toY = (int) rct.getCenterY();
-						g2d.drawLine(from.x, from.y, toX, toY);
-
-						double d = 50.0 / from.distance(toX, toY);
-						int px = from.x + (int) (d * (toX - from.x));
-						int py = from.y + (int) (d * (toY - from.y));
-
-						g2d.drawString(lbl, px, py);
-					}
-				}
-			}
-		};
-
-		JScrollPane scpGraph = new JScrollPane(cmpGraph);
-
-		Point anchor = null;
-		int dx = 0;
-		int dy = 0;
-
-		String[] GRAPH_MODES = { "Select", "Remove Link", "Create Link" };
-		JComboBox<String> cbMode = new JComboBox<String>(GRAPH_MODES);
-
-		MouseInputAdapter ma = new MouseInputAdapter() {
-
-			@Override
-			public void mouseClicked(java.awt.event.MouseEvent e) {
-				DustHandle h = findHandle(e);
-//				int mod = e.getModifiersEx();
-
-				if (null != h) {
-
-					switch ((String) cbMode.getSelectedItem()) {
-					case "Select":
-						if (selected.contains(h)) {
-							selected.remove(h);
-						} else {
-							if (!e.isShiftDown()) {
-								selected.clear();
-							}
-
-							selected.add(h);
-						}
-						break;
-
-					case "Remove Link":
-						for (String l : showLinks) {
-							for (DustHandle hs : selected) {
-								Dust.access(DustAccess.Delete, h, hs, l);
-							}
-						}
-
-						break;
-
-					case "Create Link":
-						if (1 != showLinks.size()) {
-							JOptionPane.showMessageDialog(cmpGraph, "Only works with one selected link", "Create link error", JOptionPane.ERROR_MESSAGE);
-							break;
-						}
-						String l = showLinks.iterator().next();
-						DustCollType ct = attTypes.get(l);
-						String key = null;
-						if (ct == DustCollType.Map) {
-							key = JOptionPane.showInputDialog(cmpGraph, "Key?", "Create Map link", JOptionPane.QUESTION_MESSAGE);
-							if (DustUtils.isEmpty(key)) {
-								break;
-							}
-						}
-						for (DustHandle hs : selected) {
-							switch (ct) {
-							case Arr:
-								Dust.access(DustAccess.Insert, h, hs, l, KEY_ADD);
-								break;
-							case Map:
-								Dust.access(DustAccess.Insert, h, hs, l, key);
-								break;
-							case One:
-								Dust.access(DustAccess.Set, h, hs, l);
-								break;
-							case Set:
-								Dust.access(DustAccess.Insert, h, hs, l);
-								break;
-							}
-						}
-
-						break;
-					}
-
-					if (!e.isShiftDown()) {
-						cbMode.setSelectedIndex(0);
-					}
-					repaintGraph();
-					updatePropPanel();
-				}
-			};
-
-			Point getModelPoint(Point pt) {
-				int x = (int) ((double) pt.x / zoomFactor);
-				int y = (int) ((double) pt.y / zoomFactor);
-
-				return new Point(x, y);
-			}
-
-			public DustHandle findHandle(java.awt.event.MouseEvent e) {
-				Point pt = getModelPoint(e.getPoint());
-
-				Rectangle rct = null;
-				for (DustHandle h : comps.keys()) {
-					JComponent c = comps.get(h);
-					rct = c.getBounds(rct);
-
-					if (rct.contains(pt)) {
-						h = Dust.access(DustAccess.Peek, null, h, TOKEN_MISC_ATT_TARGET);
-						return h;
-					}
-				}
-
-				return null;
-			};
-
-			@Override
-			public void mousePressed(java.awt.event.MouseEvent e) {
-				anchor = getModelPoint(e.getPoint());
-			};
-
-			@Override
-			public void mouseDragged(java.awt.event.MouseEvent e) {
-				Point pt = getModelPoint(e.getPoint());
-
-				dx = pt.x - anchor.x;
-				dy = pt.y - anchor.y;
-
-				repaintGraph();
-			};
-
-			@Override
-			public void mouseReleased(java.awt.event.MouseEvent e) {
-				Point pt = getModelPoint(e.getPoint());
-
-				int dx = pt.x - anchor.x;
-				int dy = pt.y - anchor.y;
-				anchor = null;
-
-				for (DustHandle h : selected) {
-					DustHandle hn = factNodes.peek(h);
-					JComponent c = comps.peek(hn);
-					if (null != c) {
-						pt = c.getLocation(pt);
-						c.setLocation(pt.x + dx, pt.y + dy);
-					}
-				}
-
-				repaintGraph();
-			};
-
-			@Override
-			public void mouseMoved(java.awt.event.MouseEvent e) {
-//				DustHandle h = findHandle(e);
-			}
-
-		};
-
-		public DustGuiSwingGraphPanel(Set<String> allLinks, Collection<DustHandle> selected) {
-			this.showLinks = allLinks;
-			this.selected = selected;
-
-			cmpGraph.addMouseListener(ma);
-			cmpGraph.addMouseMotionListener(ma);
-			cmpGraph.addMouseWheelListener(ma);
-
-			cmpGraph.setPreferredSize(new Dimension(2000, 1000));
-
-			cbMode.setSelectedIndex(0);
-		}
-
-		public void setFactNodes(DustUtilsFactory<DustHandle, DustHandle> factNodes) {
-			this.factNodes = factNodes;
-		}
-
-		int i = 20;
-
-		DustUtilsFactory<DustHandle, JComponent> comps = new DustUtilsFactory(new DustCreator<JComponent>() {
-			@Override
-			public JComponent create(Object key, Object... hints) {
-				DustHandle ht = Dust.access(DustAccess.Peek, null, key, TOKEN_MISC_ATT_TARGET);
-				String txt = (null == ht) ? "??"
-						: new StringBuilder("<html><center>").append(ht.toString().replace(" [", "<br/>[")).append("</center></html>").toString();
-				JLabel lbl = new JLabel(txt);
-				Dimension d = lbl.getPreferredSize();
-				lbl.setBounds(i, i, d.width, d.height);
-				i += 20;
-				return lbl;
-			}
-		}, false);
-
-		public void changeZoomFactor(Double d) {
-			if (null == d) {
-				zoomFactor = 1.0;
-			} else {
-				zoomFactor *= d;
-			}
-
-			repaintGraph();
-		}
-
-		public void repaintGraph() {
-			cmpGraph.removeAll();
-			for (DustHandle h : factNodes.keys()) {
-				JComponent hc = comps.get(factNodes.get(h));
-				cmpGraph.add(hc);
-			}
-
-			cmpGraph.invalidate();
-			scpGraph.repaint();
-		}
-
-		public void randomize() {
-			Random rnd = new Random();
-
-			Rectangle rct = scpGraph.getViewport().getBounds(null);
-			int w = rct.width;
-			int h = rct.height;
-
-			Iterable<DustHandle> k;
-
-			if (selected.isEmpty()) {
-				k = comps.keys();
-			} else {
-				Set<DustHandle> s = new HashSet<DustHandle>();
-				for (DustHandle hs : selected) {
-					DustHandle hn = factNodes.peek(hs);
-					if (null != hn) {
-						s.add(hn);
-					}
-				}
-				k = s;
-			}
-
-			for (DustHandle hh : k) {
-				JComponent hc = comps.peek(hh);
-				rct = hc.getBounds(rct);
-				int x = rnd.nextInt(w - rct.width);
-				int y = rnd.nextInt(h - rct.height);
-
-				hc.setLocation(x, y);
-			}
-
-			repaintGraph();
-
-		}
-
-		public void showHandle(DustHandle hs, boolean show) {
-			showHandle(hs, show, true);
-		}
-
-		public void showHandle(DustHandle hs, boolean show, boolean repaint) {
-			DustUtilsFactory<DustHandle, DustHandle> gf = graphs.get(selGraph);
-
-			if (show) {
-				gf.get(hs);
-			} else {
-				DustHandle hn = gf.remove(hs);
-				comps.remove(hn);
-			}
-			if (repaint) {
-				repaintGraph();
-			}
-		};
-
-	};
+	public DustCollType getAttType(String l) {
+		return attTypes.get(l);
+	}
 
 	DustHandle hMindAPI;
 	DustHandle hSrcGen;
@@ -431,9 +60,17 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 	ArrayList<DustHandle> unitArr = new ArrayList<>();
 	ArrayList<DustHandle> gridArr = new ArrayList<>();
 	ArrayList<String> gridCols = new ArrayList<>();
+
 	Set<String> showTypes = new HashSet<>();
 
 	Set<DustHandle> selected = new HashSet<>();
+
+	DustHandle focused = null;
+	ArrayList<String> focusedAttributes = new ArrayList<>();
+	int focusedIdx = -1;
+	String focusedAtt;
+	DustCollType focusedCollType = DustCollType.One;
+	ArrayList<Object> focusedColData = new ArrayList<>();
 
 	Map<String, DustCollType> attTypes = new TreeMap();
 
@@ -442,54 +79,18 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 	Set<DustHandle> filterUnit = new HashSet<>();
 	String filterStr;
 
-	String selGraph = "";
-	Map<DustHandle, DustHandle> nodePool = new HashMap<>();
-
-	DustCreator<DustHandle> graphNodeCreator = new DustCreator<DustHandle>() {
-		@Override
-		public DustHandle create(Object key, Object... hints) {
-			DustHandle hNode = nodePool.remove(key);
-
-			if (null == hNode) {
-				hNode = Dust.getHandle(hDocUnit, TOKEN_GEOMETRY_ASP_LOCATION, null, DustOptCreate.Primary);
-				Dust.access(DustAccess.Set, key, hNode, TOKEN_MISC_ATT_TARGET);
-
-				// set location
-			}
-
-			return hNode;
-		}
-	};
-
-	DustUtilsFactory<String, DustUtilsFactory<DustHandle, DustHandle>> graphs = new DustUtilsFactory(new DustCreator<DustUtilsFactory<DustHandle, DustHandle>>() {
-		@Override
-		public DustUtilsFactory<DustHandle, DustHandle> create(Object key, Object... hints) {
-			return new DustUtilsFactory<DustHandle, DustHandle>(graphNodeCreator, false) {
-				public DustHandle remove(DustHandle key) {
-					DustHandle ret = super.remove(key);
-
-					if (null != ret) {
-						nodePool.put(key, ret);
-					}
-
-					return ret;
-				};
-			};
-		}
-	}, true);
-
 	JFrame frm;
 
 	JTextField tfHandle = new JTextField();
 	JComboBox<String> cbGraph = new JComboBox<String>();
 	JTextField tfFilter = new JTextField();
 
-	DustGuiSwingGraphPanel graphPanel = new DustGuiSwingGraphPanel(showLinks, selected);
+	DustGuiSwingGraphPanel graphPanel = new DustGuiSwingGraphPanel(this);
 
 	private static final String[] unitCols = { "Filter", "Type", "Identifier", "count" };
 	private static final Class[] unitColTypes = { Boolean.class, String.class, String.class, Integer.class };
 
-	AbstractTableModel unitTblModel = new AbstractTableModel() {
+	AbstractTableModel tblmUnits = new AbstractTableModel() {
 		@Override
 		public int getColumnCount() {
 			return unitCols.length;
@@ -540,7 +141,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		}
 	};
 
-	AbstractTableModel gridTblModel = new AbstractTableModel() {
+	AbstractTableModel tblmGrid = new AbstractTableModel() {
 
 		@Override
 		public int getColumnCount() {
@@ -567,7 +168,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		@Override
 		public Object getValueAt(int rowIndex, int column) {
 			DustHandle hs = gridArr.get(rowIndex);
-			return (--column) < 0 ? (null != graphs.get(selGraph).peek(hs)) : Dust.access(DustAccess.Peek, null, hs, gridCols.get(column));
+			return (--column) < 0 ? (null != graphPanel.factNodes.peek(hs)) : Dust.access(DustAccess.Peek, null, hs, gridCols.get(column));
 		}
 
 		public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
@@ -596,24 +197,15 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		}
 	};
 
-	JComboBox<DustHandle> cbData = new JComboBox<DustHandle>();
-
-	DustHandle focused = null;
-	ArrayList<String> focusedCols = new ArrayList<>();
-	int focusedIdx = -1;
-	String focusedAtt;
-	DustCollType focusedCollType = DustCollType.One;
-	ArrayList<Object> focusedColData = new ArrayList<>();
-
-	private static String[] DATA_COLS = new String[] { "Name", "Type", "Coll", "Value" };
-	AbstractTableModel tblmData = new AbstractTableModel() {
+	private static String[] PROPERTY_COLS = new String[] { "Name", "Type", "Coll", "Value" };
+	AbstractTableModel tblmProperties = new AbstractTableModel() {
 		@Override
 		public int getColumnCount() {
-			return DATA_COLS.length;
+			return PROPERTY_COLS.length;
 		}
 
 		public String getColumnName(int column) {
-			return DATA_COLS[column];
+			return PROPERTY_COLS[column];
 		};
 
 		public java.lang.Class<?> getColumnClass(int columnIndex) {
@@ -633,12 +225,12 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 		@Override
 		public int getRowCount() {
-			return focusedCols.size();
+			return focusedAttributes.size();
 		}
 
 		@Override
 		public Object getValueAt(int rowIndex, int columnIndex) {
-			String a = focusedCols.get(rowIndex);
+			String a = focusedAttributes.get(rowIndex);
 			switch (columnIndex) {
 			case 0:
 				return a;
@@ -708,7 +300,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		}
 	};
 
-	JTable tblData = new JTable(tblmData);
+	JTable tblData = new JTable(tblmProperties);
 	JTable tblColl = new JTable(tblmColl);
 	JTextArea taValue = new JTextArea();
 
@@ -727,68 +319,6 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 	DustGuiSwingUtils.ActionControlFactory factActionControls = new DustGuiSwingUtils.ActionControlFactory(al);
 	DustGuiSwingUtils.ToolbarFactory factToolbars = new DustGuiSwingUtils.ToolbarFactory(factActionControls);
-
-	void refillGrid() {
-		boolean fu = !filterUnit.isEmpty();
-
-		gridArr.clear();
-		gridCols.clear();
-		attTypes.clear();
-
-		tblmAtts.setRowCount(0);
-		tblmLinks.setRowCount(0);
-		tblmTypeFilter.setRowCount(0);
-
-		Set<DustHandle> seenTypes = new HashSet();
-
-		for (DustHandle hu : unitArr) {
-			if (fu && !filterUnit.contains(hu)) {
-				continue;
-			}
-
-			Map<String, DustHandle> members = Dust.access(DustAccess.Peek, -1, hu, TOKEN_DUST_ATT_UNIT_REFS);
-			for (DustHandle h : members.values()) {
-				gridArr.add(h);
-
-				DustHandle t = h.getType();
-				if (seenTypes.add(t)) {
-					tblmTypeFilter.addRow(new Object[] { t.getId() });
-				}
-
-				Collection<String> atts = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, h, KEY_MAP_KEYS);
-
-				for (String a : atts) {
-					DustCollType ct = DustCollType.One;
-					Object val = Dust.access(DustAccess.Peek, null, h, a);
-					if (val instanceof Map) {
-						val = ((Map) val).values();
-						ct = DustCollType.Map;
-					}
-					if (val instanceof Collection) {
-						ct = (val instanceof Set) ? DustCollType.Set : DustCollType.Arr;
-						Collection c = (Collection) val;
-						val = c.isEmpty() ? null : c.iterator().next();
-					}
-
-					if (null == attTypes.put(a, ct)) {
-						if (val instanceof DustHandle) {
-							tblmLinks.addRow(new Object[] { a });
-						} else {
-							tblmAtts.addRow(new Object[] { a });
-							gridCols.add(a);
-						}
-					}
-				}
-			}
-		}
-
-		gridCols.sort(null);
-		gridTblModel.fireTableStructureChanged();
-
-		tblmAtts.fireTableDataChanged();
-		tblmLinks.fireTableDataChanged();
-		tblmTypeFilter.fireTableDataChanged();
-	}
 
 	@Override
 	protected void init() throws Exception {
@@ -870,7 +400,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				}
 
 				if (refresh) {
-					unitTblModel.fireTableDataChanged();
+					tblmUnits.fireTableDataChanged();
 					refillGrid();
 				}
 
@@ -883,7 +413,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					DustHandle hLoad = Dust.getUnit(unitId, true);
 					if (!unitArr.contains(hLoad)) {
 						unitArr.add(hLoad);
-						unitTblModel.fireTableDataChanged();
+						tblmUnits.fireTableDataChanged();
 						refillGrid();
 					}
 				}
@@ -945,8 +475,8 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 						selected.add(sc);
 					}
 				}
-				gridTblModel.fireTableDataChanged();
-				unitTblModel.fireTableDataChanged();
+				tblmGrid.fireTableDataChanged();
+				tblmUnits.fireTableDataChanged();
 				graphPanel.repaintGraph();
 
 				break;
@@ -963,8 +493,8 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 //							Dust.access(DustAccess.Set, id, sc, TOKEN_MIND_ATT_ID); // quick fix
 //							graphPanel.showHandle(sc, true, false);
 //							selected.add(sc);
-							gridTblModel.fireTableDataChanged();
-							unitTblModel.fireTableDataChanged();
+							tblmGrid.fireTableDataChanged();
+							tblmUnits.fireTableDataChanged();
 							graphPanel.repaintGraph();
 						}
 					}
@@ -983,21 +513,10 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					graphPanel.repaintGraph();
 				}
 				break;
-			case "Select Handle":
-				focused = (DustHandle) cbData.getSelectedItem();
-				focusedCols.clear();
-
-				if (null != focused) {
-					Collection<String> atts = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, focused, KEY_MAP_KEYS);
-					focusedCols.addAll(atts);
-				}
-
-				tblmData.fireTableDataChanged();
-				break;
 			case "Drop Att":
 				if ((null != focused) && (null != focusedAtt)) {
 					Dust.access(DustAccess.Delete, null, focused, focusedAtt);
-					tblmData.fireTableDataChanged();
+					tblmProperties.fireTableDataChanged();
 				}
 				break;
 			case "Update Value":
@@ -1026,7 +545,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					}
 					ListSelectionModel lsm = tblData.getSelectionModel();
 					int di = lsm.getLeadSelectionIndex();
-					tblmData.fireTableCellUpdated(di, 1);
+					tblmProperties.fireTableCellUpdated(di, 1);
 					tblmColl.fireTableCellUpdated(focusedIdx, 1);
 
 					tblColl.repaint();
@@ -1076,14 +595,12 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 		cbGraph.setEditable(true);
 
-		factToolbars.fillToolbar("tbTop", "Rebuild", "Load Tokens", null, new JLabel("Handle ID:"), tfHandle, "Load Handle", null, "Rollback", "Commit"
-//				, null, new JLabel("Graph"), tfGraph, "Load Graph", "Merge"
-		);
+		factToolbars.fillToolbar("tbTop", "Rebuild", "Load Tokens", null, new JLabel("Handle ID:"), tfHandle, "Load Handle", null, "Rollback", "Commit");
 		factToolbars.fillToolbar("tbUnit", "Update Units", "Load Unit", null, "Gen Src");
 		factToolbars.fillToolbar("tbProp", "Drop Att", "Update Value");
-		factToolbars.fillToolbar("tbGraph", "Activate", "+", ".", "-", "Random", "Load Refs", "Drop Selected", graphPanel.cbMode);
+		factToolbars.fillToolbar("tbGraph", new JLabel("Zoom:"), "+", ".", "-", null, "Activate", null, "Random", "Load Refs", "Drop Selected", graphPanel.cbMode);
 		factToolbars.fillToolbar("tbGrid", "Show Selected", "Hide Selected", null, "New handle", "Duplicate", "Delete Selected");
-		factToolbars.fillToolbar("tbFilter", new JLabel("Contains string:"), tfFilter, "Search");
+		factToolbars.fillToolbar("tbFilter", new JLabel("Contains:"), tfFilter);
 
 		Container cp = frm.getContentPane();
 		cp.removeAll();
@@ -1091,8 +608,33 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		JPanel pnlMain = new JPanel(new BorderLayout());
 		pnlMain.add(factToolbars.get("tbTop"), BorderLayout.NORTH);
 
-		JTable unitTable = new JTable(unitTblModel);
-		new TableSelListener(unitArr, unitTable, ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		// Unit + text filter
+
+		JTable unitTable = new JTable(tblmUnits);
+		ListSelectionListener slUnit = new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()) {
+					ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+
+					DustHandle hs = null;
+
+					int li = lsm.getLeadSelectionIndex();
+
+					if (-1 != li) {
+
+						int ri = unitTable.convertRowIndexToModel(li);
+						hs = unitArr.get(ri);
+					}
+
+					setFocused(hs);
+				}
+			}
+		};
+		lsm = unitTable.getSelectionModel();
+		lsm.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		lsm.addListSelectionListener(slUnit);
+
 		unitTable.setAutoCreateRowSorter(true);
 
 		JPanel pnlUnit = new JPanel(new BorderLayout());
@@ -1100,14 +642,21 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		JScrollPane scpUnit = new JScrollPane(unitTable);
 		scpUnit.setMinimumSize(dimMin);
 		pnlUnit.add(scpUnit, BorderLayout.CENTER);
-		pnlUnit.add(factToolbars.get("tbUnit"), BorderLayout.SOUTH);
+		pnlUnit.add(factToolbars.get("tbUnit"), BorderLayout.NORTH);
+
+		tfFilter.getDocument().addDocumentListener(new DustGuiSwingUtils.DocumentAdapter() {
+			protected void update(DocumentEvent e) {
+				filterStr = tfFilter.getText().toLowerCase();
+				tblmGrid.fireTableDataChanged();
+			}
+		});
+
+		pnlUnit.add(factToolbars.get("tbFilter"), BorderLayout.SOUTH);
+
+		// Properties
 
 		JPanel pnlProp = new JPanel(new BorderLayout());
 		DustGuiSwingUtils.setTitle(pnlProp, "Properties");
-		pnlProp.add(cbData, BorderLayout.NORTH);
-
-		cbData.setActionCommand("Select Handle");
-		cbData.addActionListener(al);
 
 		lsm = tblData.getSelectionModel();
 		lsm.addListSelectionListener(new ListSelectionListener() {
@@ -1119,7 +668,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					focusedColData.clear();
 
 					if (-1 != ai) {
-						focusedAtt = focusedCols.get(ai);
+						focusedAtt = focusedAttributes.get(ai);
 						focusedCollType = attTypes.get(focusedAtt);
 
 						Object data = Dust.access(DustAccess.Peek, null, focused, focusedAtt);
@@ -1175,18 +724,43 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		pnlProp.add(DustGuiSwingUtils.createSplit(false, scpData, dc, 1.0), BorderLayout.CENTER);
 		pnlProp.add(factToolbars.get("tbProp"), BorderLayout.SOUTH);
 
-		JPanel pnlLeft = new JPanel(new BorderLayout());
-		pnlLeft.add(DustGuiSwingUtils.createSplit(false, pnlUnit, pnlProp, 0.0), BorderLayout.CENTER);
+		// Data grid
+		JTable handleTable = new JTable(tblmGrid);
+		ListSelectionListener lsHandle = new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()) {
+					ListSelectionModel lsm = (ListSelectionModel) e.getSource();
 
-		JTable handleTable = new JTable(gridTblModel);
-		new TableSelListener(gridArr, handleTable, ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+					selected.clear();
+
+					int li = lsm.getLeadSelectionIndex();
+
+					for (int idx : lsm.getSelectedIndices()) {
+						int ri = handleTable.convertRowIndexToModel(idx);
+						DustHandle hs = gridArr.get(ri);
+						selected.add(hs);
+
+						if (li == idx) {
+							setFocused(hs);
+						}
+					}
+
+//					updatePropPanel();
+					graphPanel.repaintGraph();
+				}
+			}
+		};
+		lsm = handleTable.getSelectionModel();
+		lsm.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		lsm.addListSelectionListener(lsHandle);
+
 		handleTable.setAutoCreateRowSorter(true);
 
 		RowFilter rf = new RowFilter() {
 			@Override
 			public boolean include(Entry entry) {
 				int idx = (int) entry.getIdentifier();
-//				int mi = handleTable.convertRowIndexToModel(idx);
 				DustHandle hi = gridArr.get(idx);
 
 				if (!showTypes.isEmpty() && !showTypes.contains(hi.getType().getId())) {
@@ -1218,8 +792,11 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		JPanel pnlGrid = new JPanel(new BorderLayout());
 		DustGuiSwingUtils.setTitle(pnlGrid, "Handle Grid");
 
-		pnlGrid.add(factToolbars.get("tbFilter"), BorderLayout.NORTH);
+//		pnlGrid.add(factToolbars.get("tbFilter"), BorderLayout.NORTH);
 		pnlGrid.add(factToolbars.get("tbGrid"), BorderLayout.SOUTH);
+		pnlGrid.add(new JScrollPane(handleTable), BorderLayout.CENTER);
+
+		pnlGrid.setMinimumSize(dimMin);
 
 		ActionListener alShowAll = new ActionListener() {
 			@Override
@@ -1227,7 +804,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				JToggleButton btn = (JToggleButton) e.getSource();
 				boolean all = btn.isSelected();
 				DefaultTableModel tblm = null;
-				
+
 				String s = btn.getText();
 				switch (s) {
 				case "All Types":
@@ -1245,28 +822,30 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 			}
 		};
 
+		// Attributes
+
 		JTable tblAtts = new JTable(tblmAtts);
 		scpTbl = new JScrollPane(tblAtts);
 
-		JPanel pnlTbl = new JPanel(new BorderLayout());
-		pnlTbl.add(scpTbl, BorderLayout.CENTER);
+		JPanel pnlAtts = new JPanel(new BorderLayout());
+		pnlAtts.add(scpTbl, BorderLayout.CENTER);
 		JToggleButton tbAllAtts = new JToggleButton("All Atts");
 		tbAllAtts.addActionListener(alShowAll);
-		pnlTbl.add(tbAllAtts, BorderLayout.SOUTH);
-		pnlTbl.setMinimumSize(dimMin);
-		DustGuiSwingUtils.setTitle(pnlTbl, "Atts");
+		pnlAtts.add(tbAllAtts, BorderLayout.SOUTH);
+		pnlAtts.setMinimumSize(dimMin);
+		DustGuiSwingUtils.setTitle(pnlAtts, "Atts");
 
-		pnlGrid.add(DustGuiSwingUtils.createSplit(true, new JScrollPane(handleTable), pnlTbl, 1.0), BorderLayout.CENTER);
+		// Types
 
 		JTable tblTypeFilter = new JTable(tblmTypeFilter);
 		scpTbl = new JScrollPane(tblTypeFilter);
-		pnlTbl = new JPanel(new BorderLayout());
-		pnlTbl.add(scpTbl, BorderLayout.CENTER);
+		JPanel pnlTypes = new JPanel(new BorderLayout());
+		pnlTypes.add(scpTbl, BorderLayout.CENTER);
 		JToggleButton tbAllTypes = new JToggleButton("All Types");
 		tbAllTypes.addActionListener(alShowAll);
-		pnlTbl.add(tbAllTypes, BorderLayout.SOUTH);
-		pnlTbl.setMinimumSize(dimMin);
-		DustGuiSwingUtils.setTitle(pnlTbl, "Types");
+		pnlTypes.add(tbAllTypes, BorderLayout.SOUTH);
+		pnlTypes.setMinimumSize(dimMin);
+		DustGuiSwingUtils.setTitle(pnlTypes, "Types");
 		lsm = tblTypeFilter.getSelectionModel();
 		lsm.addListSelectionListener(new ListSelectionListener() {
 			@Override
@@ -1279,50 +858,21 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					for (int idx : lsm.getSelectedIndices()) {
 						showTypes.add((String) tblTypeFilter.getValueAt(idx, 0));
 					}
-					gridTblModel.fireTableDataChanged();
+					tblmGrid.fireTableDataChanged();
 				}
 			}
 		});
 
-		tfFilter.getDocument().addDocumentListener(new DocumentListener() {
-
-			void update() {
-				filterStr = tfFilter.getText().toLowerCase();
-				gridTblModel.fireTableDataChanged();
-			}
-
-			@Override
-			public void removeUpdate(DocumentEvent e) {
-				update();
-			}
-
-			@Override
-			public void insertUpdate(DocumentEvent e) {
-				update();
-			}
-
-			@Override
-			public void changedUpdate(DocumentEvent e) {
-				update();
-			}
-		});
-
-		JComponent splGrid = DustGuiSwingUtils.createSplit(true, pnlTbl, pnlGrid, 0.0);
-
-		graphPanel.setFactNodes(graphs.get(selGraph));
-
-		JPanel pnlGraph = new JPanel(new BorderLayout());
-		DustGuiSwingUtils.setTitle(pnlGraph, "Handle Graph");
-		pnlGraph.add(factToolbars.get("tbGraph"), BorderLayout.NORTH);
+		// Links
 		JTable tblLinks = new JTable(tblmLinks);
 		scpTbl = new JScrollPane(tblLinks);
-		pnlTbl = new JPanel(new BorderLayout());
-		pnlTbl.add(scpTbl, BorderLayout.CENTER);
+		JPanel pnlLinks = new JPanel(new BorderLayout());
+		pnlLinks.add(scpTbl, BorderLayout.CENTER);
 		JToggleButton tbAllLinks = new JToggleButton("All Links");
 		tbAllLinks.addActionListener(alShowAll);
-		pnlTbl.add(tbAllLinks, BorderLayout.SOUTH);
-		pnlTbl.setMinimumSize(dimMin);
-		DustGuiSwingUtils.setTitle(pnlTbl, "Links");
+		pnlLinks.add(tbAllLinks, BorderLayout.SOUTH);
+		pnlLinks.setMinimumSize(dimMin);
+		DustGuiSwingUtils.setTitle(pnlLinks, "Links");
 
 		lsm = tblLinks.getSelectionModel();
 		lsm.addListSelectionListener(new ListSelectionListener() {
@@ -1342,16 +892,41 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 			}
 		});
 
-		pnlGraph.add(DustGuiSwingUtils.createSplit(true, pnlTbl, graphPanel.scpGraph, 0.0), BorderLayout.CENTER);
+		// Graph
+		JPanel pnlGraph = new JPanel(new BorderLayout());
+		DustGuiSwingUtils.setTitle(pnlGraph, "Handle Graph");
+		pnlGraph.add(graphPanel.scpGraph, BorderLayout.CENTER);
+		pnlGraph.add(factToolbars.get("tbGraph"), BorderLayout.NORTH);
 
-		JPanel pnlRight = new JPanel(new BorderLayout());
-		pnlRight.add(DustGuiSwingUtils.createSplit(false, splGrid, pnlGraph, 0.0), BorderLayout.CENTER);
+		// Final build
 
-		pnlMain.add(DustGuiSwingUtils.createSplit(true, pnlLeft, pnlRight, 0.0), BorderLayout.CENTER);
+//		pnlGrid.add(DustGuiSwingUtils.createSplit(true, new JScrollPane(handleTable), pnlAtts, 1.0), BorderLayout.CENTER);
+//
+//		
+//		JComponent splGrid = DustGuiSwingUtils.createSplit(true, pnlTypes, pnlGrid, 0.0);
+//		
+//		pnlGraph.add(DustGuiSwingUtils.createSplit(true, pnlLinks, graphPanel.scpGraph, 0.0), BorderLayout.CENTER);
+//
+//		JPanel pnlLeft = new JPanel(new BorderLayout());
+//		pnlLeft.add(DustGuiSwingUtils.createSplit(false, pnlUnit, pnlProp, 0.0), BorderLayout.CENTER);
+//
+//		JPanel pnlRight = new JPanel(new BorderLayout());
+//		pnlRight.add(DustGuiSwingUtils.createSplit(false, splGrid, pnlGraph, 0.0), BorderLayout.CENTER);
 
-//		factToolbars.fillToolbar("tbDoc", null, "<-", "->", null, "Delete", "UnderFirst", null, "Bullet", "Number", "Local", null, "Resp", "Table",
-//				/* "Merge", */ null, "Style ->", "<- Style", "Apply", "Update", /* "New", "Drop", */ null, "ResInsert", null, "evtToNext", "evtToPrev", "evtSplit",
-//				"evtMergeNext", "evtMergePrev", "evtTranslate", null, "Magic!", "GenHtml", Box.createGlue(), "Translate", "LoadTranslate", "ExtRes", "Export", null);
+		JPanel pnlFilter = new JPanel(new BorderLayout());
+		JPanel pnlMetaFilter = new JPanel(new GridLayout(1, 3));
+		pnlMetaFilter.add(pnlTypes);
+		pnlMetaFilter.add(pnlAtts);
+		pnlMetaFilter.add(pnlLinks);
+
+		pnlFilter.add(DustGuiSwingUtils.createSplit(true, pnlUnit, pnlMetaFilter, 0.0), BorderLayout.CENTER);
+
+		JPanel pnlData = new JPanel(new BorderLayout());
+		JPanel pnlDataMulti = new JPanel(new BorderLayout());
+		pnlDataMulti.add(DustGuiSwingUtils.createSplit(false, pnlGrid, pnlGraph, 0.2), BorderLayout.CENTER);
+		pnlData.add(DustGuiSwingUtils.createSplit(true, pnlDataMulti, pnlProp, 1.0), BorderLayout.CENTER);
+
+		pnlMain.add(DustGuiSwingUtils.createSplit(false, pnlFilter, pnlData, 0.0), BorderLayout.CENTER);
 
 		cp.add(pnlMain);
 		cp.revalidate();
@@ -1363,11 +938,84 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		return null;
 	}
 
-	public void updatePropPanel() {
-		cbData.removeAllItems();
-		for (DustHandle s : selected) {
-			cbData.addItem(s);
+	void refillGrid() {
+		boolean fu = !filterUnit.isEmpty();
+
+		gridArr.clear();
+		gridCols.clear();
+		attTypes.clear();
+
+		tblmAtts.setRowCount(0);
+		tblmLinks.setRowCount(0);
+		tblmTypeFilter.setRowCount(0);
+
+		Set<DustHandle> seenTypes = new HashSet();
+
+		for (DustHandle hu : unitArr) {
+			if (fu && !filterUnit.contains(hu)) {
+				continue;
+			}
+
+			Map<String, DustHandle> members = Dust.access(DustAccess.Peek, -1, hu, TOKEN_DUST_ATT_UNIT_REFS);
+			for (DustHandle h : members.values()) {
+				gridArr.add(h);
+
+				DustHandle t = h.getType();
+				if (seenTypes.add(t)) {
+					tblmTypeFilter.addRow(new Object[] { t.getId() });
+				}
+
+				Collection<String> atts = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, h, KEY_MAP_KEYS);
+
+				for (String a : atts) {
+					DustCollType ct = DustCollType.One;
+					Object val = Dust.access(DustAccess.Peek, null, h, a);
+					if (val instanceof Map) {
+						val = ((Map) val).values();
+						ct = DustCollType.Map;
+					}
+					if (val instanceof Collection) {
+						ct = (val instanceof Set) ? DustCollType.Set : DustCollType.Arr;
+						Collection c = (Collection) val;
+						val = c.isEmpty() ? null : c.iterator().next();
+					}
+
+					if (null == attTypes.put(a, ct)) {
+						if (val instanceof DustHandle) {
+							tblmLinks.addRow(new Object[] { a });
+						} else {
+							tblmAtts.addRow(new Object[] { a });
+							gridCols.add(a);
+						}
+					}
+				}
+			}
 		}
+
+		gridCols.sort(null);
+		tblmGrid.fireTableStructureChanged();
+
+		tblmAtts.fireTableDataChanged();
+		tblmLinks.fireTableDataChanged();
+		tblmTypeFilter.fireTableDataChanged();
+	}
+
+	public DustHandle getFocused() {
+		return focused;
+	}
+
+	public void setFocused(DustHandle h) {
+		focused = h;
+		focusedAttributes.clear();
+
+		if (null != focused) {
+			Collection<String> atts = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, focused, KEY_MAP_KEYS);
+			focusedAttributes.addAll(atts);
+			selected.add(h);
+		}
+
+		tblmProperties.fireTableDataChanged();
+		graphPanel.repaintGraph();
 	}
 
 }

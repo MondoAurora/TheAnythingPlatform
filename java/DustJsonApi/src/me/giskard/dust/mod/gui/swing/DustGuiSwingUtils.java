@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -21,6 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustException;
@@ -115,6 +118,10 @@ public class DustGuiSwingUtils implements DustGuiSwingConsts {
 		for (String lcn : lnf) {
 			try {
 				UIManager.setLookAndFeel(lcn);
+				UIManager.put("MenuBar.backgroundPainter", BorderFactory.createEmptyBorder());
+				UIManager.put("MenuBar.selectedBackgroundPainter", BorderFactory.createEmptyBorder());
+				UIManager.put("MenuItem.selectedBackgroundPainter", BorderFactory.createEmptyBorder());
+				
 				Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Swing L&F selected:", lcn);
 				return lcn;
 
@@ -184,4 +191,23 @@ public class DustGuiSwingUtils implements DustGuiSwingConsts {
 		}
 	};
 
+	public static abstract class DocumentAdapter implements DocumentListener {
+
+		protected abstract void update(DocumentEvent e);
+		
+		@Override
+		public void removeUpdate(DocumentEvent e) {
+			update(e);
+		}
+
+		@Override
+		public void insertUpdate(DocumentEvent e) {
+			update(e);
+		}
+
+		@Override
+		public void changedUpdate(DocumentEvent e) {
+			update(e);
+		}
+	};
 }
