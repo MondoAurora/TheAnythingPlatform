@@ -33,7 +33,7 @@ public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, 
 				DustHandle meta = Dust.getUnit(metaId, true);
 
 				String type = Dust.access(DustAccess.Peek, null, src, TOKEN_MIND_ATT_TYPE);
-				DustHandle tType = Dust.getHandle(meta, TOKEN_MIND_ASP_TYPE, type, DustOptCreate.Meta);
+				DustHandle tType = Dust.getHandle(meta, TOKEN_MIND_ASP_ASPECT, type, DustOptCreate.Meta);
 
 				String unitId = Dust.access(DustAccess.Peek, null, src, TOKEN_MISC_ATT_DATA);
 				DustHandle unit = Dust.getUnit(unitId, true);

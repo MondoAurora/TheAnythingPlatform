@@ -29,35 +29,35 @@
 				"misc.1$name": "TOKEN_GUI_ASP_EDIT_COLL"
 			},
 			"id": "gui.1$EditColl",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_GUI_ASP_EDIT_HANDLE"
 			},
 			"id": "gui.1$EditHandle",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_GUI_ASP_EDIT_NUMBER"
 			},
 			"id": "gui.1$EditNumber",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_GUI_ASP_EDIT_OPTION"
 			},
 			"id": "gui.1$EditOption",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_GUI_ASP_EDIT_TEXT"
 			},
 			"id": "gui.1$EditText",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
@@ -198,49 +198,49 @@
 				"misc.1$name": "TOKEN_GUI_ASP_PANEL_CALENDAR"
 			},
 			"id": "gui.1$PanelCalendar",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_GUI_ASP_PANEL_CONTAINER"
 			},
 			"id": "gui.1$PanelContainer",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_GUI_ASP_PANEL_IDEA_GRID"
 			},
 			"id": "gui.1$PanelIdeaGrid",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_GUI_ASP_PANEL_IDEA_PROPERTIES"
 			},
 			"id": "gui.1$PanelIdeaProperties",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_GUI_ASP_PANEL_MEDIA_PLAYER"
 			},
 			"id": "gui.1$PanelMediaPlayer",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_GUI_ASP_PANEL_SPLIT"
 			},
 			"id": "gui.1$PanelSplit",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_GUI_ASP_PANEL_TOOLBAR"
 			},
 			"id": "gui.1$PanelToolbar",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
@@ -299,28 +299,28 @@
 				"misc.1$name": "TOKEN_GUI_ASP_WIDGET_BUTTON"
 			},
 			"id": "gui.1$WidgetButton",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_GUI_ASP_WIDGET_LABEL"
 			},
 			"id": "gui.1$WidgetLabel",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_GUI_ASP_WIDGET_PROGRESS"
 			},
 			"id": "gui.1$WidgetProgress",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_GUI_ASP_WINDOW"
 			},
 			"id": "gui.1$Window",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"relationships": {

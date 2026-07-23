@@ -8,7 +8,7 @@
 				"misc.1$name": "TOKEN_DUST_ASP_APP"
 			},
 			"id": "dust.1$Application",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"relationships": {
@@ -133,15 +133,15 @@
 		},
 		{
 			"id": "mind.1$Attribute",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
-			"id": "mind.1$Type",
-			"type": "mind.1$Type"
+			"id": "mind.1$Aspect",
+			"type": "mind.1$Aspect"
 		},
 		{
 			"id": "mind.1$Unit",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		}
 	],
 	"meta": {

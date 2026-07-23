@@ -8,14 +8,14 @@
 				"misc.1$name": "TOKEN_MIND_ASP_AGENT"
 			},
 			"id": "mind.1$Agent",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ASP_ATTRIBUTE"
 			},
 			"id": "mind.1$Attribute",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
@@ -206,28 +206,28 @@
 				"misc.1$name": "TOKEN_MIND_ASP_SERVICE"
 			},
 			"id": "mind.1$Service",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ASP_TAG"
 			},
 			"id": "mind.1$Tag",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_MIND_ASP_TYPE"
+				"misc.1$name": "TOKEN_MIND_ASP_ASPECT"
 			},
-			"id": "mind.1$Type",
-			"type": "mind.1$Type"
+			"id": "mind.1$Aspect",
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ASP_UNIT"
 			},
 			"id": "mind.1$Unit",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {

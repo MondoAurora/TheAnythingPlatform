@@ -98,7 +98,7 @@
 					"misc.1$name": true,
 					"mind.1$typeX": [
 						"mind.1$Unit",
-						"mind.1$Type",
+						"mind.1$Aspect",
 						"mind.1$Attribute",
 						"mind.1$Tag",
 						"mind.1$Agent"
@@ -159,7 +159,7 @@
 				"misc.1$path": "../DustJsonApi/gen",
 				"misc.1$members": [
 					"mind.1$Unit",
-					"mind.1$Type",
+					"mind.1$Aspect",
 					"mind.1$Attribute",
 					"mind.1$Tag",
 					"mind.1$Agent"

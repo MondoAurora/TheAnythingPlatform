@@ -15,11 +15,11 @@
 				"misc.1$name": "TOKEN_STREAM_ASP_STREAM"
 			},
 			"id": "stream.1$Stream",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"id": "stream.1$StreamRef",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"relationships": {

@@ -170,7 +170,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMindConsts,
 	static void loadDataSegment(DustHandle unit, Map<String, Object> data, boolean included) {
 
 		String type = DustUtils.simpleGet(data, JsonApiMember.type);
-		DustHandle tType = Dust.getHandle(unit, TOKEN_MIND_ASP_TYPE, type, DustOptCreate.Meta);
+		DustHandle tType = Dust.getHandle(unit, TOKEN_MIND_ASP_ASPECT, type, DustOptCreate.Meta);
 
 		String id = DustUtils.simpleGet(data, JsonApiMember.id);
 		DustHandle target = Dust.getHandle(unit, tType, id, DustOptCreate.Primary);
@@ -196,7 +196,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMindConsts,
 				if (rd instanceof Collection) {
 					for (Object rdd : (Collection) rd) {
 						String rt = DustUtils.simpleGet(rdd, JsonApiMember.type);
-						DustHandle tTypeRef = Dust.getHandle(unit, TOKEN_MIND_ASP_TYPE, rt, DustOptCreate.Meta);
+						DustHandle tTypeRef = Dust.getHandle(unit, TOKEN_MIND_ASP_ASPECT, rt, DustOptCreate.Meta);
 
 						String ri = DustUtils.simpleGet(rdd, JsonApiMember.id);
 
@@ -212,7 +212,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMindConsts,
 					}
 				} else {
 					String rt = DustUtils.simpleGet(rd, JsonApiMember.type);
-					DustHandle tTypeRef = Dust.getHandle(unit, TOKEN_MIND_ASP_TYPE, rt, DustOptCreate.Meta);
+					DustHandle tTypeRef = Dust.getHandle(unit, TOKEN_MIND_ASP_ASPECT, rt, DustOptCreate.Meta);
 					String ri = DustUtils.simpleGet(rd, JsonApiMember.id);
 
 					DustHandle rh = Dust.getHandle(unit, tTypeRef, ri, DustOptCreate.Reference);

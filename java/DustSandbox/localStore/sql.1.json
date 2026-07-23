@@ -8,7 +8,7 @@
 				"misc.1$name": "TOKEN_SQL_ASP_SELECT"
 			},
 			"id": "sql.1$Select",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {

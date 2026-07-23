@@ -6,7 +6,7 @@ public interface DustGenTokens_mind_1 {
 	String TOKEN_MIND_ASP_ATTRIBUTE = "mind.1$Attribute";
 	String TOKEN_MIND_ASP_SERVICE = "mind.1$Service";
 	String TOKEN_MIND_ASP_TAG = "mind.1$Tag";
-	String TOKEN_MIND_ASP_TYPE = "mind.1$Type";
+	String TOKEN_MIND_ASP_ASPECT = "mind.1$Aspect";
 	String TOKEN_MIND_ASP_UNIT = "mind.1$Unit";
 
 // Attributes

@@ -57,7 +57,7 @@
 				"misc.1$name": "TOKEN_MISC_ASP_EVENT"
 			},
 			"id": "misc.1$Event",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {

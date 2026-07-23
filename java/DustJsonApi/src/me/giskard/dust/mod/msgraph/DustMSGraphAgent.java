@@ -49,7 +49,7 @@ public class DustMSGraphAgent extends DustAgent implements DustMSGraphConsts, Du
 			DustHandle data = Dust.getUnit(dataId, true);
 
 			String typeId = Dust.access(DustAccess.Peek, null, src, TOKEN_MIND_ATT_TYPE);
-			DustHandle type = Dust.getHandle(meta, TOKEN_MIND_ASP_TYPE, typeId, DustOptCreate.Meta);
+			DustHandle type = Dust.getHandle(meta, TOKEN_MIND_ASP_ASPECT, typeId, DustOptCreate.Meta);
 
 			Object response;
 

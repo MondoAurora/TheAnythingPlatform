@@ -61,7 +61,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 	ArrayList<DustHandle> gridArr = new ArrayList<>();
 	ArrayList<String> gridCols = new ArrayList<>();
 
-	Set<String> showTypes = new HashSet<>();
+	Set<String> showAspects = new HashSet<>();
 
 	Set<DustHandle> selected = new HashSet<>();
 
@@ -181,7 +181,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 	private static String[] ATT_COLS = new String[] { "Name" };
 
-	DefaultTableModel tblmTypeFilter = new DefaultTableModel(ATT_COLS, 0) {
+	DefaultTableModel tblmAspectFilter = new DefaultTableModel(ATT_COLS, 0) {
 		public boolean isCellEditable(int row, int column) {
 			return false;
 		}
@@ -763,7 +763,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				int idx = (int) entry.getIdentifier();
 				DustHandle hi = gridArr.get(idx);
 
-				if (!showTypes.isEmpty() && !showTypes.contains(hi.getType().getId())) {
+				if (!showAspects.isEmpty() && !showAspects.contains(hi.getType().getId())) {
 					return false;
 				}
 
@@ -807,8 +807,8 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 				String s = btn.getText();
 				switch (s) {
-				case "All Types":
-					tblm = tblmTypeFilter;
+				case "All Aspects":
+					tblm = tblmAspectFilter;
 					break;
 				case "All Atts":
 					tblm = tblmAtts;
@@ -835,28 +835,28 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		pnlAtts.setMinimumSize(dimMin);
 		DustGuiSwingUtils.setTitle(pnlAtts, "Atts");
 
-		// Types
+		// Aspects
 
-		JTable tblTypeFilter = new JTable(tblmTypeFilter);
-		scpTbl = new JScrollPane(tblTypeFilter);
-		JPanel pnlTypes = new JPanel(new BorderLayout());
-		pnlTypes.add(scpTbl, BorderLayout.CENTER);
-		JToggleButton tbAllTypes = new JToggleButton("All Types");
-		tbAllTypes.addActionListener(alShowAll);
-		pnlTypes.add(tbAllTypes, BorderLayout.SOUTH);
-		pnlTypes.setMinimumSize(dimMin);
-		DustGuiSwingUtils.setTitle(pnlTypes, "Types");
-		lsm = tblTypeFilter.getSelectionModel();
+		JTable tblAspectFilter = new JTable(tblmAspectFilter);
+		scpTbl = new JScrollPane(tblAspectFilter);
+		JPanel pnlAspects = new JPanel(new BorderLayout());
+		pnlAspects.add(scpTbl, BorderLayout.CENTER);
+		JToggleButton tbAllAspects = new JToggleButton("All Aspects");
+		tbAllAspects.addActionListener(alShowAll);
+		pnlAspects.add(tbAllAspects, BorderLayout.SOUTH);
+		pnlAspects.setMinimumSize(dimMin);
+		DustGuiSwingUtils.setTitle(pnlAspects, "Aspects");
+		lsm = tblAspectFilter.getSelectionModel();
 		lsm.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
 					ListSelectionModel lsm = (ListSelectionModel) e.getSource();
 
-					showTypes.clear();
+					showAspects.clear();
 
 					for (int idx : lsm.getSelectedIndices()) {
-						showTypes.add((String) tblTypeFilter.getValueAt(idx, 0));
+						showAspects.add((String) tblAspectFilter.getValueAt(idx, 0));
 					}
 					tblmGrid.fireTableDataChanged();
 				}
@@ -900,22 +900,9 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 		// Final build
 
-//		pnlGrid.add(DustGuiSwingUtils.createSplit(true, new JScrollPane(handleTable), pnlAtts, 1.0), BorderLayout.CENTER);
-//
-//		
-//		JComponent splGrid = DustGuiSwingUtils.createSplit(true, pnlTypes, pnlGrid, 0.0);
-//		
-//		pnlGraph.add(DustGuiSwingUtils.createSplit(true, pnlLinks, graphPanel.scpGraph, 0.0), BorderLayout.CENTER);
-//
-//		JPanel pnlLeft = new JPanel(new BorderLayout());
-//		pnlLeft.add(DustGuiSwingUtils.createSplit(false, pnlUnit, pnlProp, 0.0), BorderLayout.CENTER);
-//
-//		JPanel pnlRight = new JPanel(new BorderLayout());
-//		pnlRight.add(DustGuiSwingUtils.createSplit(false, splGrid, pnlGraph, 0.0), BorderLayout.CENTER);
-
 		JPanel pnlFilter = new JPanel(new BorderLayout());
 		JPanel pnlMetaFilter = new JPanel(new GridLayout(1, 3));
-		pnlMetaFilter.add(pnlTypes);
+		pnlMetaFilter.add(pnlAspects);
 		pnlMetaFilter.add(pnlAtts);
 		pnlMetaFilter.add(pnlLinks);
 
@@ -947,9 +934,9 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 		tblmAtts.setRowCount(0);
 		tblmLinks.setRowCount(0);
-		tblmTypeFilter.setRowCount(0);
+		tblmAspectFilter.setRowCount(0);
 
-		Set<DustHandle> seenTypes = new HashSet();
+		Set<DustHandle> seenAspects = new HashSet();
 
 		for (DustHandle hu : unitArr) {
 			if (fu && !filterUnit.contains(hu)) {
@@ -961,8 +948,8 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				gridArr.add(h);
 
 				DustHandle t = h.getType();
-				if (seenTypes.add(t)) {
-					tblmTypeFilter.addRow(new Object[] { t.getId() });
+				if (seenAspects.add(t)) {
+					tblmAspectFilter.addRow(new Object[] { t.getId() });
 				}
 
 				Collection<String> atts = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, h, KEY_MAP_KEYS);
@@ -997,7 +984,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 		tblmAtts.fireTableDataChanged();
 		tblmLinks.fireTableDataChanged();
-		tblmTypeFilter.fireTableDataChanged();
+		tblmAspectFilter.fireTableDataChanged();
 	}
 
 	public DustHandle getFocused() {

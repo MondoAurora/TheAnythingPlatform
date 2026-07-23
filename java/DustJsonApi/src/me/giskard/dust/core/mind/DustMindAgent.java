@@ -101,11 +101,11 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		((Map) unitMind.content.get(TOKEN_DUST_ATT_UNIT_REFS)).put(UNIT_DUST, unitMeta.mh);
 		((Map) unitMind.content.get(TOKEN_DUST_ATT_UNIT_OBJECTS)).put(unitMeta.mh, unitMeta);
 
-		typeType = safeGetIdea(unitMeta, null, TOKEN_MIND_ASP_TYPE, DustOptCreate.Meta).mh;
+		typeType = safeGetIdea(unitMeta, null, TOKEN_MIND_ASP_ASPECT, DustOptCreate.Meta).mh;
 		typeAtt = safeGetIdea(unitMeta, typeType, TOKEN_MIND_ASP_ATTRIBUTE, DustOptCreate.Meta).mh;
 		typeUnit = safeGetIdea(unitMeta, typeType, TOKEN_MIND_ASP_UNIT, DustOptCreate.Meta).mh;
 
-		typeType.init(unitMeta, typeType, TOKEN_MIND_ASP_TYPE);
+		typeType.init(unitMeta, typeType, TOKEN_MIND_ASP_ASPECT);
 		DustMindIdea typeIdea = safeGetIdea(unitMeta, typeType);
 		typeIdea.loadMh();
 

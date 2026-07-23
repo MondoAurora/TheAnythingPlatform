@@ -111,7 +111,7 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 						type = TOKEN_MIND_ASP_ATTRIBUTE;
 						break;
 					case LDAP_OBJECT_CLASSES:
-						type = TOKEN_MIND_ASP_TYPE;
+						type = TOKEN_MIND_ASP_ASPECT;
 						break;
 					default:
 						continue;
@@ -184,7 +184,7 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 			this.unitMeta = unitMeta;
 
 			String typeName = Dust.access(DustAccess.Peek, "???", params, TOKEN_MIND_ATT_TYPE);
-			type = Dust.getHandle(unitMeta, TOKEN_MIND_ASP_TYPE, typeName, DustOptCreate.Meta);
+			type = Dust.getHandle(unitMeta, TOKEN_MIND_ASP_ASPECT, typeName, DustOptCreate.Meta);
 
 			encoding = Dust.access(DustAccess.Peek, DUST_CHARSET_UTF8, params, TOKEN_STREAM_ATT_ENCODING);
 		}
@@ -232,7 +232,7 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 				Dust.access(DustAccess.Set, k, type, TOKEN_MISC_ATT_CHILDMAP, key);
 
 				if (LDAP_OBJECTCLASS.equals(key)) {
-					Dust.getHandle(unitMeta, TOKEN_MIND_ASP_TYPE, optId, DustOptCreate.Meta);
+					Dust.getHandle(unitMeta, TOKEN_MIND_ASP_ASPECT, optId, DustOptCreate.Meta);
 				}
 
 //				String k = unitMeta.getUnitId() + DUST_SEP_TOKEN + key;

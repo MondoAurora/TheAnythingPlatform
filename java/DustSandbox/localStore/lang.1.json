@@ -8,7 +8,7 @@
 				"misc.1$name": "TOKEN_LANG_ASP_LANGUAGE"
 			},
 			"id": "lang.1$Language",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"id": "lang.1$en",

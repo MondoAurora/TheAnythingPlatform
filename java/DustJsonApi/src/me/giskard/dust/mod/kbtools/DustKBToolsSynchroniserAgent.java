@@ -54,7 +54,7 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 		String mName = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_META);
 		DustHandle uMeta = Dust.getUnit(mName, true);
 		
-		String tName = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ASP_TYPE);
+		String tName = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ASP_ASPECT);
 		DustHandle type = Dust.getHandle(uMeta, null, tName, DustOptCreate.Meta);
 
 		String uName = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_DATA);

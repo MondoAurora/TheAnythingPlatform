@@ -5,7 +5,7 @@
 	"data": [
 		{
 			"id": "dev.1$JavaGen",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"relationships": {

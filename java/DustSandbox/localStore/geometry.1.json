@@ -8,7 +8,7 @@
 				"misc.1$name": "TOKEN_GEOMETRY_ASP_AREA"
 			},
 			"id": "geometry.1$Area",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
@@ -29,14 +29,14 @@
 				"misc.1$name": "TOKEN_GEOMETRY_ASP_COORD_SYS"
 			},
 			"id": "geometry.1$CoordSys",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_GEOMETRY_ASP_LOCATION"
 			},
 			"id": "geometry.1$Location",
-			"type": "mind.1$Type"
+			"type": "mind.1$Aspect"
 		},
 		{
 			"relationships": {
