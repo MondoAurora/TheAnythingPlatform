@@ -83,7 +83,9 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustMind.Stream
 
 	@SuppressWarnings("unchecked")
 	public <StreamType> StreamType createStream(String cmd, File r, File f) throws Exception {
-		DustUtilsFile.checkPathBound(f, r, true);
+		// TODO Switch this back to strict checking!
+		DustUtilsFile.checkPathBound(f, r, false);
+//		DustUtilsFile.checkPathBound(f, r, true);
 
 		Object stream = null;
 

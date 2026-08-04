@@ -12,6 +12,13 @@
 		},
 		{
 			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ASP_ASPECT"
+			},
+			"id": "mind.1$Aspect",
+			"type": "mind.1$Aspect"
+		},
+		{
+			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ASP_ATTRIBUTE"
 			},
 			"id": "mind.1$Attribute",
@@ -217,13 +224,6 @@
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_MIND_ASP_ASPECT"
-			},
-			"id": "mind.1$Aspect",
-			"type": "mind.1$Aspect"
-		},
-		{
-			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ASP_UNIT"
 			},
 			"id": "mind.1$Unit",
@@ -373,11 +373,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeString",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]

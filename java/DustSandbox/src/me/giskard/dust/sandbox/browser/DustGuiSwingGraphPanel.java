@@ -134,7 +134,7 @@ class DustGuiSwingGraphPanel {
 			JComponent tc = comps.peek(ht);
 
 			if (null != tc) {
-				String lbl = browserPanel.getAttType(l).name() + " " + l;
+				String lbl = browserPanel.getAttCollType(l).name() + " " + l;
 
 				if (hSrc == target) {
 					g2d.drawOval(from.x - 15, from.y - 50, 30, 50);
@@ -204,7 +204,7 @@ class DustGuiSwingGraphPanel {
 						break;
 					}
 					String l = showLinks.iterator().next();
-					DustCollType ct = browserPanel.getAttType(l);
+					DustCollType ct = browserPanel.getAttCollType(l);
 					String key = null;
 					if (ct == DustCollType.Map) {
 						key = JOptionPane.showInputDialog(cmpGraph, "Key?", "Create Map link", JOptionPane.QUESTION_MESSAGE);

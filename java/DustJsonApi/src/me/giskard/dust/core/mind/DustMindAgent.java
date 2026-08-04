@@ -526,6 +526,18 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 		Boolean change = null;
 		boolean itemDel = false;
+		
+		if ( TOKEN_MIND_ATT_TAGS.equals(lastKey) && (curr instanceof Collection)) {
+			for ( DustHandle ht : (Collection<DustHandle>) curr ) {
+				switch ( access ) {
+				case Peek:
+					if ( DustUtils.isEqual(val, access(DustAccess.Peek, "", ht, TOKEN_MISC_ATT_PARENT, TOKEN_MIND_ATT_ID)) ) {
+						return (RetType) ht;
+					}
+					break;
+				}
+			}
+		}
 
 		switch (access) {
 		case Delete:
