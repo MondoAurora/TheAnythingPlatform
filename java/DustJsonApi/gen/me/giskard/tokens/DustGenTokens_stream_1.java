@@ -1,10 +1,11 @@
 package me.giskard.tokens;
 
 public interface DustGenTokens_stream_1 {
-// Types
+// Aspects
 	String TOKEN_STREAM_ASP_STREAM = "stream.1$Stream";
 
 // Attributes
+	String TOKEN_STREAM_ATT_BACKUPFOLDER = "stream.1$backupFolder";
 	String TOKEN_STREAM_ATT_COLSEP = "stream.1$colSep";
 	String TOKEN_STREAM_ATT_ENCODING = "stream.1$encoding";
 	String TOKEN_STREAM_ATT_INPUT = "stream.1$inputStream";

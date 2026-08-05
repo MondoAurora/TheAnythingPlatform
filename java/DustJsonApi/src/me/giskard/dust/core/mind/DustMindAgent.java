@@ -526,16 +526,21 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 		Boolean change = null;
 		boolean itemDel = false;
-		
-		if ( TOKEN_MIND_ATT_TAGS.equals(lastKey) && (curr instanceof Collection)) {
-			for ( DustHandle ht : (Collection<DustHandle>) curr ) {
-				switch ( access ) {
-				case Peek:
-					if ( DustUtils.isEqual(val, access(DustAccess.Peek, "", ht, TOKEN_MISC_ATT_PARENT, TOKEN_MIND_ATT_ID)) ) {
-						return (RetType) ht;
+
+		if (TOKEN_MIND_ATT_TAGS.equals(lastKey)) {
+			if (curr instanceof Collection) {
+				for (DustHandle ht : (Collection<DustHandle>) curr) {
+					switch (access) {
+					case Peek:
+						if (DustUtils.isEqual(val, access(DustAccess.Peek, "", ht, TOKEN_MISC_ATT_PARENT, TOKEN_MIND_ATT_ID))) {
+							return (RetType) ht;
+						}
+						break;
 					}
-					break;
 				}
+			} else switch (access) {
+			case Peek:
+				return null;
 			}
 		}
 
@@ -717,7 +722,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 				case Map:
 					if (!DustUtils.isEqual(curr, val)) {
 						((Map) prevColl).put(lastKey, val);
-						
+
 						int specIdx = DustUtils.indexOf(lastKey, TOKEN_MIND_ATT_TYPE, TOKEN_MIND_ATT_ID, TOKEN_MIND_ATT_UNIT);
 						switch (specIdx) {
 						case 0:
@@ -1106,8 +1111,10 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 							Dust.access(DustAccess.Set, ce.getValue().getId(), info, TOKEN_MISC_ATT_TYPES, id, TOKEN_MISC_ATT_CHILDMAP, ce.getKey());
 						}
 					} else {
-						Dust.access(DustAccess.Set, Dust.access(DustAccess.Peek, null, h, TOKEN_MIND_TAG_VALTYPE), info, TOKEN_MISC_ATT_ATTRIBUTES, id, TOKEN_MIND_TAG_VALTYPE);
-						Dust.access(DustAccess.Set, Dust.access(DustAccess.Peek, null, h, TOKEN_MIND_TAG_COLLTYPE), info, TOKEN_MISC_ATT_ATTRIBUTES, id, TOKEN_MIND_TAG_COLLTYPE);
+						Dust.access(DustAccess.Set, Dust.access(DustAccess.Peek, null, h, TOKEN_MIND_TAG_VALTYPE), info, TOKEN_MISC_ATT_ATTRIBUTES, id,
+								TOKEN_MIND_TAG_VALTYPE);
+						Dust.access(DustAccess.Set, Dust.access(DustAccess.Peek, null, h, TOKEN_MIND_TAG_COLLTYPE), info, TOKEN_MISC_ATT_ATTRIBUTES, id,
+								TOKEN_MIND_TAG_COLLTYPE);
 
 						Collection<DustHandle> at = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, TOKEN_MISC_ATT_APPEARS);
 						for (DustHandle t : at) {

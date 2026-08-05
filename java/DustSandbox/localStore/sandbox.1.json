@@ -241,7 +241,8 @@
 			"type": "mind.1$Service",
 			"id": "sandbox.1$UnitCacheRoot",
 			"attributes": {
-				"stream.1$rootFolder": "localStore"
+				"stream.1$rootFolder": "localStore",
+				"stream.1$backupFolder": "backup"
 			},
 			"relationships": {
 				"mind.1$listeners": {

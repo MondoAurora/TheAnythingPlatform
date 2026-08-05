@@ -1,14 +1,15 @@
 package me.giskard.dust.core;
 
+import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.tokens.DustGenTokens_aaa_1;
 import me.giskard.tokens.DustGenTokens_dust_1;
 import me.giskard.tokens.DustGenTokens_mind_1;
 import me.giskard.tokens.DustGenTokens_misc_1;
 
 public interface DustConsts extends DustGenTokens_dust_1, DustGenTokens_misc_1, DustGenTokens_mind_1, DustGenTokens_aaa_1 {
-	
+
 	String DUST_CRED_FILE = "credentials.json";
-	
+
 	String UNIT_DUST = "dust.1";
 	String UNIT_MIND = "mind.1";
 
@@ -72,12 +73,27 @@ public interface DustConsts extends DustGenTokens_dust_1, DustGenTokens_misc_1, 
 		Handle, Integer, Real, String, Bool, Raw;
 	};
 
-	public interface DustHandle {
+	public interface DustHandle extends Comparable<DustHandle> {
 		DustHandle getUnit();
 
 		DustHandle getType();
 
 		String getId();
+
+		@Override
+		default int compareTo(DustHandle o) {
+			int d = 1;
+			
+			if ( null != o ) {
+				d = DustUtils.safeCompare(getUnit().getId(), o.getUnit().getId());
+				
+				if ( 0 == d ) {
+					d = DustUtils.safeCompare(getId(), o.getId());					
+				}
+			}
+			
+			return d;
+		}
 	}
 
 	enum DustAction {

@@ -13,6 +13,7 @@ import me.giskard.dust.core.utils.DustUtilsFile;
 public class DustStreamSrcFileAgent extends DustAgent implements DustMind.StreamSource, DustStreamConsts {
 
 	String defRoot;
+	File backupFolder;
 
 	public DustStreamSrcFileAgent() {
 		this(".");
@@ -28,6 +29,9 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustMind.Stream
 
 		String root = Dust.access(DustAccess.Peek, defRoot, null, TOKEN_STREAM_ATT_ROOTFOLDER);
 		File r = getRootFolder(root);
+
+		String bak = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_BACKUPFOLDER);
+		backupFolder = getRootFolder(bak);
 
 		String path = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_PATH);
 		File f = DustUtils.isEmpty(path) ? r : new File(r, path);
@@ -48,7 +52,7 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustMind.Stream
 
 			if (f.isDirectory()) {
 				for (File ff : f.listFiles()) {
-						Dust.access(DustAccess.Insert, ff.getCanonicalPath().substring(rpl), DustContext.Input, TOKEN_MISC_ATT_MEMBERS);
+					Dust.access(DustAccess.Insert, ff.getCanonicalPath().substring(rpl), DustContext.Input, TOKEN_MISC_ATT_MEMBERS);
 				}
 			} else {
 				String unitName = DustUtils.cutPostfix(f.getName(), ".");
@@ -94,8 +98,13 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustMind.Stream
 			stream = f.isFile() ? new FileInputStream(f) : null;
 			break;
 		case TOKEN_MISC_TAG_CMD_SAVE:
-			File p = f.getParentFile();
-			DustUtilsFile.ensureDir(p);
+			if (f.isFile()) {
+				DustUtilsFile.optBackup(backupFolder, f);
+			} else {
+				File p = f.getParentFile();
+				DustUtilsFile.ensureDir(p);
+			}
+
 			stream = new FileOutputStream(f);
 			break;
 		}
