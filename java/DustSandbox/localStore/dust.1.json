@@ -52,11 +52,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeRaw",
+							"id": "mind.1$ColltypeMap",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeMap",
+							"id": "mind.1$ValtypeRaw",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -94,11 +94,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeRaw",
+							"id": "mind.1$ColltypeMap",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeMap",
+							"id": "mind.1$ValtypeRaw",
 							"type": "mind.1$Tag"
 						}
 					]

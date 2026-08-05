@@ -560,18 +560,18 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 				break;
 			case "New handle":
-				if (1 != selected.size()) {
+				if (1 != filterUnit.size()) {
 					JOptionPane.showMessageDialog(frm, "You must select the target unit!", "Handle creation error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 
-				DustHandle hu = selected.iterator().next();
-				boolean ok = Dust.access(DustAccess.Check, TOKEN_MIND_ASP_UNIT, hu, TOKEN_MIND_ATT_TYPE, TOKEN_MIND_ATT_ID);
-
-				if (!ok) {
-					JOptionPane.showMessageDialog(frm, "You must select the target unit!", "Handle creation error", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
+				DustHandle hu = filterUnit.iterator().next();
+//				boolean ok = Dust.access(DustAccess.Check, TOKEN_MIND_ASP_UNIT, hu, TOKEN_MIND_ATT_TYPE, TOKEN_MIND_ATT_ID);
+//
+//				if (!ok) {
+//					JOptionPane.showMessageDialog(frm, "You must select the target unit!", "Handle creation error", JOptionPane.ERROR_MESSAGE);
+//					return;
+//				}
 
 				if (1 != showAspects.size()) {
 					JOptionPane.showMessageDialog(frm, "You must select one aspect!", "Handle creation error", JOptionPane.ERROR_MESSAGE);
