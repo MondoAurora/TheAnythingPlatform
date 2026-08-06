@@ -6,11 +6,11 @@ import java.io.FileOutputStream;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
-import me.giskard.dust.core.DustMind;
+import me.giskard.dust.core.DustMachine;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFile;
 
-public class DustStreamSrcFileAgent extends DustAgent implements DustMind.StreamSource, DustStreamConsts {
+public class DustStreamSrcFileAgent extends DustAgent implements DustMachine.StreamSource, DustStreamConsts {
 
 	String defRoot;
 	File backupFolder;

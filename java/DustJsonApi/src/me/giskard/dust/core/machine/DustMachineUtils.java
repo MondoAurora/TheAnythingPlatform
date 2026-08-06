@@ -1,4 +1,4 @@
-package me.giskard.dust.core.mind;
+package me.giskard.dust.core.machine;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -11,7 +11,7 @@ import me.giskard.dust.core.DustException;
 
 //@SuppressWarnings({ "unchecked" })
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustMindUtils implements DustMindConsts {
+public class DustMachineUtils implements DustMachineConsts {
 
 	public static Integer getUnitSize(DustHandle unit) {
 		return Dust.access(DustAccess.Peek, 0, unit, TOKEN_DUST_ATT_UNIT_OBJECTS, KEY_SIZE);
@@ -32,7 +32,7 @@ public class DustMindUtils implements DustMindConsts {
 			return;
 		}
 
-		DustMindAgent mind = ((DustMindHandle) target).mind;
+		DustMachineAgent mind = ((DustMachineHandle) target).mind;
 		Map mFrom = mind.getContent(from);
 		Map mTarget = mind.getContent(target);
 
@@ -80,7 +80,7 @@ public class DustMindUtils implements DustMindConsts {
 		}
 
 		if (null != atts) {
-			Map mFrom = ((DustMindHandle) from).mind.getContent(from);
+			Map mFrom = ((DustMachineHandle) from).mind.getContent(from);
 
 			if (0 == atts.length) {
 				for (String a : getAttNames(from)) {

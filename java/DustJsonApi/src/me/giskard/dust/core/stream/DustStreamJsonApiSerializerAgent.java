@@ -8,11 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import me.giskard.dust.core.Dust;
-import me.giskard.dust.core.DustMind;
+import me.giskard.dust.core.DustMachine;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.mod.utils.DustUtilsJson;
 
-public class DustStreamJsonApiSerializerAgent extends DustStreamJsonApiAgent implements DustMind.Bootloader {
+public class DustStreamJsonApiSerializerAgent extends DustStreamJsonApiAgent implements DustMachine.Bootloader {
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {

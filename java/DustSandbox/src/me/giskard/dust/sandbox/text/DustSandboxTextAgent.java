@@ -28,7 +28,7 @@ import javax.swing.text.BadLocationException;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
-import me.giskard.dust.core.mind.DustMindUtils;
+import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.stream.DustStreamConsts.StreamProcessor;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsData;
@@ -90,7 +90,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 
 		Set<DustHandle> tc = new HashSet<>();
 
-		for (DustHandle h : DustMindUtils.getUnitMembers(hUnit)) {
+		for (DustHandle h : DustMachineUtils.getUnitMembers(hUnit)) {
 			String ht = h.getType().getId();
 
 			switch (ht) {
@@ -117,7 +117,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		}
 
 		if (!tc.isEmpty()) {
-			for (DustHandle hr : DustMindUtils.getUnitMembers(hRes)) {
+			for (DustHandle hr : DustMachineUtils.getUnitMembers(hRes)) {
 				for (DustHandle tr : (Collection<DustHandle>) Dust.access(DustAccess.Peek, Collections.EMPTY_SET, hr, TOKEN_MISC_ATT_APPEARS)) {
 					if (tc.contains(tr)) {
 						Dust.access(DustAccess.Insert, hr, streamRefs, tr);
@@ -136,7 +136,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 
 		hStrings = Dust.getUnit(stringUnit.toString(), true);
 
-		for (DustHandle hr : DustMindUtils.getUnitMembers(hStrings)) {
+		for (DustHandle hr : DustMachineUtils.getUnitMembers(hStrings)) {
 			DustHandle hl = Dust.access(DustAccess.Peek, null, hr, TOKEN_TEXT_ATT_LANG);
 			DustHandle ht = Dust.access(DustAccess.Peek, null, hr, TOKEN_MISC_ATT_TARGET);
 			Dust.access(DustAccess.Set, hr, mapStrings, hl, ht);
@@ -751,7 +751,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 
 	public void updateDB() throws Exception {
 		Set<DustHandle> streamColl = new HashSet<>();
-		for (DustHandle h : DustMindUtils.getUnitMembers(hRes)) {
+		for (DustHandle h : DustMachineUtils.getUnitMembers(hRes)) {
 			String ht = h.getType().getId();
 			if (DustUtils.isEqual(TOKEN_STREAM_ASP_STREAM, ht)) {
 				streamColl.add(h);

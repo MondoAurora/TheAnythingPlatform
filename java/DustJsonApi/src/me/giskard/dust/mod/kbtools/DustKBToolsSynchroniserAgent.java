@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.DustConsts.DustAgent;
-import me.giskard.dust.core.mind.DustMindUtils;
+import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
@@ -26,7 +26,7 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 		switch (cmd) {
 		case TOKEN_MISC_TAG_CMD_LOADALL:
 			DustHandle uTarget = loadAll();
-			int size = DustMindUtils.getUnitSize(uTarget);
+			int size = DustMachineUtils.getUnitSize(uTarget);
 			sb = DustUtils.sbAppend(null, " ", false, size);
 			break;
 		}
@@ -63,7 +63,7 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 		DustCreator<DustHandle> coreCreator = new DustCreator<DustHandle>() {
 			@Override
 			public DustHandle create(Object key, Object... hints) {
-				int size = DustMindUtils.getUnitSize(uTarget);
+				int size = DustMachineUtils.getUnitSize(uTarget);
 				return Dust.getHandle(uTarget, type, DustUtils.toString(size), DustOptCreate.Primary);
 			}
 		};
@@ -78,7 +78,7 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 
 		Collection<String> ids = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_INDEX);
 
-		for (DustHandle h : DustMindUtils.getUnitMembers(uTarget)) {
+		for (DustHandle h : DustMachineUtils.getUnitMembers(uTarget)) {
 			for (String i : ids) {
 				String ik = ( -1 == i.indexOf(DUST_SEP_TOKEN)) ? mName + DUST_SEP_TOKEN + i : i;
 				Collection<String> ic = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, h, ik);
@@ -105,7 +105,7 @@ public class DustKBToolsSynchroniserAgent extends DustAgent implements DustKBToo
 			String id = Dust.access(DustAccess.Peek, null, src, TOKEN_MIND_ATT_ID);
 			int lc = 0;
 
-			for (DustHandle h : DustMindUtils.getUnitMembers(u)) {
+			for (DustHandle h : DustMachineUtils.getUnitMembers(u)) {
 				if (0 == (++lc % 10000)) {
 					Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "item", lc);
 				}

@@ -5,6 +5,7 @@ public interface DustGenTokens_mind_1 {
 	String TOKEN_MIND_ASP_AGENT = "mind.1$Agent";
 	String TOKEN_MIND_ASP_ASPECT = "mind.1$Aspect";
 	String TOKEN_MIND_ASP_ATTRIBUTE = "mind.1$Attribute";
+	String TOKEN_MIND_ASP_NARRATIVE = "mind.1$Narrative";
 	String TOKEN_MIND_ASP_SERVICE = "mind.1$Service";
 	String TOKEN_MIND_ASP_TAG = "mind.1$Tag";
 	String TOKEN_MIND_ASP_UNIT = "mind.1$Unit";
@@ -15,6 +16,7 @@ public interface DustGenTokens_mind_1 {
 	String TOKEN_MIND_ATT_ID = "mind.1$id";
 	String TOKEN_MIND_ATT_KNOWNUNITS = "mind.1$knownUnits";
 	String TOKEN_MIND_ATT_LISTENERS = "mind.1$listeners";
+	String TOKEN_MIND_ATT_NARRATIVE = "mind.1$narrative";
 	String TOKEN_MIND_ATT_NEXT = "mind.1$next";
 	String TOKEN_MIND_ATT_SERIALIZER = "mind.1$serializer";
 	String TOKEN_MIND_ATT_TAGS = "mind.1$tags";

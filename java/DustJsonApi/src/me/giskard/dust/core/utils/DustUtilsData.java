@@ -8,10 +8,10 @@ import java.util.Map;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustException;
-import me.giskard.dust.core.mind.DustMindConsts;
+import me.giskard.dust.core.machine.DustMachineConsts;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustUtilsData implements DustUtilsConsts, DustMindConsts {
+public class DustUtilsData implements DustUtilsConsts, DustMachineConsts {
 
 	public static DustHandle getAtt(DustHandle meta, DustHandle type, String attName) {
 		DustHandle att = Dust.getHandle(meta, TOKEN_MIND_ASP_ATTRIBUTE, meta.getId() + DUST_SEP_TOKEN + attName, DustOptCreate.Meta);

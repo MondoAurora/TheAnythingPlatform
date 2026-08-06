@@ -9,7 +9,7 @@ import java.util.Map;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts;
 import me.giskard.dust.core.DustException;
-import me.giskard.dust.core.mind.DustMindUtils;
+import me.giskard.dust.core.machine.DustMachineUtils;
 
 public interface DustUtilsConstsJson extends DustConsts, DustUtilsConsts {
 
@@ -75,7 +75,7 @@ public interface DustUtilsConstsJson extends DustConsts, DustUtilsConsts {
 
 		public void setHandle(DustHandle h) {
 			this.handle = h;
-			values = DustMindUtils.getValues(h, values, true);
+			values = DustMachineUtils.getValues(h, values, true);
 
 			Object typeAtts = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h.getType(), TOKEN_MISC_ATT_CHILDMAP, KEY_MAP_KEYS);
 			if (typeAtts instanceof Collection) {

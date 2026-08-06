@@ -7,7 +7,7 @@ import java.util.Map;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
-import me.giskard.dust.core.mind.DustMindConsts;
+import me.giskard.dust.core.machine.DustMachineConsts;
 import me.giskard.dust.core.stream.DustStreamConsts;
 import me.giskard.dust.core.stream.DustStreamUtils;
 import me.giskard.dust.core.utils.DustUtils;
@@ -15,7 +15,7 @@ import me.giskard.dust.mod.utils.DustUtilsJson;
 
 //@SuppressWarnings({ "unchecked", "rawtypes" })
 @SuppressWarnings({ "unchecked" })
-public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, DustMindConsts {
+public class DustStreamJsonAgent extends DustAgent implements DustStreamConsts, DustMachineConsts {
 
 //	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_MIND_ATTRIBUTE);
 //	DustHandle typeType = DustUtils.getMindMeta(TOKEN_MIND_TYPE);

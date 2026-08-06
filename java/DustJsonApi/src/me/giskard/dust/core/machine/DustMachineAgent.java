@@ -1,4 +1,4 @@
-package me.giskard.dust.core.mind;
+package me.giskard.dust.core.machine;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -15,14 +15,14 @@ import java.util.WeakHashMap;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustException;
-import me.giskard.dust.core.DustMind;
+import me.giskard.dust.core.DustMachine;
 import me.giskard.dust.core.dev.DustDevCounter;
 import me.giskard.dust.core.dev.DustDevUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-class DustMindAgent extends DustMind implements DustMindConsts {
+class DustMachineAgent extends DustMachine implements DustMachineConsts {
 
 	DustUtilsFactory<DustContext, Object> CTX = new DustUtilsFactory(MAP_CREATOR);
 	Stack<ArrayList<DustHandle>> transactionStack = new Stack<ArrayList<DustHandle>>();
@@ -41,38 +41,38 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		return (RetType) CTX.peek(dc);
 	}
 
-	DustMindHandle typeType;
-	DustMindHandle typeAtt;
-	DustMindHandle typeUnit;
+	DustMachineHandle typeType;
+	DustMachineHandle typeAtt;
+	DustMachineHandle typeUnit;
 
-	DustMindIdea unitApp;
-	DustMindIdea unitMind;
-	DustMindIdea unitMeta;
+	DustMachineIdea unitApp;
+	DustMachineIdea unitMind;
+	DustMachineIdea unitMeta;
 
-	DustMindHandle defaultSerializer;
+	DustMachineHandle defaultSerializer;
 	Set<DustHandle> changedUnits = new HashSet<>();
 
-	DustCreator<DustMindHandle> createHandle = new DustCreator<DustMindHandle>() {
+	DustCreator<DustMachineHandle> createHandle = new DustCreator<DustMachineHandle>() {
 		@Override
-		public DustMindHandle create(Object key, Object... hints) {
+		public DustMachineHandle create(Object key, Object... hints) {
 			String k = (String) key;
-			DustMindIdea unit = (DustMindIdea) hints[0];
-			DustMindHandle hUnit = unit.mh;
+			DustMachineIdea unit = (DustMachineIdea) hints[0];
+			DustMachineHandle hUnit = unit.mh;
 
 			if ((null != unitApp) && (unitApp.mh != hUnit) && !loadingUnit.get().contains(hUnit)) {
 				changedUnits.add(hUnit);
 			}
 
-			return new DustMindHandle(DustMindAgent.this, unit, (DustMindHandle) hints[1], k);
+			return new DustMachineHandle(DustMachineAgent.this, unit, (DustMachineHandle) hints[1], k);
 		}
 	};
 
-	DustCreator<DustMindIdea> createIdea = new DustCreator<DustMindIdea>() {
+	DustCreator<DustMachineIdea> createIdea = new DustCreator<DustMachineIdea>() {
 		@Override
-		public DustMindIdea create(Object key, Object... hints) {
-			DustMindHandle h = (DustMindHandle) key;
+		public DustMachineIdea create(Object key, Object... hints) {
+			DustMachineHandle h = (DustMachineHandle) key;
 
-			DustMindIdea ret = new DustMindIdea(h);
+			DustMachineIdea ret = new DustMachineIdea(h);
 
 			if ((null != typeUnit) && DustUtils.isEqual(typeUnit, h.getType())) {
 				initUnit(ret, false);
@@ -82,7 +82,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		}
 
 		@Override
-		public void initNew(DustMindIdea item, Object key, Object... hints) {
+		public void initNew(DustMachineIdea item, Object key, Object... hints) {
 			DustHandle type = item.mh.getType();
 			if ((null != type) && DustUtils.isEqual(typeUnit, type)) {
 				optLoadUnit(item.mh.getId(), item);
@@ -90,12 +90,12 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		};
 	};
 
-	private Map<String, DustMindIdea> bootRefUnits;
+	private Map<String, DustMachineIdea> bootRefUnits;
 
-	public DustMindAgent() {
-		unitMind = new DustMindIdea(new DustMindHandle(this, null, null, NAME_MIND));
+	public DustMachineAgent() {
+		unitMind = new DustMachineIdea(new DustMachineHandle(this, null, null, NAME_MIND));
 		initUnit(unitMind, true);
-		unitMeta = new DustMindIdea(new DustMindHandle(this, unitMind, null, UNIT_MIND));
+		unitMeta = new DustMachineIdea(new DustMachineHandle(this, unitMind, null, UNIT_MIND));
 		initUnit(unitMeta, false);
 
 		((Map) unitMind.content.get(TOKEN_DUST_ATT_UNIT_REFS)).put(UNIT_DUST, unitMeta.mh);
@@ -106,7 +106,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		typeUnit = safeGetIdea(unitMeta, typeType, TOKEN_MIND_ASP_UNIT, DustOptCreate.Meta).mh;
 
 		typeType.init(unitMeta, typeType, TOKEN_MIND_ASP_ASPECT);
-		DustMindIdea typeIdea = safeGetIdea(unitMeta, typeType);
+		DustMachineIdea typeIdea = safeGetIdea(unitMeta, typeType);
 		typeIdea.loadMh();
 
 		unitMind.mh.init(unitMind, typeUnit, NAME_MIND);
@@ -121,7 +121,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		defaultSerializer = access(DustAccess.Peek, null, mind, TOKEN_MIND_ATT_SERIALIZER);
 		optLoadUnit(UNIT_DUST, unitMeta);
 		if (null != bootRefUnits) {
-			for (Map.Entry<String, DustMindIdea> be : bootRefUnits.entrySet()) {
+			for (Map.Entry<String, DustMachineIdea> be : bootRefUnits.entrySet()) {
 				optLoadUnit(be.getKey(), be.getValue());
 			}
 
@@ -130,14 +130,14 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 	}
 
-	private void initUnit(DustMindIdea iUnit, boolean weak) {
+	private void initUnit(DustMachineIdea iUnit, boolean weak) {
 		iUnit.content.put(TOKEN_DUST_ATT_UNIT_OBJECTS, weak ? new WeakHashMap() : new HashMap());
 		iUnit.content.put(TOKEN_DUST_ATT_UNIT_REFS, new TreeMap());
 	}
 
 	@Override
-	protected DustMindHandle getHandle(DustHandle unit, Object type, String id, DustOptCreate optCreate) {
-		DustMindHandle ret = null;
+	protected DustMachineHandle getHandle(DustHandle unit, Object type, String id, DustOptCreate optCreate) {
+		DustMachineHandle ret = null;
 
 		if (DustUtils.isEmpty(id)) {
 			if (optCreate == DustOptCreate.Primary) {
@@ -147,7 +147,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			}
 		}
 
-		DustMindHandle u = (DustMindHandle) unit;
+		DustMachineHandle u = (DustMachineHandle) unit;
 		int sep = id.indexOf(DUST_SEP_TOKEN);
 
 		if (type instanceof String) {
@@ -167,11 +167,11 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 			if (-1 != sep) {
 				String uid = id.substring(0, sep);
 				if ((null == u) || !DustUtils.isEqual(u.getId(), uid)) {
-					u = (DustMindHandle) getUnit(uid, true);
+					u = (DustMachineHandle) getUnit(uid, true);
 				}
 			}
 
-			DustMindIdea ui;
+			DustMachineIdea ui;
 
 			if ((null != type) && DustUtils.isEqual(typeUnit, type)) {
 				ui = unitMind;
@@ -182,7 +182,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 				ui = safeGetIdea(unitMind, u);
 			}
 
-			Map<String, DustMindHandle> unitRefs = (Map) ui.content.get(TOKEN_DUST_ATT_UNIT_REFS);
+			Map<String, DustMachineHandle> unitRefs = (Map) ui.content.get(TOKEN_DUST_ATT_UNIT_REFS);
 
 			ret = (optCreate == DustOptCreate.None) ? unitRefs.get(id) : DustUtils.safeGet(unitRefs, createHandle, id, ui, type);
 		}
@@ -191,16 +191,16 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 	}
 
 	Map getContent(DustHandle h) {
-		DustMindHandle mh = (DustMindHandle) h;
-		DustMindIdea idea = safeGetIdea(mh.getUnitIdea(), mh);
+		DustMachineHandle mh = (DustMachineHandle) h;
+		DustMachineIdea idea = safeGetIdea(mh.getUnitIdea(), mh);
 		return idea.getContent();
 	}
 
-	private DustMindIdea safeGetIdea(DustMindIdea unit, Object type, String id, DustOptCreate optCreate) {
-		DustMindIdea ret = null;
+	private DustMachineIdea safeGetIdea(DustMachineIdea unit, Object type, String id, DustOptCreate optCreate) {
+		DustMachineIdea ret = null;
 
 		synchronized (unit) {
-			DustMindHandle mh = getHandle(unit.mh, type, id, optCreate);
+			DustMachineHandle mh = getHandle(unit.mh, type, id, optCreate);
 
 			if (null != mh) {
 				ret = safeGetIdea(unit, mh);
@@ -209,8 +209,8 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		return ret;
 	}
 
-	private DustMindIdea safeGetIdea(DustMindIdea unit, DustMindHandle mh) {
-		DustMindIdea ret = null;
+	private DustMachineIdea safeGetIdea(DustMachineIdea unit, DustMachineHandle mh) {
+		DustMachineIdea ret = null;
 		Map mOb = (Map) unit.content.get(TOKEN_DUST_ATT_UNIT_OBJECTS);
 
 		synchronized (mOb) {
@@ -220,18 +220,18 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 	}
 
 	@Override
-	protected DustMindHandle getUnit(String unitId, boolean createIfMissing) {
-		DustMindIdea ui = getUnitIdea(unitId, createIfMissing);
+	protected DustMachineHandle getUnit(String unitId, boolean createIfMissing) {
+		DustMachineIdea ui = getUnitIdea(unitId, createIfMissing);
 		return (null == ui) ? null : ui.mh;
 	}
 
-	protected DustMindIdea getUnitIdea(String unitId, boolean createIfMissing) {
-		DustMindIdea ret = null;
-		DustMindHandle mh = null;
+	protected DustMachineIdea getUnitIdea(String unitId, boolean createIfMissing) {
+		DustMachineIdea ret = null;
+		DustMachineHandle mh = null;
 
 		if (DustUtils.isEmpty(unitId)) {
 			if (createIfMissing) {
-				mh = new DustMindHandle(this, unitMind, typeUnit, "");
+				mh = new DustMachineHandle(this, unitMind, typeUnit, "");
 			}
 		} else {
 			mh = getHandle(unitMind.mh, typeUnit, unitId, createIfMissing ? DustOptCreate.Primary : DustOptCreate.None);
@@ -244,7 +244,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 		return ret;
 	}
 
-	private void optLoadUnit(String unitId, DustMindIdea unit) {
+	private void optLoadUnit(String unitId, DustMachineIdea unit) {
 		if (!DustUtils.isEmpty(unitId)) {
 			Object ser = access(DustAccess.Peek, defaultSerializer, unitMind, TOKEN_DUST_ATT_UNIT_OBJECTS, unitId, TOKEN_MIND_ATT_SERIALIZER);
 
@@ -726,13 +726,13 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 						int specIdx = DustUtils.indexOf(lastKey, TOKEN_MIND_ATT_TYPE, TOKEN_MIND_ATT_ID, TOKEN_MIND_ATT_UNIT);
 						switch (specIdx) {
 						case 0:
-							((DustMindHandle) lastHandle).type = (DustMindHandle) val;
+							((DustMachineHandle) lastHandle).type = (DustMachineHandle) val;
 							break;
 						case 1:
-							((DustMindHandle) lastHandle).id = (String) val;
+							((DustMachineHandle) lastHandle).id = (String) val;
 							break;
 						case 2:
-							((DustMindHandle) lastHandle).unit = getUnitIdea(((DustMindHandle) val).getId(), true);
+							((DustMachineHandle) lastHandle).unit = getUnitIdea(((DustMachineHandle) val).getId(), true);
 							break;
 						}
 					}
@@ -919,13 +919,13 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 				for (DustHandle dh : toDel) {
 					Object old;
 					DustHandle hu = dh.getUnit();
-					DustMindIdea ui = getUnitIdea(hu.getId(), false);
+					DustMachineIdea ui = getUnitIdea(hu.getId(), false);
 					changedUnits.add(hu);
 
 					old = ((Map) ui.content.get(TOKEN_DUST_ATT_UNIT_REFS)).remove(dh.getId());
 					old = ((Map) ui.content.get(TOKEN_DUST_ATT_UNIT_OBJECTS)).remove(dh);
 
-					Dust.access(DustAccess.Insert, ((DustMindIdea) old).content.toString(), DustContext.Input, TOKEN_MISC_ATT_TARGET, KEY_ADD);
+					Dust.access(DustAccess.Insert, ((DustMachineIdea) old).content.toString(), DustContext.Input, TOKEN_MISC_ATT_TARGET, KEY_ADD);
 				}
 
 				break;
@@ -1002,7 +1002,7 @@ class DustMindAgent extends DustMind implements DustMindConsts {
 
 					int count = 0;
 
-					for (DustHandle h : DustMindUtils.getUnitMembers(u)) {
+					for (DustHandle h : DustMachineUtils.getUnitMembers(u)) {
 						++count;
 
 						DustHandle type = h.getType();

@@ -11,6 +11,10 @@
 			"type": "mind.1$Aspect"
 		},
 		{
+			"id": "dust.1$Machine",
+			"type": "mind.1$Narrative"
+		},
+		{
 			"relationships": {
 				"mind.1$serializer": {
 					"data": {
@@ -24,6 +28,21 @@
 				"misc.1$name": "TOKEN_MIND"
 			},
 			"id": "dust.1$MiND",
+			"type": "mind.1$Agent"
+		},
+		{
+			"relationships": {
+				"mind.1$narrative": {
+					"data": {
+						"id": "dust.1$Machine",
+						"type": "mind.1$Narrative"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_DUST_AGT_RUNTIME"
+			},
+			"id": "dust.1$Runtime",
 			"type": "mind.1$Agent"
 		},
 		{
@@ -52,11 +71,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeMap",
+							"id": "mind.1$ValtypeRaw",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeRaw",
+							"id": "mind.1$ColltypeMap",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -73,11 +92,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeBool",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeBool",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -94,11 +113,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeMap",
+							"id": "mind.1$ValtypeRaw",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeRaw",
+							"id": "mind.1$ColltypeMap",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -145,6 +164,6 @@
 		}
 	],
 	"meta": {
-		"count": 10
+		"count": 12
 	}
 }

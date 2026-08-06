@@ -1,7 +1,7 @@
 package me.giskard.dust.mod.kbtools;
 
-import me.giskard.dust.core.mind.DustMindConsts;
+import me.giskard.dust.core.machine.DustMachineConsts;
 
-public interface DustKBToolsConsts extends DustMindConsts {
+public interface DustKBToolsConsts extends DustMachineConsts {
 
 }

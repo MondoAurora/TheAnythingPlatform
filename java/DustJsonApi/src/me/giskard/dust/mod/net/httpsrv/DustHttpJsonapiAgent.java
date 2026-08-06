@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.dev.DustDevUtils;
-import me.giskard.dust.core.mind.DustMindUtils;
+import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.stream.DustStreamConsts;
 import me.giskard.dust.core.utils.DustUtils;
@@ -115,7 +115,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 								cloneData(unit, h, atts);
 							}
 						} else {
-							for (DustHandle h : DustMindUtils.getUnitMembers(source)) {
+							for (DustHandle h : DustMachineUtils.getUnitMembers(source)) {
 								if ((null == type) || DustUtils.isEqual(type, h.getType().getId())) {
 
 									if (null != filter) {
@@ -166,6 +166,6 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 		DustHandle ot = h.getType();
 		DustHandle to = Dust.getHandle(unit, ot, h.getId(), DustOptCreate.Primary);
 		String[] a = atts.getOrDefault(ot.getId(), NOFILTER);
-		DustMindUtils.loadData(to, h, false, a);
+		DustMachineUtils.loadData(to, h, false, a);
 	}
 }

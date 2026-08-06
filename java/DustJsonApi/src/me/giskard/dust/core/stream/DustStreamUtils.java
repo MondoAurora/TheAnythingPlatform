@@ -10,11 +10,11 @@ import java.util.regex.Pattern;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustException;
-import me.giskard.dust.core.mind.DustMindConsts;
+import me.giskard.dust.core.machine.DustMachineConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsConsts;
 
-public class DustStreamUtils implements DustUtilsConsts, DustMindConsts, DustStreamConsts {
+public class DustStreamUtils implements DustUtilsConsts, DustMachineConsts, DustStreamConsts {
 
 	public static <RetType> RetType getStream() {
 		Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_SOURCE);

@@ -87,6 +87,12 @@
 						"type": "mind.1$Service",
 						"id": "sandbox.1$SrcGenFilter"
 					}
+				},
+				"mind.1$narrative": {
+					"data": {
+						"type": "mind.1$Narrative",
+						"id": "mind.1$ForAll"
+					}
 				}
 			}
 		},
@@ -127,6 +133,12 @@
 					"data": {
 						"type": "mind.1$Service",
 						"id": "sandbox.1$GenSourceTokenSvc"
+					}
+				},
+				"mind.1$narrative": {
+					"data": {
+						"type": "mind.1$Narrative",
+						"id": "mind.1$Filter"
 					}
 				}
 			}
@@ -373,7 +385,19 @@
 		},
 		{
 			"type": "mind.1$Agent",
-			"id": "sandbox.1$SandboxAgent"
+			"id": "sandbox.1$SandboxAgent",
+			"relationships": {
+				"mind.1$narrative": {
+					"data": {
+						"type": "mind.1$Narrative",
+						"id": "sandbox.1$SandboxTest"
+					}
+				}
+			}
+		},
+		{
+			"type": "mind.1$Narrative",
+			"id": "sandbox.1$SandboxTest"
 		},
 		{
 			"type": "mind.1$Service",

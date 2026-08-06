@@ -1,22 +1,22 @@
-package me.giskard.dust.core.mind;
+package me.giskard.dust.core.machine;
 
 import java.util.Map;
 import java.util.TreeMap;
 
 //@SuppressWarnings({ "unchecked", "rawtypes" })
-class DustMindIdea implements DustMindConsts {
-	DustMindHandle mh;
+class DustMachineIdea implements DustMachineConsts {
+	DustMachineHandle mh;
 
 	Map<String, Object> content = new TreeMap<>();
 
-	DustMindIdea() {
+	DustMachineIdea() {
 	}
 
-	DustMindIdea(DustMindHandle mh) {
+	DustMachineIdea(DustMachineHandle mh) {
 		setMh(mh);
 	};
 
-	void setMh(DustMindHandle mh) {
+	void setMh(DustMachineHandle mh) {
 		this.mh = mh;
 		loadMh();
 	};

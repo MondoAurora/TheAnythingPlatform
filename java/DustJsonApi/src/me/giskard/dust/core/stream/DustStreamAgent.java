@@ -8,14 +8,14 @@ import java.util.Map;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
-import me.giskard.dust.core.DustMind;
+import me.giskard.dust.core.DustMachine;
 import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsData;
 import me.giskard.dust.core.utils.DustUtilsFile;
 
 @SuppressWarnings("rawtypes")
-public class DustStreamAgent extends DustAgent implements DustMind.StreamSource, DustStreamConsts, DustNetConsts {
+public class DustStreamAgent extends DustAgent implements DustMachine.StreamSource, DustStreamConsts, DustNetConsts {
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {

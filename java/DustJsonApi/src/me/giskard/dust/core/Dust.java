@@ -9,17 +9,17 @@ import java.util.Collections;
 
 import me.giskard.dust.core.dev.DustDevConsts;
 import me.giskard.dust.core.dev.DustDevUtils;
-import me.giskard.dust.core.mind.DustMindConsts;
+import me.giskard.dust.core.machine.DustMachineConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class Dust implements DustConsts, DustMindConsts, DustDevConsts {
+public class Dust implements DustConsts, DustMachineConsts, DustDevConsts {
 
 	private static DustHandle appUnit;
 	private static DustHandle appHandle;
 
-	private static DustMind MIND;
+	private static DustMachine MIND;
 
 	private static ArrayList<DustAgent> TORELEASE;
 
@@ -76,17 +76,17 @@ public class Dust implements DustConsts, DustMindConsts, DustDevConsts {
 	public static void main(String[] args) throws Exception {
 		String appName = args[0];
 		String appUnitPath = args[1];
-		DustMind.Bootloader bootLoader = createInstance(Class.forName("me.giskard.dust.core.stream.DustStreamJsonApiSerializerAgent"));
-		DustMind.StreamSource streamSource = createInstance(Class.forName("me.giskard.dust.core.stream.DustStreamSrcFileAgent"));
+		DustMachine.Bootloader bootLoader = createInstance(Class.forName("me.giskard.dust.core.stream.DustStreamJsonApiSerializerAgent"));
+		DustMachine.StreamSource streamSource = createInstance(Class.forName("me.giskard.dust.core.stream.DustStreamSrcFileAgent"));
 
 		start(DUST_PLATFORM_JAVA, appName, appUnitPath, bootLoader, streamSource);
 	}
 
-	public static DustHandle start(String platform, String appName, String appUnitPath, DustMind.Bootloader bootLoader, DustMind.StreamSource streamSource) throws Exception {
+	public static DustHandle start(String platform, String appName, String appUnitPath, DustMachine.Bootloader bootLoader, DustMachine.StreamSource streamSource) throws Exception {
 		long start = System.currentTimeMillis();
 
 		try {
-			MIND = createInstance(Class.forName("me.giskard.dust.core.mind.DustMindAgent"));
+			MIND = createInstance(Class.forName("me.giskard.dust.core.machine.DustMachineAgent"));
 			AGENTS.put(TOKEN_MIND, MIND);
 
 //			File f = new File(appUnitPath);
@@ -154,7 +154,7 @@ public class Dust implements DustConsts, DustMindConsts, DustDevConsts {
 		return appHandle;
 	}
 
-	public static DustHandle optExtAppUnit(String root, String file, DustMind.StreamSource streamSource, DustMind.Bootloader bootLoader)
+	public static DustHandle optExtAppUnit(String root, String file, DustMachine.StreamSource streamSource, DustMachine.Bootloader bootLoader)
 			throws Exception, IOException {
 		try (InputStream is = streamSource.optGetStream(TOKEN_MISC_TAG_CMD_LOAD, root, file)) {
 			return (null == is) ? null : MIND.bootLoadAppUnit(appUnit, file, is, bootLoader);

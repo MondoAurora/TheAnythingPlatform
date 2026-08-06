@@ -1,9 +1,9 @@
 package me.giskard.dust.mod.ldap;
 
-import me.giskard.dust.core.mind.DustMindConsts;
+import me.giskard.dust.core.machine.DustMachineConsts;
 import me.giskard.dust.core.stream.DustStreamConsts;
 
-public interface DustLdapNewConsts extends DustStreamConsts, DustMindConsts {
+public interface DustLdapNewConsts extends DustStreamConsts, DustMachineConsts {
 	String CONST_LDAP_DEF_CTX_FACTORY = "com.sun.jndi.ldap.LdapCtxFactory";
 	String CONST_LDAP_READTIMEOUT = "com.sun.jndi.ldap.read.timeout";
 	String CONST_LDAP_CONNTIMEOUT = "com.sun.jndi.ldap.connect.timeout";

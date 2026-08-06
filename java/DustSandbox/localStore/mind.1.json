@@ -92,11 +92,19 @@
 			"type": "mind.1$Tag"
 		},
 		{
+			"id": "mind.1$Filter",
+			"type": "mind.1$Narrative"
+		},
+		{
 			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_FINAL"
 			},
 			"id": "mind.1$Final",
 			"type": "mind.1$Tag"
+		},
+		{
+			"id": "mind.1$ForAll",
+			"type": "mind.1$Narrative"
 		},
 		{
 			"attributes": {
@@ -118,6 +126,13 @@
 			},
 			"id": "mind.1$Mandatory",
 			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ASP_NARRATIVE"
+			},
+			"id": "mind.1$Narrative",
+			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
@@ -331,11 +346,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -352,11 +367,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -394,11 +409,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeSet",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeSet",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -436,11 +451,32 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						},
 						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ATT_NARRATIVE"
+			},
+			"id": "mind.1$narrative",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
 							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -457,11 +493,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -478,11 +514,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeSet",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeSet",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -499,11 +535,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeBool",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeBool",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -520,11 +556,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeBool",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeBool",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -541,11 +577,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -562,11 +598,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -588,6 +624,6 @@
 		}
 	],
 	"meta": {
-		"count": 43
+		"count": 47
 	}
 }

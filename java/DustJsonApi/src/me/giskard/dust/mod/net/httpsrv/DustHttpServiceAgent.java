@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
-import me.giskard.dust.core.mind.DustMindUtils;
+import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.stream.DustStreamConsts;
 import me.giskard.dust.core.stream.DustStreamUtils;
@@ -72,7 +72,7 @@ public class DustHttpServiceAgent extends DustAgent implements DustNetConsts, Du
 
 				String url = Dust.access(DustAccess.Peek, "", null, TOKEN_MISC_ATT_TARGET, TOKEN_STREAM_ATT_URL);
 
-				for (DustHandle h : DustMindUtils.getUnitMembers(source)) {
+				for (DustHandle h : DustMachineUtils.getUnitMembers(source)) {
 					DustHandle t = h.getType();
 					if (DustUtils.isEqual(TOKEN_MIND_ASP_SERVICE, t.getId())) {
 						String i = h.getId();

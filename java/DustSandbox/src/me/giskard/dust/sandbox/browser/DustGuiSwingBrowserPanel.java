@@ -26,7 +26,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
@@ -40,7 +39,7 @@ import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.dev.DustDevUtils;
-import me.giskard.dust.core.mind.DustMindUtils;
+import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
 import me.giskard.dust.mod.gui.swing.DustGuiSwingUtils;
@@ -548,7 +547,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					String id = JOptionPane.showInputDialog(frm, "New id?", s.getId());
 					if (!DustUtils.isEmpty(id)) {
 						DustHandle sc = Dust.getHandle(s.getUnit(), s.getType(), id, DustOptCreate.Primary);
-						DustMindUtils.loadData(sc, s, false);
+						DustMachineUtils.loadData(sc, s, false);
 						Dust.access(DustAccess.Set, id, sc, TOKEN_MIND_ATT_ID); // quick fix
 						graphPanel.showHandle(sc, true, false);
 						selected.add(sc);
@@ -919,29 +918,29 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 		pnlGrid.setMinimumSize(dimMin);
 
-		ActionListener alShowAll = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JToggleButton btn = (JToggleButton) e.getSource();
-				boolean all = btn.isSelected();
-				DefaultTableModel tblm = null;
-
-				String s = btn.getText();
-				switch (s) {
-				case "All Aspects":
-					tblm = tblmAspectFilter;
-					break;
-				case "All Atts":
-					tblm = tblmAtts;
-					break;
-				case "All Links":
-					tblm = tblmLinks;
-					break;
-				default:
-					DustException.wrap(null, "Should not be here");
-				}
-			}
-		};
+//		ActionListener alShowAll = new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				JToggleButton btn = (JToggleButton) e.getSource();
+//				boolean all = btn.isSelected();
+//				DefaultTableModel tblm = null;
+//
+//				String s = btn.getText();
+//				switch (s) {
+//				case "All Aspects":
+//					tblm = tblmAspectFilter;
+//					break;
+//				case "All Atts":
+//					tblm = tblmAtts;
+//					break;
+//				case "All Links":
+//					tblm = tblmLinks;
+//					break;
+//				default:
+//					DustException.wrap(null, "Should not be here");
+//				}
+//			}
+//		};
 
 		// Attributes
 
@@ -950,9 +949,9 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 		JPanel pnlAtts = new JPanel(new BorderLayout());
 		pnlAtts.add(scpTbl, BorderLayout.CENTER);
-		JToggleButton tbAllAtts = new JToggleButton("All Atts");
-		tbAllAtts.addActionListener(alShowAll);
-		pnlAtts.add(tbAllAtts, BorderLayout.SOUTH);
+//		JToggleButton tbAllAtts = new JToggleButton("All Atts");
+//		tbAllAtts.addActionListener(alShowAll);
+//		pnlAtts.add(tbAllAtts, BorderLayout.SOUTH);
 		pnlAtts.setMinimumSize(dimMin);
 		DustGuiSwingUtils.setTitle(pnlAtts, "Atts");
 		lsm = tblAtts.getSelectionModel();
@@ -978,9 +977,9 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		scpTbl = new JScrollPane(tblAspectFilter);
 		JPanel pnlAspects = new JPanel(new BorderLayout());
 		pnlAspects.add(scpTbl, BorderLayout.CENTER);
-		JToggleButton tbAllAspects = new JToggleButton("All Aspects");
-		tbAllAspects.addActionListener(alShowAll);
-		pnlAspects.add(tbAllAspects, BorderLayout.SOUTH);
+//		JToggleButton tbAllAspects = new JToggleButton("All Aspects");
+//		tbAllAspects.addActionListener(alShowAll);
+//		pnlAspects.add(tbAllAspects, BorderLayout.SOUTH);
 		pnlAspects.setMinimumSize(dimMin);
 		DustGuiSwingUtils.setTitle(pnlAspects, "Aspects");
 		lsm = tblAspectFilter.getSelectionModel();
@@ -1005,9 +1004,9 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		scpTbl = new JScrollPane(tblLinks);
 		JPanel pnlLinks = new JPanel(new BorderLayout());
 		pnlLinks.add(scpTbl, BorderLayout.CENTER);
-		JToggleButton tbAllLinks = new JToggleButton("All Links");
-		tbAllLinks.addActionListener(alShowAll);
-		pnlLinks.add(tbAllLinks, BorderLayout.SOUTH);
+//		JToggleButton tbAllLinks = new JToggleButton("All Links");
+//		tbAllLinks.addActionListener(alShowAll);
+//		pnlLinks.add(tbAllLinks, BorderLayout.SOUTH);
 		pnlLinks.setMinimumSize(dimMin);
 		DustGuiSwingUtils.setTitle(pnlLinks, "Links");
 

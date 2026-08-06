@@ -13,12 +13,12 @@ import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.DustException;
-import me.giskard.dust.core.DustMind;
+import me.giskard.dust.core.DustMachine;
 import me.giskard.dust.core.stream.DustStreamConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFile;
 
-public class DustStreamSrcSftpAgent extends DustAgent implements DustMind.StreamSource, DustNetConsts, DustStreamConsts {
+public class DustStreamSrcSftpAgent extends DustAgent implements DustMachine.StreamSource, DustNetConsts, DustStreamConsts {
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {

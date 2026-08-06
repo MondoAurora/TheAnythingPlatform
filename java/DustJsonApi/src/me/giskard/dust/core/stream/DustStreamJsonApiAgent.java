@@ -12,15 +12,15 @@ import java.util.Set;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
+import me.giskard.dust.core.machine.DustMachineConsts;
+import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.DustException;
-import me.giskard.dust.core.mind.DustMindConsts;
-import me.giskard.dust.core.mind.DustMindUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsConstsJson;
 import me.giskard.dust.mod.utils.DustUtilsJson;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustStreamJsonApiAgent extends DustAgent implements DustMindConsts, DustUtilsConstsJson, DustStreamConsts {
+public class DustStreamJsonApiAgent extends DustAgent implements DustMachineConsts, DustUtilsConstsJson, DustStreamConsts {
 
 	private static final Set<String> SKIP_KEYS = new HashSet<String>();
 
@@ -91,7 +91,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMindConsts,
 
 		Dust.access(DustAccess.Set, data, target, JsonApiMember.data);
 
-		for (DustHandle h : DustMindUtils.getUnitMembers(unit)) {
+		for (DustHandle h : DustMachineUtils.getUnitMembers(unit)) {
 			Map<String, Object> item = storeHead(h);
 
 			for (String key : (Iterable<String>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, KEY_MAP_KEYS)) {

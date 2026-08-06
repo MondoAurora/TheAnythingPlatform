@@ -60,8 +60,8 @@ import javax.swing.tree.DefaultTreeModel;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
+import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.DustException;
-import me.giskard.dust.core.mind.DustMindUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
 import me.giskard.dust.core.utils.DustUtilsFile;
@@ -313,7 +313,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					if (-1 != idx) {
 						DustHandle hS = styleArr.get(idx);
 						Set<String> match = new HashSet<>();
-						for (DustHandle h : DustMindUtils.getUnitMembers(txtAgent.hUnit)) {
+						for (DustHandle h : DustMachineUtils.getUnitMembers(txtAgent.hUnit)) {
 							Set oo = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, h, TOKEN_TEXT_ATT_STYLES);
 							if (!oo.isEmpty()) {
 								Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, oo);
@@ -440,7 +440,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 					break;
 				case "ExtRes":
-					for (DustHandle h : DustMindUtils.getUnitMembers(txtAgent.hUnit)) {
+					for (DustHandle h : DustMachineUtils.getUnitMembers(txtAgent.hUnit)) {
 						String ht = h.getType().getId();
 
 						switch (ht) {
@@ -818,7 +818,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 		txtAgent.load(tfUnit.getText(), hCurrentLayout, hLang);
 
 		styleArr.clear();
-		for (DustHandle hr : DustMindUtils.getUnitMembers(txtAgent.hUnit)) {
+		for (DustHandle hr : DustMachineUtils.getUnitMembers(txtAgent.hUnit)) {
 			String ht = hr.getType().getId();
 
 			switch (ht) {
@@ -830,7 +830,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 		resArr.clear();
 
-		for (DustHandle hr : DustMindUtils.getUnitMembers(txtAgent.hRes)) {
+		for (DustHandle hr : DustMachineUtils.getUnitMembers(txtAgent.hRes)) {
 			String ht = hr.getType().getId();
 
 			switch (ht) {

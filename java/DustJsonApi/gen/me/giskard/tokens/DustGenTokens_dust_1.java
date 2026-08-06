@@ -1,7 +1,7 @@
 package me.giskard.tokens;
 
 public interface DustGenTokens_dust_1 {
-// Types
+// Aspects
 	String TOKEN_DUST_ASP_APP = "dust.1$Application";
 
 // Attributes
@@ -12,5 +12,6 @@ public interface DustGenTokens_dust_1 {
 	String TOKEN_DUST_ATT_UNIT_REFS = "dust.1$unitRefs";
 
 // Agents
+	String TOKEN_DUST_AGT_RUNTIME = "dust.1$Runtime";
 	String TOKEN_MIND = "dust.1$MiND";
 }

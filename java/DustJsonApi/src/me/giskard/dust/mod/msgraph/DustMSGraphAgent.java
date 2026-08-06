@@ -10,7 +10,7 @@ import java.util.TreeMap;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
-import me.giskard.dust.core.mind.DustMindUtils;
+import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.stream.DustStreamConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsData;
@@ -103,7 +103,7 @@ public class DustMSGraphAgent extends DustAgent implements DustMSGraphConsts, Du
 					Map<String, DustHandle> createMap = new TreeMap<>();
 
 					int lc = 0;
-					for (DustHandle h : DustMindUtils.getUnitMembers(localUnit)) {
+					for (DustHandle h : DustMachineUtils.getUnitMembers(localUnit)) {
 						Object m = Dust.access(DustAccess.Peek, null, h, mail);
 						String goodMail = null;
 

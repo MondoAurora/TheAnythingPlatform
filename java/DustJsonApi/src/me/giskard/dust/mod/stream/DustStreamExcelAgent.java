@@ -18,15 +18,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
-import me.giskard.dust.core.mind.DustMindConsts;
-import me.giskard.dust.core.mind.DustMindUtils;
+import me.giskard.dust.core.machine.DustMachineConsts;
+import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.stream.DustStreamConsts;
 import me.giskard.dust.core.stream.DustStreamUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts, DustMindConsts {
+public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts, DustMachineConsts {
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
@@ -43,7 +43,7 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 		int lc = 0;
 
 		Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Reading meta", unitId);
-		for (DustHandle h : DustMindUtils.getUnitMembers(unit)) {
+		for (DustHandle h : DustMachineUtils.getUnitMembers(unit)) {
 			if ( 0 == (++lc % 10000) ) {
 				Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "line", lc);
 			}
@@ -87,7 +87,7 @@ public class DustStreamExcelAgent extends DustAgent implements DustStreamConsts,
 			Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Generating Excel");
 
 			lc = 0;
-			for (DustHandle h : DustMindUtils.getUnitMembers(unit)) {
+			for (DustHandle h : DustMachineUtils.getUnitMembers(unit)) {
 				if ( 0 == (++lc % 10000) ) {
 					Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "line", lc);
 				}

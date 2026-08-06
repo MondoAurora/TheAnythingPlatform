@@ -1,4 +1,4 @@
-package me.giskard.dust.core.mind;
+package me.giskard.dust.core.machine;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -9,7 +9,7 @@ import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.utils.DustUtils;
 
 @SuppressWarnings("rawtypes")
-public interface DustMindNarrative extends DustMindConsts {
+public interface DustMachineNarrative extends DustMachineConsts {
 
 	abstract class ChainAgent extends DustAgent {
 		DustHandle hNext;

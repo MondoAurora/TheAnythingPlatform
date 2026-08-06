@@ -13,13 +13,13 @@ import java.util.Set;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
-import me.giskard.dust.core.mind.DustMindConsts;
+import me.giskard.dust.core.machine.DustMachineConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsData;
 
 //@SuppressWarnings({ "unchecked", "rawtypes" })
 @SuppressWarnings({ "unchecked" })
-public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, DustMindConsts {
+public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, DustMachineConsts {
 
 //	DustHandle typeAtt = DustUtils.getMindMeta(TOKEN_MIND_ATTRIBUTE);
 //	DustHandle typeType = DustUtils.getMindMeta(TOKEN_MIND_TYPE);

@@ -6,7 +6,10 @@
 			"attributes": {
 				"dust.1$binaryResolver": {
 					"dust.1$MiND": {
-						"dust.1$binary": "me.giskard.dust.core.mind.DustMindAgent"
+						"dust.1$binary": "me.giskard.dust.core.machine.DustMachineAgent"
+					},
+					"dust.1$Runtime": {
+						"dust.1$binary": "me.giskard.dust.core.machine.DustMachineAgent"
 					},
 					"sandbox.1$SerializeJsonApi": {
 						"dust.1$binary": "me.giskard.dust.core.stream.DustStreamJsonApiSerializerAgent"
@@ -20,11 +23,17 @@
 					"sandbox.1$GraphEditor": {
 						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserPanel"
 					},
-					"sandbox.1$ForAll": {
-						"dust.1$binary": "me.giskard.dust.core.mind.DustMindNarrative$ForAll"
+					"mind.1$ForAll": {
+						"dust.1$binary": "me.giskard.dust.core.machine.DustMachineNarrative$ForAll"
 					},
 					"sandbox.1$Filter": {
-						"dust.1$binary": "me.giskard.dust.core.mind.DustMindNarrative$Filter"
+						"dust.1$binary": "me.giskard.dust.core.machine.DustMachineNarrative$Filter"
+					},
+					"sandbox.1$ForAll": {
+						"dust.1$binary": "me.giskard.dust.core.machine.DustMachineNarrative$ForAll"
+					},
+					"mind.1$Filter": {
+						"dust.1$binary": "me.giskard.dust.core.machine.DustMachineNarrative$Filter"
 					},
 					"sandbox.1$GenSourceToken": {
 						"dust.1$binary": "me.giskard.dust.core.dev.DustDevGenSourceTokenAgent"
@@ -32,7 +41,7 @@
 					"sandbox.1$AppFrame": {
 						"dust.1$binary": "me.giskard.dust.sandbox.DustSandboxAppFrameAgent"
 					},
-					"sandbox.1$SandboxAgent": {
+					"sandbox.1$SandboxTest": {
 						"dust.1$binary": "me.giskard.dust.sandbox.DustSandboxTestAgent"
 					},
 					"sandbox.1$SandboxTextAgent": {

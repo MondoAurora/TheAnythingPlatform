@@ -12,7 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 import me.giskard.dust.core.Dust;
-import me.giskard.dust.core.mind.DustMindUtils;
+import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.mod.gui.swing.DustGuiSwingConsts;
 
@@ -119,13 +119,13 @@ public class DustGuiSwingGridPanel extends DustGuiSwingConsts.JPanelAgent implem
 		allData.clear();
 		allAtts.clear();
 
-		for (DustHandle h : DustMindUtils.getUnitMembers(unit)) {
+		for (DustHandle h : DustMachineUtils.getUnitMembers(unit)) {
 			if ( !extFilter.process(h) ) {
 				continue;
 			}
 			
 			allData.add(h);
-			for (String a : DustMindUtils.getAttNames(h)) {
+			for (String a : DustMachineUtils.getAttNames(h)) {
 				String p = DustUtils.getPrefix(a, DUST_SEP_TOKEN);
 				if (UNIT_DUST.equals(p)) {
 //					continue;

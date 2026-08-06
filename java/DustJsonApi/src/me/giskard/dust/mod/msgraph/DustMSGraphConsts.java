@@ -1,10 +1,10 @@
 package me.giskard.dust.mod.msgraph;
 
 import me.giskard.dust.core.DustConsts;
-import me.giskard.dust.core.mind.DustMindConsts;
+import me.giskard.dust.core.machine.DustMachineConsts;
 import me.giskard.dust.core.net.DustNetConsts;
 
-public interface DustMSGraphConsts extends DustConsts, DustNetConsts, DustMindConsts {
+public interface DustMSGraphConsts extends DustConsts, DustNetConsts, DustMachineConsts {
 
 	String MSGRAPH_value = "value";
 	String MSGRAPH_userPrincipalName = "userPrincipalName";
