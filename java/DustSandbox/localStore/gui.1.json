@@ -327,11 +327,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeArr",
+							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeString",
+							"id": "mind.1$ColltypeArr",
 							"type": "mind.1$Tag"
 						}
 					]

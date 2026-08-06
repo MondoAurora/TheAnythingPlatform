@@ -12,7 +12,7 @@
 						{
 							"type": "mind.1$Agent",
 							"id": "sandbox.1$GraphEditor",
-							"idx": "sandbox.1$SandboxTextAgent",
+							"idxxx": "sandbox.1$SandboxTextAgent",
 							"meta": {
 								"key": -1
 							}
@@ -54,6 +54,12 @@
 					"data": {
 						"type": "mind.1$Service",
 						"id": "sandbox.1$SrcGenEntry"
+					}
+				},
+				"mind.1$narrative": {
+					"data": {
+						"type": "mind.1$Narrative",
+						"id": "dev.1$GraphEditor"
 					}
 				}
 			}
@@ -183,6 +189,12 @@
 						"type": "mind.1$Service",
 						"id": "sandbox.1$GenSourceRoot"
 					}
+				},
+				"mind.1$narrative": {
+					"data": {
+						"type": "mind.1$Narrative",
+						"id": "dev.1$GenSourceTokenJava"
+					}
 				}
 			}
 		},
@@ -194,7 +206,7 @@
 					"data": [
 						{
 							"type": "mind.1$Agent",
-							"id": "dust.1$MiND",
+							"id": "dust.1$Runtime",
 							"meta": {
 								"key": -1
 							}
@@ -205,7 +217,7 @@
 		},
 		{
 			"type": "mind.1$Agent",
-			"id": "dust.1$MiND",
+			"id": "dust.1$Runtime",
 			"attributes": {
 				"misc.1$meta": "dust.1"
 			},
@@ -220,7 +232,15 @@
 		},
 		{
 			"type": "mind.1$Agent",
-			"id": "sandbox.1$SerializeJsonApi"
+			"id": "sandbox.1$Serializer",
+			"relationships": {
+				"mind.1$narrative": {
+					"data": {
+						"type": "mind.1$Narrative",
+						"id": "stream.1$SerializeJsonApi"
+					}
+				}
+			}
 		},
 		{
 			"type": "mind.1$Service",
@@ -230,7 +250,7 @@
 					"data": [
 						{
 							"type": "mind.1$Agent",
-							"id": "sandbox.1$SerializeJsonApi",
+							"id": "sandbox.1$Serializer",
 							"meta": {
 								"key": -1
 							}
@@ -247,7 +267,15 @@
 		},
 		{
 			"type": "mind.1$Agent",
-			"id": "sandbox.1$FileStreamSource"
+			"id": "sandbox.1$StreamSource",
+			"relationships": {
+				"mind.1$narrative": {
+					"data": {
+						"type": "mind.1$Narrative",
+						"id": "stream.1$FileStreamSource"
+					}
+				}
+			}
 		},
 		{
 			"type": "mind.1$Service",
@@ -261,7 +289,7 @@
 					"data": [
 						{
 							"type": "mind.1$Agent",
-							"id": "sandbox.1$FileStreamSource",
+							"id": "sandbox.1$StreamSource",
 							"meta": {
 								"key": -1
 							}
@@ -281,7 +309,7 @@
 					"data": [
 						{
 							"type": "mind.1$Agent",
-							"id": "sandbox.1$FileStreamSource",
+							"id": "sandbox.1$StreamSource",
 							"meta": {
 								"key": -1
 							}
@@ -319,6 +347,12 @@
 				]
 			},
 			"relationships": {
+				"mind.1$narrative": {
+					"data": {
+						"type": "mind.1$Narrative",
+						"id": "text.1$TextAgent"
+					}
+				},
 				"text.1$lang": {
 					"data": {
 						"type": "lang.1$Language",
@@ -401,7 +435,7 @@
 		},
 		{
 			"type": "mind.1$Service",
-			"id": "sandbox.1$SandboxTest1",
+			"id": "sandbox.1$SandboxTestSvc",
 			"attributes": {
 				"dev.1$skip": false,
 				"mind.1$cmd": "LnF",

@@ -163,8 +163,8 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 
 		if (null == defaultSerializer) {
 			DustHandle app = Dust.getUnit("sandbox.1", false);
-			DustHandle mind = Dust.getHandle(app, null, TOKEN_MIND, DustOptCreate.None);
-			defaultSerializer = Dust.access(DustAccess.Peek, null, mind, TOKEN_MIND_ATT_SERIALIZER);
+			DustHandle runtime = Dust.getHandle(app, null, TOKEN_DUST_AGT_RUNTIME, DustOptCreate.None);
+			defaultSerializer = Dust.access(DustAccess.Peek, null, runtime, TOKEN_MIND_ATT_SERIALIZER);
 		}
 
 		toSave.add(hUnit);

@@ -46,7 +46,7 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 	DustMachineHandle typeUnit;
 
 	DustMachineIdea unitApp;
-	DustMachineIdea unitMind;
+	DustMachineIdea machine;
 	DustMachineIdea unitMeta;
 
 	DustMachineHandle defaultSerializer;
@@ -93,13 +93,13 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 	private Map<String, DustMachineIdea> bootRefUnits;
 
 	public DustMachineAgent() {
-		unitMind = new DustMachineIdea(new DustMachineHandle(this, null, null, NAME_MIND));
-		initUnit(unitMind, true);
-		unitMeta = new DustMachineIdea(new DustMachineHandle(this, unitMind, null, UNIT_MIND));
+		machine = new DustMachineIdea(new DustMachineHandle(this, null, null, TOKEN_DUST_AGT_RUNTIME));
+		initUnit(machine, true);
+		unitMeta = new DustMachineIdea(new DustMachineHandle(this, machine, null, UNIT_MIND));
 		initUnit(unitMeta, false);
 
-		((Map) unitMind.content.get(TOKEN_DUST_ATT_UNIT_REFS)).put(UNIT_DUST, unitMeta.mh);
-		((Map) unitMind.content.get(TOKEN_DUST_ATT_UNIT_OBJECTS)).put(unitMeta.mh, unitMeta);
+		((Map) machine.content.get(TOKEN_DUST_ATT_UNIT_REFS)).put(UNIT_DUST, unitMeta.mh);
+		((Map) machine.content.get(TOKEN_DUST_ATT_UNIT_OBJECTS)).put(unitMeta.mh, unitMeta);
 
 		typeType = safeGetIdea(unitMeta, null, TOKEN_MIND_ASP_ASPECT, DustOptCreate.Meta).mh;
 		typeAtt = safeGetIdea(unitMeta, typeType, TOKEN_MIND_ASP_ATTRIBUTE, DustOptCreate.Meta).mh;
@@ -109,16 +109,16 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 		DustMachineIdea typeIdea = safeGetIdea(unitMeta, typeType);
 		typeIdea.loadMh();
 
-		unitMind.mh.init(unitMind, typeUnit, NAME_MIND);
-		unitMind.loadMh();
-		unitMeta.mh.init(unitMind, typeUnit, UNIT_DUST);
+		machine.mh.init(machine, typeUnit, TOKEN_DUST_AGT_RUNTIME);
+		machine.loadMh();
+		unitMeta.mh.init(machine, typeUnit, UNIT_DUST);
 		unitMeta.loadMh();
 	}
 
 	@Override
 	protected void init() {
-		DustHandle mind = getHandle(unitApp.mh, null, TOKEN_MIND, DustOptCreate.None);
-		defaultSerializer = access(DustAccess.Peek, null, mind, TOKEN_MIND_ATT_SERIALIZER);
+		DustHandle hMachine = getHandle(unitApp.mh, null, TOKEN_DUST_AGT_RUNTIME, DustOptCreate.None);
+		defaultSerializer = access(DustAccess.Peek, null, hMachine, TOKEN_MIND_ATT_SERIALIZER);
 		optLoadUnit(UNIT_DUST, unitMeta);
 		if (null != bootRefUnits) {
 			for (Map.Entry<String, DustMachineIdea> be : bootRefUnits.entrySet()) {
@@ -174,12 +174,12 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 			DustMachineIdea ui;
 
 			if ((null != type) && DustUtils.isEqual(typeUnit, type)) {
-				ui = unitMind;
+				ui = machine;
 			} else {
 				if (-1 == sep) {
 					id = u.getId() + DUST_SEP_TOKEN + id;
 				}
-				ui = safeGetIdea(unitMind, u);
+				ui = safeGetIdea(machine, u);
 			}
 
 			Map<String, DustMachineHandle> unitRefs = (Map) ui.content.get(TOKEN_DUST_ATT_UNIT_REFS);
@@ -231,14 +231,14 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 
 		if (DustUtils.isEmpty(unitId)) {
 			if (createIfMissing) {
-				mh = new DustMachineHandle(this, unitMind, typeUnit, "");
+				mh = new DustMachineHandle(this, machine, typeUnit, "");
 			}
 		} else {
-			mh = getHandle(unitMind.mh, typeUnit, unitId, createIfMissing ? DustOptCreate.Primary : DustOptCreate.None);
+			mh = getHandle(machine.mh, typeUnit, unitId, createIfMissing ? DustOptCreate.Primary : DustOptCreate.None);
 		}
 
 		if (null != mh) {
-			ret = safeGetIdea(unitMind, mh);
+			ret = safeGetIdea(machine, mh);
 		}
 
 		return ret;
@@ -246,7 +246,7 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 
 	private void optLoadUnit(String unitId, DustMachineIdea unit) {
 		if (!DustUtils.isEmpty(unitId)) {
-			Object ser = access(DustAccess.Peek, defaultSerializer, unitMind, TOKEN_DUST_ATT_UNIT_OBJECTS, unitId, TOKEN_MIND_ATT_SERIALIZER);
+			Object ser = access(DustAccess.Peek, defaultSerializer, machine, TOKEN_DUST_ATT_UNIT_OBJECTS, unitId, TOKEN_MIND_ATT_SERIALIZER);
 
 			if (null != ser) {
 				Map<String, Object> params = new HashMap<>();
@@ -276,7 +276,7 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 			return false;
 		}
 
-		return (null == unit) ? false : null != access(DustAccess.Delete, null, unitMind.content, TOKEN_DUST_ATT_UNIT_OBJECTS, unit);
+		return (null == unit) ? false : null != access(DustAccess.Delete, null, machine.content, TOKEN_DUST_ATT_UNIT_OBJECTS, unit);
 	}
 
 	@Override
@@ -529,7 +529,8 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 
 		if (TOKEN_MIND_ATT_TAGS.equals(lastKey)) {
 			if (curr instanceof Collection) {
-				for (DustHandle ht : (Collection<DustHandle>) curr) {
+				for (Object o : (Collection) curr) {
+					DustHandle ht = (o instanceof DustHandle) ? (DustHandle) o : getHandle(null, TOKEN_MIND_ASP_TAG, (String) o, DustOptCreate.None);
 					switch (access) {
 					case Peek:
 						if (DustUtils.isEqual(val, access(DustAccess.Peek, "", ht, TOKEN_MISC_ATT_PARENT, TOKEN_MIND_ATT_ID))) {
@@ -930,7 +931,7 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 
 				break;
 			case TOKEN_MIND_CMD_LISTUNITS:
-				Map<String, ? extends DustHandle> um = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unitMind.content, TOKEN_DUST_ATT_UNIT_REFS);
+				Map<String, ? extends DustHandle> um = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, machine.content, TOKEN_DUST_ATT_UNIT_REFS);
 				Dust.access(DustAccess.Delete, null, DustContext.Input, TOKEN_MISC_ATT_TARGET);
 
 				for (DustHandle dh : um.values()) {
@@ -953,7 +954,7 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 
 				Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Before MiND info", DustDevUtils.memInfo());
 
-				Collection<String> loadedUnits = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, unitMind, TOKEN_DUST_ATT_UNIT_OBJECTS, KEY_MAP_KEYS);
+				Collection<String> loadedUnits = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, machine, TOKEN_DUST_ATT_UNIT_OBJECTS, KEY_MAP_KEYS);
 				Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Loaded units", loadedUnits);
 
 				Map<String, Object> p = new HashMap<>();
@@ -1126,7 +1127,7 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 				Dust.access(DustAccess.Set, DustUtils.strTime(), info, TOKEN_MISC_ATT_LASTCHANGED);
 
 				Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "After MiND info", DustDevUtils.memInfo());
-				loadedUnits = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, unitMind, TOKEN_DUST_ATT_UNIT_OBJECTS, KEY_MAP_KEYS);
+				loadedUnits = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, machine, TOKEN_DUST_ATT_UNIT_OBJECTS, KEY_MAP_KEYS);
 				Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Loaded units", loadedUnits);
 
 				break;

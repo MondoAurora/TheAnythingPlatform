@@ -5,7 +5,7 @@ import me.giskard.dust.core.utils.DustUtilsConsts;
 
 public interface DustMachineConsts extends DustConsts, DustUtilsConsts {
 
-	String NAME_MIND = "MiND";
+//	String NAME_MIND = "MiND";
 	
 	class DustMachineHandle implements DustHandle {
 		final DustMachineAgent mind;

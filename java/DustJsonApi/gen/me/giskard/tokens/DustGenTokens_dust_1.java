@@ -1,5 +1,7 @@
 package me.giskard.tokens;
 
+// Generation timestamp 20260806T152930Z
+
 public interface DustGenTokens_dust_1 {
 // Aspects
 	String TOKEN_DUST_ASP_APP = "dust.1$Application";
@@ -13,5 +15,4 @@ public interface DustGenTokens_dust_1 {
 
 // Agents
 	String TOKEN_DUST_AGT_RUNTIME = "dust.1$Runtime";
-	String TOKEN_MIND = "dust.1$MiND";
 }

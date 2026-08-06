@@ -19,7 +19,7 @@ public class Dust implements DustConsts, DustMachineConsts, DustDevConsts {
 	private static DustHandle appUnit;
 	private static DustHandle appHandle;
 
-	private static DustMachine MIND;
+	private static DustMachine MACHINE;
 
 	private static ArrayList<DustAgent> TORELEASE;
 
@@ -52,7 +52,9 @@ public class Dust implements DustConsts, DustMachineConsts, DustDevConsts {
 				return DustException.wrap(null, "Missing config for agent ", key);
 			}
 
-			DustAgent a = createInstance(getBinary(key));
+			String narrativeId = access(DustAccess.Peek, null, aCfg, TOKEN_MIND_ATT_NARRATIVE, TOKEN_MIND_ATT_ID);
+
+			DustAgent a = createInstance(getBinary(narrativeId));
 
 			return a;
 		}
@@ -62,7 +64,7 @@ public class Dust implements DustConsts, DustMachineConsts, DustDevConsts {
 			DustHandle hCfg = getAgentHandle(key);
 
 			try {
-				MIND.notifyAgent(hCfg, DustAction.Init, null, null, null);
+				MACHINE.notifyAgent(hCfg, DustAction.Init, null, null, null);
 
 				if ((Boolean) access(DustAccess.Peek, false, hCfg, TOKEN_DUST_ATT_RELEASEONSHUTDOWN)) {
 					registerToRelease(a);
@@ -86,44 +88,28 @@ public class Dust implements DustConsts, DustMachineConsts, DustDevConsts {
 		long start = System.currentTimeMillis();
 
 		try {
-			MIND = createInstance(Class.forName("me.giskard.dust.core.machine.DustMachineAgent"));
-			AGENTS.put(TOKEN_MIND, MIND);
+			MACHINE = createInstance(Class.forName("me.giskard.dust.core.machine.DustMachineAgent"));
+			AGENTS.put(TOKEN_DUST_AGT_RUNTIME, MACHINE);
 
-//			File f = new File(appUnitPath);
-//			int u = appUnitPath.lastIndexOf("/");
-//			String root = (-1 == u) ? "." : appUnitPath.substring(0, u);
-//			String unitId = DustUtils.cutPostfix(appUnitPath.substring(u + 1), ".");
 			int s = appUnitPath.lastIndexOf(".");
-
-//			optLoadAppUnit(unitId, bootLoader, f);
 			appUnit = optExtAppUnit(null, appUnitPath, streamSource, bootLoader);
 
 			String userName = System.getProperty("user.name");
 			if (!DustUtils.isEmpty(userName)) {
 				String userExtPath = new StringBuilder(appUnitPath).insert(s, "." + userName).toString();
 				optExtAppUnit(null, userExtPath, streamSource, bootLoader);
-//				File d = f.getAbsoluteFile().getParentFile();
-//				String fn = f.getName();
-//				int s = fn.lastIndexOf(".");
-//				File f2 = new File(d, fn.substring(0, s) + "." + userName + DUST_EXT_JSON);
-//				MIND.bootLoadAppUnit(appUnit, f2, bootLoader);
 			}
 
 			optExtAppUnit(null, DUST_CRED_FILE, streamSource, bootLoader);
-//			MIND.bootLoadAppUnit(appUnit, new File(DUST_CRED_FILE), bootLoader);
 
-//			DustHandle appType = DustUtils.getMindMeta(TOKEN_TYPE_APP);
 			appHandle = getHandle(appUnit, TOKEN_DUST_ASP_APP, appName, DustOptCreate.None);
 
-//			int s = appUnitPath.lastIndexOf(".");
-//			File fBin = new File(appUnitPath.substring(0, s) + "." + DUST_PLATFORM_JAVA + appUnitPath.substring(s));
-//			MIND.bootLoadAppUnit(appUnit, fBin, bootLoader);
 			String binPath = new StringBuilder(appUnitPath).insert(s, "." + platform).toString();
 			optExtAppUnit(null, binPath, streamSource, bootLoader);
 			
 			Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "MemInfo before init", DustDevUtils.memInfo());
 
-			MIND.init();
+			MACHINE.init();
 
 			for (DustHandle ca : ((Collection<DustHandle>) access(DustAccess.Peek, Collections.EMPTY_LIST, appHandle, TOKEN_MISC_ATT_INIT))) {
 
@@ -157,20 +143,20 @@ public class Dust implements DustConsts, DustMachineConsts, DustDevConsts {
 	public static DustHandle optExtAppUnit(String root, String file, DustMachine.StreamSource streamSource, DustMachine.Bootloader bootLoader)
 			throws Exception, IOException {
 		try (InputStream is = streamSource.optGetStream(TOKEN_MISC_TAG_CMD_LOAD, root, file)) {
-			return (null == is) ? null : MIND.bootLoadAppUnit(appUnit, file, is, bootLoader);
+			return (null == is) ? null : MACHINE.bootLoadAppUnit(appUnit, file, is, bootLoader);
 		}
 	}
 
 	public static DustHandle getHandle(DustHandle unit, Object type, String id, DustOptCreate optCreate) {
-		return MIND.getHandle(unit, type, id, optCreate);
+		return MACHINE.getHandle(unit, type, id, optCreate);
 	}
 
 	public static DustHandle getUnit(String unitId, boolean createIfMissing) {
-		return MIND.getUnit(unitId, createIfMissing);
+		return MACHINE.getUnit(unitId, createIfMissing);
 	}
 
 	public static boolean releaseUnit(DustHandle unit) {
-		return MIND.releaseUnit(unit);
+		return MACHINE.releaseUnit(unit);
 	}
 
 	public static <RetType> Class<RetType> getBinary(Object key) {
@@ -214,17 +200,17 @@ public class Dust implements DustConsts, DustMachineConsts, DustDevConsts {
 	}
 
 	public static <RetType> RetType access(DustAccess access, Object val, Object root, Object... path) {
-		return MIND.access(access, val, root, path);
+		return MACHINE.access(access, val, root, path);
 	}
 
 	@Deprecated
 	public static <RetType> RetType accessCtx(DustAccess access, Object val, Object root, Object... path) {
-		return MIND.accessCtx(access, val, root, path);
+		return MACHINE.accessCtx(access, val, root, path);
 	}
 
 	@Deprecated
 	public static <RetType> RetType optGetCtx(Object in) {
-		return MIND.optGetCtx(in);
+		return MACHINE.optGetCtx(in);
 	}
 
 	public static DustHandle getAgentHandle(Object key) {

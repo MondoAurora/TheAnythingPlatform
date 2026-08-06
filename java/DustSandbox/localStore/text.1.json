@@ -60,6 +60,10 @@
 			"type": "mind.1$Aspect"
 		},
 		{
+			"id": "text.1$TextAgent",
+			"type": "mind.1$Narrative"
+		},
+		{
 			"attributes": {
 				"misc.1$name": "TOKEN_TEXT_ASP_TRANSCLUSION"
 			},
@@ -71,11 +75,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -92,11 +96,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -113,11 +117,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeSet",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeSet",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -134,11 +138,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeRaw",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeRaw",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -155,11 +159,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeSet",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeSet",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -176,11 +180,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeString",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -194,6 +198,6 @@
 		}
 	],
 	"meta": {
-		"count": 15
+		"count": 16
 	}
 }

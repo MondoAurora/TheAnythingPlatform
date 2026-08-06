@@ -5,47 +5,39 @@
 			"id": "Sandbox",
 			"attributes": {
 				"dust.1$binaryResolver": {
-					"dust.1$MiND": {
+					"dust.1$Machine": {
 						"dust.1$binary": "me.giskard.dust.core.machine.DustMachineAgent"
-					},
-					"dust.1$Runtime": {
-						"dust.1$binary": "me.giskard.dust.core.machine.DustMachineAgent"
-					},
-					"sandbox.1$SerializeJsonApi": {
-						"dust.1$binary": "me.giskard.dust.core.stream.DustStreamJsonApiSerializerAgent"
-					},
-					"sandbox.1$FileStreamSource": {
-						"dust.1$binary": "me.giskard.dust.core.stream.DustStreamSrcFileAgent"
-					},
-					"sandbox.1$Browser": {
-						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserFrameAgent"
-					},
-					"sandbox.1$GraphEditor": {
-						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserPanel"
 					},
 					"mind.1$ForAll": {
-						"dust.1$binary": "me.giskard.dust.core.machine.DustMachineNarrative$ForAll"
-					},
-					"sandbox.1$Filter": {
-						"dust.1$binary": "me.giskard.dust.core.machine.DustMachineNarrative$Filter"
-					},
-					"sandbox.1$ForAll": {
 						"dust.1$binary": "me.giskard.dust.core.machine.DustMachineNarrative$ForAll"
 					},
 					"mind.1$Filter": {
 						"dust.1$binary": "me.giskard.dust.core.machine.DustMachineNarrative$Filter"
 					},
-					"sandbox.1$GenSourceToken": {
+					"stream.1$SerializeJsonApi": {
+						"dust.1$binary": "me.giskard.dust.core.stream.DustStreamJsonApiSerializerAgent"
+					},
+					"stream.1$FileStreamSource": {
+						"dust.1$binary": "me.giskard.dust.core.stream.DustStreamSrcFileAgent"
+					},
+					"dev.1$GraphEditor": {
+						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserPanel"
+					},
+					"dev.1$GenSourceTokenJava": {
 						"dust.1$binary": "me.giskard.dust.core.dev.DustDevGenSourceTokenAgent"
+					},
+					"text.1$TextAgent": {
+						"dust.1$binary": "me.giskard.dust.sandbox.text.DustSandboxTextEditor"
+					}
+
+					"sandbox.1$Browser": {
+						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserFrameAgent"
 					},
 					"sandbox.1$AppFrame": {
 						"dust.1$binary": "me.giskard.dust.sandbox.DustSandboxAppFrameAgent"
 					},
 					"sandbox.1$SandboxTest": {
 						"dust.1$binary": "me.giskard.dust.sandbox.DustSandboxTestAgent"
-					},
-					"sandbox.1$SandboxTextAgent": {
-						"dust.1$binary": "me.giskard.dust.sandbox.text.DustSandboxTextEditor"
 					}
 				}
 			}

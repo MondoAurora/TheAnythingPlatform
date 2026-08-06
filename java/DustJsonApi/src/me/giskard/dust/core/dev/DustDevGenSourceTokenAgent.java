@@ -94,6 +94,9 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 								ps.println();
 								ps.println();
 
+								ps.println("// Generation timestamp " + DustUtils.strTime());
+								ps.println();
+
 								ps.print("public interface ");
 								ps.print(cName);
 								ps.print(" {");
