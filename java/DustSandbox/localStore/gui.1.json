@@ -244,6 +244,23 @@
 		},
 		{
 			"attributes": {
+				"dust.1$binaryResolver": {
+					"gui.1$PanelContainer": {
+						"dust.1$binary": "javax.swing.JPanel"
+					},
+					"gui.1$PanelSplit": {
+						"dust.1$binary": "javax.swing.JSplitPane"
+					},
+					"gui.1$Window": {
+						"dust.1$binary": "javax.swing.JFrame"
+					}
+				}
+			},
+			"id": "gui.1$SwingRenderer",
+			"type": "mind.1$Narrative"
+		},
+		{
+			"attributes": {
 				"misc.1$name": "TOKEN_GUI_TAG_TEXT_MODE"
 			},
 			"id": "gui.1$TextMode",
@@ -345,6 +362,6 @@
 		}
 	],
 	"meta": {
-		"count": 34
+		"count": 35
 	}
 }

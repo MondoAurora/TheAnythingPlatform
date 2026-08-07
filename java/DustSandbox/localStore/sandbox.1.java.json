@@ -28,7 +28,10 @@
 					},
 					"text.1$TextAgent": {
 						"dust.1$binary": "me.giskard.dust.sandbox.text.DustSandboxTextEditor"
-					}
+					},
+					"gui.1$SwingRenderer": {
+						"dust.1$binary": "me.giskard.dust.mod.gui.swing.DustGuiSwingRendererAgent"
+					},
 
 					"sandbox.1$Browser": {
 						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserFrameAgent"

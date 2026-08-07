@@ -388,11 +388,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeString",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -535,11 +535,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeBool",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeBool",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -556,11 +556,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeBool",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeBool",
 							"type": "mind.1$Tag"
 						}
 					]
