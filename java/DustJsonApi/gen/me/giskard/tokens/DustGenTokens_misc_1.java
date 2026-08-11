@@ -1,7 +1,9 @@
 package me.giskard.tokens;
 
+// Generation timestamp 20260811T124354Z
+
 public interface DustGenTokens_misc_1 {
-// Types
+// Aspects
 	String TOKEN_MISC_ASP_EVENT = "misc.1$Event";
 
 // Attributes
@@ -48,13 +50,19 @@ public interface DustGenTokens_misc_1 {
 	String TOKEN_MISC_ATT_UPPERCASE = "misc.1$upperCase";
 
 // Tags
+	String TOKEN_MISC_TAG_CMD = "misc.1$Cmd";
+	String TOKEN_MISC_TAG_CMD_ADD = "misc.1$CmdAdd";
 	String TOKEN_MISC_TAG_CMD_DELETE = "misc.1$CmdDelete";
+	String TOKEN_MISC_TAG_CMD_DOWN = "misc.1$CmdDown";
 	String TOKEN_MISC_TAG_CMD_INFO = "misc.1$CmdInfo";
 	String TOKEN_MISC_TAG_CMD_LOAD = "misc.1$CmdLoad";
 	String TOKEN_MISC_TAG_CMD_LOADALL = "misc.1$CmdLoadAll";
 	String TOKEN_MISC_TAG_CMD_REFRESH = "misc.1$CmdRefresh";
 	String TOKEN_MISC_TAG_CMD_RESPOND = "misc.1$CmdRespond";
 	String TOKEN_MISC_TAG_CMD_SAVE = "misc.1$CmdSave";
+	String TOKEN_MISC_TAG_CMD_SKIP = "misc.1$CmdSkip";
+	String TOKEN_MISC_TAG_CMD_STOP = "misc.1$CmdStop";
+	String TOKEN_MISC_TAG_CMD_UP = "misc.1$CmdUp";
 	String TOKEN_MISC_TAG_EVENT_DURATION_UNIT_MSEC = "misc.1$EventDurationUnitMsec";
 	String TOKEN_MISC_TAG_LEVEL = "misc.1$Level";
 	String TOKEN_MISC_TAG_LEVEL_ERROR = "misc.1$LevelError";

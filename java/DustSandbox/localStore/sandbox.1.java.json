@@ -29,9 +29,17 @@
 					"text.1$TextAgent": {
 						"dust.1$binary": "me.giskard.dust.sandbox.text.DustSandboxTextEditor"
 					},
-					"gui.1$SwingRenderer": {
+					"flow.1$FlowPlayer": {
+						"dust.1$binary": "me.giskard.dust.core.flow.DustFlowPlayerAgent"
+					},
+					"guiJavaSwing.1$Renderer": {
 						"dust.1$binary": "me.giskard.dust.mod.gui.swing.DustGuiSwingRendererAgent"
 					},
+					"guiJavaSwing.1$VideoPlayer": {
+						"dust.1$binary": "me.giskard.dust.mod.gui.swing.DustGuiSwingRendererAgent"
+					},
+
+
 
 					"sandbox.1$Browser": {
 						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserFrameAgent"

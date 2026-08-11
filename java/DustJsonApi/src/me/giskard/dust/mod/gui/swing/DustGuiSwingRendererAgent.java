@@ -7,8 +7,11 @@ import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -23,14 +26,27 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 	protected void init() throws Exception {
 		DustGuiSwingUtils.optSetLookAndFeel();
 	}
-	
+
 	ActionListener al = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String id = e.getActionCommand();
-			
-			Object src = e.getSource();
-			JOptionPane.showMessageDialog((Component) src, id, "Command invocation", JOptionPane.INFORMATION_MESSAGE);
+
+			JComponent src = (JComponent) e.getSource();
+
+			Object h = src.getClientProperty("DUST_SWING_HANDLE");
+
+			if (null != h) {
+				Map params = new HashMap();
+
+				DustHandle hCmd = Dust.access(DustAccess.Peek, "???", h, TOKEN_MIND_ATT_CMD);
+				DustHandle hSvc = Dust.access(DustAccess.Peek, "???", h, TOKEN_MISC_ATT_TARGET);
+
+				Dust.access(DustAccess.Set, hCmd, params, TOKEN_MIND_ATT_CMD);
+				Dust.access(DustAccess.Process, params, hSvc);
+			} else {
+				JOptionPane.showMessageDialog((Component) src, id, "Command invocation", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 	};
 
@@ -53,12 +69,24 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 				ret = pnl = new JPanel(new FlowLayout());
 				for (DustHandle hc : members) {
 					id = hc.getId();
-					
+
 					btn = new JButton(id);
 					btn.setActionCommand(id);
 					btn.addActionListener(al);
 					pnl.add(btn);
 				}
+
+				break;
+			case TOKEN_MIND_ASP_AGENT:
+				break;
+			case TOKEN_GUI_ASP_WIDGET_BUTTON:
+				id = Dust.access(DustAccess.Peek, "???", h, TOKEN_MIND_ATT_CMD, TOKEN_MIND_ATT_ID);
+
+				ret = btn = new JButton(id);
+				btn.setActionCommand(id);
+				btn.addActionListener(al);
+
+				btn.putClientProperty("DUST_SWING_HANDLE", h);
 
 				break;
 			case TOKEN_GUI_ASP_PANEL_CONTAINER:
@@ -73,7 +101,7 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 						pnl.add(comp);
 					}
 				}
-				
+
 				break;
 			case TOKEN_GUI_ASP_WINDOW:
 
@@ -99,8 +127,8 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 
 				break;
 			}
-			
-			if ( null != pnl) {
+
+			if (null != pnl) {
 				DustGuiSwingUtils.setTitle(pnl, h.getId());
 			}
 

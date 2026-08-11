@@ -11,16 +11,10 @@ public class DustFlowPlayerAgent extends DustAgent implements DustFlowConsts {
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		String cmd = Dust.access(DustAccess.Peek, "", null, TOKEN_MIND_ATT_CMD);
+		Object cmd = Dust.access(DustAccess.Peek, "", null, TOKEN_MIND_ATT_CMD);
 //		StringBuilder sb = null;
 
-		switch (cmd) {
-		case "LnF":
-			break;
-		default:
-//			sb = new StringBuilder("Unknown command: ").append(cmd);
-			break;
-		}
+		Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "FlowPlayer received command", cmd);
 
 		return null;
 

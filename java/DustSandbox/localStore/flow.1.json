@@ -1,0 +1,44 @@
+{
+	"jsonapi": {
+		"version": "1.1"
+	},
+	"data": [
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "misc.1$Cmd",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_FLOW_TAG_CMD_PAUSE"
+			},
+			"id": "flow.1$CmdFlowPause",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "misc.1$Cmd",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_FLOW_TAG_CMD_PLAY"
+			},
+			"id": "flow.1$CmdFlowPlay",
+			"type": "mind.1$Tag"
+		},
+		{
+			"id": "flow.1$FlowPlayer",
+			"type": "mind.1$Narrative"
+		}
+	],
+	"meta": {
+		"count": 3
+	}
+}

@@ -1089,26 +1089,12 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 				switch (typeId) {
 				case TOKEN_MIND_ASP_ATTRIBUTE:
-
-					if (null == allAtts.put(hId, h)) {
-						Boolean link = Dust.access(DustAccess.Check, hTagLink, h, TOKEN_MIND_ATT_TAGS);
-
-						if (link) {
-							tblmLinks.addRow(new Object[] { hId });
-						} else {
-							tblmAtts.addRow(new Object[] { hId });
-						}
-					}
+					allAtts.put(hId, h);
 					break;
 				case TOKEN_MIND_ASP_ASPECT:
-					if (null == allAspects.put(hId, h)) {
-						tblmAspectFilter.addRow(new Object[] { hId });
-					}
-
+					allAspects.put(hId, h);
 					break;
 				}
-
-//				allMeta.get(AspType.Aspects).add(typeId);
 
 				if (fu && !filterUnit.contains(hu)) {
 					continue;
@@ -1116,13 +1102,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 				gridArr.add(h);
 
-				if (null == allAspects.put(typeId, t)) {
-					tblmAspectFilter.addRow(new Object[] { typeId });
-				}
-
-				if (TOKEN_MIND_ASP_ATTRIBUTE == typeId) {
-
-				}
+				allAspects.put(typeId, t);
 
 				Collection<String> atts = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, h, KEY_MAP_KEYS);
 
@@ -1149,6 +1129,24 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					}
 				}
 			}
+		}
+		
+		for ( String ii : allAspects.keySet() ) {
+			tblmAspectFilter.addRow(new Object[] { ii });
+		}
+
+		for ( Map.Entry<String, DustHandle> ae : allAtts.entrySet() ) {
+			DustHandle h = ae.getValue();
+			String hId = ae.getKey();
+			
+			Boolean link = Dust.access(DustAccess.Check, hTagLink, h, TOKEN_MIND_ATT_TAGS);
+
+			if (link) {
+				tblmLinks.addRow(new Object[] { hId });
+			} else {
+				tblmAtts.addRow(new Object[] { hId });
+			}
+		
 		}
 
 		gridCols.sort(null);
