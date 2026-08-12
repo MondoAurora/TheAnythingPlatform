@@ -528,20 +528,26 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 		boolean itemDel = false;
 
 		if (TOKEN_MIND_ATT_TAGS.equals(lastKey)) {
+//			DustHandle hVal = (val instanceof DustHandle) ? (DustHandle) val : getHandle(null, TOKEN_MIND_ASP_TAG, (String) val, DustOptCreate.None);
+//			val = hVal;
+
 			if (curr instanceof Collection) {
 				for (Object o : (Collection) curr) {
 					DustHandle ht = (o instanceof DustHandle) ? (DustHandle) o : getHandle(null, TOKEN_MIND_ASP_TAG, (String) o, DustOptCreate.None);
 					switch (access) {
 					case Peek:
-						if (DustUtils.isEqual(val, access(DustAccess.Peek, "", ht, TOKEN_MISC_ATT_PARENT, TOKEN_MIND_ATT_ID))) {
+//						if (DustUtils.isEqual(val, access(DustAccess.Peek, "", ht, TOKEN_MISC_ATT_PARENT))) {
+							if (DustUtils.isEqual(val, access(DustAccess.Peek, "", ht, TOKEN_MISC_ATT_PARENT, TOKEN_MIND_ATT_ID))) {
 							return (RetType) ht;
 						}
 						break;
 					}
 				}
-			} else switch (access) {
-			case Peek:
-				return null;
+			} else {
+				switch (access) {
+				case Peek:
+					return null;
+				}
 			}
 		}
 

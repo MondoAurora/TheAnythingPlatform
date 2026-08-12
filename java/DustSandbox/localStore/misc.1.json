@@ -110,6 +110,21 @@
 				}
 			},
 			"attributes": {
+				"misc.1$name": "TOKEN_MISC_TAG_CMD_PING"
+			},
+			"id": "misc.1$CmdPing",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "misc.1$Cmd",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
 				"misc.1$name": "TOKEN_MISC_TAG_CMD_REFRESH"
 			},
 			"id": "misc.1$CmdRefresh",
@@ -304,11 +319,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeSet",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeSet",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -325,11 +340,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeSet",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeSet",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -619,11 +634,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeArr",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeArr",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -745,11 +760,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeArr",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeArr",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -808,11 +823,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeSet",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeSet",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -892,11 +907,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeReal",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeReal",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -976,11 +991,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeArr",
+							"id": "mind.1$ValtypeReal",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeReal",
+							"id": "mind.1$ColltypeArr",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -1102,11 +1117,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeSet",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeSet",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]

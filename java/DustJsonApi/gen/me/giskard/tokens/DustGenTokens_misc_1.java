@@ -1,6 +1,6 @@
 package me.giskard.tokens;
 
-// Generation timestamp 20260811T124354Z
+// Generation timestamp 20260812T094706Z
 
 public interface DustGenTokens_misc_1 {
 // Aspects
@@ -57,6 +57,7 @@ public interface DustGenTokens_misc_1 {
 	String TOKEN_MISC_TAG_CMD_INFO = "misc.1$CmdInfo";
 	String TOKEN_MISC_TAG_CMD_LOAD = "misc.1$CmdLoad";
 	String TOKEN_MISC_TAG_CMD_LOADALL = "misc.1$CmdLoadAll";
+	String TOKEN_MISC_TAG_CMD_PING = "misc.1$CmdPing";
 	String TOKEN_MISC_TAG_CMD_REFRESH = "misc.1$CmdRefresh";
 	String TOKEN_MISC_TAG_CMD_RESPOND = "misc.1$CmdRespond";
 	String TOKEN_MISC_TAG_CMD_SAVE = "misc.1$CmdSave";

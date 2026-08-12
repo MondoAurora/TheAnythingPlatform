@@ -21,7 +21,7 @@ import me.giskard.dust.core.DustConsts.DustAgent;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwingConsts {
-
+	
 	@Override
 	protected void init() throws Exception {
 		DustGuiSwingUtils.optSetLookAndFeel();
@@ -34,7 +34,7 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 
 			JComponent src = (JComponent) e.getSource();
 
-			Object h = src.getClientProperty("DUST_SWING_HANDLE");
+			Object h = src.getClientProperty(DUST_SWING_HANDLE);
 
 			if (null != h) {
 				Map params = new HashMap();
@@ -77,7 +77,14 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 				}
 
 				break;
-			case TOKEN_MIND_ASP_AGENT:
+			case TOKEN_MIND_ASP_SERVICE:
+				
+				Map params = new HashMap();
+				Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_PING, params, TOKEN_MIND_ATT_CMD);
+				Dust.access(DustAccess.Process, params, h);
+				
+				ret = Dust.access(DustAccess.Peek, null, h, TOKEN_DUST_ATT_WRAPPEDOBJECT);
+
 				break;
 			case TOKEN_GUI_ASP_WIDGET_BUTTON:
 				id = Dust.access(DustAccess.Peek, "???", h, TOKEN_MIND_ATT_CMD, TOKEN_MIND_ATT_ID);
@@ -86,7 +93,7 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 				btn.setActionCommand(id);
 				btn.addActionListener(al);
 
-				btn.putClientProperty("DUST_SWING_HANDLE", h);
+				btn.putClientProperty(DUST_SWING_HANDLE, h);
 
 				break;
 			case TOKEN_GUI_ASP_PANEL_CONTAINER:

@@ -36,7 +36,7 @@
 						"dust.1$binary": "me.giskard.dust.mod.gui.swing.DustGuiSwingRendererAgent"
 					},
 					"guiJavaSwing.1$VideoPlayer": {
-						"dust.1$binary": "me.giskard.dust.mod.gui.swing.DustGuiSwingRendererAgent"
+						"dust.1$binary": "me.giskard.dust.mod.gui.swing.DustGuiSwingVideoPlayerAgent"
 					},
 
 

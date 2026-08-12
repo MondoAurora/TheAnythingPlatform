@@ -255,6 +255,13 @@
 		},
 		{
 			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_TRANSIENT"
+			},
+			"id": "mind.1$Transient",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
 				"misc.1$name": "TOKEN_MIND_ASP_UNIT"
 			},
 			"id": "mind.1$Unit",
@@ -408,6 +415,10 @@
 							"type": "mind.1$Tag"
 						},
 						{
+							"id": "mind.1$Transient",
+							"type": "mind.1$Tag"
+						},
+						{
 							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
 						}
@@ -425,11 +436,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeSet",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeSet",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -446,11 +457,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeArr",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeArr",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -530,11 +541,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeSet",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeSet",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -599,6 +610,10 @@
 						{
 							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$Transient",
+							"type": "mind.1$Tag"
 						}
 					]
 				}
@@ -620,6 +635,10 @@
 						{
 							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$Transient",
+							"type": "mind.1$Tag"
 						}
 					]
 				}
@@ -640,6 +659,6 @@
 		}
 	],
 	"meta": {
-		"count": 47
+		"count": 48
 	}
 }

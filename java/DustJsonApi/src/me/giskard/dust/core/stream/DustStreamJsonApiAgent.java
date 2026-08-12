@@ -28,6 +28,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 		SKIP_KEYS.add(TOKEN_MIND_ATT_ID);
 		SKIP_KEYS.add(TOKEN_MIND_ATT_TYPE);
 		SKIP_KEYS.add(TOKEN_MIND_ATT_UNIT);
+		SKIP_KEYS.add(TOKEN_DUST_ATT_WRAPPEDOBJECT);
 	}
 
 	public DustStreamJsonApiAgent() {
@@ -95,6 +96,13 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 			Map<String, Object> item = storeHead(h);
 
 			for (String key : (Iterable<String>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, KEY_MAP_KEYS)) {
+//				DustHandle tAtt = Dust.getHandle(unit, TOKEN_MIND_ASP_ATTRIBUTE, key, DustOptCreate.Meta);
+//				
+//				Boolean trans = Dust.access(DustAccess.Check, TOKEN_MIND_TAG_TRANSIENT, tAtt, TOKEN_MIND_ATT_TAGS);
+//
+//				if (trans) {
+//					continue;
+//				}
 				if (SKIP_KEYS.contains(key)) {
 					continue;
 				}
@@ -180,6 +188,10 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 			for (Map.Entry<String, Object> ae : atts.entrySet()) {
 				String rk = ae.getKey();
 				DustHandle tAtt = Dust.getHandle(unit, TOKEN_MIND_ASP_ATTRIBUTE, rk, DustOptCreate.Meta);
+				
+				if ( SKIP_KEYS.contains(rk) ) {
+					continue;
+				}
 				Dust.access(DustAccess.Set, ae.getValue(), target, tAtt);
 			}
 		}

@@ -150,6 +150,10 @@
 							"type": "mind.1$Tag"
 						},
 						{
+							"id": "mind.1$Transient",
+							"type": "mind.1$Tag"
+						},
+						{
 							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
 						}

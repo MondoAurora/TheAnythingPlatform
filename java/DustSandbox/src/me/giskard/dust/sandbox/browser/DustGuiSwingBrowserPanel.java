@@ -165,8 +165,8 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 	DustGuiSwingGraphPanel graphPanel = new DustGuiSwingGraphPanel(this);
 
-	private static final String[] unitCols = { "Filter", "Type", "Identifier", "count" };
-	private static final Class[] unitColTypes = { Boolean.class, String.class, String.class, Integer.class };
+	private static final String[] unitCols = { "Filter", "Identifier", "count" };
+	private static final Class[] unitColTypes = { Boolean.class, String.class, Integer.class };
 
 	AbstractTableModel tblmUnits = new AbstractTableModel() {
 		@Override
@@ -207,11 +207,11 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 			switch (columnIndex) {
 			case 0:
 				return filterUnit.contains(hs);
+//			case 1:
+//				return hs.getType().getId();
 			case 1:
-				return hs.getType().getId();
-			case 2:
 				return hs.getId();
-			case 3:
+			case 2:
 				return Dust.access(DustAccess.Peek, -1, hs, TOKEN_DUST_ATT_UNIT_REFS, KEY_SIZE);
 			}
 
@@ -515,14 +515,42 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 			case "Load Refs":
 				for (DustHandle s : selected) {
-					for (String l : showLinks) {
-						DustUtils.visit(Dust.access(DustAccess.Peek, null, s, l), new DustProcessor<DustHandle, Object>() {
-							@Override
-							public Object process(DustHandle handle, Object... hints) {
-								graphPanel.showHandle(handle, true, false);
-								return null;
+					if (showLinks.isEmpty()) {
+						Collection<String> atts = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, s, KEY_MAP_KEYS);
+
+						for (String a : atts) {
+							Object val = Dust.access(DustAccess.Peek, null, s, a);
+							if (val instanceof Map) {
+								val = ((Map) val).values();
 							}
-						});
+							if (val instanceof Collection) {
+								for ( Object r : ((Collection) val) ) {
+									if ( r instanceof DustHandle ) {
+										graphPanel.showHandle((DustHandle) r, true, false);
+										showLinks.add(a);
+									} else {
+										break;
+									}
+								}
+							} else if ( val instanceof DustHandle ) {
+								graphPanel.showHandle((DustHandle) val, true, false);
+								showLinks.add(a);
+							}
+						}
+						
+						if ( !showLinks.isEmpty() ) {
+							graphPanel.repaintGraph();
+						}
+					} else {
+						for (String l : showLinks) {
+							DustUtils.visit(Dust.access(DustAccess.Peek, null, s, l), new DustProcessor<DustHandle, Object>() {
+								@Override
+								public Object process(DustHandle handle, Object... hints) {
+									graphPanel.showHandle(handle, true, false);
+									return null;
+								}
+							});
+						}
 					}
 				}
 
@@ -754,6 +782,8 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		lsm.addListSelectionListener(slUnit);
 
 		unitTable.setAutoCreateRowSorter(true);
+
+		unitTable.getRowSorter().toggleSortOrder(1);
 
 		JPanel pnlUnit = new JPanel(new BorderLayout());
 		DustGuiSwingUtils.setTitle(pnlUnit, "Units");
@@ -1130,15 +1160,15 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				}
 			}
 		}
-		
-		for ( String ii : allAspects.keySet() ) {
+
+		for (String ii : allAspects.keySet()) {
 			tblmAspectFilter.addRow(new Object[] { ii });
 		}
 
-		for ( Map.Entry<String, DustHandle> ae : allAtts.entrySet() ) {
+		for (Map.Entry<String, DustHandle> ae : allAtts.entrySet()) {
 			DustHandle h = ae.getValue();
 			String hId = ae.getKey();
-			
+
 			Boolean link = Dust.access(DustAccess.Check, hTagLink, h, TOKEN_MIND_ATT_TAGS);
 
 			if (link) {
@@ -1146,7 +1176,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 			} else {
 				tblmAtts.addRow(new Object[] { hId });
 			}
-		
+
 		}
 
 		gridCols.sort(null);

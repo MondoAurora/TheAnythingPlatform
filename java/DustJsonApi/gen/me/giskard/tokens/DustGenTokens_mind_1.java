@@ -1,5 +1,7 @@
 package me.giskard.tokens;
 
+// Generation timestamp 20260812T101140Z
+
 public interface DustGenTokens_mind_1 {
 // Aspects
 	String TOKEN_MIND_ASP_AGENT = "mind.1$Agent";
@@ -42,6 +44,7 @@ public interface DustGenTokens_mind_1 {
 	String TOKEN_MIND_TAG_RESULT_READ = "mind.1$ResultRead";
 	String TOKEN_MIND_TAG_RESULT_READACCEPT = "mind.1$ResultReadAccept";
 	String TOKEN_MIND_TAG_RESULT_REJECT = "mind.1$ResultReject";
+	String TOKEN_MIND_TAG_TRANSIENT = "mind.1$Transient";
 	String TOKEN_MIND_TAG_VALTYPE = "mind.1$Valtype";
 	String TOKEN_MIND_TAG_VALTYPE_BOOL = "mind.1$ValtypeBool";
 	String TOKEN_MIND_TAG_VALTYPE_HANDLE = "mind.1$ValtypeHandle";
