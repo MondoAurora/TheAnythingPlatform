@@ -16,6 +16,7 @@ public class DustFlowPlayerAgent extends DustAgent implements DustFlowConsts {
 	@Override
 	protected Object process(DustAccess access) throws Exception {
 		Object cmd = Dust.access(DustAccess.Peek, "", null, TOKEN_MIND_ATT_CMD);
+		Object svc = Dust.access(DustAccess.Peek, "", DustContext.Service);
 //		StringBuilder sb = null;
 
 		Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "FlowPlayer received command", cmd);
@@ -23,11 +24,11 @@ public class DustFlowPlayerAgent extends DustAgent implements DustFlowConsts {
 		Iterable<DustHandle> members = Dust.access(DustAccess.Visit, null, null, TOKEN_MISC_ATT_MEMBERS);
 
 		if (null != members) {
-			Map params = new HashMap();
+//			Map params = new HashMap();
 
 			for (DustHandle h : members) {
-				Dust.access(DustAccess.Set, cmd, params, TOKEN_MIND_ATT_CMD);
-				Dust.access(DustAccess.Process, params, h);
+//				Dust.access(DustAccess.Set, cmd, params, TOKEN_MIND_ATT_CMD);
+				Dust.access(DustAccess.Process, svc, h);
 
 			}
 		}

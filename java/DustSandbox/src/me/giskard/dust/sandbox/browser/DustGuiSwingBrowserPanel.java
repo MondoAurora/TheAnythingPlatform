@@ -652,12 +652,6 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					setFocused(hh);
 				}
 
-//				tblmProperties.fireTableDataChanged();
-//				tblmColl.fireTableDataChanged();
-//
-//				tblColl.repaint();
-//				tblData.repaint();
-
 				break;
 			case "Drop Att":
 				if ((null != focused) && (null != focusedAtt)) {
@@ -798,8 +792,6 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				tblmGrid.fireTableDataChanged();
 			}
 		});
-
-//		pnlUnit.add(factToolbars.get("tbFilter"), BorderLayout.SOUTH);
 
 		// Properties
 
@@ -948,30 +940,6 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 		pnlGrid.setMinimumSize(dimMin);
 
-//		ActionListener alShowAll = new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				JToggleButton btn = (JToggleButton) e.getSource();
-//				boolean all = btn.isSelected();
-//				DefaultTableModel tblm = null;
-//
-//				String s = btn.getText();
-//				switch (s) {
-//				case "All Aspects":
-//					tblm = tblmAspectFilter;
-//					break;
-//				case "All Atts":
-//					tblm = tblmAtts;
-//					break;
-//				case "All Links":
-//					tblm = tblmLinks;
-//					break;
-//				default:
-//					DustException.wrap(null, "Should not be here");
-//				}
-//			}
-//		};
-
 		// Attributes
 
 		JTable tblAtts = new JTable(tblmAtts);
@@ -979,9 +947,6 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 		JPanel pnlAtts = new JPanel(new BorderLayout());
 		pnlAtts.add(scpTbl, BorderLayout.CENTER);
-//		JToggleButton tbAllAtts = new JToggleButton("All Atts");
-//		tbAllAtts.addActionListener(alShowAll);
-//		pnlAtts.add(tbAllAtts, BorderLayout.SOUTH);
 		pnlAtts.setMinimumSize(dimMin);
 		DustGuiSwingUtils.setTitle(pnlAtts, "Atts");
 		lsm = tblAtts.getSelectionModel();
@@ -1007,9 +972,6 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		scpTbl = new JScrollPane(tblAspectFilter);
 		JPanel pnlAspects = new JPanel(new BorderLayout());
 		pnlAspects.add(scpTbl, BorderLayout.CENTER);
-//		JToggleButton tbAllAspects = new JToggleButton("All Aspects");
-//		tbAllAspects.addActionListener(alShowAll);
-//		pnlAspects.add(tbAllAspects, BorderLayout.SOUTH);
 		pnlAspects.setMinimumSize(dimMin);
 		DustGuiSwingUtils.setTitle(pnlAspects, "Aspects");
 		lsm = tblAspectFilter.getSelectionModel();
@@ -1034,9 +996,6 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		scpTbl = new JScrollPane(tblLinks);
 		JPanel pnlLinks = new JPanel(new BorderLayout());
 		pnlLinks.add(scpTbl, BorderLayout.CENTER);
-//		JToggleButton tbAllLinks = new JToggleButton("All Links");
-//		tbAllLinks.addActionListener(alShowAll);
-//		pnlLinks.add(tbAllLinks, BorderLayout.SOUTH);
 		pnlLinks.setMinimumSize(dimMin);
 		DustGuiSwingUtils.setTitle(pnlLinks, "Links");
 
@@ -1097,7 +1056,6 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 		gridArr.clear();
 		gridCols.clear();
-//		attTypes.clear();
 
 		tblmAtts.setRowCount(0);
 		tblmLinks.setRowCount(0);

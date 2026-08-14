@@ -126,7 +126,7 @@ public class Dust implements DustConsts, DustMachineConsts, DustDevConsts {
 				case TOKEN_MIND_ASP_AGENT:
 					getAgent(ca.getId());
 					break;
-				case TOKEN_MIND_ASP_SERVICE:
+				case TOKEN_MIND_ASP_MESSAGE:
 					access(DustAccess.Process, null, ca);
 					break;
 				}

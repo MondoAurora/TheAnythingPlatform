@@ -87,7 +87,7 @@ public class DustGuiSwingVideoPlayerAgent extends DustAgent implements DustGuiSw
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		String cmd = Dust.access(DustAccess.Peek, "", null, TOKEN_MIND_ATT_CMD, TOKEN_MIND_ATT_ID);
+		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD, TOKEN_MIND_ATT_ID);
 
 		VideoPanel vp = Dust.access(DustAccess.Peek, null, DustContext.Agent, TOKEN_DUST_ATT_WRAPPEDOBJECT);
 
@@ -123,63 +123,11 @@ public class DustGuiSwingVideoPlayerAgent extends DustAgent implements DustGuiSw
 
 		vp.setMediaUri(uri);
 
-		vp.player.play();
+//		vp.player.play();
 
 		Duration d = Duration.minutes(35.0);
 
 		vp.player.seek(d);
 	}
-
-
-//	public static void main(String[] args) {
-//		JFrame frame = new JFrame("FX");
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//		VideoPanel vp = new VideoPanel();
-//
-//		frame.getContentPane().add(vp);
-//		frame.setVisible(true);
-//
-//		frame.setBounds(100, 100, 800, 400);
-//
-//		test(vp);
-//	}
-
-//	private static void initFX(JPanel videoPanel) {
-//		final JFXPanel VFXPanel = new JFXPanel();
-//
-//		File video_source = new File("/Users/lkedves/work/temp/SzE_lecture.mp4");
-//		Media m = new Media(video_source.toURI().toString());
-//		MediaPlayer player = new MediaPlayer(m);
-//		MediaView viewer = new MediaView(player);
-//
-//		StackPane root = new StackPane();
-//		Scene scene = new Scene(root);
-//
-//		// center video position
-//		javafx.geometry.Rectangle2D screen = Screen.getPrimary().getVisualBounds();
-//		viewer.setX((screen.getWidth() - videoPanel.getWidth()) / 2);
-//		viewer.setY((screen.getHeight() - videoPanel.getHeight()) / 2);
-//
-//		// resize video based on screen size
-//		DoubleProperty width = viewer.fitWidthProperty();
-//		DoubleProperty height = viewer.fitHeightProperty();
-//		width.bind(Bindings.selectDouble(viewer.sceneProperty(), "width"));
-//		height.bind(Bindings.selectDouble(viewer.sceneProperty(), "height"));
-//		viewer.setPreserveRatio(true);
-//
-//		// add video to stackpane
-//		root.getChildren().add(viewer);
-//
-//		VFXPanel.setScene(scene);
-//		player.play();
-//		videoPanel.setLayout(new BorderLayout());
-//		videoPanel.add(VFXPanel, BorderLayout.CENTER);
-//
-//		Duration d = Duration.minutes(35.0);
-//
-//		player.seek(d);
-//
-//	}
 
 }

@@ -173,13 +173,15 @@ class DustGuiSwingGraphPanel {
 
 			if (null != h) {
 
+				boolean keepMode = e.isShiftDown();
+				
 				switch ((String) cbMode.getSelectedItem()) {
 				case "Select":
 					if (selected.contains(h)) {
 						selected.remove(h);
 						h = null;
 					} else {
-						if (!e.isShiftDown()) {
+						if (!keepMode) {
 							selected.clear();
 						}
 
@@ -234,7 +236,7 @@ class DustGuiSwingGraphPanel {
 					break;
 				}
 
-				if (!e.isShiftDown()) {
+				if (!keepMode) {
 					cbMode.setSelectedIndex(0);
 				}
 				browserPanel.setFocused(h);

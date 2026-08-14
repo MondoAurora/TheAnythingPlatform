@@ -37,13 +37,13 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 			Object h = src.getClientProperty(DUST_SWING_HANDLE);
 
 			if (null != h) {
-				Map params = new HashMap();
+//				Map params = new HashMap();
 
-				DustHandle hCmd = Dust.access(DustAccess.Peek, "???", h, TOKEN_MIND_ATT_CMD);
-				DustHandle hSvc = Dust.access(DustAccess.Peek, "???", h, TOKEN_MISC_ATT_TARGET);
+//				DustHandle hCmd = Dust.access(DustAccess.Peek, "???", h, TOKEN_MIND_ATT_CMD);
+				DustHandle hMsg = Dust.access(DustAccess.Peek, "???", h, TOKEN_MISC_ATT_TARGET);
 
-				Dust.access(DustAccess.Set, hCmd, params, TOKEN_MIND_ATT_CMD);
-				Dust.access(DustAccess.Process, params, hSvc);
+//				Dust.access(DustAccess.Set, hCmd, params, TOKEN_MIND_ATT_CMD);
+				Dust.access(DustAccess.Process, null, hMsg);
 			} else {
 				JOptionPane.showMessageDialog((Component) src, id, "Command invocation", JOptionPane.INFORMATION_MESSAGE);
 			}
@@ -77,7 +77,7 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 				}
 
 				break;
-			case TOKEN_MIND_ASP_SERVICE:
+			case TOKEN_MIND_ASP_MESSAGE:
 				
 				Map params = new HashMap();
 				Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_PING, params, TOKEN_MIND_ATT_CMD);
@@ -87,7 +87,7 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 
 				break;
 			case TOKEN_GUI_ASP_WIDGET_BUTTON:
-				id = Dust.access(DustAccess.Peek, "???", h, TOKEN_MIND_ATT_CMD, TOKEN_MIND_ATT_ID);
+				id = Dust.access(DustAccess.Peek, "???", h, TOKEN_MISC_ATT_TARGET, TOKEN_MIND_ATT_CMD, TOKEN_MIND_ATT_ID);
 
 				ret = btn = new JButton(id);
 				btn.setActionCommand(id);

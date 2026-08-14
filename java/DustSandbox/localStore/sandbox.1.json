@@ -46,13 +46,13 @@
 			"relationships": {
 				"misc.1$target": {
 					"data": {
-						"type": "mind.1$Service",
+						"type": "mind.1$Message",
 						"id": "sandbox.1$MiNDAPI"
 					}
 				},
 				"dev.1$genSrc": {
 					"data": {
-						"type": "mind.1$Service",
+						"type": "mind.1$Message",
 						"id": "sandbox.1$SrcGenEntry"
 					}
 				},
@@ -65,7 +65,7 @@
 			}
 		},
 		{
-			"type": "mind.1$Service",
+			"type": "mind.1$Message",
 			"id": "sandbox.1$SrcGenEntry",
 			"attributes": {
 				"mind.1$transactionHead": true
@@ -90,7 +90,7 @@
 			"relationships": {
 				"mind.1$next": {
 					"data": {
-						"type": "mind.1$Service",
+						"type": "mind.1$Message",
 						"id": "sandbox.1$SrcGenFilter"
 					}
 				},
@@ -103,7 +103,7 @@
 			}
 		},
 		{
-			"type": "mind.1$Service",
+			"type": "mind.1$Message",
 			"id": "sandbox.1$SrcGenFilter",
 			"attributes": {
 				"misc.1$filter": {
@@ -137,7 +137,7 @@
 			"relationships": {
 				"mind.1$next": {
 					"data": {
-						"type": "mind.1$Service",
+						"type": "mind.1$Message",
 						"id": "sandbox.1$GenSourceTokenSvc"
 					}
 				},
@@ -150,7 +150,7 @@
 			}
 		},
 		{
-			"type": "mind.1$Service",
+			"type": "mind.1$Message",
 			"id": "sandbox.1$GenSourceTokenSvc",
 			"attributes": {
 				"mind.1$transactionItem": true
@@ -186,7 +186,7 @@
 			"relationships": {
 				"mind.1$serializer": {
 					"data": {
-						"type": "mind.1$Service",
+						"type": "mind.1$Message",
 						"id": "sandbox.1$GenSourceRoot"
 					}
 				},
@@ -199,7 +199,7 @@
 			}
 		},
 		{
-			"type": "mind.1$Service",
+			"type": "mind.1$Message",
 			"id": "sandbox.1$MiNDAPI",
 			"relationships": {
 				"mind.1$listeners": {
@@ -224,7 +224,7 @@
 			"relationships": {
 				"mind.1$serializer": {
 					"data": {
-						"type": "mind.1$Service",
+						"type": "mind.1$Message",
 						"id": "sandbox.1$SerializeDefault"
 					}
 				}
@@ -243,7 +243,7 @@
 			}
 		},
 		{
-			"type": "mind.1$Service",
+			"type": "mind.1$Message",
 			"id": "sandbox.1$SerializeDefault",
 			"relationships": {
 				"mind.1$listeners": {
@@ -259,7 +259,7 @@
 				},
 				"stream.1$streamSource": {
 					"data": {
-						"type": "mind.1$Service",
+						"type": "mind.1$Message",
 						"id": "sandbox.1$UnitCacheRoot"
 					}
 				}
@@ -278,7 +278,7 @@
 			}
 		},
 		{
-			"type": "mind.1$Service",
+			"type": "mind.1$Message",
 			"id": "sandbox.1$UnitCacheRoot",
 			"attributes": {
 				"stream.1$rootFolder": "localStore",
@@ -299,7 +299,7 @@
 			}
 		},
 		{
-			"type": "mind.1$Service",
+			"type": "mind.1$Message",
 			"id": "sandbox.1$GenSourceRoot",
 			"attributes": {
 				"stream.1$rootFolder": "gen"
@@ -319,7 +319,7 @@
 			}
 		},
 		{
-			"type": "mind.1$Service",
+			"type": "mind.1$Message",
 			"id": "sandbox.1$TextEditor",
 			"relationships": {
 				"mind.1$listeners": {
@@ -434,7 +434,7 @@
 			"id": "sandbox.1$SandboxTest"
 		},
 		{
-			"type": "mind.1$Service",
+			"type": "mind.1$Message",
 			"id": "sandbox.1$SandboxTestSvc",
 			"attributes": {
 				"dev.1$skip": false,

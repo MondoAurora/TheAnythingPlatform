@@ -74,7 +74,7 @@ public class DustHttpServiceAgent extends DustAgent implements DustNetConsts, Du
 
 				for (DustHandle h : DustMachineUtils.getUnitMembers(source)) {
 					DustHandle t = h.getType();
-					if (DustUtils.isEqual(TOKEN_MIND_ASP_SERVICE, t.getId())) {
+					if (DustUtils.isEqual(TOKEN_MIND_ASP_MESSAGE, t.getId())) {
 						String i = h.getId();
 						Object params = Dust.access(DustAccess.Peek, null, h, TOKEN_MISC_ATT_PAYLOAD);
 
