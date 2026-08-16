@@ -7,8 +7,6 @@ import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -39,10 +37,10 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 			if (null != h) {
 //				Map params = new HashMap();
 
-//				DustHandle hCmd = Dust.access(DustAccess.Peek, "???", h, TOKEN_MIND_ATT_CMD);
-				DustHandle hMsg = Dust.access(DustAccess.Peek, "???", h, TOKEN_MISC_ATT_TARGET);
+//				Object hCmd = Dust.access(DustAccess.Peek, "???", h, TOKEN_MIND_ATT_CMD);
+				DustHandle hMsg = Dust.access(DustAccess.Peek, null, h, TOKEN_MISC_ATT_TARGET);
 
-//				Dust.access(DustAccess.Set, hCmd, params, TOKEN_MIND_ATT_CMD);
+//				Dust.access(DustAccess.Set, hCmd, hMsg, TOKEN_MIND_ATT_CMD);
 				Dust.access(DustAccess.Process, null, hMsg);
 			} else {
 				JOptionPane.showMessageDialog((Component) src, id, "Command invocation", JOptionPane.INFORMATION_MESSAGE);
@@ -79,9 +77,9 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 				break;
 			case TOKEN_MIND_ASP_MESSAGE:
 				
-				Map params = new HashMap();
-				Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_PING, params, TOKEN_MIND_ATT_CMD);
-				Dust.access(DustAccess.Process, params, h);
+//				Map params = new HashMap();
+				Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_PING, h, TOKEN_MIND_ATT_CMD);
+				Dust.access(DustAccess.Process, null, h);
 				
 				ret = Dust.access(DustAccess.Peek, null, h, TOKEN_DUST_ATT_WRAPPEDOBJECT);
 

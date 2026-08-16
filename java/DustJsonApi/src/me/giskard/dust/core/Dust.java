@@ -64,7 +64,7 @@ public class Dust implements DustConsts, DustMachineConsts, DustDevConsts {
 			DustHandle hCfg = getAgentHandle(key);
 
 			try {
-				MACHINE.notifyAgent(hCfg, DustAction.Init, null, null, null);
+				MACHINE.notifyAgent(hCfg, DustAction.Init, null, null);
 
 				if ((Boolean) access(DustAccess.Peek, false, hCfg, TOKEN_DUST_ATT_RELEASEONSHUTDOWN)) {
 					registerToRelease(a);

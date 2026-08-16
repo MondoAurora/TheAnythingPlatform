@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.text.MessageFormat;
-import java.util.HashMap;
 import java.util.Map;
 
 import me.giskard.dust.core.Dust;
@@ -22,7 +21,7 @@ public class DustStreamJsonApiSerializerAgent extends DustStreamJsonApiAgent imp
 		Dust.access(DustAccess.Delete, null, null, TOKEN_MISC_ATT_DATA);
 
 		Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_SOURCE);
-		Map<String, Object> sp = new HashMap<String, Object>();
+//		Map<String, Object> sp = new HashMap<String, Object>();
 
 		String fileName = null;
 
@@ -48,13 +47,16 @@ public class DustStreamJsonApiSerializerAgent extends DustStreamJsonApiAgent imp
 
 			fileName = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_ROOTFOLDER);
 
-			sp.put(TOKEN_MIND_ATT_CMD, TOKEN_MISC_TAG_CMD_INFO);
-			sp.put(TOKEN_STREAM_ATT_ROOTFOLDER, fileName);
+//			sp.put(TOKEN_MIND_ATT_CMD, TOKEN_MISC_TAG_CMD_INFO);
+//			sp.put(TOKEN_STREAM_ATT_ROOTFOLDER, fileName);
+			Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_INFO, streamSource, TOKEN_MIND_ATT_CMD);
+			Dust.access(DustAccess.Set, fileName, streamSource, TOKEN_STREAM_ATT_ROOTFOLDER);
+			
+			Dust.access(DustAccess.Process, null, streamSource);
 
-			Dust.access(DustAccess.Process, sp, streamSource);
-
-			Object files = sp.get(TOKEN_MISC_ATT_MEMBERS);
-			Dust.access(DustAccess.Set, files, DustContext.Input, TOKEN_MISC_ATT_MEMBERS);
+//			Object files = sp.get(TOKEN_MISC_ATT_MEMBERS);
+			Object files = Dust.access(DustAccess.Peek, null, streamSource, TOKEN_MISC_ATT_MEMBERS);
+			Dust.access(DustAccess.Set, files, DustContext.Message, TOKEN_MISC_ATT_MEMBERS);
 
 //			f = new File(fileName);
 //

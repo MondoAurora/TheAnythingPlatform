@@ -40,14 +40,18 @@ public class DustStreamCsvAgent extends DustAgent implements DustStreamConsts, D
 				DustHandle meta = Dust.getUnit(metaId, true);
 
 				Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_SOURCE);
-				Map<String, Object> sp = new HashMap<String, Object>();
+//				Map<String, Object> sp = new HashMap<String, Object>();
+//
+//				sp.put(TOKEN_MIND_ATT_CMD, TOKEN_MISC_TAG_CMD_INFO);
+//				sp.put(TOKEN_MISC_ATT_PATH, fileName);
+				
+				Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_INFO, streamSource, TOKEN_MIND_ATT_CMD);
+				Dust.access(DustAccess.Set, fileName, streamSource, TOKEN_MISC_ATT_PATH);
 
-				sp.put(TOKEN_MIND_ATT_CMD, TOKEN_MISC_TAG_CMD_INFO);
-				sp.put(TOKEN_MISC_ATT_PATH, fileName);
+				Dust.access(DustAccess.Process, null, streamSource);
 
-				Dust.access(DustAccess.Process, sp, streamSource);
-
-				Collection<String> fileNames = (Collection<String>) sp.get(TOKEN_MISC_ATT_MEMBERS);
+//				Collection<String> fileNames = (Collection<String>) sp.get(TOKEN_MISC_ATT_MEMBERS);
+				Collection<String> fileNames = Dust.access(DustAccess.Peek, null, streamSource, TOKEN_MISC_ATT_MEMBERS);
 
 				boolean dir = fileName.length() > 1;
 

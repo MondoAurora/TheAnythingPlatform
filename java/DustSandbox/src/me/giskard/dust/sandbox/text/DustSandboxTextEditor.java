@@ -468,7 +468,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					fName = (String) JOptionPane.showInputDialog((Component) e.getSource(), "File name?", "localStore/TudasEsInformatika_en.html");
 					String fc = DustUtilsFile.readFile(fName);
 					if (!DustUtils.isEmpty(fc)) {
-						DustSandboxTextUtils.processTranslated(txtAgent, fc, hLang, null);
+						DustSandboxTextUtils.processTranslated(txtAgent, fc, hLang, selMgr.hSel);
 					}
 					break;
 				default:
@@ -479,7 +479,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 					int cp = docEditor.getCaretPosition();
 					updateDocEditor();
 					updateStruct();
-					int l = docEditor.getText().length();
+					int l = docEditor.getDocument().getLength();
 					if (cp >= l) {
 						cp = l - 1;
 					}

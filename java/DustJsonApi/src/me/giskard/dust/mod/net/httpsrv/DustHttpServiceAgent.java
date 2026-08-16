@@ -3,7 +3,6 @@ package me.giskard.dust.mod.net.httpsrv;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.Collections;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -98,8 +97,9 @@ public class DustHttpServiceAgent extends DustAgent implements DustNetConsts, Du
 
 					switch (cmd) {
 					case "exec":
-						Map<String, String> params = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null, TOKEN_MISC_ATT_TARGET, TOKEN_MISC_ATT_PAYLOAD);
-						Dust.access(DustAccess.Process, params, svc);
+						Map<String, String> params = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET, TOKEN_MISC_ATT_PAYLOAD);
+						Dust.access(DustAccess.Set, params, svc, TOKEN_MISC_ATT_PAYLOAD);
+						Dust.access(DustAccess.Process, null, svc);
 						break;
 					case "show":
 						Map<String, String> input = Dust.access(DustAccess.Peek, null, svc, TOKEN_MISC_ATT_PAYLOAD);

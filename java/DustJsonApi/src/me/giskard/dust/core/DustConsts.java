@@ -47,7 +47,7 @@ public interface DustConsts extends DustGenTokens_dust_1, DustGenTokens_misc_1, 
 	Object NOT_IMPLEMENTED = new Object();
 
 	enum DustContext {
-		Work, Input, Service, Agent, Dialog,
+		Work, Message, Agent, Dialog,
 	}
 
 	enum DustAccess {

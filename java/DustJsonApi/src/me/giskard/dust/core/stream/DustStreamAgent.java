@@ -8,6 +8,7 @@ import java.util.Map;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
+import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.DustMachine;
 import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.utils.DustUtils;
@@ -53,16 +54,16 @@ public class DustStreamAgent extends DustAgent implements DustMachine.StreamSour
 		case TOKEN_MISC_TAG_CMD_INFO:
 			DustUtilsFile.checkPathBound(f, r, true);
 
-			Dust.access(DustAccess.Reset, null, DustContext.Input, TOKEN_MISC_ATT_MEMBERS);
+			Dust.access(DustAccess.Reset, null, DustContext.Message, TOKEN_MISC_ATT_MEMBERS);
 			int rpl = r.getCanonicalPath().length();
 
 			if (f.isDirectory()) {
 				for (File ff : f.listFiles()) {
-					Dust.access(DustAccess.Insert, ff.getCanonicalPath().substring(rpl), DustContext.Input, TOKEN_MISC_ATT_MEMBERS);
+					Dust.access(DustAccess.Insert, ff.getCanonicalPath().substring(rpl), DustContext.Message, TOKEN_MISC_ATT_MEMBERS);
 				}
 			} else {
 				String unitName = DustUtils.cutPostfix(f.getName(), ".");
-				Dust.access(DustAccess.Insert, unitName, DustContext.Input, TOKEN_MISC_ATT_MEMBERS);
+				Dust.access(DustAccess.Insert, unitName, DustContext.Message, TOKEN_MISC_ATT_MEMBERS);
 			}
 
 			break;
@@ -81,6 +82,7 @@ public class DustStreamAgent extends DustAgent implements DustMachine.StreamSour
 					Dust.access(DustAccess.Set, stream, target, TOKEN_STREAM_ATT_INPUT);
 					Dust.access(DustAccess.Set, mimeType, target, TOKEN_STREAM_ATT_MIMETYPE);
 					
+					DustException.wrap(null, "Not followed params - message refactor");
 					Map params = DustUtilsData.optLoadMapping(target, null);
 
 					Dust.access(DustAccess.Process, params, target);

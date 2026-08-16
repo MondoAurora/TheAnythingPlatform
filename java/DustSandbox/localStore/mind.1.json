@@ -1,1 +1,664 @@
-{"jsonapi":{"version":"1.1"},"data":[{"attributes":{"misc.1$name":"TOKEN_MIND_ASP_AGENT"},"id":"mind.1$Agent","type":"mind.1$Aspect"},{"attributes":{"misc.1$name":"TOKEN_MIND_ASP_ASPECT"},"id":"mind.1$Aspect","type":"mind.1$Aspect"},{"attributes":{"misc.1$name":"TOKEN_MIND_ASP_ATTRIBUTE"},"id":"mind.1$Attribute","type":"mind.1$Aspect"},{"attributes":{"misc.1$name":"TOKEN_MIND_TAG_COLLTYPE"},"id":"mind.1$Colltype","type":"mind.1$Tag"},{"relationships":{"misc.1$parent":{"data":{"id":"mind.1$Colltype","type":"mind.1$Tag"}}},"attributes":{"misc.1$name":"TOKEN_MIND_TAG_COLLTYPE_ARR"},"id":"mind.1$ColltypeArr","type":"mind.1$Tag"},{"relationships":{"misc.1$parent":{"data":{"id":"mind.1$Colltype","type":"mind.1$Tag"}}},"attributes":{"misc.1$name":"TOKEN_MIND_TAG_COLLTYPE_MAP"},"id":"mind.1$ColltypeMap","type":"mind.1$Tag"},{"relationships":{"misc.1$parent":{"data":{"id":"mind.1$Colltype","type":"mind.1$Tag"}}},"attributes":{"misc.1$name":"TOKEN_MIND_TAG_COLLTYPE_ONE"},"id":"mind.1$ColltypeOne","type":"mind.1$Tag"},{"relationships":{"misc.1$parent":{"data":{"id":"mind.1$Colltype","type":"mind.1$Tag"}}},"attributes":{"misc.1$name":"TOKEN_MIND_TAG_COLLTYPE_SET"},"id":"mind.1$ColltypeSet","type":"mind.1$Tag"},{"id":"mind.1$Filter","type":"mind.1$Narrative"},{"attributes":{"misc.1$name":"TOKEN_MIND_TAG_FINAL"},"id":"mind.1$Final","type":"mind.1$Tag"},{"id":"mind.1$ForAll","type":"mind.1$Narrative"},{"relationships":{"misc.1$parent":{"data":{"id":"misc.1$Cmd","type":"mind.1$Tag"}}},"attributes":{"misc.1$name":"TOKEN_MIND_CMD_GETHANDLE"},"id":"mind.1$GetHandle","type":"mind.1$Tag"},{"relationships":{"misc.1$parent":{"data":{"id":"misc.1$Cmd","type":"mind.1$Tag"}}},"attributes":{"misc.1$name":"TOKEN_MIND_CMD_LISTUNITS"},"id":"mind.1$ListUnits","type":"mind.1$Tag"},{"attributes":{"misc.1$name":"TOKEN_MIND_TAG_MANDATORY"},"id":"mind.1$Mandatory","type":"mind.1$Tag"},{"attributes":{"misc.1$name":"TOKEN_MIND_ASP_MESSAGE"},"id":"mind.1$Message","type":"mind.1$Aspect"},{"attributes":{"misc.1$name":"TOKEN_MIND_ASP_NARRATIVE"},"id":"mind.1$Narrative","type":"mind.1$Aspect"},{"attributes":{"misc.1$name":"TOKEN_MIND_TAG_OPTIONAL"},"id":"mind.1$Optional","type":"mind.1$Tag"},{"attributes":{"misc.1$name":"TOKEN_MIND_TAG_RESULT"},"id":"mind.1$Result","type":"mind.1$Tag"},{"relationships":{"misc.1$parent":{"data":{"id":"mind.1$Result","type":"mind.1$Tag"}}},"attributes":{"misc.1$name":"TOKEN_MIND_TAG_RESULT_ACCEPT"},"id":"mind.1$ResultAccept","type":"mind.1$Tag"},{"relationships":{"misc.1$parent":{"data":{"id":"mind.1$Result","type":"mind.1$Tag"}}},"attributes":{"misc.1$name":"TOKEN_MIND_TAG_RESULT_PASS"},"id":"mind.1$ResultPass","type":"mind.1$Tag"},{"relationships":{"misc.1$parent":{"data":{"id":"mind.1$Result","type":"mind.1$Tag"}}},"attributes":{"misc.1$name":"TOKEN_MIND_TAG_RESULT_READ"},"id":"mind.1$ResultRead","type":"mind.1$Tag"},{"relationships":{"misc.1$parent":{"data":{"id":"mind.1$Result","type":"mind.1$Tag"}}},"attributes":{"misc.1$name":"TOKEN_MIND_TAG_RESULT_READACCEPT"},"id":"mind.1$ResultReadAccept","type":"mind.1$Tag"},{"relationships":{"misc.1$parent":{"data":{"id":"mind.1$Result","type":"mind.1$Tag"}}},"attributes":{"misc.1$name":"TOKEN_MIND_TAG_RESULT_REJECT"},"id":"mind.1$ResultReject","type":"mind.1$Tag"},{"attributes":{"misc.1$name":"TOKEN_MIND_ASP_TAG"},"id":"mind.1$Tag","type":"mind.1$Aspect"},{"attributes":{"misc.1$name":"TOKEN_MIND_TAG_TRANSIENT"},"id":"mind.1$Transient","type":"mind.1$Tag"},{"attributes":{"misc.1$name":"TOKEN_MIND_ASP_UNIT"},"id":"mind.1$Unit","type":"mind.1$Aspect"},{"attributes":{"misc.1$name":"TOKEN_MIND_TAG_VALTYPE"},"id":"mind.1$Valtype","type":"mind.1$Tag"},{"relationships":{"misc.1$parent":{"data":{"id":"mind.1$Valtype","type":"mind.1$Tag"}}},"attributes":{"misc.1$name":"TOKEN_MIND_TAG_VALTYPE_BOOL"},"id":"mind.1$ValtypeBool","type":"mind.1$Tag"},{"relationships":{"misc.1$parent":{"data":{"id":"mind.1$Valtype","type":"mind.1$Tag"}}},"attributes":{"misc.1$name":"TOKEN_MIND_TAG_VALTYPE_HANDLE"},"id":"mind.1$ValtypeHandle","type":"mind.1$Tag"},{"relationships":{"misc.1$parent":{"data":{"id":"mind.1$Valtype","type":"mind.1$Tag"}}},"attributes":{"misc.1$name":"TOKEN_MIND_TAG_VALTYPE_INTEGER"},"id":"mind.1$ValtypeInteger","type":"mind.1$Tag"},{"relationships":{"misc.1$parent":{"data":{"id":"mind.1$Valtype","type":"mind.1$Tag"}}},"attributes":{"misc.1$name":"TOKEN_MIND_TAG_VALTYPE_RAW"},"id":"mind.1$ValtypeRaw","type":"mind.1$Tag"},{"relationships":{"misc.1$parent":{"data":{"id":"mind.1$Valtype","type":"mind.1$Tag"}}},"attributes":{"misc.1$name":"TOKEN_MIND_TAG_VALTYPE_REAL"},"id":"mind.1$ValtypeReal","type":"mind.1$Tag"},{"relationships":{"misc.1$parent":{"data":{"id":"mind.1$Valtype","type":"mind.1$Tag"}}},"attributes":{"misc.1$name":"TOKEN_MIND_TAG_VALTYPE_STRING"},"id":"mind.1$ValtypeString","type":"mind.1$Tag"},{"relationships":{"mind.1$tags":{"data":[{"id":"mind.1$ColltypeOne","type":"mind.1$Tag"},{"id":"mind.1$ValtypeHandle","type":"mind.1$Tag"}]}},"attributes":{"misc.1$name":"TOKEN_MIND_ATT_AUTHOR"},"id":"mind.1$author","type":"mind.1$Attribute"},{"relationships":{"mind.1$tags":{"data":[{"id":"mind.1$ColltypeOne","type":"mind.1$Tag"},{"id":"mind.1$ValtypeHandle","type":"mind.1$Tag"}]}},"attributes":{"misc.1$name":"TOKEN_MIND_ATT_CMD"},"id":"mind.1$cmd","type":"mind.1$Attribute"},{"relationships":{"mind.1$tags":{"data":[{"id":"mind.1$ColltypeOne","type":"mind.1$Tag"},{"id":"mind.1$Transient","type":"mind.1$Tag"},{"id":"mind.1$ValtypeString","type":"mind.1$Tag"}]}},"attributes":{"misc.1$name":"TOKEN_MIND_ATT_ID"},"id":"mind.1$id","type":"mind.1$Attribute"},{"relationships":{"mind.1$tags":{"data":[{"id":"mind.1$ColltypeSet","type":"mind.1$Tag"},{"id":"mind.1$ValtypeHandle","type":"mind.1$Tag"}]}},"attributes":{"misc.1$name":"TOKEN_MIND_ATT_KNOWNUNITS"},"id":"mind.1$knownUnits","type":"mind.1$Attribute"},{"relationships":{"mind.1$tags":{"data":[{"id":"mind.1$ColltypeArr","type":"mind.1$Tag"},{"id":"mind.1$ValtypeHandle","type":"mind.1$Tag"}]}},"attributes":{"misc.1$name":"TOKEN_MIND_ATT_LISTENERS"},"id":"mind.1$listeners","type":"mind.1$Attribute"},{"relationships":{"mind.1$tags":{"data":[{"id":"mind.1$ColltypeOne","type":"mind.1$Tag"},{"id":"mind.1$ValtypeHandle","type":"mind.1$Tag"}]}},"attributes":{"misc.1$name":"TOKEN_MIND_ATT_NARRATIVE"},"id":"mind.1$narrative","type":"mind.1$Attribute"},{"relationships":{"mind.1$tags":{"data":[{"id":"mind.1$ColltypeOne","type":"mind.1$Tag"},{"id":"mind.1$ValtypeHandle","type":"mind.1$Tag"}]}},"attributes":{"misc.1$name":"TOKEN_MIND_ATT_NEXT"},"id":"mind.1$next","type":"mind.1$Attribute"},{"relationships":{"mind.1$tags":{"data":[{"id":"mind.1$ColltypeOne","type":"mind.1$Tag"},{"id":"mind.1$ValtypeHandle","type":"mind.1$Tag"}]}},"attributes":{"misc.1$name":"TOKEN_MIND_ATT_SERIALIZER"},"id":"mind.1$serializer","type":"mind.1$Attribute"},{"relationships":{"mind.1$tags":{"data":[{"id":"mind.1$ColltypeSet","type":"mind.1$Tag"},{"id":"mind.1$ValtypeHandle","type":"mind.1$Tag"}]}},"attributes":{"misc.1$name":"TOKEN_MIND_ATT_TAGS"},"id":"mind.1$tags","type":"mind.1$Attribute"},{"relationships":{"mind.1$tags":{"data":[{"id":"mind.1$ColltypeOne","type":"mind.1$Tag"},{"id":"mind.1$ValtypeBool","type":"mind.1$Tag"}]}},"attributes":{"misc.1$name":"TOKEN_MIND_ATT_TRANSACTION_HEAD"},"id":"mind.1$transactionHead","type":"mind.1$Attribute"},{"relationships":{"mind.1$tags":{"data":[{"id":"mind.1$ColltypeOne","type":"mind.1$Tag"},{"id":"mind.1$ValtypeBool","type":"mind.1$Tag"}]}},"attributes":{"misc.1$name":"TOKEN_MIND_ATT_TRANSACTION_ITEM"},"id":"mind.1$transactionItem","type":"mind.1$Attribute"},{"relationships":{"mind.1$tags":{"data":[{"id":"mind.1$ColltypeOne","type":"mind.1$Tag"},{"id":"mind.1$ValtypeHandle","type":"mind.1$Tag"},{"id":"mind.1$Transient","type":"mind.1$Tag"}]}},"attributes":{"misc.1$name":"TOKEN_MIND_ATT_TYPE"},"id":"mind.1$type","type":"mind.1$Attribute"},{"relationships":{"mind.1$tags":{"data":[{"id":"mind.1$ColltypeOne","type":"mind.1$Tag"},{"id":"mind.1$ValtypeHandle","type":"mind.1$Tag"},{"id":"mind.1$Transient","type":"mind.1$Tag"}]}},"attributes":{"misc.1$name":"TOKEN_MIND_ATT_UNIT"},"id":"mind.1$unit","type":"mind.1$Attribute"},{"id":"mind.1$unitObjects","type":"mind.1$Attribute"},{"id":"mind.1$unitRefs","type":"mind.1$Attribute"}],"meta":{"count":48}}
+{
+	"jsonapi": {
+		"version": "1.1"
+	},
+	"data": [
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ASP_AGENT"
+			},
+			"id": "mind.1$Agent",
+			"type": "mind.1$Aspect"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ASP_ASPECT"
+			},
+			"id": "mind.1$Aspect",
+			"type": "mind.1$Aspect"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ASP_ATTRIBUTE"
+			},
+			"id": "mind.1$Attribute",
+			"type": "mind.1$Aspect"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE"
+			},
+			"id": "mind.1$Colltype",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Colltype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_ARR"
+			},
+			"id": "mind.1$ColltypeArr",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Colltype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_MAP"
+			},
+			"id": "mind.1$ColltypeMap",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Colltype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_ONE"
+			},
+			"id": "mind.1$ColltypeOne",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Colltype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_SET"
+			},
+			"id": "mind.1$ColltypeSet",
+			"type": "mind.1$Tag"
+		},
+		{
+			"id": "mind.1$Filter",
+			"type": "mind.1$Narrative"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_FINAL"
+			},
+			"id": "mind.1$Final",
+			"type": "mind.1$Tag"
+		},
+		{
+			"id": "mind.1$ForAll",
+			"type": "mind.1$Narrative"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "misc.1$Cmd",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_CMD_GETHANDLE"
+			},
+			"id": "mind.1$GetHandle",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "misc.1$Cmd",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_CMD_LISTUNITS"
+			},
+			"id": "mind.1$ListUnits",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_MANDATORY"
+			},
+			"id": "mind.1$Mandatory",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ASP_MESSAGE"
+			},
+			"id": "mind.1$Message",
+			"type": "mind.1$Aspect"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ASP_NARRATIVE"
+			},
+			"id": "mind.1$Narrative",
+			"type": "mind.1$Aspect"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_OPTIONAL"
+			},
+			"id": "mind.1$Optional",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_RESULT"
+			},
+			"id": "mind.1$Result",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Result",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_RESULT_ACCEPT"
+			},
+			"id": "mind.1$ResultAccept",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Result",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_RESULT_PASS"
+			},
+			"id": "mind.1$ResultPass",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Result",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_RESULT_READ"
+			},
+			"id": "mind.1$ResultRead",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Result",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_RESULT_READACCEPT"
+			},
+			"id": "mind.1$ResultReadAccept",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Result",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_RESULT_REJECT"
+			},
+			"id": "mind.1$ResultReject",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ASP_TAG"
+			},
+			"id": "mind.1$Tag",
+			"type": "mind.1$Aspect"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_TRANSIENT"
+			},
+			"id": "mind.1$Transient",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ASP_UNIT"
+			},
+			"id": "mind.1$Unit",
+			"type": "mind.1$Aspect"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE"
+			},
+			"id": "mind.1$Valtype",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Valtype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_BOOL"
+			},
+			"id": "mind.1$ValtypeBool",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Valtype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_HANDLE"
+			},
+			"id": "mind.1$ValtypeHandle",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Valtype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_INTEGER"
+			},
+			"id": "mind.1$ValtypeInteger",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Valtype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_RAW"
+			},
+			"id": "mind.1$ValtypeRaw",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Valtype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_REAL"
+			},
+			"id": "mind.1$ValtypeReal",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"misc.1$parent": {
+					"data": {
+						"id": "mind.1$Valtype",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_TAG_VALTYPE_STRING"
+			},
+			"id": "mind.1$ValtypeString",
+			"type": "mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ATT_AUTHOR"
+			},
+			"id": "mind.1$author",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ATT_CMD"
+			},
+			"id": "mind.1$cmd",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$Transient",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeString",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ATT_ID"
+			},
+			"id": "mind.1$id",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeSet",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ATT_KNOWNUNITS"
+			},
+			"id": "mind.1$knownUnits",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeArr",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ATT_LISTENERS"
+			},
+			"id": "mind.1$listeners",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ATT_NARRATIVE"
+			},
+			"id": "mind.1$narrative",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ATT_NEXT"
+			},
+			"id": "mind.1$next",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ATT_SERIALIZER"
+			},
+			"id": "mind.1$serializer",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeSet",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ATT_TAGS"
+			},
+			"id": "mind.1$tags",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeBool",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ATT_TRANSACTION_HEAD"
+			},
+			"id": "mind.1$transactionHead",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeBool",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ATT_TRANSACTION_ITEM"
+			},
+			"id": "mind.1$transactionItem",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$Transient",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ATT_TYPE"
+			},
+			"id": "mind.1$type",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "mind.1$ColltypeOne",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$Transient",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ATT_UNIT"
+			},
+			"id": "mind.1$unit",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"id": "mind.1$unitObjects",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"id": "mind.1$unitRefs",
+			"type": "mind.1$Attribute"
+		}
+	],
+	"meta": {
+		"count": 48
+	}
+}

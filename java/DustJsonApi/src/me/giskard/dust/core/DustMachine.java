@@ -24,7 +24,7 @@ public abstract class DustMachine extends DustConsts.DustAgent implements DustCo
 	@Deprecated
 	protected abstract <RetType> RetType accessCtx(DustAccess access, Object val, Object root, Object... path);
 
-	protected abstract <RetType> RetType notifyAgent(DustHandle hAgent, DustAction action, DustAccess access, DustHandle service, Object params);
+	protected abstract <RetType> RetType notifyAgent(DustHandle hAgent, DustAction action, DustAccess access, DustHandle hMessage);
 	protected <RetType> RetType callAgent(DustHandle hAgent, DustAction action, DustAccess access) throws Exception {
 		return Dust.callAgent(hAgent, action, access);
 	}

@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Pattern;
 
 import me.giskard.dust.core.Dust;
@@ -31,12 +29,15 @@ public class DustStreamUtils implements DustUtilsConsts, DustMachineConsts, Dust
 	}
 
 	public static <RetType> RetType getStream(String cmd, String fileName, Object streamSource) {
-		Map<String, Object> sp = new HashMap<String, Object>();
+//		Map<String, Object> sp = new HashMap<String, Object>();
+//
+//		sp.put(TOKEN_MIND_ATT_CMD, cmd);
+//		sp.put(TOKEN_MISC_ATT_PATH, fileName);
+		
+		Dust.access(DustAccess.Set, cmd, streamSource, TOKEN_MIND_ATT_CMD);
+		Dust.access(DustAccess.Set, fileName, streamSource, TOKEN_MISC_ATT_PATH);
 
-		sp.put(TOKEN_MIND_ATT_CMD, cmd);
-		sp.put(TOKEN_MISC_ATT_PATH, fileName);
-
-		return Dust.access(DustAccess.Process, sp, streamSource);
+		return Dust.access(DustAccess.Process, null, streamSource);
 
 	}
 

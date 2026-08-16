@@ -46,7 +46,7 @@ public class DustSandboxTextUtils implements DustSandboxTextConsts {
 		int dl = htmlDoc.getLength();
 		String newTxt = htmlDoc.getText(0, dl);
 		
-		if ( null == hSel ) {
+		if ( DustUtils.isEmpty(hSel) ) {
 			hSel = txtAgent.events.keySet();
 		}
 

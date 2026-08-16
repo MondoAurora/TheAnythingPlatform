@@ -1,8 +1,5 @@
 package me.giskard.dust.core.flow;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 
@@ -15,21 +12,18 @@ public class DustFlowPlayerAgent extends DustAgent implements DustFlowConsts {
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		Object cmd = Dust.access(DustAccess.Peek, "", null, TOKEN_MIND_ATT_CMD);
-		Object svc = Dust.access(DustAccess.Peek, "", DustContext.Service);
+		Object msg = Dust.access(DustAccess.Peek, null, DustContext.Message);
 //		StringBuilder sb = null;
 
-		Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "FlowPlayer received command", cmd);
+//		Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "FlowPlayer received command", cmd);
 
 		Iterable<DustHandle> members = Dust.access(DustAccess.Visit, null, null, TOKEN_MISC_ATT_MEMBERS);
 
 		if (null != members) {
-//			Map params = new HashMap();
-
+			Object cmd = Dust.access(DustAccess.Peek, null, msg, TOKEN_MIND_ATT_CMD);
 			for (DustHandle h : members) {
-//				Dust.access(DustAccess.Set, cmd, params, TOKEN_MIND_ATT_CMD);
-				Dust.access(DustAccess.Process, svc, h);
-
+				Dust.access(DustAccess.Set, cmd, h, TOKEN_MIND_ATT_CMD);
+				Dust.access(DustAccess.Process, null, h);
 			}
 		}
 		return null;

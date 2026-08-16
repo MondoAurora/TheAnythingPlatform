@@ -2,7 +2,6 @@ package me.giskard.dust.mod.net.httpsrv;
 
 import java.io.PrintWriter;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
@@ -140,12 +139,16 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 
 						Object ser = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_SERIALIZER);
 
-						Map<String, Object> ps = new HashMap<>();
-						ps.put(TOKEN_MIND_ATT_CMD, TOKEN_MISC_TAG_CMD_SAVE);
-						ps.put(TOKEN_MISC_ATT_DATA, unit);
-						ps.put(TOKEN_STREAM_ATT_WRITER, out);
+//						Map<String, Object> ps = new HashMap<>();
+//						ps.put(TOKEN_MIND_ATT_CMD, TOKEN_MISC_TAG_CMD_SAVE);
+//						ps.put(TOKEN_MISC_ATT_DATA, unit);
+//						ps.put(TOKEN_STREAM_ATT_WRITER, out);
+						
+						Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_SAVE, ser, TOKEN_MIND_ATT_CMD);
+						Dust.access(DustAccess.Set, unit, ser, TOKEN_MISC_ATT_DATA);
+						Dust.access(DustAccess.Set, out, ser, TOKEN_STREAM_ATT_WRITER);
 
-						Dust.access(DustAccess.Process, ps, ser);
+						Dust.access(DustAccess.Process, null, ser);
 
 						out.flush();
 

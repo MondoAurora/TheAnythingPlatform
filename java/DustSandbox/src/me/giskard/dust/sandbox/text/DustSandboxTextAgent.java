@@ -158,21 +158,24 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 	};
 
 	public void save() {
-		Map<String, Object> sp = new HashMap<String, Object>();
-		sp.put(TOKEN_MIND_ATT_CMD, TOKEN_MISC_TAG_CMD_SAVE);
+//		Map<String, Object> sp = new HashMap<String, Object>();
+//		sp.put(TOKEN_MIND_ATT_CMD, TOKEN_MISC_TAG_CMD_SAVE);
 
 		if (null == defaultSerializer) {
 			DustHandle app = Dust.getUnit("sandbox.1", false);
 			DustHandle runtime = Dust.getHandle(app, null, TOKEN_DUST_AGT_RUNTIME, DustOptCreate.None);
 			defaultSerializer = Dust.access(DustAccess.Peek, null, runtime, TOKEN_MIND_ATT_SERIALIZER);
 		}
+		Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_SAVE, defaultSerializer, TOKEN_MIND_ATT_CMD);
 
 		toSave.add(hUnit);
 		toSave.add(hStrings);
 		for (DustHandle h : toSave) {
-			sp.put(TOKEN_MISC_ATT_KEY, h.getId());
-			sp.put(TOKEN_MISC_ATT_DATA, h);
-			Dust.access(DustAccess.Process, sp, defaultSerializer);
+//			sp.put(TOKEN_MISC_ATT_KEY, h.getId());
+//			sp.put(TOKEN_MISC_ATT_DATA, h);
+			Dust.access(DustAccess.Set, h.getId(), defaultSerializer, TOKEN_MISC_ATT_KEY);
+			Dust.access(DustAccess.Set, h, defaultSerializer, TOKEN_MISC_ATT_DATA);
+			Dust.access(DustAccess.Process, null, defaultSerializer);
 		}
 
 		toSave.clear();

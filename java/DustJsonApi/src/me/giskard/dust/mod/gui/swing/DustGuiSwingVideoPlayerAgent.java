@@ -80,14 +80,15 @@ public class DustGuiSwingVideoPlayerAgent extends DustAgent implements DustGuiSw
 			ret = vp;
 			
 			Dust.access(DustAccess.Set, ret, DustContext.Agent, TOKEN_DUST_ATT_WRAPPEDOBJECT);
-			Dust.access(DustAccess.Set, ret, DustContext.Service, TOKEN_DUST_ATT_WRAPPEDOBJECT);
+			Dust.access(DustAccess.Set, ret, DustContext.Message, TOKEN_DUST_ATT_WRAPPEDOBJECT);
 		}
 
 	}
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD, TOKEN_MIND_ATT_ID);
+		Object co = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
+		String cmd = (co instanceof DustHandle) ? ((DustHandle)co).getId() : (String) co;
 
 		VideoPanel vp = Dust.access(DustAccess.Peek, null, DustContext.Agent, TOKEN_DUST_ATT_WRAPPEDOBJECT);
 
@@ -109,7 +110,7 @@ public class DustGuiSwingVideoPlayerAgent extends DustAgent implements DustGuiSw
 			break;
 		default:
 //			sb = new StringBuilder("Unknown command: ").append(cmd);
-			Dust.access(DustAccess.Set, vp, DustContext.Service, TOKEN_DUST_ATT_WRAPPEDOBJECT);
+			Dust.access(DustAccess.Set, vp, DustContext.Message, TOKEN_DUST_ATT_WRAPPEDOBJECT);
 			break;
 		}
 

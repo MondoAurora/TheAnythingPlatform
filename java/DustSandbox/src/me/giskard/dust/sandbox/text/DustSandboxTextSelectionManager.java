@@ -264,6 +264,10 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 		if (null != eFocus) {
 			selBegin = eFocus.getStartOffset();
 			selEnd = eFocus.getEndOffset();
+			int dl = doc.getLength();
+			if ( selEnd > dl ) {
+				selEnd = dl;
+			}
 		}		
 	}
 
@@ -304,6 +308,7 @@ public class DustSandboxTextSelectionManager implements DustSandboxTextConsts {
 							}
 						} else {
 //							txt.moveCaretPosition(selEnd);
+							
 							txt.setCaretPosition(selEnd);
 							txt.moveCaretPosition(selBegin);
 						}

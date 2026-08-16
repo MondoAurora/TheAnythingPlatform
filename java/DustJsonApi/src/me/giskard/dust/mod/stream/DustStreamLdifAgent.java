@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.util.Base64;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,7 +29,7 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 
 		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
 		Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_SOURCE);
-		Map<String, Object> sp = new HashMap<String, Object>();
+//		Map<String, Object> sp = new HashMap<String, Object>();
 
 		switch (cmd) {
 		case TOKEN_MISC_TAG_CMD_LOAD:
@@ -41,12 +40,16 @@ public class DustStreamLdifAgent extends DustAgent implements DustStreamConsts, 
 			String metaPath = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_META, TOKEN_MISC_ATT_PATH);
 
 			if (!DustUtils.isEmpty(metaPath)) {				
-				sp.put(TOKEN_MIND_ATT_CMD, TOKEN_MISC_TAG_CMD_INFO);
-				sp.put(TOKEN_MISC_ATT_PATH, metaPath);
+//				sp.put(TOKEN_MIND_ATT_CMD, TOKEN_MISC_TAG_CMD_INFO);
+//				sp.put(TOKEN_MISC_ATT_PATH, metaPath);
+				
+				Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_INFO, streamSource, TOKEN_MIND_ATT_CMD);
+				Dust.access(DustAccess.Set, metaPath, streamSource, TOKEN_MISC_ATT_PATH);
 
-				Dust.access(DustAccess.Process, sp, streamSource);
+				Dust.access(DustAccess.Process, null, streamSource);
 
-				Collection<String> metaNames = (Collection<String>) sp.get(TOKEN_MISC_ATT_MEMBERS);
+				Collection<String> metaNames = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, streamSource, TOKEN_MISC_ATT_MEMBERS);
+//				Collection<String> metaNames = (Collection<String>) sp.get(TOKEN_MISC_ATT_MEMBERS);
 				
 				for (String mn  : metaNames) {
 					if ( mn.endsWith(DUST_EXT_LDIF) ) {
