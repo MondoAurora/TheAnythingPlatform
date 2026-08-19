@@ -1,7 +1,9 @@
 package me.giskard.tokens;
 
+// Generation timestamp 20260818T092043Z
+
 public interface DustGenTokens_gui_1 {
-// Types
+// Aspects
 	String TOKEN_GUI_ASP_EDIT_COLL = "gui.1$EditColl";
 	String TOKEN_GUI_ASP_EDIT_HANDLE = "gui.1$EditHandle";
 	String TOKEN_GUI_ASP_EDIT_NUMBER = "gui.1$EditNumber";
@@ -20,6 +22,7 @@ public interface DustGenTokens_gui_1 {
 	String TOKEN_GUI_ASP_WINDOW = "gui.1$Window";
 
 // Attributes
+	String TOKEN_GUI_ATT_IMAGE_RESOLVER = "gui.1$imageResolver";
 	String TOKEN_GUI_ATT_LOOKANDFEEL = "gui.1$lookAndFeel";
 
 // Tags

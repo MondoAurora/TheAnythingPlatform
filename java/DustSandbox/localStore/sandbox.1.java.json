@@ -20,6 +20,9 @@
 					"stream.1$FileStreamSource": {
 						"dust.1$binary": "me.giskard.dust.core.stream.DustStreamSrcFileAgent"
 					},
+					"stream.1$StreamAgent": {
+						"dust.1$binary": "me.giskard.dust.core.stream.DustStreamAgent"
+					},
 					"dev.1$GraphEditor": {
 						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserPanel"
 					},

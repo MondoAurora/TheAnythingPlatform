@@ -108,7 +108,7 @@
 			"attributes": {
 				"misc.1$filter": {
 					"misc.1$name": true,
-					"mind.1$typeX": [
+					"mind.1$type": [
 						"mind.1$Unit",
 						"mind.1$Aspect",
 						"mind.1$Attribute",

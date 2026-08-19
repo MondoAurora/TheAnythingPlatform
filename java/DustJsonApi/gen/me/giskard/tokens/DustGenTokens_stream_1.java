@@ -1,5 +1,7 @@
 package me.giskard.tokens;
 
+// Generation timestamp 20260818T075315Z
+
 public interface DustGenTokens_stream_1 {
 // Aspects
 	String TOKEN_STREAM_ASP_STREAM = "stream.1$Stream";
@@ -16,6 +18,7 @@ public interface DustGenTokens_stream_1 {
 	String TOKEN_STREAM_ATT_ROWSEP = "stream.1$rowSep";
 	String TOKEN_STREAM_ATT_SAPFIRSTCOL = "stream.1$firstCol";
 	String TOKEN_STREAM_ATT_SOURCE = "stream.1$streamSource";
+	String TOKEN_STREAM_ATT_STREAM_API = "stream.1$streamAPI";
 	String TOKEN_STREAM_ATT_URL = "stream.1$url";
 	String TOKEN_STREAM_ATT_WRITER = "stream.1$writer";
 

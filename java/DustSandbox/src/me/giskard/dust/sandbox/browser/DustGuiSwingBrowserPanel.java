@@ -700,8 +700,12 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					execCmd("Commit"); // "autosave"
 				}
 
+				Dust.access(DustAccess.Delete, null, hSrcGen, TOKEN_MISC_ATT_MEMBERS);
+				Dust.access(DustAccess.Delete, null, hSrcGen, TOKEN_MISC_ATT_PATH);
+
 				Dust.access(DustAccess.Set, TOKEN_DEV_TAG_CMD_TEST, hSrcGen, TOKEN_MIND_ATT_CMD);
-				Dust.access(DustAccess.Set, TOKEN_DUST_ATT_UNIT_REFS, hSrcGen, TOKEN_MISC_ATT_PATH, KEY_ADD);
+				Dust.access(DustAccess.Insert, TOKEN_DUST_ATT_UNIT_REFS, hSrcGen, TOKEN_MISC_ATT_PATH, KEY_ADD);
+//				Dust.access(DustAccess.Set, TOKEN_DUST_ATT_UNIT_REFS, hSrcGen, TOKEN_MISC_ATT_PATH, KEY_ADD);
 				for (DustHandle hs : filterUnit) {
 					Dust.access(DustAccess.Insert, hs, hSrcGen, TOKEN_MISC_ATT_MEMBERS);
 				}
@@ -1026,8 +1030,8 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 		JPanel pnlMetaFilter = new JPanel(new GridLayout(1, 3));
 		pnlMetaFilter.add(pnlAspects);
-		pnlMetaFilter.add(pnlAtts);
 		pnlMetaFilter.add(pnlLinks);
+		pnlMetaFilter.add(pnlAtts);
 
 		JPanel pnlDataMulti = new JPanel(new BorderLayout());
 		pnlDataMulti.add(DustGuiSwingUtils.createSplit(false, pnlGrid, pnlGraph, 0.2), BorderLayout.CENTER);

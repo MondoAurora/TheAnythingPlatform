@@ -2,7 +2,6 @@ package me.giskard.dust.core.machine;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 import me.giskard.dust.core.Dust;
@@ -66,12 +65,10 @@ public interface DustMachineNarrative extends DustMachineConsts {
 
 	public class Filter extends ChainAgent {
 		
-		Map<String, Object> conditions;
-		
 		@Override
 		protected void init() throws Exception {
 			super.init();
-			conditions = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null, TOKEN_MISC_ATT_FILTER);
+//			conditions = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null, TOKEN_MISC_ATT_FILTER);
 		}
 
 		@Override
@@ -83,6 +80,7 @@ public interface DustMachineNarrative extends DustMachineConsts {
 			if ( null != data ) {
 //				Map params = new HashMap();
 //				Dust.access(DustAccess.Set, cmd, params, TOKEN_MIND_ATT_CMD);
+				Map<String, Object> conditions = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null, TOKEN_MISC_ATT_FILTER);
 
 				boolean pass = true;
 

@@ -14,13 +14,26 @@ import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsData;
 import me.giskard.dust.core.utils.DustUtilsFile;
+import me.giskard.tokens.DustGenTokens_dev_1;
 
 @SuppressWarnings("rawtypes")
-public class DustStreamAgent extends DustAgent implements DustMachine.StreamSource, DustStreamConsts, DustNetConsts {
+public class DustStreamAgent extends DustAgent implements DustMachine.StreamSource, DustStreamConsts, DustNetConsts, DustGenTokens_dev_1 {
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
 		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
+
+		DustHandle hNext = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_NEXT);
+
+		try (FileInputStream fi = new FileInputStream("localStore/res/59d365a0.jpg")) {
+			Dust.access(DustAccess.Set, fi, hNext, TOKEN_STREAM_ATT_INPUT);
+			Dust.access(DustAccess.Set, TOKEN_DEV_TAG_CMD_TEST, hNext, TOKEN_MIND_ATT_CMD);
+			Dust.access(DustAccess.Process, null, hNext);
+		}
+		
+		if ( null != hNext ) {
+			return null;
+		}
 
 		String unit = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_UNIT);
 		if (DustUtils.isEmpty(unit)) {
@@ -81,7 +94,7 @@ public class DustStreamAgent extends DustAgent implements DustMachine.StreamSour
 					DustHandle target = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET);
 					Dust.access(DustAccess.Set, stream, target, TOKEN_STREAM_ATT_INPUT);
 					Dust.access(DustAccess.Set, mimeType, target, TOKEN_STREAM_ATT_MIMETYPE);
-					
+
 					DustException.wrap(null, "Not followed params - message refactor");
 					Map params = DustUtilsData.optLoadMapping(target, null);
 

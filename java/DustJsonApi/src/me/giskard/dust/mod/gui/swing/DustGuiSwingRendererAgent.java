@@ -6,8 +6,13 @@ import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.InputStream;
 import java.util.Collections;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -16,10 +21,13 @@ import javax.swing.JPanel;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
+import me.giskard.dust.core.DustException;
+import me.giskard.tokens.DustGenTokens_dev_1;
+import me.giskard.tokens.DustGenTokens_stream_1;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwingConsts {
-	
+public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwingConsts, DustGenTokens_stream_1, DustGenTokens_dev_1 {
+
 	@Override
 	protected void init() throws Exception {
 		DustGuiSwingUtils.optSetLookAndFeel();
@@ -56,6 +64,7 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 		JPanel pnl = null;
 		JButton btn;
 		Component comp;
+		DustHandle hCmd = null;
 
 		if (null == ret) {
 			Iterable<DustHandle> members = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h, TOKEN_MISC_ATT_MEMBERS);
@@ -76,22 +85,30 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 
 				break;
 			case TOKEN_MIND_ASP_MESSAGE:
-				
+
 //				Map params = new HashMap();
 				Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_PING, h, TOKEN_MIND_ATT_CMD);
 				Dust.access(DustAccess.Process, null, h);
-				
+
 				ret = Dust.access(DustAccess.Peek, null, h, TOKEN_DUST_ATT_WRAPPEDOBJECT);
 
 				break;
 			case TOKEN_GUI_ASP_WIDGET_BUTTON:
-				id = Dust.access(DustAccess.Peek, "???", h, TOKEN_MISC_ATT_TARGET, TOKEN_MIND_ATT_CMD, TOKEN_MIND_ATT_ID);
+				hCmd = Dust.access(DustAccess.Peek, "???", h, TOKEN_MISC_ATT_TARGET, TOKEN_MIND_ATT_CMD);
+				id = hCmd.getId();
 
 				ret = btn = new JButton(id);
 				btn.setActionCommand(id);
 				btn.addActionListener(al);
 
 				btn.putClientProperty(DUST_SWING_HANDLE, h);
+
+//				Object hGetImg = Dust.access(DustAccess.Peek, null, null, TOKEN_GUI_ATT_IMAGE_RESOLVER);
+//
+//				Dust.access(DustAccess.Set, hCmd, hGetImg, TOKEN_MISC_ATT_DATA);
+//				Dust.access(DustAccess.Set, h, hGetImg, TOKEN_MIND_ATT_NEXT, TOKEN_MISC_ATT_TARGET);
+//
+//				Dust.access(DustAccess.Process, null, hGetImg);
 
 				break;
 			case TOKEN_GUI_ASP_PANEL_CONTAINER:
@@ -138,6 +155,16 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 			}
 
 			Dust.access(DustAccess.Set, ret, h, TOKEN_DUST_ATT_WRAPPEDOBJECT);
+
+			if (ret instanceof JButton) {
+				Object hGetImg = Dust.access(DustAccess.Peek, null, null, TOKEN_GUI_ATT_IMAGE_RESOLVER);
+
+				Dust.access(DustAccess.Set, hCmd, hGetImg, TOKEN_MISC_ATT_DATA);
+				Dust.access(DustAccess.Set, h, hGetImg, TOKEN_MIND_ATT_NEXT, TOKEN_MISC_ATT_TARGET);
+
+				Dust.access(DustAccess.Process, null, hGetImg);
+
+			}
 		}
 
 		return (RetType) ret;
@@ -152,6 +179,16 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 		Object wrapped = getWrapped(hRoot);
 
 		switch (cmd) {
+		case TOKEN_DEV_TAG_CMD_TEST:
+			JButton btn = (JButton) wrapped;
+			InputStream is = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_INPUT);
+			ImageIcon icon = null;
+			BufferedImage image = ImageIO.read(is);
+			icon = new ImageIcon(image);
+
+			btn.setIcon(icon);
+
+			break;
 		case "LnF":
 			break;
 		default:
