@@ -20,7 +20,7 @@ public abstract class DustMachine extends DustConsts.DustAgent implements DustCo
 
 	protected abstract <RetType> RetType access(DustAccess access, Object val, Object root, Object... path);
 	@Deprecated
-	protected abstract <RetType> RetType optGetCtx(Object in);
+	protected abstract <RetType> RetType optGetCtx(Object in, boolean createMissing);
 	@Deprecated
 	protected abstract <RetType> RetType accessCtx(DustAccess access, Object val, Object root, Object... path);
 

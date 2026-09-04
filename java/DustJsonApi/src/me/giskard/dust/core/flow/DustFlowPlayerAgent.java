@@ -3,7 +3,7 @@ package me.giskard.dust.core.flow;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+//@SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustFlowPlayerAgent extends DustAgent implements DustFlowConsts {
 
 	@Override

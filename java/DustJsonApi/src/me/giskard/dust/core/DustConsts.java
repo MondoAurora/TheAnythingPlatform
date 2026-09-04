@@ -43,8 +43,18 @@ public interface DustConsts extends DustGenTokens_dust_1, DustGenTokens_misc_1, 
 	int KEY_MEMBEROF = -4;
 	Object KEY_MAP_KEYS = new Object();
 
-	Object NOT_FOUND = new Object();
-	Object NOT_IMPLEMENTED = new Object();
+	Object NOT_FOUND = new Object() {
+		@Override
+		public String toString() {
+			return "Dust NOT_FOUND";
+		}
+	};
+	Object NOT_IMPLEMENTED = new Object() {
+		@Override
+		public String toString() {
+			return "Dust NOT_IMPLEMENTED";
+		}
+	};
 
 	enum DustContext {
 		Work, Message, Agent, Dialog,
@@ -83,15 +93,15 @@ public interface DustConsts extends DustGenTokens_dust_1, DustGenTokens_misc_1, 
 		@Override
 		default int compareTo(DustHandle o) {
 			int d = 1;
-			
-			if ( null != o ) {
+
+			if (null != o) {
 				d = DustUtils.safeCompare(getUnit().getId(), o.getUnit().getId());
-				
-				if ( 0 == d ) {
-					d = DustUtils.safeCompare(getId(), o.getId());					
+
+				if (0 == d) {
+					d = DustUtils.safeCompare(getId(), o.getId());
 				}
 			}
-			
+
 			return d;
 		}
 	}
@@ -107,6 +117,7 @@ public interface DustConsts extends DustGenTokens_dust_1, DustGenTokens_misc_1, 
 			switch (action) {
 			case Init:
 				init();
+				Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Initialising on thread", Thread.currentThread());
 				break;
 			case Begin:
 				ret = begin();

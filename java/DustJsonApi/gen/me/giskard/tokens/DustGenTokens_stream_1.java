@@ -1,10 +1,11 @@
 package me.giskard.tokens;
 
-// Generation timestamp 20260818T075315Z
+// Generation timestamp 20260904T133543Z
 
 public interface DustGenTokens_stream_1 {
 // Aspects
 	String TOKEN_STREAM_ASP_STREAM = "stream.1$Stream";
+	String TOKEN_STREAM_ASP_URLREF = "stream.1$UrlRef";
 
 // Attributes
 	String TOKEN_STREAM_ATT_BACKUPFOLDER = "stream.1$backupFolder";

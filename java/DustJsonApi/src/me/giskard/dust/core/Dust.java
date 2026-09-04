@@ -84,7 +84,8 @@ public class Dust implements DustConsts, DustMachineConsts, DustDevConsts {
 		start(DUST_PLATFORM_JAVA, appName, appUnitPath, bootLoader, streamSource);
 	}
 
-	public static DustHandle start(String platform, String appName, String appUnitPath, DustMachine.Bootloader bootLoader, DustMachine.StreamSource streamSource) throws Exception {
+	public static DustHandle start(String platform, String appName, String appUnitPath, DustMachine.Bootloader bootLoader, DustMachine.StreamSource streamSource)
+			throws Exception {
 		long start = System.currentTimeMillis();
 
 		try {
@@ -106,7 +107,7 @@ public class Dust implements DustConsts, DustMachineConsts, DustDevConsts {
 
 			String binPath = new StringBuilder(appUnitPath).insert(s, "." + platform).toString();
 			optExtAppUnit(null, binPath, streamSource, bootLoader);
-			
+
 			Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "MemInfo before init", DustDevUtils.memInfo());
 
 			MACHINE.init();
@@ -209,8 +210,8 @@ public class Dust implements DustConsts, DustMachineConsts, DustDevConsts {
 	}
 
 	@Deprecated
-	public static <RetType> RetType optGetCtx(Object in) {
-		return MACHINE.optGetCtx(in);
+	public static <RetType> RetType optGetCtx(Object in, boolean createMissing) {
+		return MACHINE.optGetCtx(in, createMissing);
 	}
 
 	public static DustHandle getAgentHandle(Object key) {

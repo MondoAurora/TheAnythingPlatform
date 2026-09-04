@@ -29,6 +29,9 @@
 					"dev.1$GenSourceTokenJava": {
 						"dust.1$binary": "me.giskard.dust.core.dev.DustDevGenSourceTokenAgent"
 					},
+					"dev.1$WebScraper": {
+						"dust.1$binary": "me.giskard.dust.core.dev.DustDevWebScraperAgent"
+					},
 					"text.1$TextAgent": {
 						"dust.1$binary": "me.giskard.dust.sandbox.text.DustSandboxTextEditor"
 					},

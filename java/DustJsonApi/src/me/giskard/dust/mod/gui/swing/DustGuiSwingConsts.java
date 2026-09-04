@@ -12,7 +12,7 @@ import me.giskard.dust.core.machine.DustMachineConsts;
 
 public interface DustGuiSwingConsts extends DustConsts, DustMachineConsts, DustGuiConsts {
 	
-	String DUST_SWING_HANDLE = "DUST_SWING_HANDLE";
+//	String DUST_SWING_HANDLE = "DUST_SWING_HANDLE";
 
 	
 	public abstract class JCompAgent<CompClass extends JComponent> extends DustAgent {

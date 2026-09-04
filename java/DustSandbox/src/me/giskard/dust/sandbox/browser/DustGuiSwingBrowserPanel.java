@@ -27,6 +27,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -396,6 +397,15 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 	DustGuiSwingUtils.ActionControlFactory factActionControls = new DustGuiSwingUtils.ActionControlFactory(al);
 	DustGuiSwingUtils.ToolbarFactory factToolbars = new DustGuiSwingUtils.ToolbarFactory(factActionControls);
+	
+//	Object dustSwingCtx;
+//	
+//	Runnable r = new Runnable() {
+//		@Override
+//		public void run() {
+//			Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Running on thread", Thread.currentThread());						
+//		}
+//	};
 
 	@Override
 	protected void init() throws Exception {
@@ -421,8 +431,21 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		factToolbars.get("tbGraph", BoxLayout.LINE_AXIS);
 		factToolbars.get("tbGrid", BoxLayout.LINE_AXIS);
 		factToolbars.get("tbFilter", BoxLayout.LINE_AXIS);
+		
+		final Object dustSwingCtx = Dust.access(DustAccess.Peek, null, null);
 
-		buildGui();
+		Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Initialising on thread", Thread.currentThread(), dustSwingCtx);						
+
+		SwingUtilities.invokeAndWait(new Runnable() {
+			@Override
+			public void run() {
+				Dust.access(DustAccess.Set, dustSwingCtx, null);
+				Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Connecting context on thread", Thread.currentThread(), dustSwingCtx);						
+
+				buildGui();
+			}
+		});
+		
 
 		frm.setVisible(true);
 
@@ -572,10 +595,10 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 			case "Duplicate":
 				for (DustHandle s : selected) {
 					String id = JOptionPane.showInputDialog(frm, "New id?", s.getId());
-					if (!DustUtils.isEmpty(id)) {
+					if (null != id) {
 						DustHandle sc = Dust.getHandle(s.getUnit(), s.getType(), id, DustOptCreate.Primary);
 						DustMachineUtils.loadData(sc, s, false);
-						Dust.access(DustAccess.Set, id, sc, TOKEN_MIND_ATT_ID); // quick fix
+						Dust.access(DustAccess.Set, sc.getId(), sc, TOKEN_MIND_ATT_ID); // quick fix
 						graphPanel.showHandle(sc, true, false);
 						selected.add(sc);
 					}
@@ -605,7 +628,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				}
 
 				String id = JOptionPane.showInputDialog(frm, "New id?", "");
-				if (!DustUtils.isEmpty(id)) {
+				if (null != id) {
 					DustHandle sc = Dust.getHandle(hu, showAspects.iterator().next(), id, DustOptCreate.Primary);
 					graphPanel.showHandle(sc, true, false);
 					selected.add(sc);
@@ -712,6 +735,10 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				Dust.access(DustAccess.Process, null, hSrcGen);
 
 				break;
+			case "Rollback":
+				Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Calling from thread", Thread.currentThread());
+				break;
+				
 			case "Activate":
 				if (null != focused) {
 					Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_REFRESH, focused, TOKEN_MIND_ATT_CMD);
@@ -1098,14 +1125,14 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				Collection<String> atts = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, h, KEY_MAP_KEYS);
 
 				for (String a : atts) {
-					DustCollType ct = DustCollType.One;
+//					DustCollType ct = DustCollType.One;
 					Object val = Dust.access(DustAccess.Peek, null, h, a);
 					if (val instanceof Map) {
 						val = ((Map) val).values();
-						ct = DustCollType.Map;
+//						ct = DustCollType.Map;
 					}
 					if (val instanceof Collection) {
-						ct = (val instanceof Set) ? DustCollType.Set : DustCollType.Arr;
+//						ct = (val instanceof Set) ? DustCollType.Set : DustCollType.Arr;
 						Collection c = (Collection) val;
 						val = c.isEmpty() ? null : c.iterator().next();
 					}

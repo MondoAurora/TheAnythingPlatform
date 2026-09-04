@@ -1,6 +1,6 @@
 package me.giskard.tokens;
 
-// Generation timestamp 20260807T074527Z
+// Generation timestamp 20260901T084223Z
 
 public interface DustGenTokens_dust_1 {
 // Aspects
@@ -12,6 +12,7 @@ public interface DustGenTokens_dust_1 {
 	String TOKEN_DUST_ATT_RELEASEONSHUTDOWN = "dust.1$releaseOnShutdown";
 	String TOKEN_DUST_ATT_UNIT_OBJECTS = "dust.1$unitObjects";
 	String TOKEN_DUST_ATT_UNIT_REFS = "dust.1$unitRefs";
+	String TOKEN_DUST_ATT_WRAPBACKREF = "dust.1$wrapBackRef";
 	String TOKEN_DUST_ATT_WRAPPEDOBJECT = "dust.1$wrappedObject";
 
 // Agents

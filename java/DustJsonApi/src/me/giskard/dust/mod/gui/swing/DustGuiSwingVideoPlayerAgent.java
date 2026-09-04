@@ -20,7 +20,7 @@ import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.tokens.DustGenTokens_flow_1;
 import me.giskard.tokens.DustGenTokens_misc_1;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+//@SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustGuiSwingVideoPlayerAgent extends DustAgent implements DustGuiSwingConsts, DustGenTokens_flow_1, DustGenTokens_misc_1 {
 
 	private static class VideoPanel extends JPanel {
@@ -70,27 +70,22 @@ public class DustGuiSwingVideoPlayerAgent extends DustAgent implements DustGuiSw
 
 	@Override
 	protected void init() throws Exception {
-		Object ret = Dust.access(DustAccess.Peek, null, DustContext.Agent, TOKEN_DUST_ATT_WRAPPEDOBJECT);
 
-		if (null == ret) {
-			VideoPanel vp = new VideoPanel();
-			
-			test(vp);
-			
-			ret = vp;
-			
-			Dust.access(DustAccess.Set, ret, DustContext.Agent, TOKEN_DUST_ATT_WRAPPEDOBJECT);
-			Dust.access(DustAccess.Set, ret, DustContext.Message, TOKEN_DUST_ATT_WRAPPEDOBJECT);
-		}
+		VideoPanel vp = new VideoPanel();
+		test(vp);
+
+		Dust.access(DustAccess.Set, vp, DustContext.Agent, TOKEN_DUST_ATT_WRAPPEDOBJECT);
 
 	}
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
+
 		Object co = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
-		String cmd = (co instanceof DustHandle) ? ((DustHandle)co).getId() : (String) co;
+		String cmd = (co instanceof DustHandle) ? ((DustHandle) co).getId() : (String) co;
 
 		VideoPanel vp = Dust.access(DustAccess.Peek, null, DustContext.Agent, TOKEN_DUST_ATT_WRAPPEDOBJECT);
+		Duration d;
 
 		switch (cmd) {
 		case TOKEN_MISC_TAG_CMD_STOP:
@@ -102,10 +97,14 @@ public class DustGuiSwingVideoPlayerAgent extends DustAgent implements DustGuiSw
 		case TOKEN_FLOW_TAG_CMD_PLAY:
 			vp.player.play();
 			break;
-		case TOKEN_MISC_TAG_CMD_SKIP:
-			Duration d = vp.player.getCurrentTime();
-			
+		case TOKEN_MISC_TAG_CMD_SKIPBACK:
+			d = vp.player.getCurrentTime();
 			d = d.add(Duration.seconds(-10.0));
+			vp.player.seek(d);
+			break;
+		case TOKEN_MISC_TAG_CMD_SKIPFORWARD:
+			d = vp.player.getCurrentTime();
+			d = d.add(Duration.seconds(10.0));
 			vp.player.seek(d);
 			break;
 		default:
@@ -117,7 +116,7 @@ public class DustGuiSwingVideoPlayerAgent extends DustAgent implements DustGuiSw
 		return null;
 
 	}
-	
+
 	public static void test(VideoPanel vp) {
 		File video_source = new File("/Users/lkedves/work/temp/SzE_lecture.mp4");
 		URI uri = video_source.toURI();

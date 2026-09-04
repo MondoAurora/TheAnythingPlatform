@@ -2,6 +2,8 @@ package me.giskard.dust.core.net;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -20,6 +22,7 @@ import javax.net.ssl.X509TrustManager;
 
 import me.giskard.dust.core.stream.DustStreamUtils;
 import me.giskard.dust.core.utils.DustUtils;
+import me.giskard.dust.core.utils.DustUtilsFile;
 
 @SuppressWarnings("unchecked")
 public class DustNetUtils implements DustNetConsts {
@@ -75,11 +78,30 @@ public class DustNetUtils implements DustNetConsts {
 
 		conn.setConnectTimeout(timeout);
 		conn.setReadTimeout(timeout);
-		
+
 		return conn;
 	}
 
-//	@SuppressWarnings("deprecation")
+	public static File downloadCached(File cacheRoot, String urlStr, OutputStream target, Collection<String> headers, int timeout) throws Exception {
+		File fc = new File(cacheRoot, urlStr);
+
+		if (!fc.isFile() && (0 == fc.length())) {
+			DustUtilsFile.ensureDir(fc.getParentFile());
+			try (FileOutputStream fos = new FileOutputStream(fc)) {
+				download(urlStr, fos, headers, timeout);
+			}
+		}
+
+		if (null != target) {
+			try (FileInputStream in = new FileInputStream(fc)) {
+				DustStreamUtils.copyStream(in, target);
+			}
+		}
+
+		return fc;
+	}
+
+//@SuppressWarnings("deprecation")
 	public static boolean download(String urlStr, OutputStream target, Collection<String> headers, int timeout) throws Exception {
 		boolean success = false;
 
