@@ -130,6 +130,9 @@ class DustGuiSwingGraphPanel {
 		}
 
 		public void optDrawLine(DustHandle hSrc, String l, Object target, Graphics2D g2d, Rectangle rct, Point from) {
+			if ( ! ( target instanceof DustHandle) ) {
+				return;
+			}
 			DustHandle ht = factNodes.peek((DustHandle) target);
 			JComponent tc = comps.peek(ht);
 

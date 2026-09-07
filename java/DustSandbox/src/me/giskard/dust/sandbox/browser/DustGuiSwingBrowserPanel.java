@@ -875,7 +875,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				if (!e.getValueIsAdjusting()) {
 					focusedIdx = ((ListSelectionModel) e.getSource()).getLeadSelectionIndex();
 
-					if (-1 != focusedIdx) {
+					if (( 0 <= focusedIdx) && (focusedIdx < focusedColData.size()) ) {
 						Object v = focusedColData.get(focusedIdx);
 						taValue.setText(DustUtils.toString(v));
 					} else {

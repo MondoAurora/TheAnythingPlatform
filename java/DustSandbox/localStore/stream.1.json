@@ -4,6 +4,13 @@
 	},
 	"data": [
 		{
+			"attributes": {
+				"misc.1$name": "TOKEN_STREAM_TAG_CHARSET"
+			},
+			"id": "stream.1$Charset",
+			"type": "mind.1$Tag"
+		},
+		{
 			"id": "stream.1$FileStreamSource",
 			"type": "mind.1$Narrative"
 		},
@@ -12,6 +19,13 @@
 				"misc.1$name": "TOKEN_STREAM_TAG_IMAGE"
 			},
 			"id": "stream.1$Image",
+			"type": "mind.1$Tag"
+		},
+		{
+			"attributes": {
+				"misc.1$name": "TOKEN_STREAM_TAG_MEDIATYPE"
+			},
+			"id": "stream.1$MediaType",
 			"type": "mind.1$Tag"
 		},
 		{
@@ -318,6 +332,27 @@
 				"mind.1$tags": {
 					"data": [
 						{
+							"id": "mind.1$ValtypeString",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ColltypeSet",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_STREAM_ATT_URLREFS"
+			},
+			"id": "stream.1$urlRefs",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
 							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
@@ -336,6 +371,6 @@
 		}
 	],
 	"meta": {
-		"count": 21
+		"count": 24
 	}
 }

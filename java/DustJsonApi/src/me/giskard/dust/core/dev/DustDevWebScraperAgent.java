@@ -106,28 +106,40 @@ public class DustDevWebScraperAgent extends DustAgent implements DustDevConsts, 
 		int colIdx = 0;
 		String txt;
 
+		DustHandle groupTag = null;
+
 		for (Element e : all) {
 			String tag = e.tagName();
 
 			switch (tag) {
 			case "table":
-				Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, e.id());
+				String tagName = e.id();
+
+				if (tagName.startsWith("table-")) {
+					tagName = tagName.substring(tagName.indexOf("-") + 1);
+					groupTag = Dust.getHandle(target, TOKEN_MIND_ASP_TAG, tagName, DustOptCreate.Primary);
+				} else {
+					groupTag = null;
+				}
+				Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, tagName);
 				cols.clear();
 				break;
 			case "th":
-				txt = e.ownText().trim();
-				if (-1 == DustUtils.indexOf(txt, (Object[]) atts)) {
-					cols.clear();
-				} else {
-					Dust.getHandle(target, TOKEN_MIND_ASP_ATTRIBUTE, txt, DustOptCreate.Primary);
-					cols.add(txt);
+				if (null != groupTag) {
+					txt = e.ownText().trim();
+					if (-1 == DustUtils.indexOf(txt, (Object[]) atts)) {
+						cols.clear();
+					} else {
+						Dust.getHandle(target, TOKEN_MIND_ASP_ATTRIBUTE, txt, DustOptCreate.Primary);
+						cols.add(txt);
+					}
 				}
 				break;
 			case "tbody":
 				break;
 			case "tr":
 				colIdx = 0;
-				optAddRec(content, atts[0], rec);
+				optAddRec(content, atts[0], rec, groupTag);
 				break;
 			case "td":
 				if (!cols.isEmpty()) {
@@ -163,29 +175,24 @@ public class DustDevWebScraperAgent extends DustAgent implements DustDevConsts, 
 			default:
 				break;
 			}
-
 		}
+
+		optAddRec(content, atts[0], rec, groupTag);
 	}
 
 	public DustHandle loadRef(String urlStr, String prefix, Element a, DustUtilsFactory<String, DustHandle> refs) {
-		String txt;
-		String src = a.attr("href");
-		if (!src.startsWith("http")) {
-			String p = src.startsWith("#") ? urlStr : prefix;
-			src = p + src;
-		}
-		txt = a.wholeText().trim();
-
-		DustHandle hf = refs.get(src);
-		Dust.access(DustAccess.Set, src, hf, TOKEN_STREAM_ATT_URL);
-		Dust.access(DustAccess.Set, txt, hf, TOKEN_MISC_ATT_NAME);
+		String url = a.attr("href");
+		String name = a.wholeText().trim();
+		DustHandle hf = DustNetUtils.loadRef(urlStr, prefix, url, name, refs);
 		return hf;
 	}
 
-	public void optAddRec(DustUtilsFactory<String, DustHandle> content, String keyAtt, Map<String, Object> rec) {
-		if (!rec.isEmpty()) {
+	public DustHandle optAddRec(DustUtilsFactory<String, DustHandle> content, String keyAtt, Map<String, Object> rec, DustHandle groupTag) {
+		DustHandle h = null;
+
+		if (!rec.isEmpty() && (null != groupTag)) {
 			String id = (String) rec.get(keyAtt);
-			DustHandle h = content.get(id);
+			h = content.get(id);
 
 			for (Map.Entry<String, Object> re : rec.entrySet()) {
 				String key = re.getKey();
@@ -200,8 +207,37 @@ public class DustDevWebScraperAgent extends DustAgent implements DustDevConsts, 
 					}
 				}
 			}
+
+			Dust.access(DustAccess.Insert, groupTag, h, TOKEN_MIND_ATT_TAGS);
+
 			Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, rec);
 			rec.clear();
+
+			String group = groupTag.getId();
+			
+			group = "TAP/mediatype-" + DustUtils.getPostfix(group, DUST_SEP_TOKEN);
+
+			DustHandle hu = Dust.getUnit(group, true);
+			String ti = h.getId();
+			ti = DustUtils.getPostfix(ti, DUST_SEP_TOKEN);
+			
+			DustHandle ht = Dust.getHandle(hu, TOKEN_MIND_ASP_TAG, ti, DustOptCreate.Primary);
+			Dust.access(DustAccess.Set, id, ht, TOKEN_MISC_ATT_KEY);
+			Dust.access(DustAccess.Set, h.getId(), ht, TOKEN_MISC_ATT_SOURCE);
+			
+			DustHandle hParent = Dust.getHandle(null, null, TOKEN_STREAM_TAG_MEDIATYPE, DustOptCreate.None);
+			Dust.access(DustAccess.Set, hParent, ht, TOKEN_MISC_ATT_PARENT);
+
+			Object v = Dust.access(DustAccess.Peek, null, h, "Template", TOKEN_STREAM_ATT_URL);
+			Dust.access(DustAccess.Set, v, ht, TOKEN_STREAM_ATT_URL);
+
+			Collection r = Dust.access(DustAccess.Peek, null, h, "Reference");
+			for (Object ro : r) {
+				v = Dust.access(DustAccess.Peek, null, ro, TOKEN_STREAM_ATT_URL);
+				Dust.access(DustAccess.Insert, v, ht, TOKEN_STREAM_ATT_URLREFS);
+			}
 		}
+
+		return h;
 	}
 }

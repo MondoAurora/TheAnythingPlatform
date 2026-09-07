@@ -20,12 +20,28 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.stream.DustStreamUtils;
 import me.giskard.dust.core.utils.DustUtils;
+import me.giskard.dust.core.utils.DustUtilsFactory;
 import me.giskard.dust.core.utils.DustUtilsFile;
 
 @SuppressWarnings("unchecked")
 public class DustNetUtils implements DustNetConsts {
+	
+	public static DustHandle loadRef(String urlFull, String urlPrefix, String url, String name, DustUtilsFactory<String, DustHandle> refs) {
+		if (!url.startsWith("http")) {
+			String p = url.startsWith("#") ? urlFull : urlPrefix;
+			url = p + url;
+		}
+
+		DustHandle hf = refs.get(url);
+		Dust.access(DustAccess.Set, url, hf, TOKEN_STREAM_ATT_URL);
+		Dust.access(DustAccess.Set, name, hf, TOKEN_MISC_ATT_NAME);
+		
+		return hf;
+	}
+
 
 	public static String getContentType(File f) {
 		String ct = null;
