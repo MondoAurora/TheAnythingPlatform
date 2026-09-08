@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -667,7 +668,43 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 						Object orig = Dust.access(DustAccess.Peek, null, hh, att);
 
 						if (null == orig) {
-							Dust.access(DustAccess.Set, "", hh, att);
+							Object val = null;
+							
+							switch ( focusedCollType ) {
+							case Arr:
+								val = new ArrayList();
+								break;
+							case Map:
+								val = new HashMap();
+								break;
+							case One:
+								switch ( getAttValType(focusedAtt) ) {
+								case Bool:
+									val = false;
+									break;
+								case Handle:
+									val = null;
+									break;
+								case Integer:
+									val = 0;
+									break;
+								case Raw:
+									val = "";
+									break;
+								case Real:
+									val = 0.0;
+									break;
+								case String:
+									val = "";
+									break;
+								}
+								val = new ArrayList();
+								break;
+							case Set:
+								val = new HashSet();
+								break;
+							}
+							Dust.access(DustAccess.Set, val, hh, att);
 						}
 					}
 
@@ -702,9 +739,9 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 						Dust.access(DustAccess.Insert, val, focused, focusedAtt);
 						break;
 					}
-					if (focusedCollType != DustCollType.Map) {
-						focusedColData.set(focusedIdx, val);
-					}
+//					if (focusedCollType != DustCollType.Map) {
+//						focusedColData.set(focusedIdx, val);
+//					}
 					ListSelectionModel lsm = tblData.getSelectionModel();
 					int di = lsm.getLeadSelectionIndex();
 					tblmProperties.fireTableCellUpdated(di, 1);
@@ -842,14 +879,14 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 						focusedCollType = getAttCollType(focusedAtt);
 
 						Object data = Dust.access(DustAccess.Peek, null, focused, focusedAtt);
-						if (data instanceof Map) {
-							data = ((Map) data).keySet();
-							focusedCollType = DustCollType.Map;
-						} else if (data instanceof Collection) {
-							focusedCollType = (data instanceof Set) ? DustCollType.Set : DustCollType.Arr;
-						} else {
-							focusedCollType = DustCollType.One;
-						}
+//						if (data instanceof Map) {
+//							data = ((Map) data).keySet();
+//							focusedCollType = DustCollType.Map;
+//						} else if (data instanceof Collection) {
+//							focusedCollType = (data instanceof Set) ? DustCollType.Set : DustCollType.Arr;
+//						} else {
+//							focusedCollType = DustCollType.One;
+//						}
 
 						DustUtils.visit(data, new DustProcessor<Object, Object>() {
 							@Override

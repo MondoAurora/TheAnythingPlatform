@@ -290,6 +290,27 @@
 				"mind.1$tags": {
 					"data": [
 						{
+							"id": "mind.1$ColltypeArr",
+							"type": "mind.1$Tag"
+						},
+						{
+							"id": "mind.1$ValtypeString",
+							"type": "mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"misc.1$name": "TOKEN_STREAM_ATT_RESOLVER_UNIT_NAMES"
+			},
+			"id": "stream.1$streamResolverUnitNames",
+			"type": "mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
 							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						},
@@ -371,6 +392,6 @@
 		}
 	],
 	"meta": {
-		"count": 24
+		"count": 25
 	}
 }

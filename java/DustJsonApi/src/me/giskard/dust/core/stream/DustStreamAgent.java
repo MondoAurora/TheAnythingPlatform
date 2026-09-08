@@ -4,12 +4,15 @@ import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.DustMachine;
+import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsData;
@@ -22,16 +25,47 @@ public class DustStreamAgent extends DustAgent implements DustMachine.StreamSour
 	@Override
 	protected Object process(DustAccess access) throws Exception {
 		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
-
 		DustHandle hNext = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_NEXT);
 
-		try (FileInputStream fi = new FileInputStream("localStore/res/59d365a0.jpg")) {
+		Collection<String> unitNames = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_RESOLVER_UNIT_NAMES);
+
+		DustHandle hTarget = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_DATA);
+		ArrayList<DustHandle> options = new ArrayList<>();
+		String uName = null;
+		DustHandle hRes = null;
+
+		for (String un : unitNames) {
+			DustHandle uRes = Dust.getUnit(un, false);
+
+			if (null != uRes) {
+				for (DustHandle hr : DustMachineUtils.getUnitMembers(uRes)) {
+					boolean found = Dust.access(DustAccess.Check, hTarget, hr, TOKEN_MISC_ATT_APPEARS);
+
+					if (found) {
+						options.add(hr);
+						hRes = hr;
+						uName = un;
+					}
+				}
+			}
+		}
+
+		String p = "localStore/res/59d365a0.jpg";
+
+		if (!options.isEmpty()) {
+
+			String path = Dust.access(DustAccess.Peek, null, hRes, TOKEN_MISC_ATT_PATH);
+
+			p = "localStore/" + uName.substring(0, uName.lastIndexOf("/") + 1) + path;
+		}
+		
+		try (FileInputStream fi = new FileInputStream(p)) {
 			Dust.access(DustAccess.Set, fi, hNext, TOKEN_STREAM_ATT_INPUT);
 			Dust.access(DustAccess.Set, TOKEN_DEV_TAG_CMD_TEST, hNext, TOKEN_MIND_ATT_CMD);
 			Dust.access(DustAccess.Process, null, hNext);
 		}
-		
-		if ( null != hNext ) {
+
+		if (null != hNext) {
 			return null;
 		}
 

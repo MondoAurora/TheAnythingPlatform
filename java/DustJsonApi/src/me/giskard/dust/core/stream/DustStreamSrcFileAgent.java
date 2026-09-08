@@ -67,6 +67,7 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustMachine.Str
 		if (null != token) {
 			stream = optGetStream(cmd, root, path);
 			Dust.access(DustAccess.Set, stream, null, token);
+			Dust.access(DustAccess.Set, f.toURI().toURL().toString(), null, TOKEN_STREAM_ATT_URL);
 		}
 
 		return stream;

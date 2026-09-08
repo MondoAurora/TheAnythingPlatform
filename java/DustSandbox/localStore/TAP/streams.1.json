@@ -5,6 +5,14 @@
 	"data": [
 		{
 			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "TAP/mediatype-image$aa5f9391",
+							"type": "mind.1$Tag"
+						}
+					]
+				},
 				"misc.1$appears": {
 					"data": [
 						{
@@ -22,6 +30,14 @@
 		},
 		{
 			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "TAP/mediatype-image$aa5f9391",
+							"type": "mind.1$Tag"
+						}
+					]
+				},
 				"misc.1$appears": {
 					"data": [
 						{
@@ -39,6 +55,14 @@
 		},
 		{
 			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "TAP/mediatype-image$aa5f9391",
+							"type": "mind.1$Tag"
+						}
+					]
+				},
 				"misc.1$appears": {
 					"data": [
 						{
@@ -56,6 +80,14 @@
 		},
 		{
 			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "TAP/mediatype-image$aa5f9391",
+							"type": "mind.1$Tag"
+						}
+					]
+				},
 				"misc.1$appears": {
 					"data": [
 						{
@@ -73,6 +105,14 @@
 		},
 		{
 			"relationships": {
+				"mind.1$tags": {
+					"data": [
+						{
+							"id": "TAP/mediatype-image$aa5f9391",
+							"type": "mind.1$Tag"
+						}
+					]
+				},
 				"misc.1$appears": {
 					"data": [
 						{

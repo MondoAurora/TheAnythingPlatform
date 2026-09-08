@@ -1,6 +1,6 @@
 package me.giskard.tokens;
 
-// Generation timestamp 20260907T125038Z
+// Generation timestamp 20260908T083220Z
 
 public interface DustGenTokens_stream_1 {
 // Aspects
@@ -15,6 +15,7 @@ public interface DustGenTokens_stream_1 {
 	String TOKEN_STREAM_ATT_MIMETYPE = "stream.1$mimeType";
 	String TOKEN_STREAM_ATT_OUTPUT = "stream.1$outputStream";
 	String TOKEN_STREAM_ATT_READER = "stream.1$reader";
+	String TOKEN_STREAM_ATT_RESOLVER_UNIT_NAMES = "stream.1$streamResolverUnitNames";
 	String TOKEN_STREAM_ATT_ROOTFOLDER = "stream.1$rootFolder";
 	String TOKEN_STREAM_ATT_ROWSEP = "stream.1$rowSep";
 	String TOKEN_STREAM_ATT_SAPFIRSTCOL = "stream.1$firstCol";

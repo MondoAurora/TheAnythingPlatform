@@ -179,6 +179,40 @@
 		},
 		{
 			"relationships": {
+				"mind.1$next": {
+					"data": {
+						"id": "mh/MHCli.1$UpdateImageFromStream",
+						"type": "mind.1$Message"
+					}
+				},
+				"mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "mh/MHCli.1$MHCStreamAgent",
+							"type": "mind.1$Agent"
+						}
+					]
+				},
+				"misc.1$data": {
+					"data": {
+						"id": "misc.1$CmdSkipForward",
+						"type": "mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"stream.1$streamResolverUnitNames": [
+					"TAP/streams.1"
+				]
+			},
+			"id": "mh/MHCli.1$GetImageStream",
+			"type": "mind.1$Message"
+		},
+		{
+			"relationships": {
 				"mind.1$narrative": {
 					"data": {
 						"id": "flow.1$FlowPlayer",
@@ -319,32 +353,9 @@
 		},
 		{
 			"relationships": {
-				"mind.1$next": {
-					"data": {
-						"id": "mh/MHCli.1$UpdateImageFromStream",
-						"type": "mind.1$Message"
-					}
-				},
-				"mind.1$listeners": {
-					"data": [
-						{
-							"meta": {
-								"key": 0
-							},
-							"id": "mh/MHCli.1$MHCStreamAgent",
-							"type": "mind.1$Agent"
-						}
-					]
-				}
-			},
-			"id": "mh/MHCli.1$GetImageStream",
-			"type": "mind.1$Message"
-		},
-		{
-			"relationships": {
 				"mind.1$cmd": {
 					"data": {
-						"id": "misc.1$CmdSkip",
+						"id": "misc.1$CmdSkipBack",
 						"type": "mind.1$Tag"
 					}
 				},
@@ -367,7 +378,7 @@
 			"relationships": {
 				"mind.1$cmd": {
 					"data": {
-						"id": "misc.1$CmdSkip",
+						"id": "misc.1$CmdSkipForward",
 						"type": "mind.1$Tag"
 					}
 				},
@@ -467,7 +478,17 @@
 							"type": "mind.1$Agent"
 						}
 					]
+				},
+				"misc.1$target": {
+					"data": {
+						"id": "mh/MHCli.1$BtnSkipForward",
+						"type": "gui.1$WidgetButton"
+					}
 				}
+			},
+			"attributes": {
+				"mind.1$cmd": "dev.1$test",
+				"stream.1$inputStream": "java.io.FileInputStream@778f7312"
 			},
 			"id": "mh/MHCli.1$UpdateImageFromStream",
 			"type": "mind.1$Message"
@@ -476,7 +497,7 @@
 			"relationships": {
 				"mind.1$cmd": {
 					"data": {
-						"id": "flow.1$CmdFlowPause",
+						"id": "flow.1$CmdFlowPlay",
 						"type": "mind.1$Tag"
 					}
 				},
