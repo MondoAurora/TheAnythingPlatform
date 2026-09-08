@@ -10,6 +10,8 @@ public interface DustConsts extends DustGenTokens_dust_1, DustGenTokens_misc_1, 
 
 	String DUST_CRED_FILE = "credentials.json";
 
+	String RUNTIME_AUTHOR = "tap";
+
 	String UNIT_DUST = "dust.1";
 	String UNIT_MIND = "mind.1";
 

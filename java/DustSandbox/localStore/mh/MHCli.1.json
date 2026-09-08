@@ -205,7 +205,7 @@
 			},
 			"attributes": {
 				"stream.1$streamResolverUnitNames": [
-					"TAP/streams.1"
+					"tap/streams.1"
 				]
 			},
 			"id": "mh/MHCli.1$GetImageStream",

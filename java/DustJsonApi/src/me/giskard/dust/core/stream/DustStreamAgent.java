@@ -35,7 +35,7 @@ public class DustStreamAgent extends DustAgent implements DustMachine.StreamSour
 		DustHandle hRes = null;
 
 		for (String un : unitNames) {
-			DustHandle uRes = Dust.getUnit(un, false);
+			DustHandle uRes = Dust.getUnit(un, true);
 
 			if (null != uRes) {
 				for (DustHandle hr : DustMachineUtils.getUnitMembers(uRes)) {

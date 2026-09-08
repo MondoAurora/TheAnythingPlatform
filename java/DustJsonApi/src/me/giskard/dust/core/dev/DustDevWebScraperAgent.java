@@ -215,7 +215,7 @@ public class DustDevWebScraperAgent extends DustAgent implements DustDevConsts, 
 
 			String group = groupTag.getId();
 			
-			group = "TAP/mediatype-" + DustUtils.getPostfix(group, DUST_SEP_TOKEN);
+			group = RUNTIME_AUTHOR + "/mediatype-" + DustUtils.getPostfix(group, DUST_SEP_TOKEN);
 
 			DustHandle hu = Dust.getUnit(group, true);
 			String ti = h.getId();
