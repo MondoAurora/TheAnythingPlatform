@@ -26,6 +26,13 @@
 		},
 		{
 			"attributes": {
+				"misc.1$name": "TOKEN_MIND_ASP_AUTHOR"
+			},
+			"id": "mind.1$Author",
+			"type": "mind.1$Aspect"
+		},
+		{
+			"attributes": {
 				"misc.1$name": "TOKEN_MIND_TAG_COLLTYPE"
 			},
 			"id": "mind.1$Colltype",
@@ -369,11 +376,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -390,11 +397,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -407,11 +414,18 @@
 			"type": "mind.1$Attribute"
 		},
 		{
+			"attributes": {
+				"misc.1$key": "giskard.me"
+			},
+			"id": "mind.1$giskard",
+			"type": "mind.1$Author"
+		},
+		{
 			"relationships": {
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeString",
+							"id": "mind.1$Transient",
 							"type": "mind.1$Tag"
 						},
 						{
@@ -419,7 +433,7 @@
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$Transient",
+							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -436,11 +450,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeSet",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeSet",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -478,11 +492,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -499,11 +513,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -520,11 +534,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -541,11 +555,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeSet",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeSet",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -562,11 +576,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeBool",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeBool",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -583,11 +597,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeBool",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeBool",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -604,7 +618,7 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$Transient",
 							"type": "mind.1$Tag"
 						},
 						{
@@ -612,7 +626,7 @@
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$Transient",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -629,7 +643,7 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$Transient",
 							"type": "mind.1$Tag"
 						},
 						{
@@ -637,7 +651,7 @@
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$Transient",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -659,6 +673,18 @@
 		}
 	],
 	"meta": {
-		"count": 48
+		"count": 50,
+		"unitInfo": {
+			"relationships": {
+				"mind.1$author": {
+					"data": {
+						"id": "mind.1$giskard",
+						"type": "mind.1$Author"
+					}
+				}
+			},
+			"id": "mind.1",
+			"type": "mind.1$Unit"
+		}
 	}
 }

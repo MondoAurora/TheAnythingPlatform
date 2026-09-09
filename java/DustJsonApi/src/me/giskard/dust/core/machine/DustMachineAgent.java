@@ -424,7 +424,7 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 		
 		Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Register change", agent, acess, handle, att, lastKey, newVal);
 
-		DustHandle hUnit = handle.getUnit();
+		DustHandle hUnit = DustUtils.isEqual(typeUnit, handle.getType()) ? handle : handle.getUnit();
 
 		if ((unitApp.mh == hUnit) || loadingUnit.get().contains(hUnit)) {
 			return;

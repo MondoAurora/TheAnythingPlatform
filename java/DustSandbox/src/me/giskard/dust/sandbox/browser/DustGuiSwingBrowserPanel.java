@@ -84,35 +84,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 	DustUtilsFactory<String, DustValType> factValTypes = new DustUtilsFactory<String, DustValType>(new DustCreator() {
 		@Override
 		public Object create(Object key, Object... hints) {
-			DustHandle hAtt = allAtts.get(key);
-			DustValType vt = null;
-
-			DustHandle hCt = Dust.access(DustAccess.Peek, TOKEN_MIND_TAG_VALTYPE, hAtt, TOKEN_MIND_ATT_TAGS);
-
-			if (null != hCt) {
-				switch (hCt.getId()) {
-				case TOKEN_MIND_TAG_VALTYPE_BOOL:
-					vt = DustValType.Bool;
-					break;
-				case TOKEN_MIND_TAG_VALTYPE_HANDLE:
-					vt = DustValType.Handle;
-					break;
-				case TOKEN_MIND_TAG_VALTYPE_INTEGER:
-					vt = DustValType.Integer;
-					break;
-				case TOKEN_MIND_TAG_VALTYPE_RAW:
-					vt = DustValType.Raw;
-					break;
-				case TOKEN_MIND_TAG_VALTYPE_REAL:
-					vt = DustValType.Real;
-					break;
-				case TOKEN_MIND_TAG_VALTYPE_STRING:
-					vt = DustValType.String;
-					break;
-				}
-			}
-
-			return vt;
+			return getValTypeDirect(key);
 		}
 	}, true);
 
@@ -657,6 +629,8 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					JOptionPane.showMessageDialog(frm, "You must select at least one attribute!", "Attribute creation error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
+				
+				focusedAtt = showAtts.iterator().next();
 
 				if (selected.isEmpty()) {
 					JOptionPane.showMessageDialog(frm, "You must select at least one idea!", "Attribute creation error", JOptionPane.ERROR_MESSAGE);
@@ -678,7 +652,8 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 								val = new HashMap();
 								break;
 							case One:
-								switch ( getAttValType(focusedAtt) ) {
+								switch ( getValTypeDirect(focusedAtt) ) {
+//								switch ( getAttValType(focusedAtt) ) {
 								case Bool:
 									val = false;
 									break;
@@ -1135,6 +1110,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		DustHandle hTagLink = Dust.getHandle(null, TOKEN_MIND_ASP_TAG, TOKEN_MIND_TAG_VALTYPE_HANDLE, DustOptCreate.None);
 
 		for (DustHandle hu : unitArr) {
+			gridArr.add(hu);
 			Map<String, DustHandle> members = Dust.access(DustAccess.Peek, -1, hu, TOKEN_DUST_ATT_UNIT_REFS);
 			for (DustHandle h : members.values()) {
 				String hId = h.getId();
@@ -1228,6 +1204,38 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 		tblmProperties.fireTableDataChanged();
 		graphPanel.repaintGraph();
+	}
+
+	public DustValType getValTypeDirect(Object key) {
+		DustHandle hAtt = allAtts.get(key);
+		DustValType vt = null;
+
+		DustHandle hCt = Dust.access(DustAccess.Peek, TOKEN_MIND_TAG_VALTYPE, hAtt, TOKEN_MIND_ATT_TAGS);
+
+		if (null != hCt) {
+			switch (hCt.getId()) {
+			case TOKEN_MIND_TAG_VALTYPE_BOOL:
+				vt = DustValType.Bool;
+				break;
+			case TOKEN_MIND_TAG_VALTYPE_HANDLE:
+				vt = DustValType.Handle;
+				break;
+			case TOKEN_MIND_TAG_VALTYPE_INTEGER:
+				vt = DustValType.Integer;
+				break;
+			case TOKEN_MIND_TAG_VALTYPE_RAW:
+				vt = DustValType.Raw;
+				break;
+			case TOKEN_MIND_TAG_VALTYPE_REAL:
+				vt = DustValType.Real;
+				break;
+			case TOKEN_MIND_TAG_VALTYPE_STRING:
+				vt = DustValType.String;
+				break;
+			}
+		}
+
+		return vt;
 	}
 
 }

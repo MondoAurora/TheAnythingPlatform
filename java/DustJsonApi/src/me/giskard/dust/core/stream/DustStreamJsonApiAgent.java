@@ -29,6 +29,8 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 		SKIP_KEYS.add(TOKEN_MIND_ATT_TYPE);
 		SKIP_KEYS.add(TOKEN_MIND_ATT_UNIT);
 		SKIP_KEYS.add(TOKEN_DUST_ATT_WRAPPEDOBJECT);
+		SKIP_KEYS.add(TOKEN_DUST_ATT_UNIT_OBJECTS);
+		SKIP_KEYS.add(TOKEN_DUST_ATT_UNIT_REFS);
 	}
 
 	public DustStreamJsonApiAgent() {
@@ -38,7 +40,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 	protected Object process(DustAccess access) throws Exception {
 
 		String unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_KEY);
-		DustHandle unit = (null == unitId) ?  Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_DATA) : Dust.getUnit(unitId, true);
+		DustHandle unit = (null == unitId) ? Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_DATA) : Dust.getUnit(unitId, true);
 		Dust.access(DustAccess.Delete, null, null, TOKEN_MISC_ATT_DATA);
 
 		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
@@ -93,64 +95,64 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 		Dust.access(DustAccess.Set, data, target, JsonApiMember.data);
 
 		for (DustHandle h : DustMachineUtils.getUnitMembers(unit)) {
-			Map<String, Object> item = storeHead(h);
-
-			for (String key : (Iterable<String>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, KEY_MAP_KEYS)) {
-//				DustHandle tAtt = Dust.getHandle(unit, TOKEN_MIND_ASP_ATTRIBUTE, key, DustOptCreate.Meta);
-//				
-//				Boolean trans = Dust.access(DustAccess.Check, TOKEN_MIND_TAG_TRANSIENT, tAtt, TOKEN_MIND_ATT_TAGS);
-//
-//				if (trans) {
-//					continue;
-//				}
-				if (SKIP_KEYS.contains(key)) {
-					continue;
-				}
-				Object val = Dust.access(DustAccess.Peek, null, h, key);
-
-				if (val instanceof DustHandle) {
-					storeRelation(item, key, val, null);
-					val = null;
-				} else if (val instanceof Collection) {
-					Collection coll = (Collection) val;
-					if (coll.isEmpty()) {
-						continue;
-					}
-
-					Object sample = Dust.access(DustAccess.Peek, null, coll, 0);
-					if (sample instanceof DustHandle) {
-						int idx = (coll instanceof Set) ? -1 : 0;
-						for (DustHandle co : (Collection<DustHandle>) coll) {
-							storeRelation(item, key, co, (-1 == idx) ? -1 : idx++);
-						}
-						val = null;
-					}
-				} else if (val instanceof Map) {
-					Map coll = (Map) val;
-					if (coll.isEmpty()) {
-						continue;
-					}
-					for (Map.Entry<String, Object> ce : ((Map<String, Object>) coll).entrySet()) {
-						Object cv = ce.getValue();
-						if (cv instanceof DustHandle) {
-							storeRelation(item, key, cv, ce.getKey());
-							val = null;
-						} else {
-							break;
-						}
-					}
-				}
-
-				if (null != val) {
-					Dust.access(DustAccess.Set, val, item, JsonApiMember.attributes, key);
-				}
-			}
-
+			Map<String, Object> item = storeFull(h);
 			data.add(item);
 		}
 
 		Dust.access(DustAccess.Set, data.size(), target, JsonApiMember.meta, JsonApiMember.count);
+		Dust.access(DustAccess.Set, storeFull(unit), target, JsonApiMember.meta, EXT_JSONAPI_UNIT_INFO);
+
 		return target;
+	}
+
+	public static Map<String, Object> storeFull(DustHandle h) {
+		Map<String, Object> item = storeHead(h);
+
+		for (String key : (Iterable<String>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, KEY_MAP_KEYS)) {
+			if (SKIP_KEYS.contains(key)) {
+				continue;
+			}
+			Object val = Dust.access(DustAccess.Peek, null, h, key);
+
+			if (val instanceof DustHandle) {
+				storeRelation(item, key, val, null);
+				val = null;
+			} else if (val instanceof Collection) {
+				Collection coll = (Collection) val;
+				if (coll.isEmpty()) {
+					continue;
+				}
+
+				Object sample = Dust.access(DustAccess.Peek, null, coll, 0);
+				if (sample instanceof DustHandle) {
+					int idx = (coll instanceof Set) ? -1 : 0;
+					for (DustHandle co : (Collection<DustHandle>) coll) {
+						storeRelation(item, key, co, (-1 == idx) ? -1 : idx++);
+					}
+					val = null;
+				}
+			} else if (val instanceof Map) {
+				Map coll = (Map) val;
+				if (coll.isEmpty()) {
+					continue;
+				}
+				for (Map.Entry<String, Object> ce : ((Map<String, Object>) coll).entrySet()) {
+					Object cv = ce.getValue();
+					if (cv instanceof DustHandle) {
+						storeRelation(item, key, cv, ce.getKey());
+						val = null;
+					} else {
+						break;
+					}
+				}
+			}
+
+			if (null != val) {
+				Dust.access(DustAccess.Set, val, item, JsonApiMember.attributes, key);
+			}
+		}
+
+		return item;
 	}
 
 	static void loadStream(DustHandle unit, InputStream is) throws Exception {
@@ -167,6 +169,11 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 			DustException.wrap(null, "Loading JSON:API version", str, "does not match", JSONAPI_VERSION);
 		}
 
+		Map<String, Object> unitData = DustUtils.simpleGet(content, JsonApiMember.meta, EXT_JSONAPI_UNIT_INFO);
+		if (null != unitData) {
+			loadDataConent(unit, unit, unitData, false);
+		}
+
 		for (Map<String, Object> ca : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, content, JsonApiMember.data))) {
 			loadDataSegment(unit, ca, false);
 		}
@@ -176,20 +183,24 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 	}
 
 	static void loadDataSegment(DustHandle unit, Map<String, Object> data, boolean included) {
-
 		String type = DustUtils.simpleGet(data, JsonApiMember.type);
 		DustHandle tType = Dust.getHandle(unit, TOKEN_MIND_ASP_ASPECT, type, DustOptCreate.Meta);
 
 		String id = DustUtils.simpleGet(data, JsonApiMember.id);
 		DustHandle target = Dust.getHandle(unit, tType, id, DustOptCreate.Primary);
 
+		loadDataConent(target, unit, data, included);
+	}
+
+	static void loadDataConent(DustHandle target, DustHandle unit, Map<String, Object> data, boolean included) {
+
 		Map<String, Object> atts = DustUtils.simpleGet(data, JsonApiMember.attributes);
 		if (null != atts) {
 			for (Map.Entry<String, Object> ae : atts.entrySet()) {
 				String rk = ae.getKey();
 				DustHandle tAtt = Dust.getHandle(unit, TOKEN_MIND_ASP_ATTRIBUTE, rk, DustOptCreate.Meta);
-				
-				if ( SKIP_KEYS.contains(rk) ) {
+
+				if (SKIP_KEYS.contains(rk)) {
 					continue;
 				}
 				Dust.access(DustAccess.Set, ae.getValue(), target, tAtt);

@@ -39,6 +39,18 @@
 		}
 	],
 	"meta": {
-		"count": 3
+		"count": 3,
+		"unitInfo": {
+			"relationships": {
+				"mind.1$author": {
+					"data": {
+						"id": "mind.1$giskard",
+						"type": "mind.1$Author"
+					}
+				}
+			},
+			"id": "flow.1",
+			"type": "mind.1$Unit"
+		}
 	}
 }

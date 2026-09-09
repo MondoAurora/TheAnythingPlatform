@@ -24,6 +24,8 @@ public interface DustUtilsConstsJson extends DustConsts, DustUtilsConsts {
 
 	String EXT_JSONAPI_KEY = "key";
 
+	String EXT_JSONAPI_UNIT_INFO = "unitInfo";
+
 //@formatter:off
 	enum JsonApiMember {
 		jsonapi, version, ext, profile,
