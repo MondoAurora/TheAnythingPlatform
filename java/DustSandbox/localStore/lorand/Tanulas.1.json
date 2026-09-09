@@ -4,31 +4,31 @@
 	},
 	"data": [
 		{
-			"id": "Tanulas.1$001dc34b",
+			"id": "lorand/Tanulas.1$001dc34b",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$01aa25a3",
+			"id": "lorand/Tanulas.1$01aa25a3",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$01b780c0",
+			"id": "lorand/Tanulas.1$01b780c0",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$0203116f",
+			"id": "lorand/Tanulas.1$0203116f",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$02c8320a",
+			"id": "lorand/Tanulas.1$02c8320a",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$030118fc",
+			"id": "lorand/Tanulas.1$030118fc",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$04307703",
+			"id": "lorand/Tanulas.1$04307703",
 			"type": "text.1$Block"
 		},
 		{
@@ -39,84 +39,84 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$49a14c2e",
+							"id": "lorand/Tanulas.1$49a14c2e",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$c0637019",
+							"id": "lorand/Tanulas.1$c0637019",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$043aa72b",
+			"id": "lorand/Tanulas.1$043aa72b",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$05844be6",
+			"id": "lorand/Tanulas.1$05844be6",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$058fc95f",
+			"id": "lorand/Tanulas.1$058fc95f",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$060d8df9",
+			"id": "lorand/Tanulas.1$060d8df9",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$06269296",
+			"id": "lorand/Tanulas.1$06269296",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$065368b6",
+			"id": "lorand/Tanulas.1$065368b6",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$06baab22",
+			"id": "lorand/Tanulas.1$06baab22",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$07a19326",
+			"id": "lorand/Tanulas.1$07a19326",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$08609d06",
+			"id": "lorand/Tanulas.1$08609d06",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$09ebb901",
+			"id": "lorand/Tanulas.1$09ebb901",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$0a23c61c",
+			"id": "lorand/Tanulas.1$0a23c61c",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$0b2be811",
+			"id": "lorand/Tanulas.1$0b2be811",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$0b6cc090",
+			"id": "lorand/Tanulas.1$0b6cc090",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$0d954e86",
+			"id": "lorand/Tanulas.1$0d954e86",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$0dfd6877",
+			"id": "lorand/Tanulas.1$0dfd6877",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$0eef1b8b",
+			"id": "lorand/Tanulas.1$0eef1b8b",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$11a0c8c6",
+			"id": "lorand/Tanulas.1$11a0c8c6",
 			"type": "text.1$Block"
 		},
 		{
@@ -127,117 +127,117 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$11a0c8c6",
+							"id": "lorand/Tanulas.1$11a0c8c6",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$c7600adf",
+							"id": "lorand/Tanulas.1$c7600adf",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$d1a47b00",
+							"id": "lorand/Tanulas.1$d1a47b00",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$950d1b81",
+							"id": "lorand/Tanulas.1$950d1b81",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 4
 							},
-							"id": "Tanulas.1$4ef8114b",
+							"id": "lorand/Tanulas.1$4ef8114b",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$11f86005",
+			"id": "lorand/Tanulas.1$11f86005",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$144075c9",
+			"id": "lorand/Tanulas.1$144075c9",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$14f2fd6c",
+			"id": "lorand/Tanulas.1$14f2fd6c",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$1510e9e9",
+			"id": "lorand/Tanulas.1$1510e9e9",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$1551045a",
+			"id": "lorand/Tanulas.1$1551045a",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$15f44b2e",
+			"id": "lorand/Tanulas.1$15f44b2e",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$160c54f9",
+			"id": "lorand/Tanulas.1$160c54f9",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$169ed264",
+			"id": "lorand/Tanulas.1$169ed264",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$18b7b533",
+			"id": "lorand/Tanulas.1$18b7b533",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$18f51965",
+			"id": "lorand/Tanulas.1$18f51965",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$1c1792f6",
+			"id": "lorand/Tanulas.1$1c1792f6",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$1c6df3d1",
+			"id": "lorand/Tanulas.1$1c6df3d1",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$1d81ffb4",
+			"id": "lorand/Tanulas.1$1d81ffb4",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$1d9668a6",
+			"id": "lorand/Tanulas.1$1d9668a6",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$209926f9",
+			"id": "lorand/Tanulas.1$209926f9",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$20c9016b",
+			"id": "lorand/Tanulas.1$20c9016b",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$211f7cf6",
+			"id": "lorand/Tanulas.1$211f7cf6",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$22074f77",
+			"id": "lorand/Tanulas.1$22074f77",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$223519b0",
+			"id": "lorand/Tanulas.1$223519b0",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$22c88823",
+			"id": "lorand/Tanulas.1$22c88823",
 			"type": "text.1$Block"
 		},
 		{
@@ -248,48 +248,48 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$de9d2473",
+							"id": "lorand/Tanulas.1$de9d2473",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$561b3d64",
+							"id": "lorand/Tanulas.1$561b3d64",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$239aacb5",
+			"id": "lorand/Tanulas.1$239aacb5",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$24642374",
+			"id": "lorand/Tanulas.1$24642374",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$253c0963",
+			"id": "lorand/Tanulas.1$253c0963",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$279ed6b7",
+			"id": "lorand/Tanulas.1$279ed6b7",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$2853a59c",
+			"id": "lorand/Tanulas.1$2853a59c",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$2858926a",
+			"id": "lorand/Tanulas.1$2858926a",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$29db1a26",
+			"id": "lorand/Tanulas.1$29db1a26",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$2b38435d",
+			"id": "lorand/Tanulas.1$2b38435d",
 			"type": "text.1$Block"
 		},
 		{
@@ -300,131 +300,131 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$54a1d98e",
+							"id": "lorand/Tanulas.1$54a1d98e",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$11f86005",
+							"id": "lorand/Tanulas.1$11f86005",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$169ed264",
+							"id": "lorand/Tanulas.1$169ed264",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$2b791280",
+			"id": "lorand/Tanulas.1$2b791280",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$2bfc96ed",
+			"id": "lorand/Tanulas.1$2bfc96ed",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$2cf88004",
+			"id": "lorand/Tanulas.1$2cf88004",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$2f189702",
+			"id": "lorand/Tanulas.1$2f189702",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$308f3cc7",
+			"id": "lorand/Tanulas.1$308f3cc7",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$30a605c1",
+			"id": "lorand/Tanulas.1$30a605c1",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$30b6451b",
+			"id": "lorand/Tanulas.1$30b6451b",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$316923f3",
+			"id": "lorand/Tanulas.1$316923f3",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$31c2450e",
+			"id": "lorand/Tanulas.1$31c2450e",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$33513f6d",
+			"id": "lorand/Tanulas.1$33513f6d",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$33bdc83e",
+			"id": "lorand/Tanulas.1$33bdc83e",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$33e01d50",
+			"id": "lorand/Tanulas.1$33e01d50",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$351f1668",
+			"id": "lorand/Tanulas.1$351f1668",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$35329074",
+			"id": "lorand/Tanulas.1$35329074",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$36da0e25",
+			"id": "lorand/Tanulas.1$36da0e25",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$37387f51",
+			"id": "lorand/Tanulas.1$37387f51",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$386da4da",
+			"id": "lorand/Tanulas.1$386da4da",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$38c30049",
+			"id": "lorand/Tanulas.1$38c30049",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$38c7c2de",
+			"id": "lorand/Tanulas.1$38c7c2de",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$3986d666",
+			"id": "lorand/Tanulas.1$3986d666",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$39d4f60a",
+			"id": "lorand/Tanulas.1$39d4f60a",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$3a10d7b3",
+			"id": "lorand/Tanulas.1$3a10d7b3",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$3a68f527",
+			"id": "lorand/Tanulas.1$3a68f527",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$3aa0364e",
+			"id": "lorand/Tanulas.1$3aa0364e",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$3acc1213",
+			"id": "lorand/Tanulas.1$3acc1213",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$3b071264",
+			"id": "lorand/Tanulas.1$3b071264",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$3b4041f6",
+			"id": "lorand/Tanulas.1$3b4041f6",
 			"type": "text.1$Block"
 		},
 		{
@@ -435,46 +435,46 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$18f51965",
+							"id": "lorand/Tanulas.1$18f51965",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$a377061b",
+							"id": "lorand/Tanulas.1$a377061b",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$cc6e1a3e",
+							"id": "lorand/Tanulas.1$cc6e1a3e",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$93d84470",
+							"id": "lorand/Tanulas.1$93d84470",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$3bd51deb",
+			"id": "lorand/Tanulas.1$3bd51deb",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$3c0834d6",
+			"id": "lorand/Tanulas.1$3c0834d6",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$3c62a56d",
+			"id": "lorand/Tanulas.1$3c62a56d",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$3ce40354",
+			"id": "lorand/Tanulas.1$3ce40354",
 			"type": "text.1$Block"
 		},
 		{
@@ -485,66 +485,66 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$401360d0",
+							"id": "lorand/Tanulas.1$401360d0",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$0dfd6877",
+							"id": "lorand/Tanulas.1$0dfd6877",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$dc81e503",
+							"id": "lorand/Tanulas.1$dc81e503",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$400975fb",
+							"id": "lorand/Tanulas.1$400975fb",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$3d7002e8",
+			"id": "lorand/Tanulas.1$3d7002e8",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$400975fb",
+			"id": "lorand/Tanulas.1$400975fb",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$401360d0",
+			"id": "lorand/Tanulas.1$401360d0",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$40b39713",
+			"id": "lorand/Tanulas.1$40b39713",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$40c9f38d",
+			"id": "lorand/Tanulas.1$40c9f38d",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$41c62edc",
+			"id": "lorand/Tanulas.1$41c62edc",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$42086da1",
+			"id": "lorand/Tanulas.1$42086da1",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$429d52be",
+			"id": "lorand/Tanulas.1$429d52be",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$440e35e7",
+			"id": "lorand/Tanulas.1$440e35e7",
 			"type": "text.1$Block"
 		},
 		{
@@ -555,68 +555,68 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$896fff0c",
+							"id": "lorand/Tanulas.1$896fff0c",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$4ecfb29f",
+							"id": "lorand/Tanulas.1$4ecfb29f",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$455c7f66",
+			"id": "lorand/Tanulas.1$455c7f66",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$45c79120",
+			"id": "lorand/Tanulas.1$45c79120",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$45e5da43",
+			"id": "lorand/Tanulas.1$45e5da43",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$49271c4f",
+			"id": "lorand/Tanulas.1$49271c4f",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$49a14c2e",
+			"id": "lorand/Tanulas.1$49a14c2e",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$4a98efd5",
+			"id": "lorand/Tanulas.1$4a98efd5",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$4ce4af22",
+			"id": "lorand/Tanulas.1$4ce4af22",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$4d9bab76",
+			"id": "lorand/Tanulas.1$4d9bab76",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$4d9e7dd6",
+			"id": "lorand/Tanulas.1$4d9e7dd6",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$4e586052",
+			"id": "lorand/Tanulas.1$4e586052",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$4ecfb29f",
+			"id": "lorand/Tanulas.1$4ecfb29f",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$4ef8114b",
+			"id": "lorand/Tanulas.1$4ef8114b",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$5010db42",
+			"id": "lorand/Tanulas.1$5010db42",
 			"type": "text.1$Block"
 		},
 		{
@@ -627,20 +627,20 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$90923985",
+							"id": "lorand/Tanulas.1$90923985",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$d898cd12",
+							"id": "lorand/Tanulas.1$d898cd12",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$50374d8c",
+			"id": "lorand/Tanulas.1$50374d8c",
 			"type": "text.1$Block"
 		},
 		{
@@ -651,101 +651,101 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$61f79199",
+							"id": "lorand/Tanulas.1$61f79199",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$2b791280",
+							"id": "lorand/Tanulas.1$2b791280",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$b9a75fc9",
+							"id": "lorand/Tanulas.1$b9a75fc9",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$ac8d2896",
+							"id": "lorand/Tanulas.1$ac8d2896",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 4
 							},
-							"id": "Tanulas.1$3bd51deb",
+							"id": "lorand/Tanulas.1$3bd51deb",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$507086e3",
+			"id": "lorand/Tanulas.1$507086e3",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$50eff9ad",
+			"id": "lorand/Tanulas.1$50eff9ad",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$50f9baed",
+			"id": "lorand/Tanulas.1$50f9baed",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$515a8f5c",
+			"id": "lorand/Tanulas.1$515a8f5c",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$5270f7c0",
+			"id": "lorand/Tanulas.1$5270f7c0",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$52ebf185",
+			"id": "lorand/Tanulas.1$52ebf185",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$53f0cad9",
+			"id": "lorand/Tanulas.1$53f0cad9",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$5422f34c",
+			"id": "lorand/Tanulas.1$5422f34c",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$54a1d98e",
+			"id": "lorand/Tanulas.1$54a1d98e",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$54de6616",
+			"id": "lorand/Tanulas.1$54de6616",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$561b3d64",
+			"id": "lorand/Tanulas.1$561b3d64",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$56c44372",
+			"id": "lorand/Tanulas.1$56c44372",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$57aa5b40",
+			"id": "lorand/Tanulas.1$57aa5b40",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$57fae8a3",
+			"id": "lorand/Tanulas.1$57fae8a3",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$59b5c29b",
+			"id": "lorand/Tanulas.1$59b5c29b",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$59f11d0e",
+			"id": "lorand/Tanulas.1$59f11d0e",
 			"type": "text.1$Block"
 		},
 		{
@@ -756,88 +756,88 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$92a69783",
+							"id": "lorand/Tanulas.1$92a69783",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$d8827288",
+							"id": "lorand/Tanulas.1$d8827288",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$8536caa8",
+							"id": "lorand/Tanulas.1$8536caa8",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$ea9a1514",
+							"id": "lorand/Tanulas.1$ea9a1514",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 4
 							},
-							"id": "Tanulas.1$6dfdb3cd",
+							"id": "lorand/Tanulas.1$6dfdb3cd",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 5
 							},
-							"id": "Tanulas.1$a5fe403d",
+							"id": "lorand/Tanulas.1$a5fe403d",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$5b4678ab",
+			"id": "lorand/Tanulas.1$5b4678ab",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$5b4d7530",
+			"id": "lorand/Tanulas.1$5b4d7530",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$5bff2ba1",
+			"id": "lorand/Tanulas.1$5bff2ba1",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$5ce3b2b6",
+			"id": "lorand/Tanulas.1$5ce3b2b6",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$5cf28f0f",
+			"id": "lorand/Tanulas.1$5cf28f0f",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$616cc734",
+			"id": "lorand/Tanulas.1$616cc734",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$61f79199",
+			"id": "lorand/Tanulas.1$61f79199",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$63e796a3",
+			"id": "lorand/Tanulas.1$63e796a3",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$64237849",
+			"id": "lorand/Tanulas.1$64237849",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$6479b775",
+			"id": "lorand/Tanulas.1$6479b775",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$651733de",
+			"id": "lorand/Tanulas.1$651733de",
 			"type": "text.1$Block"
 		},
 		{
@@ -848,57 +848,57 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$308f3cc7",
+							"id": "lorand/Tanulas.1$308f3cc7",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$67f2df99",
+			"id": "lorand/Tanulas.1$67f2df99",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$68ff13cf",
+			"id": "lorand/Tanulas.1$68ff13cf",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$693a2968",
+			"id": "lorand/Tanulas.1$693a2968",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$6949a2fc",
+			"id": "lorand/Tanulas.1$6949a2fc",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$6954f658",
+			"id": "lorand/Tanulas.1$6954f658",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$6975b477",
+			"id": "lorand/Tanulas.1$6975b477",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$6a7f6b4b",
+			"id": "lorand/Tanulas.1$6a7f6b4b",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$6a851294",
+			"id": "lorand/Tanulas.1$6a851294",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$6c36d304",
+			"id": "lorand/Tanulas.1$6c36d304",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$6cb97a61",
+			"id": "lorand/Tanulas.1$6cb97a61",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$6cdb2269",
+			"id": "lorand/Tanulas.1$6cdb2269",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$6d036c08",
+			"id": "lorand/Tanulas.1$6d036c08",
 			"type": "text.1$Block"
 		},
 		{
@@ -909,52 +909,52 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$3c62a56d",
+							"id": "lorand/Tanulas.1$3c62a56d",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$3a68f527",
+							"id": "lorand/Tanulas.1$3a68f527",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$39d4f60a",
+							"id": "lorand/Tanulas.1$39d4f60a",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$40c9f38d",
+							"id": "lorand/Tanulas.1$40c9f38d",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 4
 							},
-							"id": "Tanulas.1$01aa25a3",
+							"id": "lorand/Tanulas.1$01aa25a3",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 5
 							},
-							"id": "Tanulas.1$5010db42",
+							"id": "lorand/Tanulas.1$5010db42",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$6dfdb3cd",
+			"id": "lorand/Tanulas.1$6dfdb3cd",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$6e17282f",
+			"id": "lorand/Tanulas.1$6e17282f",
 			"type": "text.1$Block"
 		},
 		{
@@ -965,85 +965,85 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$d67f6073",
+							"id": "lorand/Tanulas.1$d67f6073",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$fc8dd436",
+							"id": "lorand/Tanulas.1$fc8dd436",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$043aa72b",
+							"id": "lorand/Tanulas.1$043aa72b",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$f0698870",
+							"id": "lorand/Tanulas.1$f0698870",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 4
 							},
-							"id": "Tanulas.1$9e41a8e5",
+							"id": "lorand/Tanulas.1$9e41a8e5",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$6f9518ed",
+			"id": "lorand/Tanulas.1$6f9518ed",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$703d2908",
+			"id": "lorand/Tanulas.1$703d2908",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$71a1de2c",
+			"id": "lorand/Tanulas.1$71a1de2c",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$73b5ae72",
+			"id": "lorand/Tanulas.1$73b5ae72",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$74900e4b",
+			"id": "lorand/Tanulas.1$74900e4b",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$74b7f57c",
+			"id": "lorand/Tanulas.1$74b7f57c",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$76da16af",
+			"id": "lorand/Tanulas.1$76da16af",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$775401dd",
+			"id": "lorand/Tanulas.1$775401dd",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$78476b0d",
+			"id": "lorand/Tanulas.1$78476b0d",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$7a2108b6",
+			"id": "lorand/Tanulas.1$7a2108b6",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$7aef1d55",
+			"id": "lorand/Tanulas.1$7aef1d55",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$7b636b72",
+			"id": "lorand/Tanulas.1$7b636b72",
 			"type": "text.1$Block"
 		},
 		{
@@ -1055,35 +1055,35 @@
 					}
 				}
 			},
-			"id": "Tanulas.1$7c11a061",
+			"id": "lorand/Tanulas.1$7c11a061",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$7da55a7a",
+			"id": "lorand/Tanulas.1$7da55a7a",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$7ec4c9e3",
+			"id": "lorand/Tanulas.1$7ec4c9e3",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$7f470b7a",
+			"id": "lorand/Tanulas.1$7f470b7a",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$7f81fdef",
+			"id": "lorand/Tanulas.1$7f81fdef",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$7fef4fce",
+			"id": "lorand/Tanulas.1$7fef4fce",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$81dd7e22",
+			"id": "lorand/Tanulas.1$81dd7e22",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$83702bcc",
+			"id": "lorand/Tanulas.1$83702bcc",
 			"type": "text.1$Block"
 		},
 		{
@@ -1094,42 +1094,42 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$f86d693e",
+							"id": "lorand/Tanulas.1$f86d693e",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$1c1792f6",
+							"id": "lorand/Tanulas.1$1c1792f6",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$6c36d304",
+							"id": "lorand/Tanulas.1$6c36d304",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$351f1668",
+							"id": "lorand/Tanulas.1$351f1668",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$845c2d81",
+			"id": "lorand/Tanulas.1$845c2d81",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$84b97091",
+			"id": "lorand/Tanulas.1$84b97091",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$85232f60",
+			"id": "lorand/Tanulas.1$85232f60",
 			"type": "text.1$Block"
 		},
 		{
@@ -1140,132 +1140,132 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$e0b0c047",
+							"id": "lorand/Tanulas.1$e0b0c047",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$73b5ae72",
+							"id": "lorand/Tanulas.1$73b5ae72",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$29db1a26",
+							"id": "lorand/Tanulas.1$29db1a26",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$24642374",
+							"id": "lorand/Tanulas.1$24642374",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 4
 							},
-							"id": "Tanulas.1$616cc734",
+							"id": "lorand/Tanulas.1$616cc734",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 5
 							},
-							"id": "Tanulas.1$8a93e930",
+							"id": "lorand/Tanulas.1$8a93e930",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$8536caa8",
+			"id": "lorand/Tanulas.1$8536caa8",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$8566b755",
+			"id": "lorand/Tanulas.1$8566b755",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$85867925",
+			"id": "lorand/Tanulas.1$85867925",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$8792be3f",
+			"id": "lorand/Tanulas.1$8792be3f",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$896fff0c",
+			"id": "lorand/Tanulas.1$896fff0c",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$897dd0a8",
+			"id": "lorand/Tanulas.1$897dd0a8",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$8a93e930",
+			"id": "lorand/Tanulas.1$8a93e930",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$8bd5c69a",
+			"id": "lorand/Tanulas.1$8bd5c69a",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$8d80c51a",
+			"id": "lorand/Tanulas.1$8d80c51a",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$8df09442",
+			"id": "lorand/Tanulas.1$8df09442",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$8f8b45d6",
+			"id": "lorand/Tanulas.1$8f8b45d6",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$900c3f0e",
+			"id": "lorand/Tanulas.1$900c3f0e",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$90923985",
+			"id": "lorand/Tanulas.1$90923985",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$923e98bf",
+			"id": "lorand/Tanulas.1$923e98bf",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$92a69783",
+			"id": "lorand/Tanulas.1$92a69783",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$92fbf4cc",
+			"id": "lorand/Tanulas.1$92fbf4cc",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$93b01d9b",
+			"id": "lorand/Tanulas.1$93b01d9b",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$93d84470",
+			"id": "lorand/Tanulas.1$93d84470",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$94b07677",
+			"id": "lorand/Tanulas.1$94b07677",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$950d1b81",
+			"id": "lorand/Tanulas.1$950d1b81",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$9540a101",
+			"id": "lorand/Tanulas.1$9540a101",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$956b40e6",
+			"id": "lorand/Tanulas.1$956b40e6",
 			"type": "text.1$Block"
 		},
 		{
@@ -1276,58 +1276,58 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$a97644a4",
+							"id": "lorand/Tanulas.1$a97644a4",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$d08273ff",
+							"id": "lorand/Tanulas.1$d08273ff",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$507086e3",
+							"id": "lorand/Tanulas.1$507086e3",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$6f9518ed",
+							"id": "lorand/Tanulas.1$6f9518ed",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$95e32079",
+			"id": "lorand/Tanulas.1$95e32079",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$95f217da",
+			"id": "lorand/Tanulas.1$95f217da",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$95f7aba7",
+			"id": "lorand/Tanulas.1$95f7aba7",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$97376ecf",
+			"id": "lorand/Tanulas.1$97376ecf",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$99592519",
+			"id": "lorand/Tanulas.1$99592519",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$9a07bc9d",
+			"id": "lorand/Tanulas.1$9a07bc9d",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$9cb4974d",
+			"id": "lorand/Tanulas.1$9cb4974d",
 			"type": "text.1$Block"
 		},
 		{
@@ -1338,54 +1338,54 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$f1cb0094",
+							"id": "lorand/Tanulas.1$f1cb0094",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$f5e5a761",
+							"id": "lorand/Tanulas.1$f5e5a761",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$aa1cd0e0",
+							"id": "lorand/Tanulas.1$aa1cd0e0",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$6975b477",
+							"id": "lorand/Tanulas.1$6975b477",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$9e41a8e5",
+			"id": "lorand/Tanulas.1$9e41a8e5",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$9e7c71d4",
+			"id": "lorand/Tanulas.1$9e7c71d4",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$9f4d94ea",
+			"id": "lorand/Tanulas.1$9f4d94ea",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$a377061b",
+			"id": "lorand/Tanulas.1$a377061b",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$a3ac80fd",
+			"id": "lorand/Tanulas.1$a3ac80fd",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$a5f29de4",
+			"id": "lorand/Tanulas.1$a5f29de4",
 			"type": "text.1$Block"
 		},
 		{
@@ -1396,89 +1396,89 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$fa62434e",
+							"id": "lorand/Tanulas.1$fa62434e",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$7f470b7a",
+							"id": "lorand/Tanulas.1$7f470b7a",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$f9f4d3f1",
+							"id": "lorand/Tanulas.1$f9f4d3f1",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$57fae8a3",
+							"id": "lorand/Tanulas.1$57fae8a3",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 4
 							},
-							"id": "Tanulas.1$4d9bab76",
+							"id": "lorand/Tanulas.1$4d9bab76",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$a5fe403d",
+			"id": "lorand/Tanulas.1$a5fe403d",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$a649ae79",
+			"id": "lorand/Tanulas.1$a649ae79",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$a6befaf7",
+			"id": "lorand/Tanulas.1$a6befaf7",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$a70379cb",
+			"id": "lorand/Tanulas.1$a70379cb",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$a792164d",
+			"id": "lorand/Tanulas.1$a792164d",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$a7e43366",
+			"id": "lorand/Tanulas.1$a7e43366",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$a828f757",
+			"id": "lorand/Tanulas.1$a828f757",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$a85cdb9f",
+			"id": "lorand/Tanulas.1$a85cdb9f",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$a97644a4",
+			"id": "lorand/Tanulas.1$a97644a4",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$a9b51786",
+			"id": "lorand/Tanulas.1$a9b51786",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$aa1cd0e0",
+			"id": "lorand/Tanulas.1$aa1cd0e0",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$aa9520a6",
+			"id": "lorand/Tanulas.1$aa9520a6",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$aad682b3",
+			"id": "lorand/Tanulas.1$aad682b3",
 			"type": "text.1$Block"
 		},
 		{
@@ -1489,20 +1489,20 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$95e32079",
+							"id": "lorand/Tanulas.1$95e32079",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$5b4678ab",
+							"id": "lorand/Tanulas.1$5b4678ab",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$aba2275c",
+			"id": "lorand/Tanulas.1$aba2275c",
 			"type": "text.1$Document"
 		},
 		{
@@ -1513,97 +1513,97 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$f0f576ca",
+							"id": "lorand/Tanulas.1$f0f576ca",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$ada56e6f",
+							"id": "lorand/Tanulas.1$ada56e6f",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$caf7b595",
+							"id": "lorand/Tanulas.1$caf7b595",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$9e7c71d4",
+							"id": "lorand/Tanulas.1$9e7c71d4",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 4
 							},
-							"id": "Tanulas.1$1c6df3d1",
+							"id": "lorand/Tanulas.1$1c6df3d1",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$ac8d2896",
+			"id": "lorand/Tanulas.1$ac8d2896",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$ad107d69",
+			"id": "lorand/Tanulas.1$ad107d69",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$ad3eb655",
+			"id": "lorand/Tanulas.1$ad3eb655",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$ad73f75d",
+			"id": "lorand/Tanulas.1$ad73f75d",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$ada56e6f",
+			"id": "lorand/Tanulas.1$ada56e6f",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$adb578b8",
+			"id": "lorand/Tanulas.1$adb578b8",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$ae2e1aff",
+			"id": "lorand/Tanulas.1$ae2e1aff",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$ae6ba89c",
+			"id": "lorand/Tanulas.1$ae6ba89c",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$af1a1136",
+			"id": "lorand/Tanulas.1$af1a1136",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$af690339",
+			"id": "lorand/Tanulas.1$af690339",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$af8cd86d",
+			"id": "lorand/Tanulas.1$af8cd86d",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$b09a44de",
+			"id": "lorand/Tanulas.1$b09a44de",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$b1cdd6e7",
+			"id": "lorand/Tanulas.1$b1cdd6e7",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$b31aa929",
+			"id": "lorand/Tanulas.1$b31aa929",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$b57bc1fe",
+			"id": "lorand/Tanulas.1$b57bc1fe",
 			"type": "text.1$Block"
 		},
 		{
@@ -1615,7 +1615,7 @@
 					}
 				}
 			},
-			"id": "Tanulas.1$b866af3c",
+			"id": "lorand/Tanulas.1$b866af3c",
 			"type": "text.1$Block"
 		},
 		{
@@ -1626,101 +1626,101 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$50eff9ad",
+							"id": "lorand/Tanulas.1$50eff9ad",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$f10c61f5",
+							"id": "lorand/Tanulas.1$f10c61f5",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$030118fc",
+							"id": "lorand/Tanulas.1$030118fc",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$f125628f",
+							"id": "lorand/Tanulas.1$f125628f",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 4
 							},
-							"id": "Tanulas.1$455c7f66",
+							"id": "lorand/Tanulas.1$455c7f66",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 5
 							},
-							"id": "Tanulas.1$50374d8c",
+							"id": "lorand/Tanulas.1$50374d8c",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 6
 							},
-							"id": "Tanulas.1$0b2be811",
+							"id": "lorand/Tanulas.1$0b2be811",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 7
 							},
-							"id": "Tanulas.1$239aacb5",
+							"id": "lorand/Tanulas.1$239aacb5",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 8
 							},
-							"id": "Tanulas.1$20c9016b",
+							"id": "lorand/Tanulas.1$20c9016b",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$b9a75fc9",
+			"id": "lorand/Tanulas.1$b9a75fc9",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$ba0761ef",
+			"id": "lorand/Tanulas.1$ba0761ef",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$bc79c3d8",
+			"id": "lorand/Tanulas.1$bc79c3d8",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$bcbd0dd0",
+			"id": "lorand/Tanulas.1$bcbd0dd0",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$bf2e0830",
+			"id": "lorand/Tanulas.1$bf2e0830",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$c0295ce3",
+			"id": "lorand/Tanulas.1$c0295ce3",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$c0637019",
+			"id": "lorand/Tanulas.1$c0637019",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$c0b55f13",
+			"id": "lorand/Tanulas.1$c0b55f13",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$c0da793d",
+			"id": "lorand/Tanulas.1$c0da793d",
 			"type": "text.1$Block"
 		},
 		{
@@ -1731,49 +1731,49 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$fceed691",
+							"id": "lorand/Tanulas.1$fceed691",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$c1da477a",
+			"id": "lorand/Tanulas.1$c1da477a",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$c2fc1c55",
+			"id": "lorand/Tanulas.1$c2fc1c55",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$c3008210",
+			"id": "lorand/Tanulas.1$c3008210",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$c43d4e3d",
+			"id": "lorand/Tanulas.1$c43d4e3d",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$c46105f2",
+			"id": "lorand/Tanulas.1$c46105f2",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$c474ec71",
+			"id": "lorand/Tanulas.1$c474ec71",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$c7600adf",
+			"id": "lorand/Tanulas.1$c7600adf",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$c961cac0",
+			"id": "lorand/Tanulas.1$c961cac0",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$ca2535ea",
+			"id": "lorand/Tanulas.1$ca2535ea",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$caf7b595",
+			"id": "lorand/Tanulas.1$caf7b595",
 			"type": "text.1$Block"
 		},
 		{
@@ -1785,47 +1785,47 @@
 					}
 				}
 			},
-			"id": "Tanulas.1$cba3b9eb",
+			"id": "lorand/Tanulas.1$cba3b9eb",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$cc6e1a3e",
+			"id": "lorand/Tanulas.1$cc6e1a3e",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$cce24d3a",
+			"id": "lorand/Tanulas.1$cce24d3a",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$cd1d7cf5",
+			"id": "lorand/Tanulas.1$cd1d7cf5",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$d08273ff",
+			"id": "lorand/Tanulas.1$d08273ff",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$d1a47b00",
+			"id": "lorand/Tanulas.1$d1a47b00",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$d398377f",
+			"id": "lorand/Tanulas.1$d398377f",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$d570312b",
+			"id": "lorand/Tanulas.1$d570312b",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$d67f6073",
+			"id": "lorand/Tanulas.1$d67f6073",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$d7922c64",
+			"id": "lorand/Tanulas.1$d7922c64",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$d804923f",
+			"id": "lorand/Tanulas.1$d804923f",
 			"type": "text.1$Block"
 		},
 		{
@@ -1836,142 +1836,142 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$68ff13cf",
+							"id": "lorand/Tanulas.1$68ff13cf",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$2bfc96ed",
+							"id": "lorand/Tanulas.1$2bfc96ed",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$3aa0364e",
+							"id": "lorand/Tanulas.1$3aa0364e",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$a792164d",
+							"id": "lorand/Tanulas.1$a792164d",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 4
 							},
-							"id": "Tanulas.1$e44906c9",
+							"id": "lorand/Tanulas.1$e44906c9",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 5
 							},
-							"id": "Tanulas.1$3d7002e8",
+							"id": "lorand/Tanulas.1$3d7002e8",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 6
 							},
-							"id": "Tanulas.1$401360d0",
+							"id": "lorand/Tanulas.1$401360d0",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 7
 							},
-							"id": "Tanulas.1$0dfd6877",
+							"id": "lorand/Tanulas.1$0dfd6877",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 8
 							},
-							"id": "Tanulas.1$dc81e503",
+							"id": "lorand/Tanulas.1$dc81e503",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 9
 							},
-							"id": "Tanulas.1$400975fb",
+							"id": "lorand/Tanulas.1$400975fb",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 10
 							},
-							"id": "Tanulas.1$edf9e6fc",
+							"id": "lorand/Tanulas.1$edf9e6fc",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 11
 							},
-							"id": "Tanulas.1$c1da477a",
+							"id": "lorand/Tanulas.1$c1da477a",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 12
 							},
-							"id": "Tanulas.1$845c2d81",
+							"id": "lorand/Tanulas.1$845c2d81",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 13
 							},
-							"id": "Tanulas.1$f1900c44",
+							"id": "lorand/Tanulas.1$f1900c44",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 14
 							},
-							"id": "Tanulas.1$67f2df99",
+							"id": "lorand/Tanulas.1$67f2df99",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 15
 							},
-							"id": "Tanulas.1$dfc518d5",
+							"id": "lorand/Tanulas.1$dfc518d5",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$d8827288",
+			"id": "lorand/Tanulas.1$d8827288",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$d88d902a",
+			"id": "lorand/Tanulas.1$d88d902a",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$d898cd12",
+			"id": "lorand/Tanulas.1$d898cd12",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$dc81e503",
+			"id": "lorand/Tanulas.1$dc81e503",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$dcf41c55",
+			"id": "lorand/Tanulas.1$dcf41c55",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$de9d2473",
+			"id": "lorand/Tanulas.1$de9d2473",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$deeba5b6",
+			"id": "lorand/Tanulas.1$deeba5b6",
 			"type": "text.1$Block"
 		},
 		{
@@ -1982,76 +1982,76 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$b31aa929",
+							"id": "lorand/Tanulas.1$b31aa929",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$5bff2ba1",
+							"id": "lorand/Tanulas.1$5bff2ba1",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$7a2108b6",
+							"id": "lorand/Tanulas.1$7a2108b6",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$40b39713",
+							"id": "lorand/Tanulas.1$40b39713",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 4
 							},
-							"id": "Tanulas.1$f56b8bda",
+							"id": "lorand/Tanulas.1$f56b8bda",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 5
 							},
-							"id": "Tanulas.1$63e796a3",
+							"id": "lorand/Tanulas.1$63e796a3",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$dfc518d5",
+			"id": "lorand/Tanulas.1$dfc518d5",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$e0b0c047",
+			"id": "lorand/Tanulas.1$e0b0c047",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$e35c2f36",
+			"id": "lorand/Tanulas.1$e35c2f36",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$e44906c9",
+			"id": "lorand/Tanulas.1$e44906c9",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$e48dcd78",
+			"id": "lorand/Tanulas.1$e48dcd78",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$e53ffca8",
+			"id": "lorand/Tanulas.1$e53ffca8",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$e7b659e2",
+			"id": "lorand/Tanulas.1$e7b659e2",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$e99f865a",
+			"id": "lorand/Tanulas.1$e99f865a",
 			"type": "text.1$Block"
 		},
 		{
@@ -2062,42 +2062,42 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$deeba5b6",
+							"id": "lorand/Tanulas.1$deeba5b6",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$3c0834d6",
+							"id": "lorand/Tanulas.1$3c0834d6",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$8bd5c69a",
+							"id": "lorand/Tanulas.1$8bd5c69a",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$f8544b0e",
+							"id": "lorand/Tanulas.1$f8544b0e",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$ea9a1514",
+			"id": "lorand/Tanulas.1$ea9a1514",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$eba00948",
+			"id": "lorand/Tanulas.1$eba00948",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$ed98ee37",
+			"id": "lorand/Tanulas.1$ed98ee37",
 			"type": "text.1$Block"
 		},
 		{
@@ -2108,57 +2108,57 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$144075c9",
+							"id": "lorand/Tanulas.1$144075c9",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$84b97091",
+							"id": "lorand/Tanulas.1$84b97091",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$37387f51",
+							"id": "lorand/Tanulas.1$37387f51",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$ffd24f72",
+							"id": "lorand/Tanulas.1$ffd24f72",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 4
 							},
-							"id": "Tanulas.1$59b5c29b",
+							"id": "lorand/Tanulas.1$59b5c29b",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$edf9e6fc",
+			"id": "lorand/Tanulas.1$edf9e6fc",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$ee198e5e",
+			"id": "lorand/Tanulas.1$ee198e5e",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$ef1e5d44",
+			"id": "lorand/Tanulas.1$ef1e5d44",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$f027f5cb",
+			"id": "lorand/Tanulas.1$f027f5cb",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$f03ea31f",
+			"id": "lorand/Tanulas.1$f03ea31f",
 			"type": "text.1$Block"
 		},
 		{
@@ -2169,51 +2169,51 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$651733de",
+							"id": "lorand/Tanulas.1$651733de",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$81dd7e22",
+							"id": "lorand/Tanulas.1$81dd7e22",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$bcbd0dd0",
+							"id": "lorand/Tanulas.1$bcbd0dd0",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$f0698870",
+			"id": "lorand/Tanulas.1$f0698870",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$f0735607",
+			"id": "lorand/Tanulas.1$f0735607",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$f0c5a306",
+			"id": "lorand/Tanulas.1$f0c5a306",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$f0f576ca",
+			"id": "lorand/Tanulas.1$f0f576ca",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$f10c61f5",
+			"id": "lorand/Tanulas.1$f10c61f5",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$f10fa4c9",
+			"id": "lorand/Tanulas.1$f10fa4c9",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$f125628f",
+			"id": "lorand/Tanulas.1$f125628f",
 			"type": "text.1$Block"
 		},
 		{
@@ -2224,63 +2224,63 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$0a23c61c",
+							"id": "lorand/Tanulas.1$0a23c61c",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$6cb97a61",
+							"id": "lorand/Tanulas.1$6cb97a61",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$c43d4e3d",
+							"id": "lorand/Tanulas.1$c43d4e3d",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$f1900c44",
+			"id": "lorand/Tanulas.1$f1900c44",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$f1cb0094",
+			"id": "lorand/Tanulas.1$f1cb0094",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$f552c33e",
+			"id": "lorand/Tanulas.1$f552c33e",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$f56b8bda",
+			"id": "lorand/Tanulas.1$f56b8bda",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$f5e5a761",
+			"id": "lorand/Tanulas.1$f5e5a761",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$f609aab2",
+			"id": "lorand/Tanulas.1$f609aab2",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$f702218a",
+			"id": "lorand/Tanulas.1$f702218a",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$f8544b0e",
+			"id": "lorand/Tanulas.1$f8544b0e",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$f86d693e",
+			"id": "lorand/Tanulas.1$f86d693e",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$f9f156e1",
+			"id": "lorand/Tanulas.1$f9f156e1",
 			"type": "text.1$Block"
 		},
 		{
@@ -2291,39 +2291,39 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$cba3b9eb",
+							"id": "lorand/Tanulas.1$cba3b9eb",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$f0735607",
+							"id": "lorand/Tanulas.1$f0735607",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$7c11a061",
+							"id": "lorand/Tanulas.1$7c11a061",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$f9f4d3f1",
+			"id": "lorand/Tanulas.1$f9f4d3f1",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$fa62434e",
+			"id": "lorand/Tanulas.1$fa62434e",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$fb12d322",
+			"id": "lorand/Tanulas.1$fb12d322",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$fb9ccc1a",
+			"id": "lorand/Tanulas.1$fb9ccc1a",
 			"type": "text.1$Block"
 		},
 		{
@@ -2334,21 +2334,21 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$fce1a1e6",
+							"id": "lorand/Tanulas.1$fce1a1e6",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$fc8dd436",
+			"id": "lorand/Tanulas.1$fc8dd436",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$fcb5c24c",
+			"id": "lorand/Tanulas.1$fcb5c24c",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$fce1a1e6",
+			"id": "lorand/Tanulas.1$fce1a1e6",
 			"type": "text.1$Block"
 		},
 		{
@@ -2359,50 +2359,50 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Tanulas.1$253c0963",
+							"id": "lorand/Tanulas.1$253c0963",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
-							"id": "Tanulas.1$8df09442",
+							"id": "lorand/Tanulas.1$8df09442",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
-							"id": "Tanulas.1$af690339",
+							"id": "lorand/Tanulas.1$af690339",
 							"type": "text.1$Block"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
-							"id": "Tanulas.1$b866af3c",
+							"id": "lorand/Tanulas.1$b866af3c",
 							"type": "text.1$Block"
 						}
 					]
 				}
 			},
-			"id": "Tanulas.1$fceed691",
+			"id": "lorand/Tanulas.1$fceed691",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$fd13ff72",
+			"id": "lorand/Tanulas.1$fd13ff72",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$feb9015b",
+			"id": "lorand/Tanulas.1$feb9015b",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$ff1b76aa",
+			"id": "lorand/Tanulas.1$ff1b76aa",
 			"type": "text.1$Block"
 		},
 		{
-			"id": "Tanulas.1$ffd24f72",
+			"id": "lorand/Tanulas.1$ffd24f72",
 			"type": "text.1$Block"
 		}
 	],

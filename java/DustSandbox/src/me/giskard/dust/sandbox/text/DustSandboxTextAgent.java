@@ -70,13 +70,13 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 
 	@Override
 	protected void init() throws Exception {
-		docPath = new File("localStore");
+		docPath = new File("localStore/health.montru.net");
 		docUrl = docPath.toURI().toURL();
 
 		resPath = "res";
 		resRoot = new File(docPath, resPath);
 
-		hRes = Dust.getUnit("streams.1", true);
+		hRes = Dust.getUnit("health.montru.net/streams.1", true);
 	}
 
 	public void load(String unitId, DustHandle hLayout, DustHandle hLang) {
@@ -131,7 +131,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		}
 
 		StringBuilder stringUnit = new StringBuilder(DustUtils.getPrefix((String) unitId, DUST_SEP_TOKEN));
-		int i = stringUnit.indexOf(".");
+		int i = stringUnit.lastIndexOf(".");
 		stringUnit.insert(i, "_str");
 
 		hStrings = Dust.getUnit(stringUnit.toString(), true);

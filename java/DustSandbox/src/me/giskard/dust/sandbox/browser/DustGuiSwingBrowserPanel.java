@@ -480,7 +480,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				break;
 
 			case "Load Unit":
-				String unitId = JOptionPane.showInputDialog(frm, "Unit ID?", "mh/MHCli.1");
+				String unitId = JOptionPane.showInputDialog(frm, "Unit ID?", "health.montru.net/5ElemCsikung.1");
 
 				if (!DustUtils.isEmpty(unitId)) {
 					DustHandle hLoad = Dust.getUnit(unitId, true);

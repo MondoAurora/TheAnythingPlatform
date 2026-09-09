@@ -102,7 +102,8 @@ public class DustSandboxTextHtmlGenerator implements DustSandboxTextConsts {
 						DustException.wrap(e);
 					}
 
-					DustUtils.sbAppend(sb, "", false, "<img src=\"", fnImg, "/", fn, "\" ", "id=\"" + id + "\" ");
+					StringBuilder ssb = DustUtils.sbAppend(null, "", false, "<img src=\"", fnImg, "/", fn, ".jpg\" ", "id=\"" + id + "\" ");
+					DustUtils.sbAppend(sb, "", false, ssb);
 					optAddStyleClass(h, sb);
 					sb.append("/>\n");
 				}
