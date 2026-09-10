@@ -1,8 +1,11 @@
 {
+	"jsonapi": {
+		"version": "1.1"
+	},
 	"data": [
 		{
 			"type": "dust.1$Application",
-			"id": "sandbox.1$Sandbox",
+			"id": "Lorand/sandbox.1$Sandbox",
 			"attributes": {
 				"misc.1$name": "DustSandbox"
 			},
@@ -11,8 +14,8 @@
 					"data": [
 						{
 							"type": "mind.1$Agent",
-							"id": "sandbox.1$GraphEditor",
-							"idxxx": "sandbox.1$SandboxTextAgent",
+							"id": "Lorand/sandbox.1$GraphEditor",
+							"idxxx": "Lorand/sandbox.1$SandboxTextAgent",
 							"meta": {
 								"key": -1
 							}
@@ -23,10 +26,10 @@
 		},
 		{
 			"type": "mind.1$Agent",
-			"id": "sandbox.1$GraphEditor",
+			"id": "Lorand/sandbox.1$GraphEditor",
 			"attributes": {
 				"misc.1$name": "DustSandbox Graph Editor",
-				"misc.1$target": "sandbox.1$MiNDAPI",
+				"misc.1$target": "Lorand/sandbox.1$MiNDAPI",
 				"gui.1$lookAndFeel": [
 					"com.formdev.flatlaf.FlatLightLaf",
 					"com.apple.laf.AquaLookAndFeel",
@@ -47,13 +50,13 @@
 				"misc.1$target": {
 					"data": {
 						"type": "mind.1$Message",
-						"id": "sandbox.1$MiNDAPI"
+						"id": "Lorand/sandbox.1$MiNDAPI"
 					}
 				},
 				"dev.1$genSrc": {
 					"data": {
 						"type": "mind.1$Message",
-						"id": "sandbox.1$SrcGenEntry"
+						"id": "Lorand/sandbox.1$SrcGenEntry"
 					}
 				},
 				"mind.1$narrative": {
@@ -66,7 +69,7 @@
 		},
 		{
 			"type": "mind.1$Message",
-			"id": "sandbox.1$SrcGenEntry",
+			"id": "Lorand/sandbox.1$SrcGenEntry",
 			"attributes": {
 				"mind.1$transactionHead": true
 			},
@@ -75,7 +78,7 @@
 					"data": [
 						{
 							"type": "mind.1$Agent",
-							"id": "sandbox.1$ForAll",
+							"id": "Lorand/sandbox.1$ForAll",
 							"meta": {
 								"key": -1
 							}
@@ -86,12 +89,12 @@
 		},
 		{
 			"type": "mind.1$Agent",
-			"id": "sandbox.1$ForAll",
+			"id": "Lorand/sandbox.1$ForAll",
 			"relationships": {
 				"mind.1$next": {
 					"data": {
 						"type": "mind.1$Message",
-						"id": "sandbox.1$SrcGenFilter"
+						"id": "Lorand/sandbox.1$SrcGenFilter"
 					}
 				},
 				"mind.1$narrative": {
@@ -104,7 +107,7 @@
 		},
 		{
 			"type": "mind.1$Message",
-			"id": "sandbox.1$SrcGenFilter",
+			"id": "Lorand/sandbox.1$SrcGenFilter",
 			"attributes": {
 				"misc.1$filter": {
 					"misc.1$name": true,
@@ -122,7 +125,7 @@
 					"data": [
 						{
 							"type": "mind.1$Agent",
-							"id": "sandbox.1$Filter",
+							"id": "Lorand/sandbox.1$Filter",
 							"meta": {
 								"key": -1
 							}
@@ -133,12 +136,12 @@
 		},
 		{
 			"type": "mind.1$Agent",
-			"id": "sandbox.1$Filter",
+			"id": "Lorand/sandbox.1$Filter",
 			"relationships": {
 				"mind.1$next": {
 					"data": {
 						"type": "mind.1$Message",
-						"id": "sandbox.1$GenSourceTokenSvc"
+						"id": "Lorand/sandbox.1$GenSourceTokenSvc"
 					}
 				},
 				"mind.1$narrative": {
@@ -151,7 +154,7 @@
 		},
 		{
 			"type": "mind.1$Message",
-			"id": "sandbox.1$GenSourceTokenSvc",
+			"id": "Lorand/sandbox.1$GenSourceTokenSvc",
 			"attributes": {
 				"mind.1$transactionItem": true
 			},
@@ -160,7 +163,7 @@
 					"data": [
 						{
 							"type": "mind.1$Agent",
-							"id": "sandbox.1$GenSourceToken",
+							"id": "Lorand/sandbox.1$GenSourceToken",
 							"meta": {
 								"key": -1
 							}
@@ -171,7 +174,7 @@
 		},
 		{
 			"type": "mind.1$Agent",
-			"id": "sandbox.1$GenSourceToken",
+			"id": "Lorand/sandbox.1$GenSourceToken",
 			"attributes": {
 				"dev.1$package": "me.giskard.tokens",
 				"misc.1$path": "../DustJsonApi/gen",
@@ -187,7 +190,7 @@
 				"mind.1$serializer": {
 					"data": {
 						"type": "mind.1$Message",
-						"id": "sandbox.1$GenSourceRoot"
+						"id": "Lorand/sandbox.1$GenSourceRoot"
 					}
 				},
 				"mind.1$narrative": {
@@ -200,7 +203,7 @@
 		},
 		{
 			"type": "mind.1$Message",
-			"id": "sandbox.1$MiNDAPI",
+			"id": "Lorand/sandbox.1$MiNDAPI",
 			"relationships": {
 				"mind.1$listeners": {
 					"data": [
@@ -225,14 +228,14 @@
 				"mind.1$serializer": {
 					"data": {
 						"type": "mind.1$Message",
-						"id": "sandbox.1$SerializeDefault"
+						"id": "Lorand/sandbox.1$SerializeDefault"
 					}
 				}
 			}
 		},
 		{
 			"type": "mind.1$Agent",
-			"id": "sandbox.1$Serializer",
+			"id": "Lorand/sandbox.1$Serializer",
 			"relationships": {
 				"mind.1$narrative": {
 					"data": {
@@ -244,13 +247,13 @@
 		},
 		{
 			"type": "mind.1$Message",
-			"id": "sandbox.1$SerializeDefault",
+			"id": "Lorand/sandbox.1$SerializeDefault",
 			"relationships": {
 				"mind.1$listeners": {
 					"data": [
 						{
 							"type": "mind.1$Agent",
-							"id": "sandbox.1$Serializer",
+							"id": "Lorand/sandbox.1$Serializer",
 							"meta": {
 								"key": -1
 							}
@@ -260,14 +263,14 @@
 				"stream.1$streamSource": {
 					"data": {
 						"type": "mind.1$Message",
-						"id": "sandbox.1$UnitCacheRoot"
+						"id": "Lorand/sandbox.1$UnitCacheRoot"
 					}
 				}
 			}
 		},
 		{
 			"type": "mind.1$Agent",
-			"id": "sandbox.1$StreamSource",
+			"id": "Lorand/sandbox.1$StreamSource",
 			"relationships": {
 				"mind.1$narrative": {
 					"data": {
@@ -279,7 +282,7 @@
 		},
 		{
 			"type": "mind.1$Message",
-			"id": "sandbox.1$UnitCacheRoot",
+			"id": "Lorand/sandbox.1$UnitCacheRoot",
 			"attributes": {
 				"stream.1$rootFolder": "localStore",
 				"stream.1$backupFolder": "backup"
@@ -289,7 +292,7 @@
 					"data": [
 						{
 							"type": "mind.1$Agent",
-							"id": "sandbox.1$StreamSource",
+							"id": "Lorand/sandbox.1$StreamSource",
 							"meta": {
 								"key": -1
 							}
@@ -300,7 +303,7 @@
 		},
 		{
 			"type": "mind.1$Message",
-			"id": "sandbox.1$GenSourceRoot",
+			"id": "Lorand/sandbox.1$GenSourceRoot",
 			"attributes": {
 				"stream.1$rootFolder": "gen"
 			},
@@ -309,7 +312,7 @@
 					"data": [
 						{
 							"type": "mind.1$Agent",
-							"id": "sandbox.1$StreamSource",
+							"id": "Lorand/sandbox.1$StreamSource",
 							"meta": {
 								"key": -1
 							}
@@ -320,13 +323,13 @@
 		},
 		{
 			"type": "mind.1$Message",
-			"id": "sandbox.1$TextEditor",
+			"id": "Lorand/sandbox.1$TextEditor",
 			"relationships": {
 				"mind.1$listeners": {
 					"data": [
 						{
 							"type": "mind.1$Agent",
-							"id": "sandbox.1$SandboxTextAgent",
+							"id": "Lorand/sandbox.1$SandboxTextAgent",
 							"meta": {
 								"key": -1
 							}
@@ -337,7 +340,7 @@
 		},
 		{
 			"type": "mind.1$Agent",
-			"id": "sandbox.1$SandboxTextAgent",
+			"id": "Lorand/sandbox.1$SandboxTextAgent",
 			"attributes": {
 				"misc.1$name": "DustSandbox Text editor",
 				"gui.1$lookAndFeel": [
@@ -419,23 +422,23 @@
 		},
 		{
 			"type": "mind.1$Agent",
-			"id": "sandbox.1$SandboxAgent",
+			"id": "Lorand/sandbox.1$SandboxAgent",
 			"relationships": {
 				"mind.1$narrative": {
 					"data": {
 						"type": "mind.1$Narrative",
-						"id": "sandbox.1$SandboxTest"
+						"id": "Lorand/sandbox.1$SandboxTest"
 					}
 				}
 			}
 		},
 		{
 			"type": "mind.1$Narrative",
-			"id": "sandbox.1$SandboxTest"
+			"id": "Lorand/sandbox.1$SandboxTest"
 		},
 		{
 			"type": "mind.1$Message",
-			"id": "sandbox.1$SandboxTestSvc",
+			"id": "Lorand/sandbox.1$SandboxTestSvc",
 			"attributes": {
 				"dev.1$skip": false,
 				"mind.1$cmd": "LnF",
@@ -449,7 +452,7 @@
 					"data": [
 						{
 							"type": "mind.1$Agent",
-							"id": "sandbox.1$SandboxAgent",
+							"id": "Lorand/sandbox.1$SandboxAgent",
 							"meta": {
 								"key": -1
 							}
@@ -459,8 +462,18 @@
 			}
 		}
 	],
-	"meta": {},
-	"jsonapi": {
-		"version": "1.1"
+	"meta": {
+		"unitInfo": {
+			"relationships": {
+				"mind.1$author": {
+					"data": {
+						"id": "Lorand/author$LorandKedves",
+						"type": "mind.1$Author"
+					}
+				}
+			},
+			"id": "Lorand/sandbox.1",
+			"type": "mind.1$Unit"
+		}
 	}
 }

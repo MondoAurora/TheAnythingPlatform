@@ -17,6 +17,12 @@
 		},
 		{
 			"relationships": {
+				"mind.1$author": {
+					"data": {
+						"id": "TAP/author$TheAnythingPlatform",
+						"type": "mind.1$Author"
+					}
+				},
 				"mind.1$listeners": {
 					"data": [
 						{
@@ -164,7 +170,7 @@
 			"relationships": {
 				"mind.1$author": {
 					"data": {
-						"id": "dust.1$dust",
+						"id": "mind.1$giskard",
 						"type": "mind.1$Author"
 					}
 				}

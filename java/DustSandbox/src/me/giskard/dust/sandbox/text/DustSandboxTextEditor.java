@@ -79,7 +79,7 @@ public class DustSandboxTextEditor extends DustAgent implements DustSandboxTextC
 
 	JFrame frm;
 
-	JTextField tfUnit = new JTextField("health.montru.net/test.1");
+	JTextField tfUnit = new JTextField("Tendua/test.1");
 //	JTextField tfUnit = new JTextField("test.1");
 	JTextField tfFind = new JTextField();
 

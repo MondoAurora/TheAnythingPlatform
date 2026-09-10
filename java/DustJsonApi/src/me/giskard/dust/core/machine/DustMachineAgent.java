@@ -79,7 +79,7 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 //		};
 		
 		public void set(CallContext value) {
-			Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "SET thread context", Thread.currentThread(), value);
+//			Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "SET thread context", Thread.currentThread(), value);
 			super.set(value);
 		};
 	};
@@ -422,11 +422,11 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 			throws RuntimeException {
 		checkAccess(agent, acess, handle, att, lastKey, newVal);
 		
-		Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Register change", agent, acess, handle, att, lastKey, newVal);
+//		Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Register change", agent, acess, handle, att, lastKey, newVal);
 
 		DustHandle hUnit = DustUtils.isEqual(typeUnit, handle.getType()) ? handle : handle.getUnit();
 
-		if ((unitApp.mh == hUnit) || loadingUnit.get().contains(hUnit)) {
+		if ((machine.mh == hUnit) || (unitApp.mh == hUnit) || loadingUnit.get().contains(hUnit)) {
 			return;
 		}
 
@@ -951,8 +951,13 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 	@Override
 	protected synchronized DustHandle bootLoadAppUnit(DustHandle appUnit, String path, InputStream is, Bootloader bootLoader) throws Exception {
 		if (null == appUnit) {
-			int u = path.lastIndexOf("/");
-			String unitId = DustUtils.cutPostfix(path.substring(u + 1), ".");
+			String[] ss = path.split("/");
+			int sl = ss.length;
+			path = ss[sl-2] + "/" + ss[sl-1];
+//			int u = path.lastIndexOf("/");
+//			String unitId = DustUtils.cutPostfix(path.substring(u + 1), ".");
+
+			String unitId = DustUtils.cutPostfix(path, ".");
 
 			this.unitApp = getUnitIdea(unitId, true);
 			appUnit = this.unitApp.mh;

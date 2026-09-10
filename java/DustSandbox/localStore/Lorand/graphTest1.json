@@ -1,0 +1,21 @@
+{
+	"jsonapi": {
+		"version": "1.1"
+	},
+	"data": [],
+	"meta": {
+		"count": 35,
+		"unitInfo": {
+			"relationships": {
+				"mind.1$author": {
+					"data": {
+						"id": "Lorand/author$LorandKedves",
+						"type": "mind.1$Author"
+					}
+				}
+			},
+			"id": "Lorand/graphTest1",
+			"type": "mind.1$Unit"
+		}
+	}
+}

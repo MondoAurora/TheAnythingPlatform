@@ -1,4 +1,7 @@
 {
+	"jsonapi": {
+		"version": "1.1"
+	},
 	"data": [
 		{
 			"type": "dust.1$Application",
@@ -38,29 +41,40 @@
 					"flow.1$FlowPlayer": {
 						"dust.1$binary": "me.giskard.dust.core.flow.DustFlowPlayerAgent"
 					},
-					"guiJavaSwing.1$Renderer": {
+					"TAP/guiJavaSwing.1$Renderer": {
 						"dust.1$binary": "me.giskard.dust.mod.gui.swing.DustGuiSwingRendererAgent"
 					},
-					"guiJavaSwing.1$VideoPlayer": {
+					"TAP/guiJavaSwing.1$VideoPlayer": {
 						"dust.1$binary": "me.giskard.dust.mod.gui.swing.DustGuiSwingVideoPlayerAgent"
 					},
 
 
 
-					"sandbox.1$Browser": {
+					"Lorand/sandbox.1$Browser": {
 						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserFrameAgent"
 					},
-					"sandbox.1$AppFrame": {
+					"Lorand/sandbox.1$AppFrame": {
 						"dust.1$binary": "me.giskard.dust.sandbox.DustSandboxAppFrameAgent"
 					},
-					"sandbox.1$SandboxTest": {
+					"Lorand/sandbox.1$SandboxTest": {
 						"dust.1$binary": "me.giskard.dust.sandbox.DustSandboxTestAgent"
 					}
 				}
 			}
 		}
 	],
-	"jsonapi": {
-		"version": "1.1"
+	"meta": {
+		"unitInfo": {
+			"relationships": {
+				"mind.1$author": {
+					"data": {
+						"id": "Lorand/author$LorandKedves",
+						"type": "mind.1$Author"
+					}
+				}
+			},
+			"id": "Lorand/sandbox.1.java",
+			"type": "mind.1$Unit"
+		}
 	}
 }

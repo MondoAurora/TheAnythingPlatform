@@ -1,0 +1,33 @@
+{
+	"jsonapi": {
+		"version": "1.1"
+	},
+	"data": [
+		{
+			"id": "Lorand/author$Lorand/author",
+			"type": "mind.1$Author"
+		},
+		{
+			"attributes": {
+				"misc.1$key": "Lorand"
+			},
+			"id": "Lorand/author$LorandKedves",
+			"type": "mind.1$Author"
+		}
+	],
+	"meta": {
+		"count": 2,
+		"unitInfo": {
+			"relationships": {
+				"mind.1$author": {
+					"data": {
+						"id": "Lorand/author$LorandKedves",
+						"type": "mind.1$Author"
+					}
+				}
+			},
+			"id": "Lorand/author",
+			"type": "mind.1$Unit"
+		}
+	}
+}

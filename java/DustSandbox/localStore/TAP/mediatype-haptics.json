@@ -20,7 +20,7 @@
 				],
 				"misc.1$source": "iana.org/media-types$16e11684"
 			},
-			"id": "tap/mediatype-haptics$16e11684",
+			"id": "TAP/mediatype-haptics$16e11684",
 			"type": "mind.1$Tag"
 		},
 		{
@@ -40,7 +40,7 @@
 				],
 				"misc.1$source": "iana.org/media-types$841eb4b1"
 			},
-			"id": "tap/mediatype-haptics$841eb4b1",
+			"id": "TAP/mediatype-haptics$841eb4b1",
 			"type": "mind.1$Tag"
 		},
 		{
@@ -60,11 +60,23 @@
 				],
 				"misc.1$source": "iana.org/media-types$d120f5e7"
 			},
-			"id": "tap/mediatype-haptics$d120f5e7",
+			"id": "TAP/mediatype-haptics$d120f5e7",
 			"type": "mind.1$Tag"
 		}
 	],
 	"meta": {
-		"count": 3
+		"count": 3,
+		"unitInfo": {
+			"relationships": {
+				"mind.1$author": {
+					"data": {
+						"id": "TAP/author$TheAnythingPlatform",
+						"type": "mind.1$Author"
+					}
+				}
+			},
+			"id": "TAP/mediatype-haptics",
+			"type": "mind.1$Unit"
+		}
 	}
 }

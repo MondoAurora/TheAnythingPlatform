@@ -45,6 +45,12 @@ public class DustDevWebScraperAgent extends DustAgent implements DustDevConsts, 
 		if (author.startsWith("www.")) {
 			author = author.substring(author.indexOf(".") + 1);
 		}
+
+		DustHandle hAuthUnit = Dust.getUnit(author + "/author", true);
+
+		DustHandle hAuthor = Dust.getHandle(hAuthUnit, TOKEN_MIND_ASP_AUTHOR, author, DustOptCreate.Primary);
+		Dust.access(DustAccess.Set, hAuthor, hAuthUnit, TOKEN_MIND_ATT_AUTHOR);
+
 		String data = DustUtils.getPostfix(urlStr, "/");
 
 		File f = DustNetUtils.downloadCached(cr, urlStr, null, null, 5000);
@@ -52,6 +58,8 @@ public class DustDevWebScraperAgent extends DustAgent implements DustDevConsts, 
 		Document doc = DustUtilsHtmlJsoup.readHtml(f, DUST_CHARSET_UTF8);
 
 		DustHandle target = Dust.getUnit(author + "/" + data, true);
+
+		Dust.access(DustAccess.Set, hAuthor, target, TOKEN_MIND_ATT_AUTHOR);
 
 		switch (data) {
 		case "media-types":
@@ -215,16 +223,22 @@ public class DustDevWebScraperAgent extends DustAgent implements DustDevConsts, 
 
 			String group = groupTag.getId();
 			
-			group = RUNTIME_AUTHOR + "/mediatype-" + DustUtils.getPostfix(group, DUST_SEP_TOKEN);
+			DustHandle hAuthor = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_AUTHOR);
+			
+			String pa = Dust.access(DustAccess.Peek, null, hAuthor, TOKEN_MISC_ATT_KEY);
+
+			group = pa + "/mediatype-" + DustUtils.getPostfix(group, DUST_SEP_TOKEN);
 
 			DustHandle hu = Dust.getUnit(group, true);
+			Dust.access(DustAccess.Set, hAuthor, hu, TOKEN_MIND_ATT_AUTHOR);
+			
 			String ti = h.getId();
 			ti = DustUtils.getPostfix(ti, DUST_SEP_TOKEN);
-			
+
 			DustHandle ht = Dust.getHandle(hu, TOKEN_MIND_ASP_TAG, ti, DustOptCreate.Primary);
 			Dust.access(DustAccess.Set, id, ht, TOKEN_MISC_ATT_KEY);
 			Dust.access(DustAccess.Set, h.getId(), ht, TOKEN_MISC_ATT_SOURCE);
-			
+
 			DustHandle hParent = Dust.getHandle(null, null, TOKEN_STREAM_TAG_MEDIATYPE, DustOptCreate.None);
 			Dust.access(DustAccess.Set, hParent, ht, TOKEN_MISC_ATT_PARENT);
 

@@ -24,7 +24,7 @@
 				},
 				"mind.1$serializer": {
 					"data": {
-						"id": "sandbox.1$SerializeDefault",
+						"id": "Lorand/sandbox.1$SerializeDefault",
 						"type": "mind.1$Message"
 					}
 				}
@@ -62,11 +62,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeMap",
+							"id": "mind.1$ValtypeRaw",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeRaw",
+							"id": "mind.1$ColltypeMap",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -79,9 +79,6 @@
 			"type": "mind.1$Attribute"
 		},
 		{
-			"attributes": {
-				"misc.1$key": "dust"
-			},
 			"id": "dust.1$dust",
 			"type": "mind.1$Author"
 		},
@@ -111,11 +108,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeMap",
+							"id": "mind.1$ValtypeRaw",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeRaw",
+							"id": "mind.1$ColltypeMap",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -132,11 +129,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeMap",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeMap",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -153,15 +150,15 @@
 				"mind.1$tags": {
 					"data": [
 						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						},
+						{
 							"id": "mind.1$Transient",
 							"type": "mind.1$Tag"
 						},
 						{
 							"id": "mind.1$ColltypeMap",
-							"type": "mind.1$Tag"
-						},
-						{
-							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -178,15 +175,15 @@
 				"mind.1$tags": {
 					"data": [
 						{
+							"id": "mind.1$ValtypeHandle",
+							"type": "mind.1$Tag"
+						},
+						{
 							"id": "mind.1$Transient",
 							"type": "mind.1$Tag"
 						},
 						{
 							"id": "mind.1$ColltypeMap",
-							"type": "mind.1$Tag"
-						},
-						{
-							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -217,7 +214,7 @@
 			"relationships": {
 				"mind.1$author": {
 					"data": {
-						"id": "dust.1$dust",
+						"id": "mind.1$giskard",
 						"type": "mind.1$Author"
 					}
 				}

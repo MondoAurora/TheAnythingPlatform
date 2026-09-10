@@ -70,13 +70,13 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 
 	@Override
 	protected void init() throws Exception {
-		docPath = new File("localStore/health.montru.net");
+		docPath = new File("localStore/Tendua");
 		docUrl = docPath.toURI().toURL();
 
 		resPath = "res";
 		resRoot = new File(docPath, resPath);
 
-		hRes = Dust.getUnit("health.montru.net/streams.1", true);
+		hRes = Dust.getUnit("Tendua/streams.1", true);
 	}
 
 	public void load(String unitId, DustHandle hLayout, DustHandle hLang) {
@@ -142,6 +142,19 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 			Dust.access(DustAccess.Set, hr, mapStrings, hl, ht);
 		}
 
+		if (null != hLang) {
+			String langId = DustUtils.getPostfix(hLang.getId(), DUST_SEP_TOKEN);
+			i = stringUnit.lastIndexOf(".");
+			stringUnit.insert(i, "_" + langId);
+
+			hStrings = Dust.getUnit(stringUnit.toString(), true);
+
+			for (DustHandle hr : DustMachineUtils.getUnitMembers(hStrings)) {
+				DustHandle hl = Dust.access(DustAccess.Peek, null, hr, TOKEN_TEXT_ATT_LANG);
+				DustHandle ht = Dust.access(DustAccess.Peek, null, hr, TOKEN_MISC_ATT_TARGET);
+				Dust.access(DustAccess.Set, hr, mapStrings, hl, ht);
+			}
+		}
 	}
 
 	public void updateStyleDef(DustHandle hStyle) {

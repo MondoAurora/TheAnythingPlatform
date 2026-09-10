@@ -18,6 +18,6 @@
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="me.giskard.dust.core.Dust"/>
     <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="TAPJavaDustSandbox"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="Sandbox localStore/sandbox.1.json"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="Sandbox localStore/Lorand/sandbox.1.json"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="TAPJavaDustSandbox"/>
 </launchConfiguration>
