@@ -4,67 +4,67 @@
 	},
 	"data": [
 		{
-			"id": "layout.1$A4Landscape",
+			"id": "giskard.me/layout.1$A4Landscape",
 			"type": "mind.1$Tag"
 		},
 		{
-			"id": "layout.1$A4Portrait",
+			"id": "giskard.me/layout.1$A4Portrait",
 			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_LAYOUT_ASP_CELL"
 			},
-			"id": "layout.1$Cell",
+			"id": "giskard.me/layout.1$Cell",
 			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_LAYOUT_ASP_LAYOUT_CONFIG"
 			},
-			"id": "layout.1$LayoutConfig",
+			"id": "giskard.me/layout.1$LayoutConfig",
 			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_LAYOUT_TAG_LAYOUT_MODE"
 			},
-			"id": "layout.1$LayoutMode",
+			"id": "giskard.me/layout.1$LayoutMode",
 			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_LAYOUT_TAG_LAYOUT_MODE_DIRECT"
 			},
-			"id": "layout.1$LayoutModeDirect",
+			"id": "giskard.me/layout.1$LayoutModeDirect",
 			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_LAYOUT_TAG_LAYOUT_MODE_FLOW"
 			},
-			"id": "layout.1$LayoutModeFlow",
+			"id": "giskard.me/layout.1$LayoutModeFlow",
 			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_LAYOUT_TAG_LAYOUT_MODE_TABLE"
 			},
-			"id": "layout.1$LayoutModeTable",
+			"id": "giskard.me/layout.1$LayoutModeTable",
 			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_LAYOUT_ASP_RESPONSIVE"
 			},
-			"id": "layout.1$Responsive",
+			"id": "giskard.me/layout.1$Responsive",
 			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_LAYOUT_ASP_TABLE"
 			},
-			"id": "layout.1$Table",
+			"id": "giskard.me/layout.1$Table",
 			"type": "mind.1$Aspect"
 		},
 		{
@@ -72,11 +72,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeArr",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ColltypeArr",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -85,7 +85,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_LAYOUT_ATT_AXIS_DISTRIBUTION"
 			},
-			"id": "layout.1$axisDistribution",
+			"id": "giskard.me/layout.1$axisDistribution",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -93,11 +93,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -106,7 +106,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_LAYOUT_ATT_LAYOUT"
 			},
-			"id": "layout.1$layout",
+			"id": "giskard.me/layout.1$layout",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -127,7 +127,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_LAYOUT_ATT_LAYOUT_OTPIONS"
 			},
-			"id": "layout.1$layoutOptions",
+			"id": "giskard.me/layout.1$layoutOptions",
 			"type": "mind.1$Attribute"
 		}
 	],
@@ -137,12 +137,12 @@
 			"relationships": {
 				"mind.1$author": {
 					"data": {
-						"id": "mind.1$giskard",
+						"id": "giskard.me/author$Giskard",
 						"type": "mind.1$Author"
 					}
 				}
 			},
-			"id": "layout.1",
+			"id": "giskard.me/layout.1",
 			"type": "mind.1$Unit"
 		}
 	}

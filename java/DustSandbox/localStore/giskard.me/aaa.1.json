@@ -7,35 +7,35 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_AAA_ATT_ACCESS"
 			},
-			"id": "aaa.1$access",
+			"id": "giskard.me/aaa.1$access",
 			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_AAA_ATT_AUTH"
 			},
-			"id": "aaa.1$auth",
+			"id": "giskard.me/aaa.1$auth",
 			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_AAA_ATT_PASSWORD"
 			},
-			"id": "aaa.1$password",
+			"id": "giskard.me/aaa.1$password",
 			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_AAA_ATT_READABLETO"
 			},
-			"id": "aaa.1$readableTo",
+			"id": "giskard.me/aaa.1$readableTo",
 			"type": "mind.1$Attribute"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_AAA_ATT_USERID"
 			},
-			"id": "aaa.1$userId",
+			"id": "giskard.me/aaa.1$userId",
 			"type": "mind.1$Attribute"
 		}
 	],
@@ -45,7 +45,7 @@
 			"relationships": {
 				"mind.1$author": {
 					"data": {
-						"id": "mind.1$giskard",
+						"id": "giskard.me/author$Giskard",
 						"type": "mind.1$Author"
 					}
 				}

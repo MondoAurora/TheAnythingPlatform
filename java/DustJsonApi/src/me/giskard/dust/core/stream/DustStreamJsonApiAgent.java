@@ -12,9 +12,9 @@ import java.util.Set;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
+import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.machine.DustMachineConsts;
 import me.giskard.dust.core.machine.DustMachineUtils;
-import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsConstsJson;
 import me.giskard.dust.mod.utils.DustUtilsJson;

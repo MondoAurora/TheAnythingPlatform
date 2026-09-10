@@ -7,51 +7,51 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_TAG_CHARSET"
 			},
-			"id": "stream.1$Charset",
+			"id": "giskard.me/stream.1$Charset",
 			"type": "mind.1$Tag"
 		},
 		{
-			"id": "stream.1$FileStreamSource",
+			"id": "giskard.me/stream.1$FileStreamSource",
 			"type": "mind.1$Narrative"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_TAG_IMAGE"
 			},
-			"id": "stream.1$Image",
+			"id": "giskard.me/stream.1$Image",
 			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_TAG_MEDIATYPE"
 			},
-			"id": "stream.1$MediaType",
+			"id": "giskard.me/stream.1$MediaType",
 			"type": "mind.1$Tag"
 		},
 		{
-			"id": "stream.1$SerializeJsonApi",
+			"id": "giskard.me/stream.1$SerializeJsonApi",
 			"type": "mind.1$Narrative"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ASP_STREAM"
 			},
-			"id": "stream.1$Stream",
+			"id": "giskard.me/stream.1$Stream",
 			"type": "mind.1$Aspect"
 		},
 		{
-			"id": "stream.1$StreamAgent",
+			"id": "giskard.me/stream.1$StreamAgent",
 			"type": "mind.1$Narrative"
 		},
 		{
-			"id": "stream.1$StreamRef",
+			"id": "giskard.me/stream.1$StreamRef",
 			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ASP_URLREF"
 			},
-			"id": "stream.1$UrlRef",
+			"id": "giskard.me/stream.1$UrlRef",
 			"type": "mind.1$Aspect"
 		},
 		{
@@ -59,11 +59,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeString",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -72,7 +72,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ATT_BACKUPFOLDER"
 			},
-			"id": "stream.1$backupFolder",
+			"id": "giskard.me/stream.1$backupFolder",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -80,11 +80,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeString",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -93,7 +93,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ATT_COLSEP"
 			},
-			"id": "stream.1$colSep",
+			"id": "giskard.me/stream.1$colSep",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -101,11 +101,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeString",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -114,7 +114,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ATT_ENCODING"
 			},
-			"id": "stream.1$encoding",
+			"id": "giskard.me/stream.1$encoding",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -122,11 +122,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeString",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -135,7 +135,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ATT_SAPFIRSTCOL"
 			},
-			"id": "stream.1$firstCol",
+			"id": "giskard.me/stream.1$firstCol",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -143,11 +143,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeRaw",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeRaw",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -156,7 +156,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ATT_INPUT"
 			},
-			"id": "stream.1$inputStream",
+			"id": "giskard.me/stream.1$inputStream",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -164,11 +164,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeString",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -177,7 +177,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ATT_MIMETYPE"
 			},
-			"id": "stream.1$mimeType",
+			"id": "giskard.me/stream.1$mimeType",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -185,11 +185,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeRaw",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeRaw",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -198,7 +198,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ATT_OUTPUT"
 			},
-			"id": "stream.1$outputStream",
+			"id": "giskard.me/stream.1$outputStream",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -206,11 +206,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeRaw",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeRaw",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -219,7 +219,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ATT_READER"
 			},
-			"id": "stream.1$reader",
+			"id": "giskard.me/stream.1$reader",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -227,11 +227,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeString",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -240,7 +240,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ATT_ROOTFOLDER"
 			},
-			"id": "stream.1$rootFolder",
+			"id": "giskard.me/stream.1$rootFolder",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -248,11 +248,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeString",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -261,7 +261,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ATT_ROWSEP"
 			},
-			"id": "stream.1$rowSep",
+			"id": "giskard.me/stream.1$rowSep",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -269,11 +269,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -282,7 +282,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ATT_STREAM_API"
 			},
-			"id": "stream.1$streamAPI",
+			"id": "giskard.me/stream.1$streamAPI",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -303,7 +303,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ATT_RESOLVER_UNIT_NAMES"
 			},
-			"id": "stream.1$streamResolverUnitNames",
+			"id": "giskard.me/stream.1$streamResolverUnitNames",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -311,11 +311,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -324,7 +324,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ATT_SOURCE"
 			},
-			"id": "stream.1$streamSource",
+			"id": "giskard.me/stream.1$streamSource",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -332,11 +332,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeString",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -345,7 +345,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ATT_URL"
 			},
-			"id": "stream.1$url",
+			"id": "giskard.me/stream.1$url",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -366,7 +366,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ATT_URLREFS"
 			},
-			"id": "stream.1$urlRefs",
+			"id": "giskard.me/stream.1$urlRefs",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -374,11 +374,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeRaw",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeRaw",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -387,7 +387,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_STREAM_ATT_WRITER"
 			},
-			"id": "stream.1$writer",
+			"id": "giskard.me/stream.1$writer",
 			"type": "mind.1$Attribute"
 		}
 	],
@@ -397,12 +397,12 @@
 			"relationships": {
 				"mind.1$author": {
 					"data": {
-						"id": "mind.1$giskard",
+						"id": "giskard.me/author$Giskard",
 						"type": "mind.1$Author"
 					}
 				}
 			},
-			"id": "stream.1",
+			"id": "giskard.me/stream.1",
 			"type": "mind.1$Unit"
 		}
 	}

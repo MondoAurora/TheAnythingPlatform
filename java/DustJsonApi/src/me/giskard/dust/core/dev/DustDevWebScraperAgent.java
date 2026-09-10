@@ -21,7 +21,7 @@ import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
 import me.giskard.dust.core.utils.DustUtilsFile;
 import me.giskard.dust.mod.utils.DustUtilsHtmlJsoup;
-import me.giskard.tokens.DustGenTokens_stream_1;
+import me.giskard.tokens.giskard_me.DustGenTokens_stream_1;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustDevWebScraperAgent extends DustAgent implements DustDevConsts, DustGenTokens_stream_1 {

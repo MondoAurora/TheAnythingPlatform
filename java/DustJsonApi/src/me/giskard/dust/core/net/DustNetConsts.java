@@ -2,8 +2,8 @@ package me.giskard.dust.core.net;
 
 import me.giskard.dust.core.DustConsts;
 import me.giskard.dust.core.machine.DustMachineConsts;
-import me.giskard.tokens.DustGenTokens_net_1;
-import me.giskard.tokens.DustGenTokens_stream_1;
+import me.giskard.tokens.giskard_me.DustGenTokens_net_1;
+import me.giskard.tokens.giskard_me.DustGenTokens_stream_1;
 
 public interface DustNetConsts extends DustConsts, DustMachineConsts, DustGenTokens_net_1, DustGenTokens_stream_1 {
 	

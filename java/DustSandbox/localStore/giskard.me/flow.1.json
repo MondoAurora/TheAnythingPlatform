@@ -15,7 +15,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_FLOW_TAG_CMD_PAUSE"
 			},
-			"id": "flow.1$CmdFlowPause",
+			"id": "giskard.me/flow.1$CmdFlowPause",
 			"type": "mind.1$Tag"
 		},
 		{
@@ -30,11 +30,11 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_FLOW_TAG_CMD_PLAY"
 			},
-			"id": "flow.1$CmdFlowPlay",
+			"id": "giskard.me/flow.1$CmdFlowPlay",
 			"type": "mind.1$Tag"
 		},
 		{
-			"id": "flow.1$FlowPlayer",
+			"id": "giskard.me/flow.1$FlowPlayer",
 			"type": "mind.1$Narrative"
 		}
 	],
@@ -44,7 +44,7 @@
 			"relationships": {
 				"mind.1$author": {
 					"data": {
-						"id": "mind.1$giskard",
+						"id": "giskard.me/author$Giskard",
 						"type": "mind.1$Author"
 					}
 				}

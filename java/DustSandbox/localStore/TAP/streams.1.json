@@ -16,7 +16,7 @@
 				"misc.1$appears": {
 					"data": [
 						{
-							"id": "flow.1$CmdFlowPlay",
+							"id": "giskard.me/flow.1$CmdFlowPlay",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -26,7 +26,7 @@
 				"misc.1$path": "media/play_w.png"
 			},
 			"id": "TAP/streams.1$01e82b35",
-			"type": "stream.1$Stream"
+			"type": "giskard.me/stream.1$Stream"
 		},
 		{
 			"relationships": {
@@ -51,7 +51,7 @@
 				"misc.1$path": "media/skip_back_w.png"
 			},
 			"id": "TAP/streams.1$5bd1b3b9",
-			"type": "stream.1$Stream"
+			"type": "giskard.me/stream.1$Stream"
 		},
 		{
 			"relationships": {
@@ -76,7 +76,7 @@
 				"misc.1$path": "media/skip_forward_w.png"
 			},
 			"id": "TAP/streams.1$81de40de",
-			"type": "stream.1$Stream"
+			"type": "giskard.me/stream.1$Stream"
 		},
 		{
 			"relationships": {
@@ -91,7 +91,7 @@
 				"misc.1$appears": {
 					"data": [
 						{
-							"id": "flow.1$CmdFlowPause",
+							"id": "giskard.me/flow.1$CmdFlowPause",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -101,7 +101,7 @@
 				"misc.1$path": "media/pause_w.png"
 			},
 			"id": "TAP/streams.1$a0e5284d",
-			"type": "stream.1$Stream"
+			"type": "giskard.me/stream.1$Stream"
 		},
 		{
 			"relationships": {
@@ -126,7 +126,7 @@
 				"misc.1$path": "media/stop_w.png"
 			},
 			"id": "TAP/streams.1$e368953c",
-			"type": "stream.1$Stream"
+			"type": "giskard.me/stream.1$Stream"
 		}
 	],
 	"meta": {

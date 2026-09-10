@@ -11,9 +11,9 @@ import com.jcraft.jsch.SftpException;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
-import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.DustMachine;
+import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.stream.DustStreamConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFile;

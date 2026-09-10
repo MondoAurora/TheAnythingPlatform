@@ -23,7 +23,7 @@ import javax.swing.SwingUtilities;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.tokens.DustGenTokens_dev_1;
-import me.giskard.tokens.DustGenTokens_stream_1;
+import me.giskard.tokens.giskard_me.DustGenTokens_stream_1;
 
 @SuppressWarnings({ "unchecked" })
 //@SuppressWarnings({ "unchecked", "rawtypes" })

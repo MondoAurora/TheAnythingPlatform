@@ -5,7 +5,7 @@ import java.io.OutputStream;
 import java.util.Map;
 
 import me.giskard.dust.core.DustConsts;
-import me.giskard.tokens.DustGenTokens_stream_1;
+import me.giskard.tokens.giskard_me.DustGenTokens_stream_1;
 
 public interface DustStreamConsts extends DustConsts, DustGenTokens_stream_1 {
 	

@@ -96,13 +96,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 	DustHandle hSrcGen;
 	Collection<String> tokenClasses;
 
-	DustHandle hDocUnit = Dust.getUnit("graphTest1", true);
-
-//	enum AspType {
-//		Aspects, Atts, Links
-//	}
-
-//	DustUtilsFactory<AspType, Set<String>> allMeta = new DustUtilsFactory.Simple(true, TreeSet.class);
+	DustHandle hDocUnit = Dust.getUnit("Lorand/graphTest1", true);
 
 	ArrayList<DustHandle> unitArr = new ArrayList<>();
 	ArrayList<DustHandle> gridArr = new ArrayList<>();
@@ -480,7 +474,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				break;
 
 			case "Load Unit":
-				String unitId = JOptionPane.showInputDialog(frm, "Unit ID?", "MontruHealth/MHCli.1");
+				String unitId = JOptionPane.showInputDialog(frm, "Unit ID?", "giskard.me/lang.1");
 
 				if (!DustUtils.isEmpty(unitId)) {
 					DustHandle hLoad = Dust.getUnit(unitId, true);

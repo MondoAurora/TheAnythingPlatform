@@ -1,0 +1,29 @@
+{
+	"jsonapi": {
+		"version": "1.1"
+	},
+	"data": [
+		{
+			"attributes": {
+				"misc.1$key": "giskard.me"
+			},
+			"id": "giskard.me/author$Giskard",
+			"type": "mind.1$Author"
+		}
+	],
+	"meta": {
+		"count": 1,
+		"unitInfo": {
+			"relationships": {
+				"mind.1$author": {
+					"data": {
+						"id": "giskard.me/author$Giskard",
+						"type": "mind.1$Author"
+					}
+				}
+			},
+			"id": "giskard.me/author",
+			"type": "mind.1$Unit"
+		}
+	}
+}

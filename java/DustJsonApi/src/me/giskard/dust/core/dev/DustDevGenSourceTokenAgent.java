@@ -67,9 +67,12 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 
 		for (Map.Entry<String, Object> ue : tokens.entrySet()) {
 			PrintStream ps = null;
-
+			
 			String unit = ue.getKey().replace('.', '_');
-			String cName = "DustGenTokens_" + unit;
+			int s = unit.indexOf("/");
+			
+			String author = unit.substring(0, s);
+			String cName = "DustGenTokens_" + unit.substring(s+1);
 
 			for (String t : types) {
 				Map<String, DustHandle> tm = Dust.access(DustAccess.Peek, null, ue.getValue(), t);
@@ -85,11 +88,14 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 							first = false;
 
 							if (null == ps) {
-								File f = new File(root, cName + ".java");
+								File f = new File(root, author + "/" + cName + ".java");
+								DustUtilsFile.ensureDir(f.getParentFile());
 								ps = new PrintStream(f);
 
 								ps.print("package ");
 								ps.print(targetPackage);
+								ps.print(".");
+								ps.print(author);
 								ps.print(";");
 								ps.println();
 								ps.println();

@@ -7,67 +7,67 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_TEXT_ASP_BLOCK"
 			},
-			"id": "text.1$Block",
+			"id": "giskard.me/text.1$Block",
 			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_TEXT_ASP_DOC"
 			},
-			"id": "text.1$Document",
+			"id": "giskard.me/text.1$Document",
 			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_TEXT_TAG_GROUP"
 			},
-			"id": "text.1$Group",
+			"id": "giskard.me/text.1$Group",
 			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_TEXT_TAG_GROUP_BULLET"
 			},
-			"id": "text.1$GroupBullet",
+			"id": "giskard.me/text.1$GroupBullet",
 			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_TEXT_TAG_GROUP_INLINE"
 			},
-			"id": "text.1$GroupInline",
+			"id": "giskard.me/text.1$GroupInline",
 			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_TEXT_TAG_GROUP_NUMBER"
 			},
-			"id": "text.1$GroupNumber",
+			"id": "giskard.me/text.1$GroupNumber",
 			"type": "mind.1$Tag"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_TEXT_ASP_STRING"
 			},
-			"id": "text.1$String",
+			"id": "giskard.me/text.1$String",
 			"type": "mind.1$Aspect"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_TEXT_ASP_STYLE"
 			},
-			"id": "text.1$Style",
+			"id": "giskard.me/text.1$Style",
 			"type": "mind.1$Aspect"
 		},
 		{
-			"id": "text.1$TextAgent",
+			"id": "giskard.me/text.1$TextAgent",
 			"type": "mind.1$Narrative"
 		},
 		{
 			"attributes": {
 				"misc.1$name": "TOKEN_TEXT_ASP_TRANSCLUSION"
 			},
-			"id": "text.1$Transclusion",
+			"id": "giskard.me/text.1$Transclusion",
 			"type": "mind.1$Aspect"
 		},
 		{
@@ -75,11 +75,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -88,7 +88,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_TEXT_ATT_GROUP"
 			},
-			"id": "text.1$group",
+			"id": "giskard.me/text.1$group",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -96,11 +96,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeHandle",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeHandle",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -109,7 +109,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_TEXT_ATT_LANG"
 			},
-			"id": "text.1$lang",
+			"id": "giskard.me/text.1$lang",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -130,7 +130,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_TEXT_ATT_ORPHANS"
 			},
-			"id": "text.1$orphans",
+			"id": "giskard.me/text.1$orphans",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -138,11 +138,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeRaw",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeRaw",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -151,7 +151,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_TEXT_ATT_STYLE_DEF"
 			},
-			"id": "text.1$styleDef",
+			"id": "giskard.me/text.1$styleDef",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -172,7 +172,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_TEXT_ATT_STYLES"
 			},
-			"id": "text.1$styles",
+			"id": "giskard.me/text.1$styles",
 			"type": "mind.1$Attribute"
 		},
 		{
@@ -180,11 +180,11 @@
 				"mind.1$tags": {
 					"data": [
 						{
-							"id": "mind.1$ColltypeOne",
+							"id": "mind.1$ValtypeString",
 							"type": "mind.1$Tag"
 						},
 						{
-							"id": "mind.1$ValtypeString",
+							"id": "mind.1$ColltypeOne",
 							"type": "mind.1$Tag"
 						}
 					]
@@ -193,7 +193,7 @@
 			"attributes": {
 				"misc.1$name": "TOKEN_TEXT_ATT_TEXT"
 			},
-			"id": "text.1$text",
+			"id": "giskard.me/text.1$text",
 			"type": "mind.1$Attribute"
 		}
 	],
@@ -203,12 +203,12 @@
 			"relationships": {
 				"mind.1$author": {
 					"data": {
-						"id": "mind.1$giskard",
+						"id": "giskard.me/author$Giskard",
 						"type": "mind.1$Author"
 					}
 				}
 			},
-			"id": "text.1",
+			"id": "giskard.me/text.1",
 			"type": "mind.1$Unit"
 		}
 	}
