@@ -4,60 +4,60 @@
 	},
 	"data": [
 		{
-			"type": "dust.1$Application",
+			"type": "giskard.me/dust.1$Application",
 			"id": "Sandbox",
 			"attributes": {
-				"dust.1$binaryResolver": {
-					"dust.1$Machine": {
-						"dust.1$binary": "me.giskard.dust.core.machine.DustMachineAgent"
+				"giskard.me/dust.1$binaryResolver": {
+					"giskard.me/dust.1$Machine": {
+						"giskard.me/dust.1$binary": "me.giskard.dust.core.machine.DustMachineAgent"
 					},
-					"mind.1$ForAll": {
-						"dust.1$binary": "me.giskard.dust.core.machine.DustMachineNarrative$ForAll"
+					"giskard.me/mind.1$ForAll": {
+						"giskard.me/dust.1$binary": "me.giskard.dust.core.machine.DustMachineNarrative$ForAll"
 					},
-					"mind.1$Filter": {
-						"dust.1$binary": "me.giskard.dust.core.machine.DustMachineNarrative$Filter"
+					"giskard.me/mind.1$Filter": {
+						"giskard.me/dust.1$binary": "me.giskard.dust.core.machine.DustMachineNarrative$Filter"
 					},
 					"giskard.me/stream.1$SerializeJsonApi": {
-						"dust.1$binary": "me.giskard.dust.core.stream.DustStreamJsonApiSerializerAgent"
+						"giskard.me/dust.1$binary": "me.giskard.dust.core.stream.DustStreamJsonApiSerializerAgent"
 					},
 					"giskard.me/stream.1$FileStreamSource": {
-						"dust.1$binary": "me.giskard.dust.core.stream.DustStreamSrcFileAgent"
+						"giskard.me/dust.1$binary": "me.giskard.dust.core.stream.DustStreamSrcFileAgent"
 					},
 					"giskard.me/stream.1$StreamAgent": {
-						"dust.1$binary": "me.giskard.dust.core.stream.DustStreamAgent"
+						"giskard.me/dust.1$binary": "me.giskard.dust.core.stream.DustStreamAgent"
 					},
-					"dev.1$GraphEditor": {
-						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserPanel"
+					"giskard.me/dev.1$GraphEditor": {
+						"giskard.me/dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserPanel"
 					},
-					"dev.1$GenSourceTokenJava": {
-						"dust.1$binary": "me.giskard.dust.core.dev.DustDevGenSourceTokenAgent"
+					"giskard.me/dev.1$GenSourceTokenJava": {
+						"giskard.me/dust.1$binary": "me.giskard.dust.core.dev.DustDevGenSourceTokenAgent"
 					},
-					"dev.1$WebScraper": {
-						"dust.1$binary": "me.giskard.dust.core.dev.DustDevWebScraperAgent"
+					"giskard.me/dev.1$WebScraper": {
+						"giskard.me/dust.1$binary": "me.giskard.dust.core.dev.DustDevWebScraperAgent"
 					},
 					"giskard.me/text.1$TextAgent": {
-						"dust.1$binary": "me.giskard.dust.sandbox.text.DustSandboxTextEditor"
+						"giskard.me/dust.1$binary": "me.giskard.dust.sandbox.text.DustSandboxTextEditor"
 					},
 					"giskard.me/flow.1$FlowPlayer": {
-						"dust.1$binary": "me.giskard.dust.core.flow.DustFlowPlayerAgent"
+						"giskard.me/dust.1$binary": "me.giskard.dust.core.flow.DustFlowPlayerAgent"
 					},
 					"TAP/guiJavaSwing.1$Renderer": {
-						"dust.1$binary": "me.giskard.dust.mod.gui.swing.DustGuiSwingRendererAgent"
+						"giskard.me/dust.1$binary": "me.giskard.dust.mod.gui.swing.DustGuiSwingRendererAgent"
 					},
 					"TAP/guiJavaSwing.1$VideoPlayer": {
-						"dust.1$binary": "me.giskard.dust.mod.gui.swing.DustGuiSwingVideoPlayerAgent"
+						"giskard.me/dust.1$binary": "me.giskard.dust.mod.gui.swing.DustGuiSwingVideoPlayerAgent"
 					},
 
 
 
 					"Lorand/sandbox.1$Browser": {
-						"dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserFrameAgent"
+						"giskard.me/dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserFrameAgent"
 					},
 					"Lorand/sandbox.1$AppFrame": {
-						"dust.1$binary": "me.giskard.dust.sandbox.DustSandboxAppFrameAgent"
+						"giskard.me/dust.1$binary": "me.giskard.dust.sandbox.DustSandboxAppFrameAgent"
 					},
 					"Lorand/sandbox.1$SandboxTest": {
-						"dust.1$binary": "me.giskard.dust.sandbox.DustSandboxTestAgent"
+						"giskard.me/dust.1$binary": "me.giskard.dust.sandbox.DustSandboxTestAgent"
 					}
 				}
 			}
@@ -66,15 +66,15 @@
 	"meta": {
 		"unitInfo": {
 			"relationships": {
-				"mind.1$author": {
+				"giskard.me/mind.1$author": {
 					"data": {
 						"id": "Lorand/author$LorandKedves",
-						"type": "mind.1$Author"
+						"type": "giskard.me/mind.1$Author"
 					}
 				}
 			},
 			"id": "Lorand/sandbox.1.java",
-			"type": "mind.1$Unit"
+			"type": "giskard.me/mind.1$Unit"
 		}
 	}
 }

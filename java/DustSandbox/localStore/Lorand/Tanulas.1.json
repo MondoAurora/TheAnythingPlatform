@@ -33,7 +33,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -121,7 +121,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -242,7 +242,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -294,7 +294,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -429,7 +429,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -479,7 +479,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -549,7 +549,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -621,7 +621,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -645,7 +645,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -750,7 +750,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -842,7 +842,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -903,7 +903,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -959,7 +959,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -1051,7 +1051,7 @@
 				"giskard.me/text.1$group": {
 					"data": {
 						"id": "giskard.me/text.1$GroupBullet",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
@@ -1088,7 +1088,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -1134,7 +1134,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -1270,7 +1270,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -1332,7 +1332,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -1390,7 +1390,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -1483,7 +1483,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -1507,7 +1507,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -1611,7 +1611,7 @@
 				"giskard.me/text.1$group": {
 					"data": {
 						"id": "giskard.me/text.1$GroupBullet",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
@@ -1620,7 +1620,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -1725,7 +1725,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -1781,7 +1781,7 @@
 				"giskard.me/text.1$group": {
 					"data": {
 						"id": "giskard.me/text.1$GroupBullet",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
@@ -1830,7 +1830,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -1976,7 +1976,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -2056,7 +2056,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -2102,7 +2102,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -2163,7 +2163,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -2218,7 +2218,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -2285,7 +2285,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -2328,7 +2328,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -2353,7 +2353,7 @@
 		},
 		{
 			"relationships": {
-				"misc.1$members": {
+				"giskard.me/misc.1$members": {
 					"data": [
 						{
 							"meta": {
@@ -2410,15 +2410,15 @@
 		"count": 317		,
 				"unitInfo": {
 					"relationships": {
-						"mind.1$author": {
+						"giskard.me/mind.1$author": {
 							"data": {
 								"id": "Lorand/author$LorandKedves",
-								"type": "mind.1$Author"
+								"type": "giskard.me/mind.1$Author"
 							}
 						}
 					},
 					"id": "Lorand/Tanulas.1",
-					"type": "mind.1$Unit"
+					"type": "giskard.me/mind.1$Unit"
 				}
 	}
 }

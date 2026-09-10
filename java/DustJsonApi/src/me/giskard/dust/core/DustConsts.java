@@ -1,17 +1,17 @@
 package me.giskard.dust.core;
 
 import me.giskard.dust.core.utils.DustUtils;
-import me.giskard.tokens.DustGenTokens_dust_1;
-import me.giskard.tokens.DustGenTokens_mind_1;
-import me.giskard.tokens.DustGenTokens_misc_1;
 import me.giskard.tokens.giskard_me.DustGenTokens_aaa_1;
+import me.giskard.tokens.giskard_me.DustGenTokens_dust_1;
+import me.giskard.tokens.giskard_me.DustGenTokens_mind_1;
+import me.giskard.tokens.giskard_me.DustGenTokens_misc_1;
 
 public interface DustConsts extends DustGenTokens_dust_1, DustGenTokens_misc_1, DustGenTokens_mind_1, DustGenTokens_aaa_1 {
 
 	String DUST_CRED_FILE = "credentials.json";
 
-	String UNIT_DUST = "dust.1";
-	String UNIT_MIND = "mind.1";
+	String UNIT_DUST = "giskard.me/dust.1";
+	String UNIT_MIND = "giskard.me/mind.1";
 
 	String DUST_CHARSET_UTF8 = "UTF-8";
 	String DUST_FMT_TIMESTAMP = "yyyyMMdd'T'HHmmss'Z'";

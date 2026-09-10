@@ -4,16 +4,16 @@
 	},
 	"data": [
 		{
-			"type": "dust.1$Application",
+			"type": "giskard.me/dust.1$Application",
 			"id": "Lorand/sandbox.1$Sandbox",
 			"attributes": {
-				"misc.1$name": "DustSandbox"
+				"giskard.me/misc.1$name": "DustSandbox"
 			},
 			"relationships": {
-				"misc.1$init": {
+				"giskard.me/misc.1$init": {
 					"data": [
 						{
-							"type": "mind.1$Agent",
+							"type": "giskard.me/mind.1$Agent",
 							"id": "Lorand/sandbox.1$GraphEditor",
 							"idxxx": "Lorand/sandbox.1$SandboxTextAgent",
 							"meta": {
@@ -25,17 +25,17 @@
 			}
 		},
 		{
-			"type": "mind.1$Agent",
+			"type": "giskard.me/mind.1$Agent",
 			"id": "Lorand/sandbox.1$GraphEditor",
 			"attributes": {
-				"misc.1$name": "DustSandbox Graph Editor",
-				"misc.1$target": "Lorand/sandbox.1$MiNDAPI",
+				"giskard.me/misc.1$name": "DustSandbox Graph Editor",
+				"giskard.me/misc.1$target": "Lorand/sandbox.1$MiNDAPI",
 				"giskard.me/gui.1$lookAndFeel": [
 					"com.formdev.flatlaf.FlatLightLaf",
 					"com.apple.laf.AquaLookAndFeel",
 					"javax.swing.plaf.nimbus.NimbusLookAndFeel"
 				],
-				"dev.1$classes": [
+				"giskard.me/dev.1$classes": [
 					"me.giskard.dust.core.DustConsts",
 					"me.giskard.dust.core.dev.DustDevConsts",
 					"me.giskard.dust.core.gui.DustGuiConsts",
@@ -47,37 +47,37 @@
 				]
 			},
 			"relationships": {
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
-						"type": "mind.1$Message",
+						"type": "giskard.me/mind.1$Message",
 						"id": "Lorand/sandbox.1$MiNDAPI"
 					}
 				},
-				"dev.1$genSrc": {
+				"giskard.me/dev.1$genSrc": {
 					"data": {
-						"type": "mind.1$Message",
+						"type": "giskard.me/mind.1$Message",
 						"id": "Lorand/sandbox.1$SrcGenEntry"
 					}
 				},
-				"mind.1$narrative": {
+				"giskard.me/mind.1$narrative": {
 					"data": {
-						"type": "mind.1$Narrative",
-						"id": "dev.1$GraphEditor"
+						"type": "giskard.me/mind.1$Narrative",
+						"id": "giskard.me/dev.1$GraphEditor"
 					}
 				}
 			}
 		},
 		{
-			"type": "mind.1$Message",
+			"type": "giskard.me/mind.1$Message",
 			"id": "Lorand/sandbox.1$SrcGenEntry",
 			"attributes": {
-				"mind.1$transactionHead": true
+				"giskard.me/mind.1$transactionHead": true
 			},
 			"relationships": {
-				"mind.1$listeners": {
+				"giskard.me/mind.1$listeners": {
 					"data": [
 						{
-							"type": "mind.1$Agent",
+							"type": "giskard.me/mind.1$Agent",
 							"id": "Lorand/sandbox.1$ForAll",
 							"meta": {
 								"key": -1
@@ -88,43 +88,43 @@
 			}
 		},
 		{
-			"type": "mind.1$Agent",
+			"type": "giskard.me/mind.1$Agent",
 			"id": "Lorand/sandbox.1$ForAll",
 			"relationships": {
-				"mind.1$next": {
+				"giskard.me/mind.1$next": {
 					"data": {
-						"type": "mind.1$Message",
+						"type": "giskard.me/mind.1$Message",
 						"id": "Lorand/sandbox.1$SrcGenFilter"
 					}
 				},
-				"mind.1$narrative": {
+				"giskard.me/mind.1$narrative": {
 					"data": {
-						"type": "mind.1$Narrative",
-						"id": "mind.1$ForAll"
+						"type": "giskard.me/mind.1$Narrative",
+						"id": "giskard.me/mind.1$ForAll"
 					}
 				}
 			}
 		},
 		{
-			"type": "mind.1$Message",
+			"type": "giskard.me/mind.1$Message",
 			"id": "Lorand/sandbox.1$SrcGenFilter",
 			"attributes": {
-				"misc.1$filter": {
-					"misc.1$name": true,
-					"mind.1$type": [
-						"mind.1$Unit",
-						"mind.1$Aspect",
-						"mind.1$Attribute",
-						"mind.1$Tag",
-						"mind.1$Agent"
+				"giskard.me/misc.1$filter": {
+					"giskard.me/misc.1$name": true,
+					"giskard.me/mind.1$type": [
+						"giskard.me/mind.1$Unit",
+						"giskard.me/mind.1$Aspect",
+						"giskard.me/mind.1$Attribute",
+						"giskard.me/mind.1$Tag",
+						"giskard.me/mind.1$Agent"
 					]
 				}
 			},
 			"relationships": {
-				"mind.1$listeners": {
+				"giskard.me/mind.1$listeners": {
 					"data": [
 						{
-							"type": "mind.1$Agent",
+							"type": "giskard.me/mind.1$Agent",
 							"id": "Lorand/sandbox.1$Filter",
 							"meta": {
 								"key": -1
@@ -135,34 +135,34 @@
 			}
 		},
 		{
-			"type": "mind.1$Agent",
+			"type": "giskard.me/mind.1$Agent",
 			"id": "Lorand/sandbox.1$Filter",
 			"relationships": {
-				"mind.1$next": {
+				"giskard.me/mind.1$next": {
 					"data": {
-						"type": "mind.1$Message",
+						"type": "giskard.me/mind.1$Message",
 						"id": "Lorand/sandbox.1$GenSourceTokenSvc"
 					}
 				},
-				"mind.1$narrative": {
+				"giskard.me/mind.1$narrative": {
 					"data": {
-						"type": "mind.1$Narrative",
-						"id": "mind.1$Filter"
+						"type": "giskard.me/mind.1$Narrative",
+						"id": "giskard.me/mind.1$Filter"
 					}
 				}
 			}
 		},
 		{
-			"type": "mind.1$Message",
+			"type": "giskard.me/mind.1$Message",
 			"id": "Lorand/sandbox.1$GenSourceTokenSvc",
 			"attributes": {
-				"mind.1$transactionItem": true
+				"giskard.me/mind.1$transactionItem": true
 			},
 			"relationships": {
-				"mind.1$listeners": {
+				"giskard.me/mind.1$listeners": {
 					"data": [
 						{
-							"type": "mind.1$Agent",
+							"type": "giskard.me/mind.1$Agent",
 							"id": "Lorand/sandbox.1$GenSourceToken",
 							"meta": {
 								"key": -1
@@ -173,43 +173,43 @@
 			}
 		},
 		{
-			"type": "mind.1$Agent",
+			"type": "giskard.me/mind.1$Agent",
 			"id": "Lorand/sandbox.1$GenSourceToken",
 			"attributes": {
-				"dev.1$package": "me.giskard.tokens",
-				"misc.1$path": "../DustJsonApi/gen",
-				"misc.1$members": [
-					"mind.1$Unit",
-					"mind.1$Aspect",
-					"mind.1$Attribute",
-					"mind.1$Tag",
-					"mind.1$Agent"
+				"giskard.me/dev.1$package": "me.giskard.tokens",
+				"giskard.me/misc.1$path": "../DustJsonApi/gen",
+				"giskard.me/misc.1$members": [
+					"giskard.me/mind.1$Unit",
+					"giskard.me/mind.1$Aspect",
+					"giskard.me/mind.1$Attribute",
+					"giskard.me/mind.1$Tag",
+					"giskard.me/mind.1$Agent"
 				]
 			},
 			"relationships": {
-				"mind.1$serializer": {
+				"giskard.me/mind.1$serializer": {
 					"data": {
-						"type": "mind.1$Message",
+						"type": "giskard.me/mind.1$Message",
 						"id": "Lorand/sandbox.1$GenSourceRoot"
 					}
 				},
-				"mind.1$narrative": {
+				"giskard.me/mind.1$narrative": {
 					"data": {
-						"type": "mind.1$Narrative",
-						"id": "dev.1$GenSourceTokenJava"
+						"type": "giskard.me/mind.1$Narrative",
+						"id": "giskard.me/dev.1$GenSourceTokenJava"
 					}
 				}
 			}
 		},
 		{
-			"type": "mind.1$Message",
+			"type": "giskard.me/mind.1$Message",
 			"id": "Lorand/sandbox.1$MiNDAPI",
 			"relationships": {
-				"mind.1$listeners": {
+				"giskard.me/mind.1$listeners": {
 					"data": [
 						{
-							"type": "mind.1$Agent",
-							"id": "dust.1$Runtime",
+							"type": "giskard.me/mind.1$Agent",
+							"id": "giskard.me/dust.1$Runtime",
 							"meta": {
 								"key": -1
 							}
@@ -219,40 +219,40 @@
 			}
 		},
 		{
-			"type": "mind.1$Agent",
-			"id": "dust.1$Runtime",
+			"type": "giskard.me/mind.1$Agent",
+			"id": "giskard.me/dust.1$Runtime",
 			"attributes": {
-				"misc.1$meta": "dust.1"
+				"giskard.me/misc.1$meta": "dust.1"
 			},
 			"relationships": {
-				"mind.1$serializer": {
+				"giskard.me/mind.1$serializer": {
 					"data": {
-						"type": "mind.1$Message",
+						"type": "giskard.me/mind.1$Message",
 						"id": "Lorand/sandbox.1$SerializeDefault"
 					}
 				}
 			}
 		},
 		{
-			"type": "mind.1$Agent",
+			"type": "giskard.me/mind.1$Agent",
 			"id": "Lorand/sandbox.1$Serializer",
 			"relationships": {
-				"mind.1$narrative": {
+				"giskard.me/mind.1$narrative": {
 					"data": {
-						"type": "mind.1$Narrative",
+						"type": "giskard.me/mind.1$Narrative",
 						"id": "giskard.me/stream.1$SerializeJsonApi"
 					}
 				}
 			}
 		},
 		{
-			"type": "mind.1$Message",
+			"type": "giskard.me/mind.1$Message",
 			"id": "Lorand/sandbox.1$SerializeDefault",
 			"relationships": {
-				"mind.1$listeners": {
+				"giskard.me/mind.1$listeners": {
 					"data": [
 						{
-							"type": "mind.1$Agent",
+							"type": "giskard.me/mind.1$Agent",
 							"id": "Lorand/sandbox.1$Serializer",
 							"meta": {
 								"key": -1
@@ -262,36 +262,36 @@
 				},
 				"giskard.me/stream.1$streamSource": {
 					"data": {
-						"type": "mind.1$Message",
+						"type": "giskard.me/mind.1$Message",
 						"id": "Lorand/sandbox.1$UnitCacheRoot"
 					}
 				}
 			}
 		},
 		{
-			"type": "mind.1$Agent",
+			"type": "giskard.me/mind.1$Agent",
 			"id": "Lorand/sandbox.1$StreamSource",
 			"relationships": {
-				"mind.1$narrative": {
+				"giskard.me/mind.1$narrative": {
 					"data": {
-						"type": "mind.1$Narrative",
+						"type": "giskard.me/mind.1$Narrative",
 						"id": "giskard.me/stream.1$FileStreamSource"
 					}
 				}
 			}
 		},
 		{
-			"type": "mind.1$Message",
+			"type": "giskard.me/mind.1$Message",
 			"id": "Lorand/sandbox.1$UnitCacheRoot",
 			"attributes": {
 				"giskard.me/stream.1$rootFolder": "localStore",
 				"giskard.me/stream.1$backupFolder": "backup"
 			},
 			"relationships": {
-				"mind.1$listeners": {
+				"giskard.me/mind.1$listeners": {
 					"data": [
 						{
-							"type": "mind.1$Agent",
+							"type": "giskard.me/mind.1$Agent",
 							"id": "Lorand/sandbox.1$StreamSource",
 							"meta": {
 								"key": -1
@@ -302,16 +302,16 @@
 			}
 		},
 		{
-			"type": "mind.1$Message",
+			"type": "giskard.me/mind.1$Message",
 			"id": "Lorand/sandbox.1$GenSourceRoot",
 			"attributes": {
 				"giskard.me/stream.1$rootFolder": "gen"
 			},
 			"relationships": {
-				"mind.1$listeners": {
+				"giskard.me/mind.1$listeners": {
 					"data": [
 						{
-							"type": "mind.1$Agent",
+							"type": "giskard.me/mind.1$Agent",
 							"id": "Lorand/sandbox.1$StreamSource",
 							"meta": {
 								"key": -1
@@ -322,13 +322,13 @@
 			}
 		},
 		{
-			"type": "mind.1$Message",
+			"type": "giskard.me/mind.1$Message",
 			"id": "Lorand/sandbox.1$TextEditor",
 			"relationships": {
-				"mind.1$listeners": {
+				"giskard.me/mind.1$listeners": {
 					"data": [
 						{
-							"type": "mind.1$Agent",
+							"type": "giskard.me/mind.1$Agent",
 							"id": "Lorand/sandbox.1$SandboxTextAgent",
 							"meta": {
 								"key": -1
@@ -339,10 +339,10 @@
 			}
 		},
 		{
-			"type": "mind.1$Agent",
+			"type": "giskard.me/mind.1$Agent",
 			"id": "Lorand/sandbox.1$SandboxTextAgent",
 			"attributes": {
-				"misc.1$name": "DustSandbox Text editor",
+				"giskard.me/misc.1$name": "DustSandbox Text editor",
 				"giskard.me/gui.1$lookAndFeel": [
 					"com.formdev.flatlaf.FlatLightLaf",
 					"com.apple.laf.AquaLookAndFeel",
@@ -350,9 +350,9 @@
 				]
 			},
 			"relationships": {
-				"mind.1$narrative": {
+				"giskard.me/mind.1$narrative": {
 					"data": {
-						"type": "mind.1$Narrative",
+						"type": "giskard.me/mind.1$Narrative",
 						"id": "giskard.me/text.1$TextAgent"
 					}
 				},
@@ -389,28 +389,28 @@
 				},
 				"giskard.me/layout.1$layout": {
 					"data": {
-						"type": "mind.1$Tag",
+						"type": "giskard.me/mind.1$Tag",
 						"id": "giskard.me/layout.1$LayoutModeFlow"
 					}
 				},
 				"giskard.me/layout.1$layoutOptions": {
 					"data": [
 						{
-							"type": "mind.1$Tag",
+							"type": "giskard.me/mind.1$Tag",
 							"id": "giskard.me/layout.1$LayoutModeFlow",
 							"meta": {
 								"key": -1
 							}
 						},
 						{
-							"type": "mind.1$Tag",
+							"type": "giskard.me/mind.1$Tag",
 							"id": "giskard.me/layout.1$A4Portrait",
 							"meta": {
 								"key": -1
 							}
 						},
 						{
-							"type": "mind.1$Tag",
+							"type": "giskard.me/mind.1$Tag",
 							"id": "giskard.me/layout.1$A4Landscape",
 							"meta": {
 								"key": -1
@@ -421,37 +421,37 @@
 			}
 		},
 		{
-			"type": "mind.1$Agent",
+			"type": "giskard.me/mind.1$Agent",
 			"id": "Lorand/sandbox.1$SandboxAgent",
 			"relationships": {
-				"mind.1$narrative": {
+				"giskard.me/mind.1$narrative": {
 					"data": {
-						"type": "mind.1$Narrative",
+						"type": "giskard.me/mind.1$Narrative",
 						"id": "Lorand/sandbox.1$SandboxTest"
 					}
 				}
 			}
 		},
 		{
-			"type": "mind.1$Narrative",
+			"type": "giskard.me/mind.1$Narrative",
 			"id": "Lorand/sandbox.1$SandboxTest"
 		},
 		{
-			"type": "mind.1$Message",
+			"type": "giskard.me/mind.1$Message",
 			"id": "Lorand/sandbox.1$SandboxTestSvc",
 			"attributes": {
-				"dev.1$skip": false,
-				"mind.1$cmd": "LnF",
+				"giskard.me/dev.1$skip": false,
+				"giskard.me/mind.1$cmd": "LnF",
 				"giskard.me/gui.1$lookAndFeel": [
 					"com.apple.laf.AquaLookAndFeel",
 					"javax.swing.plaf.nimbus.NimbusLookAndFeel"
 				]
 			},
 			"relationships": {
-				"mind.1$listeners": {
+				"giskard.me/mind.1$listeners": {
 					"data": [
 						{
-							"type": "mind.1$Agent",
+							"type": "giskard.me/mind.1$Agent",
 							"id": "Lorand/sandbox.1$SandboxAgent",
 							"meta": {
 								"key": -1
@@ -465,15 +465,15 @@
 	"meta": {
 		"unitInfo": {
 			"relationships": {
-				"mind.1$author": {
+				"giskard.me/mind.1$author": {
 					"data": {
 						"id": "Lorand/author$LorandKedves",
-						"type": "mind.1$Author"
+						"type": "giskard.me/mind.1$Author"
 					}
 				}
 			},
 			"id": "Lorand/sandbox.1",
-			"type": "mind.1$Unit"
+			"type": "giskard.me/mind.1$Unit"
 		}
 	}
 }

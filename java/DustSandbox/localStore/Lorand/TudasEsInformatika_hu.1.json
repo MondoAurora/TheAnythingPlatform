@@ -4008,7 +4008,7 @@
 		"count": 1000,
 		"unitInfo": {
 			"id": "Lorand/TudasEsInformatika_hu.1",
-			"type": "mind.1$Unit"
+			"type": "giskard.me/mind.1$Unit"
 		}
 	}
 }

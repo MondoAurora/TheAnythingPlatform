@@ -5,26 +5,26 @@
 	"data": [
 		{
 			"id": "TAP/guiJavaSwing.1$Renderer",
-			"type": "mind.1$Narrative"
+			"type": "giskard.me/mind.1$Narrative"
 		},
 		{
 			"id": "TAP/guiJavaSwing.1$VideoPlayer",
-			"type": "mind.1$Narrative"
+			"type": "giskard.me/mind.1$Narrative"
 		}
 	],
 	"meta": {
 		"count": 1,
 		"unitInfo": {
 			"relationships": {
-				"mind.1$author": {
+				"giskard.me/mind.1$author": {
 					"data": {
 						"id": "TAP/author$TheAnythingPlatform",
-						"type": "mind.1$Author"
+						"type": "giskard.me/mind.1$Author"
 					}
 				}
 			},
 			"id": "TAP/guiJavaSwing.1",
-			"type": "mind.1$Unit"
+			"type": "giskard.me/mind.1$Unit"
 		}
 	}
 }

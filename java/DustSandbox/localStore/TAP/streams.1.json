@@ -5,125 +5,125 @@
 	"data": [
 		{
 			"relationships": {
-				"mind.1$tags": {
+				"giskard.me/mind.1$tags": {
 					"data": [
 						{
 							"id": "TAP/mediatype-image$aa5f9391",
-							"type": "mind.1$Tag"
+							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				},
-				"misc.1$appears": {
+				"giskard.me/misc.1$appears": {
 					"data": [
 						{
 							"id": "giskard.me/flow.1$CmdFlowPlay",
-							"type": "mind.1$Tag"
+							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				}
 			},
 			"attributes": {
-				"misc.1$path": "media/play_w.png"
+				"giskard.me/misc.1$path": "media/play_w.png"
 			},
 			"id": "TAP/streams.1$01e82b35",
 			"type": "giskard.me/stream.1$Stream"
 		},
 		{
 			"relationships": {
-				"mind.1$tags": {
+				"giskard.me/mind.1$tags": {
 					"data": [
 						{
 							"id": "TAP/mediatype-image$aa5f9391",
-							"type": "mind.1$Tag"
+							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				},
-				"misc.1$appears": {
+				"giskard.me/misc.1$appears": {
 					"data": [
 						{
-							"id": "misc.1$CmdSkipBack",
-							"type": "mind.1$Tag"
+							"id": "giskard.me/misc.1$CmdSkipBack",
+							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				}
 			},
 			"attributes": {
-				"misc.1$path": "media/skip_back_w.png"
+				"giskard.me/misc.1$path": "media/skip_back_w.png"
 			},
 			"id": "TAP/streams.1$5bd1b3b9",
 			"type": "giskard.me/stream.1$Stream"
 		},
 		{
 			"relationships": {
-				"mind.1$tags": {
+				"giskard.me/mind.1$tags": {
 					"data": [
 						{
 							"id": "TAP/mediatype-image$aa5f9391",
-							"type": "mind.1$Tag"
+							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				},
-				"misc.1$appears": {
+				"giskard.me/misc.1$appears": {
 					"data": [
 						{
-							"id": "misc.1$CmdSkipForward",
-							"type": "mind.1$Tag"
+							"id": "giskard.me/misc.1$CmdSkipForward",
+							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				}
 			},
 			"attributes": {
-				"misc.1$path": "media/skip_forward_w.png"
+				"giskard.me/misc.1$path": "media/skip_forward_w.png"
 			},
 			"id": "TAP/streams.1$81de40de",
 			"type": "giskard.me/stream.1$Stream"
 		},
 		{
 			"relationships": {
-				"mind.1$tags": {
+				"giskard.me/mind.1$tags": {
 					"data": [
 						{
 							"id": "TAP/mediatype-image$aa5f9391",
-							"type": "mind.1$Tag"
+							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				},
-				"misc.1$appears": {
+				"giskard.me/misc.1$appears": {
 					"data": [
 						{
 							"id": "giskard.me/flow.1$CmdFlowPause",
-							"type": "mind.1$Tag"
+							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				}
 			},
 			"attributes": {
-				"misc.1$path": "media/pause_w.png"
+				"giskard.me/misc.1$path": "media/pause_w.png"
 			},
 			"id": "TAP/streams.1$a0e5284d",
 			"type": "giskard.me/stream.1$Stream"
 		},
 		{
 			"relationships": {
-				"mind.1$tags": {
+				"giskard.me/mind.1$tags": {
 					"data": [
 						{
 							"id": "TAP/mediatype-image$aa5f9391",
-							"type": "mind.1$Tag"
+							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				},
-				"misc.1$appears": {
+				"giskard.me/misc.1$appears": {
 					"data": [
 						{
-							"id": "misc.1$CmdStop",
-							"type": "mind.1$Tag"
+							"id": "giskard.me/misc.1$CmdStop",
+							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				}
 			},
 			"attributes": {
-				"misc.1$path": "media/stop_w.png"
+				"giskard.me/misc.1$path": "media/stop_w.png"
 			},
 			"id": "TAP/streams.1$e368953c",
 			"type": "giskard.me/stream.1$Stream"
@@ -133,15 +133,15 @@
 		"count": 5,
 		"unitInfo": {
 			"relationships": {
-				"mind.1$author": {
+				"giskard.me/mind.1$author": {
 					"data": {
 						"id": "TAP/author$TheAnythingPlatform",
-						"type": "mind.1$Author"
+						"type": "giskard.me/mind.1$Author"
 					}
 				}
 			},
 			"id": "TAP/streams",
-			"type": "mind.1$Unit"
+			"type": "giskard.me/mind.1$Unit"
 		}
 	}
 }

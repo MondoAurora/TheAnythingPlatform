@@ -5,22 +5,22 @@
 	"data": [
 		{
 			"id": "iana.org/author$iana.org",
-			"type": "mind.1$Author"
+			"type": "giskard.me/mind.1$Author"
 		}
 	],
 	"meta": {
 		"count": 1,
 		"unitInfo": {
 			"relationships": {
-				"mind.1$author": {
+				"giskard.me/mind.1$author": {
 					"data": {
 						"id": "iana.org/author$iana.org",
-						"type": "mind.1$Author"
+						"type": "giskard.me/mind.1$Author"
 					}
 				}
 			},
 			"id": "iana.org/author",
-			"type": "mind.1$Unit"
+			"type": "giskard.me/mind.1$Unit"
 		}
 	}
 }

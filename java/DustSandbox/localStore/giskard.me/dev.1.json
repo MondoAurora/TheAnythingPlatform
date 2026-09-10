@@ -1,0 +1,182 @@
+{
+	"jsonapi": {
+		"version": "1.1"
+	},
+	"data": [
+		{
+			"id": "giskard.me/dev.1$GenSourceTokenJava",
+			"type": "giskard.me/mind.1$Narrative"
+		},
+		{
+			"id": "giskard.me/dev.1$GraphEditor",
+			"type": "giskard.me/mind.1$Narrative"
+		},
+		{
+			"id": "giskard.me/dev.1$JavaGen",
+			"type": "giskard.me/mind.1$Aspect"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "giskard.me/dev.1$WebScraperAgent",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				},
+				"giskard.me/mind.1$author": {
+					"data": {
+						"id": "TAP/author$TheAnythingPlatform",
+						"type": "giskard.me/mind.1$Author"
+					}
+				}
+			},
+			"attributes": {
+				"giskard.me/mind.1$cmd": "giskard.me/misc.1$CmdRefresh",
+				"giskard.me/mind.1$tags": [
+					"giskard.me/misc.1$Slave"
+				],
+				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types"
+			},
+			"id": "giskard.me/dev.1$ScrapeMediaTypes",
+			"type": "giskard.me/mind.1$Message"
+		},
+		{
+			"id": "giskard.me/dev.1$WebScraper",
+			"type": "giskard.me/mind.1$Narrative"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/dev.1$WebScraper",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$path": "urlCache"
+			},
+			"id": "giskard.me/dev.1$WebScraperAgent",
+			"type": "giskard.me/mind.1$Agent"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeSet",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeString",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_DEV_ATT_CLASSES"
+			},
+			"id": "giskard.me/dev.1$classes",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_DEV_CMD_GENSRC"
+			},
+			"id": "giskard.me/dev.1$genSrc",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeString",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_DEV_ATT_PACKAGE"
+			},
+			"id": "giskard.me/dev.1$package",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeBool",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_DEV_ATT_SKIP"
+			},
+			"id": "giskard.me/dev.1$skip",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "giskard.me/misc.1$Cmd",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_DEV_TAG_CMD_TEST"
+			},
+			"id": "giskard.me/dev.1$test",
+			"type": "giskard.me/mind.1$Tag"
+		}
+	],
+	"meta": {
+		"count": 11,
+		"unitInfo": {
+			"relationships": {
+				"giskard.me/mind.1$author": {
+					"data": {
+						"id": "giskard.me/author$Giskard",
+						"type": "giskard.me/mind.1$Author"
+					}
+				}
+			},
+			"id": "giskard.me/dev.1",
+			"type": "giskard.me/mind.1$Unit"
+		}
+	}
+}

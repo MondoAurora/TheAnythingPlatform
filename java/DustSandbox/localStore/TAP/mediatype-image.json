@@ -5,1815 +5,1815 @@
 	"data": [
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.cns.inf2",
+				"giskard.me/misc.1$key": "vnd.cns.inf2",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.cns.inf2",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Ann_McLaughlin"
 				],
-				"misc.1$source": "iana.org/media-types$00658d6c"
+				"giskard.me/misc.1$source": "iana.org/media-types$00658d6c"
 			},
 			"id": "TAP/mediatype-image$00658d6c",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.dxf",
+				"giskard.me/misc.1$key": "vnd.dxf",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.dxf",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Jodi_Moline"
 				],
-				"misc.1$source": "iana.org/media-types$0459bb56"
+				"giskard.me/misc.1$source": "iana.org/media-types$0459bb56"
 			},
 			"id": "TAP/mediatype-image$0459bb56",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "jpm",
+				"giskard.me/misc.1$key": "jpm",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/jpm",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc3745"
 				],
-				"misc.1$source": "iana.org/media-types$087a54b2"
+				"giskard.me/misc.1$source": "iana.org/media-types$087a54b2"
 			},
 			"id": "TAP/mediatype-image$087a54b2",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.fujixerox.edmics-mmr",
+				"giskard.me/misc.1$key": "vnd.fujixerox.edmics-mmr",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.fujixerox.edmics-mmr",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Masanori_Onda"
 				],
-				"misc.1$source": "iana.org/media-types$0aab3f7f"
+				"giskard.me/misc.1$source": "iana.org/media-types$0aab3f7f"
 			},
 			"id": "TAP/mediatype-image$0aab3f7f",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "apng",
+				"giskard.me/misc.1$key": "apng",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/apng",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#W3C_PNG_WG",
 					"https://www.iana.org/assignments/media-types#W3C"
 				],
-				"misc.1$source": "iana.org/media-types$0af8f220"
+				"giskard.me/misc.1$source": "iana.org/media-types$0af8f220"
 			},
 			"id": "TAP/mediatype-image$0af8f220",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "webp",
+				"giskard.me/misc.1$key": "webp",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/webp",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc9649"
 				],
-				"misc.1$source": "iana.org/media-types$0d9a086e"
+				"giskard.me/misc.1$source": "iana.org/media-types$0d9a086e"
 			},
 			"id": "TAP/mediatype-image$0d9a086e",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "heic-sequence",
+				"giskard.me/misc.1$key": "heic-sequence",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/heic-sequence",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1",
 					"https://www.iana.org/assignments/media-types#David_Singer"
 				],
-				"misc.1$source": "iana.org/media-types$11717f16"
+				"giskard.me/misc.1$source": "iana.org/media-types$11717f16"
 			},
 			"id": "TAP/mediatype-image$11717f16",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "avif",
+				"giskard.me/misc.1$key": "avif",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/avif",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Cyril_Concolato",
 					"https://www.iana.org/assignments/media-types#Alliance_for_Open_Media"
 				],
-				"misc.1$source": "iana.org/media-types$151e9337"
+				"giskard.me/misc.1$source": "iana.org/media-types$151e9337"
 			},
 			"id": "TAP/mediatype-image$151e9337",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.dwg",
+				"giskard.me/misc.1$key": "vnd.dwg",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.dwg",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Jodi_Moline"
 				],
-				"misc.1$source": "iana.org/media-types$1882695d"
+				"giskard.me/misc.1$source": "iana.org/media-types$1882695d"
 			},
 			"id": "TAP/mediatype-image$1882695d",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "tiff",
+				"giskard.me/misc.1$key": "tiff",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/tiff",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc3302"
 				],
-				"misc.1$source": "iana.org/media-types$1a045aaa"
+				"giskard.me/misc.1$source": "iana.org/media-types$1a045aaa"
 			},
 			"id": "TAP/mediatype-image$1a045aaa",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "x-emf - DEPRECATED in favor of image/emf",
+				"giskard.me/misc.1$key": "x-emf - DEPRECATED in favor of image/emf",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/emf",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc7903"
 				],
-				"misc.1$source": "iana.org/media-types$207fa5fa"
+				"giskard.me/misc.1$source": "iana.org/media-types$207fa5fa"
 			},
 			"id": "TAP/mediatype-image$207fa5fa",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.pco.b16",
+				"giskard.me/misc.1$key": "vnd.pco.b16",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.pco.b16",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#PCO_AG",
 					"https://www.iana.org/assignments/media-types#Jan_Zeman"
 				],
-				"misc.1$source": "iana.org/media-types$20ac2c42"
+				"giskard.me/misc.1$source": "iana.org/media-types$20ac2c42"
 			},
 			"id": "TAP/mediatype-image$20ac2c42",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "heif-sequence",
+				"giskard.me/misc.1$key": "heif-sequence",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/heif-sequence",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1",
 					"https://www.iana.org/assignments/media-types#David_Singer"
 				],
-				"misc.1$source": "iana.org/media-types$28b0bd9e"
+				"giskard.me/misc.1$source": "iana.org/media-types$28b0bd9e"
 			},
 			"id": "TAP/mediatype-image$28b0bd9e",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "prs.btif",
+				"giskard.me/misc.1$key": "prs.btif",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/prs.btif",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Ben_Simon"
 				],
-				"misc.1$source": "iana.org/media-types$2c7fafb3"
+				"giskard.me/misc.1$source": "iana.org/media-types$2c7fafb3"
 			},
 			"id": "TAP/mediatype-image$2c7fafb3",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.net-fpx",
+				"giskard.me/misc.1$key": "vnd.net-fpx",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.net-fpx",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Marc_Douglas_Spencer"
 				],
-				"misc.1$source": "iana.org/media-types$2e676da5"
+				"giskard.me/misc.1$source": "iana.org/media-types$2e676da5"
 			},
 			"id": "TAP/mediatype-image$2e676da5",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.clip",
+				"giskard.me/misc.1$key": "vnd.clip",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.clip",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Ryo_Inaba"
 				],
-				"misc.1$source": "iana.org/media-types$3041d909"
+				"giskard.me/misc.1$source": "iana.org/media-types$3041d909"
 			},
 			"id": "TAP/mediatype-image$3041d909",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "gif",
+				"giskard.me/misc.1$key": "gif",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/gif",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc2045",
 					"https://www.iana.org/go/rfc2046"
 				],
-				"misc.1$source": "iana.org/media-types$33ae8bdd"
+				"giskard.me/misc.1$source": "iana.org/media-types$33ae8bdd"
 			},
 			"id": "TAP/mediatype-image$33ae8bdd",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "jpeg",
+				"giskard.me/misc.1$key": "jpeg",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/jpeg",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc2045",
 					"https://www.iana.org/go/rfc2046"
 				],
-				"misc.1$source": "iana.org/media-types$366c5cf5"
+				"giskard.me/misc.1$source": "iana.org/media-types$366c5cf5"
 			},
 			"id": "TAP/mediatype-image$366c5cf5",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.dvb.subtitle",
+				"giskard.me/misc.1$key": "vnd.dvb.subtitle",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.dvb.subtitle",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Michael_Lagally",
 					"https://www.iana.org/assignments/media-types#Peter_Siebert"
 				],
-				"misc.1$source": "iana.org/media-types$3949c843"
+				"giskard.me/misc.1$source": "iana.org/media-types$3949c843"
 			},
 			"id": "TAP/mediatype-image$3949c843",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.zbrush.pcx",
+				"giskard.me/misc.1$key": "vnd.zbrush.pcx",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.zbrush.pcx",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Chris_Charabaruk"
 				],
-				"misc.1$source": "iana.org/media-types$3b98d521"
+				"giskard.me/misc.1$source": "iana.org/media-types$3b98d521"
 			},
 			"id": "TAP/mediatype-image$3b98d521",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.radiance",
+				"giskard.me/misc.1$key": "vnd.radiance",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.radiance",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Greg_Ward",
 					"https://www.iana.org/assignments/media-types#Randolph_Fritz"
 				],
-				"misc.1$source": "iana.org/media-types$3e5c0513"
+				"giskard.me/misc.1$source": "iana.org/media-types$3e5c0513"
 			},
 			"id": "TAP/mediatype-image$3e5c0513",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "ktx2",
+				"giskard.me/misc.1$key": "ktx2",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/ktx2",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Khronos",
 					"https://www.iana.org/assignments/media-types#Mark_Callow"
 				],
-				"misc.1$source": "iana.org/media-types$403b4595"
+				"giskard.me/misc.1$source": "iana.org/media-types$403b4595"
 			},
 			"id": "TAP/mediatype-image$403b4595",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "heif",
+				"giskard.me/misc.1$key": "heif",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/heif",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1",
 					"https://www.iana.org/assignments/media-types#David_Singer"
 				],
-				"misc.1$source": "iana.org/media-types$417e28d8"
+				"giskard.me/misc.1$source": "iana.org/media-types$417e28d8"
 			},
 			"id": "TAP/mediatype-image$417e28d8",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "avcs",
+				"giskard.me/misc.1$key": "avcs",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/avcs",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1",
 					"https://www.iana.org/assignments/media-types#David_Singer"
 				],
-				"misc.1$source": "iana.org/media-types$42fde9a6"
+				"giskard.me/misc.1$source": "iana.org/media-types$42fde9a6"
 			},
 			"id": "TAP/mediatype-image$42fde9a6",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "fits",
+				"giskard.me/misc.1$key": "fits",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/fits",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc4047"
 				],
-				"misc.1$source": "iana.org/media-types$4488f1c6"
+				"giskard.me/misc.1$source": "iana.org/media-types$4488f1c6"
 			},
 			"id": "TAP/mediatype-image$4488f1c6",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "jph",
+				"giskard.me/misc.1$key": "jph",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/jph",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1",
 					"https://www.iana.org/assignments/media-types#ITU-T"
 				],
-				"misc.1$source": "iana.org/media-types$46091cc2"
+				"giskard.me/misc.1$source": "iana.org/media-types$46091cc2"
 			},
 			"id": "TAP/mediatype-image$46091cc2",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.fastbidsheet",
+				"giskard.me/misc.1$key": "vnd.fastbidsheet",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.fastbidsheet",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Scott_Becker"
 				],
-				"misc.1$source": "iana.org/media-types$4640232a"
+				"giskard.me/misc.1$source": "iana.org/media-types$4640232a"
 			},
 			"id": "TAP/mediatype-image$4640232a",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.airzip.accelerator.azv",
+				"giskard.me/misc.1$key": "vnd.airzip.accelerator.azv",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.airzip.accelerator.azv",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Gary_Clueit"
 				],
-				"misc.1$source": "iana.org/media-types$57b86eb7"
+				"giskard.me/misc.1$source": "iana.org/media-types$57b86eb7"
 			},
 			"id": "TAP/mediatype-image$57b86eb7",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "ktx",
+				"giskard.me/misc.1$key": "ktx",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/ktx",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Khronos",
 					"https://www.iana.org/assignments/media-types#Mark_Callow"
 				],
-				"misc.1$source": "iana.org/media-types$596ddec5"
+				"giskard.me/misc.1$source": "iana.org/media-types$596ddec5"
 			},
 			"id": "TAP/mediatype-image$596ddec5",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "hsj2 (OBSOLETE)",
+				"giskard.me/misc.1$key": "hsj2 (OBSOLETE)",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/hsj2",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1",
 					"https://www.iana.org/assignments/media-types#ITU-T"
 				],
-				"misc.1$source": "iana.org/media-types$5da3cf42"
+				"giskard.me/misc.1$source": "iana.org/media-types$5da3cf42"
 			},
 			"id": "TAP/mediatype-image$5da3cf42",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "jxsi",
+				"giskard.me/misc.1$key": "jxsi",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/jxsi",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1"
 				],
-				"misc.1$source": "iana.org/media-types$60c39f80"
+				"giskard.me/misc.1$source": "iana.org/media-types$60c39f80"
 			},
 			"id": "TAP/mediatype-image$60c39f80",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "pwg-raster",
+				"giskard.me/misc.1$key": "pwg-raster",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/pwg-raster",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Michael_Sweet"
 				],
-				"misc.1$source": "iana.org/media-types$6425c769"
+				"giskard.me/misc.1$source": "iana.org/media-types$6425c769"
 			},
 			"id": "TAP/mediatype-image$6425c769",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "jxsc",
+				"giskard.me/misc.1$key": "jxsc",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/jxsc",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1"
 				],
-				"misc.1$source": "iana.org/media-types$6517bb1d"
+				"giskard.me/misc.1$source": "iana.org/media-types$6517bb1d"
 			},
 			"id": "TAP/mediatype-image$6517bb1d",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.sealedmedia.softseal.gif",
+				"giskard.me/misc.1$key": "vnd.sealedmedia.softseal.gif",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.sealedmedia.softseal.gif",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#David_Petersen"
 				],
-				"misc.1$source": "iana.org/media-types$6ea5e40d"
+				"giskard.me/misc.1$source": "iana.org/media-types$6ea5e40d"
 			},
 			"id": "TAP/mediatype-image$6ea5e40d",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "aces",
+				"giskard.me/misc.1$key": "aces",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/aces",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Howard_Lukk",
 					"https://www.iana.org/assignments/media-types#SMPTE"
 				],
-				"misc.1$source": "iana.org/media-types$72735a7c"
+				"giskard.me/misc.1$source": "iana.org/media-types$72735a7c"
 			},
 			"id": "TAP/mediatype-image$72735a7c",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "cgm",
+				"giskard.me/misc.1$key": "cgm",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/cgm",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Alan_Francis"
 				],
-				"misc.1$source": "iana.org/media-types$7923e6d1"
+				"giskard.me/misc.1$source": "iana.org/media-types$7923e6d1"
 			},
 			"id": "TAP/mediatype-image$7923e6d1",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "jxrA",
+				"giskard.me/misc.1$key": "jxrA",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/jxrA",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1",
 					"https://www.iana.org/assignments/media-types#ITU-T"
 				],
-				"misc.1$source": "iana.org/media-types$7a8578f0"
+				"giskard.me/misc.1$source": "iana.org/media-types$7a8578f0"
 			},
 			"id": "TAP/mediatype-image$7a8578f0",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "jxr",
+				"giskard.me/misc.1$key": "jxr",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/jxr",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1",
 					"https://www.iana.org/assignments/media-types#ITU-T"
 				],
-				"misc.1$source": "iana.org/media-types$7b0c94e8"
+				"giskard.me/misc.1$source": "iana.org/media-types$7b0c94e8"
 			},
 			"id": "TAP/mediatype-image$7b0c94e8",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "jxs",
+				"giskard.me/misc.1$key": "jxs",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/jxs",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1"
 				],
-				"misc.1$source": "iana.org/media-types$7df2bb69"
+				"giskard.me/misc.1$source": "iana.org/media-types$7df2bb69"
 			},
 			"id": "TAP/mediatype-image$7df2bb69",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "jls",
+				"giskard.me/misc.1$key": "jls",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/jls",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#DICOM_Standard_Committee",
 					"https://www.iana.org/assignments/media-types#David_Clunie"
 				],
-				"misc.1$source": "iana.org/media-types$7ff4830f"
+				"giskard.me/misc.1$source": "iana.org/media-types$7ff4830f"
 			},
 			"id": "TAP/mediatype-image$7ff4830f",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.mix",
+				"giskard.me/misc.1$key": "vnd.mix",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.mix",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Saveen_Reddy"
 				],
-				"misc.1$source": "iana.org/media-types$898817d2"
+				"giskard.me/misc.1$source": "iana.org/media-types$898817d2"
 			},
 			"id": "TAP/mediatype-image$898817d2",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "jphc",
+				"giskard.me/misc.1$key": "jphc",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/jphc",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1",
 					"https://www.iana.org/assignments/media-types#ITU-T"
 				],
-				"misc.1$source": "iana.org/media-types$8aa12ef6"
+				"giskard.me/misc.1$source": "iana.org/media-types$8aa12ef6"
 			},
 			"id": "TAP/mediatype-image$8aa12ef6",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.blockfact.facti",
+				"giskard.me/misc.1$key": "vnd.blockfact.facti",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.blockfact.facti",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Egbert_von_Frankenberg"
 				],
-				"misc.1$source": "iana.org/media-types$8c219820"
+				"giskard.me/misc.1$source": "iana.org/media-types$8c219820"
 			},
 			"id": "TAP/mediatype-image$8c219820",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.mozilla.apng",
+				"giskard.me/misc.1$key": "vnd.mozilla.apng",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.mozilla.apng",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Stuart_Parmenter"
 				],
-				"misc.1$source": "iana.org/media-types$8d0aad8e"
+				"giskard.me/misc.1$source": "iana.org/media-types$8d0aad8e"
 			},
 			"id": "TAP/mediatype-image$8d0aad8e",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.svf",
+				"giskard.me/misc.1$key": "vnd.svf",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.svf",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Jodi_Moline"
 				],
-				"misc.1$source": "iana.org/media-types$90558b54"
+				"giskard.me/misc.1$source": "iana.org/media-types$90558b54"
 			},
 			"id": "TAP/mediatype-image$90558b54",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.adobe.photoshop",
+				"giskard.me/misc.1$key": "vnd.adobe.photoshop",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.adobe.photoshop",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Kim_Scarborough"
 				],
-				"misc.1$source": "iana.org/media-types$92f89a71"
+				"giskard.me/misc.1$source": "iana.org/media-types$92f89a71"
 			},
 			"id": "TAP/mediatype-image$92f89a71",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "t38",
+				"giskard.me/misc.1$key": "t38",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/t38",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc3362",
 					"https://www.iana.org/go/rfc4612"
 				],
-				"misc.1$source": "iana.org/media-types$9564fff0"
+				"giskard.me/misc.1$source": "iana.org/media-types$9564fff0"
 			},
 			"id": "TAP/mediatype-image$9564fff0",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "emf",
+				"giskard.me/misc.1$key": "emf",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/emf",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc7903"
 				],
-				"misc.1$source": "iana.org/media-types$98206ef9"
+				"giskard.me/misc.1$source": "iana.org/media-types$98206ef9"
 			},
 			"id": "TAP/mediatype-image$98206ef9",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "wmf",
+				"giskard.me/misc.1$key": "wmf",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/wmf",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc7903"
 				],
-				"misc.1$source": "iana.org/media-types$99aee148"
+				"giskard.me/misc.1$source": "iana.org/media-types$99aee148"
 			},
 			"id": "TAP/mediatype-image$99aee148",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.sealedmedia.softseal.jpg",
+				"giskard.me/misc.1$key": "vnd.sealedmedia.softseal.jpg",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.sealedmedia.softseal.jpg",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#David_Petersen"
 				],
-				"misc.1$source": "iana.org/media-types$9cc33120"
+				"giskard.me/misc.1$source": "iana.org/media-types$9cc33120"
 			},
 			"id": "TAP/mediatype-image$9cc33120",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.xiff",
+				"giskard.me/misc.1$key": "vnd.xiff",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.xiff",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Steven_Martin"
 				],
-				"misc.1$source": "iana.org/media-types$a0529dba"
+				"giskard.me/misc.1$source": "iana.org/media-types$a0529dba"
 			},
 			"id": "TAP/mediatype-image$a0529dba",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.valve.source.texture",
+				"giskard.me/misc.1$key": "vnd.valve.source.texture",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.valve.source.texture",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Henrik_Andersson"
 				],
-				"misc.1$source": "iana.org/media-types$a7d86ae7"
+				"giskard.me/misc.1$source": "iana.org/media-types$a7d86ae7"
 			},
 			"id": "TAP/mediatype-image$a7d86ae7",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "avci",
+				"giskard.me/misc.1$key": "avci",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/avci",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1",
 					"https://www.iana.org/assignments/media-types#David_Singer"
 				],
-				"misc.1$source": "iana.org/media-types$a881e3ae"
+				"giskard.me/misc.1$source": "iana.org/media-types$a881e3ae"
 			},
 			"id": "TAP/mediatype-image$a881e3ae",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "prs.pti",
+				"giskard.me/misc.1$key": "prs.pti",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/prs.pti",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Juern_Laun"
 				],
-				"misc.1$source": "iana.org/media-types$a92234c3"
+				"giskard.me/misc.1$source": "iana.org/media-types$a92234c3"
 			},
 			"id": "TAP/mediatype-image$a92234c3",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "png",
+				"giskard.me/misc.1$key": "png",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/png",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#PNG_WG",
 					"https://www.iana.org/assignments/media-types#W3C",
 					"https://www.w3.org/TR/PNG/"
 				],
-				"misc.1$source": "iana.org/media-types$aa5f9391"
+				"giskard.me/misc.1$source": "iana.org/media-types$aa5f9391"
 			},
 			"id": "TAP/mediatype-image$aa5f9391",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "prs.aimg",
+				"giskard.me/misc.1$key": "prs.aimg",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/prs.aimg",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Ai_Media_Format"
 				],
-				"misc.1$source": "iana.org/media-types$b1f00f96"
+				"giskard.me/misc.1$source": "iana.org/media-types$b1f00f96"
 			},
 			"id": "TAP/mediatype-image$b1f00f96",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "svg+xml",
+				"giskard.me/misc.1$key": "svg+xml",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/svg+xml",
 				"giskard.me/stream.1$urlRefs": [
 					"http://www.w3.org/TR/SVG/mimereg.html",
 					"https://www.iana.org/assignments/media-types#W3C"
 				],
-				"misc.1$source": "iana.org/media-types$b22c7073"
+				"giskard.me/misc.1$source": "iana.org/media-types$b22c7073"
 			},
 			"id": "TAP/mediatype-image$b22c7073",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "bmp",
+				"giskard.me/misc.1$key": "bmp",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/bmp",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc7903"
 				],
-				"misc.1$source": "iana.org/media-types$b5314676"
+				"giskard.me/misc.1$source": "iana.org/media-types$b5314676"
 			},
 			"id": "TAP/mediatype-image$b5314676",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.sld",
+				"giskard.me/misc.1$key": "vnd.sld",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.sld",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Gareth_Davidson"
 				],
-				"misc.1$source": "iana.org/media-types$bf7f3d65"
+				"giskard.me/misc.1$source": "iana.org/media-types$bf7f3d65"
 			},
 			"id": "TAP/mediatype-image$bf7f3d65",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "jaii",
+				"giskard.me/misc.1$key": "jaii",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/jaii",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Ye-Kui_Wang",
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1_SC_29_WG_1"
 				],
-				"misc.1$source": "iana.org/media-types$bfef69ff"
+				"giskard.me/misc.1$source": "iana.org/media-types$bfef69ff"
 			},
 			"id": "TAP/mediatype-image$bfef69ff",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "example",
+				"giskard.me/misc.1$key": "example",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/example",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc4735"
 				],
-				"misc.1$source": "iana.org/media-types$c13666cf"
+				"giskard.me/misc.1$source": "iana.org/media-types$c13666cf"
 			},
 			"id": "TAP/mediatype-image$c13666cf",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.sealed.png",
+				"giskard.me/misc.1$key": "vnd.sealed.png",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.sealed.png",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#David_Petersen"
 				],
-				"misc.1$source": "iana.org/media-types$c1eab6e2"
+				"giskard.me/misc.1$source": "iana.org/media-types$c1eab6e2"
 			},
 			"id": "TAP/mediatype-image$c1eab6e2",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "j2c",
+				"giskard.me/misc.1$key": "j2c",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/j2c",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1",
 					"https://www.iana.org/assignments/media-types#ITU-T",
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1_SC_29_WG_1"
 				],
-				"misc.1$source": "iana.org/media-types$c2c12e52"
+				"giskard.me/misc.1$source": "iana.org/media-types$c2c12e52"
 			},
 			"id": "TAP/mediatype-image$c2c12e52",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.globalgraphics.pgb",
+				"giskard.me/misc.1$key": "vnd.globalgraphics.pgb",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.globalgraphics.pgb",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Martin_Bailey"
 				],
-				"misc.1$source": "iana.org/media-types$c4d761ba"
+				"giskard.me/misc.1$source": "iana.org/media-types$c4d761ba"
 			},
 			"id": "TAP/mediatype-image$c4d761ba",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "naplps",
+				"giskard.me/misc.1$key": "naplps",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/naplps",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Ilya_Ferber"
 				],
-				"misc.1$source": "iana.org/media-types$c675d7c4"
+				"giskard.me/misc.1$source": "iana.org/media-types$c675d7c4"
 			},
 			"id": "TAP/mediatype-image$c675d7c4",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "jais",
+				"giskard.me/misc.1$key": "jais",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/jais",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Ye-Kui_Wang",
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1_SC_29_WG_1"
 				],
-				"misc.1$source": "iana.org/media-types$c7ec512a"
+				"giskard.me/misc.1$source": "iana.org/media-types$c7ec512a"
 			},
 			"id": "TAP/mediatype-image$c7ec512a",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "ief",
+				"giskard.me/misc.1$key": "ief",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/ief",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc1314"
 				],
-				"misc.1$source": "iana.org/media-types$c8e7129c"
+				"giskard.me/misc.1$source": "iana.org/media-types$c8e7129c"
 			},
 			"id": "TAP/mediatype-image$c8e7129c",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.fst",
+				"giskard.me/misc.1$key": "vnd.fst",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.fst",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Arild_Fuldseth"
 				],
-				"misc.1$source": "iana.org/media-types$ce83ea5d"
+				"giskard.me/misc.1$source": "iana.org/media-types$ce83ea5d"
 			},
 			"id": "TAP/mediatype-image$ce83ea5d",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "jxss",
+				"giskard.me/misc.1$key": "jxss",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/jxss",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1"
 				],
-				"misc.1$source": "iana.org/media-types$cf77f610"
+				"giskard.me/misc.1$source": "iana.org/media-types$cf77f610"
 			},
 			"id": "TAP/mediatype-image$cf77f610",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "dicom-rle",
+				"giskard.me/misc.1$key": "dicom-rle",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/dicom-rle",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#DICOM_Standard_Committee",
 					"https://www.iana.org/assignments/media-types#David_Clunie"
 				],
-				"misc.1$source": "iana.org/media-types$cfa837ee"
+				"giskard.me/misc.1$source": "iana.org/media-types$cfa837ee"
 			},
 			"id": "TAP/mediatype-image$cfa837ee",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.tencent.tap",
+				"giskard.me/misc.1$key": "vnd.tencent.tap",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.tencent.tap",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Ni_Hui"
 				],
-				"misc.1$source": "iana.org/media-types$d0d959ba"
+				"giskard.me/misc.1$source": "iana.org/media-types$d0d959ba"
 			},
 			"id": "TAP/mediatype-image$d0d959ba",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.ms-modi",
+				"giskard.me/misc.1$key": "vnd.ms-modi",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.ms-modi",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Gregory_Vaughan"
 				],
-				"misc.1$source": "iana.org/media-types$d3978798"
+				"giskard.me/misc.1$source": "iana.org/media-types$d3978798"
 			},
 			"id": "TAP/mediatype-image$d3978798",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.fpx",
+				"giskard.me/misc.1$key": "vnd.fpx",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.fpx",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Marc_Douglas_Spencer"
 				],
-				"misc.1$source": "iana.org/media-types$d4c9b303"
+				"giskard.me/misc.1$source": "iana.org/media-types$d4c9b303"
 			},
 			"id": "TAP/mediatype-image$d4c9b303",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "hmpg",
+				"giskard.me/misc.1$key": "hmpg",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/haptics/hmpg",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc9993",
 					"https://www.iana.org/go/rfc9695"
 				],
-				"misc.1$source": "iana.org/media-types$d65592a1"
+				"giskard.me/misc.1$source": "iana.org/media-types$d65592a1"
 			},
 			"id": "TAP/mediatype-image$d65592a1",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.microsoft.icon",
+				"giskard.me/misc.1$key": "vnd.microsoft.icon",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.microsoft.icon",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Simon_Butcher"
 				],
-				"misc.1$source": "iana.org/media-types$d6ec4904"
+				"giskard.me/misc.1$source": "iana.org/media-types$d6ec4904"
 			},
 			"id": "TAP/mediatype-image$d6ec4904",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.wap.wbmp",
+				"giskard.me/misc.1$key": "vnd.wap.wbmp",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.wap.wbmp",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Peter_Stark"
 				],
-				"misc.1$source": "iana.org/media-types$d78d919f"
+				"giskard.me/misc.1$source": "iana.org/media-types$d78d919f"
 			},
 			"id": "TAP/mediatype-image$d78d919f",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "jp2",
+				"giskard.me/misc.1$key": "jp2",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/jp2",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc3745"
 				],
-				"misc.1$source": "iana.org/media-types$d8900b76"
+				"giskard.me/misc.1$source": "iana.org/media-types$d8900b76"
 			},
 			"id": "TAP/mediatype-image$d8900b76",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "jxl",
+				"giskard.me/misc.1$key": "jxl",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/jxl",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1",
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1_SC_29_WG_1"
 				],
-				"misc.1$source": "iana.org/media-types$d903c834"
+				"giskard.me/misc.1$source": "iana.org/media-types$d903c834"
 			},
 			"id": "TAP/mediatype-image$d903c834",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "dpx",
+				"giskard.me/misc.1$key": "dpx",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/dpx",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#SMPTE",
 					"https://www.iana.org/assignments/media-types#SMPTE_Director_of_Standards_Development"
 				],
-				"misc.1$source": "iana.org/media-types$e0f7c5d4"
+				"giskard.me/misc.1$source": "iana.org/media-types$e0f7c5d4"
 			},
 			"id": "TAP/mediatype-image$e0f7c5d4",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "g3fax",
+				"giskard.me/misc.1$key": "g3fax",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/g3fax",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc1494"
 				],
-				"misc.1$source": "iana.org/media-types$e88911a0"
+				"giskard.me/misc.1$source": "iana.org/media-types$e88911a0"
 			},
 			"id": "TAP/mediatype-image$e88911a0",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.djvu",
+				"giskard.me/misc.1$key": "vnd.djvu",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.djvu",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Leon_Bottou"
 				],
-				"misc.1$source": "iana.org/media-types$f09736c0"
+				"giskard.me/misc.1$source": "iana.org/media-types$f09736c0"
 			},
 			"id": "TAP/mediatype-image$f09736c0",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "tiff-fx",
+				"giskard.me/misc.1$key": "tiff-fx",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/tiff-fx",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc3950"
 				],
-				"misc.1$source": "iana.org/media-types$f428822d"
+				"giskard.me/misc.1$source": "iana.org/media-types$f428822d"
 			},
 			"id": "TAP/mediatype-image$f428822d",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.fujixerox.edmics-rlc",
+				"giskard.me/misc.1$key": "vnd.fujixerox.edmics-rlc",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.fujixerox.edmics-rlc",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Masanori_Onda"
 				],
-				"misc.1$source": "iana.org/media-types$f4a8c125"
+				"giskard.me/misc.1$source": "iana.org/media-types$f4a8c125"
 			},
 			"id": "TAP/mediatype-image$f4a8c125",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "vnd.dece.graphic",
+				"giskard.me/misc.1$key": "vnd.dece.graphic",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/vnd.dece.graphic",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#Michael_A_Dolan"
 				],
-				"misc.1$source": "iana.org/media-types$f6c09ba1"
+				"giskard.me/misc.1$source": "iana.org/media-types$f6c09ba1"
 			},
 			"id": "TAP/mediatype-image$f6c09ba1",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "heic",
+				"giskard.me/misc.1$key": "heic",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/heic",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1",
 					"https://www.iana.org/assignments/media-types#David_Singer"
 				],
-				"misc.1$source": "iana.org/media-types$f8aa8d9d"
+				"giskard.me/misc.1$source": "iana.org/media-types$f8aa8d9d"
 			},
 			"id": "TAP/mediatype-image$f8aa8d9d",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "jxrS",
+				"giskard.me/misc.1$key": "jxrS",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/jxrS",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1",
 					"https://www.iana.org/assignments/media-types#ITU-T"
 				],
-				"misc.1$source": "iana.org/media-types$fbe255bf"
+				"giskard.me/misc.1$source": "iana.org/media-types$fbe255bf"
 			},
 			"id": "TAP/mediatype-image$fbe255bf",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "jpx",
+				"giskard.me/misc.1$key": "jpx",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/jpx",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/go/rfc3745",
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1_SC_29_WG_1"
 				],
-				"misc.1$source": "iana.org/media-types$fc65312e"
+				"giskard.me/misc.1$source": "iana.org/media-types$fc65312e"
 			},
 			"id": "TAP/mediatype-image$fc65312e",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		},
 		{
 			"relationships": {
-				"misc.1$parent": {
+				"giskard.me/misc.1$parent": {
 					"data": {
 						"id": "giskard.me/stream.1$MediaType",
-						"type": "mind.1$Tag"
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			},
 			"attributes": {
-				"misc.1$key": "hej2k",
+				"giskard.me/misc.1$key": "hej2k",
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types/image/hej2k",
 				"giskard.me/stream.1$urlRefs": [
 					"https://www.iana.org/assignments/media-types#ISO-IEC_JTC_1",
 					"https://www.iana.org/assignments/media-types#ITU-T"
 				],
-				"misc.1$source": "iana.org/media-types$fdf464ca"
+				"giskard.me/misc.1$source": "iana.org/media-types$fdf464ca"
 			},
 			"id": "TAP/mediatype-image$fdf464ca",
-			"type": "mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag"
 		}
 	],
 	"meta": {
 		"count": 88,
 		"unitInfo": {
 			"relationships": {
-				"mind.1$author": {
+				"giskard.me/mind.1$author": {
 					"data": {
 						"id": "TAP/author$TheAnythingPlatform",
-						"type": "mind.1$Author"
+						"type": "giskard.me/mind.1$Author"
 					}
 				}
 			},
 			"id": "TAP/mediatype-image",
-			"type": "mind.1$Unit"
+			"type": "giskard.me/mind.1$Unit"
 		}
 	}
 }

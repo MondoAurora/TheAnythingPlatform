@@ -11,7 +11,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$aa9520a6",
 						"type": "giskard.me/text.1$Block"
@@ -32,7 +32,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$fc8dd436",
 						"type": "giskard.me/text.1$Block"
@@ -53,7 +53,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$1d81ffb4",
 						"type": "giskard.me/text.1$Block"
@@ -74,7 +74,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$fcb5c24c",
 						"type": "giskard.me/text.1$Block"
@@ -95,7 +95,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$bf2e0830",
 						"type": "giskard.me/text.1$Block"
@@ -116,7 +116,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$74b7f57c",
 						"type": "giskard.me/text.1$Block"
@@ -137,7 +137,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$b09a44de",
 						"type": "giskard.me/text.1$Block"
@@ -158,7 +158,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$a7e43366",
 						"type": "giskard.me/text.1$Block"
@@ -179,7 +179,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$6cdb2269",
 						"type": "giskard.me/text.1$Block"
@@ -200,7 +200,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$6e17282f",
 						"type": "giskard.me/text.1$Block"
@@ -221,7 +221,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$4ef8114b",
 						"type": "giskard.me/text.1$Block"
@@ -242,7 +242,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$9540a101",
 						"type": "giskard.me/text.1$Block"
@@ -263,7 +263,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$15f44b2e",
 						"type": "giskard.me/text.1$Block"
@@ -284,7 +284,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f10fa4c9",
 						"type": "giskard.me/text.1$Block"
@@ -305,7 +305,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$76da16af",
 						"type": "giskard.me/text.1$Block"
@@ -326,7 +326,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$adb578b8",
 						"type": "giskard.me/text.1$Block"
@@ -347,7 +347,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$060d8df9",
 						"type": "giskard.me/text.1$Block"
@@ -368,7 +368,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$33e01d50",
 						"type": "giskard.me/text.1$Block"
@@ -389,7 +389,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$896fff0c",
 						"type": "giskard.me/text.1$Block"
@@ -410,7 +410,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$0dfd6877",
 						"type": "giskard.me/text.1$Block"
@@ -431,7 +431,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$c474ec71",
 						"type": "giskard.me/text.1$Block"
@@ -452,7 +452,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$39d4f60a",
 						"type": "giskard.me/text.1$Block"
@@ -473,7 +473,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f702218a",
 						"type": "giskard.me/text.1$Block"
@@ -494,7 +494,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$eba00948",
 						"type": "giskard.me/text.1$Block"
@@ -515,7 +515,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$6a7f6b4b",
 						"type": "giskard.me/text.1$Block"
@@ -536,7 +536,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$5010db42",
 						"type": "giskard.me/text.1$Block"
@@ -557,7 +557,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$fceed691",
 						"type": "giskard.me/text.1$Block"
@@ -578,7 +578,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$8a93e930",
 						"type": "giskard.me/text.1$Block"
@@ -599,7 +599,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$5270f7c0",
 						"type": "giskard.me/text.1$Block"
@@ -620,7 +620,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$85232f60",
 						"type": "giskard.me/text.1$Block"
@@ -641,7 +641,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$ac8d2896",
 						"type": "giskard.me/text.1$Block"
@@ -662,7 +662,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$6cb97a61",
 						"type": "giskard.me/text.1$Block"
@@ -683,7 +683,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$6975b477",
 						"type": "giskard.me/text.1$Block"
@@ -704,7 +704,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$59f11d0e",
 						"type": "giskard.me/text.1$Block"
@@ -725,7 +725,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$239aacb5",
 						"type": "giskard.me/text.1$Block"
@@ -746,7 +746,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$169ed264",
 						"type": "giskard.me/text.1$Block"
@@ -767,7 +767,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$c0637019",
 						"type": "giskard.me/text.1$Block"
@@ -788,7 +788,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$4a98efd5",
 						"type": "giskard.me/text.1$Block"
@@ -809,7 +809,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$1c6df3d1",
 						"type": "giskard.me/text.1$Block"
@@ -830,7 +830,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$d1a47b00",
 						"type": "giskard.me/text.1$Block"
@@ -851,7 +851,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$14f2fd6c",
 						"type": "giskard.me/text.1$Block"
@@ -872,7 +872,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$ca2535ea",
 						"type": "giskard.me/text.1$Block"
@@ -893,7 +893,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$c0da793d",
 						"type": "giskard.me/text.1$Block"
@@ -914,7 +914,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$9cb4974d",
 						"type": "giskard.me/text.1$Block"
@@ -935,7 +935,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$33bdc83e",
 						"type": "giskard.me/text.1$Block"
@@ -956,7 +956,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$18b7b533",
 						"type": "giskard.me/text.1$Block"
@@ -977,7 +977,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$3b071264",
 						"type": "giskard.me/text.1$Block"
@@ -998,7 +998,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$40c9f38d",
 						"type": "giskard.me/text.1$Block"
@@ -1019,7 +1019,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$923e98bf",
 						"type": "giskard.me/text.1$Block"
@@ -1040,7 +1040,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$ae6ba89c",
 						"type": "giskard.me/text.1$Block"
@@ -1061,7 +1061,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$61f79199",
 						"type": "giskard.me/text.1$Block"
@@ -1082,7 +1082,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$ea9a1514",
 						"type": "giskard.me/text.1$Block"
@@ -1103,7 +1103,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f125628f",
 						"type": "giskard.me/text.1$Block"
@@ -1124,7 +1124,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$d67f6073",
 						"type": "giskard.me/text.1$Block"
@@ -1145,7 +1145,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$d398377f",
 						"type": "giskard.me/text.1$Block"
@@ -1166,7 +1166,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$dc81e503",
 						"type": "giskard.me/text.1$Block"
@@ -1187,7 +1187,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$5b4d7530",
 						"type": "giskard.me/text.1$Block"
@@ -1208,7 +1208,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$85867925",
 						"type": "giskard.me/text.1$Block"
@@ -1229,7 +1229,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$5bff2ba1",
 						"type": "giskard.me/text.1$Block"
@@ -1250,7 +1250,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$81dd7e22",
 						"type": "giskard.me/text.1$Block"
@@ -1271,7 +1271,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$49a14c2e",
 						"type": "giskard.me/text.1$Block"
@@ -1292,7 +1292,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$a5f29de4",
 						"type": "giskard.me/text.1$Block"
@@ -1313,7 +1313,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f552c33e",
 						"type": "giskard.me/text.1$Block"
@@ -1334,7 +1334,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$c1da477a",
 						"type": "giskard.me/text.1$Block"
@@ -1355,7 +1355,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$35329074",
 						"type": "giskard.me/text.1$Block"
@@ -1376,7 +1376,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$fd13ff72",
 						"type": "giskard.me/text.1$Block"
@@ -1397,7 +1397,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f609aab2",
 						"type": "giskard.me/text.1$Block"
@@ -1418,7 +1418,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$a649ae79",
 						"type": "giskard.me/text.1$Block"
@@ -1439,7 +1439,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f0698870",
 						"type": "giskard.me/text.1$Block"
@@ -1460,7 +1460,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f0735607",
 						"type": "giskard.me/text.1$Block"
@@ -1481,7 +1481,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$351f1668",
 						"type": "giskard.me/text.1$Block"
@@ -1502,7 +1502,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$1d9668a6",
 						"type": "giskard.me/text.1$Block"
@@ -1523,7 +1523,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$3a68f527",
 						"type": "giskard.me/text.1$Block"
@@ -1544,7 +1544,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$90923985",
 						"type": "giskard.me/text.1$Block"
@@ -1565,7 +1565,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$3986d666",
 						"type": "giskard.me/text.1$Block"
@@ -1586,7 +1586,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$2b791280",
 						"type": "giskard.me/text.1$Block"
@@ -1607,7 +1607,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$fa62434e",
 						"type": "giskard.me/text.1$Block"
@@ -1628,7 +1628,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$cce24d3a",
 						"type": "giskard.me/text.1$Block"
@@ -1649,7 +1649,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f5e5a761",
 						"type": "giskard.me/text.1$Block"
@@ -1670,7 +1670,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$42086da1",
 						"type": "giskard.me/text.1$Block"
@@ -1691,7 +1691,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$68ff13cf",
 						"type": "giskard.me/text.1$Block"
@@ -1712,7 +1712,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$a97644a4",
 						"type": "giskard.me/text.1$Block"
@@ -1733,7 +1733,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$49271c4f",
 						"type": "giskard.me/text.1$Block"
@@ -1754,7 +1754,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$2858926a",
 						"type": "giskard.me/text.1$Block"
@@ -1775,7 +1775,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$ee198e5e",
 						"type": "giskard.me/text.1$Block"
@@ -1796,7 +1796,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$8d80c51a",
 						"type": "giskard.me/text.1$Block"
@@ -1817,7 +1817,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$2f189702",
 						"type": "giskard.me/text.1$Block"
@@ -1838,7 +1838,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$c46105f2",
 						"type": "giskard.me/text.1$Block"
@@ -1859,7 +1859,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$dfc518d5",
 						"type": "giskard.me/text.1$Block"
@@ -1880,7 +1880,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$6dfdb3cd",
 						"type": "giskard.me/text.1$Block"
@@ -1901,7 +1901,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$c0b55f13",
 						"type": "giskard.me/text.1$Block"
@@ -1922,7 +1922,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$c43d4e3d",
 						"type": "giskard.me/text.1$Block"
@@ -1943,7 +1943,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$703d2908",
 						"type": "giskard.me/text.1$Block"
@@ -1964,7 +1964,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$ff1b76aa",
 						"type": "giskard.me/text.1$Block"
@@ -1985,7 +1985,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$d88d902a",
 						"type": "giskard.me/text.1$Block"
@@ -2006,7 +2006,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$83702bcc",
 						"type": "giskard.me/text.1$Block"
@@ -2027,7 +2027,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$ad107d69",
 						"type": "giskard.me/text.1$Block"
@@ -2048,7 +2048,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$09ebb901",
 						"type": "giskard.me/text.1$Block"
@@ -2069,7 +2069,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$20c9016b",
 						"type": "giskard.me/text.1$Block"
@@ -2090,7 +2090,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$af8cd86d",
 						"type": "giskard.me/text.1$Block"
@@ -2111,7 +2111,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$b57bc1fe",
 						"type": "giskard.me/text.1$Block"
@@ -2132,7 +2132,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$52ebf185",
 						"type": "giskard.me/text.1$Block"
@@ -2153,7 +2153,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f0c5a306",
 						"type": "giskard.me/text.1$Block"
@@ -2174,7 +2174,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$40b39713",
 						"type": "giskard.me/text.1$Block"
@@ -2195,7 +2195,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$4d9bab76",
 						"type": "giskard.me/text.1$Block"
@@ -2216,7 +2216,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$209926f9",
 						"type": "giskard.me/text.1$Block"
@@ -2237,7 +2237,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$8bd5c69a",
 						"type": "giskard.me/text.1$Block"
@@ -2258,7 +2258,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$308f3cc7",
 						"type": "giskard.me/text.1$Block"
@@ -2279,7 +2279,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$6c36d304",
 						"type": "giskard.me/text.1$Block"
@@ -2300,7 +2300,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$030118fc",
 						"type": "giskard.me/text.1$Block"
@@ -2321,7 +2321,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$7fef4fce",
 						"type": "giskard.me/text.1$Block"
@@ -2342,7 +2342,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$211f7cf6",
 						"type": "giskard.me/text.1$Block"
@@ -2363,7 +2363,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$fb9ccc1a",
 						"type": "giskard.me/text.1$Block"
@@ -2384,7 +2384,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$ef1e5d44",
 						"type": "giskard.me/text.1$Block"
@@ -2405,7 +2405,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$043aa72b",
 						"type": "giskard.me/text.1$Block"
@@ -2426,7 +2426,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$bc79c3d8",
 						"type": "giskard.me/text.1$Block"
@@ -2447,7 +2447,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$64237849",
 						"type": "giskard.me/text.1$Block"
@@ -2468,7 +2468,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$616cc734",
 						"type": "giskard.me/text.1$Block"
@@ -2489,7 +2489,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$45e5da43",
 						"type": "giskard.me/text.1$Block"
@@ -2510,7 +2510,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$74900e4b",
 						"type": "giskard.me/text.1$Block"
@@ -2531,7 +2531,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$4e586052",
 						"type": "giskard.me/text.1$Block"
@@ -2552,7 +2552,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$693a2968",
 						"type": "giskard.me/text.1$Block"
@@ -2573,7 +2573,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$386da4da",
 						"type": "giskard.me/text.1$Block"
@@ -2594,7 +2594,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$11f86005",
 						"type": "giskard.me/text.1$Block"
@@ -2615,7 +2615,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f0f576ca",
 						"type": "giskard.me/text.1$Block"
@@ -2636,7 +2636,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$6949a2fc",
 						"type": "giskard.me/text.1$Block"
@@ -2657,7 +2657,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$253c0963",
 						"type": "giskard.me/text.1$Block"
@@ -2678,7 +2678,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$950d1b81",
 						"type": "giskard.me/text.1$Block"
@@ -2699,7 +2699,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$bcbd0dd0",
 						"type": "giskard.me/text.1$Block"
@@ -2720,7 +2720,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$4d9e7dd6",
 						"type": "giskard.me/text.1$Block"
@@ -2741,7 +2741,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$57aa5b40",
 						"type": "giskard.me/text.1$Block"
@@ -2762,7 +2762,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$cd1d7cf5",
 						"type": "giskard.me/text.1$Block"
@@ -2783,7 +2783,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$897dd0a8",
 						"type": "giskard.me/text.1$Block"
@@ -2804,7 +2804,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$67f2df99",
 						"type": "giskard.me/text.1$Block"
@@ -2825,7 +2825,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$a9b51786",
 						"type": "giskard.me/text.1$Block"
@@ -2846,7 +2846,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$fce1a1e6",
 						"type": "giskard.me/text.1$Block"
@@ -2867,7 +2867,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$455c7f66",
 						"type": "giskard.me/text.1$Block"
@@ -2888,7 +2888,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$6a851294",
 						"type": "giskard.me/text.1$Block"
@@ -2909,7 +2909,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$05844be6",
 						"type": "giskard.me/text.1$Block"
@@ -2930,7 +2930,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$c7600adf",
 						"type": "giskard.me/text.1$Block"
@@ -2951,7 +2951,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$279ed6b7",
 						"type": "giskard.me/text.1$Block"
@@ -2972,7 +2972,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f027f5cb",
 						"type": "giskard.me/text.1$Block"
@@ -2993,7 +2993,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$11a0c8c6",
 						"type": "giskard.me/text.1$Block"
@@ -3014,7 +3014,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$84b97091",
 						"type": "giskard.me/text.1$Block"
@@ -3035,7 +3035,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$a3ac80fd",
 						"type": "giskard.me/text.1$Block"
@@ -3056,7 +3056,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$7f81fdef",
 						"type": "giskard.me/text.1$Block"
@@ -3077,7 +3077,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$ba0761ef",
 						"type": "giskard.me/text.1$Block"
@@ -3098,7 +3098,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$04307703",
 						"type": "giskard.me/text.1$Block"
@@ -3119,7 +3119,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$caf7b595",
 						"type": "giskard.me/text.1$Block"
@@ -3140,7 +3140,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f1cb0094",
 						"type": "giskard.me/text.1$Block"
@@ -3161,7 +3161,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$900c3f0e",
 						"type": "giskard.me/text.1$Block"
@@ -3182,7 +3182,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$94b07677",
 						"type": "giskard.me/text.1$Block"
@@ -3203,7 +3203,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$07a19326",
 						"type": "giskard.me/text.1$Block"
@@ -3224,7 +3224,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$aad682b3",
 						"type": "giskard.me/text.1$Block"
@@ -3245,7 +3245,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$54de6616",
 						"type": "giskard.me/text.1$Block"
@@ -3266,7 +3266,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$4ce4af22",
 						"type": "giskard.me/text.1$Block"
@@ -3287,7 +3287,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$2853a59c",
 						"type": "giskard.me/text.1$Block"
@@ -3308,7 +3308,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$3c0834d6",
 						"type": "giskard.me/text.1$Block"
@@ -3329,7 +3329,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$8792be3f",
 						"type": "giskard.me/text.1$Block"
@@ -3350,7 +3350,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$8536caa8",
 						"type": "giskard.me/text.1$Block"
@@ -3371,7 +3371,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$97376ecf",
 						"type": "giskard.me/text.1$Block"
@@ -3392,7 +3392,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$57fae8a3",
 						"type": "giskard.me/text.1$Block"
@@ -3413,7 +3413,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$0203116f",
 						"type": "giskard.me/text.1$Block"
@@ -3434,7 +3434,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$3aa0364e",
 						"type": "giskard.me/text.1$Block"
@@ -3455,7 +3455,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$93b01d9b",
 						"type": "giskard.me/text.1$Block"
@@ -3476,7 +3476,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$3ce40354",
 						"type": "giskard.me/text.1$Block"
@@ -3497,7 +3497,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$b866af3c",
 						"type": "giskard.me/text.1$Block"
@@ -3518,7 +3518,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$24642374",
 						"type": "giskard.me/text.1$Block"
@@ -3539,7 +3539,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$e35c2f36",
 						"type": "giskard.me/text.1$Block"
@@ -3560,7 +3560,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$59b5c29b",
 						"type": "giskard.me/text.1$Block"
@@ -3581,7 +3581,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$1c1792f6",
 						"type": "giskard.me/text.1$Block"
@@ -3602,7 +3602,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$95e32079",
 						"type": "giskard.me/text.1$Block"
@@ -3623,7 +3623,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$30b6451b",
 						"type": "giskard.me/text.1$Block"
@@ -3644,7 +3644,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$93d84470",
 						"type": "giskard.me/text.1$Block"
@@ -3665,7 +3665,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$ae2e1aff",
 						"type": "giskard.me/text.1$Block"
@@ -3686,7 +3686,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$515a8f5c",
 						"type": "giskard.me/text.1$Block"
@@ -3707,7 +3707,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$9e7c71d4",
 						"type": "giskard.me/text.1$Block"
@@ -3728,7 +3728,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$18f51965",
 						"type": "giskard.me/text.1$Block"
@@ -3749,7 +3749,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$1510e9e9",
 						"type": "giskard.me/text.1$Block"
@@ -3770,7 +3770,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$3bd51deb",
 						"type": "giskard.me/text.1$Block"
@@ -3791,7 +3791,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$b31aa929",
 						"type": "giskard.me/text.1$Block"
@@ -3812,7 +3812,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$5b4678ab",
 						"type": "giskard.me/text.1$Block"
@@ -3833,7 +3833,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$01aa25a3",
 						"type": "giskard.me/text.1$Block"
@@ -3854,7 +3854,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$2bfc96ed",
 						"type": "giskard.me/text.1$Block"
@@ -3875,7 +3875,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$cba3b9eb",
 						"type": "giskard.me/text.1$Block"
@@ -3896,7 +3896,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f03ea31f",
 						"type": "giskard.me/text.1$Block"
@@ -3917,7 +3917,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$edf9e6fc",
 						"type": "giskard.me/text.1$Block"
@@ -3938,7 +3938,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$4ecfb29f",
 						"type": "giskard.me/text.1$Block"
@@ -3959,7 +3959,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$507086e3",
 						"type": "giskard.me/text.1$Block"
@@ -3980,7 +3980,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$31c2450e",
 						"type": "giskard.me/text.1$Block"
@@ -4001,7 +4001,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$9e41a8e5",
 						"type": "giskard.me/text.1$Block"
@@ -4022,7 +4022,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$0a23c61c",
 						"type": "giskard.me/text.1$Block"
@@ -4043,7 +4043,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$22074f77",
 						"type": "giskard.me/text.1$Block"
@@ -4064,7 +4064,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$37387f51",
 						"type": "giskard.me/text.1$Block"
@@ -4085,7 +4085,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$30a605c1",
 						"type": "giskard.me/text.1$Block"
@@ -4106,7 +4106,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$7a2108b6",
 						"type": "giskard.me/text.1$Block"
@@ -4127,7 +4127,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$e44906c9",
 						"type": "giskard.me/text.1$Block"
@@ -4148,7 +4148,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$b9a75fc9",
 						"type": "giskard.me/text.1$Block"
@@ -4169,7 +4169,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$c961cac0",
 						"type": "giskard.me/text.1$Block"
@@ -4190,7 +4190,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$ed98ee37",
 						"type": "giskard.me/text.1$Block"
@@ -4211,7 +4211,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$01b780c0",
 						"type": "giskard.me/text.1$Block"
@@ -4232,7 +4232,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f9f4d3f1",
 						"type": "giskard.me/text.1$Block"
@@ -4253,7 +4253,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$29db1a26",
 						"type": "giskard.me/text.1$Block"
@@ -4274,7 +4274,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$78476b0d",
 						"type": "giskard.me/text.1$Block"
@@ -4295,7 +4295,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$d8827288",
 						"type": "giskard.me/text.1$Block"
@@ -4316,7 +4316,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$63e796a3",
 						"type": "giskard.me/text.1$Block"
@@ -4337,7 +4337,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$3c62a56d",
 						"type": "giskard.me/text.1$Block"
@@ -4358,7 +4358,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$06baab22",
 						"type": "giskard.me/text.1$Block"
@@ -4379,7 +4379,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$38c7c2de",
 						"type": "giskard.me/text.1$Block"
@@ -4400,7 +4400,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$429d52be",
 						"type": "giskard.me/text.1$Block"
@@ -4421,7 +4421,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$3b4041f6",
 						"type": "giskard.me/text.1$Block"
@@ -4442,7 +4442,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$36da0e25",
 						"type": "giskard.me/text.1$Block"
@@ -4463,7 +4463,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$d898cd12",
 						"type": "giskard.me/text.1$Block"
@@ -4484,7 +4484,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$ada56e6f",
 						"type": "giskard.me/text.1$Block"
@@ -4505,7 +4505,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$aa1cd0e0",
 						"type": "giskard.me/text.1$Block"
@@ -4526,7 +4526,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$a792164d",
 						"type": "giskard.me/text.1$Block"
@@ -4547,7 +4547,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$feb9015b",
 						"type": "giskard.me/text.1$Block"
@@ -4568,7 +4568,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$c3008210",
 						"type": "giskard.me/text.1$Block"
@@ -4589,7 +4589,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$400975fb",
 						"type": "giskard.me/text.1$Block"
@@ -4610,7 +4610,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$d08273ff",
 						"type": "giskard.me/text.1$Block"
@@ -4631,7 +4631,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$e48dcd78",
 						"type": "giskard.me/text.1$Block"
@@ -4652,7 +4652,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$b1cdd6e7",
 						"type": "giskard.me/text.1$Block"
@@ -4673,7 +4673,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$6f9518ed",
 						"type": "giskard.me/text.1$Block"
@@ -4694,7 +4694,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$af690339",
 						"type": "giskard.me/text.1$Block"
@@ -4715,7 +4715,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$5422f34c",
 						"type": "giskard.me/text.1$Block"
@@ -4736,7 +4736,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$50f9baed",
 						"type": "giskard.me/text.1$Block"
@@ -4757,7 +4757,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$001dc34b",
 						"type": "giskard.me/text.1$Block"
@@ -4778,7 +4778,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$2cf88004",
 						"type": "giskard.me/text.1$Block"
@@ -4799,7 +4799,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$561b3d64",
 						"type": "giskard.me/text.1$Block"
@@ -4820,7 +4820,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$9f4d94ea",
 						"type": "giskard.me/text.1$Block"
@@ -4841,7 +4841,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$deeba5b6",
 						"type": "giskard.me/text.1$Block"
@@ -4862,7 +4862,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$7da55a7a",
 						"type": "giskard.me/text.1$Block"
@@ -4883,7 +4883,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$50eff9ad",
 						"type": "giskard.me/text.1$Block"
@@ -4904,7 +4904,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$7f470b7a",
 						"type": "giskard.me/text.1$Block"
@@ -4925,7 +4925,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$af1a1136",
 						"type": "giskard.me/text.1$Block"
@@ -4946,7 +4946,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$38c30049",
 						"type": "giskard.me/text.1$Block"
@@ -4967,7 +4967,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$95f217da",
 						"type": "giskard.me/text.1$Block"
@@ -4988,7 +4988,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$0b6cc090",
 						"type": "giskard.me/text.1$Block"
@@ -5009,7 +5009,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f9f156e1",
 						"type": "giskard.me/text.1$Block"
@@ -5030,7 +5030,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$54a1d98e",
 						"type": "giskard.me/text.1$Block"
@@ -5051,7 +5051,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$08609d06",
 						"type": "giskard.me/text.1$Block"
@@ -5072,7 +5072,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$144075c9",
 						"type": "giskard.me/text.1$Block"
@@ -5093,7 +5093,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$3d7002e8",
 						"type": "giskard.me/text.1$Block"
@@ -5114,7 +5114,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f10c61f5",
 						"type": "giskard.me/text.1$Block"
@@ -5135,7 +5135,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$3a10d7b3",
 						"type": "giskard.me/text.1$Block"
@@ -5156,7 +5156,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$92fbf4cc",
 						"type": "giskard.me/text.1$Block"
@@ -5177,7 +5177,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$cc6e1a3e",
 						"type": "giskard.me/text.1$Block"
@@ -5198,7 +5198,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$0b2be811",
 						"type": "giskard.me/text.1$Block"
@@ -5219,7 +5219,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$8f8b45d6",
 						"type": "giskard.me/text.1$Block"
@@ -5240,7 +5240,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$316923f3",
 						"type": "giskard.me/text.1$Block"
@@ -5261,7 +5261,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$8df09442",
 						"type": "giskard.me/text.1$Block"
@@ -5282,7 +5282,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$440e35e7",
 						"type": "giskard.me/text.1$Block"
@@ -5303,7 +5303,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$ad73f75d",
 						"type": "giskard.me/text.1$Block"
@@ -5324,7 +5324,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$1551045a",
 						"type": "giskard.me/text.1$Block"
@@ -5345,7 +5345,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$775401dd",
 						"type": "giskard.me/text.1$Block"
@@ -5366,7 +5366,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$ffd24f72",
 						"type": "giskard.me/text.1$Block"
@@ -5387,7 +5387,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$d7922c64",
 						"type": "giskard.me/text.1$Block"
@@ -5408,7 +5408,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$0d954e86",
 						"type": "giskard.me/text.1$Block"
@@ -5429,7 +5429,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$e53ffca8",
 						"type": "giskard.me/text.1$Block"
@@ -5450,7 +5450,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$c0295ce3",
 						"type": "giskard.me/text.1$Block"
@@ -5471,7 +5471,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$e99f865a",
 						"type": "giskard.me/text.1$Block"
@@ -5492,7 +5492,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$95f7aba7",
 						"type": "giskard.me/text.1$Block"
@@ -5513,7 +5513,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f1900c44",
 						"type": "giskard.me/text.1$Block"
@@ -5534,7 +5534,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f56b8bda",
 						"type": "giskard.me/text.1$Block"
@@ -5555,7 +5555,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$9a07bc9d",
 						"type": "giskard.me/text.1$Block"
@@ -5576,7 +5576,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$45c79120",
 						"type": "giskard.me/text.1$Block"
@@ -5597,7 +5597,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$a6befaf7",
 						"type": "giskard.me/text.1$Block"
@@ -5618,7 +5618,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$401360d0",
 						"type": "giskard.me/text.1$Block"
@@ -5639,7 +5639,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$ad3eb655",
 						"type": "giskard.me/text.1$Block"
@@ -5660,7 +5660,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$6954f658",
 						"type": "giskard.me/text.1$Block"
@@ -5681,7 +5681,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$651733de",
 						"type": "giskard.me/text.1$Block"
@@ -5702,7 +5702,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$22c88823",
 						"type": "giskard.me/text.1$Block"
@@ -5723,7 +5723,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$2b38435d",
 						"type": "giskard.me/text.1$Block"
@@ -5744,7 +5744,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$845c2d81",
 						"type": "giskard.me/text.1$Block"
@@ -5765,7 +5765,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f8544b0e",
 						"type": "giskard.me/text.1$Block"
@@ -5786,7 +5786,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$a70379cb",
 						"type": "giskard.me/text.1$Block"
@@ -5807,7 +5807,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$956b40e6",
 						"type": "giskard.me/text.1$Block"
@@ -5828,7 +5828,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$e7b659e2",
 						"type": "giskard.me/text.1$Block"
@@ -5849,7 +5849,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$7ec4c9e3",
 						"type": "giskard.me/text.1$Block"
@@ -5870,7 +5870,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$de9d2473",
 						"type": "giskard.me/text.1$Block"
@@ -5891,7 +5891,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$065368b6",
 						"type": "giskard.me/text.1$Block"
@@ -5912,7 +5912,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$6479b775",
 						"type": "giskard.me/text.1$Block"
@@ -5933,7 +5933,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$6d036c08",
 						"type": "giskard.me/text.1$Block"
@@ -5954,7 +5954,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$06269296",
 						"type": "giskard.me/text.1$Block"
@@ -5975,7 +5975,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$f86d693e",
 						"type": "giskard.me/text.1$Block"
@@ -5996,7 +5996,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$7c11a061",
 						"type": "giskard.me/text.1$Block"
@@ -6017,7 +6017,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$33513f6d",
 						"type": "giskard.me/text.1$Block"
@@ -6038,7 +6038,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$3acc1213",
 						"type": "giskard.me/text.1$Block"
@@ -6059,7 +6059,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$8566b755",
 						"type": "giskard.me/text.1$Block"
@@ -6080,7 +6080,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$92a69783",
 						"type": "giskard.me/text.1$Block"
@@ -6101,7 +6101,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$50374d8c",
 						"type": "giskard.me/text.1$Block"
@@ -6122,7 +6122,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$53f0cad9",
 						"type": "giskard.me/text.1$Block"
@@ -6143,7 +6143,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$a377061b",
 						"type": "giskard.me/text.1$Block"
@@ -6164,7 +6164,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$56c44372",
 						"type": "giskard.me/text.1$Block"
@@ -6185,7 +6185,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$02c8320a",
 						"type": "giskard.me/text.1$Block"
@@ -6206,7 +6206,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$0eef1b8b",
 						"type": "giskard.me/text.1$Block"
@@ -6227,7 +6227,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$e0b0c047",
 						"type": "giskard.me/text.1$Block"
@@ -6248,7 +6248,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$41c62edc",
 						"type": "giskard.me/text.1$Block"
@@ -6269,7 +6269,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$160c54f9",
 						"type": "giskard.me/text.1$Block"
@@ -6290,7 +6290,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$71a1de2c",
 						"type": "giskard.me/text.1$Block"
@@ -6311,7 +6311,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$7aef1d55",
 						"type": "giskard.me/text.1$Block"
@@ -6332,7 +6332,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$d570312b",
 						"type": "giskard.me/text.1$Block"
@@ -6353,7 +6353,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$fb12d322",
 						"type": "giskard.me/text.1$Block"
@@ -6374,7 +6374,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$73b5ae72",
 						"type": "giskard.me/text.1$Block"
@@ -6395,7 +6395,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$5ce3b2b6",
 						"type": "giskard.me/text.1$Block"
@@ -6416,7 +6416,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$5cf28f0f",
 						"type": "giskard.me/text.1$Block"
@@ -6437,7 +6437,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$dcf41c55",
 						"type": "giskard.me/text.1$Block"
@@ -6458,7 +6458,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$7b636b72",
 						"type": "giskard.me/text.1$Block"
@@ -6479,7 +6479,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$a828f757",
 						"type": "giskard.me/text.1$Block"
@@ -6500,7 +6500,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$99592519",
 						"type": "giskard.me/text.1$Block"
@@ -6521,7 +6521,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$223519b0",
 						"type": "giskard.me/text.1$Block"
@@ -6542,7 +6542,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$d804923f",
 						"type": "giskard.me/text.1$Block"
@@ -6563,7 +6563,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$058fc95f",
 						"type": "giskard.me/text.1$Block"
@@ -6584,7 +6584,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$a85cdb9f",
 						"type": "giskard.me/text.1$Block"
@@ -6605,7 +6605,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$c2fc1c55",
 						"type": "giskard.me/text.1$Block"
@@ -6626,7 +6626,7 @@
 						"type": "giskard.me/lang.1$Language"
 					}
 				},
-				"misc.1$target": {
+				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/Tanulas.1$a5fe403d",
 						"type": "giskard.me/text.1$Block"
@@ -6644,15 +6644,15 @@
 		"count": 316,
 		"unitInfo": {
 			"relationships": {
-				"mind.1$author": {
+				"giskard.me/mind.1$author": {
 					"data": {
 						"id": "Lorand/author$LorandKedves",
-						"type": "mind.1$Author"
+						"type": "giskard.me/mind.1$Author"
 					}
 				}
 			},
 			"id": "Lorand/Tanulas_str.1",
-			"type": "mind.1$Unit"
+			"type": "giskard.me/mind.1$Unit"
 		}
 	}
 }

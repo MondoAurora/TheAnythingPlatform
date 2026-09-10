@@ -5,53 +5,53 @@
 	"data": [
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_AAA_ATT_ACCESS"
+				"giskard.me/misc.1$name": "TOKEN_AAA_ATT_ACCESS"
 			},
 			"id": "giskard.me/aaa.1$access",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_AAA_ATT_AUTH"
+				"giskard.me/misc.1$name": "TOKEN_AAA_ATT_AUTH"
 			},
 			"id": "giskard.me/aaa.1$auth",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_AAA_ATT_PASSWORD"
+				"giskard.me/misc.1$name": "TOKEN_AAA_ATT_PASSWORD"
 			},
 			"id": "giskard.me/aaa.1$password",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_AAA_ATT_READABLETO"
+				"giskard.me/misc.1$name": "TOKEN_AAA_ATT_READABLETO"
 			},
 			"id": "giskard.me/aaa.1$readableTo",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_AAA_ATT_USERID"
+				"giskard.me/misc.1$name": "TOKEN_AAA_ATT_USERID"
 			},
 			"id": "giskard.me/aaa.1$userId",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		}
 	],
 	"meta": {
 		"count": 5,
 		"unitInfo": {
 			"relationships": {
-				"mind.1$author": {
+				"giskard.me/mind.1$author": {
 					"data": {
 						"id": "giskard.me/author$Giskard",
-						"type": "mind.1$Author"
+						"type": "giskard.me/mind.1$Author"
 					}
 				}
 			},
 			"id": "aaa.1",
-			"type": "mind.1$Unit"
+			"type": "giskard.me/mind.1$Unit"
 		}
 	}
 }

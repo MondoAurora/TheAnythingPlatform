@@ -1,0 +1,222 @@
+{
+	"jsonapi": {
+		"version": "1.1"
+	},
+	"data": [
+		{
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_DUST_ASP_APP"
+			},
+			"id": "giskard.me/dust.1$Application",
+			"type": "giskard.me/mind.1$Aspect"
+		},
+		{
+			"id": "giskard.me/dust.1$Machine",
+			"type": "giskard.me/mind.1$Narrative"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$serializer": {
+					"data": {
+						"id": "Lorand/sandbox.1$SerializeDefault",
+						"type": "giskard.me/mind.1$Message"
+					}
+				},
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/dust.1$Machine",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$meta": "dust.1",
+				"giskard.me/misc.1$name": "TOKEN_DUST_AGT_RUNTIME"
+			},
+			"id": "giskard.me/dust.1$Runtime",
+			"type": "giskard.me/mind.1$Agent"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeString",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_BINARY"
+			},
+			"id": "giskard.me/dust.1$binary",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ValtypeRaw",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ColltypeMap",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_BINARY_RESOLVER"
+			},
+			"id": "giskard.me/dust.1$binaryResolver",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeBool",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_RELEASEONSHUTDOWN"
+			},
+			"id": "giskard.me/dust.1$releaseOnShutdown",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ValtypeRaw",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ColltypeMap",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_UNIT_OBJECTS"
+			},
+			"id": "giskard.me/dust.1$unitObjects",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ColltypeMap",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_UNIT_REFS"
+			},
+			"id": "giskard.me/dust.1$unitRefs",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$Transient",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ColltypeMap",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_WRAPBACKREF"
+			},
+			"id": "giskard.me/dust.1$wrapBackRef",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$Transient",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ColltypeMap",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_WRAPPEDOBJECT"
+			},
+			"id": "giskard.me/dust.1$wrappedObject",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"id": "giskard.me/mind.1$Aspect",
+			"type": "giskard.me/mind.1$Aspect"
+		},
+		{
+			"id": "giskard.me/mind.1$Attribute",
+			"type": "giskard.me/mind.1$Aspect"
+		},
+		{
+			"id": "giskard.me/mind.1$Unit",
+			"type": "giskard.me/mind.1$Aspect"
+		}
+	],
+	"meta": {
+		"count": 13,
+		"unitInfo": {
+			"relationships": {
+				"giskard.me/mind.1$author": {
+					"data": {
+						"id": "giskard.me/author$Giskard",
+						"type": "giskard.me/mind.1$Author"
+					}
+				}
+			},
+			"id": "giskard.me/dust.1",
+			"type": "giskard.me/mind.1$Unit"
+		}
+	}
+}

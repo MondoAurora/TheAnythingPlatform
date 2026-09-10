@@ -5,130 +5,130 @@
 	"data": [
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_NET_ATT_SRVCALL_ATTRIBUTES"
+				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_ATTRIBUTES"
 			},
 			"id": "giskard.me/net.1$attributes",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_NET_ATT_SRVCALL_HEADERS"
+				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_HEADERS"
 			},
 			"id": "giskard.me/net.1$headers",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_NET_ATT_KNOWN_HOST"
+				"giskard.me/misc.1$name": "TOKEN_NET_ATT_KNOWN_HOST"
 			},
 			"id": "giskard.me/net.1$knownHost",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_NET_ATT_SRVCALL_METHOD"
+				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_METHOD"
 			},
 			"id": "giskard.me/net.1$method",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_NET_ATT_SRVCALL_PATHINFO"
+				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_PATHINFO"
 			},
 			"id": "giskard.me/net.1$pathInfo",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_NET_ATT_HOST_PORT"
+				"giskard.me/misc.1$name": "TOKEN_NET_ATT_HOST_PORT"
 			},
 			"id": "giskard.me/net.1$port",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_NET_ATT_SRVCALL_REQUEST"
+				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_REQUEST"
 			},
 			"id": "giskard.me/net.1$request",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_NET_ATT_SRVRESP_HEADER"
+				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVRESP_HEADER"
 			},
 			"id": "giskard.me/net.1$respHeader",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_NET_ATT_SRVRESP_STATUS"
+				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVRESP_STATUS"
 			},
 			"id": "giskard.me/net.1$respStatus",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_NET_ATT_SRVRESP_TYPE"
+				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVRESP_TYPE"
 			},
 			"id": "giskard.me/net.1$respType",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_NET_ATT_SRVCALL_RESPONSE"
+				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_RESPONSE"
 			},
 			"id": "giskard.me/net.1$response",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_NET_ATT_SSLINFO_KEYMANAGERPASS"
+				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SSLINFO_KEYMANAGERPASS"
 			},
 			"id": "giskard.me/net.1$sslKeyMgrPass",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_NET_ATT_SSLINFO_PORT"
+				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SSLINFO_PORT"
 			},
 			"id": "giskard.me/net.1$sslPort",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_NET_ATT_SSLINFO_STOREPASS"
+				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SSLINFO_STOREPASS"
 			},
 			"id": "giskard.me/net.1$sslStorePass",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_NET_ATT_SSLINFO_STOREPATH"
+				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SSLINFO_STOREPATH"
 			},
 			"id": "giskard.me/net.1$sslStorePath",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"misc.1$name": "TOKEN_NET_ATT_SRVCALL_STATUS"
+				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_STATUS"
 			},
 			"id": "giskard.me/net.1$status",
-			"type": "mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute"
 		}
 	],
 	"meta": {
 		"count": 16,
 		"unitInfo": {
 			"relationships": {
-				"mind.1$author": {
+				"giskard.me/mind.1$author": {
 					"data": {
 						"id": "giskard.me/author$Giskard",
-						"type": "mind.1$Author"
+						"type": "giskard.me/mind.1$Author"
 					}
 				}
 			},
 			"id": "net.1",
-			"type": "mind.1$Unit"
+			"type": "giskard.me/mind.1$Unit"
 		}
 	}
 }
