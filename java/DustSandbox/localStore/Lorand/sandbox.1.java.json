@@ -23,7 +23,7 @@
 					"giskard.me/stream.1$FileStreamSource": {
 						"giskard.me/dust.1$binary": "me.giskard.dust.core.stream.DustStreamSrcFileAgent"
 					},
-					"giskard.me/stream.1$StreamAgent": {
+					"giskard.me/stream.1$StreamCentre": {
 						"giskard.me/dust.1$binary": "me.giskard.dust.core.stream.DustStreamAgent"
 					},
 					"giskard.me/dev.1$GraphEditor": {

@@ -40,7 +40,7 @@
 			"type": "giskard.me/mind.1$Aspect"
 		},
 		{
-			"id": "giskard.me/stream.1$StreamAgent",
+			"id": "giskard.me/stream.1$StreamCentre",
 			"type": "giskard.me/mind.1$Narrative"
 		},
 		{
@@ -286,6 +286,10 @@
 			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
+			"id": "giskard.me/stream.1$streamCentre",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
 			"relationships": {
 				"giskard.me/mind.1$tags": {
 					"data": [
@@ -325,6 +329,27 @@
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_SOURCE"
 			},
 			"id": "giskard.me/stream.1$streamSource",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_UNIT_HANDLER"
+			},
+			"id": "giskard.me/stream.1$unitHandler",
 			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
@@ -392,7 +417,7 @@
 		}
 	],
 	"meta": {
-		"count": 25,
+		"count": 27,
 		"unitInfo": {
 			"relationships": {
 				"giskard.me/mind.1$author": {

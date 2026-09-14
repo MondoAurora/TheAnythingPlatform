@@ -747,7 +747,8 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				
 			case "Activate":
 				if (null != focused) {
-					Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_REFRESH, focused, TOKEN_MIND_ATT_CMD);
+					Object c = Dust.access(DustAccess.Peek, TOKEN_MISC_TAG_CMD_REFRESH, focused, TOKEN_MIND_ATT_CMD);
+					Dust.access(DustAccess.Set, c, focused, TOKEN_MIND_ATT_CMD);
 					Dust.access(DustAccess.Insert, TOKEN_MISC_TAG_SLAVE, focused, TOKEN_MIND_ATT_TAGS);
 
 					Dust.access(DustAccess.Process, null, focused);

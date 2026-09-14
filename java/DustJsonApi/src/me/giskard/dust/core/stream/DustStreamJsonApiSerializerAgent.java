@@ -18,10 +18,14 @@ public class DustStreamJsonApiSerializerAgent extends DustStreamJsonApiAgent imp
 
 		String unitId = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_KEY);
 		DustHandle unit = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_DATA);
-		Dust.access(DustAccess.Delete, null, null, TOKEN_MISC_ATT_DATA);
+//		Dust.access(DustAccess.Delete, null, null, TOKEN_MISC_ATT_DATA);
+
+		if (null == unit) {
+			unit = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET);
+			unitId = unit.getId();
+		}
 
 		Object streamSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_SOURCE);
-//		Map<String, Object> sp = new HashMap<String, Object>();
 
 		String fileName = null;
 
@@ -51,7 +55,7 @@ public class DustStreamJsonApiSerializerAgent extends DustStreamJsonApiAgent imp
 //			sp.put(TOKEN_STREAM_ATT_ROOTFOLDER, fileName);
 			Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_INFO, streamSource, TOKEN_MIND_ATT_CMD);
 			Dust.access(DustAccess.Set, fileName, streamSource, TOKEN_STREAM_ATT_ROOTFOLDER);
-			
+
 			Dust.access(DustAccess.Process, null, streamSource);
 
 //			Object files = sp.get(TOKEN_MISC_ATT_MEMBERS);
@@ -76,10 +80,14 @@ public class DustStreamJsonApiSerializerAgent extends DustStreamJsonApiAgent imp
 //			sp.put(TOKEN_CMD, TOKEN_MISC_TAG_CMD_LOAD);
 //			sp.put(TOKEN_PATH, fileName);
 //
-//			InputStream is = Dust.access(DustAccess.Process, sp, streamSource);
+			InputStream is1 = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_INPUT);
+			if (null != is1) {
+				loadStream(unit, is1);
+			} else {
 
-			try (InputStream is = DustStreamUtils.getStream(TOKEN_MISC_TAG_CMD_LOAD, fileName)) {
-				loadStream(unit, is);
+				try (InputStream is = DustStreamUtils.getStream(TOKEN_MISC_TAG_CMD_LOAD, fileName)) {
+					loadStream(unit, is);
+				}
 			}
 			break;
 		case TOKEN_MISC_TAG_CMD_SAVE:
@@ -102,8 +110,9 @@ public class DustStreamJsonApiSerializerAgent extends DustStreamJsonApiAgent imp
 
 		}
 		return null;
+
 	}
-	
+
 	@Override
 	public void loadStreamBoot(DustHandle unit, InputStream is) throws Exception {
 		loadStream(unit, is);

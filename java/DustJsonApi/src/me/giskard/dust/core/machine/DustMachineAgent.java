@@ -115,6 +115,7 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 			DustMachineHandle hUnit = unit.mh;
 
 			if ((null != unitApp) && (unitApp.mh != hUnit) && !loadingUnit.get().contains(hUnit)) {
+//			if ((null != unitApp) && !loadingUnit.get().contains(hUnit)) {
 				changedUnits.add(hUnit);
 			}
 
@@ -404,7 +405,8 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 
 	public void saveChanges() {
 		for (DustHandle hChg : changedUnits) {
-			if ((unitApp.mh == hChg) || (DustUtils.isEmpty(hChg.getId()))) {
+//			if ( (DustUtils.isEmpty(hChg.getId()))) {
+			if ((unitApp.mh == hChg) || (machine.mh == hChg) || (DustUtils.isEmpty(hChg.getId()))) {
 				continue;
 			}
 
@@ -426,7 +428,11 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 
 		DustHandle hUnit = DustUtils.isEqual(typeUnit, handle.getType()) ? handle : handle.getUnit();
 
-		if ((machine.mh == hUnit) || (unitApp.mh == hUnit) || loadingUnit.get().contains(hUnit)) {
+		if (loadingUnit.get().contains(hUnit)) {
+			return;
+		}
+		if ((machine.mh == hUnit) || (unitApp.mh == hUnit)) {
+//		if (machine.mh == hUnit) {
 			return;
 		}
 
@@ -964,6 +970,7 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 
 			bootRefUnits = new TreeMap<>();
 		}
+		loadingUnit.get().add(appUnit);
 		bootLoader.loadStreamBoot(appUnit, is);
 
 		return appUnit;

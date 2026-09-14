@@ -1,6 +1,6 @@
 /save/
 /res/
 /gen/
-/dust.1$Runtime.json
+**/dust.1$Runtime.json
 /MontruHealth/
 /Tendua/

@@ -24,45 +24,68 @@ public class DustStreamAgent extends DustAgent implements DustMachine.StreamSour
 
 	@Override
 	protected Object process(DustAccess access) throws Exception {
-		String cmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
+		DustHandle hCmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
 		DustHandle hNext = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_NEXT);
 
-		Collection<String> unitNames = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_RESOLVER_UNIT_NAMES);
+		DustHandle hTarget = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET);
+		String name = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_KEY);
+		
+		DustHandle hSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_SOURCE);
 
-		DustHandle hTarget = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_DATA);
-		ArrayList<DustHandle> options = new ArrayList<>();
-		String uName = null;
-		DustHandle hRes = null;
+		if (null != hTarget) {
+			switch ( hTarget.getId() ) {
+			case TOKEN_MIND_ASP_UNIT:
+				hTarget = Dust.getUnit(name, true);
+				break;
+			}
+			Dust.access(DustAccess.Set, hCmd, hSource, TOKEN_MIND_ATT_CMD);
+			Dust.access(DustAccess.Set, hTarget, hSource, TOKEN_MISC_ATT_TARGET);
+			Dust.access(DustAccess.Set, name, hSource, TOKEN_MISC_ATT_KEY);
+			Dust.access(DustAccess.Set, hNext, hSource, TOKEN_MIND_ATT_NEXT);
 
-		for (String un : unitNames) {
-			DustHandle uRes = Dust.getUnit(un, true);
+			Dust.access(DustAccess.Set, hCmd, hNext, TOKEN_MIND_ATT_CMD);
+			Dust.access(DustAccess.Set, hTarget, hNext, TOKEN_MISC_ATT_TARGET);
 
-			if (null != uRes) {
-				for (DustHandle hr : DustMachineUtils.getUnitMembers(uRes)) {
-					boolean found = Dust.access(DustAccess.Check, hTarget, hr, TOKEN_MISC_ATT_APPEARS);
+			Dust.access(DustAccess.Process, null, hSource);
+		} else {
 
-					if (found) {
-						options.add(hr);
-						hRes = hr;
-						uName = un;
+			Collection<String> unitNames = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_RESOLVER_UNIT_NAMES);
+
+			DustHandle hData = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_DATA);
+			ArrayList<DustHandle> options = new ArrayList<>();
+			String uName = null;
+			DustHandle hRes = null;
+
+			for (String un : unitNames) {
+				DustHandle uRes = Dust.getUnit(un, true);
+
+				if (null != uRes) {
+					for (DustHandle hr : DustMachineUtils.getUnitMembers(uRes)) {
+						boolean found = Dust.access(DustAccess.Check, hData, hr, TOKEN_MISC_ATT_APPEARS);
+
+						if (found) {
+							options.add(hr);
+							hRes = hr;
+							uName = un;
+						}
 					}
 				}
 			}
-		}
 
-		String p = "localStore/res/59d365a0.jpg";
+			String p = "localStore/res/59d365a0.jpg";
 
-		if (!options.isEmpty()) {
+			if (!options.isEmpty()) {
 
-			String path = Dust.access(DustAccess.Peek, null, hRes, TOKEN_MISC_ATT_PATH);
+				String path = Dust.access(DustAccess.Peek, null, hRes, TOKEN_MISC_ATT_PATH);
 
-			p = "localStore/" + uName.substring(0, uName.lastIndexOf("/") + 1) + path;
-		}
-		
-		try (FileInputStream fi = new FileInputStream(p)) {
-			Dust.access(DustAccess.Set, fi, hNext, TOKEN_STREAM_ATT_INPUT);
-			Dust.access(DustAccess.Set, TOKEN_DEV_TAG_CMD_TEST, hNext, TOKEN_MIND_ATT_CMD);
-			Dust.access(DustAccess.Process, null, hNext);
+				p = "localStore/" + uName.substring(0, uName.lastIndexOf("/") + 1) + path;
+			}
+
+			try (FileInputStream fi = new FileInputStream(p)) {
+				Dust.access(DustAccess.Set, fi, hNext, TOKEN_STREAM_ATT_INPUT);
+				Dust.access(DustAccess.Set, TOKEN_DEV_TAG_CMD_TEST, hNext, TOKEN_MIND_ATT_CMD);
+				Dust.access(DustAccess.Process, null, hNext);
+			}
 		}
 
 		if (null != hNext) {
@@ -90,6 +113,7 @@ public class DustStreamAgent extends DustAgent implements DustMachine.StreamSour
 		String path = Dust.access(DustAccess.Peek, null, hStream, TOKEN_MISC_ATT_PATH);
 		File f = DustUtils.isEmpty(path) ? r : new File(r, path);
 
+		String cmd = hCmd.getId();
 		String token = null;
 		switch (cmd) {
 		case TOKEN_MISC_TAG_CMD_LOAD:
