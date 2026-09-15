@@ -100,10 +100,13 @@ public class DustStreamJsonApiSerializerAgent extends DustStreamJsonApiAgent imp
 //				sp.put(TOKEN_CMD, TOKEN_MISC_TAG_CMD_SAVE);
 //				sp.put(TOKEN_PATH, fileName);
 //
-//				OutputStream os = Dust.access(DustAccess.Process, sp, streamSource);
-
-				try (OutputStream os = DustStreamUtils.getStream(TOKEN_MISC_TAG_CMD_SAVE, fileName)) {
-					DustUtilsJson.writeJson(os, target, DUST_CHARSET_UTF8);
+				OutputStream os1 = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_OUTPUT);
+				if (null != os1) {
+					DustUtilsJson.writeJson( os1, target, DUST_CHARSET_UTF8);
+				} else {
+					try (OutputStream os = DustStreamUtils.getStream(TOKEN_MISC_TAG_CMD_SAVE, fileName)) {
+						DustUtilsJson.writeJson(os, target, DUST_CHARSET_UTF8);
+					}
 				}
 			}
 			break;

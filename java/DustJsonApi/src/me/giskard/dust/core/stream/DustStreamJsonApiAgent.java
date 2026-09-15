@@ -100,6 +100,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 		}
 
 		Dust.access(DustAccess.Set, data.size(), target, JsonApiMember.meta, JsonApiMember.count);
+		Dust.access(DustAccess.Set, DustUtils.strTime(), target, JsonApiMember.meta, "date");
 		Dust.access(DustAccess.Set, storeFull(unit), target, JsonApiMember.meta, EXT_JSONAPI_UNIT_INFO);
 
 		return target;

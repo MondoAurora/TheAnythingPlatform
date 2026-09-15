@@ -16,6 +16,12 @@
 		},
 		{
 			"relationships": {
+				"giskard.me/stream.1$unitHandler": {
+					"data": {
+						"id": "Lorand/test01$UnitHandler",
+						"type": "giskard.me/mind.1$Message"
+					}
+				},
 				"giskard.me/mind.1$serializer": {
 					"data": {
 						"id": "Lorand/sandbox.1$SerializeDefault",
@@ -62,11 +68,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ValtypeRaw",
+							"id": "giskard.me/mind.1$ColltypeMap",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ColltypeMap",
+							"id": "giskard.me/mind.1$ValtypeRaw",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -83,11 +89,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ValtypeBool",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeBool",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -104,11 +110,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ValtypeRaw",
+							"id": "giskard.me/mind.1$ColltypeMap",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ColltypeMap",
+							"id": "giskard.me/mind.1$ValtypeRaw",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -125,11 +131,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
+							"id": "giskard.me/mind.1$ColltypeMap",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ColltypeMap",
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -146,15 +152,15 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
-							"type": "giskard.me/mind.1$Tag"
-						},
-						{
 							"id": "giskard.me/mind.1$Transient",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
 							"id": "giskard.me/mind.1$ColltypeMap",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -171,15 +177,15 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
-							"type": "giskard.me/mind.1$Tag"
-						},
-						{
 							"id": "giskard.me/mind.1$Transient",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
 							"id": "giskard.me/mind.1$ColltypeMap",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]

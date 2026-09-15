@@ -64,7 +64,7 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 
 			return (RetType) ret;
 		}
-		
+
 		@Override
 		public String toString() {
 			return DustUtils.sbAppend(null, " ", true, "CallContext", hAgent, hMessage, work).toString();
@@ -77,7 +77,7 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 //			Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Get thread context", Thread.currentThread(), ctx);
 //			return ctx;
 //		};
-		
+
 		public void set(CallContext value) {
 //			Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "SET thread context", Thread.currentThread(), value);
 			super.set(value);
@@ -169,7 +169,7 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 		machine.loadMh();
 		unitMeta.mh.init(machine, typeUnit, UNIT_DUST);
 		unitMeta.loadMh();
-		
+
 		THREAD_CONTEXTS.set(new CallContext(machine.mh, null));
 	}
 
@@ -304,7 +304,34 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 
 	private void optLoadUnit(String unitId, DustMachineIdea unit) {
 		if (!DustUtils.isEmpty(unitId)) {
-			Object ser = access(DustAccess.Peek, defaultSerializer, machine, TOKEN_DUST_ATT_UNIT_OBJECTS, unitId, TOKEN_MIND_ATT_SERIALIZER);
+			Object ser;
+
+			DustHandle hMachine = (null == unitApp) ? null : getHandle(unitApp.mh, null, TOKEN_DUST_AGT_RUNTIME, DustOptCreate.None);
+			ser = access(DustAccess.Peek, null, hMachine, TOKEN_STREAM_ATT_UNIT_HANDLER);
+
+//			Object ser = (null == unitApp) ? null : access(DustAccess.Peek, null, unitApp.mh, TOKEN_DUST_AGT_RUNTIME, TOKEN_STREAM_ATT_UNIT_HANDLER);
+
+			if (null != ser) {
+				if (null != access(DustAccess.Peek, null, ser, TOKEN_MIND_ATT_NEXT)) {
+					DustHandle hC = getHandle(null, null, TOKEN_MISC_TAG_CMD_LOAD, DustOptCreate.None);
+					access(DustAccess.Set, hC, ser, TOKEN_MIND_ATT_CMD);
+					access(DustAccess.Set, unitId, ser, TOKEN_MISC_ATT_KEY);
+
+					try {
+						loadingUnit.get().add(unit.mh);
+						access(DustAccess.Process, null, ser);
+					} finally {
+						loadingUnit.get().remove(unit.mh);
+					}
+
+					access(DustAccess.Delete, null, ser, TOKEN_MIND_ATT_CMD);
+					access(DustAccess.Delete, null, ser, TOKEN_MISC_ATT_KEY);
+
+					return;
+				}
+			}
+
+			ser = access(DustAccess.Peek, defaultSerializer, machine, TOKEN_DUST_ATT_UNIT_OBJECTS, unitId, TOKEN_MIND_ATT_SERIALIZER);
 
 			if (null != ser) {
 
@@ -320,7 +347,9 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 				}
 			} else {
 				if (null != bootRefUnits) {
-					bootRefUnits.put(unitId, unit);
+					if (machine.mh != unit.mh) {
+						bootRefUnits.put(unitId, unit);
+					}
 				}
 			}
 		}
@@ -410,6 +439,26 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 				continue;
 			}
 
+			Object ser;
+
+			DustHandle hMachine = (null == unitApp) ? null : getHandle(unitApp.mh, null, TOKEN_DUST_AGT_RUNTIME, DustOptCreate.None);
+			ser = access(DustAccess.Peek, null, hMachine, TOKEN_STREAM_ATT_UNIT_HANDLER);
+
+			if (null != ser) {
+				if (null != access(DustAccess.Peek, null, ser, TOKEN_MIND_ATT_NEXT)) {
+					DustHandle hC = getHandle(null, null, TOKEN_MISC_TAG_CMD_SAVE, DustOptCreate.None);
+					access(DustAccess.Set, hC, ser, TOKEN_MIND_ATT_CMD);
+					access(DustAccess.Set, hChg.getId(), ser, TOKEN_MISC_ATT_KEY);
+
+					access(DustAccess.Process, null, ser);
+
+					access(DustAccess.Delete, null, ser, TOKEN_MIND_ATT_CMD);
+					access(DustAccess.Delete, null, ser, TOKEN_MISC_ATT_KEY);
+
+					continue;
+				}
+			}
+
 			Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_SAVE, defaultSerializer, TOKEN_MIND_ATT_CMD);
 			Dust.access(DustAccess.Set, hChg.getId(), defaultSerializer, TOKEN_MISC_ATT_KEY);
 			Dust.access(DustAccess.Set, hChg, defaultSerializer, TOKEN_MISC_ATT_DATA);
@@ -423,7 +472,7 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 	private void registerChange(DustHandle agent, DustAccess acess, DustHandle handle, DustHandle att, Object lastKey, Object oldVal, Object newVal)
 			throws RuntimeException {
 		checkAccess(agent, acess, handle, att, lastKey, newVal);
-		
+
 //		Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Register change", agent, acess, handle, att, lastKey, newVal);
 
 		DustHandle hUnit = DustUtils.isEqual(typeUnit, handle.getType()) ? handle : handle.getUnit();
@@ -959,16 +1008,16 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 		if (null == appUnit) {
 			String[] ss = path.split("/");
 			int sl = ss.length;
-			path = ss[sl-2] + "/" + ss[sl-1];
+			path = ss[sl - 2] + "/" + ss[sl - 1];
 //			int u = path.lastIndexOf("/");
 //			String unitId = DustUtils.cutPostfix(path.substring(u + 1), ".");
+			bootRefUnits = new TreeMap<>();
 
 			String unitId = DustUtils.cutPostfix(path, ".");
 
 			this.unitApp = getUnitIdea(unitId, true);
 			appUnit = this.unitApp.mh;
 
-			bootRefUnits = new TreeMap<>();
 		}
 		loadingUnit.get().add(appUnit);
 		bootLoader.loadStreamBoot(appUnit, is);

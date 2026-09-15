@@ -40,8 +40,9 @@
 				}
 			},
 			"attributes": {
-				"giskard.me/mind.1$cmd": "giskard.me/misc.1$CmdLoad",
-				"giskard.me/stream.1$inputStream": "java.io.FileInputStream@46c0145b"
+				"giskard.me/mind.1$cmd": "giskard.me/misc.1$CmdSave",
+				"giskard.me/misc.1$key": "Lorand/test01",
+				"giskard.me/stream.1$outputStream": "java.io.FileOutputStream@3f5b20d1"
 			},
 			"id": "Lorand/test01$ProcessUnitStream",
 			"type": "giskard.me/mind.1$Message"
@@ -79,7 +80,7 @@
 				}
 			},
 			"attributes": {
-				"giskard.me/misc.1$name": "Lorand/Tanulas.1"
+				"giskard.me/misc.1$key": "Lorand/test01"
 			},
 			"id": "Lorand/test01$ProvideStream",
 			"type": "giskard.me/mind.1$Message"
@@ -123,12 +124,6 @@
 					}
 				},
 				"giskard.me/mind.1$serializer": {
-					"data": {
-						"id": "Lorand/test01$ProcessUnitStream",
-						"type": "giskard.me/mind.1$Message"
-					}
-				},
-				"giskard.me/stream.1$streamCentre": {
 					"data": {
 						"id": "Lorand/test01$UnitHandler",
 						"type": "giskard.me/mind.1$Message"
@@ -178,10 +173,6 @@
 			},
 			"id": "Lorand/test01$UnitHandler",
 			"type": "giskard.me/mind.1$Message"
-		},
-		{
-			"id": "Lorand/test01$giskard.me/flow.1",
-			"type": "giskard.me/mind.1$Unit"
 		}
 	],
 	"meta": {

@@ -27,8 +27,8 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustMachine.Str
 	@Override
 	protected Object process(DustAccess access) throws Exception {
 		Object oCmd = Dust.access(DustAccess.Peek, null, null, TOKEN_MIND_ATT_CMD);
-		
-		String cmd = (oCmd instanceof DustHandle) ? ((DustHandle)oCmd).getId() : (String) oCmd;
+
+		String cmd = (oCmd instanceof DustHandle) ? ((DustHandle) oCmd).getId() : (String) oCmd;
 
 		String root = Dust.access(DustAccess.Peek, defRoot, null, TOKEN_STREAM_ATT_ROOTFOLDER);
 		File r = getRootFolder(root);
@@ -37,23 +37,23 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustMachine.Str
 		backupFolder = getRootFolder(bak);
 
 		String path = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_PATH);
-		
+
 		String name = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_KEY);
-		DustHandle hTarget = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET);		
-		if ( null != hTarget ) {
+		DustHandle hTarget = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET);
+		if (null != hTarget) {
 			String p = null;
-			
+
 			switch (hTarget.getType().getId()) {
 			case TOKEN_MIND_ASP_UNIT:
 				p = "/" + name + Dust.DUST_EXT_JSON;
 				break;
 			}
-			
-			if ( null != p ) {
+
+			if (null != p) {
 				path += p;
 			}
 		}
-		
+
 		File f = DustUtils.isEmpty(path) ? r : new File(r, path);
 
 		String token = null;
@@ -92,11 +92,15 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustMachine.Str
 				Dust.access(DustAccess.Set, stream, null, token);
 				Dust.access(DustAccess.Set, f.toURI().toURL().toString(), null, TOKEN_STREAM_ATT_URL);
 			} else {
-				try ( Closeable cs = optGetStream(cmd, root, path) ) {
+				try (Closeable cs = optGetStream(cmd, root, path)) {
 					Dust.access(DustAccess.Set, cs, hNext, token);
 					Dust.access(DustAccess.Set, cmd, hNext, TOKEN_MIND_ATT_CMD);
 					Dust.access(DustAccess.Set, name, hNext, TOKEN_MISC_ATT_KEY);
 					Dust.access(DustAccess.Process, null, hNext);
+
+					Dust.access(DustAccess.Delete, null, hNext, token);
+					Dust.access(DustAccess.Delete, null, hNext, TOKEN_MIND_ATT_CMD);
+					Dust.access(DustAccess.Delete, null, hNext, TOKEN_MISC_ATT_KEY);
 				}
 			}
 		}

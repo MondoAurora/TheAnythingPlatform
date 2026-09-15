@@ -29,11 +29,11 @@ public class DustStreamAgent extends DustAgent implements DustMachine.StreamSour
 
 		DustHandle hTarget = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET);
 		String name = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_KEY);
-		
+
 		DustHandle hSource = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_SOURCE);
 
 		if (null != hTarget) {
-			switch ( hTarget.getId() ) {
+			switch (hTarget.getId()) {
 			case TOKEN_MIND_ASP_UNIT:
 				hTarget = Dust.getUnit(name, true);
 				break;
@@ -47,6 +47,15 @@ public class DustStreamAgent extends DustAgent implements DustMachine.StreamSour
 			Dust.access(DustAccess.Set, hTarget, hNext, TOKEN_MISC_ATT_TARGET);
 
 			Dust.access(DustAccess.Process, null, hSource);
+
+			Dust.access(DustAccess.Delete, null, hSource, TOKEN_MIND_ATT_CMD);
+			Dust.access(DustAccess.Delete, null, hSource, TOKEN_MISC_ATT_TARGET);
+			Dust.access(DustAccess.Delete, null, hSource, TOKEN_MISC_ATT_KEY);
+			Dust.access(DustAccess.Delete, null, hSource, TOKEN_MIND_ATT_NEXT);
+
+			Dust.access(DustAccess.Delete, null, hNext, TOKEN_MIND_ATT_CMD);
+			Dust.access(DustAccess.Delete, null, hNext, TOKEN_MISC_ATT_TARGET);
+
 		} else {
 
 			Collection<String> unitNames = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_RESOLVER_UNIT_NAMES);

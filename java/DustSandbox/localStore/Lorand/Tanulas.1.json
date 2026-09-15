@@ -2407,18 +2407,19 @@
 		}
 	],
 	"meta": {
-		"count": 317		,
-				"unitInfo": {
-					"relationships": {
-						"giskard.me/mind.1$author": {
-							"data": {
-								"id": "Lorand/author$LorandKedves",
-								"type": "giskard.me/mind.1$Author"
-							}
-						}
-					},
-					"id": "Lorand/Tanulas.1",
-					"type": "giskard.me/mind.1$Unit"
+		"date": "20260915T124307Z",
+		"count": 317,
+		"unitInfo": {
+			"relationships": {
+				"giskard.me/mind.1$author": {
+					"data": {
+						"id": "Lorand/author$LorandKedves",
+						"type": "giskard.me/mind.1$Author"
+					}
 				}
+			},
+			"id": "Lorand/Tanulas.1",
+			"type": "giskard.me/mind.1$Unit"
+		}
 	}
 }
