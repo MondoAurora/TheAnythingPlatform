@@ -103,7 +103,7 @@ public class Dust implements DustConsts, DustMachineConsts, DustDevConsts {
 
 			optExtAppUnit(null, DUST_CRED_FILE, streamSource, bootLoader);
 
-			appHandle = getHandle(appUnit, TOKEN_DUST_ASP_APP, appName, DustOptCreate.None);
+			appHandle = getHandle(appUnit, TOKEN_DUST_ASP_APPLICATION, appName, DustOptCreate.None);
 
 			String binPath = new StringBuilder(appUnitPath).insert(s, "." + platform).toString();
 			optExtAppUnit(null, binPath, streamSource, bootLoader);

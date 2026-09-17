@@ -21,12 +21,6 @@
 		},
 		{
 			"relationships": {
-				"giskard.me/misc.1$target": {
-					"data": {
-						"id": "Lorand/Tanulas.1",
-						"type": "giskard.me/mind.1$Unit"
-					}
-				},
 				"giskard.me/mind.1$listeners": {
 					"data": [
 						{
@@ -38,11 +32,6 @@
 						}
 					]
 				}
-			},
-			"attributes": {
-				"giskard.me/mind.1$cmd": "giskard.me/misc.1$CmdSave",
-				"giskard.me/misc.1$key": "Lorand/test01",
-				"giskard.me/stream.1$outputStream": "java.io.FileOutputStream@3f5b20d1"
 			},
 			"id": "Lorand/test01$ProcessUnitStream",
 			"type": "giskard.me/mind.1$Message"
@@ -168,15 +157,15 @@
 			"attributes": {
 				"giskard.me/mind.1$tags": [
 					"giskard.me/misc.1$Slave"
-				],
-				"giskard.me/misc.1$key": "Lorand/Tanulas.1"
+				]
 			},
 			"id": "Lorand/test01$UnitHandler",
 			"type": "giskard.me/mind.1$Message"
 		}
 	],
 	"meta": {
-		"count": 8,
+		"date": "20260917T071620Z",
+		"count": 10,
 		"unitInfo": {
 			"relationships": {
 				"giskard.me/mind.1$author": {

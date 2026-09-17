@@ -1,19 +1,22 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20260910T132903Z
+// Generation timestamp 20260916T093644Z
 
 public interface DustGenTokens_mind_1 {
 // Aspects
 	String TOKEN_MIND_ASP_AGENT = "giskard.me/mind.1$Agent";
 	String TOKEN_MIND_ASP_ASPECT = "giskard.me/mind.1$Aspect";
+	String TOKEN_MIND_ASP_ASSEMBLY = "giskard.me/mind.1$Assembly";
 	String TOKEN_MIND_ASP_ATTRIBUTE = "giskard.me/mind.1$Attribute";
 	String TOKEN_MIND_ASP_AUTHOR = "giskard.me/mind.1$Author";
 	String TOKEN_MIND_ASP_MESSAGE = "giskard.me/mind.1$Message";
 	String TOKEN_MIND_ASP_NARRATIVE = "giskard.me/mind.1$Narrative";
+	String TOKEN_MIND_ASP_SYSTEM = "giskard.me/mind.1$System";
 	String TOKEN_MIND_ASP_TAG = "giskard.me/mind.1$Tag";
 	String TOKEN_MIND_ASP_UNIT = "giskard.me/mind.1$Unit";
 
 // Attributes
+	String TOKEN_MIND_ATT_ASSEMBLIES = "giskard.me/mind.1$assemblies";
 	String TOKEN_MIND_ATT_AUTHOR = "giskard.me/mind.1$author";
 	String TOKEN_MIND_ATT_CMD = "giskard.me/mind.1$cmd";
 	String TOKEN_MIND_ATT_ID = "giskard.me/mind.1$id";

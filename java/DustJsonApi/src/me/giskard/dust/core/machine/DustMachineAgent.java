@@ -324,7 +324,7 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 						loadingUnit.get().remove(unit.mh);
 					}
 
-					access(DustAccess.Delete, null, ser, TOKEN_MIND_ATT_CMD);
+//					access(DustAccess.Delete, null, ser, TOKEN_MIND_ATT_CMD);
 					access(DustAccess.Delete, null, ser, TOKEN_MISC_ATT_KEY);
 
 					return;
@@ -439,25 +439,25 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 				continue;
 			}
 
-			Object ser;
-
-			DustHandle hMachine = (null == unitApp) ? null : getHandle(unitApp.mh, null, TOKEN_DUST_AGT_RUNTIME, DustOptCreate.None);
-			ser = access(DustAccess.Peek, null, hMachine, TOKEN_STREAM_ATT_UNIT_HANDLER);
-
-			if (null != ser) {
-				if (null != access(DustAccess.Peek, null, ser, TOKEN_MIND_ATT_NEXT)) {
-					DustHandle hC = getHandle(null, null, TOKEN_MISC_TAG_CMD_SAVE, DustOptCreate.None);
-					access(DustAccess.Set, hC, ser, TOKEN_MIND_ATT_CMD);
-					access(DustAccess.Set, hChg.getId(), ser, TOKEN_MISC_ATT_KEY);
-
-					access(DustAccess.Process, null, ser);
-
-					access(DustAccess.Delete, null, ser, TOKEN_MIND_ATT_CMD);
-					access(DustAccess.Delete, null, ser, TOKEN_MISC_ATT_KEY);
-
-					continue;
-				}
-			}
+//			Object ser = null;
+//
+//			DustHandle hMachine = (null == unitApp) ? null : getHandle(unitApp.mh, null, TOKEN_DUST_AGT_RUNTIME, DustOptCreate.None);
+//			ser = access(DustAccess.Peek, null, hMachine, TOKEN_STREAM_ATT_UNIT_HANDLER);
+//
+//			if (null != ser) {
+//				if (null != access(DustAccess.Peek, null, ser, TOKEN_MIND_ATT_NEXT)) {
+//					DustHandle hC = getHandle(null, null, TOKEN_MISC_TAG_CMD_SAVE, DustOptCreate.None);
+//					access(DustAccess.Set, hC, ser, TOKEN_MIND_ATT_CMD);
+//					access(DustAccess.Set, hChg.getId(), ser, TOKEN_MISC_ATT_KEY);
+//
+//					access(DustAccess.Process, null, ser);
+//
+//					access(DustAccess.Delete, null, ser, TOKEN_MIND_ATT_CMD);
+//					access(DustAccess.Delete, null, ser, TOKEN_MISC_ATT_KEY);
+//
+//					continue;
+//				}
+//			}
 
 			Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_SAVE, defaultSerializer, TOKEN_MIND_ATT_CMD);
 			Dust.access(DustAccess.Set, hChg.getId(), defaultSerializer, TOKEN_MISC_ATT_KEY);
