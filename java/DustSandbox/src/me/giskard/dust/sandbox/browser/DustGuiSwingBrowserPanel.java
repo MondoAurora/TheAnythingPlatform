@@ -94,7 +94,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 	DustHandle hMindAPI;
 	DustHandle hSrcGen;
-	Collection<String> tokenClasses;
+//	Collection<String> tokenClasses;
 
 	DustHandle hDocUnit = Dust.getUnit("Lorand/graphTest1", true);
 
@@ -380,7 +380,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		hMindAPI = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_TARGET);
 		hSrcGen = Dust.access(DustAccess.Peek, null, null, TOKEN_DEV_CMD_GENSRC);
 
-		tokenClasses = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, null, TOKEN_DEV_ATT_CLASSES);
+//		tokenClasses = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, null, TOKEN_DEV_ATT_CLASSES);
 
 		DustGuiSwingUtils.optSetLookAndFeel();
 
@@ -430,9 +430,9 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				buildGui();
 				break;
 
-			case "Load Tokens":
-				DustDevUtils.loadConstHandles(tokenClasses);
-				break;
+//			case "Load Tokens":
+//				DustDevUtils.loadConstHandles(tokenClasses);
+//				break;
 
 			case "Commit":
 				Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_SAVE, hMindAPI, TOKEN_MIND_ATT_CMD);
@@ -772,7 +772,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 		cbGraph.setEditable(true);
 
-		factToolbars.fillToolbar("tbTop", "Rebuild", "Load Tokens", null, new JLabel("Handle ID:"), tfHandle, "Load Handle", null, "Rollback", "Commit");
+		factToolbars.fillToolbar("tbTop", "Rebuild", /*"Load Tokens",*/ null, new JLabel("Handle ID:"), tfHandle, "Load Handle", null, "Rollback", "Commit");
 		factToolbars.fillToolbar("tbUnit", "Update Units", "Load Unit", null, "Gen Src");
 		factToolbars.fillToolbar("tbProp", "New Att", "Drop Att", "Update Value");
 		factToolbars.fillToolbar("tbGraph", new JLabel("Zoom:"), "+", ".", "-", null, "Activate", null, "Random", "Load Refs", "Drop Selected", graphPanel.cbMode);

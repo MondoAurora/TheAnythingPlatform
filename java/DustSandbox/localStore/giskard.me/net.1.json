@@ -4,6 +4,18 @@
 	},
 	"data": [
 		{
+			"id": "giskard.me/net.1$HttpRequestHandler",
+			"type": "giskard.me/mind.1$Narrative"
+		},
+		{
+			"id": "giskard.me/net.1$HttpServer",
+			"type": "giskard.me/mind.1$Narrative"
+		},
+		{
+			"id": "giskard.me/net.1$HttpStreamHandler",
+			"type": "giskard.me/mind.1$Narrative"
+		},
+		{
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_ATTRIBUTES"
 			},
@@ -117,7 +129,8 @@
 		}
 	],
 	"meta": {
-		"count": 16,
+		"date": "20260917T082658Z",
+		"count": 19,
 		"unitInfo": {
 			"relationships": {
 				"giskard.me/mind.1$author": {
@@ -127,7 +140,7 @@
 					}
 				}
 			},
-			"id": "net.1",
+			"id": "giskard.me/net.1",
 			"type": "giskard.me/mind.1$Unit"
 		}
 	}

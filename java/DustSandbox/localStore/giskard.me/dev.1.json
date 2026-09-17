@@ -16,6 +16,10 @@
 			"type": "giskard.me/mind.1$Aspect"
 		},
 		{
+			"id": "giskard.me/dev.1$Logger",
+			"type": "giskard.me/mind.1$Narrative"
+		},
+		{
 			"relationships": {
 				"giskard.me/mind.1$listeners": {
 					"data": [
@@ -90,11 +94,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -111,11 +115,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ValtypeString",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ValtypeString",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -165,8 +169,8 @@
 		}
 	],
 	"meta": {
-		"date": "20260917T071620Z",
-		"count": 11,
+		"date": "20260917T095638Z",
+		"count": 12,
 		"unitInfo": {
 			"relationships": {
 				"giskard.me/mind.1$author": {

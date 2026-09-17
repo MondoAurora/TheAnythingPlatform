@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20260910T132903Z
+// Generation timestamp 20260917T090511Z
 
 public interface DustGenTokens_misc_1 {
 // Aspects
@@ -48,6 +48,7 @@ public interface DustGenTokens_misc_1 {
 	String TOKEN_MISC_ATT_TARGET = "giskard.me/misc.1$target";
 	String TOKEN_MISC_ATT_TYPES = "giskard.me/misc.1$types";
 	String TOKEN_MISC_ATT_UPPERCASE = "giskard.me/misc.1$upperCase";
+	String TOKEN_MISC_ATT_VERSION = "giskard.me/misc.1$version";
 
 // Tags
 	String TOKEN_MISC_TAG_CMD = "giskard.me/misc.1$Cmd";

@@ -7,6 +7,7 @@ import java.text.MessageFormat;
 import java.util.Map;
 
 import me.giskard.dust.core.Dust;
+import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.DustMachine;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.mod.utils.DustUtilsJson;
@@ -87,6 +88,8 @@ public class DustStreamJsonApiSerializerAgent extends DustStreamJsonApiAgent imp
 
 				try (InputStream is = DustStreamUtils.getStream(TOKEN_MISC_TAG_CMD_LOAD, fileName)) {
 					loadStream(unit, is);
+				} catch ( RuntimeException ex ) {
+					DustException.swallow(ex, "Problem with loading", unitId);
 				}
 			}
 			break;

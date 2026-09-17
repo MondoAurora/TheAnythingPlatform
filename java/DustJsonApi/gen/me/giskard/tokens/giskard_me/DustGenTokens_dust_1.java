@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20260916T100220Z
+// Generation timestamp 20260917T095640Z
 
 public interface DustGenTokens_dust_1 {
 // Aspects
@@ -9,6 +9,8 @@ public interface DustGenTokens_dust_1 {
 	String TOKEN_DUST_ASP_IMPLEMENTATION = "giskard.me/dust.1$Implementation";
 	String TOKEN_DUST_ASP_LIBRARY = "giskard.me/dust.1$Library";
 	String TOKEN_DUST_ASP_MODULE = "giskard.me/dust.1$Module";
+	String TOKEN_DUST_ASP_PLATFORM = "giskard.me/dust.1$Platform";
+	String TOKEN_DUST_ASP_PLATFORM_TYPE = "giskard.me/dust.1$PlatformType";
 
 // Attributes
 	String TOKEN_DUST_ATT_APPLICATIONS = "giskard.me/dust.1$applications";
@@ -20,6 +22,7 @@ public interface DustGenTokens_dust_1 {
 	String TOKEN_DUST_ATT_LIBRARIES = "giskard.me/dust.1$libraries";
 	String TOKEN_DUST_ATT_MODULES = "giskard.me/dust.1$modules";
 	String TOKEN_DUST_ATT_RELEASEONSHUTDOWN = "giskard.me/dust.1$releaseOnShutdown";
+	String TOKEN_DUST_ATT_SUPPORTED_PLATFORMS = "giskard.me/dust.1$supportedPlatforms";
 	String TOKEN_DUST_ATT_SYSTEM = "giskard.me/dust.1$system";
 	String TOKEN_DUST_ATT_THREADS = "giskard.me/dust.1$threads";
 	String TOKEN_DUST_ATT_UNIT_OBJECTS = "giskard.me/dust.1$unitObjects";

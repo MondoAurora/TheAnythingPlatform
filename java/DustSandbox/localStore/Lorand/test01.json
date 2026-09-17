@@ -20,6 +20,10 @@
 			"type": "giskard.me/mind.1$Agent"
 		},
 		{
+			"id": "Lorand/test01$Lorand/Tanulas.1",
+			"type": "giskard.me/mind.1$Unit"
+		},
+		{
 			"relationships": {
 				"giskard.me/mind.1$listeners": {
 					"data": [
@@ -38,18 +42,6 @@
 		},
 		{
 			"relationships": {
-				"giskard.me/misc.1$target": {
-					"data": {
-						"id": "Lorand/Tanulas.1",
-						"type": "giskard.me/mind.1$Unit"
-					}
-				},
-				"giskard.me/mind.1$cmd": {
-					"data": {
-						"id": "giskard.me/misc.1$CmdLoad",
-						"type": "giskard.me/mind.1$Tag"
-					}
-				},
 				"giskard.me/mind.1$listeners": {
 					"data": [
 						{
@@ -60,16 +52,7 @@
 							"type": "giskard.me/mind.1$Agent"
 						}
 					]
-				},
-				"giskard.me/mind.1$next": {
-					"data": {
-						"id": "Lorand/test01$ProcessUnitStream",
-						"type": "giskard.me/mind.1$Message"
-					}
 				}
-			},
-			"attributes": {
-				"giskard.me/misc.1$key": "Lorand/test01"
 			},
 			"id": "Lorand/test01$ProvideStream",
 			"type": "giskard.me/mind.1$Message"
@@ -106,21 +89,53 @@
 		},
 		{
 			"relationships": {
-				"giskard.me/stream.1$unitHandler": {
+				"giskard.me/dust.1$platform": {
 					"data": {
-						"id": "Lorand/test01$UnitHandler",
-						"type": "giskard.me/mind.1$Message"
+						"id": "giskard.me/dust.1$Java17",
+						"type": "giskard.me/dust.1$Platform"
 					}
+				}
+			},
+			"id": "Lorand/test01$Test01Java17Module",
+			"type": "giskard.me/dust.1$Module"
+		},
+		{
+			"relationships": {
+				"giskard.me/dust.1$supportedPlatforms": {
+					"data": [
+						{
+							"id": "giskard.me/dust.1$Java17",
+							"type": "giskard.me/dust.1$Platform"
+						}
+					]
 				},
-				"giskard.me/mind.1$serializer": {
+				"giskard.me/dust.1$modules": {
+					"data": [
+						{
+							"id": "Lorand/test01$Test01Java17Module",
+							"type": "giskard.me/dust.1$Module"
+						},
+						{
+							"id": "giskard.me/dustImpl.1$DustJava17Module",
+							"type": "giskard.me/dust.1$Module"
+						}
+					]
+				}
+			},
+			"id": "Lorand/test01$Test01System",
+			"type": "giskard.me/mind.1$System"
+		},
+		{
+			"relationships": {
+				"giskard.me/stream.1$unitHandler": {
 					"data": {
 						"id": "Lorand/test01$UnitHandler",
 						"type": "giskard.me/mind.1$Message"
 					}
 				}
 			},
-			"id": "Lorand/test01$TestApp",
-			"type": "giskard.me/dust.1$Application"
+			"id": "Lorand/test01$TestClient",
+			"type": "giskard.me/mind.1$Node"
 		},
 		{
 			"relationships": {
@@ -161,11 +176,15 @@
 			},
 			"id": "Lorand/test01$UnitHandler",
 			"type": "giskard.me/mind.1$Message"
+		},
+		{
+			"id": "Lorand/test01$giskard.me/dustImpl.1",
+			"type": "giskard.me/mind.1$Unit"
 		}
 	],
 	"meta": {
-		"date": "20260917T071620Z",
-		"count": 10,
+		"date": "20260917T095638Z",
+		"count": 11,
 		"unitInfo": {
 			"relationships": {
 				"giskard.me/mind.1$author": {

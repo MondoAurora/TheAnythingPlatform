@@ -36,19 +36,19 @@ public class DustDevUtils implements DustDevConsts {
 		return sb.toString();
 	}
 
-	public static void loadConstHandles(Collection<String> classes) throws Exception {
-		for (String cn : classes) {
-			Class cc = Class.forName(cn);
-
-			for (Field f : cc.getDeclaredFields()) {
-				String fn = f.getName();
-				Class<? extends String> fc = fn.getClass();
-				if ( fn.startsWith("TOKEN") && String.class.equals(fc)) {
-					String fv = (String) f.get(null);
-					DustHandle h = Dust.getHandle(null, null, fv, DustOptCreate.Meta);
-					Dust.access(DustAccess.Set, fn, h, TOKEN_MISC_ATT_NAME);
-				}
-			}
-		}
-	}
+//	public static void loadConstHandles(Collection<String> classes) throws Exception {
+//		for (String cn : classes) {
+//			Class cc = Class.forName(cn);
+//
+//			for (Field f : cc.getDeclaredFields()) {
+//				String fn = f.getName();
+//				Class<? extends String> fc = fn.getClass();
+//				if ( fn.startsWith("TOKEN") && String.class.equals(fc)) {
+//					String fv = (String) f.get(null);
+//					DustHandle h = Dust.getHandle(null, null, fv, DustOptCreate.Meta);
+//					Dust.access(DustAccess.Set, fn, h, TOKEN_MISC_ATT_NAME);
+//				}
+//			}
+//		}
+//	}
 }

@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20260916T093644Z
+// Generation timestamp 20260917T085936Z
 
 public interface DustGenTokens_mind_1 {
 // Aspects
@@ -11,6 +11,7 @@ public interface DustGenTokens_mind_1 {
 	String TOKEN_MIND_ASP_AUTHOR = "giskard.me/mind.1$Author";
 	String TOKEN_MIND_ASP_MESSAGE = "giskard.me/mind.1$Message";
 	String TOKEN_MIND_ASP_NARRATIVE = "giskard.me/mind.1$Narrative";
+	String TOKEN_MIND_ASP_NODE = "giskard.me/mind.1$Node";
 	String TOKEN_MIND_ASP_SYSTEM = "giskard.me/mind.1$System";
 	String TOKEN_MIND_ASP_TAG = "giskard.me/mind.1$Tag";
 	String TOKEN_MIND_ASP_UNIT = "giskard.me/mind.1$Unit";
@@ -24,6 +25,8 @@ public interface DustGenTokens_mind_1 {
 	String TOKEN_MIND_ATT_LISTENERS = "giskard.me/mind.1$listeners";
 	String TOKEN_MIND_ATT_NARRATIVE = "giskard.me/mind.1$narrative";
 	String TOKEN_MIND_ATT_NEXT = "giskard.me/mind.1$next";
+	String TOKEN_MIND_ATT_REQUIRED_ASPECTS = "giskard.me/mind.1$requiredAspects";
+	String TOKEN_MIND_ATT_REQUIRED_ATTRIBUTES = "giskard.me/mind.1$requiredAttributes";
 	String TOKEN_MIND_ATT_SERIALIZER = "giskard.me/mind.1$serializer";
 	String TOKEN_MIND_ATT_TAGS = "giskard.me/mind.1$tags";
 	String TOKEN_MIND_ATT_TRANSACTION_HEAD = "giskard.me/mind.1$transactionHead";
