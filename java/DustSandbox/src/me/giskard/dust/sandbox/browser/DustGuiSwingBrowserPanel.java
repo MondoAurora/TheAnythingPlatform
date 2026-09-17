@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ import javax.swing.table.TableRowSorter;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
+import me.giskard.dust.core.DustConsts.DustHandle;
 import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.dev.DustDevUtils;
 import me.giskard.dust.core.machine.DustMachineUtils;
@@ -364,7 +366,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 	DustGuiSwingUtils.ActionControlFactory factActionControls = new DustGuiSwingUtils.ActionControlFactory(al);
 	DustGuiSwingUtils.ToolbarFactory factToolbars = new DustGuiSwingUtils.ToolbarFactory(factActionControls);
-	
+
 //	Object dustSwingCtx;
 //	
 //	Runnable r = new Runnable() {
@@ -398,21 +400,20 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		factToolbars.get("tbGraph", BoxLayout.LINE_AXIS);
 		factToolbars.get("tbGrid", BoxLayout.LINE_AXIS);
 		factToolbars.get("tbFilter", BoxLayout.LINE_AXIS);
-		
+
 		final Object dustSwingCtx = Dust.access(DustAccess.Peek, null, null);
 
-		Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Initialising on thread", Thread.currentThread(), dustSwingCtx);						
+		Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Initialising on thread", Thread.currentThread(), dustSwingCtx);
 
 		SwingUtilities.invokeAndWait(new Runnable() {
 			@Override
 			public void run() {
 				Dust.access(DustAccess.Set, dustSwingCtx, null);
-				Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Connecting context on thread", Thread.currentThread(), dustSwingCtx);						
+				Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Connecting context on thread", Thread.currentThread(), dustSwingCtx);
 
 				buildGui();
 			}
 		});
-		
 
 		frm.setVisible(true);
 
@@ -423,6 +424,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 //		Map params = new HashMap();
 
 		boolean refresh = true;
+		Rectangle rct = new Rectangle();
 
 		try {
 			switch (cmd) {
@@ -513,21 +515,21 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 								val = ((Map) val).values();
 							}
 							if (val instanceof Collection) {
-								for ( Object r : ((Collection) val) ) {
-									if ( r instanceof DustHandle ) {
+								for (Object r : ((Collection) val)) {
+									if (r instanceof DustHandle) {
 										graphPanel.showHandle((DustHandle) r, true, false);
 										showLinks.add(a);
 									} else {
 										break;
 									}
 								}
-							} else if ( val instanceof DustHandle ) {
+							} else if (val instanceof DustHandle) {
 								graphPanel.showHandle((DustHandle) val, true, false);
 								showLinks.add(a);
 							}
 						}
-						
-						if ( !showLinks.isEmpty() ) {
+
+						if (!showLinks.isEmpty()) {
 							graphPanel.repaintGraph();
 						}
 					} else {
@@ -623,7 +625,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					JOptionPane.showMessageDialog(frm, "You must select at least one attribute!", "Attribute creation error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				
+
 				focusedAtt = showAtts.iterator().next();
 
 				if (selected.isEmpty()) {
@@ -637,8 +639,8 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 						if (null == orig) {
 							Object val = null;
-							
-							switch ( focusedCollType ) {
+
+							switch (focusedCollType) {
 							case Arr:
 								val = new ArrayList();
 								break;
@@ -646,7 +648,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 								val = new HashMap();
 								break;
 							case One:
-								switch ( getValTypeDirect(focusedAtt) ) {
+								switch (getValTypeDirect(focusedAtt)) {
 //								switch ( getAttValType(focusedAtt) ) {
 								case Bool:
 									val = false;
@@ -744,7 +746,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 			case "Rollback":
 				Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Calling from thread", Thread.currentThread());
 				break;
-				
+
 			case "Activate":
 				if (null != focused) {
 					Object c = Dust.access(DustAccess.Peek, TOKEN_MISC_TAG_CMD_REFRESH, focused, TOKEN_MIND_ATT_CMD);
@@ -753,6 +755,50 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 					Dust.access(DustAccess.Process, null, focused);
 				}
+				break;
+
+			case "Load graph":
+				String lg = JOptionPane.showInputDialog(frm, "Load graph", "Lorand/GraphPanel.1");
+
+				for (DustHandle hNode : DustMachineUtils.getUnitMembers(hDocUnit)) {
+					if (null != Dust.access(DustAccess.Peek, null, hNode, TOKEN_GEOMETRY_ATT_POSITION_REAL)) {
+						DustHandle ht = Dust.access(DustAccess.Peek, null, hNode, TOKEN_MISC_ATT_TARGET);
+						graphPanel.factNodes.put(ht, hNode);
+						
+						double x = Dust.access(DustAccess.Peek, null, hNode, TOKEN_GEOMETRY_ATT_POSITION_REAL, 0);
+						double y = Dust.access(DustAccess.Peek, null, hNode, TOKEN_GEOMETRY_ATT_POSITION_REAL, 1);
+						double w = Dust.access(DustAccess.Peek, null, hNode, TOKEN_GEOMETRY_ATT_SIZE_REAL, 0);
+						double h = Dust.access(DustAccess.Peek, null, hNode, TOKEN_GEOMETRY_ATT_SIZE_REAL, 1);
+
+						JComponent comp = graphPanel.comps.get(hNode);
+
+						comp.setBounds((int) (x - w / 2), (int) (y - h / 2), (int) w, (int) h);
+					}
+				}
+
+				graphPanel.repaintGraph();
+
+				break;
+			case "Save Graph":
+				String sg = JOptionPane.showInputDialog(frm, "Save graph", "Lorand/GraphPanel.1");
+
+				for (DustHandle hNode : graphPanel.comps.keys()) {
+					graphPanel.comps.peek(hNode).getBounds(rct);
+
+					double x = rct.getCenterX();
+					double y = rct.getCenterY();
+
+					Dust.access(DustAccess.Delete, null, hNode, TOKEN_GEOMETRY_ATT_POSITION_REAL);
+					Dust.access(DustAccess.Insert, x, hNode, TOKEN_GEOMETRY_ATT_POSITION_REAL, KEY_ADD);
+					Dust.access(DustAccess.Insert, y, hNode, TOKEN_GEOMETRY_ATT_POSITION_REAL, KEY_ADD);
+
+					Dust.access(DustAccess.Delete, null, hNode, TOKEN_GEOMETRY_ATT_SIZE_REAL);
+					Dust.access(DustAccess.Insert, rct.getWidth(), hNode, TOKEN_GEOMETRY_ATT_SIZE_REAL, KEY_ADD);
+					Dust.access(DustAccess.Insert, rct.getHeight(), hNode, TOKEN_GEOMETRY_ATT_SIZE_REAL, KEY_ADD);
+				}
+
+				execCmd("Commit");
+
 				break;
 			default:
 				Dust.log(TOKEN_MISC_TAG_LEVEL_WARNING, "execCmd() Command not handled", cmd);
@@ -772,10 +818,11 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 		cbGraph.setEditable(true);
 
-		factToolbars.fillToolbar("tbTop", "Rebuild", /*"Load Tokens",*/ null, new JLabel("Handle ID:"), tfHandle, "Load Handle", null, "Rollback", "Commit");
+		factToolbars.fillToolbar("tbTop", "Rebuild", /* "Load Tokens", */ null, new JLabel("Handle ID:"), tfHandle, "Load Handle", null, "Rollback", "Commit");
 		factToolbars.fillToolbar("tbUnit", "Update Units", "Load Unit", null, "Gen Src");
 		factToolbars.fillToolbar("tbProp", "New Att", "Drop Att", "Update Value");
-		factToolbars.fillToolbar("tbGraph", new JLabel("Zoom:"), "+", ".", "-", null, "Activate", null, "Random", "Load Refs", "Drop Selected", graphPanel.cbMode);
+		factToolbars.fillToolbar("tbGraph", new JLabel("Zoom:"), "+", ".", "-", null, "Activate", null, "Random", "Load Refs", "Drop Selected", graphPanel.cbMode,
+				"Load graph", "Save Graph");
 		factToolbars.fillToolbar("tbGrid", "Show Selected", "Hide Selected", null, "New handle", "Duplicate", "Delete Selected");
 		factToolbars.fillToolbar("tbFilter", new JLabel("Contains:"), tfFilter);
 
@@ -882,7 +929,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				if (!e.getValueIsAdjusting()) {
 					focusedIdx = ((ListSelectionModel) e.getSource()).getLeadSelectionIndex();
 
-					if (( 0 <= focusedIdx) && (focusedIdx < focusedColData.size()) ) {
+					if ((0 <= focusedIdx) && (focusedIdx < focusedColData.size())) {
 						Object v = focusedColData.get(focusedIdx);
 						taValue.setText(DustUtils.toString(v));
 					} else {

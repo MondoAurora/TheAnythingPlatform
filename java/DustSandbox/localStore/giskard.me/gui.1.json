@@ -352,11 +352,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeArr",
+							"id": "giskard.me/mind.1$ValtypeString",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeString",
+							"id": "giskard.me/mind.1$ColltypeArr",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -370,7 +370,7 @@
 		}
 	],
 	"meta": {
-		"date": "20260917T095638Z",
+		"date": "20260917T124854Z",
 		"count": 36,
 		"unitInfo": {
 			"relationships": {

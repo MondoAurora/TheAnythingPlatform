@@ -20,6 +20,18 @@
 			"type": "giskard.me/mind.1$Agent"
 		},
 		{
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/dev.1$Logger",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			},
+			"id": "Lorand/test01$LogAgent",
+			"type": "giskard.me/mind.1$Agent"
+		},
+		{
 			"id": "Lorand/test01$Lorand/Tanulas.1",
 			"type": "giskard.me/mind.1$Unit"
 		},
@@ -101,6 +113,23 @@
 		},
 		{
 			"relationships": {
+				"giskard.me/misc.1$init": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$LogAgent",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			},
+			"id": "Lorand/test01$Test01Log",
+			"type": "giskard.me/mind.1$Assembly"
+		},
+		{
+			"relationships": {
 				"giskard.me/dust.1$supportedPlatforms": {
 					"data": [
 						{
@@ -127,6 +156,41 @@
 		},
 		{
 			"relationships": {
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "Lorand/test01$Test01System",
+						"type": "giskard.me/mind.1$System"
+					}
+				},
+				"giskard.me/stream.1$unitHandler": {
+					"data": {
+						"id": "Lorand/test01$UnitHandler",
+						"type": "giskard.me/mind.1$Message"
+					}
+				},
+				"giskard.me/misc.1$init": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$Test01Log",
+							"type": "giskard.me/mind.1$Assembly"
+						}
+					]
+				}
+			},
+			"id": "Lorand/test01$TestClient",
+			"type": "giskard.me/mind.1$Node"
+		},
+		{
+			"relationships": {
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "Lorand/test01$Test01System",
+						"type": "giskard.me/mind.1$System"
+					}
+				},
 				"giskard.me/stream.1$unitHandler": {
 					"data": {
 						"id": "Lorand/test01$UnitHandler",
@@ -134,7 +198,7 @@
 					}
 				}
 			},
-			"id": "Lorand/test01$TestClient",
+			"id": "Lorand/test01$TestServer",
 			"type": "giskard.me/mind.1$Node"
 		},
 		{
@@ -183,8 +247,8 @@
 		}
 	],
 	"meta": {
-		"date": "20260917T095638Z",
-		"count": 11,
+		"date": "20260917T124854Z",
+		"count": 14,
 		"unitInfo": {
 			"relationships": {
 				"giskard.me/mind.1$author": {
