@@ -32,7 +32,7 @@ public class DustMachineUtils implements DustMachineConsts {
 			return;
 		}
 
-		DustMachineAgent mind = ((DustMachineHandle) target).mind;
+		DustMachineImpl mind = ((DustMachineHandle) target).mind;
 		Map mFrom = mind.getContent(from);
 		Map mTarget = mind.getContent(target);
 

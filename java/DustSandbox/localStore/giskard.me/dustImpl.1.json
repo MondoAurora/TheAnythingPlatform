@@ -14,7 +14,7 @@
 				"giskard.me/dust.1$implementations": {
 					"data": [
 						{
-							"id": "giskard.me/dustImpl.1$SerializeJsonApiImplJava17",
+							"id": "giskard.me/dustImpl.1$WebScraperImplJava17",
 							"type": "giskard.me/dust.1$Implementation"
 						},
 						{
@@ -22,15 +22,15 @@
 							"type": "giskard.me/dust.1$Implementation"
 						},
 						{
-							"id": "giskard.me/dustImpl.1$WebScraperImplJava17",
-							"type": "giskard.me/dust.1$Implementation"
-						},
-						{
-							"id": "giskard.me/dustImpl.1$StreamCentreImplJava17",
+							"id": "giskard.me/dustImpl.1$SerializeJsonApiImplJava17",
 							"type": "giskard.me/dust.1$Implementation"
 						},
 						{
 							"id": "giskard.me/dustImpl.1$MachineImplJava17",
+							"type": "giskard.me/dust.1$Implementation"
+						},
+						{
+							"id": "giskard.me/dustImpl.1$StreamCentreImplJava17",
 							"type": "giskard.me/dust.1$Implementation"
 						},
 						{
@@ -87,6 +87,27 @@
 				"giskard.me/misc.1$key": "me.giskard.dust.core.machine.DustMachineAgent"
 			},
 			"id": "giskard.me/dustImpl.1$MachineImplJava17",
+			"type": "giskard.me/dust.1$Implementation"
+		},
+		{
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/dust.1$NEW_Machine",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				},
+				"giskard.me/dust.1$platform": {
+					"data": {
+						"id": "giskard.me/dust.1$Java17",
+						"type": "giskard.me/dust.1$Platform"
+					}
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$key": "me.giskard.dust.core.machine.DustMachineAgentNew"
+			},
+			"id": "giskard.me/dustImpl.1$NEW_MachineImplJava17",
 			"type": "giskard.me/dust.1$Implementation"
 		},
 		{
@@ -196,8 +217,8 @@
 		}
 	],
 	"meta": {
-		"date": "20260917T132409Z",
-		"count": 8,
+		"date": "20260918T080322Z",
+		"count": 9,
 		"unitInfo": {
 			"relationships": {
 				"giskard.me/dust.1$platform": {

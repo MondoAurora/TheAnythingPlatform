@@ -11,6 +11,9 @@
 					"giskard.me/dust.1$Machine": {
 						"giskard.me/dust.1$binary": "me.giskard.dust.core.machine.DustMachineAgent"
 					},
+					"giskard.me/dust.1$NEW_Machine": {
+						"giskard.me/dust.1$binary": "me.giskard.dust.core.machine.DustMachineAgentNew"
+					},
 					"giskard.me/mind.1$ForAll": {
 						"giskard.me/dust.1$binary": "me.giskard.dust.core.machine.DustMachineNarrative$ForAll"
 					},
@@ -32,6 +35,9 @@
 					"giskard.me/dev.1$GenSourceTokenJava": {
 						"giskard.me/dust.1$binary": "me.giskard.dust.core.dev.DustDevGenSourceTokenAgent"
 					},
+					"giskard.me/dev.1$GenSourceBootJava": {
+						"giskard.me/dust.1$binary": "me.giskard.dust.core.dev.DustDevGenSourceBootAgent"
+					},
 					"giskard.me/dev.1$WebScraper": {
 						"giskard.me/dust.1$binary": "me.giskard.dust.core.dev.DustDevWebScraperAgent"
 					},
@@ -47,9 +53,6 @@
 					"TAP/guiJavaSwing.1$VideoPlayer": {
 						"giskard.me/dust.1$binary": "me.giskard.dust.mod.gui.swing.DustGuiSwingVideoPlayerAgent"
 					},
-
-
-
 					"Lorand/sandbox.1$Browser": {
 						"giskard.me/dust.1$binary": "me.giskard.dust.sandbox.browser.DustGuiSwingBrowserFrameAgent"
 					},

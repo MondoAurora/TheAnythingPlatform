@@ -727,6 +727,19 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				}
 				break;
 			case "Gen Src":
+
+				if (1 == selected.size()) {
+					DustHandle hSel = selected.iterator().next();
+
+					if (TOKEN_MIND_ASP_NODE.equals(hSel.getType().getId())) {
+						DustHandle hGenBoot = Dust.getHandle(null, null, "Lorand/sandbox.1$MsgGenSrcBoot", DustOptCreate.None);
+						Dust.access(DustAccess.Set, TOKEN_DEV_TAG_CMD_TEST, hGenBoot, TOKEN_MIND_ATT_CMD);
+						Dust.access(DustAccess.Set, hSel, hGenBoot, TOKEN_MISC_ATT_DATA);
+						Dust.access(DustAccess.Process, null, hGenBoot);
+					}
+					
+					return;
+				}
 				if (!filterUnit.isEmpty()) {
 					execCmd("Commit"); // "autosave"
 				}
@@ -764,7 +777,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					if (null != Dust.access(DustAccess.Peek, null, hNode, TOKEN_GEOMETRY_ATT_POSITION_REAL)) {
 						DustHandle ht = Dust.access(DustAccess.Peek, null, hNode, TOKEN_MISC_ATT_TARGET);
 						graphPanel.factNodes.put(ht, hNode);
-						
+
 						double x = Dust.access(DustAccess.Peek, null, hNode, TOKEN_GEOMETRY_ATT_POSITION_REAL, 0);
 						double y = Dust.access(DustAccess.Peek, null, hNode, TOKEN_GEOMETRY_ATT_POSITION_REAL, 1);
 						double w = Dust.access(DustAccess.Peek, null, hNode, TOKEN_GEOMETRY_ATT_SIZE_REAL, 0);

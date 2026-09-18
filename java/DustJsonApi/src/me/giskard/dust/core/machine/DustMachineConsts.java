@@ -1,23 +1,30 @@
 package me.giskard.dust.core.machine;
 
+import java.util.Map;
+
 import me.giskard.dust.core.DustConsts;
+import me.giskard.dust.core.DustMachine;
 import me.giskard.dust.core.utils.DustUtilsConsts;
 import me.giskard.tokens.giskard_me.DustGenTokens_stream_1;
 
 public interface DustMachineConsts extends DustConsts, DustUtilsConsts, DustGenTokens_stream_1 {
+	
+	public abstract class DustMachineImpl extends DustMachine {
+		abstract Map getContent(DustHandle h);
+	}
 
 	class DustMachineHandle implements DustHandle {
-		final DustMachineAgent mind;
+		final DustMachineImpl mind;
 
 		DustMachineIdea unit;
 		DustMachineHandle type;
 		String id;
 
-		DustMachineHandle(DustMachineAgent mind) {
+		DustMachineHandle(DustMachineImpl mind) {
 			this.mind = mind;
 		}
 
-		public DustMachineHandle(DustMachineAgent mind, DustMachineIdea unit, DustMachineHandle type, String id) {
+		public DustMachineHandle(DustMachineImpl mind, DustMachineIdea unit, DustMachineHandle type, String id) {
 			this(mind);
 			init(unit, type, id);
 		}

@@ -138,11 +138,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ValtypeRaw",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ValtypeRaw",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -198,7 +198,7 @@
 		}
 	],
 	"meta": {
-		"date": "20260917T124854Z",
+		"date": "20260918T084539Z",
 		"count": 16,
 		"unitInfo": {
 			"relationships": {

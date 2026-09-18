@@ -43,6 +43,42 @@
 							"meta": {
 								"key": 0
 							},
+							"id": "Lorand/test01$LocalFiles",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01$MachineAgent",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			},
+			"id": "Lorand/test01$MachineAPI",
+			"type": "giskard.me/mind.1$Message"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/dust.1$NEW_Machine",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			},
+			"id": "Lorand/test01$MachineAgent",
+			"type": "giskard.me/mind.1$Agent"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
 							"id": "Lorand/test01$StreamUnitProcessor",
 							"type": "giskard.me/mind.1$Agent"
 						}
@@ -61,6 +97,13 @@
 								"key": 0
 							},
 							"id": "Lorand/test01$LocalFiles",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01$MachineAgent",
 							"type": "giskard.me/mind.1$Agent"
 						}
 					]
@@ -178,6 +221,12 @@
 							"type": "giskard.me/mind.1$Assembly"
 						}
 					]
+				},
+				"giskard.me/dust.1$machine": {
+					"data": {
+						"id": "Lorand/test01$MachineAPI",
+						"type": "giskard.me/mind.1$Message"
+					}
 				}
 			},
 			"id": "Lorand/test01$TestClient",
@@ -194,6 +243,12 @@
 				"giskard.me/stream.1$unitHandler": {
 					"data": {
 						"id": "Lorand/test01$UnitHandler",
+						"type": "giskard.me/mind.1$Message"
+					}
+				},
+				"giskard.me/dust.1$machine": {
+					"data": {
+						"id": "Lorand/test01$MachineAPI",
 						"type": "giskard.me/mind.1$Message"
 					}
 				}
@@ -247,8 +302,8 @@
 		}
 	],
 	"meta": {
-		"date": "20260917T124854Z",
-		"count": 14,
+		"date": "20260918T084540Z",
+		"count": 16,
 		"unitInfo": {
 			"relationships": {
 				"giskard.me/mind.1$author": {

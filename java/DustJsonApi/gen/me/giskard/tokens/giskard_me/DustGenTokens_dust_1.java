@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20260917T095640Z
+// Generation timestamp 20260918T075149Z
 
 public interface DustGenTokens_dust_1 {
 // Aspects
@@ -20,6 +20,7 @@ public interface DustGenTokens_dust_1 {
 	String TOKEN_DUST_ATT_DIALOGS = "giskard.me/dust.1$dialogs";
 	String TOKEN_DUST_ATT_IMPLEMENTATIONS = "giskard.me/dust.1$implementations";
 	String TOKEN_DUST_ATT_LIBRARIES = "giskard.me/dust.1$libraries";
+	String TOKEN_DUST_ATT_MACHINE = "giskard.me/dust.1$machine";
 	String TOKEN_DUST_ATT_MODULES = "giskard.me/dust.1$modules";
 	String TOKEN_DUST_ATT_RELEASEONSHUTDOWN = "giskard.me/dust.1$releaseOnShutdown";
 	String TOKEN_DUST_ATT_SUPPORTED_PLATFORMS = "giskard.me/dust.1$supportedPlatforms";

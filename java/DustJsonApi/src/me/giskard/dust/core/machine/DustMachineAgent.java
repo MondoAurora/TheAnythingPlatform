@@ -15,14 +15,13 @@ import java.util.WeakHashMap;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustException;
-import me.giskard.dust.core.DustMachine;
 import me.giskard.dust.core.dev.DustDevCounter;
 import me.giskard.dust.core.dev.DustDevUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-class DustMachineAgent extends DustMachine implements DustMachineConsts {
+class DustMachineAgent extends DustMachineConsts.DustMachineImpl implements DustMachineConsts {
 
 	class CallContext {
 		private DustHandle hAgent;
