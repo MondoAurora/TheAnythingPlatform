@@ -35,6 +35,36 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_MISC_TAG_CMD_BEGIN"
+			},
+			"id": "giskard.me/misc.1$CmdBegin",
+			"type": "giskard.me/mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "giskard.me/misc.1$Cmd",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_MISC_TAG_CMD_COMMIT"
+			},
+			"id": "giskard.me/misc.1$CmdCommit",
+			"type": "giskard.me/mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "giskard.me/misc.1$Cmd",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_MISC_TAG_CMD_DELETE"
 			},
 			"id": "giskard.me/misc.1$CmdDelete",
@@ -68,6 +98,21 @@
 				"giskard.me/misc.1$name": "TOKEN_MISC_TAG_CMD_INFO"
 			},
 			"id": "giskard.me/misc.1$CmdInfo",
+			"type": "giskard.me/mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "giskard.me/misc.1$Cmd",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_MISC_TAG_CMD_INIT"
+			},
+			"id": "giskard.me/misc.1$CmdInit",
 			"type": "giskard.me/mind.1$Tag"
 		},
 		{
@@ -140,9 +185,39 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_MISC_TAG_CMD_RELEASE"
+			},
+			"id": "giskard.me/misc.1$CmdRelease",
+			"type": "giskard.me/mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "giskard.me/misc.1$Cmd",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_MISC_TAG_CMD_RESPOND"
 			},
 			"id": "giskard.me/misc.1$CmdRespond",
+			"type": "giskard.me/mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "giskard.me/misc.1$Cmd",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_MISC_TAG_CMD_ROLLBACK"
+			},
+			"id": "giskard.me/misc.1$CmdRollback",
 			"type": "giskard.me/mind.1$Tag"
 		},
 		{
@@ -338,11 +413,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeSet",
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
+							"id": "giskard.me/mind.1$ColltypeSet",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -359,11 +434,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeSet",
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
+							"id": "giskard.me/mind.1$ColltypeSet",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -401,11 +476,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeSet",
+							"id": "giskard.me/mind.1$ValtypeRaw",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeRaw",
+							"id": "giskard.me/mind.1$ColltypeSet",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -443,11 +518,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -464,11 +539,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ValtypeRaw",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeRaw",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -506,11 +581,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ValtypeRaw",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeRaw",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -548,11 +623,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -569,11 +644,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ValtypeRaw",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeRaw",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -716,11 +791,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ValtypeRaw",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeRaw",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -842,11 +917,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeSet",
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
+							"id": "giskard.me/mind.1$ColltypeSet",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -863,11 +938,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -926,11 +1001,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ValtypeReal",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeReal",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -1073,11 +1148,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -1115,11 +1190,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -1136,11 +1211,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeSet",
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
+							"id": "giskard.me/mind.1$ColltypeSet",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -1196,8 +1271,8 @@
 		}
 	],
 	"meta": {
-		"date": "20260918T084540Z",
-		"count": 66,
+		"date": "20260923T152051Z",
+		"count": 71,
 		"unitInfo": {
 			"relationships": {
 				"giskard.me/mind.1$author": {

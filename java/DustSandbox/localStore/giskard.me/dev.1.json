@@ -77,17 +77,18 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeSet",
+							"id": "giskard.me/mind.1$ValtypeString",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeString",
+							"id": "giskard.me/mind.1$ColltypeSet",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DEV_ATT_CLASSES",
 				"giskard.me/misc.1$name": "TOKEN_DEV_ATT_CLASSES"
 			},
 			"id": "giskard.me/dev.1$classes",
@@ -98,17 +99,18 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DEV_CMD_GENSRC",
 				"giskard.me/misc.1$name": "TOKEN_DEV_CMD_GENSRC"
 			},
 			"id": "giskard.me/dev.1$genSrc",
@@ -130,6 +132,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DEV_ATT_PACKAGE",
 				"giskard.me/misc.1$name": "TOKEN_DEV_ATT_PACKAGE"
 			},
 			"id": "giskard.me/dev.1$package",
@@ -151,6 +154,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DEV_ATT_SKIP",
 				"giskard.me/misc.1$name": "TOKEN_DEV_ATT_SKIP"
 			},
 			"id": "giskard.me/dev.1$skip",
@@ -166,15 +170,38 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DEV_TAG_CMD_TEST",
 				"giskard.me/misc.1$name": "TOKEN_DEV_TAG_CMD_TEST"
 			},
 			"id": "giskard.me/dev.1$test",
 			"type": "giskard.me/mind.1$Tag"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ValtypeString",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DEV_ATT_TOKEN",
+				"giskard.me/misc.1$name": "TOKEN_DEV_ATT_TOKEN"
+			},
+			"id": "giskard.me/dev.1$token",
+			"type": "giskard.me/mind.1$Attribute"
 		}
 	],
 	"meta": {
-		"date": "20260918T084540Z",
-		"count": 13,
+		"date": "20260923T152051Z",
+		"count": 14,
 		"unitInfo": {
 			"relationships": {
 				"giskard.me/mind.1$author": {

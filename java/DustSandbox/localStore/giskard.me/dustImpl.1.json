@@ -105,7 +105,7 @@
 				}
 			},
 			"attributes": {
-				"giskard.me/misc.1$key": "me.giskard.dust.core.machine.DustMachineAgentNew"
+				"giskard.me/misc.1$key": "me.giskard.dust.core.machine.DustMachineNewAgent"
 			},
 			"id": "giskard.me/dustImpl.1$NEW_MachineImplJava17",
 			"type": "giskard.me/dust.1$Implementation"

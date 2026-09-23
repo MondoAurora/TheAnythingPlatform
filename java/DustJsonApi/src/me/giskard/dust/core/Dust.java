@@ -148,6 +148,10 @@ public class Dust implements DustConsts, DustMachineConsts, DustDevConsts {
 		}
 	}
 
+	public static DustHandle getHandle(String id) {
+		return MACHINE.getHandle(null, null, id, DustOptCreate.Primary);
+	}
+
 	public static DustHandle getHandle(DustHandle unit, Object type, String id, DustOptCreate optCreate) {
 		return MACHINE.getHandle(unit, type, id, optCreate);
 	}

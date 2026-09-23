@@ -39,9 +39,9 @@ import javax.swing.table.TableRowSorter;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
-import me.giskard.dust.core.DustConsts.DustHandle;
 import me.giskard.dust.core.DustException;
-import me.giskard.dust.core.dev.DustDevUtils;
+import me.giskard.dust.core.machine.DustMachineBoot;
+import me.giskard.dust.core.machine.DustMachineNewAgent;
 import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
@@ -736,9 +736,10 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 						Dust.access(DustAccess.Set, TOKEN_DEV_TAG_CMD_TEST, hGenBoot, TOKEN_MIND_ATT_CMD);
 						Dust.access(DustAccess.Set, hSel, hGenBoot, TOKEN_MISC_ATT_DATA);
 						Dust.access(DustAccess.Process, null, hGenBoot);
+
+						return;
 					}
-					
-					return;
+
 				}
 				if (!filterUnit.isEmpty()) {
 					execCmd("Commit"); // "autosave"
@@ -749,7 +750,6 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 				Dust.access(DustAccess.Set, TOKEN_DEV_TAG_CMD_TEST, hSrcGen, TOKEN_MIND_ATT_CMD);
 				Dust.access(DustAccess.Insert, TOKEN_DUST_ATT_UNIT_REFS, hSrcGen, TOKEN_MISC_ATT_PATH, KEY_ADD);
-//				Dust.access(DustAccess.Set, TOKEN_DUST_ATT_UNIT_REFS, hSrcGen, TOKEN_MISC_ATT_PATH, KEY_ADD);
 				for (DustHandle hs : filterUnit) {
 					Dust.access(DustAccess.Insert, hs, hSrcGen, TOKEN_MISC_ATT_MEMBERS);
 				}
@@ -757,6 +757,10 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 				break;
 			case "Rollback":
+				DustMachineBoot dmb = new DustMachineBoot();
+
+				DustMachineNewAgent test = new DustMachineNewAgent();
+
 				Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Calling from thread", Thread.currentThread());
 				break;
 
@@ -816,9 +820,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 			default:
 				Dust.log(TOKEN_MISC_TAG_LEVEL_WARNING, "execCmd() Command not handled", cmd);
 			}
-		} catch (
-
-		Throwable t) {
+		} catch (Throwable t) {
 			DustException.wrap(t);
 		}
 	}

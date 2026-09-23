@@ -8,11 +8,11 @@
 			"id": "Sandbox",
 			"attributes": {
 				"giskard.me/dust.1$binaryResolver": {
-					"giskard.me/dust.1$Machine": {
+					"giskard.me/dust.1$MachineAgent": {
 						"giskard.me/dust.1$binary": "me.giskard.dust.core.machine.DustMachineAgent"
 					},
-					"giskard.me/dust.1$NEW_Machine": {
-						"giskard.me/dust.1$binary": "me.giskard.dust.core.machine.DustMachineAgentNew"
+					"giskard.me/dust.1$NEW_MachineAgent": {
+						"giskard.me/dust.1$binary": "me.giskard.dust.core.machine.DustMachineNewAgent"
 					},
 					"giskard.me/mind.1$ForAll": {
 						"giskard.me/dust.1$binary": "me.giskard.dust.core.machine.DustMachineNarrative$ForAll"

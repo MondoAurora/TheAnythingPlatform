@@ -9,10 +9,11 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import me.giskard.dust.core.DustConsts;
+import me.giskard.dust.core.DustConstsBoot;
 import me.giskard.dust.core.DustException;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
-public interface DustUtilsConsts extends DustConsts {
+public interface DustUtilsConsts extends DustConstsBoot {
 	
 	Object[] DUST_BOOL = {DUST_CONST_TRUE, DUST_CONST_FALSE, "yes", "no"};
 

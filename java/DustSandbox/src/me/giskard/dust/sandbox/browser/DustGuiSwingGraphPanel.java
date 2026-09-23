@@ -23,10 +23,10 @@ import javax.swing.JScrollPane;
 import javax.swing.event.MouseInputAdapter;
 
 import me.giskard.dust.core.Dust;
-import me.giskard.dust.core.DustConsts.DustAccess;
-import me.giskard.dust.core.DustConsts.DustCollType;
-import me.giskard.dust.core.DustConsts.DustHandle;
-import me.giskard.dust.core.DustConsts.DustOptCreate;
+import me.giskard.dust.core.DustConstsBoot.DustAccess;
+import me.giskard.dust.core.DustConstsBoot.DustCollType;
+import me.giskard.dust.core.DustConstsBoot.DustHandle;
+import me.giskard.dust.core.DustConstsBoot.DustOptCreate;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsConsts.DustCreator;
 import me.giskard.dust.core.utils.DustUtilsFactory;

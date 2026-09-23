@@ -258,20 +258,34 @@ public class DustUtils implements DustUtilsConsts {
 		return getNewId(hUnit, DUST_DEF_ID_BYTES);
 	}
 
+	public static String getNewId(int bytes) {
+		byte[] rb = new byte[bytes];
+		RND.nextBytes(rb);
+
+		StringBuilder sb = new StringBuilder(2 * bytes);
+		for (byte b : rb) {
+			sb.append(Character.forDigit((b >> 4) & 0xF, 16));
+			sb.append(Character.forDigit((b & 0xF), 16));
+		}
+
+		return sb.toString();
+	}
+
+	public static String getNewId(Collection coll, int bytes) {
+		String id;
+
+		do {
+			id = getNewId(bytes);
+		} while (coll.contains(id));
+
+		return id;
+	}
+
 	public static String getNewId(DustHandle hUnit, int bytes) {
 		String id;
 
-		byte[] rb = new byte[bytes];
 		do {
-			RND.nextBytes(rb);
-
-			StringBuilder sb = new StringBuilder(2 * bytes);
-			for (byte b : rb) {
-				sb.append(Character.forDigit((b >> 4) & 0xF, 16));
-				sb.append(Character.forDigit((b & 0xF), 16));
-			}
-
-			id = sb.toString();
+			id = getNewId(bytes);
 		} while (null != Dust.getHandle(hUnit, null, id, DustOptCreate.None));
 
 		return id;

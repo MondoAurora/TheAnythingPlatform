@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20260910T125510Z
+// Generation timestamp 20260923T152931Z
 
 public interface DustGenTokens_geometry_1 {
 // Aspects

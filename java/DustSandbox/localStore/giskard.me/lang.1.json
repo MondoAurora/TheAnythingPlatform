@@ -27,11 +27,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeSet",
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
+							"id": "giskard.me/mind.1$ColltypeSet",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -45,7 +45,7 @@
 		}
 	],
 	"meta": {
-		"date": "20260918T084540Z",
+		"date": "20260923T152051Z",
 		"count": 5,
 		"unitInfo": {
 			"relationships": {

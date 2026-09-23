@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20260917T090511Z
+// Generation timestamp 20260923T152931Z
 
 public interface DustGenTokens_misc_1 {
 // Aspects
@@ -53,14 +53,19 @@ public interface DustGenTokens_misc_1 {
 // Tags
 	String TOKEN_MISC_TAG_CMD = "giskard.me/misc.1$Cmd";
 	String TOKEN_MISC_TAG_CMD_ADD = "giskard.me/misc.1$CmdAdd";
+	String TOKEN_MISC_TAG_CMD_BEGIN = "giskard.me/misc.1$CmdBegin";
+	String TOKEN_MISC_TAG_CMD_COMMIT = "giskard.me/misc.1$CmdCommit";
 	String TOKEN_MISC_TAG_CMD_DELETE = "giskard.me/misc.1$CmdDelete";
 	String TOKEN_MISC_TAG_CMD_DOWN = "giskard.me/misc.1$CmdDown";
 	String TOKEN_MISC_TAG_CMD_INFO = "giskard.me/misc.1$CmdInfo";
+	String TOKEN_MISC_TAG_CMD_INIT = "giskard.me/misc.1$CmdInit";
 	String TOKEN_MISC_TAG_CMD_LOAD = "giskard.me/misc.1$CmdLoad";
 	String TOKEN_MISC_TAG_CMD_LOADALL = "giskard.me/misc.1$CmdLoadAll";
 	String TOKEN_MISC_TAG_CMD_PING = "giskard.me/misc.1$CmdPing";
 	String TOKEN_MISC_TAG_CMD_REFRESH = "giskard.me/misc.1$CmdRefresh";
+	String TOKEN_MISC_TAG_CMD_RELEASE = "giskard.me/misc.1$CmdRelease";
 	String TOKEN_MISC_TAG_CMD_RESPOND = "giskard.me/misc.1$CmdRespond";
+	String TOKEN_MISC_TAG_CMD_ROLLBACK = "giskard.me/misc.1$CmdRollback";
 	String TOKEN_MISC_TAG_CMD_SAVE = "giskard.me/misc.1$CmdSave";
 	String TOKEN_MISC_TAG_CMD_SKIPBACK = "giskard.me/misc.1$CmdSkipBack";
 	String TOKEN_MISC_TAG_CMD_SKIPFORWARD = "giskard.me/misc.1$CmdSkipForward";

@@ -2,9 +2,8 @@ package me.giskard.dust.core.dev;
 
 import java.lang.reflect.Field;
 import java.text.NumberFormat;
-import java.util.Collection;
-
-import me.giskard.dust.core.Dust;
+import java.util.Map;
+import java.util.TreeMap;
 
 @SuppressWarnings("rawtypes")
 public class DustDevUtils implements DustDevConsts {
@@ -36,19 +35,24 @@ public class DustDevUtils implements DustDevConsts {
 		return sb.toString();
 	}
 
-//	public static void loadConstHandles(Collection<String> classes) throws Exception {
-//		for (String cn : classes) {
-//			Class cc = Class.forName(cn);
-//
-//			for (Field f : cc.getDeclaredFields()) {
-//				String fn = f.getName();
-//				Class<? extends String> fc = fn.getClass();
-//				if ( fn.startsWith("TOKEN") && String.class.equals(fc)) {
-//					String fv = (String) f.get(null);
+	public static Map<String, String> loadConstHandles(String... classes) throws Exception {
+		Map<String, String> ret = new TreeMap<>();
+		
+		for (String cn : classes) {
+			Class cc = Class.forName(cn);
+
+			for (Field f : cc.getDeclaredFields()) {
+				String fn = f.getName();
+				Class<? extends String> fc = fn.getClass();
+				if ( fn.startsWith("TOKEN") && String.class.equals(fc)) {
+					String fv = (String) f.get(null);
+					ret.put(fv, fn);
 //					DustHandle h = Dust.getHandle(null, null, fv, DustOptCreate.Meta);
 //					Dust.access(DustAccess.Set, fn, h, TOKEN_MISC_ATT_NAME);
-//				}
-//			}
-//		}
-//	}
+				}
+			}
+		}
+		
+		return ret;
+	}
 }
