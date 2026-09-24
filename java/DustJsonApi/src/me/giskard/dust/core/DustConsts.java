@@ -7,7 +7,7 @@ import me.giskard.tokens.giskard_me.DustGenTokens_misc_1;
 
 public interface DustConsts extends DustConstsBoot, DustGenTokens_dust_1, DustGenTokens_misc_1, DustGenTokens_mind_1, DustGenTokens_aaa_1 {
 
-	public abstract class DustAgent implements DustConsts {
+	public abstract class DustAgent {
 		protected final Object process(DustAction action, DustAccess access) throws Exception {
 			Object ret = null;
 

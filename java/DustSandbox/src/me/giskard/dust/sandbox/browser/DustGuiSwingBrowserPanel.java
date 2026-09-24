@@ -40,8 +40,10 @@ import javax.swing.table.TableRowSorter;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.DustException;
+import me.giskard.dust.core.DustMachine;
 import me.giskard.dust.core.machine.DustMachineBoot;
 import me.giskard.dust.core.machine.DustMachineNewAgent;
+import me.giskard.dust.core.machine.DustMachineNewHandle;
 import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
@@ -757,11 +759,26 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 				break;
 			case "Rollback":
+				Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Calling from thread", Thread.currentThread());
+				break;
+			case "New Machine":
 				DustMachineBoot dmb = new DustMachineBoot();
 
 				DustMachineNewAgent test = new DustMachineNewAgent();
 
-				Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Calling from thread", Thread.currentThread());
+				DustMachine m = Dust.devSetMachine(test);
+
+				try {
+					test.init();
+
+					DustHandle hh = Dust.getHandle(null, null, TOKEN_DUST_ATT_CTX_AGT, DustOptCreate.None);
+
+					Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Test handle", hh);
+
+					test.init();
+				} finally {
+					Dust.devSetMachine(m);
+				}
 				break;
 
 			case "Activate":
@@ -833,7 +850,8 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 
 		cbGraph.setEditable(true);
 
-		factToolbars.fillToolbar("tbTop", "Rebuild", /* "Load Tokens", */ null, new JLabel("Handle ID:"), tfHandle, "Load Handle", null, "Rollback", "Commit");
+		factToolbars.fillToolbar("tbTop", "Rebuild", /* "Load Tokens", */ null, new JLabel("Handle ID:"), tfHandle, "Load Handle", null, "Rollback", "Commit", null,
+				"New Machine");
 		factToolbars.fillToolbar("tbUnit", "Update Units", "Load Unit", null, "Gen Src");
 		factToolbars.fillToolbar("tbProp", "New Att", "Drop Att", "Update Value");
 		factToolbars.fillToolbar("tbGraph", new JLabel("Zoom:"), "+", ".", "-", null, "Activate", null, "Random", "Load Refs", "Drop Selected", graphPanel.cbMode,

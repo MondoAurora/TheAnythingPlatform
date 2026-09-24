@@ -5,6 +5,7 @@
 	"data": [
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ASP_AGENT",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ASP_AGENT"
 			},
 			"id": "giskard.me/mind.1$Agent",
@@ -12,6 +13,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ASP_ASPECT",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ASP_ASPECT"
 			},
 			"id": "giskard.me/mind.1$Aspect",
@@ -19,6 +21,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ASP_ASSEMBLY",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ASP_ASSEMBLY"
 			},
 			"id": "giskard.me/mind.1$Assembly",
@@ -26,6 +29,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ASP_ATTRIBUTE",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ASP_ATTRIBUTE"
 			},
 			"id": "giskard.me/mind.1$Attribute",
@@ -33,6 +37,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ASP_AUTHOR",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ASP_AUTHOR"
 			},
 			"id": "giskard.me/mind.1$Author",
@@ -40,6 +45,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_COLLTYPE",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_COLLTYPE"
 			},
 			"id": "giskard.me/mind.1$Colltype",
@@ -55,6 +61,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_COLLTYPE_ARR",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_ARR"
 			},
 			"id": "giskard.me/mind.1$ColltypeArr",
@@ -70,6 +77,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_COLLTYPE_MAP",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_MAP"
 			},
 			"id": "giskard.me/mind.1$ColltypeMap",
@@ -85,6 +93,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_COLLTYPE_ONE",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_ONE"
 			},
 			"id": "giskard.me/mind.1$ColltypeOne",
@@ -100,6 +109,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_COLLTYPE_SET",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_COLLTYPE_SET"
 			},
 			"id": "giskard.me/mind.1$ColltypeSet",
@@ -111,6 +121,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_FINAL",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_FINAL"
 			},
 			"id": "giskard.me/mind.1$Final",
@@ -130,6 +141,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_CMD_GETHANDLE",
 				"giskard.me/misc.1$name": "TOKEN_MIND_CMD_GETHANDLE"
 			},
 			"id": "giskard.me/mind.1$GetHandle",
@@ -145,6 +157,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_CMD_LISTUNITS",
 				"giskard.me/misc.1$name": "TOKEN_MIND_CMD_LISTUNITS"
 			},
 			"id": "giskard.me/mind.1$ListUnits",
@@ -152,6 +165,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_MANDATORY",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_MANDATORY"
 			},
 			"id": "giskard.me/mind.1$Mandatory",
@@ -159,6 +173,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ASP_MESSAGE",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ASP_MESSAGE"
 			},
 			"id": "giskard.me/mind.1$Message",
@@ -166,6 +181,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ASP_NARRATIVE",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ASP_NARRATIVE"
 			},
 			"id": "giskard.me/mind.1$Narrative",
@@ -173,6 +189,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ASP_NODE",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ASP_NODE"
 			},
 			"id": "giskard.me/mind.1$Node",
@@ -180,6 +197,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_OPTIONAL",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_OPTIONAL"
 			},
 			"id": "giskard.me/mind.1$Optional",
@@ -187,6 +205,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_RESULT",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_RESULT"
 			},
 			"id": "giskard.me/mind.1$Result",
@@ -202,6 +221,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_RESULT_ACCEPT",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_RESULT_ACCEPT"
 			},
 			"id": "giskard.me/mind.1$ResultAccept",
@@ -217,6 +237,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_RESULT_PASS",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_RESULT_PASS"
 			},
 			"id": "giskard.me/mind.1$ResultPass",
@@ -232,6 +253,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_RESULT_READ",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_RESULT_READ"
 			},
 			"id": "giskard.me/mind.1$ResultRead",
@@ -247,6 +269,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_RESULT_READACCEPT",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_RESULT_READACCEPT"
 			},
 			"id": "giskard.me/mind.1$ResultReadAccept",
@@ -262,6 +285,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_RESULT_REJECT",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_RESULT_REJECT"
 			},
 			"id": "giskard.me/mind.1$ResultReject",
@@ -269,6 +293,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ASP_SYSTEM",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ASP_SYSTEM"
 			},
 			"id": "giskard.me/mind.1$System",
@@ -276,6 +301,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ASP_TAG",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ASP_TAG"
 			},
 			"id": "giskard.me/mind.1$Tag",
@@ -283,6 +309,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_TRANSIENT",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_TRANSIENT"
 			},
 			"id": "giskard.me/mind.1$Transient",
@@ -290,6 +317,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ASP_UNIT",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ASP_UNIT"
 			},
 			"id": "giskard.me/mind.1$Unit",
@@ -297,6 +325,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_VALTYPE",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_VALTYPE"
 			},
 			"id": "giskard.me/mind.1$Valtype",
@@ -312,6 +341,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_VALTYPE_BOOL",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_VALTYPE_BOOL"
 			},
 			"id": "giskard.me/mind.1$ValtypeBool",
@@ -327,6 +357,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_VALTYPE_HANDLE",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_VALTYPE_HANDLE"
 			},
 			"id": "giskard.me/mind.1$ValtypeHandle",
@@ -342,6 +373,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_VALTYPE_INTEGER",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_VALTYPE_INTEGER"
 			},
 			"id": "giskard.me/mind.1$ValtypeInteger",
@@ -357,6 +389,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_VALTYPE_RAW",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_VALTYPE_RAW"
 			},
 			"id": "giskard.me/mind.1$ValtypeRaw",
@@ -372,6 +405,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_VALTYPE_REAL",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_VALTYPE_REAL"
 			},
 			"id": "giskard.me/mind.1$ValtypeReal",
@@ -387,6 +421,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_TAG_VALTYPE_STRING",
 				"giskard.me/misc.1$name": "TOKEN_MIND_TAG_VALTYPE_STRING"
 			},
 			"id": "giskard.me/mind.1$ValtypeString",
@@ -408,6 +443,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_ASSEMBLIES",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_ASSEMBLIES"
 			},
 			"id": "giskard.me/mind.1$assemblies",
@@ -429,6 +465,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_AUTHOR",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_AUTHOR"
 			},
 			"id": "giskard.me/mind.1$author",
@@ -450,6 +487,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_CMD",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_CMD"
 			},
 			"id": "giskard.me/mind.1$cmd",
@@ -475,6 +513,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_ID",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_ID"
 			},
 			"id": "giskard.me/mind.1$id",
@@ -496,6 +535,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_KNOWNUNITS",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_KNOWNUNITS"
 			},
 			"id": "giskard.me/mind.1$knownUnits",
@@ -517,6 +557,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_LISTENERS",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_LISTENERS"
 			},
 			"id": "giskard.me/mind.1$listeners",
@@ -538,6 +579,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_NARRATIVE",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_NARRATIVE"
 			},
 			"id": "giskard.me/mind.1$narrative",
@@ -559,6 +601,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_NEXT",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_NEXT"
 			},
 			"id": "giskard.me/mind.1$next",
@@ -580,6 +623,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_REQUIRED_ASPECTS",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_REQUIRED_ASPECTS"
 			},
 			"id": "giskard.me/mind.1$requiredAspects",
@@ -601,6 +645,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_REQUIRED_ATTRIBUTES",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_REQUIRED_ATTRIBUTES"
 			},
 			"id": "giskard.me/mind.1$requiredAttributes",
@@ -622,6 +667,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_SERIALIZER",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_SERIALIZER"
 			},
 			"id": "giskard.me/mind.1$serializer",
@@ -643,6 +689,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_TAGS",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_TAGS"
 			},
 			"id": "giskard.me/mind.1$tags",
@@ -664,6 +711,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_TRANSACTION_HEAD",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_TRANSACTION_HEAD"
 			},
 			"id": "giskard.me/mind.1$transactionHead",
@@ -685,6 +733,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_TRANSACTION_ITEM",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_TRANSACTION_ITEM"
 			},
 			"id": "giskard.me/mind.1$transactionItem",
@@ -710,6 +759,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_TYPE",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_TYPE"
 			},
 			"id": "giskard.me/mind.1$type",
@@ -735,23 +785,42 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_UNIT",
 				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_UNIT"
 			},
 			"id": "giskard.me/mind.1$unit",
 			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
-			"id": "giskard.me/mind.1$unitObjects",
-			"type": "giskard.me/mind.1$Attribute"
-		},
-		{
-			"id": "giskard.me/mind.1$unitRefs",
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$Transient",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_UNIT_STATE",
+				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_UNIT_STATE"
+			},
+			"id": "giskard.me/mind.1$unitState",
 			"type": "giskard.me/mind.1$Attribute"
 		}
 	],
 	"meta": {
-		"date": "20260923T152051Z",
-		"count": 55,
+		"date": "20260924T084828Z",
+		"count": 56,
 		"unitInfo": {
 			"relationships": {
 				"giskard.me/mind.1$author": {

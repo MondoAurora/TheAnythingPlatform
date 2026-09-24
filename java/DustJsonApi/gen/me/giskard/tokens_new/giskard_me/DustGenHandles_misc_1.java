@@ -3,7 +3,7 @@ package me.giskard.tokens_new.giskard_me;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConstsBoot.DustHandle;
 
-// Generation timestamp 20260923T152931Z
+// Generation timestamp 20260924T084737Z
 
 public interface DustGenHandles_misc_1 {
 // Aspects
@@ -81,4 +81,7 @@ public interface DustGenHandles_misc_1 {
 	DustHandle HANDLE_MISC_TAG_LEVEL_TRACE = Dust.getHandle("giskard.me/misc.1$LevelTrace");
 	DustHandle HANDLE_MISC_TAG_LEVEL_WARNING = Dust.getHandle("giskard.me/misc.1$LevelWarning");
 	DustHandle HANDLE_MISC_TAG_SLAVE = Dust.getHandle("giskard.me/misc.1$Slave");
+	DustHandle HANDLE_MISC_TAG_STATE = Dust.getHandle("giskard.me/misc.1$State");
+	DustHandle HANDLE_MISC_TAG_STATE_CHANGED = Dust.getHandle("giskard.me/misc.1$StateChanged");
+	DustHandle HANDLE_MISC_TAG_STATE_IN_SYNC = Dust.getHandle("giskard.me/misc.1$StateInSync");
 }

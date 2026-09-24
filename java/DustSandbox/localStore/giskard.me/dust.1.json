@@ -13,6 +13,7 @@
 		},
 		{
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DUST_ASP_CALL_CONTEXT",
 				"giskard.me/misc.1$name": "TOKEN_DUST_ASP_CALL_CONTEXT"
 			},
 			"id": "giskard.me/dust.1$CallContext",
@@ -246,6 +247,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_ALLDIALOGS",
 				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_ALLDIALOGS"
 			},
 			"id": "giskard.me/dust.1$allDialogs",
@@ -344,11 +346,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ValtypeRaw",
+							"id": "giskard.me/mind.1$ColltypeMap",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ColltypeMap",
+							"id": "giskard.me/mind.1$ValtypeRaw",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -377,6 +379,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_CALL_STACK",
 				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_CALL_STACK"
 			},
 			"id": "giskard.me/dust.1$callStack",
@@ -398,6 +401,29 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_CTX_AGT",
+				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_CTX_AGT"
+			},
+			"id": "giskard.me/dust.1$ctxAgt",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ValtypeRaw",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_CTX_APP",
 				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_CTX_APP"
 			},
 			"id": "giskard.me/dust.1$ctxApp",
@@ -419,6 +445,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_CTX_DLG",
 				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_CTX_DLG"
 			},
 			"id": "giskard.me/dust.1$ctxDlg",
@@ -440,27 +467,7 @@
 				}
 			},
 			"attributes": {
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_CTX_AGENT"
-			},
-			"id": "giskard.me/dust.1$ctxGgent",
-			"type": "giskard.me/mind.1$Attribute"
-		},
-		{
-			"relationships": {
-				"giskard.me/mind.1$tags": {
-					"data": [
-						{
-							"id": "giskard.me/mind.1$ValtypeRaw",
-							"type": "giskard.me/mind.1$Tag"
-						},
-						{
-							"id": "giskard.me/mind.1$ColltypeOne",
-							"type": "giskard.me/mind.1$Tag"
-						}
-					]
-				}
-			},
-			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_CTX_MSG",
 				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_CTX_MSG"
 			},
 			"id": "giskard.me/dust.1$ctxMsg",
@@ -482,6 +489,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_DIALOG",
 				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_DIALOG"
 			},
 			"id": "giskard.me/dust.1$dialog",
@@ -573,6 +581,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_NEUMANN_ALU",
 				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_NEUMANN_ALU"
 			},
 			"id": "giskard.me/dust.1$neumannALU",
@@ -594,6 +603,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_NEUMANN_CPU",
 				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_NEUMANN_CPU"
 			},
 			"id": "giskard.me/dust.1$neumannCPU",
@@ -615,6 +625,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_NEUMANN_IO",
 				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_NEUMANN_IO"
 			},
 			"id": "giskard.me/dust.1$neumannIO",
@@ -636,6 +647,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_NEUMANN_MEM",
 				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_NEUMANN_MEM"
 			},
 			"id": "giskard.me/dust.1$neumannMEM",
@@ -657,6 +669,7 @@
 				}
 			},
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_PLATFORM",
 				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_PLATFORM"
 			},
 			"id": "giskard.me/dust.1$platform",
@@ -755,11 +768,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ValtypeRaw",
+							"id": "giskard.me/mind.1$ColltypeMap",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ColltypeMap",
+							"id": "giskard.me/mind.1$ValtypeRaw",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -860,7 +873,7 @@
 		}
 	],
 	"meta": {
-		"date": "20260923T152051Z",
+		"date": "20260924T085655Z",
 		"count": 54,
 		"unitInfo": {
 			"relationships": {

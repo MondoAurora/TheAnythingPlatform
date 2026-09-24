@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20260923T152931Z
+// Generation timestamp 20260924T084828Z
 
 public interface DustGenTokens_dust_1 {
 // Aspects
@@ -28,7 +28,7 @@ public interface DustGenTokens_dust_1 {
 	String TOKEN_DUST_ATT_BINARY = "giskard.me/dust.1$binary";
 	String TOKEN_DUST_ATT_BINARY_RESOLVER = "giskard.me/dust.1$binaryResolver";
 	String TOKEN_DUST_ATT_CALL_STACK = "giskard.me/dust.1$callStack";
-	String TOKEN_DUST_ATT_CTX_AGENT = "giskard.me/dust.1$ctxGgent";
+	String TOKEN_DUST_ATT_CTX_AGT = "giskard.me/dust.1$ctxAgt";
 	String TOKEN_DUST_ATT_CTX_APP = "giskard.me/dust.1$ctxApp";
 	String TOKEN_DUST_ATT_CTX_DLG = "giskard.me/dust.1$ctxDlg";
 	String TOKEN_DUST_ATT_CTX_MSG = "giskard.me/dust.1$ctxMsg";

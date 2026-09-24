@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20260923T152931Z
+// Generation timestamp 20260924T084737Z
 
 public interface DustGenTokens_mind_1 {
 // Aspects
@@ -33,6 +33,7 @@ public interface DustGenTokens_mind_1 {
 	String TOKEN_MIND_ATT_TRANSACTION_ITEM = "giskard.me/mind.1$transactionItem";
 	String TOKEN_MIND_ATT_TYPE = "giskard.me/mind.1$type";
 	String TOKEN_MIND_ATT_UNIT = "giskard.me/mind.1$unit";
+	String TOKEN_MIND_ATT_UNIT_STATE = "giskard.me/mind.1$unitState";
 
 // Tags
 	String TOKEN_MIND_CMD_GETHANDLE = "giskard.me/mind.1$GetHandle";

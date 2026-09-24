@@ -3,7 +3,7 @@ package me.giskard.tokens_new.giskard_me;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConstsBoot.DustHandle;
 
-// Generation timestamp 20260923T152931Z
+// Generation timestamp 20260924T084828Z
 
 public interface DustGenHandles_dust_1 {
 // Aspects
@@ -31,7 +31,7 @@ public interface DustGenHandles_dust_1 {
 	DustHandle HANDLE_DUST_ATT_BINARY = Dust.getHandle("giskard.me/dust.1$binary");
 	DustHandle HANDLE_DUST_ATT_BINARY_RESOLVER = Dust.getHandle("giskard.me/dust.1$binaryResolver");
 	DustHandle HANDLE_DUST_ATT_CALL_STACK = Dust.getHandle("giskard.me/dust.1$callStack");
-	DustHandle HANDLE_DUST_ATT_CTX_AGENT = Dust.getHandle("giskard.me/dust.1$ctxGgent");
+	DustHandle HANDLE_DUST_ATT_CTX_AGT = Dust.getHandle("giskard.me/dust.1$ctxAgt");
 	DustHandle HANDLE_DUST_ATT_CTX_APP = Dust.getHandle("giskard.me/dust.1$ctxApp");
 	DustHandle HANDLE_DUST_ATT_CTX_DLG = Dust.getHandle("giskard.me/dust.1$ctxDlg");
 	DustHandle HANDLE_DUST_ATT_CTX_MSG = Dust.getHandle("giskard.me/dust.1$ctxMsg");

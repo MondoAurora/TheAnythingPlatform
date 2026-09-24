@@ -83,11 +83,11 @@ public class DustStreamJsonApiSerializerAgent extends DustStreamJsonApiAgent imp
 //
 			InputStream is1 = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_INPUT);
 			if (null != is1) {
-				loadStream(unit, is1);
+				loadUnit(unit, is1);
 			} else {
 
 				try (InputStream is = DustStreamUtils.getStream(TOKEN_MISC_TAG_CMD_LOAD, fileName)) {
-					loadStream(unit, is);
+					loadUnit(unit, is);
 				} catch ( RuntimeException ex ) {
 					DustException.swallow(ex, "Problem with loading", unitId);
 				}
@@ -121,7 +121,7 @@ public class DustStreamJsonApiSerializerAgent extends DustStreamJsonApiAgent imp
 
 	@Override
 	public void loadStreamBoot(DustHandle unit, InputStream is) throws Exception {
-		loadStream(unit, is);
+		loadUnit(unit, is);
 	}
 
 }

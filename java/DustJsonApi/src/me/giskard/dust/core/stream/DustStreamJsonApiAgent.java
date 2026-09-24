@@ -30,6 +30,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 		SKIP_KEYS.add(TOKEN_MIND_ATT_UNIT);
 		SKIP_KEYS.add(TOKEN_DUST_ATT_WRAPPEDOBJECT);
 		SKIP_KEYS.add(TOKEN_DUST_ATT_UNIT_OBJECTS);
+		SKIP_KEYS.add(TOKEN_DUST_ATT_UNIT_HANDLES);
 		SKIP_KEYS.add(TOKEN_DUST_ATT_UNIT_REFS);
 	}
 
@@ -48,41 +49,20 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 		switch (cmd) {
 		case TOKEN_MISC_TAG_CMD_LOAD:
 			InputStream is = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_INPUT);
-			loadStream(unit, is);
+			loadUnit(unit, is);
 			break;
 		case TOKEN_MISC_TAG_CMD_SAVE:
 			OutputStream os = Dust.access(DustAccess.Peek, null, null, TOKEN_STREAM_ATT_OUTPUT);
-			Map<String, Object> target = storeUnit(unit);
-
-			DustUtilsJson.writeJson(os, target, DUST_CHARSET_UTF8);
+			storeUnit(unit, os);
 			break;
 
 		}
 		return null;
 	}
 
-	private static Map storeRelation(Map<String, Object> item, String key, Object val, Object metaKey) {
-		Map head = storeHead((DustHandle) val);
-
-		if (null == metaKey) {
-			Dust.access(DustAccess.Set, head, item, JsonApiMember.relationships, key, JsonApiMember.data);
-		} else {
-			Dust.access(DustAccess.Insert, head, item, JsonApiMember.relationships, key, JsonApiMember.data, KEY_ADD);
-
-			if (!DustUtils.isEqual(-1, metaKey)) {
-				Dust.access(DustAccess.Set, metaKey, head, JsonApiMember.meta, EXT_JSONAPI_KEY);
-			} else {
-				Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "hmm");
-			}
-		}
-		return head;
-	}
-
-	private static Map<String, Object> storeHead(DustHandle h) {
-		Map<String, Object> item = new HashMap<>();
-		item.put(JsonApiMember.type.name(), h.getType().getId());
-		item.put(JsonApiMember.id.name(), h.getId());
-		return item;
+	public static void storeUnit(DustHandle unit, OutputStream os) throws Exception {
+		Map<String, Object> target = storeUnit(unit);
+		DustUtilsJson.writeJson(os, target, DUST_CHARSET_UTF8);
 	}
 
 	public static Map<String, Object> storeUnit(DustHandle unit) {
@@ -106,7 +86,31 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 		return target;
 	}
 
-	public static Map<String, Object> storeFull(DustHandle h) {
+	private static Map<String, Object> storeHead(DustHandle h) {
+		Map<String, Object> item = new HashMap<>();
+		item.put(JsonApiMember.type.name(), h.getType().getId());
+		item.put(JsonApiMember.id.name(), h.getId());
+		return item;
+	}
+	
+	private static Map storeRelation(Map<String, Object> item, String key, Object val, Object metaKey) {
+		Map head = storeHead((DustHandle) val);
+
+		if (null == metaKey) {
+			Dust.access(DustAccess.Set, head, item, JsonApiMember.relationships, key, JsonApiMember.data);
+		} else {
+			Dust.access(DustAccess.Insert, head, item, JsonApiMember.relationships, key, JsonApiMember.data, KEY_ADD);
+
+			if (!DustUtils.isEqual(-1, metaKey)) {
+				Dust.access(DustAccess.Set, metaKey, head, JsonApiMember.meta, EXT_JSONAPI_KEY);
+			} else {
+				Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "hmm");
+			}
+		}
+		return head;
+	}
+
+	private static Map<String, Object> storeFull(DustHandle h) {
 		Map<String, Object> item = storeHead(h);
 
 		for (String key : (Iterable<String>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, KEY_MAP_KEYS)) {
@@ -156,7 +160,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 		return item;
 	}
 
-	static void loadStream(DustHandle unit, InputStream is) throws Exception {
+	public static void loadUnit(DustHandle unit, InputStream is) throws Exception {
 		if (null == is) {
 			return;
 		}
@@ -172,29 +176,40 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 
 		Map<String, Object> unitData = DustUtils.simpleGet(content, JsonApiMember.meta, EXT_JSONAPI_UNIT_INFO);
 		if (null != unitData) {
-			loadDataConent(unit, unit, unitData, false);
+			loadDataContent(unit, unit, unitData, false);
 		}
+		
+		loadSegment(unit, content, JsonApiMember.data);
+		loadSegment(unit, content, JsonApiMember.included);
 
-		for (Map<String, Object> ca : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, content, JsonApiMember.data))) {
-			loadDataSegment(unit, ca, false);
-		}
-		for (Map<String, Object> ca : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, content, JsonApiMember.included))) {
-			loadDataSegment(unit, ca, true);
+//		for (Map<String, Object> ca : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, content, JsonApiMember.data))) {
+//			loadDataSegment(unit, ca, false);
+//		}
+//		for (Map<String, Object> ca : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, content, JsonApiMember.included))) {
+//			loadDataSegment(unit, ca, true);
+//		}
+	}
+
+	public static void loadSegment(DustHandle unit, Map<String, Object> content, JsonApiMember member) {
+		Collection<Map<String, Object>> segment = DustUtils.simpleGet(content, member);
+		if ( null != segment ) {
+			for (Map<String, Object> ca : segment) {
+				loadDataSegment(unit, ca, JsonApiMember.included == member);
+			}
 		}
 	}
 
-	static void loadDataSegment(DustHandle unit, Map<String, Object> data, boolean included) {
+	private static void loadDataSegment(DustHandle unit, Map<String, Object> data, boolean included) {
 		String type = DustUtils.simpleGet(data, JsonApiMember.type);
 		DustHandle tType = Dust.getHandle(unit, TOKEN_MIND_ASP_ASPECT, type, DustOptCreate.Meta);
 
 		String id = DustUtils.simpleGet(data, JsonApiMember.id);
 		DustHandle target = Dust.getHandle(unit, tType, id, DustOptCreate.Primary);
 
-		loadDataConent(target, unit, data, included);
+		loadDataContent(target, unit, data, included);
 	}
 
-	static void loadDataConent(DustHandle target, DustHandle unit, Map<String, Object> data, boolean included) {
-
+	private static void loadDataContent(DustHandle target, DustHandle unit, Map<String, Object> data, boolean included) {
 		Map<String, Object> atts = DustUtils.simpleGet(data, JsonApiMember.attributes);
 		if (null != atts) {
 			for (Map.Entry<String, Object> ae : atts.entrySet()) {

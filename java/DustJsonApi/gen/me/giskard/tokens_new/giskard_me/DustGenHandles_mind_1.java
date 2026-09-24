@@ -3,7 +3,7 @@ package me.giskard.tokens_new.giskard_me;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConstsBoot.DustHandle;
 
-// Generation timestamp 20260923T152931Z
+// Generation timestamp 20260924T084737Z
 
 public interface DustGenHandles_mind_1 {
 // Aspects
@@ -36,6 +36,7 @@ public interface DustGenHandles_mind_1 {
 	DustHandle HANDLE_MIND_ATT_TRANSACTION_ITEM = Dust.getHandle("giskard.me/mind.1$transactionItem");
 	DustHandle HANDLE_MIND_ATT_TYPE = Dust.getHandle("giskard.me/mind.1$type");
 	DustHandle HANDLE_MIND_ATT_UNIT = Dust.getHandle("giskard.me/mind.1$unit");
+	DustHandle HANDLE_MIND_ATT_UNIT_STATE = Dust.getHandle("giskard.me/mind.1$unitState");
 
 // Tags
 	DustHandle HANDLE_MIND_CMD_GETHANDLE = Dust.getHandle("giskard.me/mind.1$GetHandle");

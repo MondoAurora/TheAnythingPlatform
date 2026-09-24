@@ -2,7 +2,7 @@ package me.giskard.dust.core;
 
 import java.io.InputStream;
 
-public abstract class DustMachine extends DustConsts.DustAgent implements DustConsts {
+public abstract class DustMachine extends DustConsts.DustAgent implements DustConstsBoot {
 	
 	public interface StreamSource {
 		<StreamType> StreamType optGetStream(String cmd, String root, String path) throws Exception;

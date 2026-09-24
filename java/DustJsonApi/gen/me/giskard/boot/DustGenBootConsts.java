@@ -29,7 +29,7 @@ public interface DustGenBootConsts extends DustConstsBoot {
 	String TOKEN_DUST_ATT_ALLTHREADS = "giskard.me/dust.1$allThreads";
 	String TOKEN_DUST_ATT_APPLICATION = "giskard.me/dust.1$applications";
 	String TOKEN_DUST_ATT_CALL_STACK = "giskard.me/dust.1$callStack";
-	String TOKEN_DUST_ATT_CTX_AGENT = "giskard.me/dust.1$ctxGgent";
+	String TOKEN_DUST_ATT_CTX_AGT = "giskard.me/dust.1$ctxAgt";
 	String TOKEN_DUST_ATT_CTX_APP = "giskard.me/dust.1$ctxApp";
 	String TOKEN_DUST_ATT_CTX_DLG = "giskard.me/dust.1$ctxDlg";
 	String TOKEN_DUST_ATT_CTX_MSG = "giskard.me/dust.1$ctxMsg";
@@ -48,7 +48,9 @@ public interface DustGenBootConsts extends DustConstsBoot {
 	String TOKEN_MIND_ATT_TAGS = "giskard.me/mind.1$tags";
 	String TOKEN_MIND_ATT_TYPE = "giskard.me/mind.1$type";
 	String TOKEN_MIND_ATT_UNIT = "giskard.me/mind.1$unit";
+	String TOKEN_MIND_ATT_UNIT_STATE = "giskard.me/mind.1$unitState";
 
 	String TOKEN_MISC_TAG_CMD_INIT = "giskard.me/misc.1$CmdInit";
+	String TOKEN_MISC_TAG_STATE_IN_SYNC = "giskard.me/misc.1$StateInSync";
 
 }

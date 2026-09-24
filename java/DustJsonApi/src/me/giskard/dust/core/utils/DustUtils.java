@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
@@ -18,6 +19,11 @@ public class DustUtils implements DustUtilsConsts {
 
 	public static String buildToken(String unit, String name) {
 		return unit + DUST_SEP_TOKEN + name;
+	}
+
+	public static String[] splitId(String id) {
+		String[] ii = id.split("\\$");
+		return (1 == ii.length) ? new String[] { null, ii[1] } : ii;
 	}
 
 	private static final EnumSet<DustAccess> ACCESS_CREATE = EnumSet.of(DustAccess.Set, DustAccess.Insert);
@@ -146,8 +152,13 @@ public class DustUtils implements DustUtilsConsts {
 			}
 			if (p instanceof Integer) {
 				int idx = (Integer) p;
-				ArrayList l = (ArrayList) curr;
-				curr = ((0 <= idx) && (idx < l.size())) ? l.get(idx) : null;
+				if (curr instanceof List) {
+					List l = (List) curr;
+					curr = ((0 <= idx) && (idx < l.size())) ? l.get(idx) : null;
+				} else if ((0 == idx) && (curr instanceof Set)) {
+					Set s = (Set) curr;
+					curr = s.isEmpty() ? null : s.iterator().next();
+				}
 			} else {
 				if (p instanceof Enum) {
 					p = ((Enum) p).name();
