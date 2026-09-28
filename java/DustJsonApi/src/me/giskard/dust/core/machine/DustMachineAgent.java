@@ -16,7 +16,6 @@ import java.util.WeakHashMap;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.DustMachine;
-import me.giskard.dust.core.DustMachine.Bootloader;
 import me.giskard.dust.core.dev.DustDevCounter;
 import me.giskard.dust.core.dev.DustDevUtils;
 import me.giskard.dust.core.utils.DustUtils;
@@ -563,7 +562,7 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 
 				curr = getContent(prevHandle);
 			} else if (null == curr) {
-				if (access.creator) {
+				if (DustUtils.isCreate(access)) {
 					curr = (p instanceof Integer) ? new ArrayList() : new HashMap();
 
 					if (null != prevColl) {
@@ -932,7 +931,7 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 		Object ret = NOT_FOUND;
 
 //		Object main = optGetCtx(root);
-		Object main = optGetCtx(root, access.creator);
+		Object main = optGetCtx(root, DustUtils.isCreate(access));
 		Object def = val;
 		boolean pg = false;
 

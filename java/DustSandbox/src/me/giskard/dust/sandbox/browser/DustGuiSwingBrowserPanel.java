@@ -779,6 +779,8 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				} finally {
 					Dust.devSetMachine(m);
 				}
+				
+				
 				break;
 
 			case "Activate":

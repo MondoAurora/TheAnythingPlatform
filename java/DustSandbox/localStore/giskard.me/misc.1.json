@@ -252,10 +252,6 @@
 			"type": "giskard.me/mind.1$Tag"
 		},
 		{
-			"id": "giskard.me/misc.1$CmdSkip",
-			"type": "giskard.me/mind.1$Tag"
-		},
-		{
 			"relationships": {
 				"giskard.me/misc.1$parent": {
 					"data": {

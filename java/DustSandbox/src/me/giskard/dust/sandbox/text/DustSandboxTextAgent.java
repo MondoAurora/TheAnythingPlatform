@@ -227,7 +227,7 @@ public class DustSandboxTextAgent extends DustAgent implements DustSandboxTextCo
 		DustHandle hString = Dust.access(DustAccess.Peek, null, mapStrings, hLang, hTxt);
 
 		if (null == hString) {
-			if (access.creator) {
+			if (DustUtils.isCreate(access)) {
 				hString = Dust.getHandle(hStrings, TOKEN_TEXT_ASP_STRING, null, DustOptCreate.Primary);
 				Dust.access(DustAccess.Set, hTxt, hString, TOKEN_MISC_ATT_TARGET);
 				Dust.access(DustAccess.Set, hLang, hString, TOKEN_TEXT_ATT_LANG);

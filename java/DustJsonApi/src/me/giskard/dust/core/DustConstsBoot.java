@@ -57,14 +57,7 @@ public interface DustConstsBoot {
 	}
 
 	enum DustAccess {
-		Check(false), Peek(false), Get(false), Set(true), Insert(true), Delete(false), Reset(false), Visit(false), Begin(false), Commit(false), Rollback(false),
-		Process(false);
-
-		public final boolean creator;
-
-		private DustAccess(boolean creator) {
-			this.creator = creator;
-		}
+		Check, Peek, Get, Set, Insert, Delete, Reset, Visit, Begin, Commit, Rollback, Process
 	}
 
 	enum DustOptCreate {
