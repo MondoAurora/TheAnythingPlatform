@@ -116,6 +116,14 @@
 			"type": "giskard.me/mind.1$Tag"
 		},
 		{
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ASP_DIFF",
+				"giskard.me/misc.1$name": "TOKEN_MIND_ASP_DIFF"
+			},
+			"id": "giskard.me/mind.1$Diff",
+			"type": "giskard.me/mind.1$Aspect"
+		},
+		{
 			"id": "giskard.me/mind.1$Filter",
 			"type": "giskard.me/mind.1$Narrative"
 		},
@@ -498,6 +506,116 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_DIFF_A",
+				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_DIFF_A"
+			},
+			"id": "giskard.me/mind.1$diffA",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ValtypeRaw",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_DIFF_A_KEY",
+				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_DIFF_A_KEY"
+			},
+			"id": "giskard.me/mind.1$diffAKey",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_DIFF_B",
+				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_DIFF_B"
+			},
+			"id": "giskard.me/mind.1$diffB",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ValtypeRaw",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_DIFF_B_KEY",
+				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_DIFF_B_KEY"
+			},
+			"id": "giskard.me/mind.1$diffBKey",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ValtypeRaw",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_DIFF_B_VAL",
+				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_DIFF_B_VAL"
+			},
+			"id": "giskard.me/mind.1$diffBVal",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
 							"id": "giskard.me/mind.1$ValtypeString",
 							"type": "giskard.me/mind.1$Tag"
 						},
@@ -816,11 +934,33 @@
 			},
 			"id": "giskard.me/mind.1$unitState",
 			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ValtypeRaw",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_DIFF_A_VAL",
+				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_DIFF_A_VAL"
+			},
+			"id": "giskard.me/mind.1$diffAVal",
+			"type": "giskard.me/mind.1$Attribute"
 		}
 	],
 	"meta": {
-		"date": "20260924T084828Z",
-		"count": 56,
+		"date": "20260929T094746Z",
+		"count": 61,
 		"unitInfo": {
 			"relationships": {
 				"giskard.me/mind.1$author": {

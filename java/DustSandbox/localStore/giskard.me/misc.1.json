@@ -1204,6 +1204,27 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
+							"id": "giskard.me/mind.1$ValtypeRaw",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ColltypeArr",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			},
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_MISC_ATT_REFPATH"
+			},
+			"id": "giskard.me/misc.1$refPath",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
 							"id": "giskard.me/mind.1$ValtypeString",
 							"type": "giskard.me/mind.1$Tag"
 						},
@@ -1377,7 +1398,7 @@
 		}
 	],
 	"meta": {
-		"date": "20260924T084828Z",
+		"date": "20260929T095101Z",
 		"count": 74,
 		"unitInfo": {
 			"relationships": {

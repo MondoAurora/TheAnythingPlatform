@@ -3,7 +3,7 @@ package me.giskard.tokens_new.giskard_me;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConstsBoot.DustHandle;
 
-// Generation timestamp 20260924T084737Z
+// Generation timestamp 20260929T094748Z
 
 public interface DustGenHandles_mind_1 {
 // Aspects
@@ -12,6 +12,7 @@ public interface DustGenHandles_mind_1 {
 	DustHandle HANDLE_MIND_ASP_ASSEMBLY = Dust.getHandle("giskard.me/mind.1$Assembly");
 	DustHandle HANDLE_MIND_ASP_ATTRIBUTE = Dust.getHandle("giskard.me/mind.1$Attribute");
 	DustHandle HANDLE_MIND_ASP_AUTHOR = Dust.getHandle("giskard.me/mind.1$Author");
+	DustHandle HANDLE_MIND_ASP_DIFF = Dust.getHandle("giskard.me/mind.1$Diff");
 	DustHandle HANDLE_MIND_ASP_MESSAGE = Dust.getHandle("giskard.me/mind.1$Message");
 	DustHandle HANDLE_MIND_ASP_NARRATIVE = Dust.getHandle("giskard.me/mind.1$Narrative");
 	DustHandle HANDLE_MIND_ASP_NODE = Dust.getHandle("giskard.me/mind.1$Node");
@@ -23,6 +24,12 @@ public interface DustGenHandles_mind_1 {
 	DustHandle HANDLE_MIND_ATT_ASSEMBLIES = Dust.getHandle("giskard.me/mind.1$assemblies");
 	DustHandle HANDLE_MIND_ATT_AUTHOR = Dust.getHandle("giskard.me/mind.1$author");
 	DustHandle HANDLE_MIND_ATT_CMD = Dust.getHandle("giskard.me/mind.1$cmd");
+	DustHandle HANDLE_MIND_ATT_DIFF_A = Dust.getHandle("giskard.me/mind.1$diffA");
+	DustHandle HANDLE_MIND_ATT_DIFF_A_KEY = Dust.getHandle("giskard.me/mind.1$diffAKey");
+	DustHandle HANDLE_MIND_ATT_DIFF_A_VAL = Dust.getHandle("giskard.me/mind.1$diffAVal");
+	DustHandle HANDLE_MIND_ATT_DIFF_B = Dust.getHandle("giskard.me/mind.1$diffB");
+	DustHandle HANDLE_MIND_ATT_DIFF_B_KEY = Dust.getHandle("giskard.me/mind.1$diffBKey");
+	DustHandle HANDLE_MIND_ATT_DIFF_B_VAL = Dust.getHandle("giskard.me/mind.1$diffBVal");
 	DustHandle HANDLE_MIND_ATT_ID = Dust.getHandle("giskard.me/mind.1$id");
 	DustHandle HANDLE_MIND_ATT_KNOWNUNITS = Dust.getHandle("giskard.me/mind.1$knownUnits");
 	DustHandle HANDLE_MIND_ATT_LISTENERS = Dust.getHandle("giskard.me/mind.1$listeners");

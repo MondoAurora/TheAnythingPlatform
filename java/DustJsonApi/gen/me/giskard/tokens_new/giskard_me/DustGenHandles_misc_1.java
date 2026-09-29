@@ -3,7 +3,7 @@ package me.giskard.tokens_new.giskard_me;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConstsBoot.DustHandle;
 
-// Generation timestamp 20260924T084737Z
+// Generation timestamp 20260929T095103Z
 
 public interface DustGenHandles_misc_1 {
 // Aspects
@@ -44,6 +44,7 @@ public interface DustGenHandles_misc_1 {
 	DustHandle HANDLE_MISC_ATT_PREFIX = Dust.getHandle("giskard.me/misc.1$prefix");
 	DustHandle HANDLE_MISC_ATT_PREPROCESS = Dust.getHandle("giskard.me/misc.1$preProcess");
 	DustHandle HANDLE_MISC_ATT_RANGE = Dust.getHandle("giskard.me/misc.1$range");
+	DustHandle HANDLE_MISC_ATT_REFPATH = Dust.getHandle("giskard.me/misc.1$refPath");
 	DustHandle HANDLE_MISC_ATT_ROOT = Dust.getHandle("giskard.me/misc.1$root");
 	DustHandle HANDLE_MISC_ATT_SEPARATOR = Dust.getHandle("giskard.me/misc.1$separator");
 	DustHandle HANDLE_MISC_ATT_SOURCE = Dust.getHandle("giskard.me/misc.1$source");

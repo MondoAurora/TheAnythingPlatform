@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20260924T084737Z
+// Generation timestamp 20260929T095103Z
 
 public interface DustGenTokens_misc_1 {
 // Aspects
@@ -41,6 +41,7 @@ public interface DustGenTokens_misc_1 {
 	String TOKEN_MISC_ATT_PREFIX = "giskard.me/misc.1$prefix";
 	String TOKEN_MISC_ATT_PREPROCESS = "giskard.me/misc.1$preProcess";
 	String TOKEN_MISC_ATT_RANGE = "giskard.me/misc.1$range";
+	String TOKEN_MISC_ATT_REFPATH = "giskard.me/misc.1$refPath";
 	String TOKEN_MISC_ATT_ROOT = "giskard.me/misc.1$root";
 	String TOKEN_MISC_ATT_SEPARATOR = "giskard.me/misc.1$separator";
 	String TOKEN_MISC_ATT_SOURCE = "giskard.me/misc.1$source";

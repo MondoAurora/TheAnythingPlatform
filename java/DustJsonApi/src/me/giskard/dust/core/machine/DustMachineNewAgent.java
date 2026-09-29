@@ -90,6 +90,14 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 		return false;
 	}
 
+	public Collection<DustHandle> getUnits() {
+		DustMachineNewIdea iApp = getCtx(hAttCtxApp);
+
+		Map<DustMachineNewHandle, DustMachineNewIdea> unitMap = DustUtils.simpleGet(iApp.content, hAttUnitObjects);
+
+		return new TreeSet<DustHandle>(unitMap.keySet());
+	}
+
 	protected boolean syncUnits() {
 		boolean ret = false;
 
@@ -123,10 +131,10 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 				Map<DustMachineNewHandle, DustMachineNewIdea> ideaMap = DustUtils.simpleGet(iUnit.content, hAttUnitObjects);
 				Map<String, DustMachineNewHandle> handleMap = DustUtils.simpleGet(iUnit.content, hAttUnitHandles);
 				Dust.log("boot", "unchanged", hUnit, handleMap.size(), ideaMap.size());
-				
-				for ( Map.Entry<String, DustMachineNewHandle> ehm : handleMap.entrySet() ) {
-					if ( !ideaMap.containsKey(ehm.getValue() )) {
-						Dust.log("no idea for", ehm.getKey());						
+
+				for (Map.Entry<String, DustMachineNewHandle> ehm : handleMap.entrySet()) {
+					if (!ideaMap.containsKey(ehm.getValue())) {
+						Dust.log("no idea for", ehm.getKey());
 					}
 				}
 			}

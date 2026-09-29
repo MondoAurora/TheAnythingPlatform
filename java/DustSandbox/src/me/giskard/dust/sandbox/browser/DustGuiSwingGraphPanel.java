@@ -288,6 +288,10 @@ class DustGuiSwingGraphPanel {
 		@Override
 		public void mouseReleased(java.awt.event.MouseEvent e) {
 			Point pt = getModelPoint(e.getPoint());
+			
+			if ( null == anchor ) {
+				return;
+			}
 
 			int dx = pt.x - anchor.x;
 			int dy = pt.y - anchor.y;

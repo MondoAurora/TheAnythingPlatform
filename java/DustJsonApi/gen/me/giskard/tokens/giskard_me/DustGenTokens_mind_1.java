@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20260924T084737Z
+// Generation timestamp 20260929T094748Z
 
 public interface DustGenTokens_mind_1 {
 // Aspects
@@ -9,6 +9,7 @@ public interface DustGenTokens_mind_1 {
 	String TOKEN_MIND_ASP_ASSEMBLY = "giskard.me/mind.1$Assembly";
 	String TOKEN_MIND_ASP_ATTRIBUTE = "giskard.me/mind.1$Attribute";
 	String TOKEN_MIND_ASP_AUTHOR = "giskard.me/mind.1$Author";
+	String TOKEN_MIND_ASP_DIFF = "giskard.me/mind.1$Diff";
 	String TOKEN_MIND_ASP_MESSAGE = "giskard.me/mind.1$Message";
 	String TOKEN_MIND_ASP_NARRATIVE = "giskard.me/mind.1$Narrative";
 	String TOKEN_MIND_ASP_NODE = "giskard.me/mind.1$Node";
@@ -20,6 +21,12 @@ public interface DustGenTokens_mind_1 {
 	String TOKEN_MIND_ATT_ASSEMBLIES = "giskard.me/mind.1$assemblies";
 	String TOKEN_MIND_ATT_AUTHOR = "giskard.me/mind.1$author";
 	String TOKEN_MIND_ATT_CMD = "giskard.me/mind.1$cmd";
+	String TOKEN_MIND_ATT_DIFF_A = "giskard.me/mind.1$diffA";
+	String TOKEN_MIND_ATT_DIFF_A_KEY = "giskard.me/mind.1$diffAKey";
+	String TOKEN_MIND_ATT_DIFF_A_VAL = "giskard.me/mind.1$diffAVal";
+	String TOKEN_MIND_ATT_DIFF_B = "giskard.me/mind.1$diffB";
+	String TOKEN_MIND_ATT_DIFF_B_KEY = "giskard.me/mind.1$diffBKey";
+	String TOKEN_MIND_ATT_DIFF_B_VAL = "giskard.me/mind.1$diffBVal";
 	String TOKEN_MIND_ATT_ID = "giskard.me/mind.1$id";
 	String TOKEN_MIND_ATT_KNOWNUNITS = "giskard.me/mind.1$knownUnits";
 	String TOKEN_MIND_ATT_LISTENERS = "giskard.me/mind.1$listeners";

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeSet;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustException;
@@ -22,8 +23,27 @@ public class DustMachineUtils implements DustMachineConsts {
 		return m.values();
 	}
 
+	public static Iterable<DustHandle> getUnitMembers(DustHandle unit, Collection<DustHandle> ret) {
+		String key = (unit instanceof DustMachineNewHandle) ? TOKEN_DUST_ATT_UNIT_HANDLES : TOKEN_DUST_ATT_UNIT_REFS;
+		Map<String, DustHandle> m = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unit, key);
+		
+		if ( null == ret ) {
+			ret = new TreeSet<DustHandle>(m.values());
+		} else {
+			ret.clear();
+			ret.addAll(m.values());
+		}
+		return ret;
+	}
+
 	public static Iterable<String> getAttNames(DustHandle ob) {
 		Iterable<String> ret = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, ob, KEY_MAP_KEYS);
+		return ret;
+	}
+
+	// new variant
+	public static Iterable<DustHandle> getAttHandles(DustHandle ob) {
+		Iterable<DustHandle> ret = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, ob, KEY_MAP_KEYS);
 		return ret;
 	}
 

@@ -12,9 +12,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
@@ -42,8 +44,8 @@ import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.DustMachine;
 import me.giskard.dust.core.machine.DustMachineBoot;
+import me.giskard.dust.core.machine.DustMachineNarrative;
 import me.giskard.dust.core.machine.DustMachineNewAgent;
-import me.giskard.dust.core.machine.DustMachineNewHandle;
 import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
@@ -762,6 +764,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 				Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Calling from thread", Thread.currentThread());
 				break;
 			case "New Machine":
+				@SuppressWarnings("unused") 
 				DustMachineBoot dmb = new DustMachineBoot();
 
 				DustMachineNewAgent test = new DustMachineNewAgent();
@@ -778,6 +781,51 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					test.init();
 				} finally {
 					Dust.devSetMachine(m);
+				}
+				
+				Collection<DustHandle> testUnits = test.getUnits();
+				
+				Set<DustHandle> unitMembers = new TreeSet<DustHandle>();
+				Map<String, DustHandle> mapOld = new TreeMap<String, DustHandle>();
+				
+				DustHandle hDiff = Dust.getHandle(hDocUnit, TOKEN_MIND_ASP_TAG, null, DustOptCreate.Primary);
+				
+				for ( DustHandle tu : testUnits ) {
+					DustHandle ou = Dust.getUnit(tu.getId(), true);
+					
+					DustMachineUtils.getUnitMembers(ou, unitMembers);
+					mapOld.clear();
+					for ( DustHandle h : unitMembers ) {
+						mapOld.put(h.getId(), h);
+					}
+					
+					DustMachineUtils.getUnitMembers(tu, unitMembers);
+					
+					for ( Iterator<DustHandle> iNew = unitMembers.iterator(); iNew.hasNext(); ) {
+						DustHandle hNew = iNew.next();
+						DustHandle hOld = mapOld.remove(hNew.getId());
+						
+						if ( null != hOld ) {
+							iNew.remove();
+
+							Dust.access(DustAccess.Set, hDiff, hNew, TOKEN_MIND_ATT_DIFF_A);
+							Dust.access(DustAccess.Set, hDiff, hOld, TOKEN_MIND_ATT_DIFF_B);
+							boolean diff = DustMachineNarrative.Compare.isDifferent(hDiff);
+							
+							if ( diff ) {
+								Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "compare diff", hNew, hOld);
+							}
+							
+						}
+					}
+					
+					for (DustHandle h : unitMembers ) {
+						Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "compare not found in old", h);
+					}	
+					
+					for (DustHandle h : mapOld.values() ) {
+						Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "compare not found in new", h);
+					}	
 				}
 				
 				
