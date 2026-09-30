@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -104,25 +103,11 @@ public class TAPMain extends Activity implements DustAndroidConsts, DustAndroidG
 
         try {
             ApplicationInfo ai = appCtx.getPackageManager().getApplicationInfo(appCtx.getPackageName(), PackageManager.GET_META_DATA);
-            server = ai.metaData.getString(TAP_CONFIG_SERVER);
-            appUnitName = ai.metaData.getString(TAP_CONFIG_APP_MODULE);
+            server = ai.metaData.getString(TAP_SERVER);
+            appUnitName = ai.metaData.getString(TAP_APP_UNIT);
 
             DustMind.Bootloader bootLoader = new DustStreamJsonApiSerializerAgent();
-            streamSource = new DustStreamSrcFileAgent() {
-                @Override
-                protected File getRootFolder(String root) {
-                    File f = appCtx.getFilesDir();
-                    if (!DustUtils.isEmpty(root)) {
-                        f = new File(f, root);
-                        try {
-                            DustUtilsFile.ensureDir(f);
-                        } catch (Throwable e) {
-                            DustException.wrap(e, "Creating Dust root folder", f);
-                        }
-                    }
-                    return f;
-                }
-            };
+            streamSource = new DustStreamSrcAndroidAgent();
 
             String appUnitFile = appUnitName + DUST_EXT_JSON;
 
@@ -149,7 +134,7 @@ public class TAPMain extends Activity implements DustAndroidConsts, DustAndroidG
         menuBar = new Toolbar(this);
         actionBar = new Toolbar(this);
 
-        Collection<DustHandle> topMenuItems = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, hApp, TOKEN_GUI_MAIN, TOKEN_GUI_FOCUS, TOKEN_GUI_TOPMENU, TOKEN_MEMBERS);
+        Collection<DustHandle> topMenuItems = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, hApp, TOKEN_GUI_MAIN, TOKEN_GUI_FOCUS, TOKEN_GUI_TOP_MENU, TOKEN_MEMBERS);
 
         for ( DustHandle h : topMenuItems ) {
             actionBar.addView(viewFactory.get(h));
@@ -198,4 +183,19 @@ public class TAPMain extends Activity implements DustAndroidConsts, DustAndroidG
         }
     }
 
+    private class DustStreamSrcAndroidAgent extends DustStreamSrcFileAgent {
+        @Override
+        protected File getRootFolder(String root) {
+            File f = appCtx.getFilesDir();
+            if (!DustUtils.isEmpty(root)) {
+                f = new File(f, root);
+                try {
+                    DustUtilsFile.ensureDir(f);
+                } catch (Throwable e) {
+                    DustException.wrap(e, "Creating Dust root folder", f);
+                }
+            }
+            return f;
+        }
+    }
 }

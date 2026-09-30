@@ -3,8 +3,9 @@ package me.giskard.dust.mod.android;
 import me.giskard.dust.core.DustConsts;
 
 public interface DustAndroidConsts extends DustConsts {
-    String TAP_CONFIG_SERVER = "tap:server";
-    String TAP_CONFIG_APP_MODULE = "tap:app_module";
+    String TAP_SERVER = "tap:server";
+    String TAP_VERSION = "tap:version";
+    String TAP_APP_UNIT = "tap:app_unit";
 
     enum ViewType {
         RichText(R.drawable.view_richtext), Calendar(R.drawable.view_calendar), Cards(R.drawable.view_cards),
