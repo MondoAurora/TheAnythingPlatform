@@ -50,10 +50,7 @@
 				}
 			},
 			"attributes": {
-				"giskard.me/mind.1$cmd": "giskard.me/misc.1$CmdRefresh",
-				"giskard.me/mind.1$tags": [
-					"giskard.me/misc.1$Slave"
-				]
+				"giskard.me/mind.1$cmd": "giskard.me/misc.1$CmdRefresh"
 			},
 			"id": "Lorand/test01$MachineAPI",
 			"type": "giskard.me/mind.1$Message"
@@ -279,11 +276,6 @@
 						"type": "giskard.me/mind.1$Message"
 					}
 				}
-			},
-			"attributes": {
-				"giskard.me/mind.1$tags": [
-					"giskard.me/misc.1$Slave"
-				]
 			},
 			"id": "Lorand/test01$UnitHandler",
 			"type": "giskard.me/mind.1$Message"

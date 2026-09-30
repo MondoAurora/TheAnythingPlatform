@@ -45,9 +45,6 @@
 			},
 			"attributes": {
 				"giskard.me/mind.1$cmd": "giskard.me/misc.1$CmdRefresh",
-				"giskard.me/mind.1$tags": [
-					"giskard.me/misc.1$Slave"
-				],
 				"giskard.me/stream.1$url": "https://www.iana.org/assignments/media-types"
 			},
 			"id": "giskard.me/dev.1$ScrapeMediaTypes",

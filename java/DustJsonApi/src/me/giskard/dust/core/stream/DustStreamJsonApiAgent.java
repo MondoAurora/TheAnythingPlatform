@@ -18,11 +18,13 @@ import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsConstsJson;
 import me.giskard.dust.mod.utils.DustUtilsJson;
+import me.giskard.tokens_new.giskard_me.DustGenHandles_dust_1;
+import me.giskard.tokens_new.giskard_me.DustGenHandles_mind_1;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustStreamJsonApiAgent extends DustAgent implements DustMachineConsts, DustUtilsConstsJson, DustStreamConsts {
+public class DustStreamJsonApiAgent extends DustAgent implements DustMachineConsts, DustUtilsConstsJson, DustStreamConsts, DustGenHandles_mind_1, DustGenHandles_dust_1 {
 
-	private static final Set<String> SKIP_KEYS = new HashSet<String>();
+	private static final Set<Object> SKIP_KEYS = new HashSet<Object>();
 
 	static {
 		SKIP_KEYS.add(TOKEN_MIND_ATT_ID);
@@ -66,6 +68,14 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 	}
 
 	public static Map<String, Object> storeUnit(DustHandle unit) {
+		SKIP_KEYS.add(HANDLE_MIND_ATT_ID);
+		SKIP_KEYS.add(HANDLE_MIND_ATT_TYPE);
+		SKIP_KEYS.add(HANDLE_MIND_ATT_UNIT);
+		SKIP_KEYS.add(HANDLE_DUST_ATT_WRAPPEDOBJECT);
+		SKIP_KEYS.add(HANDLE_DUST_ATT_UNIT_OBJECTS);
+		SKIP_KEYS.add(HANDLE_DUST_ATT_UNIT_HANDLES);
+		SKIP_KEYS.add(HANDLE_DUST_ATT_UNIT_REFS);
+
 		Map<String, Object> target = new HashMap<>();
 
 		Dust.access(DustAccess.Set, JSONAPI_VERSION, target, JsonApiMember.jsonapi, JsonApiMember.version);
@@ -74,7 +84,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 
 		Dust.access(DustAccess.Set, data, target, JsonApiMember.data);
 
-		for (DustHandle h : DustMachineUtils.getUnitMembers(unit)) {
+		for (DustHandle h : DustMachineUtils.getUnitMembers(unit, null)) {
 			Map<String, Object> item = storeFull(h);
 			data.add(item);
 		}
@@ -113,11 +123,14 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 	private static Map<String, Object> storeFull(DustHandle h) {
 		Map<String, Object> item = storeHead(h);
 
-		for (String key : (Iterable<String>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, KEY_MAP_KEYS)) {
+		for (Object o : (Iterable<String>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, KEY_MAP_KEYS)) {
+			DustHandle hk = (o instanceof DustHandle) ? (DustHandle)o : null;
+			String key = (null == hk) ? (String) o : hk.getId();
+			
 			if (SKIP_KEYS.contains(key)) {
 				continue;
 			}
-			Object val = Dust.access(DustAccess.Peek, null, h, key);
+			Object val = Dust.access(DustAccess.Peek, null, h, (null == hk) ? key : hk);
 
 			if (val instanceof DustHandle) {
 				storeRelation(item, key, val, null);
@@ -202,6 +215,10 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 	private static void loadDataSegment(DustHandle unit, Map<String, Object> data, boolean included) {
 		String type = DustUtils.simpleGet(data, JsonApiMember.type);
 		DustHandle tType = Dust.getHandle(unit, TOKEN_MIND_ASP_ASPECT, type, DustOptCreate.Meta);
+		
+		if ( null == tType ) {
+			tType = Dust.getHandle(unit, HANDLE_MIND_ASP_ASPECT, type, DustOptCreate.Primary);
+		}
 
 		String id = DustUtils.simpleGet(data, JsonApiMember.id);
 		DustHandle target = Dust.getHandle(unit, tType, id, DustOptCreate.Primary);

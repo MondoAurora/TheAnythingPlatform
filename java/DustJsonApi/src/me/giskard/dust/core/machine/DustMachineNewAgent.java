@@ -1,6 +1,8 @@
 package me.giskard.dust.core.machine;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,6 +19,7 @@ import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.DustMachine;
 import me.giskard.dust.core.stream.DustStreamJsonApiAgent;
 import me.giskard.dust.core.utils.DustUtils;
+import me.giskard.dust.core.utils.DustUtilsFile;
 import me.giskard.tokens_new.giskard_me.DustGenHandles_dust_1;
 import me.giskard.tokens_new.giskard_me.DustGenHandles_mind_1;
 import me.giskard.tokens_new.giskard_me.DustGenHandles_misc_1;
@@ -98,49 +101,88 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 		return new TreeSet<DustHandle>(unitMap.keySet());
 	}
 
-	protected boolean syncUnits() {
+	protected boolean syncUnits(boolean load) throws Exception {
 		boolean ret = false;
 
 		DustMachineNewIdea iApp = getCtx(hAttCtxApp);
 
 		Map<DustMachineNewHandle, DustMachineNewIdea> unitMap = DustUtils.simpleGet(iApp.content, hAttUnitObjects);
 
-		for (boolean chg = true; chg;) {
-			chg = false;
+		if (load) {
+			for (boolean chg = true; chg;) {
+				chg = false;
+				for (Map.Entry<DustMachineNewHandle, DustMachineNewIdea> eu : unitMap.entrySet()) {
+					DustMachineNewIdea iUnit = eu.getValue();
+					DustMachineNewHandle hUnit = eu.getKey();
+
+					if (hTagStateInSync != iUnit.content.get(hAttUnitState)) {
+
+						loadUnit(hUnit, iUnit);
+
+						chg = true;
+						ret = true;
+
+						break;
+					}
+				}
+			}
+
+//			if (!ret) 
+			{
+				Set<DustMachineNewHandle> uhs = new TreeSet<DustMachineNewHandle>(unitMap.keySet());
+				for (DustMachineNewHandle hUnit : uhs) {
+					DustMachineNewIdea iUnit = unitMap.get(hUnit);
+
+					Map<DustMachineNewHandle, DustMachineNewIdea> ideaMap = DustUtils.simpleGet(iUnit.content, hAttUnitObjects);
+					Map<String, DustMachineNewHandle> handleMap = DustUtils.simpleGet(iUnit.content, hAttUnitHandles);
+					Dust.log("boot", "unchanged", hUnit, handleMap.size(), ideaMap.size());
+
+					for (Map.Entry<String, DustMachineNewHandle> ehm : handleMap.entrySet()) {
+						DustMachineNewHandle h = ehm.getValue();
+
+						if (null == h.type) {
+							Dust.log("no type for", ehm.getKey());
+						}
+						if (!ideaMap.containsKey(h)) {
+							Dust.log("no idea for", ehm.getKey());
+						}
+					}
+				}
+			}
+		} else {
 			for (Map.Entry<DustMachineNewHandle, DustMachineNewIdea> eu : unitMap.entrySet()) {
 				DustMachineNewIdea iUnit = eu.getValue();
 				DustMachineNewHandle hUnit = eu.getKey();
 
-				if (hTagStateInSync != iUnit.content.get(hAttUnitState)) {
+//				if (hTagStateInSync != iUnit.content.get(hAttUnitState)) 
+				{
 
-					loadUnit(hUnit, iUnit);
+					saveUnit(hUnit, iUnit);
 
-					chg = true;
 					ret = true;
 
-					break;
+//					break;
 				}
 			}
-		}
 
-		if (!ret) {
-			Set<DustMachineNewHandle> uhs = new TreeSet<DustMachineNewHandle>(unitMap.keySet());
-			for (DustMachineNewHandle hUnit : uhs) {
-				DustMachineNewIdea iUnit = unitMap.get(hUnit);
-
-				Map<DustMachineNewHandle, DustMachineNewIdea> ideaMap = DustUtils.simpleGet(iUnit.content, hAttUnitObjects);
-				Map<String, DustMachineNewHandle> handleMap = DustUtils.simpleGet(iUnit.content, hAttUnitHandles);
-				Dust.log("boot", "unchanged", hUnit, handleMap.size(), ideaMap.size());
-
-				for (Map.Entry<String, DustMachineNewHandle> ehm : handleMap.entrySet()) {
-					if (!ideaMap.containsKey(ehm.getValue())) {
-						Dust.log("no idea for", ehm.getKey());
-					}
-				}
-			}
 		}
 
 		return ret;
+	}
+
+	public void saveUnit(DustMachineNewHandle handle, DustMachineNewIdea idea) throws Exception {
+		Dust.log("boot", "======== saving unit", handle, "============");
+
+		File f = new File("tmp/ls1/" + handle.id + DUST_EXT_JSON);
+		DustUtilsFile.ensureDir(f.getParent());
+
+		try (FileOutputStream fos = new FileOutputStream(f)) {
+//			try (FileOutputStream fos = new FileOutputStream("localStore/" + handle.id + DUST_EXT_JSON)) {
+			DustStreamJsonApiAgent.storeUnit(handle, fos);
+//			idea.content.put(hAttUnitState, hTagStateInSync);
+		} catch (Throwable e) {
+			DustException.wrap(e, "saving unit", handle.id);
+		}
 	}
 
 	public void loadUnit(DustMachineNewHandle handle, DustMachineNewIdea idea) {
@@ -166,6 +208,10 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 		}
 		DustMachineNewIdea iUnit = DustMachineBoot.getIdea(hUnit);
 
+		if (null == type) {
+			Dust.log("getHandle", "null type", id);
+		}
+
 		DustMachineNewHandle hType = (null == type) ? null
 				: (type instanceof DustMachineNewHandle) ? (DustMachineNewHandle) type : getHandleInt(null, hAspAsp, (String) type, true);
 
@@ -185,9 +231,15 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 
 		DustMachineNewHandle hRet = DustUtils.simpleGet(iUnit.content, hAttUnitHandles, id);
 
-		if (createIfMissing && (null == hRet)) {
-			hRet = DustMachineBoot.getHandle(iUnit, type, id);
-			Dust.log("boot", "Handle created", hRet);
+		if (null == hRet) {
+			if (createIfMissing) {
+				hRet = DustMachineBoot.getHandle(iUnit, type, id);
+				Dust.log("boot", "Handle created", hRet);
+			}
+		} else {
+			if ((null == hRet.type) && (null != type)) {
+				hRet.type = type;
+			}
 		}
 
 		return hRet;
@@ -226,7 +278,7 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 		Object ret = null;
 		DustCollType collType = DustUtils.getCollType(root);
 
-		Dust.log("boot", "access", access, val, root, path);
+//		Dust.log("boot", "access", access, val, root, path);
 
 		DustMachineNewIdea iAgt = getCtx(HANDLE_DUST_ATT_CTX_AGT);
 
@@ -543,6 +595,9 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 						((Map) prevColl).put(lastKey, val);
 
 						int specIdx = DustUtils.indexOf(lastKey, TOKEN_MIND_ATT_TYPE, TOKEN_MIND_ATT_ID, TOKEN_MIND_ATT_UNIT);
+						if (-1 == specIdx) {
+							specIdx = DustUtils.indexOf(lastKey, HANDLE_MIND_ATT_TYPE, HANDLE_MIND_ATT_ID, HANDLE_MIND_ATT_UNIT);
+						}
 						switch (specIdx) {
 						case 0:
 							((DustMachineNewHandle) lastHandle).type = (DustMachineNewHandle) val;
@@ -634,7 +689,9 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 	@Override
 	public void init() throws Exception {
 //	protected void init() throws Exception {
-		syncUnits();
+		syncUnits(true);
+
+		syncUnits(false);
 	}
 
 	@Override

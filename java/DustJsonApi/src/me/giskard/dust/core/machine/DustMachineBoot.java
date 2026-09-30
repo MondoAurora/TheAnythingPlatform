@@ -12,13 +12,22 @@ import me.giskard.dust.core.DustException;
 import me.giskard.dust.core.dev.DustDevUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsConsts;
+import me.giskard.dust.core.utils.DustUtilsFactory;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustMachineBoot implements DustGenBootConsts, DustUtilsConsts {
 
 	private static DustMachineNewIdea iMACHINE;
+	private static String memId;
+	
+	static {
+		String launchTime = DustUtils.strTime();
+		memId = "DustMachine." + launchTime + "_" + DustUtils.getNewId(DUST_DEF_ID_BYTES);
 
-	private static Map<String, DustMachineNewHandle> HANDLE_MAP = new TreeMap<>();
+		iMACHINE = new DustMachineNewIdea();
+		DustMachineNewHandle mh = new DustMachineNewHandle(iMACHINE, null, null, memId);
+		iMACHINE.mh = mh;
+	}
 
 	private static final DustCreator<DustMachineNewHandle> handleCreator = new DustCreator<DustMachineNewHandle>() {
 		public DustMachineNewHandle create(Object key, Object... hints) {
@@ -29,21 +38,16 @@ public class DustMachineBoot implements DustGenBootConsts, DustUtilsConsts {
 		}
 	};
 
+	private static DustUtilsFactory<String, DustMachineNewHandle> HANDLE_MAP = new DustUtilsFactory<String, DustMachineNewHandle>(handleCreator, true);
+
 	public DustMachineBoot() throws Exception {
 		Set set;
 		ArrayList arr;
 
-		String launchTime = DustUtils.strTime();
-		String memId = "DustMachine." + launchTime + "_" + DustUtils.getNewId(DUST_DEF_ID_BYTES);
-
-		iMACHINE = new DustMachineNewIdea();
-		DustMachineNewHandle mh = new DustMachineNewHandle(iMACHINE, null, null, memId);
-		iMACHINE.mh = mh;
-
 		Map<String, String> bootTokens = DustDevUtils.loadConstHandles(DustGenBootConsts.class.getName());
 
 		for (String tn : bootTokens.keySet()) {
-			HANDLE_MAP.put(tn, new DustMachineNewHandle(null, iMACHINE, null, tn));
+			HANDLE_MAP.get(tn);
 		}
 
 		DustMachineNewHandle hUnitHandles = HANDLE_MAP.get(TOKEN_DUST_ATT_UNIT_HANDLES);
@@ -83,7 +87,7 @@ public class DustMachineBoot implements DustGenBootConsts, DustUtilsConsts {
 		DustMachineNewIdea iMsg = getIdea(hMsg);
 		iMsg.content.put(HANDLE_MAP.get(TOKEN_MIND_ATT_CMD), HANDLE_MAP.get(TOKEN_MISC_TAG_CMD_INIT));
 		arr = new ArrayList();
-		arr.add(mh);
+		arr.add(iMACHINE.mh);
 		iMsg.content.put(HANDLE_MAP.get(TOKEN_MIND_ATT_LISTENERS), arr);
 
 		DustMachineNewHandle hCtx = getMachineHandle(TOKEN_DUST_ASP_CALL_CONTEXT);
@@ -98,16 +102,14 @@ public class DustMachineBoot implements DustGenBootConsts, DustUtilsConsts {
 		arr.add(iCtx);
 		iThread.content.put(HANDLE_MAP.get(TOKEN_DUST_ATT_CALL_STACK), arr);
 
-		for (Map.Entry<String, DustMachineNewHandle> ech : HANDLE_MAP.entrySet()) {
-			String key = ech.getKey();
-
+		for (String key : HANDLE_MAP.keys()) {
 			String[] kk = DustUtils.splitId(key);
 
 			DustMachineNewHandle hUnit = DustUtils.safeGet(unitHandles, handleCreator, kk[0], iApp, HANDLE_MAP.get(TOKEN_MIND_ASP_UNIT));
 			DustMachineNewIdea iUnit = getIdea(hUnit);
 			Map uh = (Map) iUnit.content.get(hUnitHandles);
 
-			DustMachineNewHandle bh = ech.getValue();
+			DustMachineNewHandle bh = HANDLE_MAP.get(key);
 
 			uh.put(key, bh);
 			bh.unit = iUnit;

@@ -9,10 +9,11 @@ import java.util.TreeSet;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustException;
+import me.giskard.tokens_new.giskard_me.DustGenHandles_dust_1;
 
 //@SuppressWarnings({ "unchecked" })
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustMachineUtils implements DustMachineConsts {
+public class DustMachineUtils implements DustMachineConsts, DustGenHandles_dust_1 {
 
 	public static Integer getUnitSize(DustHandle unit) {
 		return Dust.access(DustAccess.Peek, 0, unit, TOKEN_DUST_ATT_UNIT_OBJECTS, KEY_SIZE);
@@ -24,7 +25,7 @@ public class DustMachineUtils implements DustMachineConsts {
 	}
 
 	public static Iterable<DustHandle> getUnitMembers(DustHandle unit, Collection<DustHandle> ret) {
-		String key = (unit instanceof DustMachineNewHandle) ? TOKEN_DUST_ATT_UNIT_HANDLES : TOKEN_DUST_ATT_UNIT_REFS;
+		Object key = (unit instanceof DustMachineNewHandle) ? HANDLE_DUST_ATT_UNIT_HANDLES : TOKEN_DUST_ATT_UNIT_REFS;
 		Map<String, DustHandle> m = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unit, key);
 		
 		if ( null == ret ) {
