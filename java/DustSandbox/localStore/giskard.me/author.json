@@ -4,16 +4,19 @@
 	},
 	"data": [
 		{
+			"id": "giskard.me/author$Giskard",
+			"type": "giskard.me/mind.1$Author",
 			"attributes": {
 				"giskard.me/misc.1$key": "giskard.me"
-			},
-			"id": "giskard.me/author$Giskard",
-			"type": "giskard.me/mind.1$Author"
+			}
 		}
 	],
 	"meta": {
+		"date": "20261001T094105Z",
 		"count": 1,
 		"unitInfo": {
+			"id": "giskard.me/author",
+			"type": "giskard.me/mind.1$Unit",
 			"relationships": {
 				"giskard.me/mind.1$author": {
 					"data": {
@@ -21,9 +24,7 @@
 						"type": "giskard.me/mind.1$Author"
 					}
 				}
-			},
-			"id": "giskard.me/author",
-			"type": "giskard.me/mind.1$Unit"
+			}
 		}
 	}
 }

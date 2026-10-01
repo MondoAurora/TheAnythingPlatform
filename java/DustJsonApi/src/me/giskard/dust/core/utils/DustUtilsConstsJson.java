@@ -30,11 +30,11 @@ public interface DustUtilsConstsJson extends DustConsts, DustUtilsConsts {
 	enum JsonApiMember {
 		jsonapi, version, ext, profile,
 		
-		meta, links, type, describedby,
+		meta, links, describedby,
 		
 		data, errors, included, 
 
-		id, lid, attributes, relationships,
+		id, lid, type, attributes, relationships,
 		
 		self, related,
 		href, rel, title, hreflang,

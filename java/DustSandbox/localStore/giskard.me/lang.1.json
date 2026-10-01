@@ -4,11 +4,11 @@
 	},
 	"data": [
 		{
+			"id": "giskard.me/lang.1$Language",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_LANG_ASP_LANGUAGE"
-			},
-			"id": "giskard.me/lang.1$Language",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
 			"id": "giskard.me/lang.1$en",
@@ -23,31 +23,33 @@
 			"type": "giskard.me/lang.1$Language"
 		},
 		{
+			"id": "giskard.me/lang.1$supported",
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_LANG_ATT_SUPPORTED"
+			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
+							"id": "giskard.me/mind.1$ColltypeSet",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ColltypeSet",
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				}
-			},
-			"attributes": {
-				"giskard.me/misc.1$name": "TOKEN_LANG_ATT_SUPPORTED"
-			},
-			"id": "giskard.me/lang.1$supported",
-			"type": "giskard.me/mind.1$Attribute"
+			}
 		}
 	],
 	"meta": {
-		"date": "20260929T094746Z",
+		"date": "20261001T094105Z",
 		"count": 5,
 		"unitInfo": {
+			"id": "giskard.me/lang.1",
+			"type": "giskard.me/mind.1$Unit",
 			"relationships": {
 				"giskard.me/mind.1$author": {
 					"data": {
@@ -55,9 +57,7 @@
 						"type": "giskard.me/mind.1$Author"
 					}
 				}
-			},
-			"id": "giskard.me/lang.1",
-			"type": "giskard.me/mind.1$Unit"
+			}
 		}
 	}
 }

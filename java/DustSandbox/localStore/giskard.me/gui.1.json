@@ -4,84 +4,74 @@
 	},
 	"data": [
 		{
+			"id": "giskard.me/gui.1$AxisScreenX",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_AXIS_SCREEN_X"
-			},
-			"id": "giskard.me/gui.1$AxisScreenX",
-			"type": "giskard.me/mind.1$Tag"
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$AxisScreenY",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_AXIS_SCREEN_Y"
-			},
-			"id": "giskard.me/gui.1$AxisScreenY",
-			"type": "giskard.me/mind.1$Tag"
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$AxisUnitPixel",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_AXISUNIT_PIXEL"
-			},
-			"id": "giskard.me/gui.1$AxisUnitPixel",
-			"type": "giskard.me/mind.1$Tag"
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$EditColl",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_EDIT_COLL"
-			},
-			"id": "giskard.me/gui.1$EditColl",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$EditHandle",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_EDIT_HANDLE"
-			},
-			"id": "giskard.me/gui.1$EditHandle",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$EditNumber",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_EDIT_NUMBER"
-			},
-			"id": "giskard.me/gui.1$EditNumber",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$EditOption",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_EDIT_OPTION"
-			},
-			"id": "giskard.me/gui.1$EditOption",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$EditText",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_EDIT_TEXT"
-			},
-			"id": "giskard.me/gui.1$EditText",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$NumberMode",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_NUMBER_MODE"
-			},
-			"id": "giskard.me/gui.1$NumberMode",
-			"type": "giskard.me/mind.1$Tag"
+			}
 		},
 		{
-			"relationships": {
-				"giskard.me/misc.1$parent": {
-					"data": {
-						"id": "giskard.me/gui.1$NumberMode",
-						"type": "giskard.me/mind.1$Tag"
-					}
-				}
-			},
+			"id": "giskard.me/gui.1$NumberModeSlider",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_NUMBER_MODE_SLIDER"
 			},
-			"id": "giskard.me/gui.1$NumberModeSlider",
-			"type": "giskard.me/mind.1$Tag"
-		},
-		{
 			"relationships": {
 				"giskard.me/misc.1$parent": {
 					"data": {
@@ -89,14 +79,14 @@
 						"type": "giskard.me/mind.1$Tag"
 					}
 				}
-			},
+			}
+		},
+		{
+			"id": "giskard.me/gui.1$NumberModeSpinner",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_NUMBER_MODE_SPINNER"
 			},
-			"id": "giskard.me/gui.1$NumberModeSpinner",
-			"type": "giskard.me/mind.1$Tag"
-		},
-		{
 			"relationships": {
 				"giskard.me/misc.1$parent": {
 					"data": {
@@ -104,36 +94,36 @@
 						"type": "giskard.me/mind.1$Tag"
 					}
 				}
-			},
+			}
+		},
+		{
+			"id": "giskard.me/gui.1$NumberModeText",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_NUMBER_MODE_TEXT"
 			},
-			"id": "giskard.me/gui.1$NumberModeText",
-			"type": "giskard.me/mind.1$Tag"
-		},
-		{
-			"attributes": {
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_OPTION_MODE"
-			},
-			"id": "giskard.me/gui.1$OptionMode",
-			"type": "giskard.me/mind.1$Tag"
-		},
-		{
 			"relationships": {
 				"giskard.me/misc.1$parent": {
 					"data": {
-						"id": "giskard.me/gui.1$OptionMode",
+						"id": "giskard.me/gui.1$NumberMode",
 						"type": "giskard.me/mind.1$Tag"
 					}
 				}
-			},
+			}
+		},
+		{
+			"id": "giskard.me/gui.1$OptionMode",
+			"type": "giskard.me/mind.1$Tag",
+			"attributes": {
+				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_OPTION_MODE"
+			}
+		},
+		{
+			"id": "giskard.me/gui.1$OptionModeCombo",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_OPTION_MODE_COMBO"
 			},
-			"id": "giskard.me/gui.1$OptionModeCombo",
-			"type": "giskard.me/mind.1$Tag"
-		},
-		{
 			"relationships": {
 				"giskard.me/misc.1$parent": {
 					"data": {
@@ -141,14 +131,14 @@
 						"type": "giskard.me/mind.1$Tag"
 					}
 				}
-			},
+			}
+		},
+		{
+			"id": "giskard.me/gui.1$OptionModeList",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_OPTION_MODE_LIST"
 			},
-			"id": "giskard.me/gui.1$OptionModeList",
-			"type": "giskard.me/mind.1$Tag"
-		},
-		{
 			"relationships": {
 				"giskard.me/misc.1$parent": {
 					"data": {
@@ -156,14 +146,14 @@
 						"type": "giskard.me/mind.1$Tag"
 					}
 				}
-			},
+			}
+		},
+		{
+			"id": "giskard.me/gui.1$OptionModeRadio",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_OPTION_MODE_RADIO"
 			},
-			"id": "giskard.me/gui.1$OptionModeRadio",
-			"type": "giskard.me/mind.1$Tag"
-		},
-		{
 			"relationships": {
 				"giskard.me/misc.1$parent": {
 					"data": {
@@ -171,14 +161,14 @@
 						"type": "giskard.me/mind.1$Tag"
 					}
 				}
-			},
+			}
+		},
+		{
+			"id": "giskard.me/gui.1$OptionModeSlider",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_OPTION_MODE_SLIDER"
 			},
-			"id": "giskard.me/gui.1$OptionModeSlider",
-			"type": "giskard.me/mind.1$Tag"
-		},
-		{
 			"relationships": {
 				"giskard.me/misc.1$parent": {
 					"data": {
@@ -186,89 +176,89 @@
 						"type": "giskard.me/mind.1$Tag"
 					}
 				}
-			},
+			}
+		},
+		{
+			"id": "giskard.me/gui.1$OptionModeToggle",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_OPTION_MODE_TOGGLE"
 			},
-			"id": "giskard.me/gui.1$OptionModeToggle",
-			"type": "giskard.me/mind.1$Tag"
+			"relationships": {
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "giskard.me/gui.1$OptionMode",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$PanelCalendar",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_PANEL_CALENDAR"
-			},
-			"id": "giskard.me/gui.1$PanelCalendar",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$PanelContainer",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_PANEL_CONTAINER"
-			},
-			"id": "giskard.me/gui.1$PanelContainer",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$PanelIdeaGrid",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_PANEL_IDEA_GRID"
-			},
-			"id": "giskard.me/gui.1$PanelIdeaGrid",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$PanelIdeaProperties",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_PANEL_IDEA_PROPERTIES"
-			},
-			"id": "giskard.me/gui.1$PanelIdeaProperties",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$PanelMediaPlayer",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_PANEL_MEDIA_PLAYER"
-			},
-			"id": "giskard.me/gui.1$PanelMediaPlayer",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$PanelSplit",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_PANEL_SPLIT"
-			},
-			"id": "giskard.me/gui.1$PanelSplit",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$PanelToolbar",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_PANEL_TOOLBAR"
-			},
-			"id": "giskard.me/gui.1$PanelToolbar",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
 			"id": "giskard.me/gui.1$SwingRenderer",
 			"type": "giskard.me/mind.1$Narrative"
 		},
 		{
+			"id": "giskard.me/gui.1$TextMode",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_TEXT_MODE"
-			},
-			"id": "giskard.me/gui.1$TextMode",
-			"type": "giskard.me/mind.1$Tag"
+			}
 		},
 		{
-			"relationships": {
-				"giskard.me/misc.1$parent": {
-					"data": {
-						"id": "giskard.me/gui.1$TextMode",
-						"type": "giskard.me/mind.1$Tag"
-					}
-				}
-			},
+			"id": "giskard.me/gui.1$TextModeFormatted",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_TEXT_MODE_FORMATTED"
 			},
-			"id": "giskard.me/gui.1$TextModeFormatted",
-			"type": "giskard.me/mind.1$Tag"
-		},
-		{
 			"relationships": {
 				"giskard.me/misc.1$parent": {
 					"data": {
@@ -276,14 +266,14 @@
 						"type": "giskard.me/mind.1$Tag"
 					}
 				}
-			},
+			}
+		},
+		{
+			"id": "giskard.me/gui.1$TextModeMultiLine",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_TEXT_MODE_MULTI_LINE"
 			},
-			"id": "giskard.me/gui.1$TextModeMultiLine",
-			"type": "giskard.me/mind.1$Tag"
-		},
-		{
 			"relationships": {
 				"giskard.me/misc.1$parent": {
 					"data": {
@@ -291,88 +281,100 @@
 						"type": "giskard.me/mind.1$Tag"
 					}
 				}
-			},
+			}
+		},
+		{
+			"id": "giskard.me/gui.1$TextModeSingleLine",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_TEXT_MODE_SINGLE_LINE"
 			},
-			"id": "giskard.me/gui.1$TextModeSingleLine",
-			"type": "giskard.me/mind.1$Tag"
+			"relationships": {
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "giskard.me/gui.1$TextMode",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$WidgetButton",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_WIDGET_BUTTON"
-			},
-			"id": "giskard.me/gui.1$WidgetButton",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$WidgetLabel",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_WIDGET_LABEL"
-			},
-			"id": "giskard.me/gui.1$WidgetLabel",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$WidgetProgress",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_WIDGET_PROGRESS"
-			},
-			"id": "giskard.me/gui.1$WidgetProgress",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
+			"id": "giskard.me/gui.1$Window",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_WINDOW"
-			},
-			"id": "giskard.me/gui.1$Window",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
-			"relationships": {
-				"giskard.me/mind.1$tags": {
-					"data": [
-						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
-							"type": "giskard.me/mind.1$Tag"
-						},
-						{
-							"id": "giskard.me/mind.1$ColltypeOne",
-							"type": "giskard.me/mind.1$Tag"
-						}
-					]
-				}
-			},
+			"id": "giskard.me/gui.1$imageResolver",
+			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ATT_IMAGE_RESOLVER"
 			},
-			"id": "giskard.me/gui.1$imageResolver",
-			"type": "giskard.me/mind.1$Attribute"
-		},
-		{
 			"relationships": {
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ValtypeString",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ColltypeArr",
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				}
-			},
+			}
+		},
+		{
+			"id": "giskard.me/gui.1$lookAndFeel",
+			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_GUI_ATT_LOOKANDFEEL"
 			},
-			"id": "giskard.me/gui.1$lookAndFeel",
-			"type": "giskard.me/mind.1$Attribute"
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeArr",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeString",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
 		}
 	],
 	"meta": {
-		"date": "20260929T094746Z",
+		"date": "20261001T094105Z",
 		"count": 36,
 		"unitInfo": {
+			"id": "giskard.me/gui.1",
+			"type": "giskard.me/mind.1$Unit",
 			"relationships": {
 				"giskard.me/mind.1$author": {
 					"data": {
@@ -380,9 +382,7 @@
 						"type": "giskard.me/mind.1$Author"
 					}
 				}
-			},
-			"id": "giskard.me/gui.1",
-			"type": "giskard.me/mind.1$Unit"
+			}
 		}
 	}
 }

@@ -4,16 +4,19 @@
 	},
 	"data": [
 		{
+			"id": "TAP/author$TheAnythingPlatform",
+			"type": "giskard.me/mind.1$Author",
 			"attributes": {
 				"giskard.me/misc.1$key": "TAP"
-			},
-			"id": "TAP/author$TheAnythingPlatform",
-			"type": "giskard.me/mind.1$Author"
+			}
 		}
 	],
 	"meta": {
+		"date": "20261001T094105Z",
 		"count": 1,
 		"unitInfo": {
+			"id": "TAP/author",
+			"type": "giskard.me/mind.1$Unit",
 			"relationships": {
 				"giskard.me/mind.1$author": {
 					"data": {
@@ -21,9 +24,7 @@
 						"type": "giskard.me/mind.1$Author"
 					}
 				}
-			},
-			"id": "TAP/author",
-			"type": "giskard.me/mind.1$Unit"
+			}
 		}
 	}
 }

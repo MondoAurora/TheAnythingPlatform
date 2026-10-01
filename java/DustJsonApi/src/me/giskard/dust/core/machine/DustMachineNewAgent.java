@@ -171,13 +171,20 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 	}
 
 	public void saveUnit(DustMachineNewHandle handle, DustMachineNewIdea idea) throws Exception {
-		Dust.log("boot", "======== saving unit", handle, "============");
 
-		File f = new File("tmp/ls1/" + handle.id + DUST_EXT_JSON);
-		DustUtilsFile.ensureDir(f.getParent());
+		if (handle.id.contains("sandbox")) {
+			Dust.log("test", "SKIP", handle);
+			return;
+		}
 
-		try (FileOutputStream fos = new FileOutputStream(f)) {
-//			try (FileOutputStream fos = new FileOutputStream("localStore/" + handle.id + DUST_EXT_JSON)) {
+		Dust.log("test", "======== saving unit", handle, "============");
+
+//		File f = new File("tmp/ls1/" + handle.id + DUST_EXT_JSON);
+//		DustUtilsFile.ensureDir(f.getParent());
+//
+//		try (FileOutputStream fos = new FileOutputStream(f)) {
+		
+		try (FileOutputStream fos = new FileOutputStream("localStore/" + handle.id + DUST_EXT_JSON)) {
 			DustStreamJsonApiAgent.storeUnit(handle, fos);
 //			idea.content.put(hAttUnitState, hTagStateInSync);
 		} catch (Throwable e) {
@@ -300,6 +307,8 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 		for (Object p : path) {
 			if (p instanceof DustMachineNewHandle) {
 				prevAtt = (DustMachineNewHandle) p;
+			} else if (p instanceof Enum) {
+				p = ((Enum) p).name();
 			}
 
 			if (curr instanceof DustMachineNewHandle) {
@@ -308,40 +317,38 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 				curr = iCurr.getContent();
 				collType = DustCollType.Map;
 			} else if (null == curr) {
-				if (p instanceof Integer) {
-					switch ((Integer) p) {
-					case KEY_SIZE:
-						curr = 0;
-						break;
-					case KEY_INDEXOF:
-						curr = -1;
-						break;
+				if (create) {
+					curr = (p instanceof Integer) ? new ArrayList() : new HashMap();
+
+					if (null != prevColl) {
+						curr = checkAccess(iAgt, DustAccess.Insert, iCurr, prevAtt, lastKey, null, curr);
+
+						switch (collType) {
+						case Arr:
+							DustUtils.safePut((ArrayList) prevColl, (Integer) lastKey, val, false);
+							break;
+						case Map:
+							((Map) prevColl).put(lastKey, curr);
+							break;
+						case One:
+							break;
+						case Set:
+							((Set) prevColl).add(curr);
+							break;
+						}
 					}
 				} else {
-					if (create) {
-						curr = (p instanceof Integer) ? new ArrayList() : new HashMap();
-
-						if (null != prevColl) {
-							curr = checkAccess(iAgt, DustAccess.Insert, iCurr, prevAtt, lastKey, null, curr);
-
-							switch (collType) {
-							case Arr:
-								DustUtils.safePut((ArrayList) prevColl, (Integer) lastKey, val, false);
-								break;
-							case Map:
-								((Map) prevColl).put(lastKey, curr);
-								break;
-							case One:
-								break;
-							case Set:
-								((Set) prevColl).add(curr);
-								break;
-							}
+					if (p instanceof Integer) {
+						switch ((Integer) p) {
+						case KEY_SIZE:
+							curr = 0;
+							break;
+						case KEY_INDEXOF:
+							curr = -1;
+							break;
 						}
-					} else {
-						// item not found on path and this is not create
-						break;
 					}
+					break;
 				}
 				prevHandle = null;
 			}

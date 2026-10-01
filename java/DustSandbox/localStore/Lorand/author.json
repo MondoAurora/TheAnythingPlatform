@@ -4,17 +4,19 @@
 	},
 	"data": [
 		{
+			"id": "Lorand/author$LorandKedves",
+			"type": "giskard.me/mind.1$Author",
 			"attributes": {
 				"giskard.me/misc.1$key": "Lorand"
-			},
-			"id": "Lorand/author$LorandKedves",
-			"type": "giskard.me/mind.1$Author"
+			}
 		}
 	],
 	"meta": {
-		"date": "20260929T094746Z",
+		"date": "20261001T094105Z",
 		"count": 1,
 		"unitInfo": {
+			"id": "Lorand/author",
+			"type": "giskard.me/mind.1$Unit",
 			"relationships": {
 				"giskard.me/mind.1$author": {
 					"data": {
@@ -22,9 +24,7 @@
 						"type": "giskard.me/mind.1$Author"
 					}
 				}
-			},
-			"id": "Lorand/author",
-			"type": "giskard.me/mind.1$Unit"
+			}
 		}
 	}
 }

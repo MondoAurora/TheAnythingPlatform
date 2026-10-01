@@ -12,129 +12,131 @@
 			"type": "giskard.me/mind.1$Tag"
 		},
 		{
+			"id": "giskard.me/layout.1$Cell",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_LAYOUT_ASP_CELL"
-			},
-			"id": "giskard.me/layout.1$Cell",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
+			"id": "giskard.me/layout.1$LayoutConfig",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_LAYOUT_ASP_LAYOUT_CONFIG"
-			},
-			"id": "giskard.me/layout.1$LayoutConfig",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
+			"id": "giskard.me/layout.1$LayoutMode",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_LAYOUT_TAG_LAYOUT_MODE"
-			},
-			"id": "giskard.me/layout.1$LayoutMode",
-			"type": "giskard.me/mind.1$Tag"
+			}
 		},
 		{
+			"id": "giskard.me/layout.1$LayoutModeDirect",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_LAYOUT_TAG_LAYOUT_MODE_DIRECT"
-			},
-			"id": "giskard.me/layout.1$LayoutModeDirect",
-			"type": "giskard.me/mind.1$Tag"
+			}
 		},
 		{
+			"id": "giskard.me/layout.1$LayoutModeFlow",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_LAYOUT_TAG_LAYOUT_MODE_FLOW"
-			},
-			"id": "giskard.me/layout.1$LayoutModeFlow",
-			"type": "giskard.me/mind.1$Tag"
+			}
 		},
 		{
+			"id": "giskard.me/layout.1$LayoutModeTable",
+			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_LAYOUT_TAG_LAYOUT_MODE_TABLE"
-			},
-			"id": "giskard.me/layout.1$LayoutModeTable",
-			"type": "giskard.me/mind.1$Tag"
+			}
 		},
 		{
+			"id": "giskard.me/layout.1$Responsive",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_LAYOUT_ASP_RESPONSIVE"
-			},
-			"id": "giskard.me/layout.1$Responsive",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
+			"id": "giskard.me/layout.1$Table",
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_LAYOUT_ASP_TABLE"
-			},
-			"id": "giskard.me/layout.1$Table",
-			"type": "giskard.me/mind.1$Aspect"
+			}
 		},
 		{
-			"relationships": {
-				"giskard.me/mind.1$tags": {
-					"data": [
-						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
-							"type": "giskard.me/mind.1$Tag"
-						},
-						{
-							"id": "giskard.me/mind.1$ColltypeArr",
-							"type": "giskard.me/mind.1$Tag"
-						}
-					]
-				}
-			},
+			"id": "giskard.me/layout.1$axisDistribution",
+			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_LAYOUT_ATT_AXIS_DISTRIBUTION"
 			},
-			"id": "giskard.me/layout.1$axisDistribution",
-			"type": "giskard.me/mind.1$Attribute"
-		},
-		{
 			"relationships": {
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
+							"id": "giskard.me/mind.1$ColltypeArr",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				}
-			},
+			}
+		},
+		{
+			"id": "giskard.me/layout.1$layout",
+			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_LAYOUT_ATT_LAYOUT"
 			},
-			"id": "giskard.me/layout.1$layout",
-			"type": "giskard.me/mind.1$Attribute"
-		},
-		{
 			"relationships": {
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ColltypeSet",
+							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				}
-			},
+			}
+		},
+		{
+			"id": "giskard.me/layout.1$layoutOptions",
+			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
 				"giskard.me/misc.1$name": "TOKEN_LAYOUT_ATT_LAYOUT_OTPIONS"
 			},
-			"id": "giskard.me/layout.1$layoutOptions",
-			"type": "giskard.me/mind.1$Attribute"
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeSet",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
 		}
 	],
 	"meta": {
-		"date": "20260929T094746Z",
+		"date": "20261001T094105Z",
 		"count": 13,
 		"unitInfo": {
+			"id": "giskard.me/layout.1",
+			"type": "giskard.me/mind.1$Unit",
 			"relationships": {
 				"giskard.me/mind.1$author": {
 					"data": {
@@ -142,9 +144,7 @@
 						"type": "giskard.me/mind.1$Author"
 					}
 				}
-			},
-			"id": "giskard.me/layout.1",
-			"type": "giskard.me/mind.1$Unit"
+			}
 		}
 	}
 }

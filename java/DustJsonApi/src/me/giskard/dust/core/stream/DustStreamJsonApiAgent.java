@@ -5,10 +5,13 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
@@ -34,6 +37,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 		SKIP_KEYS.add(TOKEN_DUST_ATT_UNIT_OBJECTS);
 		SKIP_KEYS.add(TOKEN_DUST_ATT_UNIT_HANDLES);
 		SKIP_KEYS.add(TOKEN_DUST_ATT_UNIT_REFS);
+		SKIP_KEYS.add(TOKEN_MIND_ATT_UNIT_STATE);
 	}
 
 	public DustStreamJsonApiAgent() {
@@ -71,6 +75,7 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 		SKIP_KEYS.add(HANDLE_MIND_ATT_ID);
 		SKIP_KEYS.add(HANDLE_MIND_ATT_TYPE);
 		SKIP_KEYS.add(HANDLE_MIND_ATT_UNIT);
+		SKIP_KEYS.add(HANDLE_MIND_ATT_UNIT_STATE);
 		SKIP_KEYS.add(HANDLE_DUST_ATT_WRAPPEDOBJECT);
 		SKIP_KEYS.add(HANDLE_DUST_ATT_UNIT_OBJECTS);
 		SKIP_KEYS.add(HANDLE_DUST_ATT_UNIT_HANDLES);
@@ -97,7 +102,13 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 	}
 
 	private static Map<String, Object> storeHead(DustHandle h) {
-		Map<String, Object> item = new HashMap<>();
+		Comparator<String> ic = new Comparator<String>() {
+			@Override
+			public int compare(String o1, String o2) {
+				return JsonApiMember.valueOf(o1).compareTo(JsonApiMember.valueOf(o2));
+			}
+		};
+		Map<String, Object> item = new TreeMap<>(ic);
 		item.put(JsonApiMember.type.name(), h.getType().getId());
 		item.put(JsonApiMember.id.name(), h.getId());
 		return item;
@@ -105,11 +116,13 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 	
 	private static Map storeRelation(Map<String, Object> item, String key, Object val, Object metaKey) {
 		Map head = storeHead((DustHandle) val);
+		
+		Map m = DustUtils.safeGet(item, SORTEDMAP_CREATOR, JsonApiMember.relationships.name());
 
 		if (null == metaKey) {
-			Dust.access(DustAccess.Set, head, item, JsonApiMember.relationships, key, JsonApiMember.data);
+			Dust.access(DustAccess.Set, head, m, key, JsonApiMember.data);
 		} else {
-			Dust.access(DustAccess.Insert, head, item, JsonApiMember.relationships, key, JsonApiMember.data, KEY_ADD);
+			Dust.access(DustAccess.Insert, head, m, key, JsonApiMember.data, KEY_ADD);
 
 			if (!DustUtils.isEqual(-1, metaKey)) {
 				Dust.access(DustAccess.Set, metaKey, head, JsonApiMember.meta, EXT_JSONAPI_KEY);
@@ -143,7 +156,12 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 
 				Object sample = Dust.access(DustAccess.Peek, null, coll, 0);
 				if (sample instanceof DustHandle) {
-					int idx = (coll instanceof Set) ? -1 : 0;
+					int idx = 0;
+					
+					if (coll instanceof Set) {
+						idx = -1;
+						coll = new TreeSet(coll);
+					}
 					for (DustHandle co : (Collection<DustHandle>) coll) {
 						storeRelation(item, key, co, (-1 == idx) ? -1 : idx++);
 					}
@@ -166,10 +184,11 @@ public class DustStreamJsonApiAgent extends DustAgent implements DustMachineCons
 			}
 
 			if (null != val) {
-				Dust.access(DustAccess.Set, val, item, JsonApiMember.attributes, key);
+				Map m = DustUtils.safeGet(item, SORTEDMAP_CREATOR, JsonApiMember.attributes.name());
+				Dust.access(DustAccess.Set, val, m, key);
 			}
 		}
-
+		
 		return item;
 	}
 
