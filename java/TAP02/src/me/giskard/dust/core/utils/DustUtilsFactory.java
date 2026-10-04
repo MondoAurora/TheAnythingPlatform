@@ -1,0 +1,95 @@
+package me.giskard.dust.core.utils;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
+public class DustUtilsFactory<KeyType, ValType> implements DustUtilsConsts {
+	protected DustCreator<ValType> creator;
+	
+	String name;
+	protected final Map<KeyType, ValType> content;
+	protected Map<ValType, KeyType> reverse;
+
+	protected DustUtilsFactory(boolean sorted) {
+		this.content = sorted ? new TreeMap<>() : new HashMap<>();
+	}
+
+	public DustUtilsFactory(DustCreator<ValType> creator) {
+		this(creator, false);
+	}
+
+	public DustUtilsFactory(DustCreator<ValType> creator, boolean sorted) {
+		this(sorted);
+		this.creator = creator;
+	}
+
+	public synchronized KeyType getReverse(ValType val) {
+		if ( null == reverse ) {
+			reverse = new HashMap<>(content.size());
+			for ( Map.Entry<KeyType, ValType> e : content.entrySet() ) {
+				reverse.put(e.getValue(), e.getKey());
+			}
+		}
+		return reverse.get(val);
+	}
+
+	public synchronized ValType peek(KeyType key) {
+		return content.get(key);
+	}
+
+	public synchronized ValType get(KeyType key, Object... hints) {
+		ValType v = content.get(key);
+
+		if (null == v) {
+			v = creator.create(key, hints);
+			content.put(key, v);
+			if ( null != reverse ) {
+				reverse.put(v, key);
+			}
+			creator.initNew(v, key, hints);
+		}
+
+		return v;
+	}
+
+	public synchronized void clear() {
+		content.clear();
+	}
+
+	public Iterable<KeyType> keys() {
+		return content.keySet();
+	}
+
+	public Iterable<ValType> values() {
+		return content.values();
+	}
+
+	public void put(KeyType key, ValType value) {
+		content.put(key, value);
+	}
+
+	public ValType remove(KeyType key) {
+		return content.remove(key);
+	}
+
+	public boolean drop(ValType value) {
+		return content.values().remove(value);
+	}
+
+	public static class Simple<KeyType, ValType> extends DustUtilsFactory<KeyType, ValType> {
+
+		public Simple(boolean sorted, Class<? extends ValType> clVal) {
+			super(new DustCreatorSimple<ValType>(clVal), sorted);
+		}
+	}
+
+	public int size() {
+		return content.size();
+	}
+	
+	@Override
+	public String toString() {
+		return content.toString();
+	}
+}
