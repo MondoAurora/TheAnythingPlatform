@@ -25,7 +25,7 @@ public class DustMachineUtils implements DustMachineConsts, DustGenHandles_dust_
 	}
 
 	public static Iterable<DustHandle> getUnitMembers(DustHandle unit, Collection<DustHandle> ret) {
-		Object key = (unit instanceof DustMachineNewHandle) ? HANDLE_DUST_ATT_UNIT_HANDLES : HANDLE_DUST_ATT_UNIT_REFS;
+		Object key = (unit instanceof DustMachineHandle) ? HANDLE_DUST_ATT_UNIT_HANDLES : HANDLE_DUST_ATT_UNIT_REFS;
 		Map<String, DustHandle> m = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unit, key);
 		
 		if ( null == ret ) {

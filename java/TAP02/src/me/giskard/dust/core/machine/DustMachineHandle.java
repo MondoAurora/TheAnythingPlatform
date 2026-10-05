@@ -2,39 +2,39 @@ package me.giskard.dust.core.machine;
 
 import me.giskard.dust.api.DustHandle;
 
-public class DustMachineNewHandle implements DustHandle {
-	DustMachineNewIdea machine;
+public class DustMachineHandle implements DustHandle {
+	DustMachineIdea machine;
 
-	DustMachineNewIdea unit;
-	DustMachineNewHandle type;
+	DustMachineIdea unit;
+	DustMachineHandle type;
 	String id;
 
-	DustMachineNewHandle(DustMachineNewIdea machine) {
+	DustMachineHandle(DustMachineIdea machine) {
 		this.machine = machine;
 	}
 
-	public DustMachineNewHandle(DustMachineNewIdea machine, DustMachineNewIdea unit, DustMachineNewHandle type, String id) {
+	public DustMachineHandle(DustMachineIdea machine, DustMachineIdea unit, DustMachineHandle type, String id) {
 		this(machine);
 		init(unit, type, id);
 	}
 
-	void init(DustMachineNewIdea unit, DustMachineNewHandle type, String id) {
+	void init(DustMachineIdea unit, DustMachineHandle type, String id) {
 		this.unit = unit;
 		this.type = type;
 		this.id = id;
 	}
 
-	DustMachineNewIdea getUnitIdea() {
+	DustMachineIdea getUnitIdea() {
 		return unit;
 	}
 
 	@Override
-	public DustMachineNewHandle getUnit() {
+	public DustMachineHandle getUnit() {
 		return (null == unit) ? null : unit.mh;
 	}
 
 	@Override
-	public DustMachineNewHandle getType() {
+	public DustMachineHandle getType() {
 		return type;
 	}
 

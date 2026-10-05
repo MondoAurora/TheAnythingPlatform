@@ -17,28 +17,28 @@ import me.giskard.dust.core.utils.DustUtilsFactory;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustMachineBoot implements DustGenBootConsts, DustUtilsConsts {
 
-	private static DustMachineNewIdea iMACHINE;
+	private static DustMachineIdea iMACHINE;
 	private static String memId;
 	
 	static {
 		String launchTime = DustUtils.strTime();
 		memId = "DustMachine." + launchTime + "_" + DustUtils.getNewId(DUST_DEF_ID_BYTES);
 
-		iMACHINE = new DustMachineNewIdea();
-		DustMachineNewHandle mh = new DustMachineNewHandle(iMACHINE, null, null, memId);
+		iMACHINE = new DustMachineIdea();
+		DustMachineHandle mh = new DustMachineHandle(iMACHINE, null, null, memId);
 		iMACHINE.mh = mh;
 	}
 
-	private static final DustCreator<DustMachineNewHandle> handleCreator = new DustCreator<DustMachineNewHandle>() {
-		public DustMachineNewHandle create(Object key, Object... hints) {
-			DustMachineNewIdea u = DustUtils.optGet(hints, 0, null);
-			DustMachineNewHandle t = DustUtils.optGet(hints, 1, null);
-			DustMachineNewHandle h = new DustMachineNewHandle(iMACHINE, u, t, (String) key);
+	private static final DustCreator<DustMachineHandle> handleCreator = new DustCreator<DustMachineHandle>() {
+		public DustMachineHandle create(Object key, Object... hints) {
+			DustMachineIdea u = DustUtils.optGet(hints, 0, null);
+			DustMachineHandle t = DustUtils.optGet(hints, 1, null);
+			DustMachineHandle h = new DustMachineHandle(iMACHINE, u, t, (String) key);
 			return h;
 		}
 	};
 
-	private static DustUtilsFactory<String, DustMachineNewHandle> HANDLE_MAP = new DustUtilsFactory<String, DustMachineNewHandle>(handleCreator, true);
+	private static DustUtilsFactory<String, DustMachineHandle> HANDLE_MAP = new DustUtilsFactory<String, DustMachineHandle>(handleCreator, true);
 
 	public DustMachineBoot() throws Exception {
 		Set set;
@@ -50,48 +50,48 @@ public class DustMachineBoot implements DustGenBootConsts, DustUtilsConsts {
 			HANDLE_MAP.get(tn);
 		}
 
-		DustMachineNewHandle hUnitHandles = HANDLE_MAP.get(TOKEN_DUST_ATT_UNIT_HANDLES);
+		DustMachineHandle hUnitHandles = HANDLE_MAP.get(TOKEN_DUST_ATT_UNIT_HANDLES);
 
 		iMACHINE.content.put(HANDLE_MAP.get(TOKEN_MIND_ATT_ID), memId);
 		iMACHINE.content.put(HANDLE_MAP.get(TOKEN_MIND_ATT_TYPE), HANDLE_MAP.get(TOKEN_DUST_ASP_MACHINE));
 		iMACHINE.content.put(hUnitHandles, new TreeMap());
 		iMACHINE.content.put(HANDLE_MAP.get(TOKEN_DUST_ATT_UNIT_OBJECTS), new HashMap());
 
-		DustMachineNewHandle hThread = getMachineHandle(TOKEN_DUST_ASP_THREAD);
+		DustMachineHandle hThread = getMachineHandle(TOKEN_DUST_ASP_THREAD);
 		set = new TreeSet();
 		set.add(hThread);
 		iMACHINE.content.put(HANDLE_MAP.get(TOKEN_DUST_ATT_ALLTHREADS), set);
 
-		DustMachineNewHandle hDialog = getMachineHandle(TOKEN_DUST_ASP_DIALOG);
+		DustMachineHandle hDialog = getMachineHandle(TOKEN_DUST_ASP_DIALOG);
 		set = new TreeSet();
 		set.add(hDialog);
 		iMACHINE.content.put(HANDLE_MAP.get(TOKEN_DUST_ATT_ALLDIALOGS), set);
 
-		DustMachineNewIdea iThread = getIdea(hThread);
+		DustMachineIdea iThread = getIdea(hThread);
 		iThread.content.put(HANDLE_MAP.get(TOKEN_DUST_ATT_DIALOG), hDialog);
 
-		DustMachineNewHandle hApp = getMachineHandle(TOKEN_DUST_ASP_APPLICATION);
+		DustMachineHandle hApp = getMachineHandle(TOKEN_DUST_ASP_APPLICATION);
 		set = new TreeSet();
 		set.add(hApp);
 		iMACHINE.content.put(HANDLE_MAP.get(TOKEN_DUST_ATT_ALLAPPLICATIONS), set);
 
-		DustMachineNewIdea iDialog = getIdea(hDialog);
+		DustMachineIdea iDialog = getIdea(hDialog);
 		iDialog.content.put(HANDLE_MAP.get(TOKEN_DUST_ATT_APPLICATION), hApp);
 
-		DustMachineNewIdea iApp = getIdea(hApp);
+		DustMachineIdea iApp = getIdea(hApp);
 		Map unitHandles = new TreeMap();
 		iApp.content.put(hUnitHandles, unitHandles);
 		iApp.content.put(HANDLE_MAP.get(TOKEN_DUST_ATT_UNIT_OBJECTS), new HashMap());
 
-		DustMachineNewHandle hMsg = getMachineHandle(TOKEN_MIND_ASP_MESSAGE);
-		DustMachineNewIdea iMsg = getIdea(hMsg);
+		DustMachineHandle hMsg = getMachineHandle(TOKEN_MIND_ASP_MESSAGE);
+		DustMachineIdea iMsg = getIdea(hMsg);
 		iMsg.content.put(HANDLE_MAP.get(TOKEN_MIND_ATT_CMD), HANDLE_MAP.get(TOKEN_MISC_TAG_CMD_INIT));
 		arr = new ArrayList();
 		arr.add(iMACHINE.mh);
 		iMsg.content.put(HANDLE_MAP.get(TOKEN_MIND_ATT_LISTENERS), arr);
 
-		DustMachineNewHandle hCtx = getMachineHandle(TOKEN_DUST_ASP_CALL_CONTEXT);
-		DustMachineNewIdea iCtx = getIdea(hCtx);
+		DustMachineHandle hCtx = getMachineHandle(TOKEN_DUST_ASP_CALL_CONTEXT);
+		DustMachineIdea iCtx = getIdea(hCtx);
 
 		iCtx.content.put(HANDLE_MAP.get(TOKEN_DUST_ATT_CTX_APP), iApp);
 		iCtx.content.put(HANDLE_MAP.get(TOKEN_DUST_ATT_CTX_DLG), iDialog);
@@ -105,11 +105,11 @@ public class DustMachineBoot implements DustGenBootConsts, DustUtilsConsts {
 		for (String key : HANDLE_MAP.keys()) {
 			String[] kk = DustUtils.splitId(key);
 
-			DustMachineNewHandle hUnit = DustUtils.safeGet(unitHandles, handleCreator, kk[0], iApp, HANDLE_MAP.get(TOKEN_MIND_ASP_UNIT));
-			DustMachineNewIdea iUnit = getIdea(hUnit);
+			DustMachineHandle hUnit = DustUtils.safeGet(unitHandles, handleCreator, kk[0], iApp, HANDLE_MAP.get(TOKEN_MIND_ASP_UNIT));
+			DustMachineIdea iUnit = getIdea(hUnit);
 			Map uh = (Map) iUnit.content.get(hUnitHandles);
 
-			DustMachineNewHandle bh = HANDLE_MAP.get(key);
+			DustMachineHandle bh = HANDLE_MAP.get(key);
 
 			uh.put(key, bh);
 			bh.unit = iUnit;
@@ -136,12 +136,12 @@ public class DustMachineBoot implements DustGenBootConsts, DustUtilsConsts {
 		}
 	}
 
-	static DustMachineNewHandle getMachineHandle(String typeName) {
-		DustMachineNewHandle hType = HANDLE_MAP.get(typeName);
+	static DustMachineHandle getMachineHandle(String typeName) {
+		DustMachineHandle hType = HANDLE_MAP.get(typeName);
 		return getHandle(iMACHINE, hType, null);
 	}
 
-	static DustMachineNewHandle getHandle(DustMachineNewIdea iUnit, DustMachineNewHandle hType, String id) {
+	static DustMachineHandle getHandle(DustMachineIdea iUnit, DustMachineHandle hType, String id) {
 		Map handles = (Map) iUnit.content.get(HANDLE_MAP.get(TOKEN_DUST_ATT_UNIT_HANDLES));
 
 		if ( DustUtils.isEmpty(id)) {
@@ -156,16 +156,16 @@ public class DustMachineBoot implements DustGenBootConsts, DustUtilsConsts {
 	}
 
 	
-	public static DustMachineNewHandle getTokenHandle(String token) {
+	public static DustMachineHandle getTokenHandle(String token) {
 		return HANDLE_MAP.get(token);
 	}
 
-	public static DustMachineNewIdea getIdea(DustMachineNewHandle handle) {
+	public static DustMachineIdea getIdea(DustMachineHandle handle) {
 		Map ideas = (Map) handle.unit.content.get(HANDLE_MAP.get(TOKEN_DUST_ATT_UNIT_OBJECTS));
-		DustMachineNewIdea ret = (DustMachineNewIdea) ideas.get(handle);
+		DustMachineIdea ret = (DustMachineIdea) ideas.get(handle);
 
 		if (null == ret) {
-			ret = new DustMachineNewIdea(handle);
+			ret = new DustMachineIdea(handle);
 			ret.content.put(HANDLE_MAP.get(TOKEN_MIND_ATT_ID), handle.id);
 			ret.content.put(HANDLE_MAP.get(TOKEN_MIND_ATT_TYPE), handle.type);
 			ret.content.put(HANDLE_MAP.get(TOKEN_MIND_ATT_UNIT), handle.unit);

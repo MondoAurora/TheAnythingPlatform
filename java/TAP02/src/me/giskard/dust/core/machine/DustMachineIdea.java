@@ -6,18 +6,18 @@ import java.util.Map;
 import me.giskard.dust.core.utils.DustUtils;
 
 //@SuppressWarnings({ "unchecked", "rawtypes" })
-class DustMachineNewIdea implements DustMachineConsts {
-	DustMachineNewHandle mh;
+class DustMachineIdea implements DustMachineConsts {
+	DustMachineHandle mh;
 
-	final Map<DustMachineNewHandle, Object> content = new HashMap<>();
+	final Map<DustMachineHandle, Object> content = new HashMap<>();
 
 // CAN'T USE TreeMap because the boot process changes the content of the handle!!!
 //	final Map<DustMachineNewHandle, Object> content = new TreeMap<>();
 
-	DustMachineNewIdea() {
+	DustMachineIdea() {
 	}
 
-	DustMachineNewIdea(DustMachineNewHandle mh) {
+	DustMachineIdea(DustMachineHandle mh) {
 		this.mh = mh;
 	};
 
@@ -32,7 +32,7 @@ class DustMachineNewIdea implements DustMachineConsts {
 		return DustUtils.toString(mh);
 	}
 
-	protected Map<DustMachineNewHandle, Object> getContent() {
+	protected Map<DustMachineHandle, Object> getContent() {
 		return content;
 	}
 }

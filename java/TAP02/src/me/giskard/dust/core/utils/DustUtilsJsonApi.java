@@ -24,8 +24,7 @@ import me.giskard.handles.giskard_me.DustGenHandles_mind_1;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustUtilsJsonApi implements DustMachineConsts, DustUtilsConstsJson, DustGenHandles_mind_1, DustGenHandles_dust_1 {
 
-	private static final Set<Object> SKIP_KEYS = new HashSet<Object>();
-
+	private static final Set<DustHandle> SKIP_KEYS = new HashSet<DustHandle>();
 
 	public static void storeUnit(DustHandle unit, OutputStream os) throws Exception {
 		Map<String, Object> target = storeUnit(unit);
@@ -74,10 +73,10 @@ public class DustUtilsJsonApi implements DustMachineConsts, DustUtilsConstsJson,
 		item.put(JsonApiMember.id.name(), h.getId());
 		return item;
 	}
-	
+
 	private static Map storeRelation(Map<String, Object> item, String key, Object val, Object metaKey) {
 		Map head = storeHead((DustHandle) val);
-		
+
 		Map m = DustUtils.safeGet(item, SORTEDMAP_CREATOR, JsonApiMember.relationships.name());
 
 		if (null == metaKey) {
@@ -97,11 +96,12 @@ public class DustUtilsJsonApi implements DustMachineConsts, DustUtilsConstsJson,
 	private static Map<String, Object> storeFull(DustHandle h) {
 		Map<String, Object> item = storeHead(h);
 
-		for (Object o : (Iterable<String>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, KEY_MAP_KEYS)) {
-			DustHandle hk = (o instanceof DustHandle) ? (DustHandle)o : null;
-			String key = (null == hk) ? (String) o : hk.getId();
-			
-			if (SKIP_KEYS.contains(key)) {
+		for (DustHandle hk : (Iterable<DustHandle>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, KEY_MAP_KEYS)) {
+//			DustHandle hk = (o instanceof DustHandle) ? (DustHandle)o : null;
+//		String key = (null == hk) ? (String) o : hk.getId();
+			String key = hk.getId();
+
+			if (SKIP_KEYS.contains(hk)) {
 				continue;
 			}
 			Object val = Dust.access(DustAccess.Peek, null, h, (null == hk) ? key : hk);
@@ -118,7 +118,7 @@ public class DustUtilsJsonApi implements DustMachineConsts, DustUtilsConstsJson,
 				Object sample = Dust.access(DustAccess.Peek, null, coll, 0);
 				if (sample instanceof DustHandle) {
 					int idx = 0;
-					
+
 					if (coll instanceof Set) {
 						idx = -1;
 						coll = new TreeSet(coll);
@@ -149,7 +149,7 @@ public class DustUtilsJsonApi implements DustMachineConsts, DustUtilsConstsJson,
 				Dust.access(DustAccess.Set, val, m, key);
 			}
 		}
-		
+
 		return item;
 	}
 
@@ -171,21 +171,14 @@ public class DustUtilsJsonApi implements DustMachineConsts, DustUtilsConstsJson,
 		if (null != unitData) {
 			loadDataContent(unit, unit, unitData, false);
 		}
-		
+
 		loadSegment(unit, content, JsonApiMember.data);
 		loadSegment(unit, content, JsonApiMember.included);
-
-//		for (Map<String, Object> ca : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, content, JsonApiMember.data))) {
-//			loadDataSegment(unit, ca, false);
-//		}
-//		for (Map<String, Object> ca : ((Collection<Map<String, Object>>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, content, JsonApiMember.included))) {
-//			loadDataSegment(unit, ca, true);
-//		}
 	}
 
 	public static void loadSegment(DustHandle unit, Map<String, Object> content, JsonApiMember member) {
 		Collection<Map<String, Object>> segment = DustUtils.simpleGet(content, member);
-		if ( null != segment ) {
+		if (null != segment) {
 			for (Map<String, Object> ca : segment) {
 				loadDataSegment(unit, ca, JsonApiMember.included == member);
 			}

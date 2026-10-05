@@ -24,34 +24,34 @@ import me.giskard.handles.giskard_me.DustGenHandles_mind_1;
 import me.giskard.handles.giskard_me.DustGenHandles_misc_1;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustMachineNewAgent extends DustMachine implements DustGenBootConsts, DustUtilsConsts, DustGenHandles_mind_1, DustGenHandles_dust_1, DustGenHandles_misc_1 {
+public class DustMachineAgent extends DustMachine implements DustGenBootConsts, DustUtilsConsts, DustGenHandles_mind_1, DustGenHandles_dust_1, DustGenHandles_misc_1 {
 
-	static ThreadLocal<DustMachineNewIdea> THREADS = new ThreadLocal<DustMachineNewIdea>() {
-		public void set(DustMachineNewIdea value) {
+	static ThreadLocal<DustMachineIdea> THREADS = new ThreadLocal<DustMachineIdea>() {
+		public void set(DustMachineIdea value) {
 //		Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "SET thread context", Thread.currentThread(), value);
 			super.set(value);
 		};
 	};
 
-	DustMachineNewHandle hAspUnit;
-	DustMachineNewHandle hAspAsp;
+	DustMachineHandle hAspUnit;
+	DustMachineHandle hAspAsp;
 
-	DustMachineNewHandle hAttCallStack;
+	DustMachineHandle hAttCallStack;
 
-	DustMachineNewHandle hAttCtxApp;
-	DustMachineNewHandle hAttCtxDlg;
-	DustMachineNewHandle hAttCtxAgt;
-	DustMachineNewHandle hAttCtxMsg;
+	DustMachineHandle hAttCtxApp;
+	DustMachineHandle hAttCtxDlg;
+	DustMachineHandle hAttCtxAgt;
+	DustMachineHandle hAttCtxMsg;
 
-	DustMachineNewHandle hAttUnitHandles;
-	DustMachineNewHandle hAttUnitObjects;
-	DustMachineNewHandle hAttUnitState;
+	DustMachineHandle hAttUnitHandles;
+	DustMachineHandle hAttUnitObjects;
+	DustMachineHandle hAttUnitState;
 
-	DustMachineNewHandle hTagStateInSync;
+	DustMachineHandle hTagStateInSync;
 
-	public DustMachineNewAgent() {
-		Set<DustMachineNewHandle> threads = DustMachineBoot.getMachineData(TOKEN_DUST_ATT_ALLTHREADS);
-		DustMachineNewIdea iBootThread = DustMachineBoot.getIdea(threads.iterator().next());
+	public DustMachineAgent() {
+		Set<DustMachineHandle> threads = DustMachineBoot.getMachineData(TOKEN_DUST_ATT_ALLTHREADS);
+		DustMachineIdea iBootThread = DustMachineBoot.getIdea(threads.iterator().next());
 		THREADS.set(iBootThread);
 
 		hAspUnit = DustMachineBoot.getTokenHandle(TOKEN_MIND_ASP_UNIT);
@@ -71,23 +71,23 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 		hTagStateInSync = DustMachineBoot.getTokenHandle(TOKEN_MISC_TAG_STATE_IN_SYNC);
 	}
 
-	DustMachineNewIdea getCtx(Object key) {
-		DustMachineNewIdea iCtx = DustUtils.simpleGet(THREADS.get().content, hAttCallStack, 0);
-		return (DustMachineNewIdea) iCtx.content.get(key);
+	DustMachineIdea getCtx(Object key) {
+		DustMachineIdea iCtx = DustUtils.simpleGet(THREADS.get().content, hAttCallStack, 0);
+		return (DustMachineIdea) iCtx.content.get(key);
 	}
 
-	public synchronized DustMachineNewHandle getUnit(String unitId, boolean createIfMissing) {
-		DustMachineNewIdea iApp = getCtx(hAttCtxApp);
+	public synchronized DustMachineHandle getUnit(String unitId, boolean createIfMissing) {
+		DustMachineIdea iApp = getCtx(hAttCtxApp);
 
-		DustMachineNewHandle hUnit = getHandleInt(iApp, hAspUnit, unitId, createIfMissing);
+		DustMachineHandle hUnit = getHandleInt(iApp, hAspUnit, unitId, createIfMissing);
 
 		return hUnit;
 	}
 
 	public Collection<DustHandle> getUnits() {
-		DustMachineNewIdea iApp = getCtx(hAttCtxApp);
+		DustMachineIdea iApp = getCtx(hAttCtxApp);
 
-		Map<DustMachineNewHandle, DustMachineNewIdea> unitMap = DustUtils.simpleGet(iApp.content, hAttUnitObjects);
+		Map<DustMachineHandle, DustMachineIdea> unitMap = DustUtils.simpleGet(iApp.content, hAttUnitObjects);
 
 		return new TreeSet<DustHandle>(unitMap.keySet());
 	}
@@ -95,16 +95,16 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 	protected boolean syncUnits(boolean load) throws Exception {
 		boolean ret = false;
 
-		DustMachineNewIdea iApp = getCtx(hAttCtxApp);
+		DustMachineIdea iApp = getCtx(hAttCtxApp);
 
-		Map<DustMachineNewHandle, DustMachineNewIdea> unitMap = DustUtils.simpleGet(iApp.content, hAttUnitObjects);
+		Map<DustMachineHandle, DustMachineIdea> unitMap = DustUtils.simpleGet(iApp.content, hAttUnitObjects);
 
 		if (load) {
 			for (boolean chg = true; chg;) {
 				chg = false;
-				for (Map.Entry<DustMachineNewHandle, DustMachineNewIdea> eu : unitMap.entrySet()) {
-					DustMachineNewIdea iUnit = eu.getValue();
-					DustMachineNewHandle hUnit = eu.getKey();
+				for (Map.Entry<DustMachineHandle, DustMachineIdea> eu : unitMap.entrySet()) {
+					DustMachineIdea iUnit = eu.getValue();
+					DustMachineHandle hUnit = eu.getKey();
 
 					if (hTagStateInSync != iUnit.content.get(hAttUnitState)) {
 
@@ -120,16 +120,16 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 
 //			if (!ret) 
 			{
-				Set<DustMachineNewHandle> uhs = new TreeSet<DustMachineNewHandle>(unitMap.keySet());
-				for (DustMachineNewHandle hUnit : uhs) {
-					DustMachineNewIdea iUnit = unitMap.get(hUnit);
+				Set<DustMachineHandle> uhs = new TreeSet<DustMachineHandle>(unitMap.keySet());
+				for (DustMachineHandle hUnit : uhs) {
+					DustMachineIdea iUnit = unitMap.get(hUnit);
 
-					Map<DustMachineNewHandle, DustMachineNewIdea> ideaMap = DustUtils.simpleGet(iUnit.content, hAttUnitObjects);
-					Map<String, DustMachineNewHandle> handleMap = DustUtils.simpleGet(iUnit.content, hAttUnitHandles);
+					Map<DustMachineHandle, DustMachineIdea> ideaMap = DustUtils.simpleGet(iUnit.content, hAttUnitObjects);
+					Map<String, DustMachineHandle> handleMap = DustUtils.simpleGet(iUnit.content, hAttUnitHandles);
 					Dust.log(null, "boot", "unchanged", hUnit, handleMap.size(), ideaMap.size());
 
-					for (Map.Entry<String, DustMachineNewHandle> ehm : handleMap.entrySet()) {
-						DustMachineNewHandle h = ehm.getValue();
+					for (Map.Entry<String, DustMachineHandle> ehm : handleMap.entrySet()) {
+						DustMachineHandle h = ehm.getValue();
 
 						if (null == h.type) {
 							Dust.log(null, "no type for", ehm.getKey());
@@ -141,9 +141,9 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 				}
 			}
 		} else {
-			for (Map.Entry<DustMachineNewHandle, DustMachineNewIdea> eu : unitMap.entrySet()) {
-				DustMachineNewIdea iUnit = eu.getValue();
-				DustMachineNewHandle hUnit = eu.getKey();
+			for (Map.Entry<DustMachineHandle, DustMachineIdea> eu : unitMap.entrySet()) {
+				DustMachineIdea iUnit = eu.getValue();
+				DustMachineHandle hUnit = eu.getKey();
 
 //				if (hTagStateInSync != iUnit.content.get(hAttUnitState)) 
 				{
@@ -161,7 +161,7 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 		return ret;
 	}
 
-	public void saveUnit(DustMachineNewHandle handle, DustMachineNewIdea idea) throws Exception {
+	public void saveUnit(DustMachineHandle handle, DustMachineIdea idea) throws Exception {
 
 		if (handle.id.contains("sandbox")) {
 			Dust.log(null, "test", "SKIP", handle);
@@ -183,7 +183,7 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 		}
 	}
 
-	public void loadUnit(DustMachineNewHandle handle, DustMachineNewIdea idea) {
+	public void loadUnit(DustMachineHandle handle, DustMachineIdea idea) {
 		Dust.log(null, "boot", "======== loading unit", handle, "============");
 
 		try (FileInputStream fis = new FileInputStream("localStore/" + handle.id + DUST_EXT_JSON)) {
@@ -202,36 +202,36 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 	@Override
 	public synchronized DustHandle getHandle(DustHandle unit, Object type, String id, boolean createIfMissing) {
 //	public synchronized DustHandle getHandle(DustHandle unit, Object type, String id, boolean createIfMissing) {
-		DustMachineNewHandle hUnit = (DustMachineNewHandle) unit;
+		DustMachineHandle hUnit = (DustMachineHandle) unit;
 
 		String[] ii = DustUtils.splitId(id);
 		if (null != ii[0]) {
 			hUnit = getUnit(ii[0], createIfMissing);
 		}
-		DustMachineNewIdea iUnit = DustMachineBoot.getIdea(hUnit);
+		DustMachineIdea iUnit = DustMachineBoot.getIdea(hUnit);
 
 		if (null == type) {
 			Dust.log(null, "getHandle", "null type", id);
 		}
 
-		DustMachineNewHandle hType = (null == type) ? null
-				: (type instanceof DustMachineNewHandle) ? (DustMachineNewHandle) type : getHandleInt(null, hAspAsp, (String) type, true);
+		DustMachineHandle hType = (null == type) ? null
+				: (type instanceof DustMachineHandle) ? (DustMachineHandle) type : getHandleInt(null, hAspAsp, (String) type, true);
 
-		DustMachineNewHandle hRet = getHandleInt(iUnit, hType, id, createIfMissing);
+		DustMachineHandle hRet = getHandleInt(iUnit, hType, id, createIfMissing);
 
 		return hRet;
 	}
 
-	DustMachineNewHandle getHandleInt(DustMachineNewIdea iUnit, DustMachineNewHandle type, String id, boolean createIfMissing) {
+	DustMachineHandle getHandleInt(DustMachineIdea iUnit, DustMachineHandle type, String id, boolean createIfMissing) {
 		if (null == iUnit) {
 			String[] ii = DustUtils.splitId(id);
 			if (null != ii[0]) {
-				DustMachineNewHandle hUnit = getUnit(ii[0], createIfMissing);
+				DustMachineHandle hUnit = getUnit(ii[0], createIfMissing);
 				iUnit = DustMachineBoot.getIdea(hUnit);
 			}
 		}
 
-		DustMachineNewHandle hRet = DustUtils.simpleGet(iUnit.content, hAttUnitHandles, id);
+		DustMachineHandle hRet = DustUtils.simpleGet(iUnit.content, hAttUnitHandles, id);
 
 		if (null == hRet) {
 			if (createIfMissing) {
@@ -247,12 +247,12 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 		return hRet;
 	}
 
-	Map getContent(DustMachineNewHandle h) {
-		DustMachineNewIdea idea = DustMachineBoot.getIdea(h);
+	Map getContent(DustMachineHandle h) {
+		DustMachineIdea idea = DustMachineBoot.getIdea(h);
 		return idea.getContent();
 	}
 
-	private Object checkAccess(DustMachineNewIdea iAgt, DustAccess acess, DustMachineNewIdea iTarget, DustMachineNewHandle hAtt, Object lastKey, Object valPrev,
+	private Object checkAccess(DustMachineIdea iAgt, DustAccess acess, DustMachineIdea iTarget, DustMachineHandle hAtt, Object lastKey, Object valPrev,
 			Object valNew) {
 		Object ret = valNew;
 
@@ -276,32 +276,32 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 
 //		Dust.log(null, "boot", "access", access, val, root, path);
 
-		DustMachineNewIdea iAgt = getCtx(HANDLE_DUST_ATT_CTX_AGT);
+		DustMachineIdea iAgt = getCtx(HANDLE_DUST_ATT_CTX_AGT);
 
 		Object curr = root;
-		DustMachineNewIdea iCurr = null;
+		DustMachineIdea iCurr = null;
 
 		Object prev = null;
 		Object lastKey = null;
-		DustMachineNewHandle lastHandle = null;
+		DustMachineHandle lastHandle = null;
 
 		Object prevColl = null;
-		DustMachineNewHandle prevHandle = (curr instanceof DustHandle) ? (DustMachineNewHandle) curr : null;
-		DustMachineNewHandle prevAtt = null;
+		DustMachineHandle prevHandle = (curr instanceof DustHandle) ? (DustMachineHandle) curr : null;
+		DustMachineHandle prevAtt = null;
 
 		/**
 		 * Process the path
 		 */
 
 		for (Object p : path) {
-			if (p instanceof DustMachineNewHandle) {
-				prevAtt = (DustMachineNewHandle) p;
+			if (p instanceof DustMachineHandle) {
+				prevAtt = (DustMachineHandle) p;
 			} else if (p instanceof Enum) {
 				p = ((Enum) p).name();
 			}
 
-			if (curr instanceof DustMachineNewHandle) {
-				lastHandle = prevHandle = (DustMachineNewHandle) curr;
+			if (curr instanceof DustMachineHandle) {
+				lastHandle = prevHandle = (DustMachineHandle) curr;
 				iCurr = DustMachineBoot.getIdea(prevHandle);
 				curr = iCurr.getContent();
 				collType = DustCollType.Map;
@@ -594,13 +594,13 @@ public class DustMachineNewAgent extends DustMachine implements DustGenBootConst
 						}
 						switch (specIdx) {
 						case 0:
-							((DustMachineNewHandle) lastHandle).type = (DustMachineNewHandle) val;
+							((DustMachineHandle) lastHandle).type = (DustMachineHandle) val;
 							break;
 						case 1:
-							((DustMachineNewHandle) lastHandle).id = (String) val;
+							((DustMachineHandle) lastHandle).id = (String) val;
 							break;
 						case 2:
-							((DustMachineNewHandle) lastHandle).unit = DustMachineBoot.getIdea((DustMachineNewHandle) val);
+							((DustMachineHandle) lastHandle).unit = DustMachineBoot.getIdea((DustMachineHandle) val);
 							break;
 						}
 					}

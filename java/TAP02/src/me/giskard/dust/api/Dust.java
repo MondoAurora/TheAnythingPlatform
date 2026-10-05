@@ -7,7 +7,7 @@ import me.giskard.dust.core.utils.DustUtils;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class Dust implements DustConsts {
-	
+
 	private static DustMachine MACHINE;
 
 	public static void main(String[] args) throws Exception {
@@ -16,7 +16,7 @@ public class Dust implements DustConsts {
 
 		start(DUST_PLATFORM_JAVA, appName, appUnitPath);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public static <RetType> RetType createInstance(Class cc) {
 		Constructor<Object> pc = null;
@@ -42,15 +42,13 @@ public class Dust implements DustConsts {
 		System.out.println(sb);
 	}
 
-
-	public static DustHandle start(String platform, String appName, String appUnitPath)
-			throws Exception {
+	public static DustHandle start(String platform, String appName, String appUnitPath) throws Exception {
 		long start = System.currentTimeMillis();
 
 		try {
 			@SuppressWarnings("unused")
 			DustMachineBoot dmb = new DustMachineBoot();
-			MACHINE = createInstance(Class.forName("me.giskard.dust.core.machine.DustMachineNewAgent"));
+			MACHINE = createInstance(Class.forName("me.giskard.dust.core.machine.DustMachineAgent"));
 
 			MACHINE.init();
 
@@ -66,12 +64,12 @@ public class Dust implements DustConsts {
 
 		return null;
 	}
-	
-	public static DustHandle getHandle(String id){
+
+	public static DustHandle getHandle(String id) {
 		return MACHINE.getHandle(id, true);
 	}
 
-	public static DustHandle getHandle(String id, boolean createIfMissing){
+	public static DustHandle getHandle(String id, boolean createIfMissing) {
 		return MACHINE.getHandle(id, createIfMissing);
 	}
 
@@ -79,10 +77,7 @@ public class Dust implements DustConsts {
 		return MACHINE.getHandle(unit, type, id, createIfMissing);
 	}
 
-
 	public static <RetType> RetType access(DustAccess access, Object val, Object root, Object... path) {
 		return MACHINE.access(access, val, root, path);
 	}
-
-
 }

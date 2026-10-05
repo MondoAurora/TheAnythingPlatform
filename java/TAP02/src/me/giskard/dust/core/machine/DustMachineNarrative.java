@@ -8,22 +8,11 @@ import java.util.Map;
 import java.util.Set;
 
 import me.giskard.dust.api.Dust;
-import me.giskard.dust.api.DustAgent;
 import me.giskard.dust.api.DustHandle;
 import me.giskard.dust.core.utils.DustUtils;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public interface DustMachineNarrative extends DustMachineConsts {
-
-	abstract class ChainAgent extends DustAgent {
-		DustHandle hNext;
-
-		@Override
-		protected void init() throws Exception {
-			hNext = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_NEXT);
-		};
-
-	}
 
 	public class Compare extends ChainAgent {
 
