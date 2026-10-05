@@ -5,9 +5,10 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustConsts;
 import me.giskard.dust.api.DustException;
-import me.giskard.dust.core.Dust;
+import me.giskard.dust.api.DustHandle;
 
 public interface DustUtilsConstsJson extends DustConsts, DustUtilsConsts {
 

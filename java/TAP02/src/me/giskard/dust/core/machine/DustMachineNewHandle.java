@@ -1,6 +1,6 @@
 package me.giskard.dust.core.machine;
 
-import me.giskard.dust.core.DustConstsBoot.DustHandle;
+import me.giskard.dust.api.DustHandle;
 
 public class DustMachineNewHandle implements DustHandle {
 	DustMachineNewIdea machine;

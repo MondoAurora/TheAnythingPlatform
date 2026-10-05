@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.Set;
 
 import me.giskard.dust.api.DustConsts;
+import me.giskard.dust.api.DustHandle;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustUtils implements DustConsts, DustUtilsConsts {

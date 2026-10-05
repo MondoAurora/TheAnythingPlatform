@@ -1,7 +1,8 @@
 package me.giskard.dust.core.dev;
 
+import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustAgent;
-import me.giskard.dust.core.Dust;
+import me.giskard.dust.api.DustHandle;
 
 public class DustDevDumpAgent extends DustAgent implements DustDevConsts {
 

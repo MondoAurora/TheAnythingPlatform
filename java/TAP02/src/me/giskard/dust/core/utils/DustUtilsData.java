@@ -6,8 +6,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustException;
-import me.giskard.dust.core.Dust;
+import me.giskard.dust.api.DustHandle;
 import me.giskard.dust.core.machine.DustMachineConsts;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })

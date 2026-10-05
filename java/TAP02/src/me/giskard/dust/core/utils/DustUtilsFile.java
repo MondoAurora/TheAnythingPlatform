@@ -11,8 +11,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 
+import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustException;
-import me.giskard.dust.core.Dust;
 
 public class DustUtilsFile extends DustUtils implements DustUtilsConsts {
 

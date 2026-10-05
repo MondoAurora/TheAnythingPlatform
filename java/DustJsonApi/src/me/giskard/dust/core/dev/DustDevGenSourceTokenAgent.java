@@ -31,13 +31,15 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 		super.init();
 		types = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_MISC_ATT_MEMBERS);
 		targetPackage = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_DEV_ATT_PACKAGE);
-		targetPackageNew = targetPackage + "_new";
+		targetPackageNew = targetPackage.replace("tokens", "handles");
+//		targetPackageNew = targetPackage + "_new";
 
 		String projectRoot = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_MISC_ATT_PATH);
 		root = new File(new File(projectRoot), targetPackage.replace('.', '/'));
-		rootNew = new File(new File(projectRoot), targetPackageNew.replace('.', '/'));
+		rootNew = new File(new File(projectRoot.replace("DustJsonApi", "TAP02")), targetPackageNew.replace('.', '/'));
 
 		DustUtilsFile.ensureDir(root);
+		DustUtilsFile.ensureDir(rootNew);
 	}
 
 	@Override
@@ -120,8 +122,8 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 							ps.println();
 							if ( newGen ) {
 								ps.println();
-								ps.println("import me.giskard.dust.core.Dust;");
-								ps.println("import me.giskard.dust.core.DustConstsBoot.DustHandle;");
+								ps.println("import me.giskard.dust.api.Dust;");
+								ps.println("import me.giskard.dust.api.DustHandle;");
 							}
 							ps.println();
 

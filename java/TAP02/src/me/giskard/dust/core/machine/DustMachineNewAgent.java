@@ -12,15 +12,16 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import me.giskard.boot.DustGenBootConsts;
+import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustException;
+import me.giskard.dust.api.DustHandle;
 import me.giskard.dust.api.DustMachine;
-import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsConsts;
 import me.giskard.dust.core.utils.DustUtilsJsonApi;
-import me.giskard.tokens_new.giskard_me.DustGenHandles_dust_1;
-import me.giskard.tokens_new.giskard_me.DustGenHandles_mind_1;
-import me.giskard.tokens_new.giskard_me.DustGenHandles_misc_1;
+import me.giskard.handles.giskard_me.DustGenHandles_dust_1;
+import me.giskard.handles.giskard_me.DustGenHandles_mind_1;
+import me.giskard.handles.giskard_me.DustGenHandles_misc_1;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustMachineNewAgent extends DustMachine implements DustGenBootConsts, DustUtilsConsts, DustGenHandles_mind_1, DustGenHandles_dust_1, DustGenHandles_misc_1 {

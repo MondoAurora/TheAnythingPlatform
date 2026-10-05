@@ -2,8 +2,8 @@ package me.giskard.dust.core.machine;
 
 import me.giskard.dust.api.DustConsts;
 import me.giskard.dust.core.utils.DustUtilsConsts;
-import me.giskard.tokens_new.giskard_me.DustGenHandles_mind_1;
-import me.giskard.tokens_new.giskard_me.DustGenHandles_stream_1;
+import me.giskard.handles.giskard_me.DustGenHandles_mind_1;
+import me.giskard.handles.giskard_me.DustGenHandles_stream_1;
 
 public interface DustMachineConsts extends DustConsts, DustUtilsConsts, DustGenHandles_mind_1, DustGenHandles_stream_1 {
 

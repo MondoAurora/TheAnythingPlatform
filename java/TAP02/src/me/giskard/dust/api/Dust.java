@@ -2,12 +2,11 @@ package me.giskard.dust.api;
 
 import java.lang.reflect.Constructor;
 
-import me.giskard.dust.core.DustConstsBoot;
 import me.giskard.dust.core.machine.DustMachineBoot;
 import me.giskard.dust.core.utils.DustUtils;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class Dust implements DustConstsBoot {
+public class Dust implements DustConsts {
 	
 	private static DustMachine MACHINE;
 

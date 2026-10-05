@@ -1,7 +1,5 @@
 package me.giskard.dust.api;
 
-import me.giskard.dust.core.DustConstsBoot.DustHandle;
-
 public abstract class DustMachine extends DustAgent implements DustConsts {
 	
 	protected abstract DustHandle getHandle(DustHandle unit, Object type, String id, boolean createIfMissing);

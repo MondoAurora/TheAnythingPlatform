@@ -7,8 +7,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustAgent;
-import me.giskard.dust.core.Dust;
+import me.giskard.dust.api.DustHandle;
 import me.giskard.dust.core.utils.DustUtils;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
