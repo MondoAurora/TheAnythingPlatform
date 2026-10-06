@@ -300,33 +300,37 @@ public class DustMachineAgent extends DustMachine
 		 * Process the path
 		 */
 
-		if (null == root) {
+		if (null == curr) {
 			if (path.length > 0) {
 				Object p = path[0];
-				root = getCtx(p);
-				if (null == root) {
+				curr = (-1 == DustUtils.indexOf(p, (Object[]) CTXS)) ? null : getCtx(p);
+				if (null == curr) {
 					for (DustHandle ch : CTXS) {
 						DustMachineIdea ci = getCtx(ch);
 						if (ci.content.containsKey(p)) {
-							root = ci;
+							curr = ci;
 							break;
 						}
 					}
 
-					if (null == root) {
+					if (null == curr) {
 						if (create) {
-							root = getCtx(HANDLE_DUST_ATT_CTX_MSG);
+							curr = getCtx(HANDLE_DUST_ATT_CTX_MSG);
 						}
 					}
 				} else {
 					++pidx;
 				}
-			}
-
-			if (null != root) {
-				iCurr = (DustMachineIdea) root;
-				curr = iCurr.getContent();
-				collType = DustCollType.Map;
+			} else {
+				switch ( access ) {
+				case Delete:
+					DustMachineHandle hh = (DustMachineHandle)val;
+					Map m = hh.unit.content;
+					((Map)m.get(HANDLE_DUST_ATT_UNIT_HANDLES)).remove(hh.id);
+					((Map)m.get(HANDLE_DUST_ATT_UNIT_OBJECTS)).remove(hh);
+					
+					break;
+				}
 			}
 		}
 
@@ -339,7 +343,11 @@ public class DustMachineAgent extends DustMachine
 				p = ((Enum) p).name();
 			}
 
-			if (curr instanceof DustMachineHandle) {
+			if (curr instanceof DustMachineIdea) {
+				iCurr = (DustMachineIdea) curr;
+				curr = iCurr.getContent();
+				collType = DustCollType.Map;
+			} else if (curr instanceof DustMachineHandle) {
 				lastHandle = prevHandle = (DustMachineHandle) curr;
 				iCurr = DustMachineBoot.getIdea(prevHandle);
 				curr = iCurr.getContent();
@@ -684,8 +692,25 @@ public class DustMachineAgent extends DustMachine
 
 	protected <RetType> RetType notifyAgent(DustHandle hAgent, DustAccess access, DustHandle hMessage) {
 		DustAgent agt = access(DustAccess.Get, null, hAgent, HANDLE_DUST_ATT_WRAPPEDOBJECT);
+		DustMachineIdea iThread = THREADS.get();
 
 		try {
+//			DustMachineIdea iApp = getCtx(hAttCtxApp);
+//		DustHandle hCtx = getHandle(iApp.mh, HANDLE_DUST_ASP_CALL_CONTEXT, null, true);
+
+			DustMachineHandle hCtx = DustMachineBoot.getMachineHandle(TOKEN_DUST_ASP_CALL_CONTEXT);
+
+			DustMachineIdea iCtx = DustMachineBoot.getIdea(hCtx);
+
+			iCtx.content.put((DustMachineHandle) HANDLE_DUST_ATT_CTX_APP, getCtx(HANDLE_DUST_ATT_CTX_APP));
+			iCtx.content.put((DustMachineHandle) HANDLE_DUST_ATT_CTX_DLG, getCtx(HANDLE_DUST_ATT_CTX_DLG));
+			iCtx.content.put((DustMachineHandle) HANDLE_DUST_ATT_CTX_AGT,
+					DustMachineBoot.getIdea((DustMachineHandle) hAgent));
+			iCtx.content.put((DustMachineHandle) HANDLE_DUST_ATT_CTX_MSG,
+					DustMachineBoot.getIdea((DustMachineHandle) hMessage));
+
+			access(DustAccess.Insert, iCtx, iThread, HANDLE_DUST_ATT_CALL_STACK, 0);
+
 			if (null == agt) {
 				DustHandle hNarrative = access(DustAccess.Get, null, hAgent, HANDLE_MIND_ATT_NARRATIVE);
 				String cn = access(DustAccess.Get, null, null, HANDLE_DUST_ATT_CTX_APP, HANDLE_DUST_ATT_BINARY_RESOLVER,
@@ -702,6 +727,9 @@ public class DustMachineAgent extends DustMachine
 			agt.process();
 		} catch (Throwable e) {
 			DustException.wrap(e);
+		} finally {
+			DustMachineIdea iCtx = access(DustAccess.Delete, null, iThread, HANDLE_DUST_ATT_CALL_STACK, 0);
+			access(DustAccess.Delete, iCtx.mh, null);
 		}
 
 		return null;
@@ -743,7 +771,7 @@ public class DustMachineAgent extends DustMachine
 
 		Object rm = access(DustAccess.Get, Collections.EMPTY_MAP, null, HANDLE_DUST_ATT_CTX_APP,
 				HANDLE_DUST_ATT_BINARY_RESOLVER);
-		
+
 		Dust.log(null, "Resolver map", rm);
 
 	}
