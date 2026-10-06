@@ -14,9 +14,6 @@ public interface DustConsts {
 
 	int DUST_DEF_ID_BYTES = 4;
 
-	String DUST_PLATFORM_JAVA = "java";
-	String DUST_PLATFORM_ANDROID = "android";
-
 	String DUST_EXT_JSON = ".json";
 	String DUST_EXT_CSV = ".csv";
 	String DUST_EXT_XML = ".xml";

@@ -17,7 +17,7 @@ public interface DustMachineNarrative extends DustMachineConsts {
 	public class Compare extends ChainAgent {
 
 		@Override
-		protected void process() throws Exception {
+		public void process() throws Exception {
 			// TODO Auto-generated method stub
 		}
 
@@ -94,12 +94,12 @@ public interface DustMachineNarrative extends DustMachineConsts {
 	public class ForAll extends ChainAgent {
 
 		@Override
-		protected void init() throws Exception {
+		public void init() throws Exception {
 			super.init();
 		}
 
 		@Override
-		protected void process() throws Exception {
+		public void process() throws Exception {
 			String cmd = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_CMD);
 //			Map params = new HashMap();
 
@@ -136,13 +136,13 @@ public interface DustMachineNarrative extends DustMachineConsts {
 	public class Filter extends ChainAgent {
 
 		@Override
-		protected void init() throws Exception {
+		public void init() throws Exception {
 			super.init();
 //			conditions = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null, HANDLE_MISC_ATT_FILTER);
 		}
 
 		@Override
-		protected void process() throws Exception {
+		public void process() throws Exception {
 			String cmd = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_CMD);
 
 			Object data = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_DATA);

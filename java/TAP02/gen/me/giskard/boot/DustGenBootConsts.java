@@ -34,6 +34,10 @@ public interface DustGenBootConsts extends DustConsts {
 	String TOKEN_DUST_ATT_CTX_DLG = "giskard.me/dust.1$ctxDlg";
 	String TOKEN_DUST_ATT_CTX_MSG = "giskard.me/dust.1$ctxMsg";
 	String TOKEN_DUST_ATT_DIALOG = "giskard.me/dust.1$dialog";
+	String TOKEN_DUST_ATT_NODE = "giskard.me/dust.1$node";
+	String TOKEN_DUST_ATT_PLATFORM = "giskard.me/dust.1$platform";
+	
+	String TOKEN_DUST_IDEA_JAVA17 = "giskard.me/dust.1$Java17";
 
 	String TOKEN_MIND_ASP_AGENT = "giskard.me/mind.1$Agent";
 	String TOKEN_MIND_ASP_ASPECT = "giskard.me/mind.1$Aspect";

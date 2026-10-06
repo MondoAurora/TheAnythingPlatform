@@ -57,6 +57,8 @@ public class DustMachineBoot implements DustGenBootConsts, DustUtilsConsts {
 		iMACHINE.content.put(hUnitHandles, new TreeMap());
 		iMACHINE.content.put(HANDLE_MAP.get(TOKEN_DUST_ATT_UNIT_OBJECTS), new HashMap());
 
+		iMACHINE.content.put(HANDLE_MAP.get(TOKEN_DUST_ATT_PLATFORM), HANDLE_MAP.get(TOKEN_DUST_IDEA_JAVA17));
+
 		DustMachineHandle hThread = getMachineHandle(TOKEN_DUST_ASP_THREAD);
 		set = new TreeSet();
 		set.add(hThread);
@@ -128,6 +130,9 @@ public class DustMachineBoot implements DustGenBootConsts, DustUtilsConsts {
 				break;
 			case "AGT":
 				bh.type = HANDLE_MAP.get(TOKEN_MIND_ASP_AGENT);
+				break;
+			case "IDEA":
+				// I don't know the type for the token constant
 				break;
 			default:
 				DustException.wrap(null, "Should not be here");

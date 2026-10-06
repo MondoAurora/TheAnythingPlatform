@@ -654,6 +654,28 @@
 			}
 		},
 		{
+			"id": "giskard.me/dust.1$node",
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_NODE",
+				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_NODE"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
+		},
+		{
 			"id": "giskard.me/dust.1$platform",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
@@ -861,8 +883,8 @@
 		}
 	],
 	"meta": {
-		"date": "20261005T144739Z",
-		"count": 51,
+		"date": "20261006T080608Z",
+		"count": 55,
 		"unitInfo": {
 			"id": "giskard.me/dust.1",
 			"type": "giskard.me/mind.1$Unit",

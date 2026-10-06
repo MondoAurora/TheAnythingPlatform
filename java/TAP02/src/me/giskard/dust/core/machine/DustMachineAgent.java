@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -13,6 +14,7 @@ import java.util.TreeSet;
 
 import me.giskard.boot.DustGenBootConsts;
 import me.giskard.dust.api.Dust;
+import me.giskard.dust.api.DustAgent;
 import me.giskard.dust.api.DustException;
 import me.giskard.dust.api.DustHandle;
 import me.giskard.dust.api.DustMachine;
@@ -24,7 +26,8 @@ import me.giskard.handles.giskard_me.DustGenHandles_mind_1;
 import me.giskard.handles.giskard_me.DustGenHandles_misc_1;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustMachineAgent extends DustMachine implements DustGenBootConsts, DustUtilsConsts, DustGenHandles_mind_1, DustGenHandles_dust_1, DustGenHandles_misc_1 {
+public class DustMachineAgent extends DustMachine
+		implements DustGenBootConsts, DustUtilsConsts, DustGenHandles_mind_1, DustGenHandles_dust_1, DustGenHandles_misc_1 {
 
 	static ThreadLocal<DustMachineIdea> THREADS = new ThreadLocal<DustMachineIdea>() {
 		public void set(DustMachineIdea value) {
@@ -174,7 +177,7 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 //		DustUtilsFile.ensureDir(f.getParent());
 //
 //		try (FileOutputStream fos = new FileOutputStream(f)) {
-		
+
 		try (FileOutputStream fos = new FileOutputStream("localStore/" + handle.id + DUST_EXT_JSON)) {
 			DustUtilsJsonApi.storeUnit(handle, fos);
 //			idea.content.put(hAttUnitState, hTagStateInSync);
@@ -198,7 +201,7 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 	protected DustHandle getHandle(String idd, boolean createIfMissing) {
 		return getHandle(null, null, idd, createIfMissing);
 	}
-	
+
 	@Override
 	public synchronized DustHandle getHandle(DustHandle unit, Object type, String id, boolean createIfMissing) {
 //	public synchronized DustHandle getHandle(DustHandle unit, Object type, String id, boolean createIfMissing) {
@@ -215,7 +218,8 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 		}
 
 		DustMachineHandle hType = (null == type) ? null
-				: (type instanceof DustMachineHandle) ? (DustMachineHandle) type : getHandleInt(null, hAspAsp, (String) type, true);
+				: (type instanceof DustMachineHandle) ? (DustMachineHandle) type
+						: getHandleInt(null, hAspAsp, (String) type, true);
 
 		DustMachineHandle hRet = getHandleInt(iUnit, hType, id, createIfMissing);
 
@@ -252,8 +256,8 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 		return idea.getContent();
 	}
 
-	private Object checkAccess(DustMachineIdea iAgt, DustAccess acess, DustMachineIdea iTarget, DustMachineHandle hAtt, Object lastKey, Object valPrev,
-			Object valNew) {
+	private Object checkAccess(DustMachineIdea iAgt, DustAccess acess, DustMachineIdea iTarget, DustMachineHandle hAtt,
+			Object lastKey, Object valPrev, Object valNew) {
 		Object ret = valNew;
 
 		if ((null != iTarget) && (null != hAtt)) {
@@ -267,11 +271,14 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 		return ret;
 	}
 
+	DustHandle[] CTXS;
+
 	@Override
 	protected <RetType> RetType access(DustAccess access, Object val, Object root, Object... path) {
+		Object ret = null;
+		int pidx = 0;
 		boolean create = DustUtils.isCreate(access);
 
-		Object ret = null;
 		DustCollType collType = DustUtils.getCollType(root);
 
 //		Dust.log(null, "boot", "access", access, val, root, path);
@@ -293,7 +300,39 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 		 * Process the path
 		 */
 
-		for (Object p : path) {
+		if (null == root) {
+			if (path.length > 0) {
+				Object p = path[0];
+				root = getCtx(p);
+				if (null == root) {
+					for (DustHandle ch : CTXS) {
+						DustMachineIdea ci = getCtx(ch);
+						if (ci.content.containsKey(p)) {
+							root = ci;
+							break;
+						}
+					}
+
+					if (null == root) {
+						if (create) {
+							root = getCtx(HANDLE_DUST_ATT_CTX_MSG);
+						}
+					}
+				} else {
+					++pidx;
+				}
+			}
+
+			if (null != root) {
+				iCurr = (DustMachineIdea) root;
+				curr = iCurr.getContent();
+				collType = DustCollType.Map;
+			}
+		}
+
+		for (; pidx < path.length; ++pidx) {
+			Object p = path[pidx];
+
 			if (p instanceof DustMachineHandle) {
 				prevAtt = (DustMachineHandle) p;
 			} else if (p instanceof Enum) {
@@ -633,11 +672,9 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 			}
 			break;
 		case Commit:
-			Object ll = access(DustAccess.Peek, null, curr, TOKEN_MIND_ATT_LISTENERS);
-			if (ll instanceof Collection) {
-				for (Object l : (Collection) ll) {
-					ret = notifyAgent((DustHandle) l, access, (DustHandle) curr);
-				}
+			Object ll = access(DustAccess.Peek, null, curr, HANDLE_MIND_ATT_LISTENERS);
+			for (DustHandle l : (Collection<DustHandle>) ll) {
+				ret = notifyAgent((DustHandle) l, access, (DustHandle) curr);
 			}
 			break;
 		}
@@ -646,16 +683,69 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 	}
 
 	protected <RetType> RetType notifyAgent(DustHandle hAgent, DustAccess access, DustHandle hMessage) {
-		// TODO Auto-generated method stub
+		DustAgent agt = access(DustAccess.Get, null, hAgent, HANDLE_DUST_ATT_WRAPPEDOBJECT);
+
+		try {
+			if (null == agt) {
+				DustHandle hNarrative = access(DustAccess.Get, null, hAgent, HANDLE_MIND_ATT_NARRATIVE);
+				String cn = access(DustAccess.Get, null, null, HANDLE_DUST_ATT_CTX_APP, HANDLE_DUST_ATT_BINARY_RESOLVER,
+						hNarrative);
+
+				Class ca = Class.forName(cn);
+				agt = Dust.createInstance(ca);
+
+				agt.init();
+
+				access(DustAccess.Set, agt, hAgent, HANDLE_DUST_ATT_WRAPPEDOBJECT);
+			}
+
+			agt.process();
+		} catch (Throwable e) {
+			DustException.wrap(e);
+		}
+
 		return null;
 	}
 
 	@Override
 	public void init() throws Exception {
+		CTXS = new DustHandle[] { HANDLE_DUST_ATT_CTX_MSG, HANDLE_DUST_ATT_CTX_AGT, HANDLE_DUST_ATT_CTX_DLG,
+				HANDLE_DUST_ATT_CTX_APP, };
+
 //	protected void init() throws Exception {
 		syncUnits(true);
 
 //		syncUnits(false);
+	}
+
+	public void begin() throws Exception {
+
+		DustHandle hPlatform = DustMachineBoot.getMachineData(TOKEN_DUST_ATT_PLATFORM);
+
+		Collection<DustHandle> modules = access(DustAccess.Get, Collections.EMPTY_LIST, null, HANDLE_DUST_ATT_CTX_APP,
+				HANDLE_DUST_ATT_NODE, HANDLE_MISC_ATT_PARENT, HANDLE_DUST_ATT_MODULES);
+
+		for (DustHandle mod : modules) {
+			DustHandle mu = mod.getUnit();
+			for (DustHandle h : DustMachineUtils.getUnitMembers(mu)) {
+				if (HANDLE_DUST_ASP_IMPLEMENTATION.equals(h.getType())) {
+					boolean match = access(DustAccess.Check, hPlatform, h, HANDLE_DUST_ATT_PLATFORM);
+					if (match) {
+						DustHandle target = access(DustAccess.Get, null, h, HANDLE_MISC_ATT_TARGET);
+						String cName = access(DustAccess.Get, null, h, HANDLE_MISC_ATT_KEY);
+						Dust.log(null, "Implementation found", target, cName);
+
+						access(DustAccess.Set, cName, null, HANDLE_DUST_ATT_CTX_APP, HANDLE_DUST_ATT_BINARY_RESOLVER, target);
+					}
+				}
+			}
+		}
+
+		Object rm = access(DustAccess.Get, Collections.EMPTY_MAP, null, HANDLE_DUST_ATT_CTX_APP,
+				HANDLE_DUST_ATT_BINARY_RESOLVER);
+		
+		Dust.log(null, "Resolver map", rm);
+
 	}
 
 	@Override

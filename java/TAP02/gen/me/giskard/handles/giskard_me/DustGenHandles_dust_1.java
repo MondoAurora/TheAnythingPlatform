@@ -3,7 +3,7 @@ package me.giskard.handles.giskard_me;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustHandle;
 
-// Generation timestamp 20261005T083153Z
+// Generation timestamp 20261005T134400Z
 
 public interface DustGenHandles_dust_1 {
 // Aspects
@@ -43,6 +43,7 @@ public interface DustGenHandles_dust_1 {
 	DustHandle HANDLE_DUST_ATT_NEUMANN_CPU = Dust.getHandle("giskard.me/dust.1$neumannCPU");
 	DustHandle HANDLE_DUST_ATT_NEUMANN_IO = Dust.getHandle("giskard.me/dust.1$neumannIO");
 	DustHandle HANDLE_DUST_ATT_NEUMANN_MEM = Dust.getHandle("giskard.me/dust.1$neumannMEM");
+	DustHandle HANDLE_DUST_ATT_NODE = Dust.getHandle("giskard.me/dust.1$node");
 	DustHandle HANDLE_DUST_ATT_PLATFORM = Dust.getHandle("giskard.me/dust.1$platform");
 	DustHandle HANDLE_DUST_ATT_RELEASEONSHUTDOWN = Dust.getHandle("giskard.me/dust.1$releaseOnShutdown");
 	DustHandle HANDLE_DUST_ATT_SUPPORTED_PLATFORMS = Dust.getHandle("giskard.me/dust.1$supportedPlatforms");

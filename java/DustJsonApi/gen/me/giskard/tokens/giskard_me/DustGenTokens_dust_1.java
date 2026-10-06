@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20260924T084828Z
+// Generation timestamp 20261005T134400Z
 
 public interface DustGenTokens_dust_1 {
 // Aspects
@@ -40,6 +40,7 @@ public interface DustGenTokens_dust_1 {
 	String TOKEN_DUST_ATT_NEUMANN_CPU = "giskard.me/dust.1$neumannCPU";
 	String TOKEN_DUST_ATT_NEUMANN_IO = "giskard.me/dust.1$neumannIO";
 	String TOKEN_DUST_ATT_NEUMANN_MEM = "giskard.me/dust.1$neumannMEM";
+	String TOKEN_DUST_ATT_NODE = "giskard.me/dust.1$node";
 	String TOKEN_DUST_ATT_PLATFORM = "giskard.me/dust.1$platform";
 	String TOKEN_DUST_ATT_RELEASEONSHUTDOWN = "giskard.me/dust.1$releaseOnShutdown";
 	String TOKEN_DUST_ATT_SUPPORTED_PLATFORMS = "giskard.me/dust.1$supportedPlatforms";

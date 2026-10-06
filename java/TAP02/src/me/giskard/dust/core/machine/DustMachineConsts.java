@@ -14,7 +14,7 @@ public interface DustMachineConsts extends DustConsts, DustUtilsConsts, DustGenH
 		DustHandle hNext;
 
 		@Override
-		protected void init() throws Exception {
+		public void init() throws Exception {
 			hNext = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_NEXT);
 		};
 

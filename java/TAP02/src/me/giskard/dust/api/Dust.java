@@ -2,6 +2,7 @@ package me.giskard.dust.api;
 
 import java.lang.reflect.Constructor;
 
+import me.giskard.boot.DustGenBootConsts;
 import me.giskard.dust.core.machine.DustMachineBoot;
 import me.giskard.dust.core.utils.DustUtils;
 
@@ -11,10 +12,10 @@ public class Dust implements DustConsts {
 	private static DustMachine MACHINE;
 
 	public static void main(String[] args) throws Exception {
-		String appName = DustUtils.optGet(args, 0, "");
+		String appId = DustUtils.optGet(args, 0, "");
 		String appUnitPath = DustUtils.optGet(args, 1, "");
 
-		start(DUST_PLATFORM_JAVA, appName, appUnitPath);
+		start(appId, appUnitPath);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -42,7 +43,7 @@ public class Dust implements DustConsts {
 		System.out.println(sb);
 	}
 
-	public static DustHandle start(String platform, String appName, String appUnitPath) throws Exception {
+	public static DustHandle start(String appId, String appUnitPath) throws Exception {
 		long start = System.currentTimeMillis();
 
 		try {
@@ -52,11 +53,23 @@ public class Dust implements DustConsts {
 
 			MACHINE.init();
 
-//			DustHandle hh = Dust.getHandle(null, null, TOKEN_DUST_ATT_CTX_AGT, DustOptCreate.None);
-//
-//			Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "Test handle", hh);
+			DustHandle hApp = Dust.getHandle(appId);
+			
+			DustHandle hAppCtx = DustMachineBoot.getTokenHandle(DustGenBootConsts.TOKEN_DUST_ATT_CTX_APP);
+			DustHandle hAttNode = DustMachineBoot.getTokenHandle(DustGenBootConsts.TOKEN_DUST_ATT_NODE);
+			
+			Dust.access(DustAccess.Set, hApp, null, hAppCtx, hAttNode);
+			
+			MACHINE.begin();
 
-			Dust.log(null, "Machine instance created.");
+			Dust.log(null, "Machine instance created.", hApp);
+			
+			DustHandle hTest = Dust.getHandle("Lorand/test01$LogTest");
+			
+			Dust.access(DustAccess.Commit, null, hTest);
+
+			Dust.access(DustAccess.Commit, null, hTest);
+
 
 		} finally {
 			Dust.log(null, "Dust finished", System.currentTimeMillis() - start, "msec.");

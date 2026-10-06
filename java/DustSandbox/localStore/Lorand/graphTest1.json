@@ -4,9 +4,11 @@
 	},
 	"data": [],
 	"meta": {
-		"date": "20260929T095101Z",
-		"count": 25,
+		"date": "20261006T080608Z",
+		"count": 55,
 		"unitInfo": {
+			"id": "Lorand/graphTest1",
+			"type": "giskard.me/mind.1$Unit",
 			"relationships": {
 				"giskard.me/mind.1$author": {
 					"data": {
@@ -14,9 +16,7 @@
 						"type": "giskard.me/mind.1$Author"
 					}
 				}
-			},
-			"id": "Lorand/graphTest1",
-			"type": "giskard.me/mind.1$Unit"
+			}
 		}
 	}
 }

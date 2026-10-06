@@ -7,31 +7,31 @@ import me.giskard.dust.api.DustHandle;
 public class DustDevDumpAgent extends DustAgent implements DustDevConsts {
 
 	@Override
-	protected void init() throws Exception {
+	public void init() throws Exception {
 		DustHandle name = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_NAME);
 		Dust.log(HANDLE_MISC_TAG_LEVEL_INFO, name, "init()");
 	}
 	
 	@Override
-	protected void begin() throws Exception {
+	public void begin() throws Exception {
 		DustHandle name = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_NAME);
 		Dust.log(HANDLE_MISC_TAG_LEVEL_INFO, name, "begin()");
 	}
 	
 	@Override
-	protected void process() throws Exception {
+	public void process() throws Exception {
 		DustHandle name = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_NAME);
 		Dust.log(HANDLE_MISC_TAG_LEVEL_INFO, name, "process()");
 	}
 	
 	@Override
-	protected void end(boolean commit) throws Exception {
+	public void end(boolean commit) throws Exception {
 		DustHandle name = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_NAME);
 		Dust.log(HANDLE_MISC_TAG_LEVEL_INFO, name, "end()", commit);
 	}
 	
 	@Override
-	protected void release() throws Exception {
+	public void release() throws Exception {
 		DustHandle name = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_NAME);
 		Dust.log(HANDLE_MISC_TAG_LEVEL_INFO, name, "release()");
 	}

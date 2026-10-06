@@ -20,13 +20,12 @@ public class DustMachineUtils implements DustMachineConsts, DustGenHandles_dust_
 	}
 
 	public static Iterable<DustHandle> getUnitMembers(DustHandle unit) {
-		Map<String, DustHandle> m = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unit, HANDLE_DUST_ATT_UNIT_REFS);
+		Map<String, DustHandle> m = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unit, HANDLE_DUST_ATT_UNIT_HANDLES);
 		return m.values();
 	}
 
 	public static Iterable<DustHandle> getUnitMembers(DustHandle unit, Collection<DustHandle> ret) {
-		Object key = (unit instanceof DustMachineHandle) ? HANDLE_DUST_ATT_UNIT_HANDLES : HANDLE_DUST_ATT_UNIT_REFS;
-		Map<String, DustHandle> m = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unit, key);
+		Map<String, DustHandle> m = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unit, HANDLE_DUST_ATT_UNIT_HANDLES);
 		
 		if ( null == ret ) {
 			ret = new TreeSet<DustHandle>(m.values());
