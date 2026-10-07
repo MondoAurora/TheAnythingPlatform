@@ -7,9 +7,9 @@ public class DustTest01 implements DustTestConsts {
 	public static void testMsg() throws Exception {
 		DustHandle hTest;
 
-		hTest = Dust.getHandle("Lorand/test01$LogTest");
-		Dust.access(DustAccess.Commit, null, hTest);
-		Dust.access(DustAccess.Commit, null, hTest);
+//		hTest = Dust.getHandle("Lorand/test01$LogTest");
+//		Dust.access(DustAccess.Commit, null, hTest);
+//		Dust.access(DustAccess.Commit, null, hTest);
 
 //		hTest = Dust.getHandle("Lorand/test01$UnitHandler");
 

@@ -682,7 +682,7 @@ public class DustMachineAgent extends DustMachine
 			}
 			break;
 		case Commit:
-			Object ll = access(DustAccess.Peek, null, curr, HANDLE_MIND_ATT_LISTENERS);
+			Object ll = access(DustAccess.Peek, Collections.EMPTY_LIST, curr, HANDLE_MIND_ATT_LISTENERS);
 			for (DustHandle l : (Collection<DustHandle>) ll) {
 				ret = notifyAgent((DustHandle) l, access, (DustHandle) curr);
 			}
@@ -741,14 +741,12 @@ public class DustMachineAgent extends DustMachine
 	public void init() throws Exception {
 		CTXS = new DustHandle[] { HANDLE_DUST_ATT_CTX_MSG, HANDLE_DUST_ATT_CTX_AGT, HANDLE_DUST_ATT_CTX_DLG,
 				HANDLE_DUST_ATT_CTX_APP, };
-
-//	protected void init() throws Exception {
-		syncUnits(true);
-
-//		syncUnits(false);
 	}
 
 	public void begin() throws Exception {
+		syncUnits(true);
+
+//	syncUnits(false);
 
 		DustHandle hPlatform = DustMachineBoot.getMachineData(TOKEN_DUST_ATT_PLATFORM);
 

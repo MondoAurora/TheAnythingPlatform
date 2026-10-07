@@ -61,11 +61,15 @@ public class Dust implements DustConsts {
 
 			Dust.access(DustAccess.Set, hApp, null, hAppCtx, hAttNode);
 
+			createInstance(Class.forName(DUST_BOOT_APP_CLASS));
+
+			DustTest01.testMsg();
+
 			MACHINE.begin();
 
 			Dust.log(null, "Machine instance created.", hApp);
 
-			DustTest01.testMsg();
+//			DustTest01.testMsg();
 
 		} finally {
 			Dust.log(null, "Dust finished", System.currentTimeMillis() - start, "msec.");

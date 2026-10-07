@@ -4,8 +4,7 @@ public interface DustConsts {
 
 	String DUST_CRED_FILE = "credentials.json";
 
-	String UNIT_DUST = "giskard.me/dust.1";
-	String UNIT_MIND = "giskard.me/mind.1";
+	String DUST_BOOT_APP_CLASS = "me.giskard.boot.DustGenBootApp";
 
 	String DUST_CHARSET_UTF8 = "UTF-8";
 	String DUST_FMT_TIMESTAMP = "yyyyMMdd'T'HHmmss'Z'";
