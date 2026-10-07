@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20260929T095103Z
+// Generation timestamp 20261007T080452Z
 
 public interface DustGenTokens_misc_1 {
 // Aspects
@@ -82,4 +82,6 @@ public interface DustGenTokens_misc_1 {
 	String TOKEN_MISC_TAG_STATE = "giskard.me/misc.1$State";
 	String TOKEN_MISC_TAG_STATE_CHANGED = "giskard.me/misc.1$StateChanged";
 	String TOKEN_MISC_TAG_STATE_IN_SYNC = "giskard.me/misc.1$StateInSync";
+	String TOKEN_MISC_TAG_STATE_LOADING = "giskard.me/misc.1$StateLoading";
+	String TOKEN_MISC_TAG_STATE_LOAD_FAILED = "giskard.me/misc.1$StateLoadFailed";
 }

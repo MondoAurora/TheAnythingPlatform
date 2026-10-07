@@ -5,6 +5,7 @@ import java.lang.reflect.Constructor;
 import me.giskard.boot.DustGenBootConsts;
 import me.giskard.dust.core.machine.DustMachineBoot;
 import me.giskard.dust.core.utils.DustUtils;
+import me.giskard.dust.test.DustTest01;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class Dust implements DustConsts {
@@ -54,22 +55,17 @@ public class Dust implements DustConsts {
 			MACHINE.init();
 
 			DustHandle hApp = Dust.getHandle(appId);
-			
+
 			DustHandle hAppCtx = DustMachineBoot.getTokenHandle(DustGenBootConsts.TOKEN_DUST_ATT_CTX_APP);
 			DustHandle hAttNode = DustMachineBoot.getTokenHandle(DustGenBootConsts.TOKEN_DUST_ATT_NODE);
-			
+
 			Dust.access(DustAccess.Set, hApp, null, hAppCtx, hAttNode);
-			
+
 			MACHINE.begin();
 
 			Dust.log(null, "Machine instance created.", hApp);
-			
-			DustHandle hTest = Dust.getHandle("Lorand/test01$LogTest");
-			
-			Dust.access(DustAccess.Commit, null, hTest);
 
-			Dust.access(DustAccess.Commit, null, hTest);
-
+			DustTest01.testMsg();
 
 		} finally {
 			Dust.log(null, "Dust finished", System.currentTimeMillis() - start, "msec.");

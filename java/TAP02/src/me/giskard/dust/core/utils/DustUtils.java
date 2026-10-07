@@ -21,7 +21,7 @@ public class DustUtils implements DustConsts, DustUtilsConsts {
 
 	public static String[] splitId(String id) {
 		String[] ii = id.split("\\$");
-		return (1 == ii.length) ? new String[] { null, ii[1] } : ii;
+		return (1 == ii.length) ? new String[] { null, ii[0] } : ii;
 	}
 
 	public static boolean isEmpty(String str) {

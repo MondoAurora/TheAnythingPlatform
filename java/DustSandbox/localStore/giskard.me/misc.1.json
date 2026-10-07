@@ -452,6 +452,38 @@
 			}
 		},
 		{
+			"id": "giskard.me/misc.1$StateLoadFailed",
+			"type": "giskard.me/mind.1$Tag",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MISC_TAG_STATE_LOAD_FAILED",
+				"giskard.me/misc.1$name": "TOKEN_MISC_TAG_STATE_LOAD_FAILED"
+			},
+			"relationships": {
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "giskard.me/misc.1$State",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			}
+		},
+		{
+			"id": "giskard.me/misc.1$StateLoading",
+			"type": "giskard.me/mind.1$Tag",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MISC_TAG_STATE_LOADING",
+				"giskard.me/misc.1$name": "TOKEN_MISC_TAG_STATE_LOADING"
+			},
+			"relationships": {
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "giskard.me/misc.1$State",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			}
+		},
+		{
 			"id": "giskard.me/misc.1$alias",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
@@ -1203,6 +1235,7 @@
 			"id": "giskard.me/misc.1$refPath",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MISC_ATT_REFPATH",
 				"giskard.me/misc.1$name": "TOKEN_MISC_ATT_REFPATH"
 			},
 			"relationships": {
@@ -1398,8 +1431,8 @@
 		}
 	],
 	"meta": {
-		"date": "20261006T080608Z",
-		"count": 74,
+		"date": "20261007T080451Z",
+		"count": 76,
 		"unitInfo": {
 			"id": "giskard.me/misc.1",
 			"type": "giskard.me/mind.1$Unit",

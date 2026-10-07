@@ -180,7 +180,6 @@ public class DustMachineAgent extends DustMachine
 
 		try (FileOutputStream fos = new FileOutputStream("localStore/" + handle.id + DUST_EXT_JSON)) {
 			DustUtilsJsonApi.storeUnit(handle, fos);
-//			idea.content.put(hAttUnitState, hTagStateInSync);
 		} catch (Throwable e) {
 			DustException.wrap(e, "saving unit", handle.id);
 		}
@@ -210,6 +209,9 @@ public class DustMachineAgent extends DustMachine
 		String[] ii = DustUtils.splitId(id);
 		if (null != ii[0]) {
 			hUnit = getUnit(ii[0], createIfMissing);
+		} else {
+			hUnit = getUnit(ii[1], createIfMissing);
+			return hUnit;
 		}
 		DustMachineIdea iUnit = DustMachineBoot.getIdea(hUnit);
 
