@@ -156,7 +156,7 @@
 			"id": "giskard.me/dustImpl.1$StreamCentreImplJava17",
 			"type": "giskard.me/dust.1$Implementation",
 			"attributes": {
-				"giskard.me/misc.1$key": "me.giskard.dust.core.stream.DustStreamAgent"
+				"giskard.me/misc.1$key": "me.giskard.dust.core.machine.DustMachineIOAgent"
 			},
 			"relationships": {
 				"giskard.me/dust.1$platform": {
@@ -217,7 +217,7 @@
 		}
 	],
 	"meta": {
-		"date": "20261005T144739Z",
+		"date": "20261007T124539Z",
 		"count": 9,
 		"unitInfo": {
 			"id": "giskard.me/dustImpl.1",

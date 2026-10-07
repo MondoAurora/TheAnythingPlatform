@@ -2,6 +2,8 @@ package me.giskard.dust.core.utils;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -29,6 +31,11 @@ public class DustUtilsJsonApi implements DustMachineConsts, DustUtilsConstsJson,
 	public static void storeUnit(DustHandle unit, OutputStream os) throws Exception {
 		Map<String, Object> target = storeUnit(unit);
 		DustUtilsJson.writeJson(os, target, DUST_CHARSET_UTF8);
+	}
+
+	public static void storeUnit(DustHandle unit, Writer w) throws Exception {
+		Map<String, Object> target = storeUnit(unit);
+		DustUtilsJson.writeJson(w, target);
 	}
 
 	public static Map<String, Object> storeUnit(DustHandle unit) {
@@ -153,12 +160,25 @@ public class DustUtilsJsonApi implements DustMachineConsts, DustUtilsConstsJson,
 		return item;
 	}
 
-	public static void loadUnit(DustHandle unit, InputStream is) throws Exception {
+	public static boolean loadUnit(DustHandle unit, InputStream is) throws Exception {
 		if (null == is) {
-			return;
+			return false;
 		}
 		Map<String, Object> content = DustUtilsJson.readJson(is, DUST_CHARSET_UTF8);
+		loadContent(unit, content);
+		return true;
+	}
 
+	public static boolean loadUnit(DustHandle unit, Reader r) throws Exception {
+		if (null == r) {
+			return false;
+		}
+		Map<String, Object> content = DustUtilsJson.readJson(r);
+		loadContent(unit, content);
+		return true;
+	}
+
+	public static void loadContent(DustHandle unit, Map<String, Object> content) throws Exception {
 		String str;
 
 		str = DustUtils.simpleGet(content, JsonApiMember.jsonapi, JsonApiMember.version);
@@ -202,7 +222,7 @@ public class DustUtilsJsonApi implements DustMachineConsts, DustUtilsConstsJson,
 				String rk = ae.getKey();
 				DustHandle tAtt = Dust.getHandle(unit, HANDLE_MIND_ASP_ATTRIBUTE, rk, true);
 
-				if (SKIP_KEYS.contains(rk)) {
+				if (SKIP_KEYS.contains(tAtt)) {
 					continue;
 				}
 				Dust.access(DustAccess.Set, ae.getValue(), target, tAtt);

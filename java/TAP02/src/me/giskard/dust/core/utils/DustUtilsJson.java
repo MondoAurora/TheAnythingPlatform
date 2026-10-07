@@ -29,12 +29,16 @@ public class DustUtilsJson implements DustUtilsConsts {
 
 		if (null != is) {
 			try (Reader r = new InputStreamReader(is, Charset.forName(encoding))) {
-				JSONParser p = new JSONParser();
-				ret = p.parse(r);
+				ret = readJson(r);
 			}
 		}
 		
 		return (RetType) ret;
+	}
+
+	public static <RetType> RetType  readJson(Reader r) throws Exception {
+		JSONParser p = new JSONParser();
+		return (RetType) p.parse(r);
 	}
 
 	public static void writeJson(OutputStream os, Object ob, String encoding) throws Exception {
