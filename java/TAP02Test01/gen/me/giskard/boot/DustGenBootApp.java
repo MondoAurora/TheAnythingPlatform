@@ -3,26 +3,13 @@ package me.giskard.boot;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustConsts;
 import me.giskard.dust.api.DustHandle;
-import me.giskard.handles.giskard_me.DustGenHandles_dust_1;
 
 // Generation timestamp 20260910T124649Z
 
-public class DustGenBootApp implements DustConsts, DustGenHandles_dust_1 {
-	public DustGenBootApp() {
+public class DustGenBootApp implements DustConsts {
+	public DustGenBootApp(String appId) {
 		Dust.log(null, "DustGenBootApp", "HELLO!");
-		
-		DustHandle hMsgProcessUnitStream = Dust.getHandle("Lorand/test01$ProcessUnitStream");
-		DustHandle hAgtStreamUnitProcessor = Dust.getHandle("Lorand/test01$StreamUnitProcessor");
-		DustHandle hNarSerializeJsonApi = Dust.getHandle("giskard.me/stream.1$SerializeJsonApi");
-		
-		DustHandle hMsgProvideStream = Dust.getHandle("Lorand/test01$ProvideStream");
-		DustHandle hAgtLocalFiles = Dust.getHandle("Lorand/test01$LocalFiles");
-		DustHandle hNarFileStreamSource = Dust.getHandle("giskard.me/stream.1$FileStreamSource");
-		
-		DustHandle hMsgUnitHandler = Dust.getHandle("Lorand/test01$UnitHandler");
-		DustHandle hAgtStreamCentre = Dust.getHandle("Lorand/test01$StreamCentre");
-		DustHandle hNarStreamCentre = Dust.getHandle("giskard.me/stream.1$StreamCentre");
-				
+
 		DustHandle HANDLE_DUST_ATT_CTX_APP = Dust.getHandle("giskard.me/dust.1$ctxApp");
 		DustHandle HANDLE_DUST_ATT_BINARY_RESOLVER = Dust.getHandle("giskard.me/dust.1$binaryResolver");
 		DustHandle HANDLE_MIND_ATT_LISTENERS = Dust.getHandle("giskard.me/mind.1$listeners");
@@ -34,6 +21,20 @@ public class DustGenBootApp implements DustConsts, DustGenHandles_dust_1 {
 		DustHandle HANDLE_DUST_ATT_NODE = Dust.getHandle("giskard.me/dust.1$node");
 		DustHandle HANDLE_STREAM_ATT_UNIT_HANDLER = Dust.getHandle("giskard.me/stream.1$unitHandler");
 
+		DustHandle hApp = Dust.getHandle(appId);
+		Dust.access(DustAccess.Set, hApp, null, HANDLE_DUST_ATT_CTX_APP, HANDLE_DUST_ATT_NODE);
+
+		DustHandle hMsgProcessUnitStream = Dust.getHandle("Lorand/test01$ProcessUnitStream");
+		DustHandle hAgtStreamUnitProcessor = Dust.getHandle("Lorand/test01$StreamUnitProcessor");
+		DustHandle hNarSerializeJsonApi = Dust.getHandle("giskard.me/stream.1$SerializeJsonApi");
+
+		DustHandle hMsgProvideStream = Dust.getHandle("Lorand/test01$ProvideStream");
+		DustHandle hAgtLocalFiles = Dust.getHandle("Lorand/test01$LocalFiles");
+		DustHandle hNarFileStreamSource = Dust.getHandle("giskard.me/stream.1$FileStreamSource");
+
+		DustHandle hMsgUnitHandler = Dust.getHandle("Lorand/test01$UnitHandler");
+		DustHandle hAgtStreamCentre = Dust.getHandle("Lorand/test01$StreamCentre");
+		DustHandle hNarStreamCentre = Dust.getHandle("giskard.me/stream.1$StreamCentre");
 
 		Dust.access(DustAccess.Set, "me.giskard.dust.core.stream.DustStreamJsonApiSerializerAgent", null, HANDLE_DUST_ATT_CTX_APP, HANDLE_DUST_ATT_BINARY_RESOLVER, hNarSerializeJsonApi);
 		Dust.access(DustAccess.Set, "me.giskard.dust.core.stream.DustStreamSrcFileAgent", null, HANDLE_DUST_ATT_CTX_APP, HANDLE_DUST_ATT_BINARY_RESOLVER, hNarFileStreamSource);
@@ -42,18 +43,17 @@ public class DustGenBootApp implements DustConsts, DustGenHandles_dust_1 {
 		Dust.access(DustAccess.Insert, hAgtStreamUnitProcessor, hMsgProcessUnitStream, HANDLE_MIND_ATT_LISTENERS, KEY_ADD);
 		Dust.access(DustAccess.Insert, hAgtLocalFiles, hMsgProvideStream, HANDLE_MIND_ATT_LISTENERS, KEY_ADD);
 		Dust.access(DustAccess.Insert, hAgtStreamCentre, hMsgUnitHandler, HANDLE_MIND_ATT_LISTENERS, KEY_ADD);
-		
+
 		Dust.access(DustAccess.Set, hMsgProcessUnitStream, hMsgUnitHandler, HANDLE_MIND_ATT_NEXT);
-		
+
 		Dust.access(DustAccess.Set, hNarStreamCentre, hAgtStreamCentre, HANDLE_MIND_ATT_NARRATIVE);
 		Dust.access(DustAccess.Set, hMsgProvideStream, hAgtStreamCentre, HANDLE_STREAM_ATT_SOURCE);
-		
+
 		Dust.access(DustAccess.Set, hNarFileStreamSource, hAgtLocalFiles, HANDLE_MIND_ATT_NARRATIVE);
 		Dust.access(DustAccess.Set, "localStore", hAgtLocalFiles, HANDLE_MISC_ATT_PATH);
 		Dust.access(DustAccess.Set, "backup", hAgtLocalFiles, HANDLE_STREAM_ATT_BACKUPFOLDER);
-		
-		Dust.access(DustAccess.Set, hNarSerializeJsonApi, hAgtStreamUnitProcessor, HANDLE_MIND_ATT_NARRATIVE);
 
+		Dust.access(DustAccess.Set, hNarSerializeJsonApi, hAgtStreamUnitProcessor, HANDLE_MIND_ATT_NARRATIVE);
 
 		Dust.access(DustAccess.Set, hMsgUnitHandler, null, HANDLE_DUST_ATT_CTX_APP, HANDLE_DUST_ATT_NODE, HANDLE_STREAM_ATT_UNIT_HANDLER);
 

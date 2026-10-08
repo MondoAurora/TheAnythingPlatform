@@ -207,6 +207,46 @@
 			"id": "Lorand/test01$TestClient",
 			"type": "giskard.me/mind.1$Node",
 			"relationships": {
+				"giskard.me/dev.1$bootTokens": {
+					"data": [
+						{
+							"id": "Lorand/test01$LocalFiles",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$ProcessUnitStream",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$ProvideStream",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$StreamCentre",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$StreamUnitProcessor",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$UnitHandler",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "giskard.me/stream.1$FileStreamSource",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$SerializeJsonApi",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$StreamCentre",
+							"type": "giskard.me/mind.1$Narrative"
+						}
+					]
+				},
 				"giskard.me/dust.1$machine": {
 					"data": {
 						"id": "Lorand/test01$MachineAPI",
@@ -242,6 +282,46 @@
 			"id": "Lorand/test01$TestServer",
 			"type": "giskard.me/mind.1$Node",
 			"relationships": {
+				"giskard.me/dev.1$bootTokens": {
+					"data": [
+						{
+							"id": "Lorand/test01$LocalFiles",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$ProcessUnitStream",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$ProvideStream",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$StreamCentre",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$StreamUnitProcessor",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$UnitHandler",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "giskard.me/stream.1$FileStreamSource",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$SerializeJsonApi",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$StreamCentre",
+							"type": "giskard.me/mind.1$Narrative"
+						}
+					]
+				},
 				"giskard.me/dust.1$machine": {
 					"data": {
 						"id": "Lorand/test01$MachineAPI",
@@ -303,7 +383,7 @@
 		}
 	],
 	"meta": {
-		"date": "20261006T080608Z",
+		"date": "20261008T140854Z",
 		"count": 17,
 		"unitInfo": {
 			"id": "Lorand/test01",

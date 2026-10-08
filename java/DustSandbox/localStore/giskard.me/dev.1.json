@@ -24,10 +24,6 @@
 			"type": "giskard.me/mind.1$Narrative"
 		},
 		{
-			"id": "giskard.me/dev.1$MachineBootTokens",
-			"type": "giskard.me/mind.1$Attribute"
-		},
-		{
 			"id": "giskard.me/dev.1$ScrapeMediaTypes",
 			"type": "giskard.me/mind.1$Message",
 			"attributes": {
@@ -74,6 +70,50 @@
 			}
 		},
 		{
+			"id": "giskard.me/dev.1$bootNodes",
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DEV_ATT_BOOT_NODES",
+				"giskard.me/misc.1$name": "TOKEN_DEV_ATT_BOOT_NODES"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeSet",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "giskard.me/dev.1$bootTokens",
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DEV_ATT_BOOT_TOKENS",
+				"giskard.me/misc.1$name": "TOKEN_DEV_ATT_BOOT_TOKENS"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeSet",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
+		},
+		{
 			"id": "giskard.me/dev.1$classes",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
@@ -107,28 +147,6 @@
 					"data": [
 						{
 							"id": "giskard.me/mind.1$ColltypeOne",
-							"type": "giskard.me/mind.1$Tag"
-						},
-						{
-							"id": "giskard.me/mind.1$ValtypeHandle",
-							"type": "giskard.me/mind.1$Tag"
-						}
-					]
-				}
-			}
-		},
-		{
-			"id": "giskard.me/dev.1$machineBootTokens",
-			"type": "giskard.me/mind.1$Attribute",
-			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DEV_ATT_MACHINE_BOOT_TOKENS",
-				"giskard.me/misc.1$name": "TOKEN_DEV_ATT_MACHINE_BOOT_TOKENS"
-			},
-			"relationships": {
-				"giskard.me/mind.1$tags": {
-					"data": [
-						{
-							"id": "giskard.me/mind.1$ColltypeSet",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
@@ -245,7 +263,7 @@
 		}
 	],
 	"meta": {
-		"date": "20261008T082128Z",
+		"date": "20261008T140855Z",
 		"count": 17,
 		"unitInfo": {
 			"id": "giskard.me/dev.1",

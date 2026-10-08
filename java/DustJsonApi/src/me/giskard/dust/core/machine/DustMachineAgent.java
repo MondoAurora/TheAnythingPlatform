@@ -179,9 +179,26 @@ class DustMachineAgent extends DustMachine implements DustMachineConsts {
 		defaultSerializer = access(DustAccess.Peek, null, hMachine, TOKEN_MIND_ATT_SERIALIZER);
 		optLoadUnit(UNIT_DUST, unitMeta);
 		if (null != bootRefUnits) {
-			for (Map.Entry<String, DustMachineIdea> be : bootRefUnits.entrySet()) {
-				optLoadUnit(be.getKey(), be.getValue());
+			Set<String> seen = new HashSet<String>();
+			boolean chg = !bootRefUnits.isEmpty();
+			
+			while ( chg ) {
+				chg = false;
+				
+				for ( String uk : bootRefUnits.keySet() ) {
+					if ( seen.add(uk) ) {
+						Dust.log(TOKEN_MISC_TAG_LEVEL_INFO, "loading unit", uk);
+
+						optLoadUnit(uk, bootRefUnits.get(uk));
+						chg = true;
+						break;
+					}
+				}
 			}
+			
+//			for (Map.Entry<String, DustMachineIdea> be : bootRefUnits.entrySet()) {
+//				optLoadUnit(be.getKey(), be.getValue());
+//			}
 
 			bootRefUnits = null;
 		}

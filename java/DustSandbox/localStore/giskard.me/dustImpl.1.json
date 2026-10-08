@@ -96,7 +96,7 @@
 				"giskard.me/misc.1$key": "me.giskard.dust.core.machine.DustMachineAgent"
 			},
 			"relationships": {
-				"giskard.me/dev.1$machineBootTokens": {
+				"giskard.me/dev.1$bootTokens": {
 					"data": [
 						{
 							"id": "giskard.me/dust.1$Application",
@@ -111,12 +111,72 @@
 							"type": "giskard.me/mind.1$Aspect"
 						},
 						{
+							"id": "giskard.me/dust.1$Java17",
+							"type": "giskard.me/dust.1$Platform"
+						},
+						{
 							"id": "giskard.me/dust.1$Machine",
 							"type": "giskard.me/mind.1$Aspect"
 						},
 						{
 							"id": "giskard.me/dust.1$Thread",
 							"type": "giskard.me/mind.1$Aspect"
+						},
+						{
+							"id": "giskard.me/dust.1$allApplications",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/dust.1$allDialogs",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/dust.1$allThreads",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/dust.1$applications",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/dust.1$callStack",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/dust.1$ctxAgt",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/dust.1$ctxApp",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/dust.1$ctxDlg",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/dust.1$ctxMsg",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/dust.1$dialog",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/dust.1$node",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/dust.1$platform",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/dust.1$unitHandles",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/dust.1$unitObjects",
+							"type": "giskard.me/mind.1$Attribute"
 						},
 						{
 							"id": "giskard.me/mind.1$Agent",
@@ -141,6 +201,42 @@
 						{
 							"id": "giskard.me/mind.1$Unit",
 							"type": "giskard.me/mind.1$Aspect"
+						},
+						{
+							"id": "giskard.me/mind.1$cmd",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/mind.1$id",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/mind.1$listeners",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/mind.1$tags",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/mind.1$type",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/mind.1$unit",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/mind.1$unitState",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/misc.1$CmdInit",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/misc.1$StateInSync",
+							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				},
@@ -265,7 +361,7 @@
 		}
 	],
 	"meta": {
-		"date": "20261008T082128Z",
+		"date": "20261008T140855Z",
 		"count": 9,
 		"unitInfo": {
 			"id": "giskard.me/dustImpl.1",

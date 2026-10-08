@@ -9,13 +9,14 @@ import java.util.TreeSet;
 
 import me.giskard.boot.DustGenBootConsts;
 import me.giskard.dust.api.DustException;
+import me.giskard.dust.api.DustMachine;
 import me.giskard.dust.core.dev.DustDevUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsConsts;
 import me.giskard.dust.core.utils.DustUtilsFactory;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustMachineBoot implements DustGenBootConsts, DustUtilsConsts {
+public class DustMachineBoot implements DustGenBootConsts, DustUtilsConsts, DustMachine.Provider {
 
 	private static DustMachineIdea iMACHINE;
 	private static String memId;
@@ -186,4 +187,8 @@ public class DustMachineBoot implements DustGenBootConsts, DustUtilsConsts {
 		return ret;
 	}
 
+	@Override
+	public DustMachine getMachine() {
+		return new DustMachineAgent();
+	}
 }

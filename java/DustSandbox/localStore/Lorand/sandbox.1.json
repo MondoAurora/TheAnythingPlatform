@@ -204,6 +204,14 @@
 						"type": "giskard.me/dust.1$Implementation",
 						"id": "giskard.me/dustImpl.1$NEW_MachineImplJava17"
 					}
+				},
+				"giskard.me/dev.1$bootNodes": {
+					"data": [
+						{
+							"id": "Lorand/test01$TestClient",
+							"type": "giskard.me/mind.1$Node"
+						}
+					]
 				}
 			}
 		},

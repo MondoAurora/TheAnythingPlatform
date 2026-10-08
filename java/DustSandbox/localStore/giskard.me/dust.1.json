@@ -39,6 +39,7 @@
 			"id": "giskard.me/dust.1$Java17",
 			"type": "giskard.me/dust.1$Platform",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DUST_IDEA_JAVA17",
 				"giskard.me/misc.1$version": "17"
 			},
 			"relationships": {
@@ -880,10 +881,22 @@
 					]
 				}
 			}
+		},
+		{
+			"id": "giskard.me/mind.1$Aspect",
+			"type": "giskard.me/mind.1$Aspect"
+		},
+		{
+			"id": "giskard.me/mind.1$Attribute",
+			"type": "giskard.me/mind.1$Aspect"
+		},
+		{
+			"id": "giskard.me/mind.1$Unit",
+			"type": "giskard.me/mind.1$Aspect"
 		}
 	],
 	"meta": {
-		"date": "20261006T080608Z",
+		"date": "20261008T140855Z",
 		"count": 55,
 		"unitInfo": {
 			"id": "giskard.me/dust.1",

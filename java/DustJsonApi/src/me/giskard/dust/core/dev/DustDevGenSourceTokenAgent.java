@@ -7,6 +7,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import me.giskard.dust.core.Dust;
@@ -18,7 +20,7 @@ import me.giskard.dust.core.utils.DustUtilsFile;
 public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevConsts {
 
 	enum Mode {
-		TAP01Tokens, TAP02Handles, TAP02BootTokens
+		TAP01Tokens, TAP02Handles, TAP02BootTokens, TAP02AppNodes
 	}
 
 	Collection<String> types;
@@ -28,8 +30,6 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 	String targetPackageNew;
 	File rootNew;
 
-	Collection<DustHandle> bootTokens;
-
 	Map temp = new HashMap();
 
 	@Override
@@ -38,10 +38,6 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 		types = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_MISC_ATT_MEMBERS);
 		targetPackage = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_DEV_ATT_PACKAGE);
 		targetPackageNew = targetPackage.replace("tokens", "handles");
-//		targetPackageNew = targetPackage + "_new";
-
-		bootTokens = Dust.access(DustAccess.Peek, null, null, TOKEN_DEV_ATT_MACHINE_IMPL,
-				TOKEN_DEV_ATT_MACHINE_BOOT_TOKENS);
 
 		String projectRoot = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, TOKEN_MISC_ATT_PATH);
 		root = new File(new File(projectRoot), targetPackage.replace('.', '/'));
@@ -49,7 +45,6 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 
 		DustUtilsFile.ensureDir(root);
 		DustUtilsFile.ensureDir(rootNew);
-
 	}
 
 	@Override
@@ -64,7 +59,7 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 
 		DustHandle data = Dust.access(DustAccess.Peek, null, null, TOKEN_MISC_ATT_DATA);
 
-		if (null != data) {
+		if ( null != data ) {
 			String unit = data.getUnit().getId();
 			String type = data.getType().getId();
 			String name = Dust.access(DustAccess.Peek, null, data, TOKEN_MISC_ATT_NAME);
@@ -90,23 +85,38 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 			genJava(ue, Mode.TAP02Handles);
 		}
 
-		Collection<DustHandle> bootTokens = Dust.access(DustAccess.Peek, null, null, TOKEN_DEV_ATT_MACHINE_IMPL,
-				TOKEN_DEV_ATT_MACHINE_BOOT_TOKENS);
+		Collection<DustHandle> bootTokens = Dust.access(DustAccess.Peek, null, null, TOKEN_DEV_ATT_MACHINE_IMPL, TOKEN_DEV_ATT_BOOT_TOKENS);
+		Map<String, DustHandle> btSort = new TreeMap<String, DustHandle>();
 
-		if (null != bootTokens) {
+		if ( null != bootTokens ) {
 			String pn = "me.giskard.boot";
-			String cName = "DustGenBootConstsTest";
+			String cName = "DustGenBootConsts";
 
 			File r = new File("../TAP02/gen/me/giskard/boot");
 			PrintStream ps = createSrcStream(r, pn, cName, null, Mode.TAP02BootTokens);
 
 			for (DustHandle ht : bootTokens) {
 				String key = Dust.access(DustAccess.Peek, null, ht, TOKEN_DEV_ATT_TOKEN);
+				btSort.put(key, ht);
+			}
+
+			String pref = null;
+
+			for (Map.Entry<String, DustHandle> bte : btSort.entrySet()) {
+				String key = bte.getKey();
+
+				String[] kk = key.split(DUST_SEP);
+				String k = DustUtils.sbAppend(null, DUST_SEP, false, kk[0], kk[1], kk[2]).toString();
+				if ( !DustUtils.isEqual(k, pref) ) {
+					ps.println();
+					pref = k;
+				}
+
 				ps.print("\tString ");
 				ps.print(key);
 				ps.print(" = ");
 				ps.print("\"");
-				ps.print(ht.getId());
+				ps.print(bte.getValue().getId());
 				ps.print("\";");
 				ps.println();
 
@@ -117,6 +127,32 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 			ps.close();
 
 		}
+
+		Collection<DustHandle> bootNodes = Dust.access(DustAccess.Peek, null, null, TOKEN_DEV_ATT_BOOT_NODES);
+
+		if ( null != bootNodes ) {
+			String pn = "me.giskard.boot";
+			String cName = "DustGenBootAppTest";
+
+			File r = new File("../TAP02Test01/gen/me/giskard/boot");
+			PrintStream ps = createSrcStream(r, pn, cName, null, Mode.TAP02AppNodes);
+
+			Set<String> lines = new TreeSet<String>();
+
+			for (DustHandle ht : bootNodes) {
+				lines.add(DustUtils.sbAppend(null, "", false, "// ", ht.getId()).toString());
+			}
+
+			for (String l : lines) {
+				ps.println(l);
+			}
+
+			ps.println("}");
+			ps.flush();
+			ps.close();
+
+		}
+
 		temp.clear();
 
 		return null;
@@ -138,16 +174,16 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 			Map<String, DustHandle> tm = Dust.access(DustAccess.Peek, null, ue.getValue(), t);
 			boolean first = true;
 
-			if (null != tm) {
+			if ( null != tm ) {
 
 				Collection<String> keys = new TreeSet<>();
 				keys.addAll(tm.keySet());
 
 				for (String key : keys) {
-					if (first) {
+					if ( first ) {
 						first = false;
 
-						if (null == ps) {
+						if ( null == ps ) {
 							ps = createSrcStream(r, pn, cName, author, mode);
 						} else {
 							ps.println();
@@ -161,7 +197,7 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 					ps.print(newGen ? "\tDustHandle " : "\tString ");
 					ps.print(newGen ? key.replace("TOKEN_", "HANDLE_") : key);
 					ps.print(" = ");
-					if (newGen) {
+					if ( newGen ) {
 						ps.print("Dust.getHandle(");
 					}
 					ps.print("\"");
@@ -172,7 +208,7 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 			}
 		}
 
-		if (null != ps) {
+		if ( null != ps ) {
 			ps.println("}");
 			ps.flush();
 			ps.close();
@@ -190,13 +226,13 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 
 		ps.print("package ");
 		ps.print(pn);
-		if (null != author) {
+		if ( null != author ) {
 			ps.print(".");
 			ps.print(author);
 		}
 		ps.print(";");
 		ps.println();
-		if (newGen) {
+		if ( newGen ) {
 			ps.println();
 			ps.println("import me.giskard.dust.api.Dust;");
 			ps.println("import me.giskard.dust.api.DustHandle;");

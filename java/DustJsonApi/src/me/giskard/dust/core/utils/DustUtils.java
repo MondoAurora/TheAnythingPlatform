@@ -210,8 +210,13 @@ public class DustUtils implements DustUtilsConsts {
 		int s = arr.size();
 
 		if (KEY_ADD == index) {
-			idx = s;
-			arr.add(value);
+			idx = arr.indexOf(value);
+			if ( -1 == idx) { // quick and dirty
+				idx = s;
+				arr.add(value);
+			} else {
+				s = idx;
+			}
 		} else {
 			if (index < s) {
 				if (overwrite) {

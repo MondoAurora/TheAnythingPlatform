@@ -4,6 +4,7 @@ public interface DustConsts {
 
 	String DUST_CRED_FILE = "credentials.json";
 
+	String DUST_BOOT_SYS_CLASS = "me.giskard.dust.core.machine.DustMachineBoot";
 	String DUST_BOOT_APP_CLASS = "me.giskard.boot.DustGenBootApp";
 
 	String DUST_CHARSET_UTF8 = "UTF-8";
