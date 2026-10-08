@@ -1,28 +1,18 @@
 package me.giskard.boot;
 
-import me.giskard.dust.api.DustConsts;
-
 // Generation timestamp 20260910T124649Z
 
-public interface DustGenBootConsts extends DustConsts {
+public interface DustGenBootConsts {
 	
 	String TOKEN_DUST_ASP_APPLICATION = "giskard.me/dust.1$Application";
 	String TOKEN_DUST_ASP_CALL_CONTEXT = "giskard.me/dust.1$CallContext";
 	String TOKEN_DUST_ASP_DIALOG = "giskard.me/dust.1$Dialog";
 	String TOKEN_DUST_ASP_THREAD = "giskard.me/dust.1$Thread";
 	String TOKEN_DUST_ASP_MACHINE = "giskard.me/dust.1$Machine";
-	String TOKEN_DUST_ASP_NEUMANN_ALU = "giskard.me/dust.1$NeumannALU";
-	String TOKEN_DUST_ASP_NEUMANN_CPU = "giskard.me/dust.1$NeumannCPU";
-	String TOKEN_DUST_ASP_NEUMANN_IO = "giskard.me/dust.1$NeumannIO";
-	String TOKEN_DUST_ASP_NEUMANN_MEM = "giskard.me/dust.1$NeumannMEM";
 
 	String TOKEN_DUST_ATT_MACHINE = "giskard.me/dust.1$machine";
 	String TOKEN_DUST_ATT_UNIT_HANDLES = "giskard.me/dust.1$unitHandles";
 	String TOKEN_DUST_ATT_UNIT_OBJECTS = "giskard.me/dust.1$unitObjects";
-	String TOKEN_DUST_ATT_NEUMANN_ALU = "giskard.me/dust.1$neumannALU";
-	String TOKEN_DUST_ATT_NEUMANN_CPU = "giskard.me/dust.1$neumannCPU";
-	String TOKEN_DUST_ATT_NEUMANN_IO = "giskard.me/dust.1$neumannIO";
-	String TOKEN_DUST_ATT_NEUMANN_MEM = "giskard.me/dust.1$neumannMEM";
 	
 	String TOKEN_DUST_ATT_ALLAPPLICATIONS = "giskard.me/dust.1$allApplications";
 	String TOKEN_DUST_ATT_ALLDIALOGS = "giskard.me/dust.1$allDialogs";

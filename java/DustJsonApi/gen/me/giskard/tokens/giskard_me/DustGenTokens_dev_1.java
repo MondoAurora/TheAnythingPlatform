@@ -1,10 +1,12 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20260923T152931Z
+// Generation timestamp 20261008T082826Z
 
 public interface DustGenTokens_dev_1 {
 // Attributes
 	String TOKEN_DEV_ATT_CLASSES = "giskard.me/dev.1$classes";
+	String TOKEN_DEV_ATT_MACHINE_BOOT_TOKENS = "giskard.me/dev.1$machineBootTokens";
+	String TOKEN_DEV_ATT_MACHINE_IMPL = "giskard.me/dev.1$machineImpl";
 	String TOKEN_DEV_ATT_PACKAGE = "giskard.me/dev.1$package";
 	String TOKEN_DEV_ATT_SKIP = "giskard.me/dev.1$skip";
 	String TOKEN_DEV_ATT_TOKEN = "giskard.me/dev.1$token";

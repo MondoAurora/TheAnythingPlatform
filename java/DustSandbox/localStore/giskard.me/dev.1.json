@@ -24,6 +24,10 @@
 			"type": "giskard.me/mind.1$Narrative"
 		},
 		{
+			"id": "giskard.me/dev.1$MachineBootTokens",
+			"type": "giskard.me/mind.1$Attribute"
+		},
+		{
 			"id": "giskard.me/dev.1$ScrapeMediaTypes",
 			"type": "giskard.me/mind.1$Message",
 			"attributes": {
@@ -97,6 +101,50 @@
 			"attributes": {
 				"giskard.me/dev.1$token": "TOKEN_DEV_CMD_GENSRC",
 				"giskard.me/misc.1$name": "TOKEN_DEV_CMD_GENSRC"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "giskard.me/dev.1$machineBootTokens",
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DEV_ATT_MACHINE_BOOT_TOKENS",
+				"giskard.me/misc.1$name": "TOKEN_DEV_ATT_MACHINE_BOOT_TOKENS"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeSet",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "giskard.me/dev.1$machineImpl",
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DEV_ATT_MACHINE_IMPL",
+				"giskard.me/misc.1$name": "TOKEN_DEV_ATT_MACHINE_IMPL"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -197,8 +245,8 @@
 		}
 	],
 	"meta": {
-		"date": "20261006T080608Z",
-		"count": 14,
+		"date": "20261008T082128Z",
+		"count": 17,
 		"unitInfo": {
 			"id": "giskard.me/dev.1",
 			"type": "giskard.me/mind.1$Unit",

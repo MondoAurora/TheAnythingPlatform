@@ -93,9 +93,57 @@
 			"id": "giskard.me/dustImpl.1$NEW_MachineImplJava17",
 			"type": "giskard.me/dust.1$Implementation",
 			"attributes": {
-				"giskard.me/misc.1$key": "me.giskard.dust.core.machine.DustMachineNewAgent"
+				"giskard.me/misc.1$key": "me.giskard.dust.core.machine.DustMachineAgent"
 			},
 			"relationships": {
+				"giskard.me/dev.1$machineBootTokens": {
+					"data": [
+						{
+							"id": "giskard.me/dust.1$Application",
+							"type": "giskard.me/mind.1$Aspect"
+						},
+						{
+							"id": "giskard.me/dust.1$CallContext",
+							"type": "giskard.me/mind.1$Aspect"
+						},
+						{
+							"id": "giskard.me/dust.1$Dialog",
+							"type": "giskard.me/mind.1$Aspect"
+						},
+						{
+							"id": "giskard.me/dust.1$Machine",
+							"type": "giskard.me/mind.1$Aspect"
+						},
+						{
+							"id": "giskard.me/dust.1$Thread",
+							"type": "giskard.me/mind.1$Aspect"
+						},
+						{
+							"id": "giskard.me/mind.1$Agent",
+							"type": "giskard.me/mind.1$Aspect"
+						},
+						{
+							"id": "giskard.me/mind.1$Aspect",
+							"type": "giskard.me/mind.1$Aspect"
+						},
+						{
+							"id": "giskard.me/mind.1$Attribute",
+							"type": "giskard.me/mind.1$Aspect"
+						},
+						{
+							"id": "giskard.me/mind.1$Message",
+							"type": "giskard.me/mind.1$Aspect"
+						},
+						{
+							"id": "giskard.me/mind.1$Tag",
+							"type": "giskard.me/mind.1$Aspect"
+						},
+						{
+							"id": "giskard.me/mind.1$Unit",
+							"type": "giskard.me/mind.1$Aspect"
+						}
+					]
+				},
 				"giskard.me/dust.1$platform": {
 					"data": {
 						"id": "giskard.me/dust.1$Java17",
@@ -217,7 +265,7 @@
 		}
 	],
 	"meta": {
-		"date": "20261007T124539Z",
+		"date": "20261008T082128Z",
 		"count": 9,
 		"unitInfo": {
 			"id": "giskard.me/dustImpl.1",

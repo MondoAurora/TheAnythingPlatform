@@ -198,6 +198,12 @@
 						"type": "giskard.me/mind.1$Narrative",
 						"id": "giskard.me/dev.1$GenSourceTokenJava"
 					}
+				},
+				"giskard.me/dev.1$machineImpl": {
+					"data": {
+						"type": "giskard.me/dust.1$Implementation",
+						"id": "giskard.me/dustImpl.1$NEW_MachineImplJava17"
+					}
 				}
 			}
 		},
