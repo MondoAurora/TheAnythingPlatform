@@ -2,6 +2,7 @@ package me.giskard.dust.core.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -131,5 +132,9 @@ public class DustUtilsData implements DustUtilsConsts, DustMachineConsts {
 		return params;
 	}
 
+	public static Iterable<DustHandle> getAttHandles(DustHandle ob) {
+		Iterable<DustHandle> ret = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, ob, KEY_MAP_KEYS);
+		return ret;
+	}
 
 }

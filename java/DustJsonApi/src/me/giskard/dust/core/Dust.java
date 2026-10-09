@@ -172,8 +172,13 @@ public class Dust implements DustConsts, DustMachineConsts, DustDevConsts {
 		return MACHINE.releaseUnit(unit);
 	}
 
-	public static <RetType> Class<RetType> getBinary(Object key) {
+	public static String getClassName(Object key) {
 		String cn = access(DustAccess.Peek, null, appHandle, TOKEN_DUST_ATT_BINARY_RESOLVER, key, TOKEN_DUST_ATT_BINARY);
+		return cn;
+	}
+
+	public static <RetType> Class<RetType> getBinary(Object key) {
+		String cn = getClassName(key);
 		try {
 			return (Class<RetType>) Class.forName(cn);
 		} catch (Exception e) {

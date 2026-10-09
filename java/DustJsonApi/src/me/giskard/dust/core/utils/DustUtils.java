@@ -338,4 +338,17 @@ public class DustUtils implements DustUtilsConsts {
 		}
 	}
 
+	public static String getJavaId(DustHandle bt) {
+		StringBuilder sb = new StringBuilder("handle_");
+		
+		for ( char c : bt.getId().toCharArray() ) {
+			if ( !Character.isJavaIdentifierStart(c) || ( '$' == c )) {
+				c = '_';
+			}
+			sb.append(c);
+		}
+		
+		return sb.toString();
+	}
+
 }

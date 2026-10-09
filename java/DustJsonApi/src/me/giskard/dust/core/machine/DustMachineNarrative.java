@@ -9,6 +9,7 @@ import java.util.Set;
 
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.utils.DustUtils;
+import me.giskard.dust.core.utils.DustUtilsData;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public interface DustMachineNarrative extends DustMachineConsts {
@@ -42,7 +43,7 @@ public interface DustMachineNarrative extends DustMachineConsts {
 			for (String s : DustMachineUtils.getAttNames(hA)) {
 				atts.add(Dust.getHandle(s));
 			}
-			for (DustHandle h : DustMachineUtils.getAttHandles(hB)) {
+			for (DustHandle h : DustUtilsData.getAttHandles(hB)) {
 				atts.add(h);
 			}
 

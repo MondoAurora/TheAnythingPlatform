@@ -42,12 +42,6 @@ public class DustMachineUtils implements DustMachineConsts, DustGenHandles_dust_
 		return ret;
 	}
 
-	// new variant
-	public static Iterable<DustHandle> getAttHandles(DustHandle ob) {
-		Iterable<DustHandle> ret = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, ob, KEY_MAP_KEYS);
-		return ret;
-	}
-
 	public static void loadData(DustHandle target, DustHandle from, boolean deep, String... atts) {
 		if (null == atts) {
 			return;
