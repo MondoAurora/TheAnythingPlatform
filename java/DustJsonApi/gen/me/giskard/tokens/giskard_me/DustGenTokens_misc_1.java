@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20261007T080452Z
+// Generation timestamp 20261012T074535Z
 
 public interface DustGenTokens_misc_1 {
 // Aspects
@@ -78,6 +78,7 @@ public interface DustGenTokens_misc_1 {
 	String TOKEN_MISC_TAG_LEVEL_INFO = "giskard.me/misc.1$LevelInfo";
 	String TOKEN_MISC_TAG_LEVEL_TRACE = "giskard.me/misc.1$LevelTrace";
 	String TOKEN_MISC_TAG_LEVEL_WARNING = "giskard.me/misc.1$LevelWarning";
+	String TOKEN_MISC_TAG_MANDATORY = "giskard.me/misc.1$Mandatory";
 	String TOKEN_MISC_TAG_SLAVE = "giskard.me/misc.1$Slave";
 	String TOKEN_MISC_TAG_STATE = "giskard.me/misc.1$State";
 	String TOKEN_MISC_TAG_STATE_CHANGED = "giskard.me/misc.1$StateChanged";

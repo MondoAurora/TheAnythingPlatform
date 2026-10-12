@@ -279,6 +279,23 @@
 			}
 		},
 		{
+			"id": "Lorand/test01$TestMessage",
+			"type": "giskard.me/mind.1$Message",
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$WebServer",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			}
+		},
+		{
 			"id": "Lorand/test01$TestServer",
 			"type": "giskard.me/mind.1$Node",
 			"relationships": {
@@ -378,13 +395,25 @@
 			}
 		},
 		{
+			"id": "Lorand/test01$WebServer",
+			"type": "giskard.me/mind.1$Agent",
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/net.1$HttpServerJetty",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
 			"id": "Lorand/test01$giskard.me/dustImpl.1",
 			"type": "giskard.me/mind.1$Unit"
 		}
 	],
 	"meta": {
-		"date": "20261008T140854Z",
-		"count": 17,
+		"date": "20261012T141445Z",
+		"count": 19,
 		"unitInfo": {
 			"id": "Lorand/test01",
 			"type": "giskard.me/mind.1$Unit",

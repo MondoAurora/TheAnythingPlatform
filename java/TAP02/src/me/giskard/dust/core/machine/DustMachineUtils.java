@@ -2,6 +2,7 @@ package me.giskard.dust.core.machine;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeSet;
@@ -47,25 +48,24 @@ public class DustMachineUtils implements DustMachineConsts, DustGenHandles_dust_
 		return ret;
 	}
 
-//	public static void loadData(DustHandle target, DustHandle from, boolean deep, String... atts) {
-//		if (null == atts) {
-//			return;
-//		}
-//
-//		DustMachineAgent mind = ((DustMachineHandle) target).mind;
-//		Map mFrom = mind.getContent(from);
-//		Map mTarget = mind.getContent(target);
-//
-//		if (0 == atts.length) {
-//			for (String a : getAttNames(from)) {
-//				mTarget.put(a, copy(mFrom.get(a), deep));
-//			}
-//		} else {
-//			for (String a : atts) {
-//				mTarget.put(a, copy(mFrom.get(a), deep));
-//			}
-//		}
-//	}
+	public static void loadData(DustHandle target, DustHandle from, boolean deep, String... atts) {
+		if (null == atts) {
+			return;
+		}
+
+		Map mFrom = DustMachineBoot.getIdea((DustMachineHandle)from).content;
+		Map mTarget = DustMachineBoot.getIdea((DustMachineHandle)target).content;
+
+		if (0 == atts.length) {
+			for (String a : getAttNames(from)) {
+				mTarget.put(a, copy(mFrom.get(a), deep));
+			}
+		} else {
+			for (String a : atts) {
+				mTarget.put(a, copy(mFrom.get(a), deep));
+			}
+		}
+	}
 
 	public static Object copy(Object from, boolean deep) {
 		Object ret = from;
@@ -92,30 +92,30 @@ public class DustMachineUtils implements DustMachineConsts, DustGenHandles_dust_
 		return ret;
 	}
 
-//	public static Map getValues(DustHandle from, Map target, boolean cutPrefix, String... atts) {
-//		if (null == target) {
-//			target = new HashMap();
-//		} else {
-//			target.clear();
-//		}
-//
-//		if (null != atts) {
-//			Map mFrom = ((DustMachineHandle) from).mind.getContent(from);
-//
-//			if (0 == atts.length) {
-//				for (String a : getAttNames(from)) {
-//					String k = cutPrefix ? a.substring(a.indexOf(DUST_SEP_TOKEN) + 1) : a;
-//					target.put(k, mFrom.get(a));
-//				}
-//			} else {
-//				for (String a : atts) {
-//					String k = cutPrefix ? a.substring(a.indexOf(DUST_SEP_TOKEN) + 1) : a;
-//					target.put(k, mFrom.get(a));
-//				}
-//			}
-//		}
-//
-//		return target;
-//	}
+	public static Map getValues(DustHandle from, Map target, boolean cutPrefix, String... atts) {
+		if (null == target) {
+			target = new HashMap();
+		} else {
+			target.clear();
+		}
+
+		if (null != atts) {
+			Map mFrom = DustMachineBoot.getIdea((DustMachineHandle)from).content;
+
+			if (0 == atts.length) {
+				for (String a : getAttNames(from)) {
+					String k = cutPrefix ? a.substring(a.indexOf(DUST_SEP_TOKEN) + 1) : a;
+					target.put(k, mFrom.get(a));
+				}
+			} else {
+				for (String a : atts) {
+					String k = cutPrefix ? a.substring(a.indexOf(DUST_SEP_TOKEN) + 1) : a;
+					target.put(k, mFrom.get(a));
+				}
+			}
+		}
+
+		return target;
+	}
 
 }

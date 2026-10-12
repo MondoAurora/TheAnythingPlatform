@@ -1,6 +1,5 @@
 package me.giskard.dust.core.machine;
 
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,13 +20,9 @@ import me.giskard.dust.api.DustMachine;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsConsts;
 import me.giskard.dust.core.utils.DustUtilsJsonApi;
-import me.giskard.handles.giskard_me.DustGenHandles_dust_1;
-import me.giskard.handles.giskard_me.DustGenHandles_mind_1;
-import me.giskard.handles.giskard_me.DustGenHandles_misc_1;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustMachineAgent extends DustMachine
-		implements DustGenBootConsts, DustUtilsConsts, DustGenHandles_mind_1, DustGenHandles_dust_1, DustGenHandles_misc_1 {
+public class DustMachineAgent extends DustMachine implements DustGenBootConsts, DustUtilsConsts, DustMachineConsts {
 
 	static ThreadLocal<DustMachineIdea> THREADS = new ThreadLocal<DustMachineIdea>() {
 		public void set(DustMachineIdea value) {
@@ -51,6 +46,8 @@ public class DustMachineAgent extends DustMachine
 	DustMachineHandle hAttUnitState;
 
 	DustMachineHandle hTagStateInSync;
+	
+	boolean running = false;
 
 	public DustMachineAgent() {
 		Set<DustMachineHandle> threads = DustMachineBoot.getMachineData(TOKEN_DUST_ATT_ALLTHREADS);
@@ -79,7 +76,7 @@ public class DustMachineAgent extends DustMachine
 		return (DustMachineIdea) iCtx.content.get(key);
 	}
 
-	public synchronized DustMachineHandle getUnit(String unitId, boolean createIfMissing) {
+	synchronized DustMachineHandle getUnit(String unitId, boolean createIfMissing) {
 		DustMachineIdea iApp = getCtx(hAttCtxApp);
 
 		DustMachineHandle hUnit = getHandleInt(iApp, hAspUnit, unitId, createIfMissing);
@@ -87,7 +84,7 @@ public class DustMachineAgent extends DustMachine
 		return hUnit;
 	}
 
-	public Collection<DustHandle> getUnits() {
+	Collection<DustHandle> getUnits() {
 		DustMachineIdea iApp = getCtx(hAttCtxApp);
 
 		Map<DustMachineHandle, DustMachineIdea> unitMap = DustUtils.simpleGet(iApp.content, hAttUnitObjects);
@@ -101,6 +98,7 @@ public class DustMachineAgent extends DustMachine
 		DustMachineIdea iApp = getCtx(hAttCtxApp);
 
 		Map<DustMachineHandle, DustMachineIdea> unitMap = DustUtils.simpleGet(iApp.content, hAttUnitObjects);
+		DustHandle hMsg = Dust.access(DustAccess.Peek, null, iApp, HANDLE_DUST_ATT_NODE, HANDLE_STREAM_ATT_UNIT_HANDLER);
 
 		if (load) {
 			for (boolean chg = true; chg;) {
@@ -111,7 +109,19 @@ public class DustMachineAgent extends DustMachine
 
 					if (hTagStateInSync != iUnit.content.get(hAttUnitState)) {
 
-						loadUnit(hUnit, iUnit);
+//						loadUnit(hUnit, iUnit);
+
+						try {
+							Dust.access(DustAccess.Set, hUnit, hMsg, HANDLE_MISC_ATT_TARGET);
+
+							Dust.access(DustAccess.Set, HANDLE_MISC_TAG_CMD_LOAD, hMsg, HANDLE_MIND_ATT_CMD);
+							Dust.access(DustAccess.Commit, null, hMsg);
+
+							iUnit.content.put(hAttUnitState, hTagStateInSync);
+						} finally {
+							Dust.access(DustAccess.Delete, null, hMsg, HANDLE_MIND_ATT_CMD);
+							Dust.access(DustAccess.Delete, null, hMsg, HANDLE_MISC_ATT_TARGET);
+						}
 
 						chg = true;
 						ret = true;
@@ -185,16 +195,31 @@ public class DustMachineAgent extends DustMachine
 		}
 	}
 
-	public void loadUnit(DustMachineHandle handle, DustMachineIdea idea) {
-		Dust.log(null, "boot", "======== loading unit", handle, "============");
-
-		try (FileInputStream fis = new FileInputStream("localStore/" + handle.id + DUST_EXT_JSON)) {
-			DustUtilsJsonApi.loadUnit(handle, fis);
-			idea.content.put(hAttUnitState, hTagStateInSync);
-		} catch (Throwable e) {
-			DustException.wrap(e, "loading unit", handle.id);
-		}
-	}
+//	public void loadUnit(DustMachineHandle handle, DustMachineIdea idea) {
+//		Dust.log(null, "boot", "======== loading unit", handle, "============");
+//
+//		
+//		DustHandle hTest = Dust.access(DustAccess.Peek, null, null, HANDLE_DUST_ATT_NODE, HANDLE_STREAM_ATT_UNIT_HANDLER);
+//		
+////		DustHandle handle = Dust.getHandle("Lorand/Tanulas.1");
+//		
+//		try {
+//			Dust.access(DustAccess.Set, handle, hTest, HANDLE_MISC_ATT_TARGET);
+//			
+//			Dust.access(DustAccess.Set, HANDLE_MISC_TAG_CMD_LOAD, hTest, HANDLE_MIND_ATT_CMD);
+//			Dust.access(DustAccess.Commit, null, hTest);
+//		} finally {
+//			Dust.access(DustAccess.Delete, null, hTest, HANDLE_MIND_ATT_CMD);
+//			Dust.access(DustAccess.Delete, null, hTest, HANDLE_MISC_ATT_TARGET);
+//		}
+//
+////		try (FileInputStream fis = new FileInputStream("localStore/" + handle.id + DUST_EXT_JSON)) {
+////			DustUtilsJsonApi.loadUnit(handle, fis);
+////			idea.content.put(hAttUnitState, hTagStateInSync);
+////		} catch (Throwable e) {
+////			DustException.wrap(e, "loading unit", handle.id);
+////		}
+//	}
 
 	@Override
 	protected DustHandle getHandle(String idd, boolean createIfMissing) {
@@ -214,6 +239,15 @@ public class DustMachineAgent extends DustMachine
 			return hUnit;
 		}
 		DustMachineIdea iUnit = DustMachineBoot.getIdea(hUnit);
+		
+		if (running && (hTagStateInSync != iUnit.content.get(hAttUnitState))) {
+			try {
+				syncUnits(true);
+			} catch (Exception e) {
+				DustException.wrap(e, "syncUnits failed after loading", hUnit);
+			}
+		}
+
 
 		if (null == type) {
 			Dust.log(null, "getHandle", "null type", id);
@@ -253,8 +287,8 @@ public class DustMachineAgent extends DustMachine
 		return hRet;
 	}
 
-	Map getContent(DustMachineHandle h) {
-		DustMachineIdea idea = DustMachineBoot.getIdea(h);
+	Map getContent(DustHandle h) {
+		DustMachineIdea idea = DustMachineBoot.getIdea((DustMachineHandle)h);
 		return idea.getContent();
 	}
 
@@ -273,7 +307,7 @@ public class DustMachineAgent extends DustMachine
 		return ret;
 	}
 
-	DustHandle[] CTXS;
+//	DustHandle[] CTXS;
 
 	@Override
 	protected <RetType> RetType access(DustAccess access, Object val, Object root, Object... path) {
@@ -324,13 +358,13 @@ public class DustMachineAgent extends DustMachine
 					++pidx;
 				}
 			} else {
-				switch ( access ) {
+				switch (access) {
 				case Delete:
-					DustMachineHandle hh = (DustMachineHandle)val;
+					DustMachineHandle hh = (DustMachineHandle) val;
 					Map m = hh.unit.content;
-					((Map)m.get(HANDLE_DUST_ATT_UNIT_HANDLES)).remove(hh.id);
-					((Map)m.get(HANDLE_DUST_ATT_UNIT_OBJECTS)).remove(hh);
-					
+					((Map) m.get(HANDLE_DUST_ATT_UNIT_HANDLES)).remove(hh.id);
+					((Map) m.get(HANDLE_DUST_ATT_UNIT_OBJECTS)).remove(hh);
+
 					break;
 				}
 			}
@@ -739,8 +773,6 @@ public class DustMachineAgent extends DustMachine
 
 	@Override
 	public void init() throws Exception {
-		CTXS = new DustHandle[] { HANDLE_DUST_ATT_CTX_MSG, HANDLE_DUST_ATT_CTX_AGT, HANDLE_DUST_ATT_CTX_DLG,
-				HANDLE_DUST_ATT_CTX_APP, };
 	}
 
 	public void begin() throws Exception {
@@ -772,8 +804,17 @@ public class DustMachineAgent extends DustMachine
 		Object rm = access(DustAccess.Get, Collections.EMPTY_MAP, null, HANDLE_DUST_ATT_CTX_APP,
 				HANDLE_DUST_ATT_BINARY_RESOLVER);
 
-		Dust.log(null, "Resolver map", rm);
+		Dust.log(null, "Resolver map loaded", rm);
 
+		DustMachineIdea iApp = getCtx(hAttCtxApp);
+
+		Map<DustMachineHandle, DustMachineIdea> unitMap = DustUtils.simpleGet(iApp.content, hAttUnitObjects);
+
+		for (DustMachineIdea iUnit : unitMap.values()) {
+			access(DustAccess.Insert, HANDLE_MISC_TAG_MANDATORY, iUnit.content, HANDLE_MIND_ATT_TAGS);
+		}
+		
+		running = true;
 	}
 
 	@Override

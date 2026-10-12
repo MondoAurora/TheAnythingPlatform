@@ -404,6 +404,14 @@
 			}
 		},
 		{
+			"id": "giskard.me/misc.1$Mandatory",
+			"type": "giskard.me/mind.1$Tag",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MISC_TAG_MANDATORY",
+				"giskard.me/misc.1$name": "TOKEN_MISC_TAG_MANDATORY"
+			}
+		},
+		{
 			"id": "giskard.me/misc.1$Slave",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
@@ -1431,8 +1439,8 @@
 		}
 	],
 	"meta": {
-		"date": "20261007T080451Z",
-		"count": 76,
+		"date": "20261012T133027Z",
+		"count": 77,
 		"unitInfo": {
 			"id": "giskard.me/misc.1",
 			"type": "giskard.me/mind.1$Unit",

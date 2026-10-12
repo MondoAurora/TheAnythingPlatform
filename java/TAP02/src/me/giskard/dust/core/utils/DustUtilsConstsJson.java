@@ -1,6 +1,7 @@
 package me.giskard.dust.core.utils;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +10,7 @@ import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustConsts;
 import me.giskard.dust.api.DustException;
 import me.giskard.dust.api.DustHandle;
+import me.giskard.dust.core.machine.DustMachineUtils;
 
 public interface DustUtilsConstsJson extends DustConsts, DustUtilsConsts {
 
@@ -74,17 +76,17 @@ public interface DustUtilsConstsJson extends DustConsts, DustUtilsConsts {
 			return condition;
 		}
 
-//		public void setHandle(DustHandle h) {
-//			this.handle = h;
-//			values = DustMachineUtils.getValues(h, values, true);
-//
-//			Object typeAtts = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h.getType(), HANDLE_MISC_ATT_CHILDMAP, KEY_MAP_KEYS);
-//			if (typeAtts instanceof Collection) {
-//				for (Object att : ((Collection) typeAtts)) {
-//					values.putIfAbsent(att, null);
-//				}
-//			}
-//		}
+		public void setHandle(DustHandle h) {
+			this.handle = h;
+			values = DustMachineUtils.getValues(h, values, true);
+
+			Object typeAtts = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h.getType(), HANDLE_MISC_ATT_CHILDMAP, KEY_MAP_KEYS);
+			if (typeAtts instanceof Collection) {
+				for (Object att : ((Collection) typeAtts)) {
+					values.putIfAbsent(att, null);
+				}
+			}
+		}
 
 		public Map getValues() {
 			return values;

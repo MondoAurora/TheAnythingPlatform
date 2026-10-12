@@ -29,6 +29,10 @@ public class DustTest01 implements DustTestConsts {
 			Dust.access(DustAccess.Delete, null, hTest, HANDLE_MIND_ATT_CMD);
 			Dust.access(DustAccess.Delete, null, hTest, HANDLE_MISC_ATT_TARGET);
 		}
+		
+		hTest = Dust.getHandle("Lorand/test01$TestMessage");
+		
+		Dust.access(DustAccess.Commit, null, hTest);
 
 //		try (FileInputStream fis = new FileInputStream("localStore/" + handle.getId() + DUST_EXT_JSON)) {
 //			Dust.access(DustAccess.Set, fis, hTest, HANDLE_STREAM_ATT_INPUT);

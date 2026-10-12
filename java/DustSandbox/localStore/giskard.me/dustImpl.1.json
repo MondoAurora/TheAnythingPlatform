@@ -10,6 +10,18 @@
 				"giskard.me/dust.1$implementations": {
 					"data": [
 						{
+							"id": "giskard.me/dustImpl.1$HttpGenSvcImplJava17",
+							"type": "giskard.me/dust.1$Implementation"
+						},
+						{
+							"id": "giskard.me/dustImpl.1$HttpSrvJettyImplJava17",
+							"type": "giskard.me/dust.1$Implementation"
+						},
+						{
+							"id": "giskard.me/dustImpl.1$HttpStreamHandlerImplJava17",
+							"type": "giskard.me/dust.1$Implementation"
+						},
+						{
 							"id": "giskard.me/dustImpl.1$LoggerImplJava17",
 							"type": "giskard.me/dust.1$Implementation"
 						},
@@ -43,6 +55,69 @@
 					"data": {
 						"id": "giskard.me/dust.1$Java17",
 						"type": "giskard.me/dust.1$Platform"
+					}
+				}
+			}
+		},
+		{
+			"id": "giskard.me/dustImpl.1$HttpGenSvcImplJava17",
+			"type": "giskard.me/dust.1$Implementation",
+			"attributes": {
+				"giskard.me/misc.1$key": "me.giskard.dust.mod.net.httpsrv.DustHttpGeneralServiceAgent"
+			},
+			"relationships": {
+				"giskard.me/dust.1$platform": {
+					"data": {
+						"id": "giskard.me/dust.1$Java17",
+						"type": "giskard.me/dust.1$Platform"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/net.1$HttpGeneralService",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
+			"id": "giskard.me/dustImpl.1$HttpSrvJettyImplJava17",
+			"type": "giskard.me/dust.1$Implementation",
+			"attributes": {
+				"giskard.me/misc.1$key": "me.giskard.dust.mod.net.httpsrv.DustHttpServerJetty"
+			},
+			"relationships": {
+				"giskard.me/dust.1$platform": {
+					"data": {
+						"id": "giskard.me/dust.1$Java17",
+						"type": "giskard.me/dust.1$Platform"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/net.1$HttpServerJetty",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
+			"id": "giskard.me/dustImpl.1$HttpStreamHandlerImplJava17",
+			"type": "giskard.me/dust.1$Implementation",
+			"attributes": {
+				"giskard.me/misc.1$key": "me.giskard.dust.mod.net.httpsrv.DustHttpStreamAgent"
+			},
+			"relationships": {
+				"giskard.me/dust.1$platform": {
+					"data": {
+						"id": "giskard.me/dust.1$Java17",
+						"type": "giskard.me/dust.1$Platform"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/net.1$HttpStreamHandler",
+						"type": "giskard.me/mind.1$Narrative"
 					}
 				}
 			}
@@ -361,8 +436,8 @@
 		}
 	],
 	"meta": {
-		"date": "20261008T140855Z",
-		"count": 9,
+		"date": "20261012T142034Z",
+		"count": 12,
 		"unitInfo": {
 			"id": "giskard.me/dustImpl.1",
 			"type": "giskard.me/mind.1$Unit",

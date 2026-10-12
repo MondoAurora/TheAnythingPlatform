@@ -1,6 +1,9 @@
 package me.giskard.boot;
 
-// Generation timestamp 20261008T140855Z
+import me.giskard.dust.api.Dust;
+import me.giskard.dust.api.DustHandle;
+
+// Generation timestamp 20261012T133027Z
 
 public interface DustGenBootConsts {
 
