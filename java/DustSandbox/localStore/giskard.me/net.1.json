@@ -4,6 +4,10 @@
 	},
 	"data": [
 		{
+			"id": "giskard.me/net.1$HttpDispatcher",
+			"type": "giskard.me/mind.1$Aspect"
+		},
+		{
 			"id": "giskard.me/net.1$HttpGeneralService",
 			"type": "giskard.me/mind.1$Narrative"
 		},
@@ -21,6 +25,42 @@
 			"attributes": {
 				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVCALL_ATTRIBUTES",
 				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_ATTRIBUTES"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeMap",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeRaw",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "giskard.me/net.1$dispatcher",
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_NET_ATT_DISPATCHER",
+				"giskard.me/misc.1$name": "TOKEN_NET_ATT_DISPATCHER"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
@@ -29,6 +69,20 @@
 			"attributes": {
 				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVCALL_HEADERS",
 				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_HEADERS"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeMap",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeString",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
@@ -37,6 +91,20 @@
 			"attributes": {
 				"giskard.me/dev.1$token": "TOKEN_NET_ATT_KNOWN_HOST",
 				"giskard.me/misc.1$name": "TOKEN_NET_ATT_KNOWN_HOST"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeString",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
@@ -45,6 +113,20 @@
 			"attributes": {
 				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVCALL_METHOD",
 				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_METHOD"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
@@ -53,6 +135,20 @@
 			"attributes": {
 				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVCALL_PATHINFO",
 				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_PATHINFO"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeString",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
@@ -61,6 +157,20 @@
 			"attributes": {
 				"giskard.me/dev.1$token": "TOKEN_NET_ATT_HOST_PORT",
 				"giskard.me/misc.1$name": "TOKEN_NET_ATT_HOST_PORT"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeInteger",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
@@ -69,6 +179,20 @@
 			"attributes": {
 				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVCALL_REQUEST",
 				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_REQUEST"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeRaw",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
@@ -77,6 +201,20 @@
 			"attributes": {
 				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVRESP_HEADER",
 				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVRESP_HEADER"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeMap",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeRaw",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
@@ -85,6 +223,20 @@
 			"attributes": {
 				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVRESP_STATUS",
 				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVRESP_STATUS"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeInteger",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
@@ -93,6 +245,20 @@
 			"attributes": {
 				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVRESP_TYPE",
 				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVRESP_TYPE"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
@@ -101,6 +267,20 @@
 			"attributes": {
 				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVCALL_RESPONSE",
 				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_RESPONSE"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeRaw",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
@@ -109,6 +289,20 @@
 			"attributes": {
 				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SSLINFO_KEYMANAGERPASS",
 				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SSLINFO_KEYMANAGERPASS"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeString",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
@@ -117,6 +311,20 @@
 			"attributes": {
 				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SSLINFO_PORT",
 				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SSLINFO_PORT"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeInteger",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
@@ -125,6 +333,20 @@
 			"attributes": {
 				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SSLINFO_STOREPASS",
 				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SSLINFO_STOREPASS"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeString",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
@@ -133,6 +355,20 @@
 			"attributes": {
 				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SSLINFO_STOREPATH",
 				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SSLINFO_STOREPATH"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeString",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
@@ -141,12 +377,26 @@
 			"attributes": {
 				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVCALL_STATUS",
 				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_STATUS"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeInteger",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		}
 	],
 	"meta": {
-		"date": "20261012T140927Z",
-		"count": 19,
+		"date": "20261013T084016Z",
+		"count": 21,
 		"unitInfo": {
 			"id": "giskard.me/net.1",
 			"type": "giskard.me/mind.1$Unit",

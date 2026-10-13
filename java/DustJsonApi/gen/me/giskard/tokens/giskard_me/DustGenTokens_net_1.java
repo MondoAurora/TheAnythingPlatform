@@ -1,9 +1,10 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20260910T130822Z
+// Generation timestamp 20261013T084432Z
 
 public interface DustGenTokens_net_1 {
 // Attributes
+	String TOKEN_NET_ATT_DISPATCHER = "giskard.me/net.1$dispatcher";
 	String TOKEN_NET_ATT_HOST_PORT = "giskard.me/net.1$port";
 	String TOKEN_NET_ATT_KNOWN_HOST = "giskard.me/net.1$knownHost";
 	String TOKEN_NET_ATT_SRVCALL_ATTRIBUTES = "giskard.me/net.1$attributes";

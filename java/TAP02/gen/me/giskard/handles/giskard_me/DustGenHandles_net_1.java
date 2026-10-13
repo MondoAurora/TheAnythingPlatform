@@ -3,10 +3,11 @@ package me.giskard.handles.giskard_me;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustHandle;
 
-// Generation timestamp 20261012T133027Z
+// Generation timestamp 20261013T084432Z
 
 public interface DustGenHandles_net_1 {
 // Attributes
+	DustHandle HANDLE_NET_ATT_DISPATCHER = Dust.getHandle("giskard.me/net.1$dispatcher");
 	DustHandle HANDLE_NET_ATT_HOST_PORT = Dust.getHandle("giskard.me/net.1$port");
 	DustHandle HANDLE_NET_ATT_KNOWN_HOST = Dust.getHandle("giskard.me/net.1$knownHost");
 	DustHandle HANDLE_NET_ATT_SRVCALL_ATTRIBUTES = Dust.getHandle("giskard.me/net.1$attributes");

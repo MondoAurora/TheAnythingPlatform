@@ -39,13 +39,13 @@ public class Dust implements DustConsts {
 
 		start(appId, appUnitPath);
 	}
-	
+
 	public static DustHandle start(String appId, String appUnitPath) throws Exception {
 		long start = System.currentTimeMillis();
 
 		try {
 			DustMachine.Provider mp = createInstance(Class.forName(DUST_BOOT_SYS_CLASS));
-			
+
 //			MACHINE = createInstance(Class.forName("me.giskard.dust.core.machine.DustMachineAgent"));
 			MACHINE = mp.getMachine();
 
@@ -60,13 +60,13 @@ public class Dust implements DustConsts {
 
 			createInstance(Class.forName(DUST_BOOT_APP_CLASS), appId);
 
-			DustTest01.testMsg();
+//			DustTest01.testMsg();
 
 			MACHINE.begin();
 
 			Dust.log(null, "Machine instance created.", appId);
 
-//			DustTest01.testMsg();
+			DustTest01.testMsg();
 
 		} finally {
 			Dust.log(null, "Dust finished", System.currentTimeMillis() - start, "msec.");
@@ -79,33 +79,33 @@ public class Dust implements DustConsts {
 	public static <RetType> RetType createInstance(Class cc, Object... args) {
 		Constructor<Object> protectedConstructor = null;
 		Constructor<Object> validConstructor = null;
-		
+
 		try {
 			int al = args.length;
-			
-			if ( 0 == al ) {
+
+			if (0 == al) {
 				validConstructor = cc.getConstructor();
 			} else {
-				for ( Constructor<Object> c : cc.getConstructors() ) {
+				for (Constructor<Object> c : cc.getConstructors()) {
 					validConstructor = c;
 					Class[] pt = c.getParameterTypes();
-					if ( al == pt.length ) {
+					if (al == pt.length) {
 						int pi = 0;
-						for ( Class pcc : pt ) {
-							if ( !pcc.isInstance(args[pi])) {
+						for (Class pcc : pt) {
+							if (!pcc.isInstance(args[pi])) {
 								validConstructor = null;
 								break;
 							}
 						}
 					}
-					
-					if ( null != validConstructor ) {
+
+					if (null != validConstructor) {
 						break;
-					}					
+					}
 				}
 			}
-			
-			if ( !validConstructor.isAccessible() ) {
+
+			if (!validConstructor.isAccessible()) {
 				validConstructor.setAccessible(true);
 				protectedConstructor = validConstructor;
 			}
@@ -114,9 +114,13 @@ public class Dust implements DustConsts {
 		} catch (Throwable e) {
 			return DustException.wrap(e, "Creating agent", cc);
 		} finally {
-			if ( null != protectedConstructor ) {
+			if (null != protectedConstructor) {
 				protectedConstructor.setAccessible(false);
 			}
 		}
+	}
+
+	public static void manageThread(Object anchor, DustThreadAction action) {
+		MACHINE.manageThread(anchor, action);
 	}
 }

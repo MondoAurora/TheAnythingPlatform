@@ -14,23 +14,27 @@ import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustHandle;
 import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.stream.DustStreamConsts;
-import me.giskard.dust.core.utils.DustUtils;
 
 //@SuppressWarnings({ "unchecked", "rawtypes" })
 class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, DustStreamConsts {
 	private static final long serialVersionUID = 1L;
 
+	Object threadAnchor;
 	DustHandle hCfg;
 	Collection<DustHandle> agents;
 
-	public DustHttpServletDispatcher(Object dispatch) {
+	public DustHttpServletDispatcher(Object threadAnchor) {
 		super();
-		hCfg = (DustHandle) dispatch;
-		agents = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, dispatch, HANDLE_MISC_ATT_MEMBERS);
+		this.threadAnchor = threadAnchor;
+		hCfg = Dust.access(DustAccess.Peek, null, null, HANDLE_NET_ATT_DISPATCHER);
+		agents = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, hCfg, HANDLE_MISC_ATT_MEMBERS);
+		
+		Dust.manageThread(threadAnchor, DustThreadAction.SetAnchor);
 	}
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Dust.manageThread(threadAnchor, DustThreadAction.Connect);
 		long ts = System.currentTimeMillis();
 		Throwable exception = null;
 		String url = request.getPathInfo();
@@ -99,11 +103,11 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 					optAdd(hRelay, HANDLE_NET_ATT_SRVCALL_HEADERS, n, request.getHeader(n));
 				}
 
-				String cmd = Dust.access(DustAccess.Peek, null, hRelay, HANDLE_MIND_ATT_CMD);
-				if (null == cmd) {
-					cmd = DustUtils.getPrefix(pathInfo, "/");
-					Dust.access(DustAccess.Set, cmd, hRelay, HANDLE_MIND_ATT_CMD);
-				}
+//				Object cmd = Dust.access(DustAccess.Peek, null, hRelay, HANDLE_MIND_ATT_CMD);
+//				if (null == cmd) {
+//					cmd = DustUtils.getPrefix(pathInfo, "/");
+//					Dust.access(DustAccess.Set, cmd, hRelay, HANDLE_MIND_ATT_CMD);
+//				}
 				
 //				params = DustUtilsData.optLoadMapping(hRelay, params);
 
@@ -120,6 +124,8 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 		} catch (Throwable t) {
 			exception = t;
 		} finally {
+			Dust.manageThread(threadAnchor, DustThreadAction.Release);
+
 			Dust.log(null, "Http request: " + pathInfo, "Process time: " + (System.currentTimeMillis() - ts) + " msec",
 					(null == exception) ? "Success" : "error: " + exception);
 		}

@@ -13,22 +13,7 @@ public class DustTest01 implements DustTestConsts {
 
 //		hTest = Dust.getHandle("Lorand/test01$UnitHandler");
 
-		hTest = Dust.access(DustAccess.Peek, null, null, HANDLE_DUST_ATT_NODE, HANDLE_STREAM_ATT_UNIT_HANDLER);
-		
-		DustHandle handle = Dust.getHandle("Lorand/Tanulas.1");
-		
-		try {
-			Dust.access(DustAccess.Set, handle, hTest, HANDLE_MISC_ATT_TARGET);
-			
-			Dust.access(DustAccess.Set, HANDLE_MISC_TAG_CMD_LOAD, hTest, HANDLE_MIND_ATT_CMD);
-			Dust.access(DustAccess.Commit, null, hTest);
-			
-			Dust.access(DustAccess.Set, HANDLE_MISC_TAG_CMD_SAVE, hTest, HANDLE_MIND_ATT_CMD);
-			Dust.access(DustAccess.Commit, null, hTest);
-		} finally {
-			Dust.access(DustAccess.Delete, null, hTest, HANDLE_MIND_ATT_CMD);
-			Dust.access(DustAccess.Delete, null, hTest, HANDLE_MISC_ATT_TARGET);
-		}
+//		loadSave("Lorand/Tanulas.1");
 		
 		hTest = Dust.getHandle("Lorand/test01$TestMessage");
 		
@@ -64,6 +49,26 @@ public class DustTest01 implements DustTestConsts {
 //			Dust.access(DustAccess.Delete, null, hTest, HANDLE_MISC_ATT_TARGET);
 //		}
 
+	}
+
+	public static void loadSave(String unitId) {
+		DustHandle hTest;
+		hTest = Dust.access(DustAccess.Peek, null, null, HANDLE_DUST_ATT_NODE, HANDLE_STREAM_ATT_UNIT_HANDLER);
+		
+		DustHandle handle = Dust.getHandle(unitId);
+		
+		try {
+			Dust.access(DustAccess.Set, handle, hTest, HANDLE_MISC_ATT_TARGET);
+			
+			Dust.access(DustAccess.Set, HANDLE_MISC_TAG_CMD_LOAD, hTest, HANDLE_MIND_ATT_CMD);
+			Dust.access(DustAccess.Commit, null, hTest);
+			
+			Dust.access(DustAccess.Set, HANDLE_MISC_TAG_CMD_SAVE, hTest, HANDLE_MIND_ATT_CMD);
+			Dust.access(DustAccess.Commit, null, hTest);
+		} finally {
+			Dust.access(DustAccess.Delete, null, hTest, HANDLE_MIND_ATT_CMD);
+			Dust.access(DustAccess.Delete, null, hTest, HANDLE_MISC_ATT_TARGET);
+		}
 	}
 
 }

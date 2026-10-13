@@ -4,6 +4,58 @@
 	},
 	"data": [
 		{
+			"id": "Lorand/test01$HttpServerInfo",
+			"type": "giskard.me/mind.1$Message",
+			"attributes": {
+				"giskard.me/misc.1$prefix": "admin/info"
+			},
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/misc.1$CmdInfo",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$WebServer",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$HttpServerStop",
+			"type": "giskard.me/mind.1$Message",
+			"attributes": {
+				"giskard.me/misc.1$prefix": "admin/stop"
+			},
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/misc.1$CmdStop",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$WebServer",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			}
+		},
+		{
 			"id": "Lorand/test01$LocalFiles",
 			"type": "giskard.me/mind.1$Agent",
 			"attributes": {
@@ -281,6 +333,9 @@
 		{
 			"id": "Lorand/test01$TestMessage",
 			"type": "giskard.me/mind.1$Message",
+			"attributes": {
+				"giskard.me/misc.1$prefix": "admin"
+			},
 			"relationships": {
 				"giskard.me/mind.1$listeners": {
 					"data": [
@@ -395,6 +450,30 @@
 			}
 		},
 		{
+			"id": "Lorand/test01$WebDispatcher",
+			"type": "giskard.me/net.1$HttpDispatcher",
+			"relationships": {
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$HttpServerStop",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01$HttpServerInfo",
+							"type": "giskard.me/mind.1$Message"
+						}
+					]
+				}
+			}
+		},
+		{
 			"id": "Lorand/test01$WebServer",
 			"type": "giskard.me/mind.1$Agent",
 			"relationships": {
@@ -402,6 +481,12 @@
 					"data": {
 						"id": "giskard.me/net.1$HttpServerJetty",
 						"type": "giskard.me/mind.1$Narrative"
+					}
+				},
+				"giskard.me/net.1$dispatcher": {
+					"data": {
+						"id": "Lorand/test01$WebDispatcher",
+						"type": "giskard.me/net.1$HttpDispatcher"
 					}
 				}
 			}
@@ -412,8 +497,8 @@
 		}
 	],
 	"meta": {
-		"date": "20261012T141445Z",
-		"count": 19,
+		"date": "20261013T133016Z",
+		"count": 22,
 		"unitInfo": {
 			"id": "Lorand/test01",
 			"type": "giskard.me/mind.1$Unit",

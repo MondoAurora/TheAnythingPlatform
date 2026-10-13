@@ -50,4 +50,8 @@ public interface DustConsts {
 	enum DustAccess {
 		Check, Peek, Get, Set, Insert, Delete, Reset, Visit, Commit
 	}
+
+	enum DustThreadAction {
+		SetAnchor, Connect, Release
+	}
 }

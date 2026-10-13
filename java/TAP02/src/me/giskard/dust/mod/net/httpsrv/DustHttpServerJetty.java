@@ -19,13 +19,15 @@ import org.eclipse.jetty.util.ssl.SslContextFactory;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustAgent;
 import me.giskard.dust.api.DustException;
+import me.giskard.dust.api.DustHandle;
 import me.giskard.dust.core.net.DustNetConsts;
+import me.giskard.dust.core.utils.DustUtils;
 
 public class DustHttpServerJetty extends DustAgent implements DustNetConsts // , DustConsts.DustThreadOwner
 {
-	enum Commands {
-		stop, info,
-	}
+//	enum Commands {
+//		stop, info,
+//	}
 
 	Server jetty;
 	String name;
@@ -77,12 +79,8 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 			ctxHandler = new ServletContextHandler();
 			ctxHandler.setContextPath("/*");
 			handlers.addHandler(ctxHandler);
-
-//			Object dispatch = Dust.access(DustAccess.Peek, null, null, HANDLE_MEMBERS);
-
-//			ctxHandler.addServlet(new ServletHolder(new DustHttpServletDispatcher(dispatch)), "/*");
-			Object cfg = Dust.access(DustAccess.Peek, null, null);
-			ctxHandler.addServlet(new ServletHolder(new DustHttpServletDispatcher(cfg)), "/*");
+			
+			ctxHandler.addServlet(new ServletHolder(new DustHttpServletDispatcher(jetty)), "/*");
 
 			jetty.setHandler(handlers);
 			jetty.start();
@@ -91,39 +89,23 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 
 	@Override
 	public void process() throws Exception {
-		Commands cmd = Commands.info;
-		String str = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_CMD);
-		if (null != str) {
-			try {
-				cmd = Commands.valueOf(str);
-			} catch (Exception e) {
-				DustException.swallow(e);
-			}
-		}
-
-//		String str = Dust.access(DustAccess.Peek, "", null, HANDLE_TARGET, HANDLE_NET_ATT_SRVCALL_PATHINFO);
-//		String[] path = str.split("/");
-//		if (0 < path.length) {
-//			try {
-//				cmd = Commands.valueOf(path[0]);
-//			} catch (Exception e) {
-////							DustException.swallow(e);
-//			}
-//		}
+//		Commands cmd = Commands.info;
+		DustHandle hCmd = Dust.access(DustAccess.Peek, null, null, HANDLE_DUST_ATT_CTX_MSG, HANDLE_MIND_ATT_CMD);
 
 		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_TARGET, HANDLE_NET_ATT_SRVCALL_RESPONSE);
 		if (null == response) {
-			Dust.log(HANDLE_MISC_TAG_LEVEL_ERROR, "no response given?");
+			Dust.log(HANDLE_MISC_TAG_LEVEL_ERROR, "no response given");
+			return;
 		}
 
 		response.setContentType(MEDIATYPE_UTF8_HTML);
 		PrintWriter out = response.getWriter();
+		
+		String title = DustUtils.isEmpty(name) ? hCmd.getId() : name;
 
-		String head = "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>" + name + "</title>\n</head>\n<body>\n";
+		String head = "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>" + title + "</title>\n</head>\n<body>\n";
 
-		switch (cmd) {
-		case stop:
-
+		if ( HANDLE_MISC_TAG_CMD_STOP == hCmd ) {
 				out.println(head);
 				out.println("<h2>Server shutdown initiated.</h2>\n");
 				out.println("</body></html>\n");
@@ -142,13 +124,12 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 					}
 				}
 			}.start();
-			break;
-		case info:
+		} else if ( HANDLE_MISC_TAG_CMD_INFO == hCmd ) {
 				Properties pp = System.getProperties();
 
 				StringBuilder sb = new StringBuilder(head);
 
-				sb.append("<h2>Server info</h2>");
+				sb.append("<h2>Server info " + DustUtils.strTime() + " </h2>");
 				sb.append("<ul>");
 
 				for (Object o : pp.keySet()) {
@@ -158,18 +139,17 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 
 				sb.append("</ul>");
 
-				sb.append("<h2>Commands</h2>");
-				sb.append("<ul>");
-				for (Commands cc : Commands.values()) {
-					sb.append("<li><a href=\"/admin/" + cc + "\">" + cc + "</a></li>");
-				}
-				sb.append("</ul>");
+//				sb.append("<h2>Commands</h2>");
+//				sb.append("<ul>");
+//				for (Commands cc : Commands.values()) {
+//					sb.append("<li><a href=\"/admin/" + cc + "\">" + cc + "</a></li>");
+//				}
+//				sb.append("</ul>");
 
 				sb.append("</body></html>");
 //				response.setContentType(MEDIATYPE_UTF8_HTML);
 
 				out.println(sb.toString());
-			break;
 		}
 	}
 
