@@ -152,20 +152,21 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 	static DustMachineIdea resolveHandle(DustHandle h, boolean change) {
 		DustMachineHandle mh = (DustMachineHandle) h;
 
-		if ( !running ) {
+		if (!running) {
 			return DustMachineBoot.getIdea(mh);
 		}
 
-		Map<DustMachineHandle, DustMachineIdea> localIdeas = change ? DustUtils.safeGet(getCtx(HANDLE_DUST_ATT_CTX_DLG).content, SORTEDMAP_CREATOR, hAttUnitObjects)
+		Map<DustMachineHandle, DustMachineIdea> localIdeas = change
+				? DustUtils.safeGet(getCtx(HANDLE_DUST_ATT_CTX_DLG).content, SORTEDMAP_CREATOR, hAttUnitObjects)
 				: DustUtils.simpleGet(getCtx(HANDLE_DUST_ATT_CTX_DLG).content, hAttUnitObjects);
 		DustMachineIdea idea = (null == localIdeas) ? null : localIdeas.get(mh);
 
-		if ( null == idea ) {
+		if (null == idea) {
 			idea = DustMachineBoot.getIdea(mh);
 
-			if ( change ) {
+			if (change) {
 				DustMachineIdea copy = new DustMachineIdea(mh);
-				if ( null != idea ) {
+				if (null != idea) {
 					DustMachineUtils.loadData(copy, idea);
 				}
 				localIdeas.put(mh, copy);
@@ -179,10 +180,11 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 		return idea;
 	}
 
-	private Object checkAccess(DustMachineIdea iAgt, DustAccess acess, DustMachineIdea iTarget, DustMachineHandle hAtt, Object lastKey, Object valPrev, Object valNew) {
+	private Object checkAccess(DustMachineIdea iAgt, DustAccess acess, DustMachineIdea iTarget, DustMachineHandle hAtt,
+			Object lastKey, Object valPrev, Object valNew) {
 		Object ret = valNew;
 
-		if ( (null != iTarget) && (null != hAtt) ) {
+		if ((null != iTarget) && (null != hAtt)) {
 			boolean pass = true;
 
 //			if (pass && DustUtils.isChange(acess)) {
@@ -418,7 +420,7 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 					++pidx;
 				}
 			} else {
-				switch ( access ) {
+				switch (access) {
 				case Delete: {
 					DustMachineHandle hh = (DustMachineHandle) val;
 					if ( null != hh ) {
@@ -430,11 +432,10 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 					break;
 				case Commit: {
 					Map<DustMachineHandle, DustMachineIdea> localObjects = DustUtils.simpleGet(getCtx(HANDLE_DUST_ATT_CTX_DLG).content, hAttUnitObjects);
-
 					if ( null != localObjects ) {
-						for (DustMachineIdea li : localObjects.values()) {
+						for (DustMachineIdea li : localObjects.values() ) {
 							DustMachineIdea idea = DustMachineBoot.getIdea(li.mh);
-
+							
 							idea.content.clear();
 							idea.content.putAll(li.content);
 						}
@@ -463,9 +464,8 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 				iCurr = resolveHandle(prevHandle);
 				curr = iCurr.getContent();
 				collType = DustCollType.Map;
-			} else if ( null == curr ) {
-				if ( create ) {
-
+			} else if (null == curr) {
+				if (create) {
 					curr = (p instanceof Integer) ? new ArrayList() : new HashMap();
 
 					if ( null != prevColl ) {
