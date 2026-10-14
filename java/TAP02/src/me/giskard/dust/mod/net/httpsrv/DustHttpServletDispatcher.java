@@ -29,12 +29,12 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 		hCfg = Dust.access(DustAccess.Peek, null, null, HANDLE_NET_ATT_DISPATCHER);
 		agents = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, hCfg, HANDLE_MISC_ATT_MEMBERS);
 		
-		Dust.manageThread(threadAnchor, DustThreadAction.SetAnchor);
+		Dust.manageThread(DustThreadAction.SetAnchor, threadAnchor);
 	}
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Dust.manageThread(threadAnchor, DustThreadAction.Connect);
+		Dust.manageThread(DustThreadAction.Connect, threadAnchor);
 		long ts = System.currentTimeMillis();
 		Throwable exception = null;
 		String url = request.getPathInfo();
@@ -66,17 +66,8 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 				return;
 			}
 
-//			DustHandle hRelay = Dust.access(DustAccess.Peek, null, hCfg, HANDLE_TARGET);
-
-			synchronized (hRelay) { // quick and dirty
-
-//				Dust.access(DustAccess.Reset, null, hRelay, HANDLE_LISTENERS);
-//				
-//				DustHandle ao = Dust.getAgentHandle(target.get(HANDLE_AGENT));
-//				Dust.access(DustAccess.Insert, ao, hRelay, HANDLE_LISTENERS, KEY_ADD);
-//				
-//				Map params = new HashMap();
-
+//			synchronized (hRelay) 
+			{ // quick and dirty
 				Dust.access(DustAccess.Set, url, hRelay, HANDLE_STREAM_ATT_URL);
 				Dust.access(DustAccess.Set, pathInfo, hRelay, HANDLE_NET_ATT_SRVCALL_PATHINFO);
 
@@ -113,18 +104,18 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 
 				// Dust.access(DustAccess.Set, response, params, HANDLE_TARGET,
 				// HANDLE_NET_ATT_SRVCALL_RESPONSE);
-				Dust.access(DustAccess.Set, response, hRelay, HANDLE_MISC_ATT_TARGET, HANDLE_NET_ATT_SRVCALL_RESPONSE);
+				Dust.access(DustAccess.Set, response, hRelay, HANDLE_NET_ATT_SRVCALL_RESPONSE);
 
 				Dust.access(DustAccess.Commit, null, hRelay);
 
-				int status = Dust.access(DustAccess.Peek, HttpServletResponse.SC_OK, hRelay, HANDLE_MISC_ATT_TARGET, HANDLE_NET_ATT_SRVCALL_STATUS);
+				int status = Dust.access(DustAccess.Peek, HttpServletResponse.SC_OK, hRelay, HANDLE_NET_ATT_SRVCALL_STATUS);
 
 				response.setStatus(status);
 			}
 		} catch (Throwable t) {
 			exception = t;
 		} finally {
-			Dust.manageThread(threadAnchor, DustThreadAction.Release);
+			Dust.manageThread(DustThreadAction.Release, threadAnchor);
 
 			Dust.log(null, "Http request: " + pathInfo, "Process time: " + (System.currentTimeMillis() - ts) + " msec",
 					(null == exception) ? "Success" : "error: " + exception);
@@ -135,7 +126,7 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 		}
 	}
 
-	private void optAdd(Object params, Object kind, String name, Object val) {
+	private void optAdd(DustHandle params, DustHandle kind, String name, Object val) {
 		Dust.access(DustAccess.Set, val, params, kind, name);
 	}
 }

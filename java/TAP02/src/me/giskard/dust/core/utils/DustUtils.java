@@ -20,6 +20,9 @@ public class DustUtils implements DustConsts, DustUtilsConsts {
 	}
 
 	public static String[] splitId(String id) {
+		if ( null == id ) {
+			return  new String[] { null, null };
+		}
 		String[] ii = id.split("\\$");
 		return (1 == ii.length) ? new String[] { null, ii[0] } : ii;
 	}

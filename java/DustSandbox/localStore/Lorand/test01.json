@@ -4,6 +4,26 @@
 	},
 	"data": [
 		{
+			"id": "Lorand/test01$HttpJsonapiMsg",
+			"type": "giskard.me/mind.1$Message",
+			"attributes": {
+				"giskard.me/misc.1$prefix": "data"
+			},
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$WebJsonapiAgent",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			}
+		},
+		{
 			"id": "Lorand/test01$HttpServerInfo",
 			"type": "giskard.me/mind.1$Message",
 			"attributes": {
@@ -468,8 +488,40 @@
 							},
 							"id": "Lorand/test01$HttpServerInfo",
 							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"meta": {
+								"key": 2
+							},
+							"id": "Lorand/test01$TestMessage",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"meta": {
+								"key": 3
+							},
+							"id": "Lorand/test01$HttpJsonapiMsg",
+							"type": "giskard.me/mind.1$Message"
 						}
 					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$WebJsonapiAgent",
+			"type": "giskard.me/mind.1$Agent",
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/net.1$HttpJsonapiHandler",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				},
+				"giskard.me/mind.1$serializer": {
+					"data": {
+						"id": "Lorand/test01$ProcessUnitStream",
+						"type": "giskard.me/mind.1$Message"
+					}
 				}
 			}
 		},
@@ -497,8 +549,8 @@
 		}
 	],
 	"meta": {
-		"date": "20261013T133016Z",
-		"count": 22,
+		"date": "20261014T154807Z",
+		"count": 24,
 		"unitInfo": {
 			"id": "Lorand/test01",
 			"type": "giskard.me/mind.1$Unit",

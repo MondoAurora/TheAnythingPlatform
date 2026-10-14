@@ -67,6 +67,8 @@ public class Dust implements DustConsts {
 			Dust.log(null, "Machine instance created.", appId);
 
 			DustTest01.testMsg();
+			
+			Dust.access(DustAccess.Commit, null, null);
 
 		} finally {
 			Dust.log(null, "Dust finished", System.currentTimeMillis() - start, "msec.");
@@ -120,7 +122,7 @@ public class Dust implements DustConsts {
 		}
 	}
 
-	public static void manageThread(Object anchor, DustThreadAction action) {
-		MACHINE.manageThread(anchor, action);
+	public static void manageThread(DustThreadAction action, Object anchor) {
+		MACHINE.manageThread(action, anchor);
 	}
 }

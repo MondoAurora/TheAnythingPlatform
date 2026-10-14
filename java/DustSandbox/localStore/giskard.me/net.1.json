@@ -12,6 +12,10 @@
 			"type": "giskard.me/mind.1$Narrative"
 		},
 		{
+			"id": "giskard.me/net.1$HttpJsonapiHandler",
+			"type": "giskard.me/mind.1$Narrative"
+		},
+		{
 			"id": "giskard.me/net.1$HttpServerJetty",
 			"type": "giskard.me/mind.1$Narrative"
 		},
@@ -395,8 +399,8 @@
 		}
 	],
 	"meta": {
-		"date": "20261013T084016Z",
-		"count": 21,
+		"date": "20261014T125830Z",
+		"count": 22,
 		"unitInfo": {
 			"id": "giskard.me/net.1",
 			"type": "giskard.me/mind.1$Unit",

@@ -69,7 +69,7 @@ public interface DustUtilsConstsJson extends DustConsts, DustUtilsConsts {
 		}
 
 		public void setCondition(String condition) {
-			this.condition = condition;
+			this.condition = condition.replace("contains", "mvelContains");
 		}
 
 		public String getCondition() {
@@ -118,7 +118,7 @@ public interface DustUtilsConstsJson extends DustConsts, DustUtilsConsts {
 		};
 
 		// to avoid name clash with MVEL contains operator...
-		public boolean contain(Object a, Object b) {
+		public boolean mvelContains(Object a, Object b) {
 			if (a instanceof String) {
 				return ((String) a).contains((String) b);
 			} else if (a instanceof Collection) {

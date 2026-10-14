@@ -91,8 +91,21 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 	public void process() throws Exception {
 //		Commands cmd = Commands.info;
 		DustHandle hCmd = Dust.access(DustAccess.Peek, null, null, HANDLE_DUST_ATT_CTX_MSG, HANDLE_MIND_ATT_CMD);
+		
+		if ( null == hCmd ) {
+			String pathInfo = Dust.access(DustAccess.Peek, "", null, HANDLE_NET_ATT_SRVCALL_PATHINFO);
+			switch ( pathInfo ) {
+			case "new/info":
+				hCmd = HANDLE_MISC_TAG_CMD_INFO;
+				break;
+			case "new/stop":
+				hCmd = HANDLE_MISC_TAG_CMD_STOP;
+				break;
+			}
+			Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "Path info", pathInfo);
+		}
 
-		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_TARGET, HANDLE_NET_ATT_SRVCALL_RESPONSE);
+		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, HANDLE_NET_ATT_SRVCALL_RESPONSE);
 		if (null == response) {
 			Dust.log(HANDLE_MISC_TAG_LEVEL_ERROR, "no response given");
 			return;
