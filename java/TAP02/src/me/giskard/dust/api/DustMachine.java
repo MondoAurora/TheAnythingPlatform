@@ -11,6 +11,6 @@ public abstract class DustMachine extends DustAgent implements DustConsts {
 
 	protected abstract <RetType> RetType access(DustAccess access, Object val, Object root, Object... path);
 	
-	protected abstract void manageThread(Object anchor, DustThreadAction action);
+	protected abstract void manageThread(DustThreadAction action, Object anchor);
 
 }

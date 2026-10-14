@@ -27,8 +27,8 @@ public class DustMachineUtils implements DustMachineConsts, DustGenHandles_dust_
 
 	public static Iterable<DustHandle> getUnitMembers(DustHandle unit, Collection<DustHandle> ret) {
 		Map<String, DustHandle> m = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unit, HANDLE_DUST_ATT_UNIT_HANDLES);
-		
-		if ( null == ret ) {
+
+		if (null == ret) {
 			ret = new TreeSet<DustHandle>(m.values());
 		} else {
 			ret.clear();
@@ -48,45 +48,46 @@ public class DustMachineUtils implements DustMachineConsts, DustGenHandles_dust_
 		return ret;
 	}
 
-	public static void loadData(DustHandle target, DustHandle from, boolean deep, String... atts) {
+	public static void loadData(DustHandle target, DustHandle from, Iterable<DustHandle> atts) {
+		loadData(DustMachineAgent.resolveHandle((DustMachineHandle) target),
+				DustMachineAgent.resolveHandle((DustMachineHandle) from), atts);
+	}
+
+	public static void loadData(DustMachineIdea target, DustMachineIdea from) {
+		loadData(target, from, null);
+	}
+
+	public static void loadData(DustMachineIdea target, DustMachineIdea from, Iterable<? extends DustHandle> atts) {
 		if (null == atts) {
-			return;
+			atts = from.content.keySet();
 		}
 
-		Map mFrom = DustMachineBoot.getIdea((DustMachineHandle)from).content;
-		Map mTarget = DustMachineBoot.getIdea((DustMachineHandle)target).content;
+		Map mFrom = from.content;
+		Map mTarget = target.content;
 
-		if (0 == atts.length) {
-			for (String a : getAttNames(from)) {
-				mTarget.put(a, copy(mFrom.get(a), deep));
-			}
-		} else {
-			for (String a : atts) {
-				mTarget.put(a, copy(mFrom.get(a), deep));
-			}
+		for (DustHandle a : atts) {
+			mTarget.put(a, copy(mFrom.get(a)));
 		}
 	}
 
-	public static Object copy(Object from, boolean deep) {
+	public static Object copy(Object from) {
 		Object ret = from;
 
-		if (deep) {
-			try {
-				if (from instanceof Collection) {
-					ret = (Collection) from.getClass().getDeclaredConstructor().newInstance();
-					for (Object o : (Collection) from) {
-						((Collection) ret).add(copy(o, deep));
-					}
-				} else if (from instanceof Map) {
-					ret = (Map) from.getClass().getDeclaredConstructor().newInstance();
-					for (Object o : ((Map) from).entrySet()) {
-						Map.Entry e = (Entry) o;
-						((Map) ret).put(e.getKey(), copy(e.getValue(), deep));
-					}
+		try {
+			if (from instanceof Collection) {
+				ret = (Collection) from.getClass().getDeclaredConstructor().newInstance();
+				for (Object o : (Collection) from) {
+					((Collection) ret).add(copy(o));
 				}
-			} catch (Throwable e) {
-				DustException.wrap(e, "In deep copy");
+			} else if (from instanceof Map) {
+				ret = (Map) from.getClass().getDeclaredConstructor().newInstance();
+				for (Object o : ((Map) from).entrySet()) {
+					Map.Entry e = (Entry) o;
+					((Map) ret).put(e.getKey(), copy(e.getValue()));
+				}
 			}
+		} catch (Throwable e) {
+			DustException.wrap(e, "In deep copy");
 		}
 
 		return ret;
@@ -100,7 +101,7 @@ public class DustMachineUtils implements DustMachineConsts, DustGenHandles_dust_
 		}
 
 		if (null != atts) {
-			Map mFrom = DustMachineBoot.getIdea((DustMachineHandle)from).content;
+			Map mFrom = DustMachineAgent.resolveHandle((DustMachineHandle) from).content;
 
 			if (0 == atts.length) {
 				for (String a : getAttNames(from)) {

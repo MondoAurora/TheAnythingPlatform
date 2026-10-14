@@ -468,6 +468,13 @@
 							},
 							"id": "Lorand/test01$HttpServerInfo",
 							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"meta": {
+								"key": 2
+							},
+							"id": "Lorand/test01$TestMessage",
+							"type": "giskard.me/mind.1$Message"
 						}
 					]
 				}
@@ -497,7 +504,7 @@
 		}
 	],
 	"meta": {
-		"date": "20261013T133016Z",
+		"date": "20261014T092740Z",
 		"count": 22,
 		"unitInfo": {
 			"id": "Lorand/test01",

@@ -35,23 +35,23 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 		};
 	};
 
-	DustMachineHandle hAspUnit;
-	DustMachineHandle hAspAsp;
+	static DustMachineHandle hAspUnit;
+	static DustMachineHandle hAspAsp;
 
-	DustMachineHandle hAttCallStack;
+	static DustMachineHandle hAttCallStack;
 
-	DustMachineHandle hAttCtxApp;
-	DustMachineHandle hAttCtxDlg;
-	DustMachineHandle hAttCtxAgt;
-	DustMachineHandle hAttCtxMsg;
+	static DustMachineHandle hAttCtxApp;
+	static DustMachineHandle hAttCtxDlg;
+	static DustMachineHandle hAttCtxAgt;
+	static DustMachineHandle hAttCtxMsg;
 
-	DustMachineHandle hAttUnitHandles;
-	DustMachineHandle hAttUnitObjects;
-	DustMachineHandle hAttUnitState;
+	static DustMachineHandle hAttUnitHandles;
+	static DustMachineHandle hAttUnitObjects;
+	static DustMachineHandle hAttUnitState;
 
-	DustMachineHandle hTagStateInSync;
+	static DustMachineHandle hTagStateInSync;
 
-	boolean running = false;
+	static boolean running = false;
 
 	public DustMachineAgent() {
 		Set<DustMachineHandle> threads = DustMachineBoot.getMachineData(TOKEN_DUST_ATT_ALLTHREADS);
@@ -75,14 +75,14 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 		hTagStateInSync = DustMachineBoot.getTokenHandle(TOKEN_MISC_TAG_STATE_IN_SYNC);
 	}
 
-	DustMachineIdea getCtx(Object key) {
+	static DustMachineIdea getCtx(Object key) {
 		DustMachineIdea it = THREADS.get();
 		DustMachineIdea iCtx = DustUtils.simpleGet(it.content, hAttCallStack, 0);
 		return (DustMachineIdea) iCtx.content.get(key);
 	}
 
 	@Override
-	protected synchronized void manageThread(Object anchor, DustThreadAction action) {
+	protected synchronized void manageThread(DustThreadAction action, Object anchor) {
 		DustMachineIdea iThread = THREADS.get();
 		Map anchored;
 
@@ -145,6 +145,56 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 		}
 			break;
 		}
+	}
+
+	static DustMachineIdea resolveHandle(DustHandle h) {
+		return running ? resolveHandle(h, false) : DustMachineBoot.getIdea((DustMachineHandle) h);
+	}
+
+	static DustMachineIdea resolveHandle(DustHandle h, boolean change) {
+		DustMachineHandle mh = (DustMachineHandle) h;
+
+		if (!running) {
+			return DustMachineBoot.getIdea(mh);
+		}
+
+		Map<DustMachineHandle, DustMachineIdea> localIdeas = change
+				? DustUtils.safeGet(getCtx(HANDLE_DUST_ATT_CTX_DLG).content, SORTEDMAP_CREATOR, hAttUnitObjects)
+				: DustUtils.simpleGet(getCtx(HANDLE_DUST_ATT_CTX_DLG).content, hAttUnitObjects);
+		DustMachineIdea idea = (null == localIdeas) ? null : localIdeas.get(mh);
+
+		if (null == idea) {
+			idea = DustMachineBoot.getIdea(mh);
+
+			if (change) {
+				DustMachineIdea copy = new DustMachineIdea(mh);
+				if (null != idea) {
+					DustMachineUtils.loadData(copy, idea);
+				}
+				localIdeas.put(mh, copy);
+
+				Dust.log(null, "*****  Local copy created for", mh);
+
+				idea = copy;
+			}
+		}
+
+		return idea;
+	}
+
+	private Object checkAccess(DustMachineIdea iAgt, DustAccess acess, DustMachineIdea iTarget, DustMachineHandle hAtt,
+			Object lastKey, Object valPrev, Object valNew) {
+		Object ret = valNew;
+
+		if ((null != iTarget) && (null != hAtt)) {
+			boolean pass = true;
+
+//			if (pass && DustUtils.isChange(acess)) {
+//				iTarget.mh.unit.content.put(hAttUnitState, hTagStateInSync);
+//			}
+		}
+
+		return ret;
 	}
 
 	synchronized DustMachineHandle getUnit(String unitId, boolean createIfMissing) {
@@ -275,7 +325,7 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 			hUnit = getUnit(ii[1], createIfMissing);
 			return hUnit;
 		}
-		DustMachineIdea iUnit = DustMachineBoot.getIdea(hUnit);
+		DustMachineIdea iUnit = resolveHandle(hUnit);
 
 		if (running && (hTagStateInSync != iUnit.content.get(hAttUnitState))) {
 			try {
@@ -303,7 +353,7 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 			String[] ii = DustUtils.splitId(id);
 			if (null != ii[0]) {
 				DustMachineHandle hUnit = getUnit(ii[0], createIfMissing);
-				iUnit = DustMachineBoot.getIdea(hUnit);
+				iUnit = resolveHandle(hUnit);
 			}
 		}
 
@@ -321,26 +371,6 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 		}
 
 		return hRet;
-	}
-
-	Map getContent(DustHandle h) {
-		DustMachineIdea idea = DustMachineBoot.getIdea((DustMachineHandle) h);
-		return idea.getContent();
-	}
-
-	private Object checkAccess(DustMachineIdea iAgt, DustAccess acess, DustMachineIdea iTarget, DustMachineHandle hAtt,
-			Object lastKey, Object valPrev, Object valNew) {
-		Object ret = valNew;
-
-		if ((null != iTarget) && (null != hAtt)) {
-			boolean pass = true;
-
-//			if (pass && DustUtils.isChange(acess)) {
-//				iTarget.mh.unit.content.put(hAttUnitState, hTagStateInSync);
-//			}
-		}
-
-		return ret;
 	}
 
 	@Override
@@ -393,13 +423,26 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 				}
 			} else {
 				switch (access) {
-				case Delete:
+				case Delete: {
 					DustMachineHandle hh = (DustMachineHandle) val;
 					Map m = hh.unit.content;
 					((Map) m.get(HANDLE_DUST_ATT_UNIT_HANDLES)).remove(hh.id);
 					((Map) m.get(HANDLE_DUST_ATT_UNIT_OBJECTS)).remove(hh);
-
+				}
 					break;
+				case Commit: {
+					Map<DustMachineHandle, DustMachineIdea> localObjects = DustUtils.simpleGet(getCtx(HANDLE_DUST_ATT_CTX_DLG).content, hAttUnitObjects);
+					
+					if ( null != localObjects ) {
+						for (DustMachineIdea li : localObjects.values() ) {
+							DustMachineIdea idea = DustMachineBoot.getIdea(li.mh);
+							
+							idea.content.clear();
+							idea.content.putAll(li.content);
+						}
+					}
+				}
+					return null;
 				}
 			}
 		}
@@ -419,14 +462,16 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 				collType = DustCollType.Map;
 			} else if (curr instanceof DustMachineHandle) {
 				lastHandle = prevHandle = (DustMachineHandle) curr;
-				iCurr = DustMachineBoot.getIdea(prevHandle);
+				iCurr = resolveHandle(prevHandle);
 				curr = iCurr.getContent();
 				collType = DustCollType.Map;
 			} else if (null == curr) {
 				if (create) {
+
 					curr = (p instanceof Integer) ? new ArrayList() : new HashMap();
 
 					if (null != prevColl) {
+						Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "Should ensure using a local deep copy of the edited idea", iCurr.mh);
 						curr = checkAccess(iAgt, DustAccess.Insert, iCurr, prevAtt, lastKey, null, curr);
 
 						switch (collType) {
@@ -608,6 +653,12 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 
 		if (Boolean.TRUE.equals(change)) {
 			checkAccess(iAgt, access, iCurr, prevAtt, lastKey, curr, val);
+			if (running && (null != prevHandle)) {
+				iCurr = resolveHandle(prevHandle, true);
+				prevColl = iCurr.content;
+			} else {
+
+			}
 		}
 
 		/**
@@ -716,7 +767,7 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 							((DustMachineHandle) lastHandle).id = (String) val;
 							break;
 						case 2:
-							((DustMachineHandle) lastHandle).unit = DustMachineBoot.getIdea((DustMachineHandle) val);
+							((DustMachineHandle) lastHandle).unit = resolveHandle((DustMachineHandle) val);
 							break;
 						}
 					}
@@ -771,14 +822,12 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 
 			DustMachineHandle hCtx = DustMachineBoot.getMachineHandle(TOKEN_DUST_ASP_CALL_CONTEXT);
 
-			DustMachineIdea iCtx = DustMachineBoot.getIdea(hCtx);
+			DustMachineIdea iCtx = resolveHandle(hCtx);
 
 			iCtx.content.put((DustMachineHandle) HANDLE_DUST_ATT_CTX_APP, getCtx(HANDLE_DUST_ATT_CTX_APP));
 			iCtx.content.put((DustMachineHandle) HANDLE_DUST_ATT_CTX_DLG, getCtx(HANDLE_DUST_ATT_CTX_DLG));
-			iCtx.content.put((DustMachineHandle) HANDLE_DUST_ATT_CTX_AGT,
-					DustMachineBoot.getIdea((DustMachineHandle) hAgent));
-			iCtx.content.put((DustMachineHandle) HANDLE_DUST_ATT_CTX_MSG,
-					DustMachineBoot.getIdea((DustMachineHandle) hMessage));
+			iCtx.content.put((DustMachineHandle) HANDLE_DUST_ATT_CTX_AGT, resolveHandle((DustMachineHandle) hAgent));
+			iCtx.content.put((DustMachineHandle) HANDLE_DUST_ATT_CTX_MSG, resolveHandle((DustMachineHandle) hMessage));
 
 			access(DustAccess.Insert, iCtx, iThread, HANDLE_DUST_ATT_CALL_STACK, 0);
 
@@ -789,10 +838,10 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 
 				Class ca = Class.forName(cn);
 				agt = Dust.createInstance(ca);
+				access(DustAccess.Set, agt, hAgent, HANDLE_DUST_ATT_WRAPPEDOBJECT);
 
 				agt.init();
 
-				access(DustAccess.Set, agt, hAgent, HANDLE_DUST_ATT_WRAPPEDOBJECT);
 			}
 
 			agt.process();
@@ -848,6 +897,8 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 		for (DustMachineIdea iUnit : unitMap.values()) {
 			access(DustAccess.Insert, HANDLE_MISC_TAG_MANDATORY, iUnit.content, HANDLE_MIND_ATT_TAGS);
 		}
+
+		access(DustAccess.Commit, null, null);
 
 		running = true;
 	}
