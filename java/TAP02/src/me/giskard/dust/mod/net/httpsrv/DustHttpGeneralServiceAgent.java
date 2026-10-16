@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustAgent;
 import me.giskard.dust.api.DustHandle;
-import me.giskard.dust.api.DustConsts.DustAccess;
 import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.stream.DustStreamConsts;
@@ -20,35 +19,29 @@ import me.giskard.dust.core.utils.DustUtilsConstsJson;
 
 //@SuppressWarnings({ "rawtypes", "unchecked" })
 //@SuppressWarnings({ "unchecked" })
-public class DustHttpGeneralServiceAgent extends DustAgent implements DustNetConsts, DustStreamConsts, DustUtilsConstsJson {
-//	String infoType;
+public class DustHttpGeneralServiceAgent extends DustAgent
+		implements DustNetConsts, DustStreamConsts, DustUtilsConstsJson {
 
 	@Override
 	public void process() throws Exception {
-		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_TARGET,
-				HANDLE_NET_ATT_SRVCALL_RESPONSE);
+		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, HANDLE_NET_ATT_SRVCALL_RESPONSE);
 
-		String cmd = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_CMD);
+		DustHandle hCmd = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_CMD);
 
-		if (!DustUtils.isEmpty(cmd)) {
-			// new TAP path
-			switch (cmd) {
-			case HANDLE_MISC_TAG_CMD_RESPOND:
-				String mt = Dust.access(DustAccess.Peek, null, null, HANDLE_STREAM_ATT_MIMETYPE);
-				response.setContentType(mt);
-				OutputStream out = response.getOutputStream();
+		if (HANDLE_MISC_TAG_CMD_RESPOND.equals(hCmd)) {
+			String mt = Dust.access(DustAccess.Peek, null, null, HANDLE_STREAM_ATT_MIMETYPE);
+			response.setContentType(mt);
+			OutputStream out = response.getOutputStream();
 
-				InputStream is = Dust.access(DustAccess.Peek, null, null, HANDLE_STREAM_ATT_INPUT);
-				DustStreamUtils.copyStream(is, out);
-				out.close();
-				break;
-			}
+			InputStream is = Dust.access(DustAccess.Peek, null, null, HANDLE_STREAM_ATT_INPUT);
+			DustStreamUtils.copyStream(is, out);
+			out.close();
 
 			return;
 		}
 
 		if (null != response) {
-			String pi = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_TARGET, HANDLE_NET_ATT_SRVCALL_PATHINFO);
+			String pi = Dust.access(DustAccess.Peek, null, null, HANDLE_NET_ATT_SRVCALL_PATHINFO);
 
 			String[] path = pi.split("/");
 			int pl = path.length;
@@ -71,7 +64,7 @@ public class DustHttpGeneralServiceAgent extends DustAgent implements DustNetCon
 
 				sb.append("<h2>Services</h2><ul>");
 
-				String url = Dust.access(DustAccess.Peek, "", null, HANDLE_MISC_ATT_TARGET, HANDLE_STREAM_ATT_URL);
+				String url = Dust.access(DustAccess.Peek, "", null, HANDLE_STREAM_ATT_URL);
 
 				for (DustHandle h : DustMachineUtils.getUnitMembers(source)) {
 					DustHandle t = h.getType();
@@ -92,7 +85,7 @@ public class DustHttpGeneralServiceAgent extends DustAgent implements DustNetCon
 
 			} else {
 				try {
-					cmd = path[0];
+					String cmd = path[0];
 					DustHandle svc = Dust.getHandle(source, null, path[1], false);
 					if (null == svc) {
 						Dust.access(DustAccess.Insert, HANDLE_MIND_TAG_RESULT_REJECT, null, HANDLE_DUST_ATT_CTX_MSG,
@@ -103,8 +96,7 @@ public class DustHttpGeneralServiceAgent extends DustAgent implements DustNetCon
 
 					switch (cmd) {
 					case "exec":
-						Map<String, String> params = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_TARGET,
-								HANDLE_MISC_ATT_PAYLOAD);
+						Map<String, String> params = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_PAYLOAD);
 						Dust.access(DustAccess.Set, params, svc, HANDLE_MISC_ATT_PAYLOAD);
 						Dust.access(DustAccess.Commit, null, svc);
 						break;
@@ -130,7 +122,7 @@ public class DustHttpGeneralServiceAgent extends DustAgent implements DustNetCon
 						break;
 					}
 				} finally {
-					Dust.releaseUnit(unit);
+					Dust.access(DustAccess.Delete, null, unit);
 				}
 			}
 

@@ -6,40 +6,12 @@ import java.io.OutputStream;
 import java.util.Collection;
 import java.util.regex.Pattern;
 
-import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustException;
 import me.giskard.dust.core.machine.DustMachineConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsConsts;
 
 public class DustStreamUtils implements DustUtilsConsts, DustMachineConsts, DustStreamConsts {
-
-	public static <RetType> RetType getStream() {
-		Object streamSource = Dust.access(DustAccess.Peek, null, null, HANDLE_STREAM_ATT_SOURCE);
-		String cmd = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_CMD);
-		String fileName = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_PATH);
-
-		return getStream(cmd, fileName, streamSource);
-	}
-
-	public static <RetType> RetType getStream(String cmd, String fileName) {
-		Object streamSource = Dust.access(DustAccess.Peek, null, null, HANDLE_STREAM_ATT_SOURCE);
-
-		return getStream(cmd, fileName, streamSource);
-	}
-
-	public static <RetType> RetType getStream(String cmd, String fileName, Object streamSource) {
-//		Map<String, Object> sp = new HashMap<String, Object>();
-//
-//		sp.put(HANDLE_MIND_ATT_CMD, cmd);
-//		sp.put(HANDLE_MISC_ATT_PATH, fileName);
-		
-		Dust.access(DustAccess.Set, cmd, streamSource, HANDLE_MIND_ATT_CMD);
-		Dust.access(DustAccess.Set, fileName, streamSource, HANDLE_MISC_ATT_PATH);
-
-		return Dust.access(DustAccess.Commit, null, streamSource);
-
-	}
 
 	public static boolean copyStream(InputStream is, OutputStream os) throws IOException {
 		boolean success = false;
@@ -197,7 +169,7 @@ public class DustStreamUtils implements DustUtilsConsts, DustMachineConsts, Dust
 	}
 
 	// https://stackoverflow.com/questions/1265282/what-is-the-recommended-way-to-escape-html-symbols-in-plain-java
-	// Apache text brings too many dependecies for one single function.
+	// Apache text brings too many dependencies for one single function.
 
 	public static String escapeHTML(String s) {
 		StringBuilder out = new StringBuilder(Math.max(16, s.length()));
@@ -231,13 +203,6 @@ public class DustStreamUtils implements DustUtilsConsts, DustMachineConsts, Dust
 					out.append(';');
 				}
 			}
-//        if (c > 127 || c == '"' || c == '\'' || c == '<' || c == '>' || c == '&') {
-//            out.append("&#");
-//            out.append((int) c);
-//            out.append(';');
-//        } else {
-//            out.append(c);
-//        }
 		}
 		return out.toString();
 	}

@@ -230,6 +230,8 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 
 					if (hTagStateInSync != iUnit.content.get(hAttUnitState)) {
 						try {
+							Dust.log(null, "Loading unit", iUnit);
+
 							Dust.access(DustAccess.Set, hUnit, hMsg, HANDLE_MISC_ATT_TARGET);
 
 							Dust.access(DustAccess.Set, HANDLE_MISC_TAG_CMD_LOAD, hMsg, HANDLE_MIND_ATT_CMD);
@@ -318,12 +320,17 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 //	public synchronized DustHandle getHandle(DustHandle unit, Object type, String id, boolean createIfMissing) {
 		DustMachineHandle hUnit = (DustMachineHandle) unit;
 
-		String[] ii = DustUtils.splitId(id);
-		if (null != ii[0]) {
-			hUnit = getUnit(ii[0], createIfMissing);
-		} else {
-			hUnit = getUnit(ii[1], createIfMissing);
-			return hUnit;
+//		if (null == hUnit) 
+		{
+			String[] ii = DustUtils.splitId(id);
+			if (null != ii[0]) {
+				hUnit = getUnit(ii[0], createIfMissing);
+			} else {
+				hUnit = getUnit(ii[1], createIfMissing);
+				return hUnit;
+			}
+//		} else {
+//			getUnit(hUnit.getId(), createIfMissing);
 		}
 		DustMachineIdea iUnit = resolveHandle(hUnit);
 
@@ -335,9 +342,9 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 			}
 		}
 
-		if (null == type) {
-			Dust.log(null, "getHandle", "null type", id);
-		}
+//		if (null == type) {
+//			Dust.log(null, "getHandle", "null type", id);
+//		}
 
 		DustMachineHandle hType = (null == type) ? null
 				: (type instanceof DustMachineHandle) ? (DustMachineHandle) type
@@ -357,7 +364,7 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 			}
 		}
 
-		DustMachineHandle hRet = DustUtils.simpleGet(iUnit.content, hAttUnitHandles, id);
+		DustMachineHandle hRet = (null == id) ? null : DustUtils.simpleGet(iUnit.content, hAttUnitHandles, id);
 
 		if (null == hRet) {
 			if (createIfMissing) {
@@ -425,18 +432,21 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 				switch (access) {
 				case Delete: {
 					DustMachineHandle hh = (DustMachineHandle) val;
-					Map m = hh.unit.content;
-					((Map) m.get(HANDLE_DUST_ATT_UNIT_HANDLES)).remove(hh.id);
-					((Map) m.get(HANDLE_DUST_ATT_UNIT_OBJECTS)).remove(hh);
+					if (null != hh) {
+						Map m = hh.unit.content;
+						((Map) m.get(HANDLE_DUST_ATT_UNIT_HANDLES)).remove(hh.id);
+						((Map) m.get(HANDLE_DUST_ATT_UNIT_OBJECTS)).remove(hh);
+					}
 				}
 					break;
 				case Commit: {
-					Map<DustMachineHandle, DustMachineIdea> localObjects = DustUtils.simpleGet(getCtx(HANDLE_DUST_ATT_CTX_DLG).content, hAttUnitObjects);
-					
-					if ( null != localObjects ) {
-						for (DustMachineIdea li : localObjects.values() ) {
+					Map<DustMachineHandle, DustMachineIdea> localObjects = DustUtils
+							.simpleGet(getCtx(HANDLE_DUST_ATT_CTX_DLG).content, hAttUnitObjects);
+
+					if (null != localObjects) {
+						for (DustMachineIdea li : localObjects.values()) {
 							DustMachineIdea idea = DustMachineBoot.getIdea(li.mh);
-							
+
 							idea.content.clear();
 							idea.content.putAll(li.content);
 						}
@@ -471,8 +481,8 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 					curr = (p instanceof Integer) ? new ArrayList() : new HashMap();
 
 					if (null != prevColl) {
-						Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "Should ensure using a local deep copy of the edited idea", iCurr.mh);
-						curr = checkAccess(iAgt, DustAccess.Insert, iCurr, prevAtt, lastKey, null, curr);
+//						Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "Should ensure using a local deep copy of the edited idea", iCurr.mh);
+						/* curr = */ checkAccess(iAgt, DustAccess.Insert, iCurr, prevAtt, lastKey, null, curr);
 
 						switch (collType) {
 						case Arr:
@@ -538,7 +548,7 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 				curr = null;
 			}
 
-			curr = checkAccess(iAgt, create ? DustAccess.Get : DustAccess.Peek, iCurr, prevAtt, lastKey, null, curr);
+			/* curr = */ checkAccess(iAgt, create ? DustAccess.Get : DustAccess.Peek, iCurr, prevAtt, lastKey, null, curr);
 		}
 
 		/**
@@ -550,7 +560,7 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 				for (DustHandle ht : (Collection<DustHandle>) curr) {
 					switch (access) {
 					case Peek:
-						if (DustUtils.isEqual(val, access(DustAccess.Peek, "", ht, HANDLE_MISC_ATT_PARENT))) {
+						if (DustUtils.isEqual(val, access(DustAccess.Peek, null, ht, HANDLE_MISC_ATT_PARENT))) {
 //						if (DustUtils.isEqual(val, access(DustAccess.Peek, "", ht, HANDLE_MISC_ATT_PARENT, TOKEN_MIND_ATT_ID))) {
 							return (RetType) ht;
 						}
@@ -654,8 +664,11 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 		if (Boolean.TRUE.equals(change)) {
 			checkAccess(iAgt, access, iCurr, prevAtt, lastKey, curr, val);
 			if (running && (null != prevHandle)) {
-				iCurr = resolveHandle(prevHandle, true);
-				prevColl = iCurr.content;
+				DustMachineIdea iNew = resolveHandle(prevHandle, true);
+				if (iCurr != iNew) {
+					iCurr = iNew;
+					prevColl = iCurr.content;
+				}
 			} else {
 
 			}
@@ -755,10 +768,8 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 					if (!DustUtils.isEqual(curr, val)) {
 						((Map) prevColl).put(lastKey, val);
 
-						int specIdx = DustUtils.indexOf(lastKey, TOKEN_MIND_ATT_TYPE, TOKEN_MIND_ATT_ID, TOKEN_MIND_ATT_UNIT);
-						if (-1 == specIdx) {
-							specIdx = DustUtils.indexOf(lastKey, HANDLE_MIND_ATT_TYPE, HANDLE_MIND_ATT_ID, HANDLE_MIND_ATT_UNIT);
-						}
+						int specIdx = DustUtils.indexOf(lastKey, HANDLE_MIND_ATT_TYPE, HANDLE_MIND_ATT_ID, HANDLE_MIND_ATT_UNIT);
+
 						switch (specIdx) {
 						case 0:
 							((DustMachineHandle) lastHandle).type = (DustMachineHandle) val;

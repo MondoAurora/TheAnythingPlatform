@@ -111,7 +111,8 @@ public class DustUtilsJsonApi implements DustMachineConsts, DustUtilsConstsJson,
 			if (SKIP_KEYS.contains(hk)) {
 				continue;
 			}
-			Object val = Dust.access(DustAccess.Peek, null, h, (null == hk) ? key : hk);
+			Object val = Dust.access(DustAccess.Peek, null, h, hk);
+//			Object val = Dust.access(DustAccess.Peek, null, h, (null == hk) ? key : hk);
 
 			if (val instanceof DustHandle) {
 				storeRelation(item, key, val, null);

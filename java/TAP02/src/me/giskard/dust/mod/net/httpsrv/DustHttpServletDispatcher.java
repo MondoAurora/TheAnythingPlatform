@@ -104,11 +104,11 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 
 				// Dust.access(DustAccess.Set, response, params, HANDLE_TARGET,
 				// HANDLE_NET_ATT_SRVCALL_RESPONSE);
-				Dust.access(DustAccess.Set, response, hRelay, HANDLE_MISC_ATT_TARGET, HANDLE_NET_ATT_SRVCALL_RESPONSE);
+				Dust.access(DustAccess.Set, response, hRelay, HANDLE_NET_ATT_SRVCALL_RESPONSE);
 
 				Dust.access(DustAccess.Commit, null, hRelay);
 
-				int status = Dust.access(DustAccess.Peek, HttpServletResponse.SC_OK, hRelay, HANDLE_MISC_ATT_TARGET, HANDLE_NET_ATT_SRVCALL_STATUS);
+				int status = Dust.access(DustAccess.Peek, HttpServletResponse.SC_OK, hRelay, HANDLE_NET_ATT_SRVCALL_STATUS);
 
 				response.setStatus(status);
 			}
@@ -126,7 +126,7 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 		}
 	}
 
-	private void optAdd(Object params, Object kind, String name, Object val) {
+	private void optAdd(DustHandle params, DustHandle kind, String name, Object val) {
 		Dust.access(DustAccess.Set, val, params, kind, name);
 	}
 }

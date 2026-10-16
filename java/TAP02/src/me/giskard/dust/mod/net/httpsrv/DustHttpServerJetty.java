@@ -105,7 +105,7 @@ public class DustHttpServerJetty extends DustAgent implements DustNetConsts // ,
 			Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "Path info", pathInfo);
 		}
 
-		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_TARGET, HANDLE_NET_ATT_SRVCALL_RESPONSE);
+		HttpServletResponse response = Dust.access(DustAccess.Peek, null, null, HANDLE_NET_ATT_SRVCALL_RESPONSE);
 		if (null == response) {
 			Dust.log(HANDLE_MISC_TAG_LEVEL_ERROR, "no response given");
 			return;

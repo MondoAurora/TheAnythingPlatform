@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20261012T074535Z
+// Generation timestamp 20261015T134751Z
 
 public interface DustGenTokens_misc_1 {
 // Aspects
@@ -20,6 +20,7 @@ public interface DustGenTokens_misc_1 {
 	String TOKEN_MISC_ATT_EVENT_DURATION = "giskard.me/misc.1$eventDuration";
 	String TOKEN_MISC_ATT_EVENT_DURATION_UNIT = "giskard.me/misc.1$eventDurationUnit";
 	String TOKEN_MISC_ATT_EVENT_TIME = "giskard.me/misc.1$eventTime";
+	String TOKEN_MISC_ATT_FALLBACK = "giskard.me/misc.1$fallback";
 	String TOKEN_MISC_ATT_FILTER = "giskard.me/misc.1$filter";
 	String TOKEN_MISC_ATT_GLOBALID = "giskard.me/misc.1$globalId";
 	String TOKEN_MISC_ATT_INDEX = "giskard.me/misc.1$index";
@@ -47,6 +48,7 @@ public interface DustGenTokens_misc_1 {
 	String TOKEN_MISC_ATT_SOURCE = "giskard.me/misc.1$source";
 	String TOKEN_MISC_ATT_SPAN = "giskard.me/misc.1$span";
 	String TOKEN_MISC_ATT_TARGET = "giskard.me/misc.1$target";
+	String TOKEN_MISC_ATT_TIMEOUT = "giskard.me/misc.1$timeout";
 	String TOKEN_MISC_ATT_TYPES = "giskard.me/misc.1$types";
 	String TOKEN_MISC_ATT_UPPERCASE = "giskard.me/misc.1$upperCase";
 	String TOKEN_MISC_ATT_VERSION = "giskard.me/misc.1$version";

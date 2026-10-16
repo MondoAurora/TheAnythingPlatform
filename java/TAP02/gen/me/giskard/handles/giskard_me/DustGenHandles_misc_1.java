@@ -3,7 +3,7 @@ package me.giskard.handles.giskard_me;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustHandle;
 
-// Generation timestamp 20261012T074535Z
+// Generation timestamp 20261015T134751Z
 
 public interface DustGenHandles_misc_1 {
 // Aspects
@@ -23,6 +23,7 @@ public interface DustGenHandles_misc_1 {
 	DustHandle HANDLE_MISC_ATT_EVENT_DURATION = Dust.getHandle("giskard.me/misc.1$eventDuration");
 	DustHandle HANDLE_MISC_ATT_EVENT_DURATION_UNIT = Dust.getHandle("giskard.me/misc.1$eventDurationUnit");
 	DustHandle HANDLE_MISC_ATT_EVENT_TIME = Dust.getHandle("giskard.me/misc.1$eventTime");
+	DustHandle HANDLE_MISC_ATT_FALLBACK = Dust.getHandle("giskard.me/misc.1$fallback");
 	DustHandle HANDLE_MISC_ATT_FILTER = Dust.getHandle("giskard.me/misc.1$filter");
 	DustHandle HANDLE_MISC_ATT_GLOBALID = Dust.getHandle("giskard.me/misc.1$globalId");
 	DustHandle HANDLE_MISC_ATT_INDEX = Dust.getHandle("giskard.me/misc.1$index");
@@ -50,6 +51,7 @@ public interface DustGenHandles_misc_1 {
 	DustHandle HANDLE_MISC_ATT_SOURCE = Dust.getHandle("giskard.me/misc.1$source");
 	DustHandle HANDLE_MISC_ATT_SPAN = Dust.getHandle("giskard.me/misc.1$span");
 	DustHandle HANDLE_MISC_ATT_TARGET = Dust.getHandle("giskard.me/misc.1$target");
+	DustHandle HANDLE_MISC_ATT_TIMEOUT = Dust.getHandle("giskard.me/misc.1$timeout");
 	DustHandle HANDLE_MISC_ATT_TYPES = Dust.getHandle("giskard.me/misc.1$types");
 	DustHandle HANDLE_MISC_ATT_UPPERCASE = Dust.getHandle("giskard.me/misc.1$upperCase");
 	DustHandle HANDLE_MISC_ATT_VERSION = Dust.getHandle("giskard.me/misc.1$version");

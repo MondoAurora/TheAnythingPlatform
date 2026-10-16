@@ -4,11 +4,19 @@
 	},
 	"data": [
 		{
+			"id": "giskard.me/net.1$HttpClient",
+			"type": "giskard.me/mind.1$Narrative"
+		},
+		{
 			"id": "giskard.me/net.1$HttpDispatcher",
 			"type": "giskard.me/mind.1$Aspect"
 		},
 		{
 			"id": "giskard.me/net.1$HttpGeneralService",
+			"type": "giskard.me/mind.1$Narrative"
+		},
+		{
+			"id": "giskard.me/net.1$HttpJsonapiHandler",
 			"type": "giskard.me/mind.1$Narrative"
 		},
 		{
@@ -395,8 +403,8 @@
 		}
 	],
 	"meta": {
-		"date": "20261013T084016Z",
-		"count": 21,
+		"date": "20261015T140843Z",
+		"count": 23,
 		"unitInfo": {
 			"id": "giskard.me/net.1",
 			"type": "giskard.me/mind.1$Unit",

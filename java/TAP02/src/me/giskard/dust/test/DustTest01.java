@@ -18,6 +18,9 @@ public class DustTest01 implements DustTestConsts {
 		hTest = Dust.getHandle("Lorand/test01$TestMessage");
 		
 		Dust.access(DustAccess.Commit, null, hTest);
+		
+		
+//		loadSave("hej/ho", true);
 
 //		try (FileInputStream fis = new FileInputStream("localStore/" + handle.getId() + DUST_EXT_JSON)) {
 //			Dust.access(DustAccess.Set, fis, hTest, HANDLE_STREAM_ATT_INPUT);
@@ -51,7 +54,7 @@ public class DustTest01 implements DustTestConsts {
 
 	}
 
-	public static void loadSave(String unitId) {
+	public static void loadSave(String unitId, boolean load) {
 		DustHandle hTest;
 		hTest = Dust.access(DustAccess.Peek, null, null, HANDLE_DUST_ATT_NODE, HANDLE_STREAM_ATT_UNIT_HANDLER);
 		
@@ -60,11 +63,11 @@ public class DustTest01 implements DustTestConsts {
 		try {
 			Dust.access(DustAccess.Set, handle, hTest, HANDLE_MISC_ATT_TARGET);
 			
-			Dust.access(DustAccess.Set, HANDLE_MISC_TAG_CMD_LOAD, hTest, HANDLE_MIND_ATT_CMD);
+			Dust.access(DustAccess.Set, load ? HANDLE_MISC_TAG_CMD_LOAD : HANDLE_MISC_TAG_CMD_SAVE, hTest, HANDLE_MIND_ATT_CMD);
 			Dust.access(DustAccess.Commit, null, hTest);
 			
-			Dust.access(DustAccess.Set, HANDLE_MISC_TAG_CMD_SAVE, hTest, HANDLE_MIND_ATT_CMD);
-			Dust.access(DustAccess.Commit, null, hTest);
+//			Dust.access(DustAccess.Set, HANDLE_MISC_TAG_CMD_SAVE, hTest, HANDLE_MIND_ATT_CMD);
+//			Dust.access(DustAccess.Commit, null, hTest);
 		} finally {
 			Dust.access(DustAccess.Delete, null, hTest, HANDLE_MIND_ATT_CMD);
 			Dust.access(DustAccess.Delete, null, hTest, HANDLE_MISC_ATT_TARGET);

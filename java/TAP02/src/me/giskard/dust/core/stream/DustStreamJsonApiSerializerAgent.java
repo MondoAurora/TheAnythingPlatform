@@ -34,7 +34,7 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustS
 		} else if (HANDLE_MISC_TAG_CMD_SAVE.equals(cmd)) {
 			OutputStream os = Dust.access(DustAccess.Peek, null, null, HANDLE_STREAM_ATT_OUTPUT);
 			if (null == os) {
-				Writer w = Dust.access(DustAccess.Peek, null, null, HANDLE_STREAM_ATT_READER);
+				Writer w = Dust.access(DustAccess.Peek, null, null, HANDLE_STREAM_ATT_WRITER);
 				DustUtilsJsonApi.storeUnit(unit, w);
 			} else {
 				DustUtilsJsonApi.storeUnit(unit, os);
