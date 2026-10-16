@@ -24,7 +24,8 @@ import me.giskard.handles.giskard_me.DustGenHandles_dust_1;
 import me.giskard.handles.giskard_me.DustGenHandles_mind_1;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustUtilsJsonApi implements DustMachineConsts, DustUtilsConstsJson, DustGenHandles_mind_1, DustGenHandles_dust_1 {
+public class DustUtilsJsonApi
+		implements DustMachineConsts, DustUtilsConstsJson, DustGenHandles_mind_1, DustGenHandles_dust_1 {
 
 	private static final Set<DustHandle> SKIP_KEYS = new HashSet<DustHandle>();
 
@@ -103,8 +104,13 @@ public class DustUtilsJsonApi implements DustMachineConsts, DustUtilsConstsJson,
 	private static Map<String, Object> storeFull(DustHandle h) {
 		Map<String, Object> item = storeHead(h);
 
-		for (DustHandle hk : (Iterable<DustHandle>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, KEY_MAP_KEYS)) {
-//			DustHandle hk = (o instanceof DustHandle) ? (DustHandle)o : null;
+//		for (DustHandle hk : (Iterable<DustHandle>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, KEY_MAP_KEYS)) {
+		for (Object o : (Iterable) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, KEY_MAP_KEYS)) {
+			DustHandle hk = (o instanceof DustHandle) ? (DustHandle) o : null;
+			if (null == hk) {
+				Dust.log(null, "invalid key", o, "in handle", h);
+				continue;
+			}
 //		String key = (null == hk) ? (String) o : hk.getId();
 			String key = hk.getId();
 
@@ -190,38 +196,38 @@ public class DustUtilsJsonApi implements DustMachineConsts, DustUtilsConstsJson,
 
 		Map<String, Object> unitData = DustUtils.simpleGet(content, JsonApiMember.meta, EXT_JSONAPI_UNIT_INFO);
 		if (null != unitData) {
-			loadDataContent(unit, unit, unitData, false);
+			loadDataContent(unit, unitData, false);
 		}
 
-		loadSegment(unit, content, JsonApiMember.data);
-		loadSegment(unit, content, JsonApiMember.included);
+		loadSegment(content, JsonApiMember.data);
+		loadSegment(content, JsonApiMember.included);
 	}
 
-	public static void loadSegment(DustHandle unit, Map<String, Object> content, JsonApiMember member) {
+	public static void loadSegment(Map<String, Object> content, JsonApiMember member) {
 		Collection<Map<String, Object>> segment = DustUtils.simpleGet(content, member);
 		if (null != segment) {
 			for (Map<String, Object> ca : segment) {
-				loadDataSegment(unit, ca, JsonApiMember.included == member);
+				loadDataSegment(ca, JsonApiMember.included == member);
 			}
 		}
 	}
 
-	private static void loadDataSegment(DustHandle unit, Map<String, Object> data, boolean included) {
+	private static void loadDataSegment(Map<String, Object> data, boolean included) {
 		String type = DustUtils.simpleGet(data, JsonApiMember.type);
-		DustHandle tType = Dust.getHandle(unit, HANDLE_MIND_ASP_ASPECT, type, true);
+		DustHandle tType = Dust.getHandle(type, HANDLE_MIND_ASP_ASPECT);
 
 		String id = DustUtils.simpleGet(data, JsonApiMember.id);
-		DustHandle target = Dust.getHandle(unit, tType, id, true);
+		DustHandle target = Dust.getHandle(id, tType);
 
-		loadDataContent(target, unit, data, included);
+		loadDataContent(target, data, included);
 	}
 
-	private static void loadDataContent(DustHandle target, DustHandle unit, Map<String, Object> data, boolean included) {
+	private static void loadDataContent(DustHandle target, Map<String, Object> data, boolean included) {
 		Map<String, Object> atts = DustUtils.simpleGet(data, JsonApiMember.attributes);
 		if (null != atts) {
 			for (Map.Entry<String, Object> ae : atts.entrySet()) {
 				String rk = ae.getKey();
-				DustHandle tAtt = Dust.getHandle(unit, HANDLE_MIND_ASP_ATTRIBUTE, rk, true);
+				DustHandle tAtt = Dust.getHandle(rk, HANDLE_MIND_ASP_ATTRIBUTE);
 
 				if (SKIP_KEYS.contains(tAtt)) {
 					continue;
@@ -234,7 +240,7 @@ public class DustUtilsJsonApi implements DustMachineConsts, DustUtilsConstsJson,
 		if (null != rels) {
 			for (Map.Entry<String, Object> re : rels.entrySet()) {
 				String rk = re.getKey();
-				DustHandle tAtt = Dust.getHandle(unit, HANDLE_MIND_ASP_ATTRIBUTE, rk, true);
+				DustHandle tAtt = Dust.getHandle(rk, HANDLE_MIND_ASP_ATTRIBUTE);
 
 				Object rv = re.getValue();
 				Object rd = DustUtils.simpleGet(rv, JsonApiMember.data);
@@ -242,13 +248,13 @@ public class DustUtilsJsonApi implements DustMachineConsts, DustUtilsConstsJson,
 				if (rd instanceof Collection) {
 					for (Object rdd : (Collection) rd) {
 						String rt = DustUtils.simpleGet(rdd, JsonApiMember.type);
-						DustHandle tTypeRef = Dust.getHandle(unit, HANDLE_MIND_ASP_ASPECT, rt, true);
+						DustHandle tTypeRef = Dust.getHandle(rt, HANDLE_MIND_ASP_ASPECT);
 
 						String ri = DustUtils.simpleGet(rdd, JsonApiMember.id);
 
 						Object key = DustUtils.simpleGet(rdd, JsonApiMember.meta, EXT_JSONAPI_KEY);
 
-						DustHandle rh = Dust.getHandle(unit, tTypeRef, ri, true);
+						DustHandle rh = Dust.getHandle(ri, tTypeRef);
 //						DustHandle rh = Dust.getHandle(unit, tTypeRef, ri, DustOptCreate.Reference);
 
 						if (null == key) {
@@ -259,10 +265,10 @@ public class DustUtilsJsonApi implements DustMachineConsts, DustUtilsConstsJson,
 					}
 				} else {
 					String rt = DustUtils.simpleGet(rd, JsonApiMember.type);
-					DustHandle tTypeRef = Dust.getHandle(unit, HANDLE_MIND_ASP_ASPECT, rt, true);
+					DustHandle tTypeRef = Dust.getHandle(rt, HANDLE_MIND_ASP_ASPECT);
 					String ri = DustUtils.simpleGet(rd, JsonApiMember.id);
 
-					DustHandle rh = Dust.getHandle(unit, tTypeRef, ri, true);
+					DustHandle rh = Dust.getHandle(ri, tTypeRef);
 //					DustHandle rh = Dust.getHandle(unit, tTypeRef, ri, DustOptCreate.Reference);
 
 					Dust.access(DustAccess.Set, rh, target, tAtt);

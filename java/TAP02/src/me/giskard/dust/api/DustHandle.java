@@ -23,4 +23,21 @@ public interface DustHandle extends Comparable<DustHandle> {
 
 		return d;
 	}
+	
+	DustHandle PLACEHOLDER = new DustHandle() {
+		@Override
+		public DustHandle getUnit() {
+			return this;
+		}
+		
+		@Override
+		public DustHandle getType() {
+			return this;
+		}
+		
+		@Override
+		public String getId() {
+			return "PLACEHOLDER";
+		}
+	};
 }

@@ -51,7 +51,7 @@ public class DustHttpGeneralServiceAgent extends DustAgent
 			}
 
 			String srcName = Dust.access(DustAccess.Peek, "", null, HANDLE_MISC_ATT_SOURCE);
-			DustHandle source = Dust.getHandle(srcName, true);
+			DustHandle source = Dust.getHandle(srcName);
 
 			DustHandle unit = null;
 			StringBuilder sb = null;
@@ -86,7 +86,7 @@ public class DustHttpGeneralServiceAgent extends DustAgent
 			} else {
 				try {
 					String cmd = path[0];
-					DustHandle svc = Dust.getHandle(source, null, path[1], false);
+					DustHandle svc = Dust.getHandle(path[1], source);
 					if (null == svc) {
 						Dust.access(DustAccess.Insert, HANDLE_MIND_TAG_RESULT_REJECT, null, HANDLE_DUST_ATT_CTX_MSG,
 								HANDLE_MIND_ATT_TAGS);

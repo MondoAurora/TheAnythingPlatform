@@ -213,6 +213,8 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 		return new TreeSet<DustHandle>(unitMap.keySet());
 	}
 
+	boolean inSync = false;
+
 	protected boolean syncUnits(boolean load) throws Exception {
 		boolean ret = false;
 
@@ -222,32 +224,39 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 		DustHandle hMsg = Dust.access(DustAccess.Peek, null, iApp, HANDLE_DUST_ATT_NODE, HANDLE_STREAM_ATT_UNIT_HANDLER);
 
 		if (load) {
-			for (boolean chg = true; chg;) {
-				chg = false;
-				for (Map.Entry<DustMachineHandle, DustMachineIdea> eu : unitMap.entrySet()) {
-					DustMachineIdea iUnit = eu.getValue();
-					DustMachineHandle hUnit = eu.getKey();
+			if (!inSync) {
+				try {
+					inSync = true;
+					for (boolean chg = true; chg;) {
+						chg = false;
+						for (Map.Entry<DustMachineHandle, DustMachineIdea> eu : unitMap.entrySet()) {
+							DustMachineIdea iUnit = eu.getValue();
+							DustMachineHandle hUnit = eu.getKey();
 
-					if (hTagStateInSync != iUnit.content.get(hAttUnitState)) {
-						try {
-							Dust.log(null, "Loading unit", iUnit);
+							if (hTagStateInSync != iUnit.content.get(hAttUnitState)) {
+								try {
+									Dust.log(null, "Loading unit", iUnit);
 
-							Dust.access(DustAccess.Set, hUnit, hMsg, HANDLE_MISC_ATT_TARGET);
+									Dust.access(DustAccess.Set, hUnit, hMsg, HANDLE_MISC_ATT_TARGET);
 
-							Dust.access(DustAccess.Set, HANDLE_MISC_TAG_CMD_LOAD, hMsg, HANDLE_MIND_ATT_CMD);
-							Dust.access(DustAccess.Commit, null, hMsg);
+									Dust.access(DustAccess.Set, HANDLE_MISC_TAG_CMD_LOAD, hMsg, HANDLE_MIND_ATT_CMD);
+									Dust.access(DustAccess.Commit, null, hMsg);
 
-							iUnit.content.put(hAttUnitState, hTagStateInSync);
-						} finally {
-							Dust.access(DustAccess.Delete, null, hMsg, HANDLE_MIND_ATT_CMD);
-							Dust.access(DustAccess.Delete, null, hMsg, HANDLE_MISC_ATT_TARGET);
+									iUnit.content.put(hAttUnitState, hTagStateInSync);
+								} finally {
+									Dust.access(DustAccess.Delete, null, hMsg, HANDLE_MIND_ATT_CMD);
+									Dust.access(DustAccess.Delete, null, hMsg, HANDLE_MISC_ATT_TARGET);
+								}
+
+								chg = true;
+								ret = true;
+
+								break;
+							}
 						}
-
-						chg = true;
-						ret = true;
-
-						break;
 					}
+				} finally {
+					inSync = false;
 				}
 			}
 
@@ -311,27 +320,19 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 	}
 
 	@Override
-	protected DustHandle getHandle(String idd, boolean createIfMissing) {
-		return getHandle(null, null, idd, createIfMissing);
-	}
+	public synchronized DustHandle getHandle(String id, DustHandle type) {
+		DustMachineHandle hUnit;
+		boolean createIfMissing = (null != type);
+		boolean onlyUnit = false;
 
-	@Override
-	public synchronized DustHandle getHandle(DustHandle unit, Object type, String id, boolean createIfMissing) {
-//	public synchronized DustHandle getHandle(DustHandle unit, Object type, String id, boolean createIfMissing) {
-		DustMachineHandle hUnit = (DustMachineHandle) unit;
-
-//		if (null == hUnit) 
-		{
-			String[] ii = DustUtils.splitId(id);
-			if (null != ii[0]) {
-				hUnit = getUnit(ii[0], createIfMissing);
-			} else {
-				hUnit = getUnit(ii[1], createIfMissing);
-				return hUnit;
-			}
-//		} else {
-//			getUnit(hUnit.getId(), createIfMissing);
+		String[] ii = DustUtils.splitId(id);
+		if (null != ii[0]) {
+			hUnit = getUnit(ii[0], createIfMissing);
+		} else {
+			hUnit = getUnit(ii[1], createIfMissing);
+			onlyUnit = true;
 		}
+
 		DustMachineIdea iUnit = resolveHandle(hUnit);
 
 		if (running && (hTagStateInSync != iUnit.content.get(hAttUnitState))) {
@@ -342,13 +343,21 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 			}
 		}
 
+		if (onlyUnit) {
+			return hUnit;
+		}
+
+		if (DustHandle.PLACEHOLDER == type) {
+			type = null;
+		}
+
 //		if (null == type) {
 //			Dust.log(null, "getHandle", "null type", id);
 //		}
 
 		DustMachineHandle hType = (null == type) ? null
 				: (type instanceof DustMachineHandle) ? (DustMachineHandle) type
-						: getHandleInt(null, hAspAsp, (String) type, true);
+						: getHandleInt(null, hAspAsp, type.getId(), true);
 
 		DustMachineHandle hRet = getHandleInt(iUnit, hType, id, createIfMissing);
 

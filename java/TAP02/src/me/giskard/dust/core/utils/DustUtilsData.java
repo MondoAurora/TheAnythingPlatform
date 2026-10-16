@@ -16,7 +16,7 @@ import me.giskard.dust.core.machine.DustMachineConsts;
 public class DustUtilsData implements DustUtilsConsts, DustMachineConsts {
 
 	public static DustHandle getAtt(DustHandle meta, DustHandle type, String attName) {
-		DustHandle att = Dust.getHandle(meta, HANDLE_MIND_ASP_ATTRIBUTE, meta.getId() + DUST_SEP_TOKEN + attName, true);
+		DustHandle att = Dust.getHandle(meta.getId() + DUST_SEP_TOKEN + attName, meta);
 		Dust.access(DustAccess.Insert, type, att, HANDLE_MISC_ATT_APPEARS);
 		Dust.access(DustAccess.Set, att, type, HANDLE_MISC_ATT_CHILDMAP, attName);
 		return att;
@@ -40,7 +40,7 @@ public class DustUtilsData implements DustUtilsConsts, DustMachineConsts {
 
 	public static DustHandle createEvent(DustHandle hUnit, DustHandle hTarget, Date dStart, long duration, DustHandle durationUnit) {
 
-		DustHandle hEvent = Dust.getHandle(hUnit, HANDLE_MISC_ASP_EVENT, null, true);
+		DustHandle hEvent = Dust.getHandle(null, hUnit);
 		Dust.access(DustAccess.Set, hTarget, hEvent, HANDLE_MISC_ATT_TARGET);
 
 		Dust.access(DustAccess.Set, duration, hEvent, HANDLE_MISC_ATT_EVENT_DURATION);

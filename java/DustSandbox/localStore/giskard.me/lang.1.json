@@ -7,6 +7,7 @@
 			"id": "giskard.me/lang.1$Language",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_LANG_ASP_LANGUAGE",
 				"giskard.me/misc.1$name": "TOKEN_LANG_ASP_LANGUAGE"
 			}
 		},
@@ -26,6 +27,7 @@
 			"id": "giskard.me/lang.1$supported",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_LANG_ATT_SUPPORTED",
 				"giskard.me/misc.1$name": "TOKEN_LANG_ATT_SUPPORTED"
 			},
 			"relationships": {
@@ -45,7 +47,7 @@
 		}
 	],
 	"meta": {
-		"date": "20261006T080608Z",
+		"date": "20261016T131220Z",
 		"count": 5,
 		"unitInfo": {
 			"id": "giskard.me/lang.1",

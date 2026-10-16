@@ -12,15 +12,11 @@ public class Dust implements DustConsts {
 	private static DustMachine MACHINE;
 
 	public static DustHandle getHandle(String id) {
-		return MACHINE.getHandle(id, true);
+		return MACHINE.getHandle(id, null);
 	}
 
-	public static DustHandle getHandle(String id, boolean createIfMissing) {
-		return MACHINE.getHandle(id, createIfMissing);
-	}
-
-	public static DustHandle getHandle(DustHandle unit, Object type, String id, boolean createIfMissing) {
-		return MACHINE.getHandle(unit, type, id, createIfMissing);
+	public static DustHandle getHandle(String id, DustHandle type) {
+		return MACHINE.getHandle(id, type);
 	}
 
 	public static <RetType> RetType access(DustAccess access, Object val, Object root, Object... path) {

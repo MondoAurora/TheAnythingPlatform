@@ -57,7 +57,7 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustStreamConst
 			if (f.isFile()) {
 				hStreamAtt = HANDLE_STREAM_ATT_INPUT;
 			} else {
-				DustHandle fallback = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_FALLBACK);
+				DustHandle fallback = Dust.access(DustAccess.Peek, null, null,HANDLE_MISC_TAG_CMD_SAVE, HANDLE_MISC_ATT_FALLBACK);
 
 				if (null != fallback) {
 					try (Closeable cs = createStream(HANDLE_MISC_TAG_CMD_SAVE, f)) {

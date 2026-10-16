@@ -64,7 +64,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 					switch ( cmd ) {
 					case "unit":
 						String unitId = path[1] + "/" + path[2];
-						DustHandle source = Dust.getHandle(unitId, true);
+						DustHandle source = Dust.getHandle(unitId, HANDLE_MIND_ASP_UNIT);
 						String type = (pl > 3) ? path[3] : null;
 
 						Pattern ptFilter = null;
@@ -83,7 +83,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 								if ( matcher.matches() ) {
 									String tn = matcher.group(1);
 
-									DustHandle ht = Dust.getHandle(tn, false);
+									DustHandle ht = Dust.getHandle(tn);
 
 									if ( null == ht ) {
 										Dust.log(HANDLE_MISC_TAG_LEVEL_ERROR, "undefined type in filter", tn);
@@ -108,7 +108,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 							}
 						}
 
-						unit = Dust.getHandle(null, HANDLE_MIND_ASP_UNIT, null, true);
+						unit = Dust.getHandle(null, HANDLE_MIND_ASP_UNIT);
 
 						if ( pl > 3 ) {
 							StringBuilder sb = null;
@@ -116,7 +116,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 								sb = DustUtils.sbAppend(sb, "/", true, path[i]);
 							}
 							String id = sb.toString();
-							DustHandle h = Dust.getHandle(source, null, id.toString(), false);
+							DustHandle h = Dust.getHandle(id.toString(), source);
 							if ( null != h ) {
 								cloneData(unit, h, atts);
 							}
@@ -167,8 +167,9 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 	}
 
 	private void cloneData(DustHandle unit, DustHandle h, Map<DustHandle, Iterable<DustHandle>> atts) {
-		DustHandle ot = h.getType();
-		DustHandle to = Dust.getHandle(unit, ot, h.getId(), true);
-		DustMachineUtils.loadData(to, h, atts.get(ot));
+		Dust.access(DustAccess.Set, h, unit, HANDLE_DUST_ATT_UNIT_HANDLES, h.getId());
+//		DustHandle ot = h.getType();
+//		DustHandle to = Dust.getHandle(h.getId(), unit);
+//		DustMachineUtils.loadData(to, h, atts.get(ot));
 	}
 }

@@ -159,13 +159,12 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 			String kBinRes = addToken(Dust.getHandle(TOKEN_DUST_ATT_BINARY_RESOLVER), "att_", atts, all);
 			String kUnitHandler = addToken(Dust.getHandle(TOKEN_STREAM_ATT_UNIT_HANDLER), "att_", atts, all);
 			String kAttNode = addToken(Dust.getHandle(TOKEN_DUST_ATT_NODE), "att_", atts, all);
-			
+
 			ps.println("\t\tswitch(appId) {");
-			
 
 			for (DustHandle hNode : bootNodes) {
 				ps.println(DustUtils.sbAppend(null, "", false, "\t\tcase \"", hNode.getId(), "\" : {").toString());
-				
+
 				Collection<DustHandle> modules = Dust.access(DustAccess.Get, Collections.EMPTY_LIST, hNode,
 						TOKEN_MISC_ATT_PARENT, TOKEN_DUST_ATT_MODULES);
 
@@ -225,7 +224,7 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 				lines.clear();
 				for (Map.Entry<String, DustHandle> ei : atts.entrySet()) {
 					lines.add(DustUtils.sbAppend(null, "", false, "\t\t\tDustHandle ", ei.getKey(), " = Dust.getHandle(\"",
-							ei.getValue().getId(), "\");").toString());
+							ei.getValue().getId(), "\", DustHandle.PLACEHOLDER);").toString());
 				}
 				for (String l : lines) {
 					ps.println(l);
@@ -235,7 +234,7 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 				lines.clear();
 				for (Map.Entry<String, DustHandle> ei : ideas.entrySet()) {
 					lines.add(DustUtils.sbAppend(null, "", false, "\t\t\tDustHandle ", ei.getKey(), " = Dust.getHandle(\"",
-							ei.getValue().getId(), "\");").toString());
+							ei.getValue().getId(), "\", DustHandle.PLACEHOLDER);").toString());
 				}
 				for (String l : lines) {
 					ps.println(l);
@@ -248,14 +247,16 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 
 				ps.println("\n// Set unit handler");
 
-				ps.println("\t\t\tDustHandle hApp = Dust.getHandle(appId);");
-				ps.print(
-						DustUtils.sbAppend(null, ", ", false, "\t\t\tDust.access(DustAccess.Set", "hApp", "null", kCtxApp, kAttNode));
+				ps.println("\t\t\tDustHandle hApp = Dust.getHandle(appId, DustHandle.PLACEHOLDER);");
+				ps.print(DustUtils.sbAppend(null, ", ", false, "\t\t\tDust.access(DustAccess.Set", "hApp", "null", kCtxApp,
+						kAttNode));
 				ps.println(");");
 
 				String unitHandlerIdeaKey = all.get(Dust.access(DustAccess.Peek, null, hNode, TOKEN_STREAM_ATT_UNIT_HANDLER));
-				ps.print(DustUtils.sbAppend(null, ", ", false, "\t\t\tDust.access(DustAccess.Set", unitHandlerIdeaKey, "null",
-						kCtxApp, kAttNode, kUnitHandler));
+//				ps.print(DustUtils.sbAppend(null, ", ", false, "\t\t\tDust.access(DustAccess.Set", unitHandlerIdeaKey, "null",
+//						kCtxApp, kAttNode, kUnitHandler));
+				ps.print(DustUtils.sbAppend(null, ", ", false, "\t\t\tDust.access(DustAccess.Set", unitHandlerIdeaKey, "hApp",
+						kUnitHandler));
 				ps.println(");");
 				ps.println("\t\t} break;");
 
@@ -267,7 +268,7 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 			ps.println("\t\tdefault:");
 			ps.println("\t\t\tDustException.wrap(null, \"Unknown appId parameter\", appId);");
 			ps.println("\t\tbreak;");
-			
+
 			ps.println("\t\t}");
 
 			ps.println("\t}");
@@ -282,8 +283,8 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 		return null;
 	}
 
-	private void optAddAction(ArrayList<String> target, Object val, String idea, DustHandle hAtt, Map<String, DustHandle> atts, 
-	Map<DustHandle, String> all, boolean arr) {
+	private void optAddAction(ArrayList<String> target, Object val, String idea, DustHandle hAtt,
+			Map<String, DustHandle> atts, Map<DustHandle, String> all, boolean arr) {
 		if (null == val) {
 			return;
 		}
@@ -346,7 +347,7 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 					}
 					ps.print("\"");
 					ps.print(tm.get(key).getId());
-					ps.print(newGen ? "\");" : "\";");
+					ps.print(newGen ? "\", DustHandle.PLACEHOLDER);" : "\";");
 					ps.println();
 				}
 			}

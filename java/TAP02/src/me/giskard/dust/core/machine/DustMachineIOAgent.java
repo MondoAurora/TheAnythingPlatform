@@ -19,7 +19,7 @@ public class DustMachineIOAgent extends DustAgent implements DustMachineConsts {
 
 		if (null != hTarget) {
 			if (DustUtils.isEqual(HANDLE_MIND_ASP_UNIT, hTarget)) {
-				hTarget = Dust.getHandle(name, true);
+				hTarget = Dust.getHandle(name, HANDLE_MIND_ASP_UNIT);
 			}
 
 			try {

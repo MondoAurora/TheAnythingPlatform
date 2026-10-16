@@ -16,7 +16,12 @@ public class DustTest01 implements DustTestConsts {
 //		loadSave("Lorand/Tanulas.1");
 		
 		hTest = Dust.getHandle("Lorand/test01$TestMessage");
+//		hTest = Dust.getHandle("Lorand/test01$ImportBKKData");
 		
+		
+		
+		Dust.access(DustAccess.Commit, null, null);
+
 		Dust.access(DustAccess.Commit, null, hTest);
 		
 		

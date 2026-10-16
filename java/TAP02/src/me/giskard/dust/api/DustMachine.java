@@ -6,8 +6,7 @@ public abstract class DustMachine extends DustAgent implements DustConsts {
 		DustMachine getMachine();
 	}
 	
-	protected abstract DustHandle getHandle(DustHandle unit, Object type, String id, boolean createIfMissing);
-	protected abstract DustHandle getHandle(String idd, boolean createIfMissing);
+	protected abstract DustHandle getHandle(String id, DustHandle type);
 
 	protected abstract <RetType> RetType access(DustAccess access, Object val, Object root, Object... path);
 	

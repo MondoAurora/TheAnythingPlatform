@@ -7,6 +7,7 @@
 			"id": "giskard.me/stream.1$Charset",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_TAG_CHARSET",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_TAG_CHARSET"
 			}
 		},
@@ -18,6 +19,7 @@
 			"id": "giskard.me/stream.1$Image",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_TAG_IMAGE",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_TAG_IMAGE"
 			}
 		},
@@ -25,6 +27,7 @@
 			"id": "giskard.me/stream.1$MediaType",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_TAG_MEDIATYPE",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_TAG_MEDIATYPE"
 			}
 		},
@@ -36,6 +39,7 @@
 			"id": "giskard.me/stream.1$Stream",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ASP_STREAM",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ASP_STREAM"
 			}
 		},
@@ -51,6 +55,7 @@
 			"id": "giskard.me/stream.1$UrlRef",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ASP_URLREF",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ASP_URLREF"
 			}
 		},
@@ -58,6 +63,7 @@
 			"id": "giskard.me/stream.1$backupFolder",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ATT_BACKUPFOLDER",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_BACKUPFOLDER"
 			},
 			"relationships": {
@@ -79,6 +85,7 @@
 			"id": "giskard.me/stream.1$colSep",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ATT_COLSEP",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_COLSEP"
 			},
 			"relationships": {
@@ -100,6 +107,7 @@
 			"id": "giskard.me/stream.1$encoding",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ATT_ENCODING",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_ENCODING"
 			},
 			"relationships": {
@@ -121,6 +129,7 @@
 			"id": "giskard.me/stream.1$firstCol",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ATT_SAPFIRSTCOL",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_SAPFIRSTCOL"
 			},
 			"relationships": {
@@ -142,6 +151,7 @@
 			"id": "giskard.me/stream.1$inputStream",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ATT_INPUT",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_INPUT"
 			},
 			"relationships": {
@@ -163,6 +173,7 @@
 			"id": "giskard.me/stream.1$mimeType",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ATT_MIMETYPE",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_MIMETYPE"
 			},
 			"relationships": {
@@ -184,6 +195,7 @@
 			"id": "giskard.me/stream.1$outputStream",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ATT_OUTPUT",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_OUTPUT"
 			},
 			"relationships": {
@@ -205,6 +217,7 @@
 			"id": "giskard.me/stream.1$reader",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ATT_READER",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_READER"
 			},
 			"relationships": {
@@ -226,6 +239,7 @@
 			"id": "giskard.me/stream.1$rootFolder",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ATT_ROOTFOLDER",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_ROOTFOLDER"
 			},
 			"relationships": {
@@ -247,6 +261,7 @@
 			"id": "giskard.me/stream.1$rowSep",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ATT_ROWSEP",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_ROWSEP"
 			},
 			"relationships": {
@@ -268,6 +283,7 @@
 			"id": "giskard.me/stream.1$streamAPI",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ATT_STREAM_API",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_STREAM_API"
 			},
 			"relationships": {
@@ -289,6 +305,7 @@
 			"id": "giskard.me/stream.1$streamResolverUnitNames",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ATT_RESOLVER_UNIT_NAMES",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_RESOLVER_UNIT_NAMES"
 			},
 			"relationships": {
@@ -310,6 +327,7 @@
 			"id": "giskard.me/stream.1$streamSource",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ATT_SOURCE",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_SOURCE"
 			},
 			"relationships": {
@@ -331,6 +349,7 @@
 			"id": "giskard.me/stream.1$unitHandler",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ATT_UNIT_HANDLER",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_UNIT_HANDLER"
 			},
 			"relationships": {
@@ -352,6 +371,7 @@
 			"id": "giskard.me/stream.1$url",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ATT_URL",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_URL"
 			},
 			"relationships": {
@@ -373,6 +393,7 @@
 			"id": "giskard.me/stream.1$urlRefs",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ATT_URLREFS",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_URLREFS"
 			},
 			"relationships": {
@@ -394,6 +415,7 @@
 			"id": "giskard.me/stream.1$writer",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_STREAM_ATT_WRITER",
 				"giskard.me/misc.1$name": "TOKEN_STREAM_ATT_WRITER"
 			},
 			"relationships": {
@@ -413,7 +435,7 @@
 		}
 	],
 	"meta": {
-		"date": "20261006T080608Z",
+		"date": "20261016T131220Z",
 		"count": 26,
 		"unitInfo": {
 			"id": "giskard.me/stream.1",
