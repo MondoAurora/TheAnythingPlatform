@@ -28,18 +28,8 @@ public class DustUtilsJsonApi
 		implements DustMachineConsts, DustUtilsConstsJson, DustGenHandles_mind_1, DustGenHandles_dust_1 {
 
 	private static final Set<DustHandle> SKIP_KEYS = new HashSet<DustHandle>();
-
-	public static void storeUnit(DustHandle unit, OutputStream os) throws Exception {
-		Map<String, Object> target = storeUnit(unit);
-		DustUtilsJson.writeJson(os, target, DUST_CHARSET_UTF8);
-	}
-
-	public static void storeUnit(DustHandle unit, Writer w) throws Exception {
-		Map<String, Object> target = storeUnit(unit);
-		DustUtilsJson.writeJson(w, target);
-	}
-
-	public static Map<String, Object> storeUnit(DustHandle unit) {
+	
+	static {
 		SKIP_KEYS.add(HANDLE_MIND_ATT_ID);
 		SKIP_KEYS.add(HANDLE_MIND_ATT_TYPE);
 		SKIP_KEYS.add(HANDLE_MIND_ATT_UNIT);
@@ -48,23 +38,46 @@ public class DustUtilsJsonApi
 		SKIP_KEYS.add(HANDLE_DUST_ATT_UNIT_OBJECTS);
 		SKIP_KEYS.add(HANDLE_DUST_ATT_UNIT_HANDLES);
 		SKIP_KEYS.add(HANDLE_DUST_ATT_UNIT_REFS);
+	}
 
+	public static void storeUnit(DustHandle unit, OutputStream os) throws Exception {
+		Map<String, Object> target = toJsonApi(unit);
+		DustUtilsJson.writeJson(os, target, DUST_CHARSET_UTF8);
+	}
+
+	public static void storeUnit(DustHandle unit, Writer w) throws Exception {
+		Map<String, Object> target = toJsonApi(unit);
+		DustUtilsJson.writeJson(w, target);
+	}
+
+	public static Map<String, Object> toJsonApi(Collection data, Collection included) {
 		Map<String, Object> target = new HashMap<>();
 
 		Dust.access(DustAccess.Set, JSONAPI_VERSION, target, JsonApiMember.jsonapi, JsonApiMember.version);
 
-		ArrayList data = new ArrayList();
-
 		Dust.access(DustAccess.Set, data, target, JsonApiMember.data);
-
-		for (DustHandle h : DustMachineUtils.getUnitMembers(unit, null)) {
-			Map<String, Object> item = storeFull(h);
-			data.add(item);
+		
+		if ( null != included ) {
+			Dust.access(DustAccess.Set, included, target, JsonApiMember.included);
 		}
 
 		Dust.access(DustAccess.Set, data.size(), target, JsonApiMember.meta, JsonApiMember.count);
 		Dust.access(DustAccess.Set, DustUtils.strTime(), target, JsonApiMember.meta, "date");
-		Dust.access(DustAccess.Set, storeFull(unit), target, JsonApiMember.meta, EXT_JSONAPI_UNIT_INFO);
+
+		return target;
+	}
+
+	public static Map<String, Object> toJsonApi(DustHandle unit) {
+		ArrayList data = new ArrayList();
+		
+		for (DustHandle h : DustMachineUtils.getUnitMembers(unit)) {
+			Map<String, Object> item = storeFull(h, null);
+			data.add(item);
+		}
+		
+		Map<String, Object> target = toJsonApi(data, null);
+
+		Dust.access(DustAccess.Set, storeFull(unit, null), target, JsonApiMember.meta, EXT_JSONAPI_UNIT_INFO);
 
 		return target;
 	}
@@ -94,14 +107,12 @@ public class DustUtilsJsonApi
 
 			if (!DustUtils.isEqual(-1, metaKey)) {
 				Dust.access(DustAccess.Set, metaKey, head, JsonApiMember.meta, EXT_JSONAPI_KEY);
-//			} else {
-//				Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "hmm");
 			}
 		}
 		return head;
 	}
 
-	private static Map<String, Object> storeFull(DustHandle h) {
+	public static Map<String, Object> storeFull(DustHandle h, Collection<DustHandle> atts) {
 		Map<String, Object> item = storeHead(h);
 
 //		for (DustHandle hk : (Iterable<DustHandle>) Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, h, KEY_MAP_KEYS)) {
@@ -114,7 +125,7 @@ public class DustUtilsJsonApi
 //		String key = (null == hk) ? (String) o : hk.getId();
 			String key = hk.getId();
 
-			if (SKIP_KEYS.contains(hk)) {
+			if (SKIP_KEYS.contains(hk) || ((null != atts) && !atts.contains(hk))) {
 				continue;
 			}
 			Object val = Dust.access(DustAccess.Peek, null, h, hk);

@@ -131,7 +131,10 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 			iThread.content.put((DustMachineHandle) HANDLE_DUST_ATT_DIALOG, hDlg);
 		}
 			break;
-		case Release: {
+		case ReleaseSuccess:
+			commitLocalObjects();
+			// NO break
+		case ReleaseFailure: {
 			DustMachineHandle hDlg = access(DustAccess.Delete, null, iThread, HANDLE_DUST_ATT_DIALOG);
 			access(DustAccess.Delete, hDlg, null);
 			access(DustAccess.Delete, iThread.mh, null);
@@ -255,31 +258,31 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 							}
 						}
 					}
-				} finally {
-					inSync = false;
-				}
-			}
 
 //			if (!ret) 
-			{
-				Set<DustMachineHandle> uhs = new TreeSet<DustMachineHandle>(unitMap.keySet());
-				for (DustMachineHandle hUnit : uhs) {
-					DustMachineIdea iUnit = unitMap.get(hUnit);
+					{
+						Set<DustMachineHandle> uhs = new TreeSet<DustMachineHandle>(unitMap.keySet());
+						for (DustMachineHandle hUnit : uhs) {
+							DustMachineIdea iUnit = unitMap.get(hUnit);
 
-					Map<DustMachineHandle, DustMachineIdea> ideaMap = DustUtils.simpleGet(iUnit.content, hAttUnitObjects);
-					Map<String, DustMachineHandle> handleMap = DustUtils.simpleGet(iUnit.content, hAttUnitHandles);
-					Dust.log(null, "boot", "unchanged", hUnit, handleMap.size(), ideaMap.size());
+							Map<DustMachineHandle, DustMachineIdea> ideaMap = DustUtils.simpleGet(iUnit.content, hAttUnitObjects);
+							Map<String, DustMachineHandle> handleMap = DustUtils.simpleGet(iUnit.content, hAttUnitHandles);
+							Dust.log(null, "boot", "unchanged", hUnit, handleMap.size(), ideaMap.size());
 
-					for (Map.Entry<String, DustMachineHandle> ehm : handleMap.entrySet()) {
-						DustMachineHandle h = ehm.getValue();
+							for (Map.Entry<String, DustMachineHandle> ehm : handleMap.entrySet()) {
+								DustMachineHandle h = ehm.getValue();
 
-						if (null == h.type) {
-							Dust.log(null, "no type for", ehm.getKey());
-						}
-						if (!ideaMap.containsKey(h)) {
-							Dust.log(null, "no idea for", ehm.getKey());
+								if (null == h.type) {
+									Dust.log(null, "no type for", ehm.getKey());
+								}
+								if (!ideaMap.containsKey(h)) {
+									Dust.log(null, "no idea for", ehm.getKey());
+								}
+							}
 						}
 					}
+				} finally {
+					inSync = false;
 				}
 			}
 		} else {
@@ -448,19 +451,8 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 					}
 				}
 					break;
-				case Commit: {
-					Map<DustMachineHandle, DustMachineIdea> localObjects = DustUtils
-							.simpleGet(getCtx(HANDLE_DUST_ATT_CTX_DLG).content, hAttUnitObjects);
-
-					if (null != localObjects) {
-						for (DustMachineIdea li : localObjects.values()) {
-							DustMachineIdea idea = DustMachineBoot.getIdea(li.mh);
-
-							idea.content.clear();
-							idea.content.putAll(li.content);
-						}
-					}
-				}
+				case Commit:
+					commitLocalObjects();
 					return null;
 				}
 			}
@@ -828,6 +820,22 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 		}
 
 		return (RetType) ret;
+	}
+
+	synchronized void commitLocalObjects() {
+		Map<DustMachineHandle, DustMachineIdea> localObjects = DustUtils.simpleGet(getCtx(HANDLE_DUST_ATT_CTX_DLG).content,
+				hAttUnitObjects);
+
+		if (null != localObjects) {
+			for (DustMachineIdea li : localObjects.values()) {
+				DustMachineIdea idea = DustMachineBoot.getIdea(li.mh);
+
+				// should later manage commit IDs and check current to detect collision.
+
+				idea.content.clear();
+				idea.content.putAll(li.content);
+			}
+		}
 	}
 
 	protected <RetType> RetType notifyAgent(DustHandle hAgent, DustAccess access, DustHandle hMessage) {

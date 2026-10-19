@@ -52,6 +52,6 @@ public interface DustConsts {
 	}
 
 	enum DustThreadAction {
-		SetAnchor, Connect, Release
+		SetAnchor, Connect, ReleaseSuccess, ReleaseFailure
 	}
 }

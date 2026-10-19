@@ -1,6 +1,7 @@
 package me.giskard.dust.mod.net.httpsrv;
 
 import java.io.PrintWriter;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
@@ -14,12 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustAgent;
 import me.giskard.dust.api.DustHandle;
-import me.giskard.dust.core.dev.DustDevUtils;
 import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.stream.DustStreamConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsConstsJson;
+import me.giskard.dust.core.utils.DustUtilsJson;
+import me.giskard.dust.core.utils.DustUtilsJsonApi;
 import me.giskard.dust.mod.mvel.DustExprMvelUtils;
 
 //@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -38,7 +40,9 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 			if ( DustUtils.isEmpty(pi) ) {
 				String m = Dust.access(DustAccess.Peek, null, null, HANDLE_NET_ATT_SRVCALL_METHOD);
 
-				StringBuilder sb = new StringBuilder("<!doctype html>\n" + "<html lang=\"en\">\n" + "<head>\n<meta charset=\"utf-8\">\n<title>TAP02 General JSON:API interface</title>\n</head>\n" + "<body>");
+				StringBuilder sb = new StringBuilder("<!doctype html>\n" + "<html lang=\"en\">\n"
+						+ "<head>\n<meta charset=\"utf-8\">\n<title>TAP02 General JSON:API interface</title>\n</head>\n"
+						+ "<body>");
 
 				sb.append("<h2>JSONAPI</h2>");
 
@@ -53,11 +57,13 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 			} else {
 				String[] path = pi.split("/");
 				int pl = path.length;
-				DustHandle unit = null;
+//				DustHandle unit = null;
+				Map<DustHandle, Map> dataOut = new TreeMap<DustHandle, Map>();
 
 				try {
-					Map<String, String> params = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null, HANDLE_MISC_ATT_PAYLOAD);
-					Map<DustHandle, Iterable<DustHandle>> atts = new TreeMap<DustHandle, Iterable<DustHandle>>();
+					Map<String, String> params = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null,
+							HANDLE_MISC_ATT_PAYLOAD);
+					Map<DustHandle, Collection<DustHandle>> atts = new TreeMap<DustHandle, Collection<DustHandle>>();
 
 					String cmd = path[0];
 
@@ -108,7 +114,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 							}
 						}
 
-						unit = Dust.getHandle(null, HANDLE_MIND_ASP_UNIT);
+//						unit = Dust.getHandle(null, HANDLE_MIND_ASP_UNIT);
 
 						if ( pl > 3 ) {
 							StringBuilder sb = null;
@@ -118,7 +124,7 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 							String id = sb.toString();
 							DustHandle h = Dust.getHandle(id.toString(), source);
 							if ( null != h ) {
-								cloneData(unit, h, atts);
+								cloneData(dataOut, h, atts);
 							}
 						} else {
 							for (DustHandle h : DustMachineUtils.getUnitMembers(source)) {
@@ -132,32 +138,40 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 										}
 									}
 
-									cloneData(unit, h, atts);
+									cloneData(dataOut, h, atts);
 								}
 							}
 						}
 						break;
 					}
 
-					if ( null != unit ) {
+//					if (!dataOut.isEmpty()) 
+					{
 						response.setCharacterEncoding(DUST_CHARSET_UTF8);
 						response.setContentType(MEDIATYPE_JSONAPI);
-						PrintWriter out = response.getWriter();
+						PrintWriter w = response.getWriter();
 
-						Object ser = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_SERIALIZER);
+						Object ret = DustUtilsJsonApi.toJsonApi(dataOut.values(), null);
+						DustUtilsJson.writeJson(w, ret);
 
-						Dust.access(DustAccess.Set, HANDLE_MISC_TAG_CMD_SAVE, ser, HANDLE_MIND_ATT_CMD);
-						Dust.access(DustAccess.Set, unit, ser, HANDLE_MISC_ATT_TARGET);
-						Dust.access(DustAccess.Set, out, ser, HANDLE_STREAM_ATT_WRITER);
-
-						Dust.access(DustAccess.Commit, null, ser);
-
-						out.flush();
-
-						DustDevUtils.memInfo();
+//						Object ser = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_SERIALIZER);
+//
+//						Dust.access(DustAccess.Set, HANDLE_MISC_TAG_CMD_SAVE, ser, HANDLE_MIND_ATT_CMD);
+//						Dust.access(DustAccess.Set, unit, ser, HANDLE_MISC_ATT_TARGET);
+//						Dust.access(DustAccess.Set, out, ser, HANDLE_STREAM_ATT_WRITER);
+//						try {
+//							Dust.access(DustAccess.Commit, null, ser);
+//						} finally {
+//							Dust.access(DustAccess.Delete, null, ser, HANDLE_MIND_ATT_CMD);
+//							Dust.access(DustAccess.Delete, null, ser, HANDLE_MISC_ATT_TARGET);
+//							Dust.access(DustAccess.Delete, null, ser, HANDLE_STREAM_ATT_WRITER);
+//
+//							out.flush();
+//							DustDevUtils.memInfo();
+//						}
 					}
 				} finally {
-					Dust.access(DustAccess.Delete, null, unit);
+//					Dust.access(DustAccess.Delete, unit, null);
 				}
 			}
 		}
@@ -166,10 +180,18 @@ public class DustHttpJsonapiAgent extends DustAgent implements DustNetConsts, Du
 //		return HANDLE_MIND_TAG_RESULT_ACCEPT;
 	}
 
-	private void cloneData(DustHandle unit, DustHandle h, Map<DustHandle, Iterable<DustHandle>> atts) {
-		Dust.access(DustAccess.Set, h, unit, HANDLE_DUST_ATT_UNIT_HANDLES, h.getId());
-//		DustHandle ot = h.getType();
-//		DustHandle to = Dust.getHandle(h.getId(), unit);
-//		DustMachineUtils.loadData(to, h, atts.get(ot));
+	private void cloneData(Map<DustHandle, Map> dataOut, DustHandle h, Map<DustHandle, Collection<DustHandle>> atts) {
+		if ( !dataOut.containsKey(h) ) {
+			dataOut.put(h, DustUtilsJsonApi.storeFull(h, atts.get(h)));
+		}
 	}
+
+//	private void cloneData(DustHandle unit, DustHandle h, Map<DustHandle, Iterable<DustHandle>> atts) {
+//		Dust.access(DustAccess.Set, h, unit, HANDLE_DUST_ATT_UNIT_HANDLES, h.getId());
+//
+//		Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "cloneData", h.getId(), h, "to unit", unit.getId());
+////		DustHandle ot = h.getType();
+////		DustHandle to = Dust.getHandle(h.getId(), unit);
+////		DustMachineUtils.loadData(to, h, atts.get(ot));
+//	}
 }

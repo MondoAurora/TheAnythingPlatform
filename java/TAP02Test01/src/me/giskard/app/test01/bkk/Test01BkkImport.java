@@ -33,7 +33,8 @@ public class Test01BkkImport extends DustAgent implements Test01BkkConsts {
 
 		DustHandle tType;
 
-		Object[] skip = { "shapes", "stop_times", "trips" };
+		Object[] skip = { "shapes", "stop_times" };
+//		Object[] skip = { "shapes", "stop_times", "trips" };
 		Object[] noId = { "calendar_dates", "translations" };
 
 		DustHandle hMsg = Dust.access(DustAccess.Peek, null, null, HANDLE_DUST_ATT_NODE, HANDLE_STREAM_ATT_UNIT_HANDLER);

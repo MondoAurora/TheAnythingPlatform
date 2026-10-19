@@ -115,7 +115,7 @@ class DustHttpServletDispatcher extends HttpServlet implements DustNetConsts, Du
 		} catch (Throwable t) {
 			exception = t;
 		} finally {
-			Dust.manageThread(DustThreadAction.Release, threadAnchor);
+			Dust.manageThread((null == exception) ? DustThreadAction.ReleaseSuccess : DustThreadAction.ReleaseFailure, threadAnchor);
 
 			Dust.log(null, "Http request: " + pathInfo, "Process time: " + (System.currentTimeMillis() - ts) + " msec",
 					(null == exception) ? "Success" : "error: " + exception);
