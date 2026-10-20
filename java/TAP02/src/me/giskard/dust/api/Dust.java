@@ -62,7 +62,7 @@ public class Dust implements DustConsts {
 
 			Dust.log(null, "Machine instance created.", appId);
 
-			DustTest01.testMsg();
+//			DustTest01.testMsg();
 			
 			Dust.access(DustAccess.Commit, null, null);
 

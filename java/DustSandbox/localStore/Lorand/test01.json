@@ -58,6 +58,30 @@
 			}
 		},
 		{
+			"id": "Lorand/test01$FatClientAssembly",
+			"type": "giskard.me/mind.1$Assembly",
+			"relationships": {
+				"giskard.me/misc.1$init": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$ImportBKKData",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01$TestMessage",
+							"type": "giskard.me/mind.1$Message"
+						}
+					]
+				}
+			}
+		},
+		{
 			"id": "Lorand/test01$HttpJsonapiMsg",
 			"type": "giskard.me/mind.1$Message",
 			"attributes": {
@@ -333,23 +357,6 @@
 			}
 		},
 		{
-			"id": "Lorand/test01$Test01Log",
-			"type": "giskard.me/mind.1$Assembly",
-			"relationships": {
-				"giskard.me/misc.1$init": {
-					"data": [
-						{
-							"meta": {
-								"key": 0
-							},
-							"id": "Lorand/test01$LogAgent",
-							"type": "giskard.me/mind.1$Agent"
-						}
-					]
-				}
-			}
-		},
-		{
 			"id": "Lorand/test01$Test01System",
 			"type": "giskard.me/mind.1$System",
 			"relationships": {
@@ -435,7 +442,7 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Lorand/test01$Test01Log",
+							"id": "Lorand/test01$FatClientAssembly",
 							"type": "giskard.me/mind.1$Assembly"
 						}
 					]
@@ -653,7 +660,7 @@
 		}
 	],
 	"meta": {
-		"date": "20261016T131548Z",
+		"date": "20261020T071710Z",
 		"count": 30,
 		"unitInfo": {
 			"id": "Lorand/test01",
