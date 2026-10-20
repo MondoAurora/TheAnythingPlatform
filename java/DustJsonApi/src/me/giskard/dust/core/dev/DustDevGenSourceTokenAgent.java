@@ -26,6 +26,15 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 		TAP01Tokens, TAP02Handles, TAP02BootTokens, TAP02AppNodes
 	}
 
+	static Set<String> SKIP_KEYS = new HashSet<String>();
+
+	static {
+		SKIP_KEYS.add(TOKEN_MIND_ATT_ID);
+		SKIP_KEYS.add(TOKEN_MIND_ATT_TYPE);
+		SKIP_KEYS.add(TOKEN_MIND_ATT_UNIT);
+		SKIP_KEYS.add(TOKEN_DEV_ATT_BOOT_TOKENS);
+	}
+
 	Collection<String> types;
 	String targetPackage;
 	File root;
@@ -135,21 +144,12 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 		Collection<DustHandle> bootNodes = Dust.access(DustAccess.Peek, null, null, TOKEN_DEV_ATT_BOOT_NODES);
 
 		if (null != bootNodes) {
-			Set<String> SKIP_KEYS = new HashSet<String>();
-
-			SKIP_KEYS.add(TOKEN_MIND_ATT_ID);
-			SKIP_KEYS.add(TOKEN_MIND_ATT_TYPE);
-			SKIP_KEYS.add(TOKEN_MIND_ATT_UNIT);
-			SKIP_KEYS.add(TOKEN_DEV_ATT_BOOT_TOKENS);
-
 			String pn = "me.giskard.boot";
 			String cName = "DustGenBootApp";
 
 			File r = new File("../TAP02Test01/gen/me/giskard/boot");
 			PrintStream ps = createSrcStream(r, pn, cName, null, Mode.TAP02AppNodes);
 
-			Set<String> lines = new TreeSet<String>();
-			ArrayList<String> actions = new ArrayList<String>();
 			Map<String, DustHandle> ideas = new TreeMap<String, DustHandle>();
 			Map<String, DustHandle> atts = new TreeMap<String, DustHandle>();
 			Map<DustHandle, String> all = new HashMap<DustHandle, String>();
@@ -163,7 +163,6 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 			ps.println("\t\tswitch(appId) {");
 
 			for (DustHandle hNode : bootNodes) {
-				ps.println(DustUtils.sbAppend(null, "", false, "\t\tcase \"", hNode.getId(), "\" : {").toString());
 
 				Collection<DustHandle> modules = Dust.access(DustAccess.Get, Collections.EMPTY_LIST, hNode,
 						TOKEN_MISC_ATT_PARENT, TOKEN_DUST_ATT_MODULES);
@@ -183,7 +182,11 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 				for (DustHandle hToken : bootTokens) {
 					addToken(hToken, "idea_", ideas, all);
 				}
-//				String kNode = addToken(hNode, "idea_", ideas, all);
+
+				Set<String> lines = new TreeSet<String>();
+				ArrayList<String> actions = new ArrayList<String>();
+				
+				ps.println(DustUtils.sbAppend(null, "", false, "\t\tcase \"", hNode.getId(), "\" : {").toString());
 
 				for (DustHandle hToken : ideas.values()) {
 					actions.add("\n\t\t// " + hToken);

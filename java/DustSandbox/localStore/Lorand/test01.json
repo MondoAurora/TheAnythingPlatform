@@ -67,13 +67,6 @@
 							"meta": {
 								"key": 0
 							},
-							"id": "Lorand/test01$ImportBKKData",
-							"type": "giskard.me/mind.1$Message"
-						},
-						{
-							"meta": {
-								"key": 1
-							},
 							"id": "Lorand/test01$TestMessage",
 							"type": "giskard.me/mind.1$Message"
 						}
@@ -176,21 +169,11 @@
 		{
 			"id": "Lorand/test01$LocalFiles",
 			"type": "giskard.me/mind.1$Agent",
-			"attributes": {
-				"giskard.me/misc.1$path": "localStore",
-				"giskard.me/stream.1$backupFolder": "backup"
-			},
 			"relationships": {
 				"giskard.me/mind.1$narrative": {
 					"data": {
 						"id": "giskard.me/stream.1$FileStreamSource",
 						"type": "giskard.me/mind.1$Narrative"
-					}
-				},
-				"giskard.me/misc.1$fallback": {
-					"data": {
-						"id": "Lorand/test01$DownloadUnit",
-						"type": "giskard.me/mind.1$Message"
 					}
 				}
 			}
@@ -280,6 +263,10 @@
 		{
 			"id": "Lorand/test01$ProvideStream",
 			"type": "giskard.me/mind.1$Message",
+			"attributes": {
+				"giskard.me/misc.1$path": "localStore",
+				"giskard.me/stream.1$backupFolder": "backup"
+			},
 			"relationships": {
 				"giskard.me/mind.1$listeners": {
 					"data": [
@@ -314,12 +301,6 @@
 					"data": {
 						"id": "giskard.me/stream.1$StreamCentre",
 						"type": "giskard.me/mind.1$Narrative"
-					}
-				},
-				"giskard.me/stream.1$streamSource": {
-					"data": {
-						"id": "Lorand/test01$ProvideStream",
-						"type": "giskard.me/mind.1$Message"
 					}
 				}
 			}
@@ -411,10 +392,6 @@
 						{
 							"id": "Lorand/test01$UnitHandler",
 							"type": "giskard.me/mind.1$Message"
-						},
-						{
-							"id": "giskard.me/net.1$HttpServerJetty",
-							"type": "giskard.me/mind.1$Narrative"
 						},
 						{
 							"id": "giskard.me/stream.1$FileStreamSource",
@@ -546,6 +523,161 @@
 			}
 		},
 		{
+			"id": "Lorand/test01$ThinClient",
+			"type": "giskard.me/mind.1$Node",
+			"relationships": {
+				"giskard.me/dev.1$bootTokens": {
+					"data": [
+						{
+							"id": "Lorand/test01$DownloadUnit",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$LocalFiles",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$ProcessUnitStream",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$RemoteUnitLoader",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$StreamCentre",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$StreamUnitProcessor",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$ThinProvideStream",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$ThinUnitHandler",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "giskard.me/net.1$HttpClient",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$FileStreamSource",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$SerializeJsonApi",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$StreamCentre",
+							"type": "giskard.me/mind.1$Narrative"
+						}
+					]
+				},
+				"giskard.me/dust.1$machine": {
+					"data": {
+						"id": "Lorand/test01$MachineAPI",
+						"type": "giskard.me/mind.1$Message"
+					}
+				},
+				"giskard.me/misc.1$init": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$FatClientAssembly",
+							"type": "giskard.me/mind.1$Assembly"
+						}
+					]
+				},
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "Lorand/test01$Test01System",
+						"type": "giskard.me/mind.1$System"
+					}
+				},
+				"giskard.me/stream.1$unitHandler": {
+					"data": {
+						"id": "Lorand/test01$ThinUnitHandler",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$ThinProvideStream",
+			"type": "giskard.me/mind.1$Message",
+			"attributes": {
+				"giskard.me/misc.1$path": "cache",
+				"giskard.me/stream.1$backupFolder": "backup"
+			},
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$LocalFiles",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				},
+				"giskard.me/misc.1$fallback": {
+					"data": {
+						"id": "Lorand/test01$DownloadUnit",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$ThinUnitHandler",
+			"type": "giskard.me/mind.1$Message",
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/misc.1$CmdLoad",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$StreamCentre",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				},
+				"giskard.me/mind.1$next": {
+					"data": {
+						"id": "Lorand/test01$ProcessUnitStream",
+						"type": "giskard.me/mind.1$Message"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/mind.1$Unit",
+						"type": "giskard.me/mind.1$Aspect"
+					}
+				},
+				"giskard.me/stream.1$streamSource": {
+					"data": {
+						"id": "Lorand/test01$ThinProvideStream",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
 			"id": "Lorand/test01$UnitHandler",
 			"type": "giskard.me/mind.1$Message",
 			"relationships": {
@@ -576,6 +708,12 @@
 					"data": {
 						"id": "giskard.me/mind.1$Unit",
 						"type": "giskard.me/mind.1$Aspect"
+					}
+				},
+				"giskard.me/stream.1$streamSource": {
+					"data": {
+						"id": "Lorand/test01$ProvideStream",
+						"type": "giskard.me/mind.1$Message"
 					}
 				}
 			}
@@ -660,8 +798,8 @@
 		}
 	],
 	"meta": {
-		"date": "20261020T071710Z",
-		"count": 30,
+		"date": "20261020T141055Z",
+		"count": 33,
 		"unitInfo": {
 			"id": "Lorand/test01",
 			"type": "giskard.me/mind.1$Unit",

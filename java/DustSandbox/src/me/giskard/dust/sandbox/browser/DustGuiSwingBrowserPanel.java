@@ -570,7 +570,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					String id = JOptionPane.showInputDialog(frm, "New id?", s.getId());
 					if (null != id) {
 						DustHandle sc = Dust.getHandle(s.getUnit(), s.getType(), id, DustOptCreate.Primary);
-						DustMachineUtils.loadData(sc, s, false);
+						DustMachineUtils.loadData(sc, s, true);
 						Dust.access(DustAccess.Set, sc.getId(), sc, TOKEN_MIND_ATT_ID); // quick fix
 						graphPanel.showHandle(sc, true, false);
 						selected.add(sc);
@@ -692,6 +692,22 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 					Dust.access(DustAccess.Delete, null, focused, focusedAtt);
 					tblmProperties.fireTableDataChanged();
 				}
+				break;
+			case "Drop Val":
+				if (-1 != focusedIdx) {
+					switch (focusedCollType) {
+					case Arr:
+						break;
+					case Map:
+						break;
+					case One:
+						break;
+					case Set:
+						Object ov = tblmColl.getValueAt(focusedIdx, 1);
+						Dust.access(DustAccess.Delete, ov, focused, focusedAtt);
+						break;
+					}
+				}				
 				break;
 			case "Update Value":
 				if (-1 != focusedIdx) {
@@ -902,7 +918,7 @@ public class DustGuiSwingBrowserPanel extends DustAgent implements DustGuiSwingB
 		factToolbars.fillToolbar("tbTop", "Rebuild", /* "Load Tokens", */ null, new JLabel("Handle ID:"), tfHandle, "Load Handle", null, "Rollback", "Commit", null,
 				"New Machine");
 		factToolbars.fillToolbar("tbUnit", "Update Units", "Load Unit", null, "Gen Src");
-		factToolbars.fillToolbar("tbProp", "New Att", "Drop Att", "Update Value");
+		factToolbars.fillToolbar("tbProp", "New Att", "Drop Att", "Update Value", null, "Drop Val");
 		factToolbars.fillToolbar("tbGraph", new JLabel("Zoom:"), "+", ".", "-", null, "Activate", null, "Random", "Load Refs", "Drop Selected", graphPanel.cbMode,
 				"Load graph", "Save Graph");
 		factToolbars.fillToolbar("tbGrid", "Show Selected", "Hide Selected", null, "New handle", "Duplicate", "Delete Selected");
