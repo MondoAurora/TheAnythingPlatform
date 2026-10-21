@@ -150,19 +150,19 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 			File r = new File("../TAP02Test01/gen/me/giskard/boot");
 			PrintStream ps = createSrcStream(r, pn, cName, null, Mode.TAP02AppNodes);
 
-			Map<String, DustHandle> ideas = new TreeMap<String, DustHandle>();
-			Map<String, DustHandle> atts = new TreeMap<String, DustHandle>();
-			Map<DustHandle, String> all = new HashMap<DustHandle, String>();
-			Map<DustHandle, String> impl = new HashMap<DustHandle, String>();
-
-			String kCtxApp = addToken(Dust.getHandle(TOKEN_DUST_ATT_CTX_APP), "att_", atts, all);
-			String kBinRes = addToken(Dust.getHandle(TOKEN_DUST_ATT_BINARY_RESOLVER), "att_", atts, all);
-			String kUnitHandler = addToken(Dust.getHandle(TOKEN_STREAM_ATT_UNIT_HANDLER), "att_", atts, all);
-			String kAttNode = addToken(Dust.getHandle(TOKEN_DUST_ATT_NODE), "att_", atts, all);
-
 			ps.println("\t\tswitch(appId) {");
 
 			for (DustHandle hNode : bootNodes) {
+
+				Map<String, DustHandle> ideas = new TreeMap<String, DustHandle>();
+				Map<String, DustHandle> atts = new TreeMap<String, DustHandle>();
+				Map<DustHandle, String> all = new HashMap<DustHandle, String>();
+				Map<DustHandle, String> impl = new HashMap<DustHandle, String>();
+
+				String kCtxApp = addToken(Dust.getHandle(TOKEN_DUST_ATT_CTX_APP), "att_", atts, all);
+				String kBinRes = addToken(Dust.getHandle(TOKEN_DUST_ATT_BINARY_RESOLVER), "att_", atts, all);
+				String kUnitHandler = addToken(Dust.getHandle(TOKEN_STREAM_ATT_UNIT_HANDLER), "att_", atts, all);
+				String kAttNode = addToken(Dust.getHandle(TOKEN_DUST_ATT_NODE), "att_", atts, all);
 
 				Collection<DustHandle> modules = Dust.access(DustAccess.Get, Collections.EMPTY_LIST, hNode,
 						TOKEN_MISC_ATT_PARENT, TOKEN_DUST_ATT_MODULES);
