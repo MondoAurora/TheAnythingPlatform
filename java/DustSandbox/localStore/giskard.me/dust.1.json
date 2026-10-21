@@ -20,6 +20,22 @@
 			}
 		},
 		{
+			"id": "giskard.me/dust.1$CmdSyncUnits",
+			"type": "giskard.me/mind.1$Tag",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MISC_CMD_SYNCUNITS",
+				"giskard.me/misc.1$name": "TOKEN_MISC_CMD_SYNCUNITS"
+			},
+			"relationships": {
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "giskard.me/misc.1$Cmd",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			}
+		},
+		{
 			"id": "giskard.me/dust.1$Dialog",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
@@ -896,8 +912,8 @@
 		}
 	],
 	"meta": {
-		"date": "20261008T140855Z",
-		"count": 55,
+		"date": "20261021T144707Z",
+		"count": 56,
 		"unitInfo": {
 			"id": "giskard.me/dust.1",
 			"type": "giskard.me/mind.1$Unit",

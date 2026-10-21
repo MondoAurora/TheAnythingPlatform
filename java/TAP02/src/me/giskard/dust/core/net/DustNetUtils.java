@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.cert.X509Certificate;
 import java.util.Collection;
@@ -29,9 +30,10 @@ import me.giskard.dust.core.utils.DustUtilsFile;
 
 @SuppressWarnings("unchecked")
 public class DustNetUtils implements DustNetConsts {
-	
-	public static DustHandle loadRef(String urlFull, String urlPrefix, String url, String name, DustUtilsFactory<String, DustHandle> refs) {
-		if (!url.startsWith("http")) {
+
+	public static DustHandle loadRef(String urlFull, String urlPrefix, String url, String name,
+			DustUtilsFactory<String, DustHandle> refs) {
+		if ( !url.startsWith("http") ) {
 			String p = url.startsWith("#") ? urlFull : urlPrefix;
 			url = p + url;
 		}
@@ -39,17 +41,16 @@ public class DustNetUtils implements DustNetConsts {
 		DustHandle hf = refs.get(url);
 		Dust.access(DustAccess.Set, url, hf, HANDLE_STREAM_ATT_URL);
 		Dust.access(DustAccess.Set, name, hf, HANDLE_MISC_ATT_NAME);
-		
+
 		return hf;
 	}
-
 
 	public static String getContentType(File f) {
 		String ct = null;
 
 		String ext = DustUtils.getPostfix(f.getName(), ".").toLowerCase();
 
-		switch (ext) {
+		switch ( ext ) {
 		case "csv":
 			ct = MEDIATYPE_UTF8_CSV;
 			break;
@@ -89,7 +90,7 @@ public class DustNetUtils implements DustNetConsts {
 			conn.setRequestProperty(key, val);
 		}
 
-		if (0 > timeout) {
+		if ( 0 > timeout ) {
 			timeout = 0;
 		}
 
@@ -99,17 +100,18 @@ public class DustNetUtils implements DustNetConsts {
 		return conn;
 	}
 
-	public static File downloadCached(File cacheRoot, String urlStr, OutputStream target, Collection<String> headers, int timeout) throws Exception {
+	public static File downloadCached(File cacheRoot, String urlStr, OutputStream target, Collection<String> headers,
+			int timeout) throws Exception {
 		File fc = new File(cacheRoot, urlStr);
 
-		if (!fc.isFile() && (0 == fc.length())) {
+		if ( !fc.isFile() && (0 == fc.length()) ) {
 			DustUtilsFile.ensureDir(fc.getParentFile());
 			try (FileOutputStream fos = new FileOutputStream(fc)) {
 				download(urlStr, fos, headers, timeout);
 			}
 		}
 
-		if (null != target) {
+		if ( null != target ) {
 			try (FileInputStream in = new FileInputStream(fc)) {
 				DustStreamUtils.copyStream(in, target);
 			}
@@ -118,36 +120,28 @@ public class DustNetUtils implements DustNetConsts {
 		return fc;
 	}
 
-//@SuppressWarnings("deprecation")
-	public static boolean download(String urlStr, OutputStream target, Collection<String> headers, int timeout) throws Exception {
+	public static boolean download(String urlStr, String path, Collection<String> headers, int timeout) throws Exception {
+		HttpURLConnection conn = connect(urlStr, timeout, headers);
 		boolean success = false;
 
-		URL url = new URL(urlStr);
-		HttpURLConnection conn = getConn(url, timeout, (null == headers) ? Collections.EMPTY_LIST : headers);
-
-		String protocol = url.getProtocol().toLowerCase();
-		if ("http".equals(protocol) || "https".equals(protocol)) {
-			conn.setInstanceFollowRedirects(false);
-			conn.connect();
-
-			int resCode = conn.getResponseCode();
-			if (resCode == HttpURLConnection.HTTP_SEE_OTHER || resCode == HttpURLConnection.HTTP_MOVED_PERM || resCode == HttpURLConnection.HTTP_MOVED_TEMP) {
-				String redirect = conn.getHeaderField("Location");
-				if (redirect.startsWith("/")) {
-					redirect = url.getProtocol() + "://" + url.getHost() + redirect;
-				}
-				conn.disconnect();
-
-				url = new URL(redirect);
-				conn = getConn(url, timeout, headers);
-			}
-		} else {
-			conn.connect();
+		try (FileOutputStream target = new FileOutputStream(path)) {
+			success = copyConnStream(target, conn);
 		}
 
-		InputStream is = conn.getInputStream();
+		return success;
+	}
 
-		if ("gzip".equals(conn.getContentEncoding())) {
+	public static boolean download(String urlStr, OutputStream target, Collection<String> headers, int timeout)
+			throws Exception {
+		HttpURLConnection conn = connect(urlStr, timeout, headers);
+		return copyConnStream(target, conn);
+	}
+
+	public static boolean copyConnStream(OutputStream target, HttpURLConnection conn) throws IOException {
+		boolean success = false;
+
+		InputStream is = conn.getInputStream();
+		if ( "gzip".equals(conn.getContentEncoding()) ) {
 			try (GZIPInputStream i = new GZIPInputStream(is)) {
 				success = DustStreamUtils.copyStream(i, target);
 			}
@@ -160,11 +154,39 @@ public class DustNetUtils implements DustNetConsts {
 		return success;
 	}
 
+	public static HttpURLConnection connect(String urlStr, int timeout, Collection<String> headers)
+			throws MalformedURLException, IOException {
+		URL url = new URL(urlStr);
+		HttpURLConnection conn = getConn(url, timeout, (null == headers) ? Collections.EMPTY_LIST : headers);
+
+		String protocol = url.getProtocol().toLowerCase();
+		if ( "http".equals(protocol) || "https".equals(protocol) ) {
+			conn.setInstanceFollowRedirects(false);
+			conn.connect();
+
+			int resCode = conn.getResponseCode();
+			if ( resCode == HttpURLConnection.HTTP_SEE_OTHER || resCode == HttpURLConnection.HTTP_MOVED_PERM
+					|| resCode == HttpURLConnection.HTTP_MOVED_TEMP ) {
+				String redirect = conn.getHeaderField("Location");
+				if ( redirect.startsWith("/") ) {
+					redirect = url.getProtocol() + "://" + url.getHost() + redirect;
+				}
+				conn.disconnect();
+
+				url = new URL(redirect);
+				conn = getConn(url, timeout, headers);
+			}
+		} else {
+			conn.connect();
+		}
+		return conn;
+	}
+
 	public static void sslHack() throws Exception {
 
 		SSLContext ctx = SSLContext.getDefault();
 		for (String s : ctx.getSupportedSSLParameters().getCipherSuites()) {
-			if (s.contains("AES_256_CBC_SHA"))
+			if ( s.contains("AES_256_CBC_SHA") )
 				System.out.println(s);
 		}
 

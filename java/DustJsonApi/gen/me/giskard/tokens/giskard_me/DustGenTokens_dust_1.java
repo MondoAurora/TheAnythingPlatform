@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20261005T134400Z
+// Generation timestamp 20261021T144714Z
 
 public interface DustGenTokens_dust_1 {
 // Aspects
@@ -50,6 +50,9 @@ public interface DustGenTokens_dust_1 {
 	String TOKEN_DUST_ATT_UNIT_REFS = "giskard.me/dust.1$unitRefs";
 	String TOKEN_DUST_ATT_WRAPBACKREF = "giskard.me/dust.1$wrapBackRef";
 	String TOKEN_DUST_ATT_WRAPPEDOBJECT = "giskard.me/dust.1$wrappedObject";
+
+// Tags
+	String TOKEN_MISC_CMD_SYNCUNITS = "giskard.me/dust.1$CmdSyncUnits";
 
 // Agents
 	String TOKEN_DUST_AGT_RUNTIME = "giskard.me/dust.1$Runtime";

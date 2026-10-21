@@ -71,6 +71,12 @@
 							"type": "giskard.me/mind.1$Agent"
 						}
 					]
+				},
+				"giskard.me/mind.1$next": {
+					"data": {
+						"id": "Lorand/test01$MachineSyncUnits",
+						"type": "giskard.me/mind.1$Message"
+					}
 				}
 			}
 		},
@@ -239,6 +245,18 @@
 					"data": {
 						"id": "giskard.me/dust.1$NEW_Machine",
 						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$MachineSyncUnits",
+			"type": "giskard.me/mind.1$Message",
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/dust.1$CmdSyncUnits",
+						"type": "giskard.me/mind.1$Tag"
 					}
 				}
 			}
@@ -548,6 +566,10 @@
 							"type": "giskard.me/mind.1$Agent"
 						},
 						{
+							"id": "Lorand/test01$MachineSyncUnits",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
 							"id": "Lorand/test01$ProcessUnitStream",
 							"type": "giskard.me/mind.1$Message"
 						},
@@ -570,6 +592,10 @@
 						{
 							"id": "Lorand/test01$ThinUnitHandler",
 							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "giskard.me/dust.1$CmdSyncUnits",
+							"type": "giskard.me/mind.1$Tag"
 						},
 						{
 							"id": "giskard.me/net.1$HttpClient",
@@ -829,8 +855,8 @@
 		}
 	],
 	"meta": {
-		"date": "20261021T085648Z",
-		"count": 34,
+		"date": "20261021T144707Z",
+		"count": 35,
 		"unitInfo": {
 			"id": "Lorand/test01",
 			"type": "giskard.me/mind.1$Unit",

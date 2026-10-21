@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,16 +14,20 @@ import java.nio.charset.StandardCharsets;
 
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustException;
+import me.giskard.dust.api.DustHandle;
 
+@SuppressWarnings("unchecked")
 public class DustUtilsFile extends DustUtils implements DustUtilsConsts {
 
 	public static void optBackup(File folder, File f) throws Exception {
-		if ((null != folder) && f.isFile() && (0 < f.length())) {
+		if ( (null != folder) && f.isFile() && (0 < f.length()) ) {
 			ensureDir(folder);
 			String fn = f.getName();
 			int sep = fn.lastIndexOf(".");
 
-			String bn = (-1 == sep) ? DustUtils.sbAppend(null, "", true, fn.substring(0, sep), "_", DustUtils.strTime(), fn.substring(sep)).toString()
+			String bn = (-1 == sep)
+					? DustUtils.sbAppend(null, "", true, fn.substring(0, sep), "_", DustUtils.strTime(), fn.substring(sep))
+							.toString()
 					: DustUtils.sbAppend(null, "", true, fn, "_", DustUtils.strTime()).toString();
 
 			f.renameTo(new File(folder, bn));
@@ -31,7 +36,7 @@ public class DustUtilsFile extends DustUtils implements DustUtilsConsts {
 	}
 
 	public static File ensureDir(String fName) throws Exception {
-		if (DustUtils.isEmpty(fName)) {
+		if ( DustUtils.isEmpty(fName) ) {
 			return null;
 		}
 		File f = new File(fName);
@@ -40,7 +45,7 @@ public class DustUtilsFile extends DustUtils implements DustUtilsConsts {
 	}
 
 	public static void ensureDir(File f) throws Exception {
-		if ((null != f) && !f.isDirectory() && !f.mkdirs()) {
+		if ( (null != f) && !f.isDirectory() && !f.mkdirs() ) {
 			throw new IOException("failed to create directory " + f);
 		}
 	}
@@ -57,7 +62,7 @@ public class DustUtilsFile extends DustUtils implements DustUtilsConsts {
 //		Dust.log(TOKEN_MISC_TAG_LEVEL_TRACE, "Accessing file", fileName);
 
 		File f;
-		if (fileName.startsWith(File.separator)) {
+		if ( fileName.startsWith(File.separator) ) {
 			f = new File(fileName);
 		} else {
 			File home = new File(System.getProperty("user.home"));
@@ -145,18 +150,18 @@ public class DustUtilsFile extends DustUtils implements DustUtilsConsts {
 	public static int procRecursive(File f, FileProcessor proc, FileFilter ff) {
 		int count = 0;
 
-		if (null != f) {
-			if (f.isFile()) {
-				if (((null == ff) || ff.accept(f)) && proc.mode.f) {
+		if ( null != f ) {
+			if ( f.isFile() ) {
+				if ( ((null == ff) || ff.accept(f)) && proc.mode.f ) {
 					++count;
-					if (!proc.processFile(f)) {
+					if ( !proc.processFile(f) ) {
 						return -count;
 					}
 				}
 			} else {
 				for (File fl : f.listFiles()) {
 					int c = procRecursive(fl, proc, ff);
-					if (c < 0) {
+					if ( c < 0 ) {
 						return (-count) + c;
 					} else {
 						count += c;
@@ -177,23 +182,24 @@ public class DustUtilsFile extends DustUtils implements DustUtilsConsts {
 	}
 
 	public static boolean checkPathBound(File f, File root, boolean throwEx) throws IOException {
-		if (null == root) {
+		if ( null == root ) {
 			return true;
 		}
 
 		String fcp = f.getCanonicalPath();
 		String rcp = root.getCanonicalPath();
 		boolean ok = fcp.startsWith(rcp);
-		if (throwEx && !ok) {
+		if ( throwEx && !ok ) {
 			return DustException.wrap(null, "File path bounds check failed", fcp, "root", rcp);
 		}
 		return ok;
 	}
 
 	public static String fileToString(File f) throws Exception {
-		if (f.isFile()) {
+		if ( f.isFile() ) {
 			StringBuilder resultStringBuilder = new StringBuilder();
-			try (FileInputStream fis = new FileInputStream(f); BufferedReader br = new BufferedReader(new InputStreamReader(fis))) {
+			try (FileInputStream fis = new FileInputStream(f);
+					BufferedReader br = new BufferedReader(new InputStreamReader(fis))) {
 				String line;
 				while ((line = br.readLine()) != null) {
 					resultStringBuilder.append(line).append("\n");
@@ -210,7 +216,7 @@ public class DustUtilsFile extends DustUtils implements DustUtilsConsts {
 	}
 
 	public static String readFile(File f) throws Exception {
-		if (!f.isFile()) {
+		if ( !f.isFile() ) {
 			return null;
 		}
 
@@ -229,6 +235,26 @@ public class DustUtilsFile extends DustUtils implements DustUtilsConsts {
 		}
 
 		return sb.toString();
+	}
+
+	public static <StreamType> StreamType createStream(DustHandle cmd, File f, File backupFolder) throws Exception {
+
+		Object stream = null;
+
+		if ( HANDLE_MISC_TAG_CMD_LOAD.equals(cmd) ) {
+			stream = new FileInputStream(f);
+		} else if ( HANDLE_MISC_TAG_CMD_SAVE.equals(cmd) ) {
+			if ( f.isFile() ) {
+				DustUtilsFile.optBackup(backupFolder, f);
+			} else {
+				File p = f.getParentFile();
+				DustUtilsFile.ensureDir(p);
+			}
+
+			stream = new FileOutputStream(f);
+		}
+
+		return (StreamType) stream;
 	}
 
 }

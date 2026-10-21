@@ -4,7 +4,6 @@ import java.lang.reflect.Constructor;
 
 //import me.giskard.dust.core.machine.DustMachineBoot;
 import me.giskard.dust.core.utils.DustUtils;
-import me.giskard.dust.test.DustTest01;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class Dust implements DustConsts {
@@ -41,18 +40,8 @@ public class Dust implements DustConsts {
 
 		try {
 			DustMachine.Provider mp = createInstance(Class.forName(DUST_BOOT_SYS_CLASS));
-
-//			MACHINE = createInstance(Class.forName("me.giskard.dust.core.machine.DustMachineAgent"));
 			MACHINE = mp.getMachine();
-
 			MACHINE.init();
-
-//			DustHandle hApp = Dust.getHandle(appId);
-//
-//			DustHandle hAppCtx = DustMachineBoot.getTokenHandle(DustGenBootConsts.TOKEN_DUST_ATT_CTX_APP);
-//			DustHandle hAttNode = DustMachineBoot.getTokenHandle(DustGenBootConsts.TOKEN_DUST_ATT_NODE);
-//
-//			Dust.access(DustAccess.Set, hApp, null, hAppCtx, hAttNode);
 
 			createInstance(Class.forName(DUST_BOOT_APP_CLASS), appId);
 

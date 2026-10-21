@@ -1,6 +1,5 @@
 package me.giskard.dust.core.net;
 
-import java.io.OutputStream;
 import java.util.Collection;
 
 import me.giskard.dust.api.Dust;
@@ -23,11 +22,15 @@ public class DustNetHttpClientAgent extends DustAgent implements DustNetConsts {
 			int timeout = Dust.access(DustAccess.Peek, 0, null, HANDLE_MISC_ATT_TIMEOUT);
 			Collection<String> headers = Dust.access(DustAccess.Peek, null, null, HANDLE_NET_ATT_SRVCALL_HEADERS);
 
-			OutputStream out = Dust.access(DustAccess.Peek, null, null, HANDLE_STREAM_ATT_OUTPUT);
+			DustHandle next = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_NEXT);
+
+			String path = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_PATH);
 
 			String url = urlRoot + "/" + key;
 			
-			DustNetUtils.download(url, out, headers, timeout);
+			DustNetUtils.download(url, path, headers, timeout);
+			
+
 		} 
 	}
 }

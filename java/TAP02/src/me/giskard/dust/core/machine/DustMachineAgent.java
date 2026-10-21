@@ -190,7 +190,7 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 		Object ret = valNew;
 
 		if ( (null != iTarget) && (null != hAtt) ) {
-			boolean pass = true;
+//			boolean pass = true;
 
 //			if (pass && DustUtils.isChange(acess)) {
 //				iTarget.mh.unit.content.put(hAttUnitState, hTagStateInSync);
@@ -259,8 +259,10 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 						}
 					}
 
-//			if (!ret) 
-					{
+					if ( ret ) {
+						
+						afterSyncUnits();
+						
 						Set<DustMachineHandle> uhs = new TreeSet<DustMachineHandle>(unitMap.keySet());
 						for (DustMachineHandle hUnit : uhs) {
 							DustMachineIdea iUnit = unitMap.get(hUnit);
@@ -891,7 +893,9 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 		syncUnits(true);
 
 //	syncUnits(false);
+	}
 
+	public void afterSyncUnits() {
 		DustHandle hPlatform = DustMachineBoot.getMachineData(TOKEN_DUST_ATT_PLATFORM);
 
 		Collection<DustHandle> modules = access(DustAccess.Get, Collections.EMPTY_LIST, null, HANDLE_DUST_ATT_CTX_APP,
@@ -913,39 +917,45 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 			}
 		}
 
-		Object rm = access(DustAccess.Get, Collections.EMPTY_MAP, null, HANDLE_DUST_ATT_CTX_APP,
-				HANDLE_DUST_ATT_BINARY_RESOLVER);
+//		Object rm = access(DustAccess.Get, Collections.EMPTY_MAP, null, HANDLE_DUST_ATT_CTX_APP,
+//				HANDLE_DUST_ATT_BINARY_RESOLVER);
+//
+//		Dust.log(null, "Resolver map loaded", rm);
 
-		Dust.log(null, "Resolver map loaded", rm);
+		if ( !running ) {
+			DustMachineIdea iApp = getCtx(hAttCtxApp);
 
-		DustMachineIdea iApp = getCtx(hAttCtxApp);
+			Map<DustMachineHandle, DustMachineIdea> unitMap = DustUtils.simpleGet(iApp.content, hAttUnitObjects);
 
-		Map<DustMachineHandle, DustMachineIdea> unitMap = DustUtils.simpleGet(iApp.content, hAttUnitObjects);
+			for (DustMachineIdea iUnit : unitMap.values()) {
+				access(DustAccess.Insert, HANDLE_MISC_TAG_MANDATORY, iUnit.content, HANDLE_MIND_ATT_TAGS);
+			}
 
-		for (DustMachineIdea iUnit : unitMap.values()) {
-			access(DustAccess.Insert, HANDLE_MISC_TAG_MANDATORY, iUnit.content, HANDLE_MIND_ATT_TAGS);
-		}
+			access(DustAccess.Commit, null, null);
 
-		access(DustAccess.Commit, null, null);
+			running = true;
 
-		running = true;
+			Collection<DustHandle> initAssemblies = access(DustAccess.Get, Collections.EMPTY_LIST, null,
+					HANDLE_DUST_ATT_CTX_APP, HANDLE_DUST_ATT_NODE, HANDLE_MISC_ATT_INIT);
 
-		Collection<DustHandle> initAssemblies = access(DustAccess.Get, Collections.EMPTY_LIST, null,
-				HANDLE_DUST_ATT_CTX_APP, HANDLE_DUST_ATT_NODE, HANDLE_MISC_ATT_INIT);
+			for (DustHandle assembly : initAssemblies) {
+				access(DustAccess.Set, assembly, null, HANDLE_DUST_ATT_CTX_DLG, HANDLE_DUST_ATT_ASSEMBLY);
 
-		for (DustHandle assembly : initAssemblies) {
-			access(DustAccess.Set, assembly, null, HANDLE_DUST_ATT_CTX_DLG, HANDLE_DUST_ATT_ASSEMBLY);
-
-			Collection<DustHandle> initMessages = access(DustAccess.Get, Collections.EMPTY_LIST, assembly,
-					HANDLE_MISC_ATT_INIT);
-			for (DustHandle msg : initMessages) {
-				access(DustAccess.Commit, null, msg);
+				Collection<DustHandle> initMessages = access(DustAccess.Get, Collections.EMPTY_LIST, assembly,
+						HANDLE_MISC_ATT_INIT);
+				for (DustHandle msg : initMessages) {
+					access(DustAccess.Commit, null, msg);
+				}
 			}
 		}
 	}
 
 	@Override
 	public void process() throws Exception {
-		// TODO Auto-generated method stub
+		DustHandle cmd = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_CMD);
+
+		if (HANDLE_MISC_CMD_SYNCUNITS.equals(cmd)) {
+			syncUnits(true);
+		}
 	}
 }

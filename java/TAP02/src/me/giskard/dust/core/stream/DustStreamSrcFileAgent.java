@@ -2,8 +2,6 @@ package me.giskard.dust.core.stream;
 
 import java.io.Closeable;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustAgent;
@@ -60,13 +58,14 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustStreamConst
 				DustHandle fallback = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_FALLBACK);
 
 				if (null != fallback) {
-					try (Closeable cs = createStream(HANDLE_MISC_TAG_CMD_SAVE, f)) {
-						Dust.access(DustAccess.Set, cs, fallback, HANDLE_STREAM_ATT_OUTPUT);
+					try {
+						DustUtilsFile.ensureDir(f.getParent());
+						Dust.access(DustAccess.Set, f.getAbsolutePath(), fallback, HANDLE_MISC_ATT_PATH);
 						Dust.access(DustAccess.Set, cmd, fallback, HANDLE_MIND_ATT_CMD);
 						Dust.access(DustAccess.Set, name, fallback, HANDLE_MISC_ATT_KEY);
 						Dust.access(DustAccess.Commit, null, fallback);
 					} finally {
-						Dust.access(DustAccess.Delete, null, fallback, HANDLE_STREAM_ATT_OUTPUT);
+						Dust.access(DustAccess.Delete, null, fallback, HANDLE_MISC_ATT_PATH);
 						Dust.access(DustAccess.Delete, null, fallback, HANDLE_MIND_ATT_CMD);
 						Dust.access(DustAccess.Delete, null, fallback, HANDLE_MISC_ATT_KEY);
 					}
@@ -94,7 +93,7 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustStreamConst
 		if (null != hStreamAtt) {
 			DustHandle hNext = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_NEXT);
 
-			try (Closeable cs = createStream(cmd, f)) {
+			try (Closeable cs = DustUtilsFile.createStream(cmd, f, backupFolder)) {
 				Dust.access(DustAccess.Set, cs, hNext, hStreamAtt);
 				Dust.access(DustAccess.Set, cmd, hNext, HANDLE_MIND_ATT_CMD);
 				Dust.access(DustAccess.Set, name, hNext, HANDLE_MISC_ATT_KEY);
@@ -110,26 +109,5 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustStreamConst
 	protected File getRootFolder(String root) {
 		File r = DustUtils.isEmpty(root) ? null : new File(root);
 		return r;
-	}
-
-	@SuppressWarnings("unchecked")
-	public <StreamType> StreamType createStream(DustHandle cmd, File f) throws Exception {
-
-		Object stream = null;
-
-		if (HANDLE_MISC_TAG_CMD_LOAD.equals(cmd)) {
-			stream = new FileInputStream(f);
-		} else if (HANDLE_MISC_TAG_CMD_SAVE.equals(cmd)) {
-			if (f.isFile()) {
-				DustUtilsFile.optBackup(backupFolder, f);
-			} else {
-				File p = f.getParentFile();
-				DustUtilsFile.ensureDir(p);
-			}
-
-			stream = new FileOutputStream(f);
-		}
-
-		return (StreamType) stream;
 	}
 }
