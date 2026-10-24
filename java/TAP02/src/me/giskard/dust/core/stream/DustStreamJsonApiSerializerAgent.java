@@ -28,6 +28,10 @@ public class DustStreamJsonApiSerializerAgent extends DustAgent implements DustS
 				} else {
 					ok = DustUtilsJsonApi.loadUnit(unit, is);
 				}
+				
+				if ( ok ) {
+					Dust.access(DustAccess.Set, HANDLE_MISC_TAG_STATE_IN_SYNC, unit, HANDLE_MIND_ATT_UNIT_STATE);
+				}
 			} finally {
 				Dust.access(DustAccess.Set, ok ? HANDLE_MISC_TAG_STATE_IN_SYNC : HANDLE_MISC_TAG_STATE_LOAD_FAILED, unit, HANDLE_MIND_ATT_UNIT_STATE);
 			}

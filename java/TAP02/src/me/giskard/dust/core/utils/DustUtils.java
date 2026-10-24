@@ -7,10 +7,12 @@ import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
 
 import me.giskard.dust.api.DustConsts;
+import me.giskard.dust.api.DustException;
 import me.giskard.dust.api.DustHandle;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -250,7 +252,31 @@ public class DustUtils implements DustConsts, DustUtilsConsts {
 		}
 	}
 
-	
+	public static Object copy(Object from, boolean deep) {
+		Object ret = from;
+
+		if (deep) {
+			try {
+				if (from instanceof Collection) {
+					ret = (Collection) from.getClass().getDeclaredConstructor().newInstance();
+					for (Object o : (Collection) from) {
+						((Collection) ret).add(copy(o, deep));
+					}
+				} else if (from instanceof Map) {
+					ret = (Map) from.getClass().getDeclaredConstructor().newInstance();
+					for (Object o : ((Map) from).entrySet()) {
+						Map.Entry e = (Entry) o;
+						((Map) ret).put(e.getKey(), copy(e.getValue(), deep));
+					}
+				}
+			} catch (Throwable e) {
+				DustException.wrap(e, "In deep copy");
+			}
+		}
+
+		return ret;
+	}
+
 	private static final Random RND = new Random(System.currentTimeMillis());
 
 	public static String getNewId(int bytes) {

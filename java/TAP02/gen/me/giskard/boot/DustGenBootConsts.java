@@ -3,7 +3,7 @@ package me.giskard.boot;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustHandle;
 
-// Generation timestamp 20261012T133027Z
+// Generation timestamp 20261024T125128Z
 
 public interface DustGenBootConsts {
 
@@ -34,6 +34,7 @@ public interface DustGenBootConsts {
 	String TOKEN_MIND_ASP_ASPECT = "giskard.me/mind.1$Aspect";
 	String TOKEN_MIND_ASP_ATTRIBUTE = "giskard.me/mind.1$Attribute";
 	String TOKEN_MIND_ASP_MESSAGE = "giskard.me/mind.1$Message";
+	String TOKEN_MIND_ASP_REFERENCE = "giskard.me/mind.1$Reference";
 	String TOKEN_MIND_ASP_TAG = "giskard.me/mind.1$Tag";
 	String TOKEN_MIND_ASP_UNIT = "giskard.me/mind.1$Unit";
 
@@ -41,6 +42,7 @@ public interface DustGenBootConsts {
 	String TOKEN_MIND_ATT_ID = "giskard.me/mind.1$id";
 	String TOKEN_MIND_ATT_LISTENERS = "giskard.me/mind.1$listeners";
 	String TOKEN_MIND_ATT_TAGS = "giskard.me/mind.1$tags";
+	String TOKEN_MIND_ATT_TRAIL = "giskard.me/mind.1$trail";
 	String TOKEN_MIND_ATT_TYPE = "giskard.me/mind.1$type";
 	String TOKEN_MIND_ATT_UNIT = "giskard.me/mind.1$unit";
 	String TOKEN_MIND_ATT_UNIT_STATE = "giskard.me/mind.1$unitState";

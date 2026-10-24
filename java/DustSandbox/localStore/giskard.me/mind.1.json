@@ -212,6 +212,14 @@
 			}
 		},
 		{
+			"id": "giskard.me/mind.1$Reference",
+			"type": "giskard.me/mind.1$Aspect",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ASP_REFERENCE",
+				"giskard.me/misc.1$name": "TOKEN_MIND_ASP_REFERENCE"
+			}
+		},
+		{
 			"id": "giskard.me/mind.1$Result",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
@@ -836,6 +844,28 @@
 			}
 		},
 		{
+			"id": "giskard.me/mind.1$trail",
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_MIND_ATT_TRAIL",
+				"giskard.me/misc.1$name": "TOKEN_MIND_ATT_TRAIL"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeArr",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
+		},
+		{
 			"id": "giskard.me/mind.1$transactionHead",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
@@ -959,8 +989,8 @@
 		}
 	],
 	"meta": {
-		"date": "20261006T080608Z",
-		"count": 61,
+		"date": "20261024T125051Z",
+		"count": 63,
 		"unitInfo": {
 			"id": "giskard.me/mind.1",
 			"type": "giskard.me/mind.1$Unit",

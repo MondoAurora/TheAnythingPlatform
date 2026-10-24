@@ -167,6 +167,12 @@ public class DustUtilsFile extends DustUtils implements DustUtilsConsts {
 						count += c;
 					}
 				}
+				
+				if ( ((null == ff) || ff.accept(f)) && proc.mode.d ) {
+					if ( !proc.processFile(f) ) {
+						return -count;
+					}
+				}
 			}
 		}
 

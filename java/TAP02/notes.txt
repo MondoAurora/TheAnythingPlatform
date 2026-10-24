@@ -1,0 +1,2 @@
+TODO
+ - Reference resolution: now the cxtApp reference goes out of the web server, should stop this somewhere

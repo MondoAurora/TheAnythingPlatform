@@ -3,7 +3,7 @@ package me.giskard.handles.giskard_me;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustHandle;
 
-// Generation timestamp 20261016T084005Z
+// Generation timestamp 20261022T092435Z
 
 public interface DustGenHandles_mind_1 {
 // Aspects
@@ -16,6 +16,7 @@ public interface DustGenHandles_mind_1 {
 	DustHandle HANDLE_MIND_ASP_MESSAGE = Dust.getHandle("giskard.me/mind.1$Message", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MIND_ASP_NARRATIVE = Dust.getHandle("giskard.me/mind.1$Narrative", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MIND_ASP_NODE = Dust.getHandle("giskard.me/mind.1$Node", DustHandle.PLACEHOLDER);
+	DustHandle HANDLE_MIND_ASP_REFERENCE = Dust.getHandle("giskard.me/mind.1$Reference", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MIND_ASP_SYSTEM = Dust.getHandle("giskard.me/mind.1$System", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MIND_ASP_TAG = Dust.getHandle("giskard.me/mind.1$Tag", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MIND_ASP_UNIT = Dust.getHandle("giskard.me/mind.1$Unit", DustHandle.PLACEHOLDER);
@@ -39,6 +40,7 @@ public interface DustGenHandles_mind_1 {
 	DustHandle HANDLE_MIND_ATT_REQUIRED_ATTRIBUTES = Dust.getHandle("giskard.me/mind.1$requiredAttributes", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MIND_ATT_SERIALIZER = Dust.getHandle("giskard.me/mind.1$serializer", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MIND_ATT_TAGS = Dust.getHandle("giskard.me/mind.1$tags", DustHandle.PLACEHOLDER);
+	DustHandle HANDLE_MIND_ATT_TRAIL = Dust.getHandle("giskard.me/mind.1$trail", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MIND_ATT_TRANSACTION_HEAD = Dust.getHandle("giskard.me/mind.1$transactionHead", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MIND_ATT_TRANSACTION_ITEM = Dust.getHandle("giskard.me/mind.1$transactionItem", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MIND_ATT_TYPE = Dust.getHandle("giskard.me/mind.1$type", DustHandle.PLACEHOLDER);

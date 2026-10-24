@@ -320,6 +320,10 @@
 							"type": "giskard.me/mind.1$Aspect"
 						},
 						{
+							"id": "giskard.me/mind.1$Reference",
+							"type": "giskard.me/mind.1$Aspect"
+						},
+						{
 							"id": "giskard.me/mind.1$Tag",
 							"type": "giskard.me/mind.1$Aspect"
 						},
@@ -341,6 +345,10 @@
 						},
 						{
 							"id": "giskard.me/mind.1$tags",
+							"type": "giskard.me/mind.1$Attribute"
+						},
+						{
+							"id": "giskard.me/mind.1$trail",
 							"type": "giskard.me/mind.1$Attribute"
 						},
 						{
@@ -486,7 +494,7 @@
 		}
 	],
 	"meta": {
-		"date": "20261015T140843Z",
+		"date": "20261024T125051Z",
 		"count": 14,
 		"unitInfo": {
 			"id": "giskard.me/dustImpl.1",

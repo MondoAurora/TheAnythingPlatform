@@ -17,13 +17,15 @@ public class DustDevCounter<KeyType> implements Iterable<Map.Entry<KeyType, Long
 		counts.clear();
 	}
 
-	public void add(KeyType ob) {
-		add(ob, 1L);
+	public Long add(KeyType ob) {
+		return add(ob, 1L);
 	}
 
-	public void add(KeyType ob, long count) {
+	public Long add(KeyType ob, long count) {
 		Long l = counts.getOrDefault(ob, 0L);
-		counts.put(ob, l + count);
+		l += count;
+		counts.put(ob, l);
+		return l;
 	}
 
 	@Override
@@ -38,14 +40,14 @@ public class DustDevCounter<KeyType> implements Iterable<Map.Entry<KeyType, Long
 	public Long peek(Object ob) {
 		return counts.getOrDefault(ob, 0L);
 	}
-	
+
 	public Long getCount() {
 		Long ret = 0L;
-		
-		for ( Long l : counts.values() ) {
+
+		for (Long l : counts.values()) {
 			ret += l;
 		}
-		
+
 		return ret;
 	}
 }

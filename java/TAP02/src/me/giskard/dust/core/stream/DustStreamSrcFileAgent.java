@@ -18,6 +18,27 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustStreamConst
 		this.defRoot = ".";
 	}
 
+//	@Override
+//	public void init() throws Exception {
+//		DustHandle fallback = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_FALLBACK);
+//
+//		if ( null != fallback ) {
+//			String root = Dust.access(DustAccess.Peek, defRoot, null, HANDLE_STREAM_ATT_ROOTFOLDER);
+//			File r = getRootFolder(root);
+//
+//			DustUtilsFile.FileProcessor fp = new DustUtilsFile.FileProcessor() {
+//				@Override
+//				public boolean processFile(File f) {
+//					f.delete();
+//					return true;
+//				}
+//			};
+//			
+//			Dust.log(HANDLE_MISC_TAG_LEVEL_INFO, "Deleting cache folder", r);
+//			DustUtilsFile.procRecursive(r, fp, null);
+//		}
+//	}
+
 	@Override
 	public void process() throws Exception {
 
@@ -28,18 +49,18 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustStreamConst
 		backupFolder = getRootFolder(bak);
 
 		DustHandle hTarget = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_TARGET);
-		
+
 		String path = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_PATH);
 		String name = Dust.access(DustAccess.Peek, hTarget.getId(), null, HANDLE_MISC_ATT_KEY);
 
-		if (null != hTarget) {
+		if ( null != hTarget ) {
 			String p = null;
 
-			if (HANDLE_MIND_ASP_UNIT.equals(hTarget.getType())) {
+			if ( HANDLE_MIND_ASP_UNIT.equals(hTarget.getType()) ) {
 				p = "/" + name + Dust.DUST_EXT_JSON;
 			}
 
-			if (null != p) {
+			if ( null != p ) {
 				path += p;
 			}
 		}
@@ -51,13 +72,13 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustStreamConst
 		DustHandle cmd = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_CMD);
 		DustHandle hStreamAtt = null;
 
-		if (HANDLE_MISC_TAG_CMD_LOAD.equals(cmd)) {
-			if (f.isFile()) {
+		if ( HANDLE_MISC_TAG_CMD_LOAD.equals(cmd) ) {
+			if ( f.isFile() ) {
 				hStreamAtt = HANDLE_STREAM_ATT_INPUT;
 			} else {
 				DustHandle fallback = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_FALLBACK);
 
-				if (null != fallback) {
+				if ( null != fallback ) {
 					try {
 						DustUtilsFile.ensureDir(f.getParent());
 						Dust.access(DustAccess.Set, f.getAbsolutePath(), fallback, HANDLE_MISC_ATT_PATH);
@@ -70,17 +91,17 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustStreamConst
 						Dust.access(DustAccess.Delete, null, fallback, HANDLE_MISC_ATT_KEY);
 					}
 
-					if (f.isFile()) {
+					if ( f.isFile() ) {
 						hStreamAtt = HANDLE_STREAM_ATT_INPUT;
 					}
 				}
 			}
-		} else if (HANDLE_MISC_TAG_CMD_SAVE.equals(cmd)) {
+		} else if ( HANDLE_MISC_TAG_CMD_SAVE.equals(cmd) ) {
 			hStreamAtt = HANDLE_STREAM_ATT_OUTPUT;
-		} else if (HANDLE_MISC_TAG_CMD_INFO.equals(cmd)) {
+		} else if ( HANDLE_MISC_TAG_CMD_INFO.equals(cmd) ) {
 			Dust.access(DustAccess.Reset, null, null, HANDLE_MISC_ATT_MEMBERS);
 
-			if (f.isDirectory()) {
+			if ( f.isDirectory() ) {
 				for (File ff : f.listFiles()) {
 					Dust.access(DustAccess.Insert, ff, HANDLE_DUST_ATT_CTX_MSG, HANDLE_MISC_ATT_MEMBERS);
 				}
@@ -90,7 +111,7 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustStreamConst
 			}
 		}
 
-		if (null != hStreamAtt) {
+		if ( null != hStreamAtt ) {
 			DustHandle hNext = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_NEXT);
 
 			try (Closeable cs = DustUtilsFile.createStream(cmd, f, backupFolder)) {

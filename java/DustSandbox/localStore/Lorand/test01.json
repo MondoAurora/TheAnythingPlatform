@@ -4,6 +4,23 @@
 	},
 	"data": [
 		{
+			"id": "Lorand/test01$AppRef",
+			"type": "giskard.me/mind.1$Reference",
+			"relationships": {
+				"giskard.me/mind.1$trail": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "giskard.me/dust.1$ctxApp",
+							"type": "giskard.me/mind.1$Attribute"
+						}
+					]
+				}
+			}
+		},
+		{
 			"id": "Lorand/test01$BKKImportAgent",
 			"type": "giskard.me/mind.1$Agent",
 			"relationships": {
@@ -258,6 +275,17 @@
 						"id": "giskard.me/dust.1$CmdSyncUnits",
 						"type": "giskard.me/mind.1$Tag"
 					}
+				},
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$AppRef",
+							"type": "giskard.me/mind.1$Reference"
+						}
+					]
 				}
 			}
 		},
@@ -855,8 +883,8 @@
 		}
 	],
 	"meta": {
-		"date": "20261021T144707Z",
-		"count": 35,
+		"date": "20261024T125051Z",
+		"count": 36,
 		"unitInfo": {
 			"id": "Lorand/test01",
 			"type": "giskard.me/mind.1$Unit",

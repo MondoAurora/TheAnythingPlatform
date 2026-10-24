@@ -260,9 +260,9 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 					}
 
 					if ( ret ) {
-						
+
 						afterSyncUnits();
-						
+
 						Set<DustMachineHandle> uhs = new TreeSet<DustMachineHandle>(unitMap.keySet());
 						for (DustMachineHandle hUnit : uhs) {
 							DustMachineIdea iUnit = unitMap.get(hUnit);
@@ -469,6 +469,8 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 				p = ((Enum) p).name();
 			}
 
+			curr = optResolveRef(curr);
+
 			if ( curr instanceof DustMachineIdea ) {
 				iCurr = (DustMachineIdea) curr;
 				curr = iCurr.getContent();
@@ -553,6 +555,8 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 
 			/* curr = */ checkAccess(iAgt, create ? DustAccess.Get : DustAccess.Peek, iCurr, prevAtt, lastKey, null, curr);
 		}
+
+		curr = optResolveRef(curr);
 
 		/**
 		 * Spec handle tags
@@ -814,14 +818,36 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 			}
 			break;
 		case Commit:
-			Object ll = access(DustAccess.Peek, Collections.EMPTY_LIST, curr, HANDLE_MIND_ATT_LISTENERS);
-			for (DustHandle l : (Collection<DustHandle>) ll) {
-				ret = notifyAgent((DustHandle) l, access, (DustHandle) curr);
+			Object ll = access(DustAccess.Peek, null, curr, HANDLE_MIND_ATT_LISTENERS);
+
+			if ( null != ll ) {
+				for (DustHandle l : (Collection<DustHandle>) ll) {
+					ret = notifyAgent((DustHandle) l, access, (DustHandle) curr);
+				}
+			} else {
+				Dust.log(HANDLE_MISC_TAG_LEVEL_WARNING, "No listeners for message", curr);
 			}
 			break;
 		}
 
 		return (RetType) ret;
+	}
+
+	public Object optResolveRef(Object curr) {
+		Object ret = curr;
+
+		if ( (curr instanceof DustHandle)
+				&& (!running || HANDLE_MIND_ASP_REFERENCE.equals(((DustHandle) curr).getType())) ) {
+			DustMachineIdea iRef = resolveHandle((DustHandle) curr);
+			Collection trail = (Collection) iRef.content.get(HANDLE_MIND_ATT_TRAIL);
+
+			if ( null != trail ) {
+				Object target = iRef.content.get(HANDLE_MISC_ATT_TARGET);
+				ret = access(DustAccess.Peek, null, target, trail.toArray());
+			}
+		}
+
+		return ret;
 	}
 
 	synchronized void commitLocalObjects() {
@@ -841,7 +867,10 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 	}
 
 	protected <RetType> RetType notifyAgent(DustHandle hAgent, DustAccess access, DustHandle hMessage) {
-		DustAgent agt = access(DustAccess.Get, null, hAgent, HANDLE_DUST_ATT_WRAPPEDOBJECT);
+
+		Object agent = optResolveRef(hAgent);
+//		hAgent = (DustHandle) optResolveRef(hAgent);
+		DustAgent agt = access(DustAccess.Get, null, agent, HANDLE_DUST_ATT_WRAPPEDOBJECT);
 		DustMachineIdea iThread;
 
 		iThread = THREADS.get();
@@ -865,6 +894,12 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 				DustHandle hNarrative = access(DustAccess.Get, null, hAgent, HANDLE_MIND_ATT_NARRATIVE);
 				String cn = access(DustAccess.Get, null, null, HANDLE_DUST_ATT_CTX_APP, HANDLE_DUST_ATT_BINARY_RESOLVER,
 						hNarrative);
+
+				if ( null == cn ) {
+					Dust.log(HANDLE_MISC_TAG_LEVEL_ERROR, "No class configured for narrative ", hNarrative, "agent", hAgent,
+							"message", hMessage);
+					return null;
+				}
 
 				Class ca = Class.forName(cn);
 				agt = Dust.createInstance(ca);
@@ -890,6 +925,8 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 	}
 
 	public void begin() throws Exception {
+		access(DustAccess.Set, this, null, HANDLE_DUST_ATT_CTX_APP, HANDLE_DUST_ATT_WRAPPEDOBJECT);
+		
 		syncUnits(true);
 
 //	syncUnits(false);
@@ -898,9 +935,14 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 	public void afterSyncUnits() {
 		DustHandle hPlatform = DustMachineBoot.getMachineData(TOKEN_DUST_ATT_PLATFORM);
 
-		Collection<DustHandle> modules = access(DustAccess.Get, Collections.EMPTY_LIST, null, HANDLE_DUST_ATT_CTX_APP,
+		Collection<DustHandle> modules = access(DustAccess.Get, null, null, HANDLE_DUST_ATT_CTX_APP,
 				HANDLE_DUST_ATT_NODE, HANDLE_MISC_ATT_PARENT, HANDLE_DUST_ATT_MODULES);
 
+		if ( null == modules ) {
+			// QnD for thin client - boot units not downloaded yet
+			return;
+		}
+		
 		for (DustHandle mod : modules) {
 			DustHandle mu = mod.getUnit();
 			for (DustHandle h : DustMachineUtils.getUnitMembers(mu)) {
@@ -954,7 +996,7 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 	public void process() throws Exception {
 		DustHandle cmd = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_CMD);
 
-		if (HANDLE_MISC_CMD_SYNCUNITS.equals(cmd)) {
+		if ( HANDLE_MISC_CMD_SYNCUNITS.equals(cmd) ) {
 			syncUnits(true);
 		}
 	}
