@@ -62,7 +62,7 @@ public class DustUtilsJsonApi
 		}
 
 		Dust.access(DustAccess.Set, data.size(), target, JsonApiMember.meta, JsonApiMember.count);
-		Dust.access(DustAccess.Set, DustUtils.strTime(), target, JsonApiMember.meta, "date");
+//		Dust.access(DustAccess.Set, DustUtils.strTime(), target, JsonApiMember.meta, "date");
 
 		return target;
 	}

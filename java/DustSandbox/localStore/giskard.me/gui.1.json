@@ -386,6 +386,28 @@
 			}
 		},
 		{
+			"id": "giskard.me/gui.1$layoutConfig",
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_GUI_ATT_LAYOUT_CONFIG",
+				"giskard.me/misc.1$name": "TOKEN_GUI_ATT_LAYOUT_CONFIG"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeSet",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
+		},
+		{
 			"id": "giskard.me/gui.1$lookAndFeel",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
@@ -409,8 +431,8 @@
 		}
 	],
 	"meta": {
-		"date": "20261103T092807Z",
-		"count": 37,
+		"date": "20261103T151046Z",
+		"count": 38,
 		"unitInfo": {
 			"id": "giskard.me/gui.1",
 			"type": "giskard.me/mind.1$Unit",
