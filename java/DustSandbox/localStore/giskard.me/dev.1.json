@@ -136,6 +136,28 @@
 			}
 		},
 		{
+			"id": "giskard.me/dev.1$devText",
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DEV_ATT_DEVTEXT",
+				"giskard.me/misc.1$name": "TOKEN_DEV_ATT_DEVTEXT"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeString",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
+		},
+		{
 			"id": "giskard.me/dev.1$genSrc",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
@@ -263,8 +285,8 @@
 		}
 	],
 	"meta": {
-		"date": "20261008T140855Z",
-		"count": 17,
+		"date": "20261103T092807Z",
+		"count": 18,
 		"unitInfo": {
 			"id": "giskard.me/dev.1",
 			"type": "giskard.me/mind.1$Unit",

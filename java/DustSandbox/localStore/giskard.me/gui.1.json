@@ -68,6 +68,10 @@
 			}
 		},
 		{
+			"id": "giskard.me/gui.1$GuiRenderer",
+			"type": "giskard.me/mind.1$Narrative"
+		},
+		{
 			"id": "giskard.me/gui.1$NumberMode",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
@@ -405,8 +409,8 @@
 		}
 	],
 	"meta": {
-		"date": "20261016T131220Z",
-		"count": 36,
+		"date": "20261103T092807Z",
+		"count": 37,
 		"unitInfo": {
 			"id": "giskard.me/gui.1",
 			"type": "giskard.me/mind.1$Unit",

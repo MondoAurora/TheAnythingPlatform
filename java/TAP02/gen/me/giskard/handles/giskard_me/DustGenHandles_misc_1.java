@@ -3,7 +3,7 @@ package me.giskard.handles.giskard_me;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustHandle;
 
-// Generation timestamp 20261016T084005Z
+// Generation timestamp 20261103T081517Z
 
 public interface DustGenHandles_misc_1 {
 // Aspects
@@ -15,6 +15,7 @@ public interface DustGenHandles_misc_1 {
 	DustHandle HANDLE_MISC_ATT_ATTRIBUTES = Dust.getHandle("giskard.me/misc.1$attributes", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MISC_ATT_CHILDMAP = Dust.getHandle("giskard.me/misc.1$childMap", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MISC_ATT_CONSTS = Dust.getHandle("giskard.me/misc.1$consts", DustHandle.PLACEHOLDER);
+	DustHandle HANDLE_MISC_ATT_CONTENT = Dust.getHandle("giskard.me/misc.1$content", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MISC_ATT_COUNT = Dust.getHandle("giskard.me/misc.1$count", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MISC_ATT_DATA = Dust.getHandle("giskard.me/misc.1$data", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MISC_ATT_DEFAULT = Dust.getHandle("giskard.me/misc.1$default", DustHandle.PLACEHOLDER);

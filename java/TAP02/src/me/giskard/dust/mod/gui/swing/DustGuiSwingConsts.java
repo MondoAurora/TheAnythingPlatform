@@ -1,0 +1,41 @@
+package me.giskard.dust.mod.gui.swing;
+
+import java.awt.BorderLayout;
+import java.awt.LayoutManager;
+
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+
+import me.giskard.dust.api.DustAgent;
+import me.giskard.dust.api.DustConsts;
+import me.giskard.dust.core.gui.DustGuiConsts;
+import me.giskard.dust.core.machine.DustMachineConsts;
+
+public interface DustGuiSwingConsts extends DustConsts, DustMachineConsts, DustGuiConsts {
+	
+//	String DUST_SWING_HANDLE = "DUST_SWING_HANDLE";
+
+	
+	public abstract class JCompAgent<CompClass extends JComponent> extends DustAgent {
+		protected final CompClass comp;
+		
+		protected JCompAgent(CompClass c) {
+			this.comp = c;
+		}
+		
+		public CompClass getComp() {
+			return comp;
+		}
+	}
+	
+	public abstract class JPanelAgent extends JCompAgent<JPanel> {
+		public JPanelAgent() {
+			this(new BorderLayout());
+		}
+		
+		public JPanelAgent(LayoutManager lm) {
+			super(new JPanel(lm));
+		}
+	}
+
+}

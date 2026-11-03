@@ -1,0 +1,213 @@
+package me.giskard.dust.mod.gui.swing;
+
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.util.Collections;
+import java.util.List;
+
+import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
+import me.giskard.dust.api.Dust;
+import me.giskard.dust.api.DustException;
+import me.giskard.dust.core.utils.DustUtils;
+import me.giskard.dust.core.utils.DustUtilsFactory;
+
+@SuppressWarnings("rawtypes")
+public class DustGuiSwingUtils implements DustGuiSwingConsts {
+
+	public static JComponent setTitle(JComponent comp, String title) {
+		comp.setBorder(new TitledBorder(title));
+		return comp;
+	}
+
+	public static void nextGBRow(GridBagConstraints gbc, boolean reset) {
+		++gbc.gridy;
+		gbc.gridx = -1;
+		gbc.gridwidth = gbc.gridheight = 1;
+		nextGBCell(gbc, reset);
+	}
+
+	public static void nextGBCell(GridBagConstraints gbc, boolean reset) {
+		gbc.gridx += gbc.gridwidth;
+
+		if (reset) {
+			gbc.gridwidth = gbc.gridheight = 1;
+			gbc.ipadx = gbc.ipady = 0;
+			gbc.weightx = gbc.weighty = 0.0;
+			gbc.fill = GridBagConstraints.HORIZONTAL;
+//			gbc.insets = null;
+			gbc.anchor = GridBagConstraints.CENTER;
+		}
+	}
+
+	public static JSplitPane createSplit(boolean horizontal, JComponent c1, JComponent c2, double weight) {
+		JSplitPane spp = new JSplitPane(horizontal ? JSplitPane.HORIZONTAL_SPLIT : JSplitPane.VERTICAL_SPLIT, c1, c2);
+		spp.setResizeWeight(weight);
+		spp.setContinuousLayout(true);
+		return spp;
+	}
+
+	public static <BtClass extends AbstractButton> BtClass createBtn(String cmd, ActionListener al, Class<BtClass> bc) {
+		try {
+			BtClass b = bc.getConstructor().newInstance();
+			setActive(b, cmd, al);
+			return b;
+		} catch (Throwable e) {
+			return DustException.wrap(e, "Create btn for cmd", cmd, "class", bc);
+		}
+	}
+
+	public static JComboBox<?> setActive(JComboBox<?> cb, String cmd, ActionListener al) {
+		cb.addActionListener(al);
+		cb.setActionCommand(cmd);
+		return cb;
+	}
+
+	public static JComponent createToolbar(ActionListener al, String prefix, int count) {
+		JPanel pnlTB = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+		for (int i = 1; i <= count; ++i) {
+			pnlTB.add(createBtn(prefix + " " + i, al, JButton.class));
+		}
+
+		return pnlTB;
+	}
+
+	public static AbstractButton setActive(AbstractButton ab, String cmd, ActionListener al) {
+		ab.addActionListener(al);
+		ab.setActionCommand(cmd);
+		ab.setText(DustUtils.getPostfix(cmd, DUST_SEP_TOKEN));
+		return ab;
+	}
+
+	public static Icon getIcon(String id) {
+		return getIcon(id, null);
+	}
+
+	public static Icon getIcon(String id, Dimension prefSize) {
+		Image img = Toolkit.getDefaultToolkit().getImage("res/" + id + ".png");
+
+		if (null != prefSize) {
+			img = img.getScaledInstance(prefSize.width, prefSize.width, java.awt.Image.SCALE_SMOOTH);
+		}
+
+		return new ImageIcon(img);
+	}
+
+	public static String optSetLookAndFeel() throws Exception {
+		List<String> lnf = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, HANDLE_GUI_ATT_LOOKANDFEEL);
+
+		for (String lcn : lnf) {
+			try {
+				UIManager.setLookAndFeel(lcn);
+				UIManager.put("MenuBar.backgroundPainter", BorderFactory.createEmptyBorder());
+				UIManager.put("MenuBar.selectedBackgroundPainter", BorderFactory.createEmptyBorder());
+				UIManager.put("MenuItem.selectedBackgroundPainter", BorderFactory.createEmptyBorder());
+				
+				Dust.log(HANDLE_MISC_TAG_LEVEL_INFO, "Swing L&F selected:", lcn);
+				return lcn;
+
+			} catch (Throwable e) {
+				Dust.log(HANDLE_MISC_TAG_LEVEL_WARNING, "FAILED selecting Swing L&F:", lcn, e);
+			}
+		}
+
+		String lcn = null;
+
+		return lcn;
+	}
+	
+	public static class ActionControlFactory extends DustUtilsFactory<String, JComponent> {
+		ActionListener al;
+
+		public ActionControlFactory(ActionListener al) {
+			super(new DustCreator<JComponent>() {
+				@Override
+				public JComponent create(Object key, Object... hints) {
+					if (0 == hints.length) {
+						return DustGuiSwingUtils.createBtn((String) key, al, JButton.class);
+					}
+					return null;
+				}
+			});
+
+			this.al = al;
+		}
+	};
+
+
+	public static class ToolbarFactory extends DustUtilsFactory<String, JComponent> {
+		ActionControlFactory acf;
+		
+		public ToolbarFactory(ActionControlFactory acf) {
+			super(new DustCreator<JComponent>() {
+				@Override
+				public JComponent create(Object key, Object... hints) {
+					JPanel pnl = new JPanel(null);
+
+					int a = DustUtils.optGet(hints, 0, BoxLayout.PAGE_AXIS);
+					pnl.setLayout(new BoxLayout(pnl, a));
+					return pnl;
+				}
+			});
+			
+			this.acf = acf;
+		}
+		
+		public void fillToolbar(String tb, Object... cmds) {
+			JComponent pnl = get(tb);
+			pnl.removeAll();
+
+			for (Object o : cmds) {
+				if (null == o) {
+					pnl.add(Box.createRigidArea(new Dimension(10, 10)));
+				} else if (o instanceof JComponent) {
+					pnl.add((JComponent) o);
+					if (o instanceof JComboBox) {
+						((JComboBox) o).addActionListener(acf.al);
+					}
+				} else if (o instanceof String) {
+					pnl.add(acf.get((String) o));
+				}
+			}
+		}
+	};
+
+	public static abstract class DocumentAdapter implements DocumentListener {
+
+		protected abstract void update(DocumentEvent e);
+		
+		@Override
+		public void removeUpdate(DocumentEvent e) {
+			update(e);
+		}
+
+		@Override
+		public void insertUpdate(DocumentEvent e) {
+			update(e);
+		}
+
+		@Override
+		public void changedUpdate(DocumentEvent e) {
+			update(e);
+		}
+	};
+}
