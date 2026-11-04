@@ -51,16 +51,17 @@ public interface DustMachineNarrative extends DustMachineConsts {
 			Object vA = Dust.access(DustAccess.Peek, null, hA, h);
 			Object vB = Dust.access(DustAccess.Peek, null, hB, h);
 
-			if (DustUtils.isEqual(vA, vB)) {
+			if ( DustUtils.isEqual(vA, vB) ) {
 				return false;
 			}
 
 			boolean ret = true;
 
-			if (vA instanceof DustHandle) {
-				ret = (vB instanceof DustHandle) ? DustUtils.isEqual(((DustHandle) vA).getId(), ((DustHandle) vB).getId()) : true;
-			} else if (vA instanceof Set) {
-				if (vB instanceof Set) {
+			if ( vA instanceof DustHandle ) {
+				ret = (vB instanceof DustHandle) ? DustUtils.isEqual(((DustHandle) vA).getId(), ((DustHandle) vB).getId())
+						: true;
+			} else if ( vA instanceof Set ) {
+				if ( vB instanceof Set ) {
 					Set sA = new HashSet();
 					Set sB = new HashSet();
 
@@ -72,18 +73,18 @@ public interface DustMachineNarrative extends DustMachineConsts {
 					}
 
 					for (Iterator<Object> i = sA.iterator(); i.hasNext();) {
-						if (sB.remove(i.next())) {
+						if ( sB.remove(i.next()) ) {
 							i.remove();
 						}
 					}
 
-					if (sA.isEmpty() && sB.isEmpty()) {
+					if ( sA.isEmpty() && sB.isEmpty() ) {
 						ret = false;
 					}
 				}
 			}
 
-			if (ret) {
+			if ( ret ) {
 				Dust.log(HANDLE_MISC_TAG_LEVEL_INFO, "compare diff", vA, vB);
 			}
 
@@ -105,12 +106,13 @@ public interface DustMachineNarrative extends DustMachineConsts {
 
 			Collection path = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_PATH);
 
-			if (null != path) {
+			if ( null != path ) {
 //				Dust.access(DustAccess.Set, cmd, params, HANDLE_MIND_ATT_CMD);
 				Dust.access(DustAccess.Set, cmd, hNext, HANDLE_MIND_ATT_CMD);
 
 				Object[] p = path.toArray();
-				Collection<DustHandle> target = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, HANDLE_MISC_ATT_MEMBERS);
+				Collection<DustHandle> target = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null,
+						HANDLE_MISC_ATT_MEMBERS);
 
 				for (DustHandle ht : target) {
 					Dust.access(DustAccess.Set, ht, hNext, HANDLE_MISC_ATT_TARGET);
@@ -130,7 +132,55 @@ public interface DustMachineNarrative extends DustMachineConsts {
 				}
 			}
 		}
+	}
 
+	public class Access extends ChainAgent {
+
+		@Override
+		public void init() throws Exception {
+			super.init();
+//			conditions = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null, HANDLE_MISC_ATT_FILTER);
+		}
+
+		@Override
+		public void process() throws Exception {
+			DustHandle target = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_TARGET);
+			DustHandle source = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_SOURCE);
+			Collection path = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_REFPATH);
+
+			if ( null != path ) {
+				Object[] pp = path.toArray();
+
+				DustHandle lastAtt = null;
+				for (int i = 0; i < pp.length; ++i) {
+					Object v = pp[i];
+					if ( v instanceof String ) {
+						String str = (String) v;
+						if ( str.contains(DUST_SEP_TOKEN) ) {
+							v = lastAtt = Dust.getHandle(str);
+							pp[i] = v;
+						}
+					}
+				}
+
+				Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "Access", target, source, pp, "attribute", lastAtt);
+				// TODO handle attribute type!
+
+				Map values = DustMachineUtils.getValues(target, null, false);
+				Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "Before access", values);
+
+				Dust.access(DustAccess.Reset, null, target, pp);
+				Dust.access(DustAccess.Insert, source, target, pp);
+
+				values = DustMachineUtils.getValues(target, null, false);
+				Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "after access", values);
+
+				if ( null != hNext ) {
+					Dust.access(DustAccess.Commit, null, hNext);
+				}
+			}
+
+		}
 	}
 
 	public class Filter extends ChainAgent {
@@ -147,10 +197,11 @@ public interface DustMachineNarrative extends DustMachineConsts {
 
 			Object data = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_DATA);
 
-			if (null != data) {
+			if ( null != data ) {
 //				Map params = new HashMap();
 //				Dust.access(DustAccess.Set, cmd, params, HANDLE_MIND_ATT_CMD);
-				Map<String, Object> conditions = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null, HANDLE_MISC_ATT_FILTER);
+				Map<String, Object> conditions = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, null,
+						HANDLE_MISC_ATT_FILTER);
 
 				boolean pass = true;
 
@@ -159,18 +210,18 @@ public interface DustMachineNarrative extends DustMachineConsts {
 
 					Object cond = ce.getValue();
 
-					if (cond instanceof Boolean) {
+					if ( cond instanceof Boolean ) {
 						pass = ((Boolean) cond) == (null != val);
-					} else if (cond instanceof Collection) {
+					} else if ( cond instanceof Collection ) {
 						pass = ((Collection) cond).contains(DustUtils.toString(val));
 					}
 
-					if (!pass) {
+					if ( !pass ) {
 						break;
 					}
 				}
 
-				if (pass) {
+				if ( pass ) {
 					Dust.access(DustAccess.Set, cmd, hNext, HANDLE_MIND_ATT_CMD);
 					Dust.access(DustAccess.Set, data, hNext, HANDLE_MISC_ATT_DATA);
 					Dust.access(DustAccess.Commit, null, hNext);

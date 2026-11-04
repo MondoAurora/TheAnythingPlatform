@@ -80,7 +80,11 @@ public class DustGuiSwingRendererAgent extends DustAgent
 		Map<DustHandle, JComponent> comps = new HashMap<DustHandle, JComponent>();
 		Iterable<DustHandle> members = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h, HANDLE_MISC_ATT_MEMBERS);
 		for (DustHandle hm : members) {
-			comps.put(hm, getWrapped(hm));
+			JComponent cm = getWrapped(hm);
+			if (cm instanceof Container ) {
+				layoutContainer(hm, (Container) cm);
+			}
+			comps.put(hm, cm);
 		}
 
 		DustHandle hLayout = Dust.access(DustAccess.Peek, null, h, HANDLE_GUI_ATT_LAYOUT_CONFIG, 0);

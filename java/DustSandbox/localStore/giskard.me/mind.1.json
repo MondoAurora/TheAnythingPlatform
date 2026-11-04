@@ -4,6 +4,10 @@
 	},
 	"data": [
 		{
+			"id": "giskard.me/mind.1$Access",
+			"type": "giskard.me/mind.1$Narrative"
+		},
+		{
 			"id": "giskard.me/mind.1$Agent",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
@@ -989,8 +993,7 @@
 		}
 	],
 	"meta": {
-		"date": "20261024T125051Z",
-		"count": 63,
+		"count": 64,
 		"unitInfo": {
 			"id": "giskard.me/mind.1",
 			"type": "giskard.me/mind.1$Unit",

@@ -28,7 +28,7 @@ public class DustMachineUtils implements DustMachineConsts, DustGenHandles_dust_
 	public static Iterable<DustHandle> getUnitMembers(DustHandle unit, Collection<DustHandle> ret) {
 		Map<String, DustHandle> m = Dust.access(DustAccess.Peek, Collections.EMPTY_MAP, unit, HANDLE_DUST_ATT_UNIT_HANDLES);
 
-		if (null == ret) {
+		if ( null == ret ) {
 			ret = new TreeSet<DustHandle>(m.values());
 		} else {
 			ret.clear();
@@ -58,7 +58,7 @@ public class DustMachineUtils implements DustMachineConsts, DustGenHandles_dust_
 	}
 
 	public static void loadData(DustMachineIdea target, DustMachineIdea from, Iterable<? extends DustHandle> atts) {
-		if (null == atts) {
+		if ( null == atts ) {
 			atts = from.content.keySet();
 		}
 
@@ -74,12 +74,12 @@ public class DustMachineUtils implements DustMachineConsts, DustGenHandles_dust_
 		Object ret = from;
 
 		try {
-			if (from instanceof Collection) {
+			if ( from instanceof Collection ) {
 				ret = (Collection) from.getClass().getDeclaredConstructor().newInstance();
 				for (Object o : (Collection) from) {
 					((Collection) ret).add(copy(o));
 				}
-			} else if (from instanceof Map) {
+			} else if ( from instanceof Map ) {
 				ret = (Map) from.getClass().getDeclaredConstructor().newInstance();
 				for (Object o : ((Map) from).entrySet()) {
 					Map.Entry e = (Entry) o;
@@ -94,18 +94,22 @@ public class DustMachineUtils implements DustMachineConsts, DustGenHandles_dust_
 	}
 
 	public static Map getValues(DustHandle from, Map target, boolean cutPrefix, String... atts) {
-		if (null == target) {
+		if ( null == target ) {
 			target = new HashMap();
 		} else {
 			target.clear();
 		}
 
-		if (null != atts) {
+		if ( null != atts ) {
 			Map mFrom = DustMachineAgent.resolveHandle((DustMachineHandle) from).content;
 
-			if (0 == atts.length) {
-				for (String a : getAttNames(from)) {
-					String k = cutPrefix ? a.substring(a.indexOf(DUST_SEP_TOKEN) + 1) : a;
+			if ( 0 == atts.length ) {
+				for (DustHandle a : getAttHandles(from)) {
+					String k = a.getId();
+
+					if ( cutPrefix ) {
+						k = k.substring(k.indexOf(DUST_SEP_TOKEN) + 1);
+					}
 					target.put(k, mFrom.get(a));
 				}
 			} else {
