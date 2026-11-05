@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustAgent;
 import me.giskard.dust.api.DustHandle;
+import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.handles.giskard_me.DustGenHandles_dev_1;
 import me.giskard.handles.giskard_me.DustGenHandles_flow_1;
 import me.giskard.handles.giskard_me.DustGenHandles_misc_1;
@@ -81,7 +82,8 @@ public class DustGuiSwingRendererAgent extends DustAgent
 		Iterable<DustHandle> members = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h, HANDLE_MISC_ATT_MEMBERS);
 		for (DustHandle hm : members) {
 			JComponent cm = getWrapped(hm);
-			if (cm instanceof Container ) {
+			Object mm = Dust.access(DustAccess.Peek, null, hm, HANDLE_MISC_ATT_MEMBERS);
+			if ( null != mm ) {
 				layoutContainer(hm, (Container) cm);
 			}
 			comps.put(hm, cm);
@@ -90,8 +92,9 @@ public class DustGuiSwingRendererAgent extends DustAgent
 		DustHandle hLayout = Dust.access(DustAccess.Peek, null, h, HANDLE_GUI_ATT_LAYOUT_CONFIG, 0);
 
 		if ( null != hLayout ) {
-			Iterable<DustHandle> lms = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, hLayout, HANDLE_MISC_ATT_MEMBERS);
-			
+			Iterable<DustHandle> lms = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, hLayout,
+					HANDLE_MISC_ATT_MEMBERS);
+
 			container.setLayout(new GridBagLayout());
 
 			GridBagConstraints gbc = new GridBagConstraints();
@@ -101,19 +104,24 @@ public class DustGuiSwingRendererAgent extends DustAgent
 				DustHandle hTarget = Dust.access(DustAccess.Peek, null, hl, HANDLE_MISC_ATT_TARGET);
 
 				ArrayList<Long> loc = Dust.access(DustAccess.Peek, null, hl, HANDLE_MISC_ATT_POSITION);
-				
+
 				gbc.gridx = loc.get(1).intValue() - 1;
 				gbc.gridy = loc.get(0).intValue() - 1;
-				
+
 				JComponent comp = comps.get(hTarget);
 				container.add(comp, gbc);
 			}
 		} else {
 			container.setLayout(new FlowLayout(FlowLayout.CENTER));
 			
-			for ( JComponent comp : comps.values() ) {
-				container.add(comp);
+			for ( DustHandle hm : members ) {
+				container.add(comps.get(hm));
 			}
+
+//			for (JComponent comp : comps.values()) {
+////				DustGuiSwingUtils.setTitle(comp, "hmm");
+//				container.add(comp);
+//			}
 		}
 
 		container.revalidate();
@@ -132,10 +140,17 @@ public class DustGuiSwingRendererAgent extends DustAgent
 
 			if ( null != h ) {
 				DustHandle hMsg = Dust.access(DustAccess.Peek, null, h, HANDLE_MISC_ATT_TARGET);
+				DustHandle hCmd = Dust.access(DustAccess.Peek, null, h, HANDLE_MIND_ATT_CMD);
+				if ( null != hCmd ) {
+					Dust.access(DustAccess.Set, hCmd, hMsg, HANDLE_MIND_ATT_CMD);
+				}
 				Dust.access(DustAccess.Commit, null, hMsg);
 			} else {
 				JOptionPane.showMessageDialog((Component) src, id, "Command invocation", JOptionPane.INFORMATION_MESSAGE);
 			}
+
+			Dust.manageThread(DustThreadAction.ReleaseSuccess, anchor);
+
 		}
 	};
 
@@ -179,12 +194,20 @@ public class DustGuiSwingRendererAgent extends DustAgent
 
 			} else if ( HANDLE_GUI_ASP_WIDGET_BUTTON.equals(type) ) {
 				String txt = Dust.access(DustAccess.Peek, null, h, HANDLE_DEV_ATT_DEVTEXT);
+				
+				if ( DustUtils.isEmpty(txt)) {
+					txt = Dust.access(DustAccess.Peek, null, h, HANDLE_MIND_ATT_CMD, HANDLE_MIND_ATT_ID);
+					txt= DustUtils.getPostfix(txt, DUST_SEP_TOKEN);
+				}
 
 				JButton btn = new JButton(txt);
 				btn.addActionListener(al);
 
 				ret = btn;
 
+			} else if ( HANDLE_MIND_ASP_MESSAGE.equals(type) ) {
+				Dust.access(DustAccess.Commit, null, h);
+				ret = Dust.access(DustAccess.Peek, null, h, HANDLE_DUST_ATT_WRAPPEDOBJECT);
 			} else {
 
 			}

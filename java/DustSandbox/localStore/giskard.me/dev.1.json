@@ -202,6 +202,22 @@
 			}
 		},
 		{
+			"id": "giskard.me/dev.1$obsolete",
+			"type": "giskard.me/mind.1$Tag",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DEV_TAG_OBSOLETE",
+				"giskard.me/misc.1$name": "TOKEN_DEV_TAG_OBSOLETE"
+			},
+			"relationships": {
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "giskard.me/misc.1$Cmd",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			}
+		},
+		{
 			"id": "giskard.me/dev.1$package",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
@@ -285,7 +301,7 @@
 		}
 	],
 	"meta": {
-		"count": 18,
+		"count": 19,
 		"unitInfo": {
 			"id": "giskard.me/dev.1",
 			"type": "giskard.me/mind.1$Unit",

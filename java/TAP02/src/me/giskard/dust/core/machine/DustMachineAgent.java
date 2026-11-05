@@ -870,7 +870,7 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 
 		Object agent = optResolveRef(hAgent);
 //		hAgent = (DustHandle) optResolveRef(hAgent);
-		DustAgent agt = access(DustAccess.Get, null, agent, HANDLE_DUST_ATT_WRAPPEDOBJECT);
+		DustAgent agt = access(DustAccess.Get, null, agent, HANDLE_DUST_ATT_AGENT_INSTANCE);
 		DustMachineIdea iThread;
 
 		iThread = THREADS.get();
@@ -903,7 +903,7 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 
 				Class ca = Class.forName(cn);
 				agt = Dust.createInstance(ca);
-				access(DustAccess.Set, agt, hAgent, HANDLE_DUST_ATT_WRAPPEDOBJECT);
+				access(DustAccess.Set, agt, hAgent, HANDLE_DUST_ATT_AGENT_INSTANCE);
 
 				agt.init();
 
@@ -925,7 +925,7 @@ public class DustMachineAgent extends DustMachine implements DustGenBootConsts, 
 	}
 
 	public void begin() throws Exception {
-		access(DustAccess.Set, this, null, HANDLE_DUST_ATT_CTX_APP, HANDLE_DUST_ATT_WRAPPEDOBJECT);
+		access(DustAccess.Set, this, null, HANDLE_DUST_ATT_CTX_APP, HANDLE_DUST_ATT_AGENT_INSTANCE);
 		
 		syncUnits(true);
 

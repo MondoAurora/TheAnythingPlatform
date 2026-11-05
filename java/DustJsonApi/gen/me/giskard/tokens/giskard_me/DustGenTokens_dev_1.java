@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20261103T080804Z
+// Generation timestamp 20261105T082620Z
 
 public interface DustGenTokens_dev_1 {
 // Attributes
@@ -16,4 +16,5 @@ public interface DustGenTokens_dev_1 {
 
 // Tags
 	String TOKEN_DEV_TAG_CMD_TEST = "giskard.me/dev.1$test";
+	String TOKEN_DEV_TAG_OBSOLETE = "giskard.me/dev.1$obsolete";
 }

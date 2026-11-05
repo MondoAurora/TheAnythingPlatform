@@ -227,6 +227,32 @@
 			}
 		},
 		{
+			"id": "giskard.me/dust.1$agentInstance",
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_AGENT_INSTANCE",
+				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_AGENT_INSTANCE"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeMap",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$Transient",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
+		},
+		{
 			"id": "giskard.me/dust.1$allApplications",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
@@ -912,7 +938,7 @@
 		}
 	],
 	"meta": {
-		"count": 56,
+		"count": 57,
 		"unitInfo": {
 			"id": "giskard.me/dust.1",
 			"type": "giskard.me/mind.1$Unit",

@@ -272,10 +272,6 @@
 			}
 		},
 		{
-			"id": "giskard.me/gui.1$SwingRenderer",
-			"type": "giskard.me/mind.1$Narrative"
-		},
-		{
 			"id": "giskard.me/gui.1$TextMode",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
@@ -330,6 +326,10 @@
 					}
 				}
 			}
+		},
+		{
+			"id": "giskard.me/gui.1$VideoPlayer",
+			"type": "giskard.me/mind.1$Narrative"
 		},
 		{
 			"id": "giskard.me/gui.1$WidgetButton",

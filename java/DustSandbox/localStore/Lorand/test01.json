@@ -119,8 +119,8 @@
 				},
 				"giskard.me/misc.1$source": {
 					"data": {
-						"id": "Lorand/test01$TestLabel02",
-						"type": "giskard.me/gui.1$WidgetLabel"
+						"id": "Lorand/test01$MediaPlayerContainer",
+						"type": "giskard.me/gui.1$PanelContainer"
 					}
 				},
 				"giskard.me/misc.1$target": {
@@ -539,6 +539,83 @@
 			}
 		},
 		{
+			"id": "Lorand/test01$MediaPlayerContainer",
+			"type": "giskard.me/gui.1$PanelContainer",
+			"relationships": {
+				"giskard.me/gui.1$layoutConfig": {
+					"data": [
+						{
+							"id": "Lorand/test01$VideoTableVert",
+							"type": "giskard.me/layout.1$Table"
+						}
+					]
+				},
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$VideoPlayerPlaceholder",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01$MediaPlayerControls",
+							"type": "giskard.me/gui.1$PanelContainer"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$MediaPlayerControls",
+			"type": "giskard.me/gui.1$PanelContainer",
+			"relationships": {
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$VideoPlayerSkipBack",
+							"type": "giskard.me/gui.1$WidgetButton"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01$VideoPlayerStart",
+							"type": "giskard.me/gui.1$WidgetButton"
+						},
+						{
+							"meta": {
+								"key": 2
+							},
+							"id": "Lorand/test01$VideoPlayerPause",
+							"type": "giskard.me/gui.1$WidgetButton"
+						},
+						{
+							"meta": {
+								"key": 3
+							},
+							"id": "Lorand/test01$VideoPlayerStop",
+							"type": "giskard.me/gui.1$WidgetButton"
+						},
+						{
+							"meta": {
+								"key": 4
+							},
+							"id": "Lorand/test01$VideoPlayerSkipForward",
+							"type": "giskard.me/gui.1$WidgetButton"
+						}
+					]
+				}
+			}
+		},
+		{
 			"id": "Lorand/test01$ProcessUnitStream",
 			"type": "giskard.me/mind.1$Message",
 			"relationships": {
@@ -812,6 +889,10 @@
 					"data": [
 						{
 							"id": "Lorand/test01$Test01Java17Module",
+							"type": "giskard.me/dust.1$Module"
+						},
+						{
+							"id": "TAP/guiJavaSwing.1$GuiSwingJava17Module",
 							"type": "giskard.me/dust.1$Module"
 						},
 						{
@@ -1276,6 +1357,202 @@
 			}
 		},
 		{
+			"id": "Lorand/test01$VPCellCtrl",
+			"type": "giskard.me/layout.1$Cell",
+			"attributes": {
+				"giskard.me/misc.1$position": [
+					2,
+					1
+				]
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$MediaPlayerControls",
+						"type": "giskard.me/gui.1$PanelContainer"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VPCellPlayer",
+			"type": "giskard.me/layout.1$Cell",
+			"attributes": {
+				"giskard.me/misc.1$position": [
+					1,
+					1
+				]
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$VideoPlayerPlaceholder",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoPlayerAction",
+			"type": "giskard.me/mind.1$Message",
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$VideoPlayerAgent",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoPlayerAgent",
+			"type": "giskard.me/mind.1$Agent",
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/gui.1$VideoPlayer",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoPlayerPause",
+			"type": "giskard.me/gui.1$WidgetButton",
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/flow.1$CmdFlowPause",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$VideoPlayerAction",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoPlayerPlaceholder",
+			"type": "giskard.me/mind.1$Message",
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$VideoPlayerAgent",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoPlayerSkipBack",
+			"type": "giskard.me/gui.1$WidgetButton",
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/misc.1$CmdSkipBack",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$VideoPlayerAction",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoPlayerSkipForward",
+			"type": "giskard.me/gui.1$WidgetButton",
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/misc.1$CmdSkipForward",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$VideoPlayerAction",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoPlayerStart",
+			"type": "giskard.me/gui.1$WidgetButton",
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/flow.1$CmdFlowPlay",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$VideoPlayerAction",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoPlayerStop",
+			"type": "giskard.me/gui.1$WidgetButton",
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/misc.1$CmdStop",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$VideoPlayerAction",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoTableVert",
+			"type": "giskard.me/layout.1$Table",
+			"relationships": {
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$VPCellPlayer",
+							"type": "giskard.me/layout.1$Cell"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01$VPCellCtrl",
+							"type": "giskard.me/layout.1$Cell"
+						}
+					]
+				}
+			}
+		},
+		{
 			"id": "Lorand/test01$WebDispatcher",
 			"type": "giskard.me/net.1$HttpDispatcher",
 			"relationships": {
@@ -1375,7 +1652,7 @@
 		}
 	],
 	"meta": {
-		"count": 59,
+		"count": 72,
 		"unitInfo": {
 			"id": "Lorand/test01",
 			"type": "giskard.me/mind.1$Unit",

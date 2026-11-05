@@ -169,7 +169,7 @@ public interface DustMachineNarrative extends DustMachineConsts {
 				Map values = DustMachineUtils.getValues(target, null, false);
 				Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "Before access", values);
 
-				Dust.access(DustAccess.Reset, null, target, pp);
+				Dust.access(DustAccess.Delete, null, target, pp);
 				Dust.access(DustAccess.Insert, source, target, pp);
 
 				values = DustMachineUtils.getValues(target, null, false);

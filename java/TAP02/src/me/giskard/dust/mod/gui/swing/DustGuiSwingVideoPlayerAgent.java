@@ -59,6 +59,9 @@ public class DustGuiSwingVideoPlayerAgent extends DustAgent
 			vfxPanel.setScene(scene);
 
 			add(vfxPanel, BorderLayout.CENTER);
+
+			setSize(600, 300);
+			setPreferredSize(getSize());
 		}
 
 		void setMediaUri(URI uri) {
@@ -70,10 +73,13 @@ public class DustGuiSwingVideoPlayerAgent extends DustAgent
 
 	}
 
+	VideoPanel vp;
+
 	@Override
 	public void init() throws Exception {
 
-		VideoPanel vp = new VideoPanel();
+		vp = new VideoPanel();
+//		VideoPanel vp = new VideoPanel();
 		test(vp);
 
 		Dust.access(DustAccess.Set, vp, null, HANDLE_DUST_ATT_CTX_AGT, HANDLE_DUST_ATT_WRAPPEDOBJECT);
@@ -84,7 +90,7 @@ public class DustGuiSwingVideoPlayerAgent extends DustAgent
 	public void process() throws Exception {
 		DustHandle cmd = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_CMD);
 
-		VideoPanel vp = Dust.access(DustAccess.Peek, null, null, HANDLE_DUST_ATT_CTX_AGT, HANDLE_DUST_ATT_WRAPPEDOBJECT);
+//		VideoPanel vp = Dust.access(DustAccess.Peek, null, null, HANDLE_DUST_ATT_CTX_AGT, HANDLE_DUST_ATT_WRAPPEDOBJECT);
 		Duration d = null;
 
 		if ( HANDLE_MISC_TAG_CMD_STOP.equals(cmd) ) {
@@ -103,7 +109,7 @@ public class DustGuiSwingVideoPlayerAgent extends DustAgent
 		} else {
 			Dust.access(DustAccess.Set, vp, null, HANDLE_DUST_ATT_CTX_MSG, HANDLE_DUST_ATT_WRAPPEDOBJECT);
 		}
-		
+
 		if ( null != d ) {
 			vp.player.seek(d);
 		}
