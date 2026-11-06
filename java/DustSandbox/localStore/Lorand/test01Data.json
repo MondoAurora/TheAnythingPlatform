@@ -10,6 +10,16 @@
 				"giskard.me/misc.1$refPath": [
 					"Lorand/test01Data$TestAtt01TextSingle"
 				]
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/gui.1$TextModeMultiLine",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
