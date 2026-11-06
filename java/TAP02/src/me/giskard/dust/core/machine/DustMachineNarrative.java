@@ -10,6 +10,7 @@ import java.util.Set;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustHandle;
 import me.giskard.dust.core.utils.DustUtils;
+import me.giskard.dust.core.utils.DustUtilsData;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public interface DustMachineNarrative extends DustMachineConsts {
@@ -146,22 +147,35 @@ public interface DustMachineNarrative extends DustMachineConsts {
 		public void process() throws Exception {
 			DustHandle target = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_TARGET);
 			DustHandle source = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_SOURCE);
-			Collection path = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_REFPATH);
+//			Collection path = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_REFPATH);
+//			if ( null != path ) {
+			
+			Object[] pp = DustUtilsData.optGetRefPath(null);
 
-			if ( null != path ) {
-				Object[] pp = path.toArray();
+
+			if ( null != pp ) {
+//				Object[] pp = path.toArray();
 
 				DustHandle lastAtt = null;
-				for (int i = 0; i < pp.length; ++i) {
+				for (int i =pp.length; i-->0; ) {
 					Object v = pp[i];
-					if ( v instanceof String ) {
-						String str = (String) v;
-						if ( str.contains(DUST_SEP_TOKEN) ) {
-							v = lastAtt = Dust.getHandle(str);
-							pp[i] = v;
-						}
+				
+					if ( v instanceof DustHandle ) {
+						lastAtt = (DustHandle) v;
+						break;
 					}
 				}
+					
+//				for (int i = 0; i < pp.length; ++i) {
+//					Object v = pp[i];
+//					if ( v instanceof String ) {
+//						String str = (String) v;
+//						if ( str.contains(DUST_SEP_TOKEN) ) {
+//							v = lastAtt = Dust.getHandle(str);
+//							pp[i] = v;
+//						}
+//					}
+//				}
 
 				Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "Access", target, source, pp, "attribute", lastAtt);
 				// TODO handle attribute type!

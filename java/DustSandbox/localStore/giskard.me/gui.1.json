@@ -428,10 +428,32 @@
 					]
 				}
 			}
+		},
+		{
+			"id": "giskard.me/gui.1$parentContainer",
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_GUI_ATT_PARENT_CONTAINER",
+				"giskard.me/misc.1$name": "TOKEN_GUI_ATT_PARENT_CONTAINER"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
 		}
 	],
 	"meta": {
-		"count": 38,
+		"count": 39,
 		"unitInfo": {
 			"id": "giskard.me/gui.1",
 			"type": "giskard.me/mind.1$Unit",

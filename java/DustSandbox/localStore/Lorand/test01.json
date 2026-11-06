@@ -159,8 +159,8 @@
 				},
 				"giskard.me/misc.1$source": {
 					"data": {
-						"id": "Lorand/test01$TestLabel01",
-						"type": "giskard.me/gui.1$WidgetLabel"
+						"id": "Lorand/test01Data$Test01PropPage01",
+						"type": "giskard.me/gui.1$PanelContainer"
 					}
 				},
 				"giskard.me/misc.1$target": {

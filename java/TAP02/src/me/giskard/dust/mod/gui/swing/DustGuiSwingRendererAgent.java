@@ -20,11 +20,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustAgent;
 import me.giskard.dust.api.DustHandle;
 import me.giskard.dust.core.utils.DustUtils;
+import me.giskard.dust.core.utils.DustUtilsData;
 import me.giskard.handles.giskard_me.DustGenHandles_dev_1;
 import me.giskard.handles.giskard_me.DustGenHandles_flow_1;
 import me.giskard.handles.giskard_me.DustGenHandles_misc_1;
@@ -81,6 +83,7 @@ public class DustGuiSwingRendererAgent extends DustAgent
 		Map<DustHandle, JComponent> comps = new HashMap<DustHandle, JComponent>();
 		Iterable<DustHandle> members = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h, HANDLE_MISC_ATT_MEMBERS);
 		for (DustHandle hm : members) {
+			Dust.access(DustAccess.Set, h, hm, HANDLE_GUI_ATT_PARENT_CONTAINER);
 			JComponent cm = getWrapped(hm);
 			Object mm = Dust.access(DustAccess.Peek, null, hm, HANDLE_MISC_ATT_MEMBERS);
 			if ( null != mm ) {
@@ -113,8 +116,8 @@ public class DustGuiSwingRendererAgent extends DustAgent
 			}
 		} else {
 			container.setLayout(new FlowLayout(FlowLayout.CENTER));
-			
-			for ( DustHandle hm : members ) {
+
+			for (DustHandle hm : members) {
 				container.add(comps.get(hm));
 			}
 
@@ -172,7 +175,8 @@ public class DustGuiSwingRendererAgent extends DustAgent
 				ret = frm;
 
 			} else if ( HANDLE_GUI_ASP_WIDGET_LABEL.equals(type) ) {
-				String txt = Dust.access(DustAccess.Peek, null, h, HANDLE_DEV_ATT_DEVTEXT);
+
+				String txt = getValue(h);
 
 				JLabel lbl = new JLabel(txt);
 				ret = lbl;
@@ -194,10 +198,10 @@ public class DustGuiSwingRendererAgent extends DustAgent
 
 			} else if ( HANDLE_GUI_ASP_WIDGET_BUTTON.equals(type) ) {
 				String txt = Dust.access(DustAccess.Peek, null, h, HANDLE_DEV_ATT_DEVTEXT);
-				
-				if ( DustUtils.isEmpty(txt)) {
+
+				if ( DustUtils.isEmpty(txt) ) {
 					txt = Dust.access(DustAccess.Peek, null, h, HANDLE_MIND_ATT_CMD, HANDLE_MIND_ATT_ID);
-					txt= DustUtils.getPostfix(txt, DUST_SEP_TOKEN);
+					txt = DustUtils.getPostfix(txt, DUST_SEP_TOKEN);
 				}
 
 				JButton btn = new JButton(txt);
@@ -205,11 +209,17 @@ public class DustGuiSwingRendererAgent extends DustAgent
 
 				ret = btn;
 
+			} else if ( HANDLE_GUI_ASP_EDIT_TEXT.equals(type) ) {
+				JTextField tf = new JTextField();
+				
+				tf.setText(getValue(h));
+				
+				ret = tf;
 			} else if ( HANDLE_MIND_ASP_MESSAGE.equals(type) ) {
 				Dust.access(DustAccess.Commit, null, h);
 				ret = Dust.access(DustAccess.Peek, null, h, HANDLE_DUST_ATT_WRAPPEDOBJECT);
 			} else {
-
+				ret = new JLabel("No twin creation for type " + type);
 			}
 
 			if ( null != ret ) {
@@ -219,6 +229,17 @@ public class DustGuiSwingRendererAgent extends DustAgent
 			}
 		}
 
+		return (RetType) ret;
+	}
+
+	public <RetType> RetType getValue(DustHandle h) {
+		Object ret = Dust.access(DustAccess.Peek, null, h, HANDLE_DEV_ATT_DEVTEXT);
+
+		DustHandle hData = DustUtilsData.findRec(h, HANDLE_MISC_ATT_DATA, HANDLE_GUI_ATT_PARENT_CONTAINER);
+		if ( null != hData ) {
+			Object[] pp = DustUtilsData.optGetRefPath(h);
+			ret = (null == pp) ? hData.toString() : Dust.access(DustAccess.Peek, null, hData, pp);
+		}
 		return (RetType) ret;
 	}
 

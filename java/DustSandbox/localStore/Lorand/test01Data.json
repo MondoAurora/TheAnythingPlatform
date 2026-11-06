@@ -1,0 +1,168 @@
+{
+	"jsonapi": {
+		"version": "1.1"
+	},
+	"data": [
+		{
+			"id": "Lorand/test01Data$EditAtt01Text",
+			"type": "giskard.me/gui.1$EditText",
+			"attributes": {
+				"giskard.me/misc.1$refPath": [
+					"Lorand/test01Data$TestAtt01TextSingle"
+				]
+			}
+		},
+		{
+			"id": "Lorand/test01Data$LabelAtt01",
+			"type": "giskard.me/gui.1$WidgetLabel",
+			"attributes": {
+				"giskard.me/dev.1$devText": "Test Label in data unit ",
+				"giskard.me/misc.1$refPath": [
+					"Lorand/test01Data$TestAtt01TextSingle"
+				]
+			}
+		},
+		{
+			"id": "Lorand/test01Data$PTCell1",
+			"type": "giskard.me/layout.1$Cell",
+			"attributes": {
+				"giskard.me/misc.1$position": [
+					1,
+					1
+				]
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01Data$LabelAtt01",
+						"type": "giskard.me/gui.1$WidgetLabel"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01Data$PTCell2",
+			"type": "giskard.me/layout.1$Cell",
+			"attributes": {
+				"giskard.me/misc.1$position": [
+					2,
+					1
+				]
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01Data$EditAtt01Text",
+						"type": "giskard.me/gui.1$EditText"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01Data$PropTable",
+			"type": "giskard.me/layout.1$Table",
+			"relationships": {
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01Data$PTCell1",
+							"type": "giskard.me/layout.1$Cell"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01Data$PTCell2",
+							"type": "giskard.me/layout.1$Cell"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01Data$Test01PropPage01",
+			"type": "giskard.me/gui.1$PanelContainer",
+			"relationships": {
+				"giskard.me/gui.1$layoutConfig": {
+					"data": [
+						{
+							"id": "Lorand/test01Data$PropTable",
+							"type": "giskard.me/layout.1$Table"
+						}
+					]
+				},
+				"giskard.me/misc.1$data": {
+					"data": {
+						"id": "Lorand/test01Data$TestIdea01",
+						"type": "Lorand/test01Data$TestAspect01"
+					}
+				},
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01Data$LabelAtt01",
+							"type": "giskard.me/gui.1$WidgetLabel"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01Data$EditAtt01Text",
+							"type": "giskard.me/gui.1$EditText"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01Data$TestAspect01",
+			"type": "giskard.me/mind.1$Aspect"
+		},
+		{
+			"id": "Lorand/test01Data$TestAtt01TextSingle",
+			"type": "giskard.me/mind.1$Attribute",
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeString",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01Data$TestIdea01",
+			"type": "Lorand/test01Data$TestAspect01",
+			"attributes": {
+				"Lorand/test01Data$TestAtt01TextSingle": "This is the first test value"
+			}
+		}
+	],
+	"meta": {
+		"count": 9,
+		"unitInfo": {
+			"id": "Lorand/test01Data",
+			"type": "giskard.me/mind.1$Unit",
+			"relationships": {
+				"giskard.me/mind.1$author": {
+					"data": {
+						"id": "Lorand/author$LorandKedves",
+						"type": "giskard.me/mind.1$Author"
+					}
+				}
+			}
+		}
+	}
+}

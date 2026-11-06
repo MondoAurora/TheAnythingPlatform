@@ -2,6 +2,7 @@ package me.giskard.dust.core.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,6 +15,36 @@ import me.giskard.dust.core.machine.DustMachineConsts;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustUtilsData implements DustUtilsConsts, DustMachineConsts {
+
+	public static DustHandle findRec(DustHandle hStart, DustHandle hAttValue, DustHandle hAttPath) {
+		DustHandle ret = null;
+		for (DustHandle h = hStart; (null == ret) && (null != h); h = Dust.access(DustAccess.Get, null, h, hAttPath)) {
+			ret = Dust.access(DustAccess.Peek, null, h, hAttValue);
+		}
+		return ret;
+	}
+
+	public static Object[] optGetRefPath(DustHandle h) {
+		Object[] pp = null;
+		Collection path = Dust.access(DustAccess.Peek, null, h, HANDLE_MISC_ATT_REFPATH);
+
+		if ( null != path ) {
+			pp = path.toArray();
+
+			for (int i = 0; i < pp.length; ++i) {
+				Object v = pp[i];
+				if ( v instanceof String ) {
+					String str = (String) v;
+					if ( str.contains(DUST_SEP_TOKEN) ) {
+						v = Dust.getHandle(str);
+						pp[i] = v;
+					}
+				}
+			}
+		}
+		
+		return pp;
+	}
 
 	public static DustHandle getAtt(DustHandle meta, DustHandle type, String attName) {
 		DustHandle att = Dust.getHandle(meta.getId() + DUST_SEP_TOKEN + attName, meta);
@@ -38,14 +69,15 @@ public class DustUtilsData implements DustUtilsConsts, DustMachineConsts {
 		}
 	};
 
-	public static DustHandle createEvent(DustHandle hUnit, DustHandle hTarget, Date dStart, long duration, DustHandle durationUnit) {
+	public static DustHandle createEvent(DustHandle hUnit, DustHandle hTarget, Date dStart, long duration,
+			DustHandle durationUnit) {
 
 		DustHandle hEvent = Dust.getHandle(null, hUnit);
 		Dust.access(DustAccess.Set, hTarget, hEvent, HANDLE_MISC_ATT_TARGET);
 
 		Dust.access(DustAccess.Set, duration, hEvent, HANDLE_MISC_ATT_EVENT_DURATION);
 		Dust.access(DustAccess.Set, durationUnit, hEvent, HANDLE_MISC_ATT_EVENT_DURATION_UNIT);
-		
+
 		setEventDate(hEvent, dStart);
 
 		return hEvent;
@@ -53,11 +85,11 @@ public class DustUtilsData implements DustUtilsConsts, DustMachineConsts {
 
 	public static void setEventDate(DustHandle hEvent, Date dStart) {
 		String strDate = sdfEventDate.format(dStart);
-		if (!DustUtils.isEqual(NO_DATE, strDate)) {
+		if ( !DustUtils.isEqual(NO_DATE, strDate) ) {
 			Dust.access(DustAccess.Set, strDate, hEvent, HANDLE_MISC_ATT_EVENT_DATE);
 		}
 		String strTime = sdfEventTime.format(dStart);
-		if (!DustUtils.isEqual(NO_TIME, strTime)) {
+		if ( !DustUtils.isEqual(NO_TIME, strTime) ) {
 			Dust.access(DustAccess.Set, strTime, hEvent, HANDLE_MISC_ATT_EVENT_TIME);
 		}
 	}
@@ -65,17 +97,17 @@ public class DustUtilsData implements DustUtilsConsts, DustMachineConsts {
 	public static Date getEventDate(DustHandle hEvent) {
 		Date d = null;
 
-		if (null != hEvent) {
+		if ( null != hEvent ) {
 			SimpleDateFormat sdf;
 			String str;
 
 			String strDate = Dust.access(DustAccess.Peek, "", hEvent, HANDLE_MISC_ATT_EVENT_DATE);
 			String strTime = Dust.access(DustAccess.Peek, "", hEvent, HANDLE_MISC_ATT_EVENT_TIME);
 
-			if (DustUtils.isEmpty(strDate)) {
+			if ( DustUtils.isEmpty(strDate) ) {
 				str = strTime;
 				sdf = sdfEventTime;
-			} else if (DustUtils.isEmpty(strTime)) {
+			} else if ( DustUtils.isEmpty(strTime) ) {
 				str = strDate;
 				sdf = sdfEventDate;
 			} else {
@@ -83,7 +115,7 @@ public class DustUtilsData implements DustUtilsConsts, DustMachineConsts {
 				sdf = sdfEventDateTime;
 			}
 
-			if (!DustUtils.isEmpty(str)) {
+			if ( !DustUtils.isEmpty(str) ) {
 				try {
 					d = sdf.parse(str);
 				} catch (ParseException e) {
@@ -94,11 +126,11 @@ public class DustUtilsData implements DustUtilsConsts, DustMachineConsts {
 
 		return d;
 	}
-	
+
 	public static Map optLoadMapping(Object src, Map params) {
 		Map<String, Map<String, Object>> mapping = Dust.access(DustAccess.Peek, null, src, HANDLE_MISC_ATT_MAPPING);
 
-		if (null != mapping) {
+		if ( null != mapping ) {
 			Map mp = new HashMap();
 
 			for (Map.Entry<String, Map<String, Object>> mfe : mapping.entrySet()) {
@@ -106,29 +138,30 @@ public class DustUtilsData implements DustUtilsConsts, DustMachineConsts {
 				Map<String, Object> def = mfe.getValue();
 				Object val = null;
 
-				if (null == def) {
+				if ( null == def ) {
 					val = Dust.access(DustAccess.Peek, null, params, field);
 				} else {
 					val = Dust.access(DustAccess.Peek, null, params, def.get(HANDLE_MISC_ATT_SOURCE));
 
-					switch ((String) def.getOrDefault(HANDLE_MIND_ATT_CMD, "")) {
+					switch ( (String) def.getOrDefault(HANDLE_MIND_ATT_CMD, "") ) {
 					case "split":
 						String sep = (String) def.get(HANDLE_MISC_ATT_SEPARATOR);
 						int idx = ((Number) def.get(HANDLE_MISC_ATT_INDEX)).intValue();
 						String str = (String) val;
-						val = DustUtils.isEmpty(str) ? def.get(HANDLE_MISC_ATT_DEFAULT) : DustUtils.optGet(str.split(sep), idx, def.get(HANDLE_MISC_ATT_DEFAULT));
+						val = DustUtils.isEmpty(str) ? def.get(HANDLE_MISC_ATT_DEFAULT)
+								: DustUtils.optGet(str.split(sep), idx, def.get(HANDLE_MISC_ATT_DEFAULT));
 						break;
 					}
 				}
 
-				if (null != val) {
+				if ( null != val ) {
 					mp.put(field, val);
 				}
 			}
 
 			params = mp;
 		}
-		
+
 		return params;
 	}
 

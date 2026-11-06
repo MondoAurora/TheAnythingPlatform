@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20261103T144230Z
+// Generation timestamp 20261106T095655Z
 
 public interface DustGenTokens_gui_1 {
 // Aspects
@@ -25,6 +25,7 @@ public interface DustGenTokens_gui_1 {
 	String TOKEN_GUI_ATT_IMAGE_RESOLVER = "giskard.me/gui.1$imageResolver";
 	String TOKEN_GUI_ATT_LAYOUT_CONFIG = "giskard.me/gui.1$layoutConfig";
 	String TOKEN_GUI_ATT_LOOKANDFEEL = "giskard.me/gui.1$lookAndFeel";
+	String TOKEN_GUI_ATT_PARENT_CONTAINER = "giskard.me/gui.1$parentContainer";
 
 // Tags
 	String TOKEN_GUI_TAG_AXISUNIT_PIXEL = "giskard.me/gui.1$AxisUnitPixel";
