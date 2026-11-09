@@ -8,15 +8,15 @@ import org.mvel2.MVEL;
 public class DustExprMvelUtils implements DustExprMvelConsts {
 
 	public static <RetType> RetType eval(String str, Object ctx, Map data, RetType defRet) {
-		RetType ret = defRet;
+		Object ret = defRet;
 		try {
-			ret = (RetType) MVEL.eval(str, ctx, data);
-			defRet = ret;
+			ret = (null == ctx) ? MVEL.eval(str, data) : MVEL.eval(str, ctx, data);
+//			defRet = ret;
 		} catch (Throwable e) {
 			ret = defRet;
 //			DustException.swallow(e, "expr eval", str, data);
 		}
-		return ret;
+		return (RetType) ret;
 	}
 
 	public static Object compile(String expr) {

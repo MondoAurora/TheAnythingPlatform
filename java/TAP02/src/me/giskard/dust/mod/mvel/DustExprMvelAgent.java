@@ -2,34 +2,73 @@ package me.giskard.dust.mod.mvel;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustAgent;
 import me.giskard.dust.api.DustHandle;
 import me.giskard.dust.core.utils.DustUtils;
 
-@SuppressWarnings("rawtypes")
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustExprMvelAgent extends DustAgent implements DustExprMvelConsts {
+	Map data = new HashMap();
+	
+	public static class MvelConn {
+		public DustHandle getHandle(String id) {
+			return Dust.getHandle(id, null);
+		}
+
+		public DustHandle getHandle(String id, DustHandle type) {
+			return Dust.getHandle(id, type);
+		}
+
+		public <RetType> RetType access(DustAccess access, Object val, Object root, Object... path) {
+			return Dust.access(access, val, root, path);
+		}
+		
+		public void log(DustHandle eventId, Object... params) {
+			Dust.log(eventId, params);
+		}
+	}
+	
+	MvelConn conn = new MvelConn();
 
 	@Override
 	public void process() throws Exception {
+		
+		data.put("Dust", conn);
+		
+		addEnum(data, DustAccess.class);
 
 		String command = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_SOURCE, HANDLE_TEXT_ATT_TEXT);
 		DustHandle hTarget = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_TARGET);
+		
+		String log = Dust.access(DustAccess.Peek, null, hTarget, HANDLE_TEXT_ATT_TEXT);
 
 		Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "MVEL executor called", command, hTarget);
-
-		Map data = new HashMap();
+		
+		StringBuilder sb = DustUtils.sbAppend(null, "\n", false, log, "> " + command);
 
 		Object ret = DustExprMvelUtils.eval(command, null, data, "???");
 		
 		String result = DustUtils.toString(ret);
-
 		Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "MVEL result", result);
 		
-		Dust.access(DustAccess.Set, ret, hTarget, HANDLE_TEXT_ATT_TEXT);
+		DustUtils.sbAppend(sb, "\n", false, result);
+		
+		Dust.access(DustAccess.Set, sb.toString(), hTarget, HANDLE_TEXT_ATT_TEXT);
 
 		// TODO Auto-generated method stub
+	}
+
+	private void addEnum(Map data, Class<? extends Enum> enumClass) {
+		Map values= new TreeMap();
+		
+		for (Enum e : enumClass.getEnumConstants()) {
+			values.put(e.name(), e);
+		}
+		data.put(enumClass.getSimpleName(), values);
+		
 	}
 
 //	void test(Map<String, Object> call) throws Exception {
