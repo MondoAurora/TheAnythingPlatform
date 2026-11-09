@@ -79,8 +79,8 @@
 				},
 				"giskard.me/misc.1$source": {
 					"data": {
-						"id": "Lorand/test01$TestLabel03",
-						"type": "giskard.me/gui.1$WidgetLabel"
+						"id": "TAP/graphConsole.1$MainPanel",
+						"type": "giskard.me/gui.1$PanelContainer"
 					}
 				},
 				"giskard.me/misc.1$target": {
@@ -898,6 +898,10 @@
 						{
 							"id": "giskard.me/dustImpl.1$DustJava17Module",
 							"type": "giskard.me/dust.1$Module"
+						},
+						{
+							"id": "giskard.me/mvel.1$MVELJava17Module",
+							"type": "giskard.me/dust.1$Module"
 						}
 					]
 				},
@@ -1661,6 +1665,12 @@
 					"data": {
 						"id": "Lorand/author$LorandKedves",
 						"type": "giskard.me/mind.1$Author"
+					}
+				},
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/mvel.1$MVELExprEval",
+						"type": "giskard.me/mind.1$Narrative"
 					}
 				}
 			}

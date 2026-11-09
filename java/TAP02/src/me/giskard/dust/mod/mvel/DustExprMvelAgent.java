@@ -1,11 +1,34 @@
 package me.giskard.dust.mod.mvel;
 
-import me.giskard.dust.api.DustAgent;
+import java.util.HashMap;
+import java.util.Map;
 
+import me.giskard.dust.api.Dust;
+import me.giskard.dust.api.DustAgent;
+import me.giskard.dust.api.DustHandle;
+import me.giskard.dust.core.utils.DustUtils;
+
+@SuppressWarnings("rawtypes")
 public class DustExprMvelAgent extends DustAgent implements DustExprMvelConsts {
 
 	@Override
 	public void process() throws Exception {
+
+		String command = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_SOURCE, HANDLE_TEXT_ATT_TEXT);
+		DustHandle hTarget = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_TARGET);
+
+		Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "MVEL executor called", command, hTarget);
+
+		Map data = new HashMap();
+
+		Object ret = DustExprMvelUtils.eval(command, null, data, "???");
+		
+		String result = DustUtils.toString(ret);
+
+		Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "MVEL result", result);
+		
+		Dust.access(DustAccess.Set, ret, hTarget, HANDLE_TEXT_ATT_TEXT);
+
 		// TODO Auto-generated method stub
 	}
 

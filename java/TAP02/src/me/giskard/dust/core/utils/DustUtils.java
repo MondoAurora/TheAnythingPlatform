@@ -87,7 +87,7 @@ public class DustUtils implements DustConsts, DustUtilsConsts {
 	}
 
 	public static String getPostfix(String strSrc, String pfSep) {
-		int sep = strSrc.lastIndexOf(pfSep);
+		int sep = (null == strSrc) ? -1 : strSrc.lastIndexOf(pfSep);
 		return (-1 == sep) ? strSrc : strSrc.substring(sep + pfSep.length());
 	}
 

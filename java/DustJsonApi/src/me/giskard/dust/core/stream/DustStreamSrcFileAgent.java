@@ -72,7 +72,8 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustMachine.Str
 
 			if (f.isDirectory()) {
 				for (File ff : f.listFiles()) {
-					Dust.access(DustAccess.Insert, ff.getCanonicalPath().substring(rpl), DustContext.Message, TOKEN_MISC_ATT_MEMBERS);
+					Dust.access(DustAccess.Insert, ff.getCanonicalPath().substring(rpl), DustContext.Message,
+							TOKEN_MISC_ATT_MEMBERS);
 				}
 			} else {
 				String unitName = DustUtils.cutPostfix(f.getName(), ".");
@@ -93,14 +94,16 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustMachine.Str
 				Dust.access(DustAccess.Set, f.toURI().toURL().toString(), null, TOKEN_STREAM_ATT_URL);
 			} else {
 				try (Closeable cs = optGetStream(cmd, root, path)) {
-					Dust.access(DustAccess.Set, cs, hNext, token);
-					Dust.access(DustAccess.Set, cmd, hNext, TOKEN_MIND_ATT_CMD);
-					Dust.access(DustAccess.Set, name, hNext, TOKEN_MISC_ATT_KEY);
-					Dust.access(DustAccess.Process, null, hNext);
+					if (null != cs) {
+						Dust.access(DustAccess.Set, cs, hNext, token);
+						Dust.access(DustAccess.Set, cmd, hNext, TOKEN_MIND_ATT_CMD);
+						Dust.access(DustAccess.Set, name, hNext, TOKEN_MISC_ATT_KEY);
+						Dust.access(DustAccess.Process, null, hNext);
 
-					Dust.access(DustAccess.Delete, null, hNext, token);
-					Dust.access(DustAccess.Delete, null, hNext, TOKEN_MIND_ATT_CMD);
-					Dust.access(DustAccess.Delete, null, hNext, TOKEN_MISC_ATT_KEY);
+						Dust.access(DustAccess.Delete, null, hNext, token);
+						Dust.access(DustAccess.Delete, null, hNext, TOKEN_MIND_ATT_CMD);
+						Dust.access(DustAccess.Delete, null, hNext, TOKEN_MISC_ATT_KEY);
+					}
 				}
 			}
 		}

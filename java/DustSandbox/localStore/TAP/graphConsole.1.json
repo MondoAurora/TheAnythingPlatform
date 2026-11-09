@@ -1,0 +1,326 @@
+{
+	"jsonapi": {
+		"version": "1.1"
+	},
+	"data": [
+		{
+			"id": "TAP/graphConsole.1$CommandCell",
+			"type": "giskard.me/layout.1$Cell",
+			"attributes": {
+				"giskard.me/misc.1$position": [
+					1,
+					1
+				]
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "TAP/graphConsole.1$CommandText",
+						"type": "giskard.me/gui.1$EditText"
+					}
+				}
+			}
+		},
+		{
+			"id": "TAP/graphConsole.1$CommandEvalMsg",
+			"type": "giskard.me/mind.1$Message",
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "TAP/graphConsole.1$ExprEval",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				},
+				"giskard.me/misc.1$source": {
+					"data": {
+						"id": "TAP/graphConsole.1$CommandString",
+						"type": "giskard.me/text.1$String"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "TAP/graphConsole.1$HistoryDocument",
+						"type": "giskard.me/text.1$Document"
+					}
+				}
+			}
+		},
+		{
+			"id": "TAP/graphConsole.1$CommandString",
+			"type": "giskard.me/text.1$String"
+		},
+		{
+			"id": "TAP/graphConsole.1$CommandText",
+			"type": "giskard.me/gui.1$EditText",
+			"attributes": {
+				"giskard.me/misc.1$refPath": [
+					"giskard.me/text.1$text"
+				]
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/gui.1$TextModeSingleLine",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				},
+				"giskard.me/misc.1$data": {
+					"data": {
+						"id": "TAP/graphConsole.1$CommandString",
+						"type": "giskard.me/text.1$String"
+					}
+				}
+			}
+		},
+		{
+			"id": "TAP/graphConsole.1$CtrlCell",
+			"type": "giskard.me/layout.1$Cell",
+			"attributes": {
+				"giskard.me/misc.1$position": [
+					2,
+					1
+				]
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "TAP/graphConsole.1$CtrlPanel",
+						"type": "giskard.me/gui.1$PanelContainer"
+					}
+				}
+			}
+		},
+		{
+			"id": "TAP/graphConsole.1$CtrlPanel",
+			"type": "giskard.me/gui.1$PanelContainer",
+			"relationships": {
+				"giskard.me/gui.1$layoutConfig": {
+					"data": [
+						{
+							"id": "TAP/graphConsole.1$CtrlTbl",
+							"type": "giskard.me/layout.1$Table"
+						}
+					]
+				},
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "TAP/graphConsole.1$CommandText",
+							"type": "giskard.me/gui.1$EditText"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "TAP/graphConsole.1$ExecBtn",
+							"type": "giskard.me/gui.1$WidgetButton"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "TAP/graphConsole.1$CtrlTbl",
+			"type": "giskard.me/layout.1$Table",
+			"relationships": {
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "TAP/graphConsole.1$CommandCell",
+							"type": "giskard.me/layout.1$Cell"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "TAP/graphConsole.1$ExecCell",
+							"type": "giskard.me/layout.1$Cell"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "TAP/graphConsole.1$ExecBtn",
+			"type": "giskard.me/gui.1$WidgetButton",
+			"attributes": {
+				"giskard.me/dev.1$devText": "Execute!"
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "TAP/graphConsole.1$CommandEvalMsg",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "TAP/graphConsole.1$ExecCell",
+			"type": "giskard.me/layout.1$Cell",
+			"attributes": {
+				"giskard.me/misc.1$position": [
+					1,
+					2
+				]
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "TAP/graphConsole.1$ExecBtn",
+						"type": "giskard.me/gui.1$WidgetButton"
+					}
+				}
+			}
+		},
+		{
+			"id": "TAP/graphConsole.1$ExprEval",
+			"type": "giskard.me/mind.1$Agent",
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/mvel.1$MVELExprEval",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
+			"id": "TAP/graphConsole.1$HistoryCell",
+			"type": "giskard.me/layout.1$Cell",
+			"attributes": {
+				"giskard.me/misc.1$position": [
+					1,
+					1
+				]
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "TAP/graphConsole.1$HistoryText",
+						"type": "giskard.me/gui.1$EditText"
+					}
+				}
+			}
+		},
+		{
+			"id": "TAP/graphConsole.1$HistoryDocument",
+			"type": "giskard.me/text.1$Document"
+		},
+		{
+			"id": "TAP/graphConsole.1$HistoryText",
+			"type": "giskard.me/gui.1$EditText",
+			"attributes": {
+				"giskard.me/misc.1$refPath": [
+					"giskard.me/text.1$text"
+				]
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/gui.1$TextModeFormatted",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				},
+				"giskard.me/misc.1$data": {
+					"data": {
+						"id": "TAP/graphConsole.1$HistoryDocument",
+						"type": "giskard.me/text.1$Document"
+					}
+				}
+			}
+		},
+		{
+			"id": "TAP/graphConsole.1$MainPanel",
+			"type": "giskard.me/gui.1$PanelContainer",
+			"relationships": {
+				"giskard.me/gui.1$layoutConfig": {
+					"data": [
+						{
+							"id": "TAP/graphConsole.1$MainTbl",
+							"type": "giskard.me/layout.1$Table"
+						}
+					]
+				},
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "TAP/graphConsole.1$HistoryText",
+							"type": "giskard.me/gui.1$EditText"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "TAP/graphConsole.1$CtrlPanel",
+							"type": "giskard.me/gui.1$PanelContainer"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "TAP/graphConsole.1$MainTbl",
+			"type": "giskard.me/layout.1$Table",
+			"relationships": {
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "TAP/graphConsole.1$HistoryCell",
+							"type": "giskard.me/layout.1$Cell"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "TAP/graphConsole.1$CtrlCell",
+							"type": "giskard.me/layout.1$Cell"
+						}
+					]
+				}
+			}
+		}
+	],
+	"meta": {
+		"count": 15,
+		"unitInfo": {
+			"id": "TAP/graphConsole.1",
+			"type": "giskard.me/mind.1$Unit",
+			"relationships": {
+				"giskard.me/mind.1$author": {
+					"data": {
+						"id": "TAP/author$TheAnythingPlatform",
+						"type": "giskard.me/mind.1$Author"
+					}
+				},
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/mvel.1$MVELExprEval",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		}
+	}
+}

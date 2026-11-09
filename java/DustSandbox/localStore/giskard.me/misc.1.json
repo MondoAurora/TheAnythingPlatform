@@ -1184,11 +1184,11 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ColltypeArr",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ValtypeReal",
+							"id": "giskard.me/mind.1$ValtypeInteger",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]

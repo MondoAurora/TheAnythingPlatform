@@ -282,6 +282,8 @@ public class DustGuiSwingRendererAgent extends DustAgent
 					scp.setViewportView(tf);
 					ret = scp;
 				} else {
+					tf.setPreferredSize(new Dimension(300, 20));
+
 					ret = tf;
 				}
 			} else if ( HANDLE_MIND_ASP_MESSAGE.equals(type) ) {
