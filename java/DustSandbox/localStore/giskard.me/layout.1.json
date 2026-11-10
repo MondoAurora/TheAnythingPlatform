@@ -98,6 +98,28 @@
 			}
 		},
 		{
+			"id": "giskard.me/layout.1$fillWeight",
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_LAYOUT_ATT_FILL_WEIGHT",
+				"giskard.me/misc.1$name": "TOKEN_LAYOUT_ATT_FILL_WEIGHT"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeArr",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeReal",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
+		},
+		{
 			"id": "giskard.me/layout.1$layout",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
@@ -143,7 +165,7 @@
 		}
 	],
 	"meta": {
-		"count": 13,
+		"count": 14,
 		"unitInfo": {
 			"id": "giskard.me/layout.1",
 			"type": "giskard.me/mind.1$Unit",

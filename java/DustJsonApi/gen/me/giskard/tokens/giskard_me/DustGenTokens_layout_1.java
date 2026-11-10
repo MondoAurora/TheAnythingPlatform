@@ -1,6 +1,6 @@
 package me.giskard.tokens.giskard_me;
 
-// Generation timestamp 20260923T152931Z
+// Generation timestamp 20261110T075847Z
 
 public interface DustGenTokens_layout_1 {
 // Aspects
@@ -11,6 +11,7 @@ public interface DustGenTokens_layout_1 {
 
 // Attributes
 	String TOKEN_LAYOUT_ATT_AXIS_DISTRIBUTION = "giskard.me/layout.1$axisDistribution";
+	String TOKEN_LAYOUT_ATT_FILL_WEIGHT = "giskard.me/layout.1$fillWeight";
 	String TOKEN_LAYOUT_ATT_LAYOUT = "giskard.me/layout.1$layout";
 	String TOKEN_LAYOUT_ATT_LAYOUT_OTPIONS = "giskard.me/layout.1$layoutOptions";
 

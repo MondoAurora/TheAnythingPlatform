@@ -1,5 +1,6 @@
 package me.giskard.dust.mod.gui.swing;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -10,6 +11,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,11 +41,12 @@ import me.giskard.dust.core.utils.DustUtilsData;
 import me.giskard.dust.core.utils.DustUtilsFactory;
 import me.giskard.handles.giskard_me.DustGenHandles_dev_1;
 import me.giskard.handles.giskard_me.DustGenHandles_flow_1;
+import me.giskard.handles.giskard_me.DustGenHandles_layout_1;
 import me.giskard.handles.giskard_me.DustGenHandles_misc_1;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class DustGuiSwingRendererAgent extends DustAgent
-		implements DustGuiSwingConsts, DustGenHandles_flow_1, DustGenHandles_misc_1, DustGenHandles_dev_1 {
+public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwingConsts, DustGenHandles_flow_1,
+		DustGenHandles_misc_1, DustGenHandles_dev_1, DustGenHandles_layout_1 {
 	Object anchor = new Object();
 
 	WeakHashMap<Object, DustHandle> backRef = new WeakHashMap<Object, DustHandle>();
@@ -85,7 +88,7 @@ public class DustGuiSwingRendererAgent extends DustAgent
 		container.removeAll();
 
 		Map<DustHandle, JComponent> comps = new HashMap<DustHandle, JComponent>();
-		Iterable<DustHandle> members = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h, HANDLE_MISC_ATT_MEMBERS);
+		Collection<DustHandle> members = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, h, HANDLE_MISC_ATT_MEMBERS);
 		for (DustHandle hm : members) {
 			Dust.access(DustAccess.Set, h, hm, HANDLE_GUI_ATT_PARENT_CONTAINER);
 			JComponent cm = getWrapped(hm);
@@ -115,20 +118,34 @@ public class DustGuiSwingRendererAgent extends DustAgent
 				gbc.gridx = loc.get(1).intValue() - 1;
 				gbc.gridy = loc.get(0).intValue() - 1;
 
+				gbc.weighty = Dust.access(DustAccess.Peek, 0.0, hl, HANDLE_LAYOUT_ATT_FILL_WEIGHT, 0);
+				gbc.weightx = Dust.access(DustAccess.Peek, 0.0, hl, HANDLE_LAYOUT_ATT_FILL_WEIGHT, 1);
+
+				gbc.fill = (0.0 == gbc.weighty) ? (0.0 == gbc.weightx) ? GridBagConstraints.NONE : GridBagConstraints.HORIZONTAL
+						: (0.0 == gbc.weightx) ? GridBagConstraints.VERTICAL : GridBagConstraints.BOTH;
+
+				if (GridBagConstraints.NONE != gbc.fill) {
+					Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "Expansion", gbc);
+				}
+
 				JComponent comp = comps.get(hTarget);
 				container.add(comp, gbc);
 			}
 		} else {
-			container.setLayout(new FlowLayout(FlowLayout.CENTER));
-
-			for (DustHandle hm : members) {
-				container.add(comps.get(hm));
-			}
+			if (1 == members.size()) {
+				container.setLayout(new BorderLayout());
+				container.add(comps.get(members.iterator().next()), BorderLayout.CENTER);
+			} else {
+				container.setLayout(new FlowLayout(FlowLayout.CENTER));
+				for (DustHandle hm : members) {
+					container.add(comps.get(hm));
+				}
 
 //			for (JComponent comp : comps.values()) {
 ////				DustGuiSwingUtils.setTitle(comp, "hmm");
 //				container.add(comp);
 //			}
+			}
 		}
 
 		container.revalidate();

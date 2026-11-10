@@ -2,6 +2,7 @@ package me.giskard.dust.core.stream;
 
 import java.io.Closeable;
 import java.io.File;
+import java.util.Collections;
 
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustAgent;
@@ -76,9 +77,10 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustStreamConst
 			if ( f.isFile() ) {
 				hStreamAtt = HANDLE_STREAM_ATT_INPUT;
 			} else {
-				DustHandle fallback = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_FALLBACK);
+				Iterable<DustHandle> fallbackList = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, HANDLE_MISC_ATT_FALLBACK);
 
-				if ( null != fallback ) {
+				for ( DustHandle fallback : fallbackList ) {
+//				if ( null != fallback ) {
 					try {
 						DustUtilsFile.ensureDir(f.getParent());
 						Dust.access(DustAccess.Set, f.getAbsolutePath(), fallback, HANDLE_MISC_ATT_PATH);
@@ -93,6 +95,7 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustStreamConst
 
 					if ( f.isFile() ) {
 						hStreamAtt = HANDLE_STREAM_ATT_INPUT;
+						break;
 					}
 				}
 			}

@@ -3,7 +3,7 @@ package me.giskard.handles.giskard_me;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustHandle;
 
-// Generation timestamp 20261016T084005Z
+// Generation timestamp 20261110T075847Z
 
 public interface DustGenHandles_layout_1 {
 // Aspects
@@ -14,6 +14,7 @@ public interface DustGenHandles_layout_1 {
 
 // Attributes
 	DustHandle HANDLE_LAYOUT_ATT_AXIS_DISTRIBUTION = Dust.getHandle("giskard.me/layout.1$axisDistribution", DustHandle.PLACEHOLDER);
+	DustHandle HANDLE_LAYOUT_ATT_FILL_WEIGHT = Dust.getHandle("giskard.me/layout.1$fillWeight", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_LAYOUT_ATT_LAYOUT = Dust.getHandle("giskard.me/layout.1$layout", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_LAYOUT_ATT_LAYOUT_OTPIONS = Dust.getHandle("giskard.me/layout.1$layoutOptions", DustHandle.PLACEHOLDER);
 

@@ -7,6 +7,10 @@
 			"id": "TAP/graphConsole.1$CommandCell",
 			"type": "giskard.me/layout.1$Cell",
 			"attributes": {
+				"giskard.me/layout.1$fillWeight": [
+					0.0,
+					1.0
+				],
 				"giskard.me/misc.1$position": [
 					1,
 					1
@@ -83,6 +87,10 @@
 			"id": "TAP/graphConsole.1$CtrlCell",
 			"type": "giskard.me/layout.1$Cell",
 			"attributes": {
+				"giskard.me/layout.1$fillWeight": [
+					0.0,
+					1.0
+				],
 				"giskard.me/misc.1$position": [
 					2,
 					1
@@ -202,6 +210,10 @@
 			"id": "TAP/graphConsole.1$HistoryCell",
 			"type": "giskard.me/layout.1$Cell",
 			"attributes": {
+				"giskard.me/layout.1$fillWeight": [
+					1.0,
+					1.0
+				],
 				"giskard.me/misc.1$position": [
 					1,
 					1

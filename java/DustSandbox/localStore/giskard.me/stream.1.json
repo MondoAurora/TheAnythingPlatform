@@ -4,6 +4,10 @@
 	},
 	"data": [
 		{
+			"id": "giskard.me/stream.1$BinaryStreamSource",
+			"type": "giskard.me/mind.1$Narrative"
+		},
+		{
 			"id": "giskard.me/stream.1$Charset",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
@@ -435,7 +439,7 @@
 		}
 	],
 	"meta": {
-		"count": 26,
+		"count": 27,
 		"unitInfo": {
 			"id": "giskard.me/stream.1",
 			"type": "giskard.me/mind.1$Unit",
