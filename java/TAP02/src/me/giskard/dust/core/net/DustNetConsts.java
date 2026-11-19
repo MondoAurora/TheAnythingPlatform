@@ -1,9 +1,9 @@
 package me.giskard.dust.core.net;
 
+import gen.handles.giskard_me.DustGenHandles_net_1;
+import gen.handles.giskard_me.DustGenHandles_stream_1;
 import me.giskard.dust.api.DustConsts;
 import me.giskard.dust.core.machine.DustMachineConsts;
-import me.giskard.handles.giskard_me.DustGenHandles_net_1;
-import me.giskard.handles.giskard_me.DustGenHandles_stream_1;
 
 public interface DustNetConsts extends DustConsts, DustMachineConsts, DustGenHandles_net_1, DustGenHandles_stream_1 {
 	

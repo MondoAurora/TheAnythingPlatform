@@ -13,6 +13,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import gen.tokens.giskard_me.DustGenTokens_stream_1;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.machine.DustMachineUtils;
@@ -21,7 +22,6 @@ import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFactory;
 import me.giskard.dust.core.utils.DustUtilsFile;
 import me.giskard.dust.mod.utils.DustUtilsHtmlJsoup;
-import me.giskard.tokens.giskard_me.DustGenTokens_stream_1;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustDevWebScraperAgent extends DustAgent implements DustDevConsts, DustGenTokens_stream_1 {

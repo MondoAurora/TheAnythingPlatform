@@ -6,6 +6,8 @@ import java.net.URI;
 
 import javax.swing.JPanel;
 
+import gen.tokens.giskard_me.DustGenTokens_flow_1;
+import gen.tokens.giskard_me.DustGenTokens_misc_1;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.embed.swing.JFXPanel;
@@ -17,8 +19,6 @@ import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
-import me.giskard.tokens.giskard_me.DustGenTokens_flow_1;
-import me.giskard.tokens.giskard_me.DustGenTokens_misc_1;
 
 //@SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustGuiSwingVideoPlayerAgent extends DustAgent implements DustGuiSwingConsts, DustGenTokens_flow_1, DustGenTokens_misc_1 {

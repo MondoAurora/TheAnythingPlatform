@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
+import gen.tokens.giskard_me.DustGenTokens_dev_1;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.DustException;
@@ -17,7 +18,6 @@ import me.giskard.dust.core.net.DustNetConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsData;
 import me.giskard.dust.core.utils.DustUtilsFile;
-import me.giskard.tokens.giskard_me.DustGenTokens_dev_1;
 
 @SuppressWarnings("rawtypes")
 public class DustStreamAgent extends DustAgent implements DustMachine.StreamSource, DustStreamConsts, DustNetConsts, DustGenTokens_dev_1 {

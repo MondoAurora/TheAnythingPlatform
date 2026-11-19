@@ -1,0 +1,20 @@
+package gen.tokens.giskard_me;
+
+// Generation timestamp 20261118T145147Z
+
+public interface DustGenTokens_dev_1 {
+// Attributes
+	String TOKEN_DEV_ATT_BOOT_NODES = "giskard.me/dev.1$bootNodes";
+	String TOKEN_DEV_ATT_BOOT_TOKENS = "giskard.me/dev.1$bootTokens";
+	String TOKEN_DEV_ATT_CLASSES = "giskard.me/dev.1$classes";
+	String TOKEN_DEV_ATT_DEVTEXT = "giskard.me/dev.1$devText";
+	String TOKEN_DEV_ATT_MACHINE_IMPL = "giskard.me/dev.1$machineImpl";
+	String TOKEN_DEV_ATT_PACKAGE = "giskard.me/dev.1$package";
+	String TOKEN_DEV_ATT_SKIP = "giskard.me/dev.1$skip";
+	String TOKEN_DEV_ATT_TOKEN = "giskard.me/dev.1$token";
+	String TOKEN_DEV_CMD_GENSRC = "giskard.me/dev.1$genSrc";
+
+// Tags
+	String TOKEN_DEV_TAG_CMD_TEST = "giskard.me/dev.1$test";
+	String TOKEN_DEV_TAG_OBSOLETE = "giskard.me/dev.1$obsolete";
+}

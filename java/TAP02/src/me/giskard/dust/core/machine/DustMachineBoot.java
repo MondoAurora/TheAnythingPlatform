@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import me.giskard.boot.DustGenBootConsts;
+import gen.boot.DustGenBootConsts;
 import me.giskard.dust.api.DustException;
 import me.giskard.dust.api.DustMachine;
 import me.giskard.dust.core.dev.DustDevUtils;

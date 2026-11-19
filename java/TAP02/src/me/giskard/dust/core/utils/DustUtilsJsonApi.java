@@ -15,13 +15,13 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import gen.handles.giskard_me.DustGenHandles_dust_1;
+import gen.handles.giskard_me.DustGenHandles_mind_1;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustException;
 import me.giskard.dust.api.DustHandle;
 import me.giskard.dust.core.machine.DustMachineConsts;
 import me.giskard.dust.core.machine.DustMachineUtils;
-import me.giskard.handles.giskard_me.DustGenHandles_dust_1;
-import me.giskard.handles.giskard_me.DustGenHandles_mind_1;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustUtilsJsonApi

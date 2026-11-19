@@ -1,10 +1,11 @@
 package me.giskard.dust.core.machine;
 
+import gen.tokens.giskard_me.DustGenTokens_aaa_1;
+import gen.tokens.giskard_me.DustGenTokens_stream_1;
 import me.giskard.dust.core.DustConsts;
 import me.giskard.dust.core.utils.DustUtilsConsts;
-import me.giskard.tokens.giskard_me.DustGenTokens_stream_1;
 
-public interface DustMachineConsts extends DustConsts, DustUtilsConsts, DustGenTokens_stream_1 {
+public interface DustMachineConsts extends DustConsts, DustUtilsConsts, DustGenTokens_stream_1, DustGenTokens_aaa_1 {
 
 	class DustMachineHandle implements DustHandle {
 		DustMachineAgent mind;

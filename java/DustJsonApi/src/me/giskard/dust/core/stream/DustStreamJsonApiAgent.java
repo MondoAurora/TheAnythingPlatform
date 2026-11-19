@@ -13,6 +13,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import gen.tokens_new.giskard_me.DustGenHandles_dust_1;
+import gen.tokens_new.giskard_me.DustGenHandles_mind_1;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustConsts.DustAgent;
 import me.giskard.dust.core.DustException;
@@ -21,8 +23,6 @@ import me.giskard.dust.core.machine.DustMachineUtils;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsConstsJson;
 import me.giskard.dust.mod.utils.DustUtilsJson;
-import me.giskard.tokens_new.giskard_me.DustGenHandles_dust_1;
-import me.giskard.tokens_new.giskard_me.DustGenHandles_mind_1;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class DustStreamJsonApiAgent extends DustAgent implements DustMachineConsts, DustUtilsConstsJson, DustStreamConsts, DustGenHandles_mind_1, DustGenHandles_dust_1 {

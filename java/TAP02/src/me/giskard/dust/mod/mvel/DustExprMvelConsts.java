@@ -1,8 +1,8 @@
 package me.giskard.dust.mod.mvel;
 
+import gen.handles.giskard_me.DustGenHandles_misc_1;
+import gen.handles.giskard_me.DustGenHandles_text_1;
 import me.giskard.dust.api.DustConsts;
-import me.giskard.handles.giskard_me.DustGenHandles_misc_1;
-import me.giskard.handles.giskard_me.DustGenHandles_text_1;
 
 public interface DustExprMvelConsts extends DustConsts, DustGenHandles_misc_1, DustGenHandles_text_1 {
 

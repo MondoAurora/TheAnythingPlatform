@@ -102,10 +102,10 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 		Map<String, DustHandle> btSort = new TreeMap<String, DustHandle>();
 
 		if (null != bootTokens) {
-			String pn = "me.giskard.boot";
+			String pn = "gen.boot";
 			String cName = "DustGenBootConsts";
 
-			File r = new File("../TAP02/gen/me/giskard/boot");
+			File r = new File("../TAP02/src/gen/boot");
 			PrintStream ps = createSrcStream(r, pn, cName, null, Mode.TAP02BootTokens);
 
 			for (DustHandle ht : bootTokens) {
@@ -144,10 +144,10 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 		Collection<DustHandle> bootNodes = Dust.access(DustAccess.Peek, null, null, TOKEN_DEV_ATT_BOOT_NODES);
 
 		if (null != bootNodes) {
-			String pn = "me.giskard.boot";
+			String pn = "gen.boot";
 			String cName = "DustGenBootApp";
 
-			File r = new File("../TAP02Test01/gen/me/giskard/boot");
+			File r = new File("../TAP02Test01/src/gen/boot");
 			PrintStream ps = createSrcStream(r, pn, cName, null, Mode.TAP02AppNodes);
 
 			ps.println("\t\tswitch(appId) {");

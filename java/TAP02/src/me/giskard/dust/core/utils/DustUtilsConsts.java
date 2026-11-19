@@ -8,10 +8,10 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import gen.handles.giskard_me.DustGenHandles_misc_1;
 import me.giskard.dust.api.DustConsts;
 import me.giskard.dust.api.DustException;
 import me.giskard.dust.api.DustHandle;
-import me.giskard.handles.giskard_me.DustGenHandles_misc_1;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
 public interface DustUtilsConsts extends DustConsts, DustGenHandles_misc_1 {

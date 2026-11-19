@@ -7,9 +7,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeSet;
 
+import gen.tokens_new.giskard_me.DustGenHandles_dust_1;
 import me.giskard.dust.core.Dust;
 import me.giskard.dust.core.DustException;
-import me.giskard.tokens_new.giskard_me.DustGenHandles_dust_1;
 
 //@SuppressWarnings({ "unchecked" })
 @SuppressWarnings({ "unchecked", "rawtypes" })
