@@ -137,7 +137,8 @@ class DustGuiSwingGraphPanel {
 			JComponent tc = comps.peek(ht);
 
 			if (null != tc) {
-				String lbl = browserPanel.getAttCollType(l).name() + " " + l;
+				DustCollType act = browserPanel.getAttCollType(l);
+				String lbl = ((null == act) ? "???" : act.name()) + " " + l;
 
 				if (hSrc == target) {
 					g2d.drawOval(from.x - 15, from.y - 50, 30, 50);

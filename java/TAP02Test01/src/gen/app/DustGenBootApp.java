@@ -1,11 +1,11 @@
-package gen.boot;
+package gen.app;
 
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustHandle;
 import me.giskard.dust.api.DustConsts;
 import me.giskard.dust.api.DustException;
 
-// Generation timestamp 20261118T145147Z
+// Generation timestamp 20261119T134344Z
 
 public class DustGenBootApp implements DustConsts {
 	public DustGenBootApp (String appId) {
@@ -116,7 +116,7 @@ public class DustGenBootApp implements DustConsts {
 
 		// Lorand/test01$BinaryUnitLoader [giskard.me/mind.1$Agent]
 			Dust.access(DustAccess.Set, idea_handle_giskard_me_stream___BinaryStreamSource, idea_handle_Lorand_test___BinaryUnitLoader, att_handle_giskard_me_mind___narrative);
-			Dust.access(DustAccess.Set, "unit", idea_handle_Lorand_test___BinaryUnitLoader, att_handle_giskard_me_stream___rootFolder);
+			Dust.access(DustAccess.Set, "res/unit", idea_handle_Lorand_test___BinaryUnitLoader, att_handle_giskard_me_stream___rootFolder);
 
 		// Lorand/test01$DownloadUnit [giskard.me/mind.1$Message]
 			Dust.access(DustAccess.Insert, idea_handle_Lorand_test___RemoteUnitLoader, idea_handle_Lorand_test___DownloadUnit, att_handle_giskard_me_mind___listeners, KEY_ADD);

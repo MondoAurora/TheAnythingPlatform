@@ -1,1 +1,1745 @@
-{"jsonapi":{"version":"1.1"},"data":[{"id":"Lorand\/test01$ATVCellMain","type":"giskard.me\/layout.1$Cell","attributes":{"giskard.me\/layout.1$fillWeight":[1.0,1.0],"giskard.me\/misc.1$position":[2,1]},"relationships":{"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$Test01MainContainer","type":"giskard.me\/gui.1$PanelContainer"}}}},{"id":"Lorand\/test01$ATVCellTop","type":"giskard.me\/layout.1$Cell","attributes":{"giskard.me\/misc.1$position":[1,1]},"relationships":{"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$Test01TopToolbar","type":"giskard.me\/gui.1$PanelContainer"}}}},{"id":"Lorand\/test01$AccessAgent","type":"giskard.me\/mind.1$Agent","relationships":{"giskard.me\/mind.1$narrative":{"data":{"id":"giskard.me\/mind.1$Access","type":"giskard.me\/mind.1$Narrative"}}}},{"id":"Lorand\/test01$ActivateGraphConsole","type":"giskard.me\/mind.1$Message","attributes":{"giskard.me\/misc.1$refPath":["giskard.me\/misc.1$members"]},"relationships":{"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$AccessAgent","type":"giskard.me\/mind.1$Agent"}]},"giskard.me\/mind.1$next":{"data":{"id":"Lorand\/test01$RefreshTest01Gui","type":"giskard.me\/mind.1$Message"}},"giskard.me\/misc.1$source":{"data":{"id":"TAP\/graphConsole.1$MainPanel","type":"giskard.me\/gui.1$PanelContainer"}},"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$Test01MainContainer","type":"giskard.me\/gui.1$PanelContainer"}}}},{"id":"Lorand\/test01$ActivateMediaPlayer","type":"giskard.me\/mind.1$Message","attributes":{"giskard.me\/misc.1$refPath":["giskard.me\/misc.1$members"]},"relationships":{"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$AccessAgent","type":"giskard.me\/mind.1$Agent"}]},"giskard.me\/mind.1$next":{"data":{"id":"Lorand\/test01$RefreshTest01Gui","type":"giskard.me\/mind.1$Message"}},"giskard.me\/misc.1$source":{"data":{"id":"Lorand\/test01$MediaPlayerContainer","type":"giskard.me\/gui.1$PanelContainer"}},"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$Test01MainContainer","type":"giskard.me\/gui.1$PanelContainer"}}}},{"id":"Lorand\/test01$ActivatePropertyEditor","type":"giskard.me\/mind.1$Message","attributes":{"giskard.me\/misc.1$refPath":["giskard.me\/misc.1$members"]},"relationships":{"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$AccessAgent","type":"giskard.me\/mind.1$Agent"}]},"giskard.me\/mind.1$next":{"data":{"id":"Lorand\/test01$RefreshTest01Gui","type":"giskard.me\/mind.1$Message"}},"giskard.me\/misc.1$source":{"data":{"id":"Lorand\/test01Data$Test01PropPage01","type":"giskard.me\/gui.1$PanelContainer"}},"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$Test01MainContainer","type":"giskard.me\/gui.1$PanelContainer"}}}},{"id":"Lorand\/test01$AppRef","type":"giskard.me\/mind.1$Reference","relationships":{"giskard.me\/mind.1$trail":{"data":[{"meta":{"key":0},"id":"giskard.me\/dust.1$ctxApp","type":"giskard.me\/mind.1$Attribute"}]}}},{"id":"Lorand\/test01$AppTableVert","type":"giskard.me\/layout.1$Table","relationships":{"giskard.me\/misc.1$members":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$ATVCellTop","type":"giskard.me\/layout.1$Cell"},{"meta":{"key":1},"id":"Lorand\/test01$ATVCellMain","type":"giskard.me\/layout.1$Cell"}]}}},{"id":"Lorand\/test01$BKKImportAgent","type":"giskard.me\/mind.1$Agent","relationships":{"giskard.me\/mind.1$narrative":{"data":{"id":"Lorand\/test01$BKKImportNarrative","type":"giskard.me\/mind.1$Narrative"}}}},{"id":"Lorand\/test01$BKKImportImplJava17","type":"giskard.me\/dust.1$Implementation","attributes":{"giskard.me\/misc.1$key":"me.giskard.app.test01.bkk.Test01BkkImport"},"relationships":{"giskard.me\/dust.1$platform":{"data":{"id":"giskard.me\/dust.1$Java17","type":"giskard.me\/dust.1$Platform"}},"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$BKKImportNarrative","type":"giskard.me\/mind.1$Narrative"}}}},{"id":"Lorand\/test01$BKKImportNarrative","type":"giskard.me\/mind.1$Narrative"},{"id":"Lorand\/test01$BinaryUnitLoader","type":"giskard.me\/mind.1$Agent","attributes":{"giskard.me\/stream.1$rootFolder":"unit"},"relationships":{"giskard.me\/mind.1$narrative":{"data":{"id":"giskard.me\/stream.1$BinaryStreamSource","type":"giskard.me\/mind.1$Narrative"}}}},{"id":"Lorand\/test01$BtnConsole","type":"giskard.me\/gui.1$WidgetButton","attributes":{"giskard.me\/dev.1$devText":"Graph Console"},"relationships":{"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$ActivateGraphConsole","type":"giskard.me\/mind.1$Message"}}}},{"id":"Lorand\/test01$BtnMediaPlayer","type":"giskard.me\/gui.1$WidgetButton","attributes":{"giskard.me\/dev.1$devText":"Media Player"},"relationships":{"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$ActivateMediaPlayer","type":"giskard.me\/mind.1$Message"}}}},{"id":"Lorand\/test01$BtnPropEditor","type":"giskard.me\/gui.1$WidgetButton","attributes":{"giskard.me\/dev.1$devText":"Property Editor"},"relationships":{"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$ActivatePropertyEditor","type":"giskard.me\/mind.1$Message"}}}},{"id":"Lorand\/test01$ClientAssembly","type":"giskard.me\/mind.1$Assembly","relationships":{"giskard.me\/misc.1$init":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$RefreshTest01Gui","type":"giskard.me\/mind.1$Message"}]}}},{"id":"Lorand\/test01$DownloadUnit","type":"giskard.me\/mind.1$Message","relationships":{"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$RemoteUnitLoader","type":"giskard.me\/mind.1$Agent"}]},"giskard.me\/mind.1$next":{"data":{"id":"Lorand\/test01$MachineSyncUnits","type":"giskard.me\/mind.1$Message"}}}},{"id":"Lorand\/test01$ExtractUnit","type":"giskard.me\/mind.1$Message","relationships":{"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$BinaryUnitLoader","type":"giskard.me\/mind.1$Agent"}]},"giskard.me\/mind.1$next":{"data":{"id":"Lorand\/test01$MachineSyncUnits","type":"giskard.me\/mind.1$Message"}}}},{"id":"Lorand\/test01$GuiRenderer","type":"giskard.me\/mind.1$Agent","relationships":{"giskard.me\/mind.1$narrative":{"data":{"id":"giskard.me\/gui.1$GuiRenderer","type":"giskard.me\/mind.1$Narrative"}}}},{"id":"Lorand\/test01$HttpJsonapiMsg","type":"giskard.me\/mind.1$Message","attributes":{"giskard.me\/misc.1$prefix":"data"},"relationships":{"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$WebJsonapiAgent","type":"giskard.me\/mind.1$Agent"}]}}},{"id":"Lorand\/test01$HttpServerInfo","type":"giskard.me\/mind.1$Message","attributes":{"giskard.me\/misc.1$prefix":"admin\/info"},"relationships":{"giskard.me\/mind.1$cmd":{"data":{"id":"giskard.me\/misc.1$CmdInfo","type":"giskard.me\/mind.1$Tag"}},"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$WebServer","type":"giskard.me\/mind.1$Agent"}]}}},{"id":"Lorand\/test01$HttpServerStop","type":"giskard.me\/mind.1$Message","attributes":{"giskard.me\/misc.1$prefix":"admin\/stop"},"relationships":{"giskard.me\/mind.1$cmd":{"data":{"id":"giskard.me\/misc.1$CmdStop","type":"giskard.me\/mind.1$Tag"}},"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$WebServer","type":"giskard.me\/mind.1$Agent"}]}}},{"id":"Lorand\/test01$ImportBKKData","type":"giskard.me\/mind.1$Message","attributes":{"giskard.me\/misc.1$root":"tmp\/budapest_gtfs"},"relationships":{"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$BKKImportAgent","type":"giskard.me\/mind.1$Agent"}]}}},{"id":"Lorand\/test01$LocalFiles","type":"giskard.me\/mind.1$Agent","relationships":{"giskard.me\/mind.1$narrative":{"data":{"id":"giskard.me\/stream.1$FileStreamSource","type":"giskard.me\/mind.1$Narrative"}}}},{"id":"Lorand\/test01$LogAgent","type":"giskard.me\/mind.1$Agent","relationships":{"giskard.me\/mind.1$narrative":{"data":{"id":"giskard.me\/dev.1$Logger","type":"giskard.me\/mind.1$Narrative"}}}},{"id":"Lorand\/test01$LogTest","type":"giskard.me\/mind.1$Message","relationships":{"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$LogAgent","type":"giskard.me\/mind.1$Agent"}]}}},{"id":"Lorand\/test01$Lorand\/Tanulas.1","type":"giskard.me\/mind.1$Unit"},{"id":"Lorand\/test01$MachineAPI","type":"giskard.me\/mind.1$Message","attributes":{"giskard.me\/mind.1$cmd":"giskard.me\/misc.1$CmdRefresh"},"relationships":{"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$MachineAgent","type":"giskard.me\/mind.1$Agent"}]}}},{"id":"Lorand\/test01$MachineAgent","type":"giskard.me\/mind.1$Agent","relationships":{"giskard.me\/mind.1$narrative":{"data":{"id":"giskard.me\/dust.1$NEW_Machine","type":"giskard.me\/mind.1$Narrative"}}}},{"id":"Lorand\/test01$MachineSyncUnits","type":"giskard.me\/mind.1$Message","relationships":{"giskard.me\/mind.1$cmd":{"data":{"id":"giskard.me\/dust.1$CmdSyncUnits","type":"giskard.me\/mind.1$Tag"}},"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$AppRef","type":"giskard.me\/mind.1$Reference"}]}}},{"id":"Lorand\/test01$MediaPlayerContainer","type":"giskard.me\/gui.1$PanelContainer","relationships":{"giskard.me\/gui.1$layoutConfig":{"data":[{"id":"Lorand\/test01$VideoTableVert","type":"giskard.me\/layout.1$Table"}]},"giskard.me\/misc.1$members":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$VideoPlayerPlaceholder","type":"giskard.me\/mind.1$Message"},{"meta":{"key":1},"id":"Lorand\/test01$MediaPlayerControls","type":"giskard.me\/gui.1$PanelContainer"}]}}},{"id":"Lorand\/test01$MediaPlayerControls","type":"giskard.me\/gui.1$PanelContainer","relationships":{"giskard.me\/misc.1$members":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$VideoPlayerSkipBack","type":"giskard.me\/gui.1$WidgetButton"},{"meta":{"key":1},"id":"Lorand\/test01$VideoPlayerStart","type":"giskard.me\/gui.1$WidgetButton"},{"meta":{"key":2},"id":"Lorand\/test01$VideoPlayerPause","type":"giskard.me\/gui.1$WidgetButton"},{"meta":{"key":3},"id":"Lorand\/test01$VideoPlayerStop","type":"giskard.me\/gui.1$WidgetButton"},{"meta":{"key":4},"id":"Lorand\/test01$VideoPlayerSkipForward","type":"giskard.me\/gui.1$WidgetButton"}]}}},{"id":"Lorand\/test01$ProcessUnitStream","type":"giskard.me\/mind.1$Message","relationships":{"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$StreamUnitProcessor","type":"giskard.me\/mind.1$Agent"}]}}},{"id":"Lorand\/test01$ProvideStream","type":"giskard.me\/mind.1$Message","attributes":{"giskard.me\/misc.1$path":"localStore","giskard.me\/stream.1$backupFolder":"backup"},"relationships":{"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$LocalFiles","type":"giskard.me\/mind.1$Agent"}]}}},{"id":"Lorand\/test01$RefreshTest01Gui","type":"giskard.me\/mind.1$Message","relationships":{"giskard.me\/mind.1$cmd":{"data":{"id":"giskard.me\/misc.1$CmdRefresh","type":"giskard.me\/mind.1$Tag"}},"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$GuiRenderer","type":"giskard.me\/mind.1$Agent"}]},"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$Test01MainWindow","type":"giskard.me\/gui.1$Window"}}}},{"id":"Lorand\/test01$RemoteUnitLoader","type":"giskard.me\/mind.1$Agent","attributes":{"giskard.me\/stream.1$url":"http:\/\/localhost:8080\/data\/unit"},"relationships":{"giskard.me\/mind.1$narrative":{"data":{"id":"giskard.me\/net.1$HttpClient","type":"giskard.me\/mind.1$Narrative"}}}},{"id":"Lorand\/test01$ServerAssembly","type":"giskard.me\/mind.1$Assembly","relationships":{"giskard.me\/misc.1$init":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$WebServerMessage","type":"giskard.me\/mind.1$Message"}]}}},{"id":"Lorand\/test01$StreamCentre","type":"giskard.me\/mind.1$Agent","relationships":{"giskard.me\/mind.1$narrative":{"data":{"id":"giskard.me\/stream.1$StreamCentre","type":"giskard.me\/mind.1$Narrative"}}}},{"id":"Lorand\/test01$StreamUnitProcessor","type":"giskard.me\/mind.1$Agent","relationships":{"giskard.me\/mind.1$narrative":{"data":{"id":"giskard.me\/stream.1$SerializeJsonApi","type":"giskard.me\/mind.1$Narrative"}}}},{"id":"Lorand\/test01$TTTVCell1","type":"giskard.me\/layout.1$Cell","attributes":{"giskard.me\/misc.1$position":[1,1]},"relationships":{"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$BtnPropEditor","type":"giskard.me\/gui.1$WidgetButton"}}}},{"id":"Lorand\/test01$TTTVCell2","type":"giskard.me\/layout.1$Cell","attributes":{"giskard.me\/misc.1$position":[1,2]},"relationships":{"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$BtnMediaPlayer","type":"giskard.me\/gui.1$WidgetButton"}}}},{"id":"Lorand\/test01$TTTVCell3","type":"giskard.me\/layout.1$Cell","attributes":{"giskard.me\/misc.1$position":[1,3]},"relationships":{"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$BtnConsole","type":"giskard.me\/gui.1$WidgetButton"}}}},{"id":"Lorand\/test01$Test01AppContainer","type":"giskard.me\/gui.1$PanelContainer","relationships":{"giskard.me\/gui.1$layoutConfig":{"data":[{"id":"Lorand\/test01$AppTableVert","type":"giskard.me\/layout.1$Table"}]},"giskard.me\/misc.1$members":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$Test01TopToolbar","type":"giskard.me\/gui.1$PanelContainer"},{"meta":{"key":1},"id":"Lorand\/test01$Test01MainContainer","type":"giskard.me\/gui.1$PanelContainer"}]}}},{"id":"Lorand\/test01$Test01Java17Module","type":"giskard.me\/dust.1$Module","relationships":{"giskard.me\/dust.1$implementations":{"data":[{"id":"Lorand\/test01$BKKImportImplJava17","type":"giskard.me\/dust.1$Implementation"}]},"giskard.me\/dust.1$platform":{"data":{"id":"giskard.me\/dust.1$Java17","type":"giskard.me\/dust.1$Platform"}}}},{"id":"Lorand\/test01$Test01MainContainer","type":"giskard.me\/gui.1$PanelContainer","relationships":{"giskard.me\/misc.1$members":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$TestLabel02","type":"giskard.me\/gui.1$WidgetLabel"}]}}},{"id":"Lorand\/test01$Test01MainWindow","type":"giskard.me\/gui.1$Window","attributes":{"giskard.me\/dev.1$devText":"TAP02 Test01 Main Window"},"relationships":{"giskard.me\/misc.1$members":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$Test01AppContainer","type":"giskard.me\/gui.1$PanelContainer"}]}}},{"id":"Lorand\/test01$Test01System","type":"giskard.me\/mind.1$System","relationships":{"giskard.me\/dust.1$modules":{"data":[{"id":"Lorand\/test01$Test01Java17Module","type":"giskard.me\/dust.1$Module"},{"id":"TAP\/guiJavaSwing.1$GuiSwingJava17Module","type":"giskard.me\/dust.1$Module"},{"id":"giskard.me\/dustImpl.1$DustJava17Module","type":"giskard.me\/dust.1$Module"},{"id":"giskard.me\/mvel.1$MVELJava17Module","type":"giskard.me\/dust.1$Module"}]},"giskard.me\/dust.1$supportedPlatforms":{"data":[{"id":"giskard.me\/dust.1$Java17","type":"giskard.me\/dust.1$Platform"}]}}},{"id":"Lorand\/test01$Test01TopToolbar","type":"giskard.me\/gui.1$PanelContainer","relationships":{"giskard.me\/gui.1$layoutConfig":{"data":[{"id":"Lorand\/test01$TopToolTableVert","type":"giskard.me\/layout.1$Table"}]},"giskard.me\/misc.1$members":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$BtnPropEditor","type":"giskard.me\/gui.1$WidgetButton"},{"meta":{"key":1},"id":"Lorand\/test01$BtnMediaPlayer","type":"giskard.me\/gui.1$WidgetButton"},{"meta":{"key":2},"id":"Lorand\/test01$BtnConsole","type":"giskard.me\/gui.1$WidgetButton"}]}}},{"id":"Lorand\/test01$TestClient","type":"giskard.me\/mind.1$Node","relationships":{"giskard.me\/dev.1$bootTokens":{"data":[{"id":"Lorand\/test01$LocalFiles","type":"giskard.me\/mind.1$Agent"},{"id":"Lorand\/test01$ProcessUnitStream","type":"giskard.me\/mind.1$Message"},{"id":"Lorand\/test01$ProvideStream","type":"giskard.me\/mind.1$Message"},{"id":"Lorand\/test01$StreamCentre","type":"giskard.me\/mind.1$Agent"},{"id":"Lorand\/test01$StreamUnitProcessor","type":"giskard.me\/mind.1$Agent"},{"id":"Lorand\/test01$UnitHandler","type":"giskard.me\/mind.1$Message"},{"id":"giskard.me\/stream.1$FileStreamSource","type":"giskard.me\/mind.1$Narrative"},{"id":"giskard.me\/stream.1$SerializeJsonApi","type":"giskard.me\/mind.1$Narrative"},{"id":"giskard.me\/stream.1$StreamCentre","type":"giskard.me\/mind.1$Narrative"}]},"giskard.me\/dust.1$machine":{"data":{"id":"Lorand\/test01$MachineAPI","type":"giskard.me\/mind.1$Message"}},"giskard.me\/misc.1$init":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$ClientAssembly","type":"giskard.me\/mind.1$Assembly"}]},"giskard.me\/misc.1$parent":{"data":{"id":"Lorand\/test01$Test01System","type":"giskard.me\/mind.1$System"}},"giskard.me\/stream.1$unitHandler":{"data":{"id":"Lorand\/test01$UnitHandler","type":"giskard.me\/mind.1$Message"}}}},{"id":"Lorand\/test01$TestLabel01","type":"giskard.me\/gui.1$WidgetLabel","attributes":{"giskard.me\/dev.1$devText":"PLACEHOLDER - Property editor"}},{"id":"Lorand\/test01$TestLabel02","type":"giskard.me\/gui.1$WidgetLabel","attributes":{"giskard.me\/dev.1$devText":"PLACEHOLDER - Media Player"}},{"id":"Lorand\/test01$TestLabel03","type":"giskard.me\/gui.1$WidgetLabel","attributes":{"giskard.me\/dev.1$devText":"PLACEHOLDER - Graph Console"}},{"id":"Lorand\/test01$TestServer","type":"giskard.me\/mind.1$Node","relationships":{"giskard.me\/dev.1$bootTokens":{"data":[{"id":"Lorand\/test01$LocalFiles","type":"giskard.me\/mind.1$Agent"},{"id":"Lorand\/test01$ProcessUnitStream","type":"giskard.me\/mind.1$Message"},{"id":"Lorand\/test01$ProvideStream","type":"giskard.me\/mind.1$Message"},{"id":"Lorand\/test01$StreamCentre","type":"giskard.me\/mind.1$Agent"},{"id":"Lorand\/test01$StreamUnitProcessor","type":"giskard.me\/mind.1$Agent"},{"id":"Lorand\/test01$UnitHandler","type":"giskard.me\/mind.1$Message"},{"id":"giskard.me\/stream.1$FileStreamSource","type":"giskard.me\/mind.1$Narrative"},{"id":"giskard.me\/stream.1$SerializeJsonApi","type":"giskard.me\/mind.1$Narrative"},{"id":"giskard.me\/stream.1$StreamCentre","type":"giskard.me\/mind.1$Narrative"}]},"giskard.me\/dust.1$machine":{"data":{"id":"Lorand\/test01$MachineAPI","type":"giskard.me\/mind.1$Message"}},"giskard.me\/misc.1$init":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$ServerAssembly","type":"giskard.me\/mind.1$Assembly"}]},"giskard.me\/misc.1$parent":{"data":{"id":"Lorand\/test01$Test01System","type":"giskard.me\/mind.1$System"}},"giskard.me\/stream.1$unitHandler":{"data":{"id":"Lorand\/test01$UnitHandler","type":"giskard.me\/mind.1$Message"}}}},{"id":"Lorand\/test01$ThinClient","type":"giskard.me\/mind.1$Node","relationships":{"giskard.me\/dev.1$bootTokens":{"data":[{"id":"Lorand\/test01$BinaryUnitLoader","type":"giskard.me\/mind.1$Agent"},{"id":"Lorand\/test01$DownloadUnit","type":"giskard.me\/mind.1$Message"},{"id":"Lorand\/test01$ExtractUnit","type":"giskard.me\/mind.1$Message"},{"id":"Lorand\/test01$LocalFiles","type":"giskard.me\/mind.1$Agent"},{"id":"Lorand\/test01$MachineSyncUnits","type":"giskard.me\/mind.1$Message"},{"id":"Lorand\/test01$ProcessUnitStream","type":"giskard.me\/mind.1$Message"},{"id":"Lorand\/test01$RemoteUnitLoader","type":"giskard.me\/mind.1$Agent"},{"id":"Lorand\/test01$StreamCentre","type":"giskard.me\/mind.1$Agent"},{"id":"Lorand\/test01$StreamUnitProcessor","type":"giskard.me\/mind.1$Agent"},{"id":"Lorand\/test01$ThinProvideStream","type":"giskard.me\/mind.1$Message"},{"id":"Lorand\/test01$ThinUnitHandler","type":"giskard.me\/mind.1$Message"},{"id":"giskard.me\/dust.1$CmdSyncUnits","type":"giskard.me\/mind.1$Tag"},{"id":"giskard.me\/net.1$HttpClient","type":"giskard.me\/mind.1$Narrative"},{"id":"giskard.me\/stream.1$BinaryStreamSource","type":"giskard.me\/mind.1$Narrative"},{"id":"giskard.me\/stream.1$FileStreamSource","type":"giskard.me\/mind.1$Narrative"},{"id":"giskard.me\/stream.1$SerializeJsonApi","type":"giskard.me\/mind.1$Narrative"},{"id":"giskard.me\/stream.1$StreamCentre","type":"giskard.me\/mind.1$Narrative"}]},"giskard.me\/dust.1$machine":{"data":{"id":"Lorand\/test01$MachineAPI","type":"giskard.me\/mind.1$Message"}},"giskard.me\/misc.1$init":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$ClientAssembly","type":"giskard.me\/mind.1$Assembly"}]},"giskard.me\/misc.1$parent":{"data":{"id":"Lorand\/test01$Test01System","type":"giskard.me\/mind.1$System"}},"giskard.me\/stream.1$unitHandler":{"data":{"id":"Lorand\/test01$ThinUnitHandler","type":"giskard.me\/mind.1$Message"}}}},{"id":"Lorand\/test01$ThinProvideStream","type":"giskard.me\/mind.1$Message","attributes":{"giskard.me\/misc.1$path":"cache","giskard.me\/stream.1$backupFolder":"backup"},"relationships":{"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$LocalFiles","type":"giskard.me\/mind.1$Agent"}]},"giskard.me\/misc.1$fallback":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$ExtractUnit","type":"giskard.me\/mind.1$Message"},{"meta":{"key":1},"id":"Lorand\/test01$DownloadUnit","type":"giskard.me\/mind.1$Message"}]}}},{"id":"Lorand\/test01$ThinUnitHandler","type":"giskard.me\/mind.1$Message","relationships":{"giskard.me\/mind.1$cmd":{"data":{"id":"giskard.me\/misc.1$CmdLoad","type":"giskard.me\/mind.1$Tag"}},"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$StreamCentre","type":"giskard.me\/mind.1$Agent"}]},"giskard.me\/mind.1$next":{"data":{"id":"Lorand\/test01$ProcessUnitStream","type":"giskard.me\/mind.1$Message"}},"giskard.me\/misc.1$target":{"data":{"id":"giskard.me\/mind.1$Unit","type":"giskard.me\/mind.1$Aspect"}},"giskard.me\/stream.1$streamSource":{"data":{"id":"Lorand\/test01$ThinProvideStream","type":"giskard.me\/mind.1$Message"}}}},{"id":"Lorand\/test01$TopToolTableVert","type":"giskard.me\/layout.1$Table","relationships":{"giskard.me\/misc.1$members":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$TTTVCell1","type":"giskard.me\/layout.1$Cell"},{"meta":{"key":1},"id":"Lorand\/test01$TTTVCell2","type":"giskard.me\/layout.1$Cell"},{"meta":{"key":2},"id":"Lorand\/test01$TTTVCell3","type":"giskard.me\/layout.1$Cell"}]}}},{"id":"Lorand\/test01$UnitHandler","type":"giskard.me\/mind.1$Message","relationships":{"giskard.me\/mind.1$cmd":{"data":{"id":"giskard.me\/misc.1$CmdLoad","type":"giskard.me\/mind.1$Tag"}},"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$StreamCentre","type":"giskard.me\/mind.1$Agent"}]},"giskard.me\/mind.1$next":{"data":{"id":"Lorand\/test01$ProcessUnitStream","type":"giskard.me\/mind.1$Message"}},"giskard.me\/misc.1$target":{"data":{"id":"giskard.me\/mind.1$Unit","type":"giskard.me\/mind.1$Aspect"}},"giskard.me\/stream.1$streamSource":{"data":{"id":"Lorand\/test01$ProvideStream","type":"giskard.me\/mind.1$Message"}}}},{"id":"Lorand\/test01$VPCellCtrl","type":"giskard.me\/layout.1$Cell","attributes":{"giskard.me\/misc.1$position":[2,1]},"relationships":{"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$MediaPlayerControls","type":"giskard.me\/gui.1$PanelContainer"}}}},{"id":"Lorand\/test01$VPCellPlayer","type":"giskard.me\/layout.1$Cell","attributes":{"giskard.me\/misc.1$position":[1,1]},"relationships":{"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$VideoPlayerPlaceholder","type":"giskard.me\/mind.1$Message"}}}},{"id":"Lorand\/test01$VideoPlayerAction","type":"giskard.me\/mind.1$Message","relationships":{"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$VideoPlayerAgent","type":"giskard.me\/mind.1$Agent"}]}}},{"id":"Lorand\/test01$VideoPlayerAgent","type":"giskard.me\/mind.1$Agent","relationships":{"giskard.me\/mind.1$narrative":{"data":{"id":"giskard.me\/gui.1$VideoPlayer","type":"giskard.me\/mind.1$Narrative"}}}},{"id":"Lorand\/test01$VideoPlayerPause","type":"giskard.me\/gui.1$WidgetButton","relationships":{"giskard.me\/mind.1$cmd":{"data":{"id":"giskard.me\/flow.1$CmdFlowPause","type":"giskard.me\/mind.1$Tag"}},"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$VideoPlayerAction","type":"giskard.me\/mind.1$Message"}}}},{"id":"Lorand\/test01$VideoPlayerPlaceholder","type":"giskard.me\/mind.1$Message","relationships":{"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$VideoPlayerAgent","type":"giskard.me\/mind.1$Agent"}]}}},{"id":"Lorand\/test01$VideoPlayerSkipBack","type":"giskard.me\/gui.1$WidgetButton","relationships":{"giskard.me\/mind.1$cmd":{"data":{"id":"giskard.me\/misc.1$CmdSkipBack","type":"giskard.me\/mind.1$Tag"}},"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$VideoPlayerAction","type":"giskard.me\/mind.1$Message"}}}},{"id":"Lorand\/test01$VideoPlayerSkipForward","type":"giskard.me\/gui.1$WidgetButton","relationships":{"giskard.me\/mind.1$cmd":{"data":{"id":"giskard.me\/misc.1$CmdSkipForward","type":"giskard.me\/mind.1$Tag"}},"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$VideoPlayerAction","type":"giskard.me\/mind.1$Message"}}}},{"id":"Lorand\/test01$VideoPlayerStart","type":"giskard.me\/gui.1$WidgetButton","relationships":{"giskard.me\/mind.1$cmd":{"data":{"id":"giskard.me\/flow.1$CmdFlowPlay","type":"giskard.me\/mind.1$Tag"}},"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$VideoPlayerAction","type":"giskard.me\/mind.1$Message"}}}},{"id":"Lorand\/test01$VideoPlayerStop","type":"giskard.me\/gui.1$WidgetButton","relationships":{"giskard.me\/mind.1$cmd":{"data":{"id":"giskard.me\/misc.1$CmdStop","type":"giskard.me\/mind.1$Tag"}},"giskard.me\/misc.1$target":{"data":{"id":"Lorand\/test01$VideoPlayerAction","type":"giskard.me\/mind.1$Message"}}}},{"id":"Lorand\/test01$VideoTableVert","type":"giskard.me\/layout.1$Table","relationships":{"giskard.me\/misc.1$members":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$VPCellPlayer","type":"giskard.me\/layout.1$Cell"},{"meta":{"key":1},"id":"Lorand\/test01$VPCellCtrl","type":"giskard.me\/layout.1$Cell"}]}}},{"id":"Lorand\/test01$WebDispatcher","type":"giskard.me\/net.1$HttpDispatcher","relationships":{"giskard.me\/misc.1$members":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$HttpServerStop","type":"giskard.me\/mind.1$Message"},{"meta":{"key":1},"id":"Lorand\/test01$HttpServerInfo","type":"giskard.me\/mind.1$Message"},{"meta":{"key":2},"id":"Lorand\/test01$WebServerMessage","type":"giskard.me\/mind.1$Message"},{"meta":{"key":3},"id":"Lorand\/test01$HttpJsonapiMsg","type":"giskard.me\/mind.1$Message"}]}}},{"id":"Lorand\/test01$WebJsonapiAgent","type":"giskard.me\/mind.1$Agent","relationships":{"giskard.me\/mind.1$narrative":{"data":{"id":"giskard.me\/net.1$HttpJsonapiHandler","type":"giskard.me\/mind.1$Narrative"}},"giskard.me\/mind.1$serializer":{"data":{"id":"Lorand\/test01$ProcessUnitStream","type":"giskard.me\/mind.1$Message"}}}},{"id":"Lorand\/test01$WebServer","type":"giskard.me\/mind.1$Agent","relationships":{"giskard.me\/mind.1$narrative":{"data":{"id":"giskard.me\/net.1$HttpServerJetty","type":"giskard.me\/mind.1$Narrative"}},"giskard.me\/net.1$dispatcher":{"data":{"id":"Lorand\/test01$WebDispatcher","type":"giskard.me\/net.1$HttpDispatcher"}}}},{"id":"Lorand\/test01$WebServerMessage","type":"giskard.me\/mind.1$Message","attributes":{"giskard.me\/misc.1$prefix":"admin"},"relationships":{"giskard.me\/mind.1$listeners":{"data":[{"meta":{"key":0},"id":"Lorand\/test01$WebServer","type":"giskard.me\/mind.1$Agent"}]}}},{"id":"Lorand\/test01$giskard.me\/dustImpl.1","type":"giskard.me\/mind.1$Unit"}],"meta":{"count":74,"unitInfo":{"id":"Lorand\/test01","type":"giskard.me\/mind.1$Unit","relationships":{"giskard.me\/mind.1$author":{"data":{"id":"Lorand\/author$LorandKedves","type":"giskard.me\/mind.1$Author"}},"giskard.me\/mind.1$narrative":{"data":{"id":"giskard.me\/mvel.1$MVELExprEval","type":"giskard.me\/mind.1$Narrative"}}}}}}
+{
+	"jsonapi": {
+		"version": "1.1"
+	},
+	"data": [
+		{
+			"id": "Lorand/test01$ATVCellMain",
+			"type": "giskard.me/layout.1$Cell",
+			"attributes": {
+				"giskard.me/layout.1$fillWeight": [
+					1.0,
+					1.0
+				],
+				"giskard.me/misc.1$position": [
+					2,
+					1
+				]
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$Test01MainContainer",
+						"type": "giskard.me/gui.1$PanelContainer"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$ATVCellTop",
+			"type": "giskard.me/layout.1$Cell",
+			"attributes": {
+				"giskard.me/misc.1$position": [
+					1,
+					1
+				]
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$Test01TopToolbar",
+						"type": "giskard.me/gui.1$PanelContainer"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$AccessAgent",
+			"type": "giskard.me/mind.1$Agent",
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/mind.1$Access",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$ActivateGraphConsole",
+			"type": "giskard.me/mind.1$Message",
+			"attributes": {
+				"giskard.me/misc.1$refPath": [
+					"giskard.me/misc.1$members"
+				]
+			},
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$AccessAgent",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				},
+				"giskard.me/mind.1$next": {
+					"data": {
+						"id": "Lorand/test01$RefreshTest01Gui",
+						"type": "giskard.me/mind.1$Message"
+					}
+				},
+				"giskard.me/misc.1$source": {
+					"data": {
+						"id": "TAP/graphConsole.1$MainPanel",
+						"type": "giskard.me/gui.1$PanelContainer"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$Test01MainContainer",
+						"type": "giskard.me/gui.1$PanelContainer"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$ActivateMediaPlayer",
+			"type": "giskard.me/mind.1$Message",
+			"attributes": {
+				"giskard.me/misc.1$refPath": [
+					"giskard.me/misc.1$members"
+				]
+			},
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$AccessAgent",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				},
+				"giskard.me/mind.1$next": {
+					"data": {
+						"id": "Lorand/test01$RefreshTest01Gui",
+						"type": "giskard.me/mind.1$Message"
+					}
+				},
+				"giskard.me/misc.1$source": {
+					"data": {
+						"id": "Lorand/test01$MediaPlayerContainer",
+						"type": "giskard.me/gui.1$PanelContainer"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$Test01MainContainer",
+						"type": "giskard.me/gui.1$PanelContainer"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$ActivatePropertyEditor",
+			"type": "giskard.me/mind.1$Message",
+			"attributes": {
+				"giskard.me/misc.1$refPath": [
+					"giskard.me/misc.1$members"
+				]
+			},
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$AccessAgent",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				},
+				"giskard.me/mind.1$next": {
+					"data": {
+						"id": "Lorand/test01$RefreshTest01Gui",
+						"type": "giskard.me/mind.1$Message"
+					}
+				},
+				"giskard.me/misc.1$source": {
+					"data": {
+						"id": "Lorand/test01Data$Test01PropPage01",
+						"type": "giskard.me/gui.1$PanelContainer"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$Test01MainContainer",
+						"type": "giskard.me/gui.1$PanelContainer"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$AppRef",
+			"type": "giskard.me/mind.1$Reference",
+			"relationships": {
+				"giskard.me/mind.1$trail": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "giskard.me/dust.1$ctxApp",
+							"type": "giskard.me/mind.1$Attribute"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$AppTableVert",
+			"type": "giskard.me/layout.1$Table",
+			"relationships": {
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$ATVCellTop",
+							"type": "giskard.me/layout.1$Cell"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01$ATVCellMain",
+							"type": "giskard.me/layout.1$Cell"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$BKKImportAgent",
+			"type": "giskard.me/mind.1$Agent",
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "Lorand/test01$BKKImportNarrative",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$BKKImportImplJava17",
+			"type": "giskard.me/dust.1$Implementation",
+			"attributes": {
+				"giskard.me/misc.1$key": "me.giskard.app.test01.bkk.Test01BkkImport"
+			},
+			"relationships": {
+				"giskard.me/dust.1$platform": {
+					"data": {
+						"id": "giskard.me/dust.1$Java17",
+						"type": "giskard.me/dust.1$Platform"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$BKKImportNarrative",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$BKKImportNarrative",
+			"type": "giskard.me/mind.1$Narrative"
+		},
+		{
+			"id": "Lorand/test01$BinaryUnitLoader",
+			"type": "giskard.me/mind.1$Agent",
+			"attributes": {
+				"giskard.me/stream.1$rootFolder": "res/unit"
+			},
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/stream.1$BinaryStreamSource",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$BtnConsole",
+			"type": "giskard.me/gui.1$WidgetButton",
+			"attributes": {
+				"giskard.me/dev.1$devText": "Graph Console"
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$ActivateGraphConsole",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$BtnMediaPlayer",
+			"type": "giskard.me/gui.1$WidgetButton",
+			"attributes": {
+				"giskard.me/dev.1$devText": "Media Player"
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$ActivateMediaPlayer",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$BtnPropEditor",
+			"type": "giskard.me/gui.1$WidgetButton",
+			"attributes": {
+				"giskard.me/dev.1$devText": "Property Editor"
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$ActivatePropertyEditor",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$ClientAssembly",
+			"type": "giskard.me/mind.1$Assembly",
+			"relationships": {
+				"giskard.me/misc.1$init": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$RefreshTest01Gui",
+							"type": "giskard.me/mind.1$Message"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$DownloadUnit",
+			"type": "giskard.me/mind.1$Message",
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$RemoteUnitLoader",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				},
+				"giskard.me/mind.1$next": {
+					"data": {
+						"id": "Lorand/test01$MachineSyncUnits",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$ExtractUnit",
+			"type": "giskard.me/mind.1$Message",
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$BinaryUnitLoader",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				},
+				"giskard.me/mind.1$next": {
+					"data": {
+						"id": "Lorand/test01$MachineSyncUnits",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$GuiRenderer",
+			"type": "giskard.me/mind.1$Agent",
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/gui.1$GuiRenderer",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$HttpJsonapiMsg",
+			"type": "giskard.me/mind.1$Message",
+			"attributes": {
+				"giskard.me/misc.1$prefix": "data"
+			},
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$WebJsonapiAgent",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$HttpServerInfo",
+			"type": "giskard.me/mind.1$Message",
+			"attributes": {
+				"giskard.me/misc.1$prefix": "admin/info"
+			},
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/misc.1$CmdInfo",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$WebServer",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$HttpServerStop",
+			"type": "giskard.me/mind.1$Message",
+			"attributes": {
+				"giskard.me/misc.1$prefix": "admin/stop"
+			},
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/misc.1$CmdStop",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$WebServer",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$ImportBKKData",
+			"type": "giskard.me/mind.1$Message",
+			"attributes": {
+				"giskard.me/misc.1$root": "tmp/budapest_gtfs"
+			},
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$BKKImportAgent",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$LocalFiles",
+			"type": "giskard.me/mind.1$Agent",
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/stream.1$FileStreamSource",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$LogAgent",
+			"type": "giskard.me/mind.1$Agent",
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/dev.1$Logger",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$LogTest",
+			"type": "giskard.me/mind.1$Message",
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$LogAgent",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$Lorand/Tanulas.1",
+			"type": "giskard.me/mind.1$Unit"
+		},
+		{
+			"id": "Lorand/test01$MachineAPI",
+			"type": "giskard.me/mind.1$Message",
+			"attributes": {
+				"giskard.me/mind.1$cmd": "giskard.me/misc.1$CmdRefresh"
+			},
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$MachineAgent",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$MachineAgent",
+			"type": "giskard.me/mind.1$Agent",
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/dust.1$NEW_Machine",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$MachineSyncUnits",
+			"type": "giskard.me/mind.1$Message",
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/dust.1$CmdSyncUnits",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$AppRef",
+							"type": "giskard.me/mind.1$Reference"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$MediaPlayerContainer",
+			"type": "giskard.me/gui.1$PanelContainer",
+			"relationships": {
+				"giskard.me/gui.1$layoutConfig": {
+					"data": [
+						{
+							"id": "Lorand/test01$VideoTableVert",
+							"type": "giskard.me/layout.1$Table"
+						}
+					]
+				},
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$VideoPlayerPlaceholder",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01$MediaPlayerControls",
+							"type": "giskard.me/gui.1$PanelContainer"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$MediaPlayerControls",
+			"type": "giskard.me/gui.1$PanelContainer",
+			"relationships": {
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$VideoPlayerSkipBack",
+							"type": "giskard.me/gui.1$WidgetButton"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01$VideoPlayerStart",
+							"type": "giskard.me/gui.1$WidgetButton"
+						},
+						{
+							"meta": {
+								"key": 2
+							},
+							"id": "Lorand/test01$VideoPlayerPause",
+							"type": "giskard.me/gui.1$WidgetButton"
+						},
+						{
+							"meta": {
+								"key": 3
+							},
+							"id": "Lorand/test01$VideoPlayerStop",
+							"type": "giskard.me/gui.1$WidgetButton"
+						},
+						{
+							"meta": {
+								"key": 4
+							},
+							"id": "Lorand/test01$VideoPlayerSkipForward",
+							"type": "giskard.me/gui.1$WidgetButton"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$ProcessUnitStream",
+			"type": "giskard.me/mind.1$Message",
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$StreamUnitProcessor",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$ProvideStream",
+			"type": "giskard.me/mind.1$Message",
+			"attributes": {
+				"giskard.me/misc.1$path": "localStore",
+				"giskard.me/stream.1$backupFolder": "backup"
+			},
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$LocalFiles",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$RefreshTest01Gui",
+			"type": "giskard.me/mind.1$Message",
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/misc.1$CmdRefresh",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$GuiRenderer",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$Test01MainWindow",
+						"type": "giskard.me/gui.1$Window"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$RemoteUnitLoader",
+			"type": "giskard.me/mind.1$Agent",
+			"attributes": {
+				"giskard.me/stream.1$url": "http://localhost:8080/data/unit"
+			},
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/net.1$HttpClient",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$ServerAssembly",
+			"type": "giskard.me/mind.1$Assembly",
+			"relationships": {
+				"giskard.me/misc.1$init": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$WebServerMessage",
+							"type": "giskard.me/mind.1$Message"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$StreamCentre",
+			"type": "giskard.me/mind.1$Agent",
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/stream.1$StreamCentre",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$StreamUnitProcessor",
+			"type": "giskard.me/mind.1$Agent",
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/stream.1$SerializeJsonApi",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$TTTVCell1",
+			"type": "giskard.me/layout.1$Cell",
+			"attributes": {
+				"giskard.me/misc.1$position": [
+					1,
+					1
+				]
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$BtnPropEditor",
+						"type": "giskard.me/gui.1$WidgetButton"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$TTTVCell2",
+			"type": "giskard.me/layout.1$Cell",
+			"attributes": {
+				"giskard.me/misc.1$position": [
+					1,
+					2
+				]
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$BtnMediaPlayer",
+						"type": "giskard.me/gui.1$WidgetButton"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$TTTVCell3",
+			"type": "giskard.me/layout.1$Cell",
+			"attributes": {
+				"giskard.me/misc.1$position": [
+					1,
+					3
+				]
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$BtnConsole",
+						"type": "giskard.me/gui.1$WidgetButton"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$Test01AppContainer",
+			"type": "giskard.me/gui.1$PanelContainer",
+			"relationships": {
+				"giskard.me/gui.1$layoutConfig": {
+					"data": [
+						{
+							"id": "Lorand/test01$AppTableVert",
+							"type": "giskard.me/layout.1$Table"
+						}
+					]
+				},
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$Test01TopToolbar",
+							"type": "giskard.me/gui.1$PanelContainer"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01$Test01MainContainer",
+							"type": "giskard.me/gui.1$PanelContainer"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$Test01Java17Module",
+			"type": "giskard.me/dust.1$Module",
+			"relationships": {
+				"giskard.me/dust.1$implementations": {
+					"data": [
+						{
+							"id": "Lorand/test01$BKKImportImplJava17",
+							"type": "giskard.me/dust.1$Implementation"
+						}
+					]
+				},
+				"giskard.me/dust.1$platform": {
+					"data": {
+						"id": "giskard.me/dust.1$Java17",
+						"type": "giskard.me/dust.1$Platform"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$Test01MainContainer",
+			"type": "giskard.me/gui.1$PanelContainer",
+			"relationships": {
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$TestLabel02",
+							"type": "giskard.me/gui.1$WidgetLabel"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$Test01MainWindow",
+			"type": "giskard.me/gui.1$Window",
+			"attributes": {
+				"giskard.me/dev.1$devText": "TAP02 Test01 Main Window"
+			},
+			"relationships": {
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$Test01AppContainer",
+							"type": "giskard.me/gui.1$PanelContainer"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$Test01System",
+			"type": "giskard.me/mind.1$System",
+			"relationships": {
+				"giskard.me/dust.1$modules": {
+					"data": [
+						{
+							"id": "Lorand/test01$Test01Java17Module",
+							"type": "giskard.me/dust.1$Module"
+						},
+						{
+							"id": "TAP/guiJavaSwing.1$GuiSwingJava17Module",
+							"type": "giskard.me/dust.1$Module"
+						},
+						{
+							"id": "giskard.me/dustImpl.1$DustJava17Module",
+							"type": "giskard.me/dust.1$Module"
+						},
+						{
+							"id": "giskard.me/mvel.1$MVELJava17Module",
+							"type": "giskard.me/dust.1$Module"
+						}
+					]
+				},
+				"giskard.me/dust.1$supportedPlatforms": {
+					"data": [
+						{
+							"id": "giskard.me/dust.1$Java17",
+							"type": "giskard.me/dust.1$Platform"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$Test01TopToolbar",
+			"type": "giskard.me/gui.1$PanelContainer",
+			"relationships": {
+				"giskard.me/gui.1$layoutConfig": {
+					"data": [
+						{
+							"id": "Lorand/test01$TopToolTableVert",
+							"type": "giskard.me/layout.1$Table"
+						}
+					]
+				},
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$BtnPropEditor",
+							"type": "giskard.me/gui.1$WidgetButton"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01$BtnMediaPlayer",
+							"type": "giskard.me/gui.1$WidgetButton"
+						},
+						{
+							"meta": {
+								"key": 2
+							},
+							"id": "Lorand/test01$BtnConsole",
+							"type": "giskard.me/gui.1$WidgetButton"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$TestClient",
+			"type": "giskard.me/mind.1$Node",
+			"relationships": {
+				"giskard.me/dev.1$bootTokens": {
+					"data": [
+						{
+							"id": "Lorand/test01$LocalFiles",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$ProcessUnitStream",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$ProvideStream",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$StreamCentre",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$StreamUnitProcessor",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$UnitHandler",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "giskard.me/stream.1$FileStreamSource",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$SerializeJsonApi",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$StreamCentre",
+							"type": "giskard.me/mind.1$Narrative"
+						}
+					]
+				},
+				"giskard.me/dust.1$machine": {
+					"data": {
+						"id": "Lorand/test01$MachineAPI",
+						"type": "giskard.me/mind.1$Message"
+					}
+				},
+				"giskard.me/misc.1$init": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$ClientAssembly",
+							"type": "giskard.me/mind.1$Assembly"
+						}
+					]
+				},
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "Lorand/test01$Test01System",
+						"type": "giskard.me/mind.1$System"
+					}
+				},
+				"giskard.me/stream.1$unitHandler": {
+					"data": {
+						"id": "Lorand/test01$UnitHandler",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$TestLabel01",
+			"type": "giskard.me/gui.1$WidgetLabel",
+			"attributes": {
+				"giskard.me/dev.1$devText": "PLACEHOLDER - Property editor"
+			}
+		},
+		{
+			"id": "Lorand/test01$TestLabel02",
+			"type": "giskard.me/gui.1$WidgetLabel",
+			"attributes": {
+				"giskard.me/dev.1$devText": "PLACEHOLDER - Media Player"
+			}
+		},
+		{
+			"id": "Lorand/test01$TestLabel03",
+			"type": "giskard.me/gui.1$WidgetLabel",
+			"attributes": {
+				"giskard.me/dev.1$devText": "PLACEHOLDER - Graph Console"
+			}
+		},
+		{
+			"id": "Lorand/test01$TestServer",
+			"type": "giskard.me/mind.1$Node",
+			"relationships": {
+				"giskard.me/dev.1$bootTokens": {
+					"data": [
+						{
+							"id": "Lorand/test01$LocalFiles",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$ProcessUnitStream",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$ProvideStream",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$StreamCentre",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$StreamUnitProcessor",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$UnitHandler",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "giskard.me/stream.1$FileStreamSource",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$SerializeJsonApi",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$StreamCentre",
+							"type": "giskard.me/mind.1$Narrative"
+						}
+					]
+				},
+				"giskard.me/dust.1$machine": {
+					"data": {
+						"id": "Lorand/test01$MachineAPI",
+						"type": "giskard.me/mind.1$Message"
+					}
+				},
+				"giskard.me/misc.1$init": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$ServerAssembly",
+							"type": "giskard.me/mind.1$Assembly"
+						}
+					]
+				},
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "Lorand/test01$Test01System",
+						"type": "giskard.me/mind.1$System"
+					}
+				},
+				"giskard.me/stream.1$unitHandler": {
+					"data": {
+						"id": "Lorand/test01$UnitHandler",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$ThinClient",
+			"type": "giskard.me/mind.1$Node",
+			"relationships": {
+				"giskard.me/dev.1$bootTokens": {
+					"data": [
+						{
+							"id": "Lorand/test01$BinaryUnitLoader",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$DownloadUnit",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$ExtractUnit",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$LocalFiles",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$MachineSyncUnits",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$ProcessUnitStream",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$RemoteUnitLoader",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$StreamCentre",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$StreamUnitProcessor",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$ThinProvideStream",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$ThinUnitHandler",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "giskard.me/dust.1$CmdSyncUnits",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/net.1$HttpClient",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$BinaryStreamSource",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$FileStreamSource",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$SerializeJsonApi",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$StreamCentre",
+							"type": "giskard.me/mind.1$Narrative"
+						}
+					]
+				},
+				"giskard.me/dust.1$machine": {
+					"data": {
+						"id": "Lorand/test01$MachineAPI",
+						"type": "giskard.me/mind.1$Message"
+					}
+				},
+				"giskard.me/misc.1$init": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$ClientAssembly",
+							"type": "giskard.me/mind.1$Assembly"
+						}
+					]
+				},
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "Lorand/test01$Test01System",
+						"type": "giskard.me/mind.1$System"
+					}
+				},
+				"giskard.me/stream.1$unitHandler": {
+					"data": {
+						"id": "Lorand/test01$ThinUnitHandler",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$ThinProvideStream",
+			"type": "giskard.me/mind.1$Message",
+			"attributes": {
+				"giskard.me/misc.1$path": "cache",
+				"giskard.me/stream.1$backupFolder": "backup"
+			},
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$LocalFiles",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				},
+				"giskard.me/misc.1$fallback": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$ExtractUnit",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01$DownloadUnit",
+							"type": "giskard.me/mind.1$Message"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$ThinUnitHandler",
+			"type": "giskard.me/mind.1$Message",
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/misc.1$CmdLoad",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$StreamCentre",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				},
+				"giskard.me/mind.1$next": {
+					"data": {
+						"id": "Lorand/test01$ProcessUnitStream",
+						"type": "giskard.me/mind.1$Message"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/mind.1$Unit",
+						"type": "giskard.me/mind.1$Aspect"
+					}
+				},
+				"giskard.me/stream.1$streamSource": {
+					"data": {
+						"id": "Lorand/test01$ThinProvideStream",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$TopToolTableVert",
+			"type": "giskard.me/layout.1$Table",
+			"relationships": {
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$TTTVCell1",
+							"type": "giskard.me/layout.1$Cell"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01$TTTVCell2",
+							"type": "giskard.me/layout.1$Cell"
+						},
+						{
+							"meta": {
+								"key": 2
+							},
+							"id": "Lorand/test01$TTTVCell3",
+							"type": "giskard.me/layout.1$Cell"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$UnitHandler",
+			"type": "giskard.me/mind.1$Message",
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/misc.1$CmdLoad",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$StreamCentre",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				},
+				"giskard.me/mind.1$next": {
+					"data": {
+						"id": "Lorand/test01$ProcessUnitStream",
+						"type": "giskard.me/mind.1$Message"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/mind.1$Unit",
+						"type": "giskard.me/mind.1$Aspect"
+					}
+				},
+				"giskard.me/stream.1$streamSource": {
+					"data": {
+						"id": "Lorand/test01$ProvideStream",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VPCellCtrl",
+			"type": "giskard.me/layout.1$Cell",
+			"attributes": {
+				"giskard.me/misc.1$position": [
+					2,
+					1
+				]
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$MediaPlayerControls",
+						"type": "giskard.me/gui.1$PanelContainer"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VPCellPlayer",
+			"type": "giskard.me/layout.1$Cell",
+			"attributes": {
+				"giskard.me/misc.1$position": [
+					1,
+					1
+				]
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$VideoPlayerPlaceholder",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoPlayerAction",
+			"type": "giskard.me/mind.1$Message",
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$VideoPlayerAgent",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoPlayerAgent",
+			"type": "giskard.me/mind.1$Agent",
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/gui.1$VideoPlayer",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoPlayerPause",
+			"type": "giskard.me/gui.1$WidgetButton",
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/flow.1$CmdFlowPause",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$VideoPlayerAction",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoPlayerPlaceholder",
+			"type": "giskard.me/mind.1$Message",
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$VideoPlayerAgent",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoPlayerSkipBack",
+			"type": "giskard.me/gui.1$WidgetButton",
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/misc.1$CmdSkipBack",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$VideoPlayerAction",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoPlayerSkipForward",
+			"type": "giskard.me/gui.1$WidgetButton",
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/misc.1$CmdSkipForward",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$VideoPlayerAction",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoPlayerStart",
+			"type": "giskard.me/gui.1$WidgetButton",
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/flow.1$CmdFlowPlay",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$VideoPlayerAction",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoPlayerStop",
+			"type": "giskard.me/gui.1$WidgetButton",
+			"relationships": {
+				"giskard.me/mind.1$cmd": {
+					"data": {
+						"id": "giskard.me/misc.1$CmdStop",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "Lorand/test01$VideoPlayerAction",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$VideoTableVert",
+			"type": "giskard.me/layout.1$Table",
+			"relationships": {
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$VPCellPlayer",
+							"type": "giskard.me/layout.1$Cell"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01$VPCellCtrl",
+							"type": "giskard.me/layout.1$Cell"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$WebDispatcher",
+			"type": "giskard.me/net.1$HttpDispatcher",
+			"relationships": {
+				"giskard.me/misc.1$members": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$HttpServerStop",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"meta": {
+								"key": 1
+							},
+							"id": "Lorand/test01$HttpServerInfo",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"meta": {
+								"key": 2
+							},
+							"id": "Lorand/test01$WebServerMessage",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"meta": {
+								"key": 3
+							},
+							"id": "Lorand/test01$HttpJsonapiMsg",
+							"type": "giskard.me/mind.1$Message"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$WebJsonapiAgent",
+			"type": "giskard.me/mind.1$Agent",
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/net.1$HttpJsonapiHandler",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				},
+				"giskard.me/mind.1$serializer": {
+					"data": {
+						"id": "Lorand/test01$ProcessUnitStream",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$WebServer",
+			"type": "giskard.me/mind.1$Agent",
+			"relationships": {
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/net.1$HttpServerJetty",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				},
+				"giskard.me/net.1$dispatcher": {
+					"data": {
+						"id": "Lorand/test01$WebDispatcher",
+						"type": "giskard.me/net.1$HttpDispatcher"
+					}
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$WebServerMessage",
+			"type": "giskard.me/mind.1$Message",
+			"attributes": {
+				"giskard.me/misc.1$prefix": "admin"
+			},
+			"relationships": {
+				"giskard.me/mind.1$listeners": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$WebServer",
+							"type": "giskard.me/mind.1$Agent"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "Lorand/test01$giskard.me/dustImpl.1",
+			"type": "giskard.me/mind.1$Unit"
+		}
+	],
+	"meta": {
+		"count": 74,
+		"unitInfo": {
+			"id": "Lorand/test01",
+			"type": "giskard.me/mind.1$Unit",
+			"relationships": {
+				"giskard.me/mind.1$author": {
+					"data": {
+						"id": "Lorand/author$LorandKedves",
+						"type": "giskard.me/mind.1$Author"
+					}
+				},
+				"giskard.me/mind.1$narrative": {
+					"data": {
+						"id": "giskard.me/mvel.1$MVELExprEval",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		}
+	}
+}

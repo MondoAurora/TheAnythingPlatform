@@ -144,10 +144,10 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 		Collection<DustHandle> bootNodes = Dust.access(DustAccess.Peek, null, null, TOKEN_DEV_ATT_BOOT_NODES);
 
 		if (null != bootNodes) {
-			String pn = "gen.boot";
+			String pn = "gen.app";
 			String cName = "DustGenBootApp";
 
-			File r = new File("../TAP02Test01/src/gen/boot");
+			File r = new File("../TAP02Test01/src/gen/app");
 			PrintStream ps = createSrcStream(r, pn, cName, null, Mode.TAP02AppNodes);
 
 			ps.println("\t\tswitch(appId) {");
