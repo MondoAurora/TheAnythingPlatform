@@ -176,8 +176,8 @@
 			"type": "giskard.me/mind.1$Agent",
 			"id": "Lorand/sandbox.1$GenSourceToken",
 			"attributes": {
-				"giskard.me/dev.1$package": "me.giskard.tokens",
-				"giskard.me/misc.1$path": "../DustJsonApi/gen",
+				"giskard.me/dev.1$package": "gen.tokens",
+				"giskard.me/misc.1$path": "../DustJsonApi/src",
 				"giskard.me/misc.1$members": [
 					"giskard.me/mind.1$Unit",
 					"giskard.me/mind.1$Aspect",
