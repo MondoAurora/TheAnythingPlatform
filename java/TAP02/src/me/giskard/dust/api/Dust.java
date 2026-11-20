@@ -30,12 +30,13 @@ public class Dust implements DustConsts {
 
 	public static void main(String[] args) throws Exception {
 		String appId = DustUtils.optGet(args, 0, "");
-		String appUnitPath = DustUtils.optGet(args, 1, "");
+//		String appUnitPath = DustUtils.optGet(args, 1, "");
 
-		start(appId, appUnitPath);
+//		start(appId, appUnitPath);
+		start(appId);
 	}
 
-	public static DustHandle start(String appId, String appUnitPath) throws Exception {
+	public static DustHandle start(String appId) throws Exception {
 		long start = System.currentTimeMillis();
 
 		try {
