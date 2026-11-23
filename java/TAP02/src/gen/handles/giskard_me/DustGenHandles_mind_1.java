@@ -3,7 +3,7 @@ package gen.handles.giskard_me;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustHandle;
 
-// Generation timestamp 20261118T145147Z
+// Generation timestamp 20261123T093335Z
 
 public interface DustGenHandles_mind_1 {
 // Aspects
@@ -31,6 +31,7 @@ public interface DustGenHandles_mind_1 {
 	DustHandle HANDLE_MIND_ATT_DIFF_B = Dust.getHandle("giskard.me/mind.1$diffB", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MIND_ATT_DIFF_B_KEY = Dust.getHandle("giskard.me/mind.1$diffBKey", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MIND_ATT_DIFF_B_VAL = Dust.getHandle("giskard.me/mind.1$diffBVal", DustHandle.PLACEHOLDER);
+	DustHandle HANDLE_MIND_ATT_EXTENDS = Dust.getHandle("giskard.me/mind.1$extends", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MIND_ATT_ID = Dust.getHandle("giskard.me/mind.1$id", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MIND_ATT_KNOWNUNITS = Dust.getHandle("giskard.me/mind.1$knownUnits", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_MIND_ATT_LISTENERS = Dust.getHandle("giskard.me/mind.1$listeners", DustHandle.PLACEHOLDER);

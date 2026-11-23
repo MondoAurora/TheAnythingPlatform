@@ -1,0 +1,138 @@
+package me.giskard.dust.mod.android.stream;
+
+import java.io.Closeable;
+import java.io.File;
+import java.util.Collections;
+
+import me.giskard.dust.api.Dust;
+import me.giskard.dust.api.DustAgent;
+import me.giskard.dust.api.DustHandle;
+import me.giskard.dust.core.stream.DustStreamConsts;
+import me.giskard.dust.core.utils.DustUtils;
+import me.giskard.dust.core.utils.DustUtilsFile;
+
+public class DustStreamSrcFileAgent extends DustAgent implements DustStreamConsts {
+
+	String defRoot;
+	File backupFolder;
+
+	public DustStreamSrcFileAgent() {
+		this.defRoot = ".";
+	}
+
+//	@Override
+//	public void init() throws Exception {
+//		DustHandle fallback = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_FALLBACK);
+//
+//		if ( null != fallback ) {
+//			String root = Dust.access(DustAccess.Peek, defRoot, null, HANDLE_STREAM_ATT_ROOTFOLDER);
+//			File r = getRootFolder(root);
+//
+//			DustUtilsFile.FileProcessor fp = new DustUtilsFile.FileProcessor() {
+//				@Override
+//				public boolean processFile(File f) {
+//					f.delete();
+//					return true;
+//				}
+//			};
+//			
+//			Dust.log(HANDLE_MISC_TAG_LEVEL_INFO, "Deleting cache folder", r);
+//			DustUtilsFile.procRecursive(r, fp, null);
+//		}
+//	}
+
+	@Override
+	public void process() throws Exception {
+
+		String root = Dust.access(DustAccess.Peek, defRoot, null, HANDLE_STREAM_ATT_ROOTFOLDER);
+		File r = getRootFolder(root);
+
+		String bak = Dust.access(DustAccess.Peek, null, null, HANDLE_STREAM_ATT_BACKUPFOLDER);
+		backupFolder = getRootFolder(bak);
+
+		DustHandle hTarget = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_TARGET);
+
+		String path = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_PATH);
+		String name = Dust.access(DustAccess.Peek, hTarget.getId(), null, HANDLE_MISC_ATT_KEY);
+
+		if ( null != hTarget ) {
+			String p = null;
+
+			if ( HANDLE_MIND_ASP_UNIT.equals(hTarget.getType()) ) {
+				p = "/" + name + Dust.DUST_EXT_JSON;
+			}
+
+			if ( null != p ) {
+				path += p;
+			}
+		}
+
+		File f = DustUtils.isEmpty(path) ? r : new File(r, path);
+		DustUtilsFile.checkPathBound(f, r, false);
+//		DustUtilsFile.checkPathBound(f, r, true);
+
+		DustHandle cmd = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_CMD);
+		DustHandle hStreamAtt = null;
+
+		if ( HANDLE_MISC_TAG_CMD_LOAD.equals(cmd) ) {
+			if ( f.isFile() ) {
+				hStreamAtt = HANDLE_STREAM_ATT_INPUT;
+			} else {
+				Iterable<DustHandle> fallbackList = Dust.access(DustAccess.Peek, Collections.EMPTY_LIST, null, HANDLE_MISC_ATT_FALLBACK);
+
+				for ( DustHandle fallback : fallbackList ) {
+//				if ( null != fallback ) {
+					try {
+						DustUtilsFile.ensureDir(f.getParent());
+						Dust.access(DustAccess.Set, f.getAbsolutePath(), fallback, HANDLE_MISC_ATT_PATH);
+						Dust.access(DustAccess.Set, cmd, fallback, HANDLE_MIND_ATT_CMD);
+						Dust.access(DustAccess.Set, name, fallback, HANDLE_MISC_ATT_KEY);
+						Dust.access(DustAccess.Commit, null, fallback);
+					} finally {
+						Dust.access(DustAccess.Delete, null, fallback, HANDLE_MISC_ATT_PATH);
+						Dust.access(DustAccess.Delete, null, fallback, HANDLE_MIND_ATT_CMD);
+						Dust.access(DustAccess.Delete, null, fallback, HANDLE_MISC_ATT_KEY);
+					}
+
+					if ( f.isFile() ) {
+						hStreamAtt = HANDLE_STREAM_ATT_INPUT;
+						break;
+					}
+				}
+			}
+		} else if ( HANDLE_MISC_TAG_CMD_SAVE.equals(cmd) ) {
+			hStreamAtt = HANDLE_STREAM_ATT_OUTPUT;
+		} else if ( HANDLE_MISC_TAG_CMD_INFO.equals(cmd) ) {
+			Dust.access(DustAccess.Reset, null, null, HANDLE_MISC_ATT_MEMBERS);
+
+			if ( f.isDirectory() ) {
+				for (File ff : f.listFiles()) {
+					Dust.access(DustAccess.Insert, ff, HANDLE_DUST_ATT_CTX_MSG, HANDLE_MISC_ATT_MEMBERS);
+				}
+			} else {
+				String unitName = DustUtils.cutPostfix(f.getName(), ".");
+				Dust.access(DustAccess.Insert, unitName, HANDLE_DUST_ATT_CTX_MSG, HANDLE_MISC_ATT_MEMBERS);
+			}
+		}
+
+		if ( null != hStreamAtt ) {
+			DustHandle hNext = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_NEXT);
+
+			try (Closeable cs = DustUtilsFile.createStream(cmd, f, backupFolder)) {
+				Dust.access(DustAccess.Set, cs, hNext, hStreamAtt);
+				Dust.access(DustAccess.Set, cmd, hNext, HANDLE_MIND_ATT_CMD);
+				Dust.access(DustAccess.Set, name, hNext, HANDLE_MISC_ATT_KEY);
+				Dust.access(DustAccess.Commit, null, hNext);
+			} finally {
+				Dust.access(DustAccess.Delete, null, hNext, hStreamAtt);
+				Dust.access(DustAccess.Delete, null, hNext, HANDLE_MIND_ATT_CMD);
+				Dust.access(DustAccess.Delete, null, hNext, HANDLE_MISC_ATT_KEY);
+			}
+		}
+	}
+
+	protected File getRootFolder(String root) {
+		File r = DustUtils.isEmpty(root) ? null : new File(root);
+		return r;
+	}
+}

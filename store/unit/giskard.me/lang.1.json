@@ -1,1 +1,64 @@
-{"jsonapi":{"version":"1.1"},"data":[{"id":"giskard.me\/lang.1$Language","type":"giskard.me\/mind.1$Aspect","attributes":{"giskard.me\/dev.1$token":"TOKEN_LANG_ASP_LANGUAGE","giskard.me\/misc.1$name":"TOKEN_LANG_ASP_LANGUAGE"}},{"id":"giskard.me\/lang.1$en","type":"giskard.me\/lang.1$Language"},{"id":"giskard.me\/lang.1$es","type":"giskard.me\/lang.1$Language"},{"id":"giskard.me\/lang.1$hu","type":"giskard.me\/lang.1$Language"},{"id":"giskard.me\/lang.1$supported","type":"giskard.me\/mind.1$Attribute","attributes":{"giskard.me\/dev.1$token":"TOKEN_LANG_ATT_SUPPORTED","giskard.me\/misc.1$name":"TOKEN_LANG_ATT_SUPPORTED"},"relationships":{"giskard.me\/mind.1$tags":{"data":[{"id":"giskard.me\/mind.1$ColltypeSet","type":"giskard.me\/mind.1$Tag"},{"id":"giskard.me\/mind.1$ValtypeHandle","type":"giskard.me\/mind.1$Tag"}]}}}],"meta":{"count":5,"unitInfo":{"id":"giskard.me\/lang.1","type":"giskard.me\/mind.1$Unit","relationships":{"giskard.me\/mind.1$author":{"data":{"id":"giskard.me\/author$Giskard","type":"giskard.me\/mind.1$Author"}}}}}}
+{
+	"jsonapi": {
+		"version": "1.1"
+	},
+	"data": [
+		{
+			"id": "giskard.me/lang.1$Language",
+			"type": "giskard.me/mind.1$Aspect",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_LANG_ASP_LANGUAGE",
+				"giskard.me/misc.1$name": "TOKEN_LANG_ASP_LANGUAGE"
+			}
+		},
+		{
+			"id": "giskard.me/lang.1$en",
+			"type": "giskard.me/lang.1$Language"
+		},
+		{
+			"id": "giskard.me/lang.1$es",
+			"type": "giskard.me/lang.1$Language"
+		},
+		{
+			"id": "giskard.me/lang.1$hu",
+			"type": "giskard.me/lang.1$Language"
+		},
+		{
+			"id": "giskard.me/lang.1$supported",
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/dev.1$token": "TOKEN_LANG_ATT_SUPPORTED",
+				"giskard.me/misc.1$name": "TOKEN_LANG_ATT_SUPPORTED"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeSet",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
+		}
+	],
+	"meta": {
+		"count": 5,
+		"unitInfo": {
+			"id": "giskard.me/lang.1",
+			"type": "giskard.me/mind.1$Unit",
+			"relationships": {
+				"giskard.me/mind.1$author": {
+					"data": {
+						"id": "giskard.me/author$Giskard",
+						"type": "giskard.me/mind.1$Author"
+					}
+				}
+			}
+		}
+	}
+}

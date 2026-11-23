@@ -17,6 +17,6 @@
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="me.giskard.dust.api.Dust"/>
     <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="TAP02"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="Lorand/test01$ThinClient"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="Lorand/test01$ThinClient giskard.me/dust.1$Java17"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="TAP02Test01"/>
 </launchConfiguration>

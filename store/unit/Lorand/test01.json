@@ -176,6 +176,119 @@
 			}
 		},
 		{
+			"id": "Lorand/test01$AndroidClient",
+			"type": "giskard.me/mind.1$Node",
+			"relationships": {
+				"giskard.me/dev.1$bootTokens": {
+					"data": [
+						{
+							"id": "Lorand/test01$BinaryUnitLoader",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$DownloadUnit",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$ExtractUnit",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$LocalFiles",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$MachineSyncUnits",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$ProcessUnitStream",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$RemoteUnitLoader",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$StreamCentre",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$StreamUnitProcessor",
+							"type": "giskard.me/mind.1$Agent"
+						},
+						{
+							"id": "Lorand/test01$ThinProvideStream",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "Lorand/test01$ThinUnitHandler",
+							"type": "giskard.me/mind.1$Message"
+						},
+						{
+							"id": "giskard.me/dust.1$CmdSyncUnits",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/net.1$HttpClient",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$BinaryStreamSource",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$FileStreamSource",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$SerializeJsonApi",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
+							"id": "giskard.me/stream.1$StreamCentre",
+							"type": "giskard.me/mind.1$Narrative"
+						}
+					]
+				},
+				"giskard.me/dust.1$machine": {
+					"data": {
+						"id": "Lorand/test01$MachineAPI",
+						"type": "giskard.me/mind.1$Message"
+					}
+				},
+				"giskard.me/dust.1$platform": {
+					"data": {
+						"id": "giskard.me/dust.1$Android24",
+						"type": "giskard.me/dust.1$Platform"
+					}
+				},
+				"giskard.me/misc.1$init": {
+					"data": [
+						{
+							"meta": {
+								"key": 0
+							},
+							"id": "Lorand/test01$ClientAssembly",
+							"type": "giskard.me/mind.1$Assembly"
+						}
+					]
+				},
+				"giskard.me/misc.1$parent": {
+					"data": {
+						"id": "Lorand/test01$Test01System",
+						"type": "giskard.me/mind.1$System"
+					}
+				},
+				"giskard.me/stream.1$unitHandler": {
+					"data": {
+						"id": "Lorand/test01$ThinUnitHandler",
+						"type": "giskard.me/mind.1$Message"
+					}
+				}
+			}
+		},
+		{
 			"id": "Lorand/test01$AppRef",
 			"type": "giskard.me/mind.1$Reference",
 			"relationships": {
@@ -950,6 +1063,10 @@
 				"giskard.me/dust.1$supportedPlatforms": {
 					"data": [
 						{
+							"id": "giskard.me/dust.1$Android24",
+							"type": "giskard.me/dust.1$Platform"
+						},
+						{
 							"id": "giskard.me/dust.1$Java17",
 							"type": "giskard.me/dust.1$Platform"
 						}
@@ -1046,6 +1163,12 @@
 						"type": "giskard.me/mind.1$Message"
 					}
 				},
+				"giskard.me/dust.1$platform": {
+					"data": {
+						"id": "giskard.me/dust.1$Java17",
+						"type": "giskard.me/dust.1$Platform"
+					}
+				},
 				"giskard.me/misc.1$init": {
 					"data": [
 						{
@@ -1140,6 +1263,12 @@
 					"data": {
 						"id": "Lorand/test01$MachineAPI",
 						"type": "giskard.me/mind.1$Message"
+					}
+				},
+				"giskard.me/dust.1$platform": {
+					"data": {
+						"id": "giskard.me/dust.1$Java17",
+						"type": "giskard.me/dust.1$Platform"
 					}
 				},
 				"giskard.me/misc.1$init": {
@@ -1247,6 +1376,12 @@
 					"data": {
 						"id": "Lorand/test01$MachineAPI",
 						"type": "giskard.me/mind.1$Message"
+					}
+				},
+				"giskard.me/dust.1$platform": {
+					"data": {
+						"id": "giskard.me/dust.1$Java17",
+						"type": "giskard.me/dust.1$Platform"
 					}
 				},
 				"giskard.me/misc.1$init": {
@@ -1722,7 +1857,7 @@
 		}
 	],
 	"meta": {
-		"count": 74,
+		"count": 75,
 		"unitInfo": {
 			"id": "Lorand/test01",
 			"type": "giskard.me/mind.1$Unit",

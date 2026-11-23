@@ -2,11 +2,12 @@ package me.giskard.dust.api;
 
 import java.lang.reflect.Constructor;
 
+import gen.boot.DustGenBootConsts;
 //import me.giskard.dust.core.machine.DustMachineBoot;
 import me.giskard.dust.core.utils.DustUtils;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class Dust implements DustConsts {
+public class Dust implements DustConsts, DustGenBootConsts {
 
 	private static DustMachine MACHINE;
 
@@ -30,17 +31,16 @@ public class Dust implements DustConsts {
 
 	public static void main(String[] args) throws Exception {
 		String appId = DustUtils.optGet(args, 0, "");
-//		String appUnitPath = DustUtils.optGet(args, 1, "");
+		String platform = DustUtils.optGet(args, 1, TOKEN_DUST_IDEA_JAVA17);
 
-//		start(appId, appUnitPath);
-		start(appId);
+		start(appId, platform);
 	}
 
-	public static DustHandle start(String appId) throws Exception {
+	public static DustHandle start(String appId, String platform) throws Exception {
 		long start = System.currentTimeMillis();
 
 		try {
-			DustMachine.Provider mp = createInstance(Class.forName(DUST_BOOT_SYS_CLASS));
+			DustMachine.Provider mp = createInstance(Class.forName(DUST_BOOT_SYS_CLASS), platform);
 			MACHINE = mp.getMachine();
 			MACHINE.init();
 

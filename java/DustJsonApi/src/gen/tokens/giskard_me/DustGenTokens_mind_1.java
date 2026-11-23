@@ -1,6 +1,6 @@
 package gen.tokens.giskard_me;
 
-// Generation timestamp 20261118T145147Z
+// Generation timestamp 20261123T093335Z
 
 public interface DustGenTokens_mind_1 {
 // Aspects
@@ -28,6 +28,7 @@ public interface DustGenTokens_mind_1 {
 	String TOKEN_MIND_ATT_DIFF_B = "giskard.me/mind.1$diffB";
 	String TOKEN_MIND_ATT_DIFF_B_KEY = "giskard.me/mind.1$diffBKey";
 	String TOKEN_MIND_ATT_DIFF_B_VAL = "giskard.me/mind.1$diffBVal";
+	String TOKEN_MIND_ATT_EXTENDS = "giskard.me/mind.1$extends";
 	String TOKEN_MIND_ATT_ID = "giskard.me/mind.1$id";
 	String TOKEN_MIND_ATT_KNOWNUNITS = "giskard.me/mind.1$knownUnits";
 	String TOKEN_MIND_ATT_LISTENERS = "giskard.me/mind.1$listeners";

@@ -5,74 +5,11 @@ import me.giskard.dust.api.DustHandle;
 import me.giskard.dust.api.DustConsts;
 import me.giskard.dust.api.DustException;
 
-// Generation timestamp 20261119T134344Z
+// Generation timestamp 20261123T110901Z
 
 public class DustGenBootApp implements DustConsts {
-	public DustGenBootApp (String appId) {
+	public DustGenBootApp(String appId) {
 		switch(appId) {
-		case "Lorand/test01$TestServer" : {
-
-// Attributes
-			DustHandle att_handle_giskard_me_dust___binaryResolver = Dust.getHandle("giskard.me/dust.1$binaryResolver", DustHandle.PLACEHOLDER);
-			DustHandle att_handle_giskard_me_dust___ctxApp = Dust.getHandle("giskard.me/dust.1$ctxApp", DustHandle.PLACEHOLDER);
-			DustHandle att_handle_giskard_me_dust___node = Dust.getHandle("giskard.me/dust.1$node", DustHandle.PLACEHOLDER);
-			DustHandle att_handle_giskard_me_mind___listeners = Dust.getHandle("giskard.me/mind.1$listeners", DustHandle.PLACEHOLDER);
-			DustHandle att_handle_giskard_me_mind___narrative = Dust.getHandle("giskard.me/mind.1$narrative", DustHandle.PLACEHOLDER);
-			DustHandle att_handle_giskard_me_mind___next = Dust.getHandle("giskard.me/mind.1$next", DustHandle.PLACEHOLDER);
-			DustHandle att_handle_giskard_me_misc___path = Dust.getHandle("giskard.me/misc.1$path", DustHandle.PLACEHOLDER);
-			DustHandle att_handle_giskard_me_stream___backupFolder = Dust.getHandle("giskard.me/stream.1$backupFolder", DustHandle.PLACEHOLDER);
-			DustHandle att_handle_giskard_me_stream___streamSource = Dust.getHandle("giskard.me/stream.1$streamSource", DustHandle.PLACEHOLDER);
-			DustHandle att_handle_giskard_me_stream___unitHandler = Dust.getHandle("giskard.me/stream.1$unitHandler", DustHandle.PLACEHOLDER);
-
-// Ideas
-			DustHandle idea_handle_Lorand_test___LocalFiles = Dust.getHandle("Lorand/test01$LocalFiles", DustHandle.PLACEHOLDER);
-			DustHandle idea_handle_Lorand_test___ProcessUnitStream = Dust.getHandle("Lorand/test01$ProcessUnitStream", DustHandle.PLACEHOLDER);
-			DustHandle idea_handle_Lorand_test___ProvideStream = Dust.getHandle("Lorand/test01$ProvideStream", DustHandle.PLACEHOLDER);
-			DustHandle idea_handle_Lorand_test___StreamCentre = Dust.getHandle("Lorand/test01$StreamCentre", DustHandle.PLACEHOLDER);
-			DustHandle idea_handle_Lorand_test___StreamUnitProcessor = Dust.getHandle("Lorand/test01$StreamUnitProcessor", DustHandle.PLACEHOLDER);
-			DustHandle idea_handle_Lorand_test___UnitHandler = Dust.getHandle("Lorand/test01$UnitHandler", DustHandle.PLACEHOLDER);
-			DustHandle idea_handle_giskard_me_stream___FileStreamSource = Dust.getHandle("giskard.me/stream.1$FileStreamSource", DustHandle.PLACEHOLDER);
-			DustHandle idea_handle_giskard_me_stream___SerializeJsonApi = Dust.getHandle("giskard.me/stream.1$SerializeJsonApi", DustHandle.PLACEHOLDER);
-			DustHandle idea_handle_giskard_me_stream___StreamCentre = Dust.getHandle("giskard.me/stream.1$StreamCentre", DustHandle.PLACEHOLDER);
-
-// Graph
-
-		// Lorand/test01$LocalFiles [giskard.me/mind.1$Agent]
-			Dust.access(DustAccess.Set, idea_handle_giskard_me_stream___FileStreamSource, idea_handle_Lorand_test___LocalFiles, att_handle_giskard_me_mind___narrative);
-
-		// Lorand/test01$ProcessUnitStream [giskard.me/mind.1$Message]
-			Dust.access(DustAccess.Insert, idea_handle_Lorand_test___StreamUnitProcessor, idea_handle_Lorand_test___ProcessUnitStream, att_handle_giskard_me_mind___listeners, KEY_ADD);
-
-		// Lorand/test01$ProvideStream [giskard.me/mind.1$Message]
-			Dust.access(DustAccess.Insert, idea_handle_Lorand_test___LocalFiles, idea_handle_Lorand_test___ProvideStream, att_handle_giskard_me_mind___listeners, KEY_ADD);
-			Dust.access(DustAccess.Set, "localStore", idea_handle_Lorand_test___ProvideStream, att_handle_giskard_me_misc___path);
-			Dust.access(DustAccess.Set, "backup", idea_handle_Lorand_test___ProvideStream, att_handle_giskard_me_stream___backupFolder);
-
-		// Lorand/test01$StreamCentre [giskard.me/mind.1$Agent]
-			Dust.access(DustAccess.Set, idea_handle_giskard_me_stream___StreamCentre, idea_handle_Lorand_test___StreamCentre, att_handle_giskard_me_mind___narrative);
-
-		// Lorand/test01$StreamUnitProcessor [giskard.me/mind.1$Agent]
-			Dust.access(DustAccess.Set, idea_handle_giskard_me_stream___SerializeJsonApi, idea_handle_Lorand_test___StreamUnitProcessor, att_handle_giskard_me_mind___narrative);
-
-		// Lorand/test01$UnitHandler [giskard.me/mind.1$Message]
-			Dust.access(DustAccess.Insert, idea_handle_Lorand_test___StreamCentre, idea_handle_Lorand_test___UnitHandler, att_handle_giskard_me_mind___listeners, KEY_ADD);
-			Dust.access(DustAccess.Set, idea_handle_Lorand_test___ProcessUnitStream, idea_handle_Lorand_test___UnitHandler, att_handle_giskard_me_mind___next);
-			Dust.access(DustAccess.Set, idea_handle_Lorand_test___ProvideStream, idea_handle_Lorand_test___UnitHandler, att_handle_giskard_me_stream___streamSource);
-
-		// giskard.me/stream.1$FileStreamSource [giskard.me/mind.1$Narrative]
-			Dust.access(DustAccess.Set, "me.giskard.dust.core.stream.DustStreamSrcFileAgent", null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___binaryResolver, idea_handle_giskard_me_stream___FileStreamSource);
-
-		// giskard.me/stream.1$SerializeJsonApi [giskard.me/mind.1$Narrative]
-			Dust.access(DustAccess.Set, "me.giskard.dust.core.stream.DustStreamJsonApiSerializerAgent", null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___binaryResolver, idea_handle_giskard_me_stream___SerializeJsonApi);
-
-		// giskard.me/stream.1$StreamCentre [giskard.me/mind.1$Narrative]
-			Dust.access(DustAccess.Set, "me.giskard.dust.core.machine.DustMachineIOAgent", null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___binaryResolver, idea_handle_giskard_me_stream___StreamCentre);
-
-// Set unit handler
-			DustHandle hApp = Dust.getHandle(appId, DustHandle.PLACEHOLDER);
-			Dust.access(DustAccess.Set, hApp, null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___node);
-			Dust.access(DustAccess.Set, idea_handle_Lorand_test___UnitHandler, hApp, att_handle_giskard_me_stream___unitHandler);
-		} break;
 		case "Lorand/test01$ThinClient" : {
 
 // Attributes
@@ -169,6 +106,177 @@ public class DustGenBootApp implements DustConsts {
 
 		// giskard.me/stream.1$FileStreamSource [giskard.me/mind.1$Narrative]
 			Dust.access(DustAccess.Set, "me.giskard.dust.core.stream.DustStreamSrcFileAgent", null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___binaryResolver, idea_handle_giskard_me_stream___FileStreamSource);
+
+		// giskard.me/stream.1$SerializeJsonApi [giskard.me/mind.1$Narrative]
+			Dust.access(DustAccess.Set, "me.giskard.dust.core.stream.DustStreamJsonApiSerializerAgent", null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___binaryResolver, idea_handle_giskard_me_stream___SerializeJsonApi);
+
+		// giskard.me/stream.1$StreamCentre [giskard.me/mind.1$Narrative]
+			Dust.access(DustAccess.Set, "me.giskard.dust.core.machine.DustMachineIOAgent", null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___binaryResolver, idea_handle_giskard_me_stream___StreamCentre);
+
+// Set unit handler
+			DustHandle hApp = Dust.getHandle(appId, DustHandle.PLACEHOLDER);
+			Dust.access(DustAccess.Set, hApp, null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___node);
+			Dust.access(DustAccess.Set, idea_handle_Lorand_test___ThinUnitHandler, hApp, att_handle_giskard_me_stream___unitHandler);
+		} break;
+		case "Lorand/test01$TestServer" : {
+
+// Attributes
+			DustHandle att_handle_giskard_me_dust___binaryResolver = Dust.getHandle("giskard.me/dust.1$binaryResolver", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_dust___ctxApp = Dust.getHandle("giskard.me/dust.1$ctxApp", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_dust___node = Dust.getHandle("giskard.me/dust.1$node", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_mind___listeners = Dust.getHandle("giskard.me/mind.1$listeners", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_mind___narrative = Dust.getHandle("giskard.me/mind.1$narrative", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_mind___next = Dust.getHandle("giskard.me/mind.1$next", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_misc___path = Dust.getHandle("giskard.me/misc.1$path", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_stream___backupFolder = Dust.getHandle("giskard.me/stream.1$backupFolder", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_stream___streamSource = Dust.getHandle("giskard.me/stream.1$streamSource", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_stream___unitHandler = Dust.getHandle("giskard.me/stream.1$unitHandler", DustHandle.PLACEHOLDER);
+
+// Ideas
+			DustHandle idea_handle_Lorand_test___LocalFiles = Dust.getHandle("Lorand/test01$LocalFiles", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_Lorand_test___ProcessUnitStream = Dust.getHandle("Lorand/test01$ProcessUnitStream", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_Lorand_test___ProvideStream = Dust.getHandle("Lorand/test01$ProvideStream", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_Lorand_test___StreamCentre = Dust.getHandle("Lorand/test01$StreamCentre", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_Lorand_test___StreamUnitProcessor = Dust.getHandle("Lorand/test01$StreamUnitProcessor", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_Lorand_test___UnitHandler = Dust.getHandle("Lorand/test01$UnitHandler", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_giskard_me_stream___FileStreamSource = Dust.getHandle("giskard.me/stream.1$FileStreamSource", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_giskard_me_stream___SerializeJsonApi = Dust.getHandle("giskard.me/stream.1$SerializeJsonApi", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_giskard_me_stream___StreamCentre = Dust.getHandle("giskard.me/stream.1$StreamCentre", DustHandle.PLACEHOLDER);
+
+// Graph
+
+		// Lorand/test01$LocalFiles [giskard.me/mind.1$Agent]
+			Dust.access(DustAccess.Set, idea_handle_giskard_me_stream___FileStreamSource, idea_handle_Lorand_test___LocalFiles, att_handle_giskard_me_mind___narrative);
+
+		// Lorand/test01$ProcessUnitStream [giskard.me/mind.1$Message]
+			Dust.access(DustAccess.Insert, idea_handle_Lorand_test___StreamUnitProcessor, idea_handle_Lorand_test___ProcessUnitStream, att_handle_giskard_me_mind___listeners, KEY_ADD);
+
+		// Lorand/test01$ProvideStream [giskard.me/mind.1$Message]
+			Dust.access(DustAccess.Insert, idea_handle_Lorand_test___LocalFiles, idea_handle_Lorand_test___ProvideStream, att_handle_giskard_me_mind___listeners, KEY_ADD);
+			Dust.access(DustAccess.Set, "localStore", idea_handle_Lorand_test___ProvideStream, att_handle_giskard_me_misc___path);
+			Dust.access(DustAccess.Set, "backup", idea_handle_Lorand_test___ProvideStream, att_handle_giskard_me_stream___backupFolder);
+
+		// Lorand/test01$StreamCentre [giskard.me/mind.1$Agent]
+			Dust.access(DustAccess.Set, idea_handle_giskard_me_stream___StreamCentre, idea_handle_Lorand_test___StreamCentre, att_handle_giskard_me_mind___narrative);
+
+		// Lorand/test01$StreamUnitProcessor [giskard.me/mind.1$Agent]
+			Dust.access(DustAccess.Set, idea_handle_giskard_me_stream___SerializeJsonApi, idea_handle_Lorand_test___StreamUnitProcessor, att_handle_giskard_me_mind___narrative);
+
+		// Lorand/test01$UnitHandler [giskard.me/mind.1$Message]
+			Dust.access(DustAccess.Insert, idea_handle_Lorand_test___StreamCentre, idea_handle_Lorand_test___UnitHandler, att_handle_giskard_me_mind___listeners, KEY_ADD);
+			Dust.access(DustAccess.Set, idea_handle_Lorand_test___ProcessUnitStream, idea_handle_Lorand_test___UnitHandler, att_handle_giskard_me_mind___next);
+			Dust.access(DustAccess.Set, idea_handle_Lorand_test___ProvideStream, idea_handle_Lorand_test___UnitHandler, att_handle_giskard_me_stream___streamSource);
+
+		// giskard.me/stream.1$FileStreamSource [giskard.me/mind.1$Narrative]
+			Dust.access(DustAccess.Set, "me.giskard.dust.core.stream.DustStreamSrcFileAgent", null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___binaryResolver, idea_handle_giskard_me_stream___FileStreamSource);
+
+		// giskard.me/stream.1$SerializeJsonApi [giskard.me/mind.1$Narrative]
+			Dust.access(DustAccess.Set, "me.giskard.dust.core.stream.DustStreamJsonApiSerializerAgent", null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___binaryResolver, idea_handle_giskard_me_stream___SerializeJsonApi);
+
+		// giskard.me/stream.1$StreamCentre [giskard.me/mind.1$Narrative]
+			Dust.access(DustAccess.Set, "me.giskard.dust.core.machine.DustMachineIOAgent", null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___binaryResolver, idea_handle_giskard_me_stream___StreamCentre);
+
+// Set unit handler
+			DustHandle hApp = Dust.getHandle(appId, DustHandle.PLACEHOLDER);
+			Dust.access(DustAccess.Set, hApp, null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___node);
+			Dust.access(DustAccess.Set, idea_handle_Lorand_test___UnitHandler, hApp, att_handle_giskard_me_stream___unitHandler);
+		} break;
+		case "Lorand/test01$AndroidClient" : {
+
+// Attributes
+			DustHandle att_handle_giskard_me_dev___token = Dust.getHandle("giskard.me/dev.1$token", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_dust___binaryResolver = Dust.getHandle("giskard.me/dust.1$binaryResolver", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_dust___ctxApp = Dust.getHandle("giskard.me/dust.1$ctxApp", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_dust___node = Dust.getHandle("giskard.me/dust.1$node", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_mind___cmd = Dust.getHandle("giskard.me/mind.1$cmd", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_mind___listeners = Dust.getHandle("giskard.me/mind.1$listeners", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_mind___narrative = Dust.getHandle("giskard.me/mind.1$narrative", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_mind___next = Dust.getHandle("giskard.me/mind.1$next", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_misc___fallback = Dust.getHandle("giskard.me/misc.1$fallback", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_misc___name = Dust.getHandle("giskard.me/misc.1$name", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_misc___path = Dust.getHandle("giskard.me/misc.1$path", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_stream___backupFolder = Dust.getHandle("giskard.me/stream.1$backupFolder", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_stream___rootFolder = Dust.getHandle("giskard.me/stream.1$rootFolder", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_stream___streamSource = Dust.getHandle("giskard.me/stream.1$streamSource", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_stream___unitHandler = Dust.getHandle("giskard.me/stream.1$unitHandler", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_stream___url = Dust.getHandle("giskard.me/stream.1$url", DustHandle.PLACEHOLDER);
+
+// Ideas
+			DustHandle idea_handle_Lorand_test___BinaryUnitLoader = Dust.getHandle("Lorand/test01$BinaryUnitLoader", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_Lorand_test___DownloadUnit = Dust.getHandle("Lorand/test01$DownloadUnit", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_Lorand_test___ExtractUnit = Dust.getHandle("Lorand/test01$ExtractUnit", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_Lorand_test___LocalFiles = Dust.getHandle("Lorand/test01$LocalFiles", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_Lorand_test___MachineSyncUnits = Dust.getHandle("Lorand/test01$MachineSyncUnits", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_Lorand_test___ProcessUnitStream = Dust.getHandle("Lorand/test01$ProcessUnitStream", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_Lorand_test___RemoteUnitLoader = Dust.getHandle("Lorand/test01$RemoteUnitLoader", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_Lorand_test___StreamCentre = Dust.getHandle("Lorand/test01$StreamCentre", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_Lorand_test___StreamUnitProcessor = Dust.getHandle("Lorand/test01$StreamUnitProcessor", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_Lorand_test___ThinProvideStream = Dust.getHandle("Lorand/test01$ThinProvideStream", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_Lorand_test___ThinUnitHandler = Dust.getHandle("Lorand/test01$ThinUnitHandler", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_giskard_me_dust___CmdSyncUnits = Dust.getHandle("giskard.me/dust.1$CmdSyncUnits", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_giskard_me_net___HttpClient = Dust.getHandle("giskard.me/net.1$HttpClient", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_giskard_me_stream___BinaryStreamSource = Dust.getHandle("giskard.me/stream.1$BinaryStreamSource", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_giskard_me_stream___FileStreamSource = Dust.getHandle("giskard.me/stream.1$FileStreamSource", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_giskard_me_stream___SerializeJsonApi = Dust.getHandle("giskard.me/stream.1$SerializeJsonApi", DustHandle.PLACEHOLDER);
+			DustHandle idea_handle_giskard_me_stream___StreamCentre = Dust.getHandle("giskard.me/stream.1$StreamCentre", DustHandle.PLACEHOLDER);
+
+// Graph
+
+		// Lorand/test01$BinaryUnitLoader [giskard.me/mind.1$Agent]
+			Dust.access(DustAccess.Set, idea_handle_giskard_me_stream___BinaryStreamSource, idea_handle_Lorand_test___BinaryUnitLoader, att_handle_giskard_me_mind___narrative);
+			Dust.access(DustAccess.Set, "res/unit", idea_handle_Lorand_test___BinaryUnitLoader, att_handle_giskard_me_stream___rootFolder);
+
+		// Lorand/test01$DownloadUnit [giskard.me/mind.1$Message]
+			Dust.access(DustAccess.Insert, idea_handle_Lorand_test___RemoteUnitLoader, idea_handle_Lorand_test___DownloadUnit, att_handle_giskard_me_mind___listeners, KEY_ADD);
+			Dust.access(DustAccess.Set, idea_handle_Lorand_test___MachineSyncUnits, idea_handle_Lorand_test___DownloadUnit, att_handle_giskard_me_mind___next);
+
+		// Lorand/test01$ExtractUnit [giskard.me/mind.1$Message]
+			Dust.access(DustAccess.Insert, idea_handle_Lorand_test___BinaryUnitLoader, idea_handle_Lorand_test___ExtractUnit, att_handle_giskard_me_mind___listeners, KEY_ADD);
+			Dust.access(DustAccess.Set, idea_handle_Lorand_test___MachineSyncUnits, idea_handle_Lorand_test___ExtractUnit, att_handle_giskard_me_mind___next);
+
+		// Lorand/test01$LocalFiles [giskard.me/mind.1$Agent]
+			Dust.access(DustAccess.Set, idea_handle_giskard_me_stream___FileStreamSource, idea_handle_Lorand_test___LocalFiles, att_handle_giskard_me_mind___narrative);
+
+		// Lorand/test01$MachineSyncUnits [giskard.me/mind.1$Message]
+			Dust.access(DustAccess.Set, idea_handle_giskard_me_dust___CmdSyncUnits, idea_handle_Lorand_test___MachineSyncUnits, att_handle_giskard_me_mind___cmd);
+
+		// Lorand/test01$ProcessUnitStream [giskard.me/mind.1$Message]
+			Dust.access(DustAccess.Insert, idea_handle_Lorand_test___StreamUnitProcessor, idea_handle_Lorand_test___ProcessUnitStream, att_handle_giskard_me_mind___listeners, KEY_ADD);
+
+		// Lorand/test01$RemoteUnitLoader [giskard.me/mind.1$Agent]
+			Dust.access(DustAccess.Set, idea_handle_giskard_me_net___HttpClient, idea_handle_Lorand_test___RemoteUnitLoader, att_handle_giskard_me_mind___narrative);
+			Dust.access(DustAccess.Set, "http://localhost:8080/data/unit", idea_handle_Lorand_test___RemoteUnitLoader, att_handle_giskard_me_stream___url);
+
+		// Lorand/test01$StreamCentre [giskard.me/mind.1$Agent]
+			Dust.access(DustAccess.Set, idea_handle_giskard_me_stream___StreamCentre, idea_handle_Lorand_test___StreamCentre, att_handle_giskard_me_mind___narrative);
+
+		// Lorand/test01$StreamUnitProcessor [giskard.me/mind.1$Agent]
+			Dust.access(DustAccess.Set, idea_handle_giskard_me_stream___SerializeJsonApi, idea_handle_Lorand_test___StreamUnitProcessor, att_handle_giskard_me_mind___narrative);
+
+		// Lorand/test01$ThinProvideStream [giskard.me/mind.1$Message]
+			Dust.access(DustAccess.Insert, idea_handle_Lorand_test___LocalFiles, idea_handle_Lorand_test___ThinProvideStream, att_handle_giskard_me_mind___listeners, KEY_ADD);
+			Dust.access(DustAccess.Insert, idea_handle_Lorand_test___ExtractUnit, idea_handle_Lorand_test___ThinProvideStream, att_handle_giskard_me_misc___fallback, KEY_ADD);
+			Dust.access(DustAccess.Insert, idea_handle_Lorand_test___DownloadUnit, idea_handle_Lorand_test___ThinProvideStream, att_handle_giskard_me_misc___fallback, KEY_ADD);
+			Dust.access(DustAccess.Set, "cache", idea_handle_Lorand_test___ThinProvideStream, att_handle_giskard_me_misc___path);
+			Dust.access(DustAccess.Set, "backup", idea_handle_Lorand_test___ThinProvideStream, att_handle_giskard_me_stream___backupFolder);
+
+		// Lorand/test01$ThinUnitHandler [giskard.me/mind.1$Message]
+			Dust.access(DustAccess.Insert, idea_handle_Lorand_test___StreamCentre, idea_handle_Lorand_test___ThinUnitHandler, att_handle_giskard_me_mind___listeners, KEY_ADD);
+			Dust.access(DustAccess.Set, idea_handle_Lorand_test___ProcessUnitStream, idea_handle_Lorand_test___ThinUnitHandler, att_handle_giskard_me_mind___next);
+			Dust.access(DustAccess.Set, idea_handle_Lorand_test___ThinProvideStream, idea_handle_Lorand_test___ThinUnitHandler, att_handle_giskard_me_stream___streamSource);
+
+		// giskard.me/dust.1$CmdSyncUnits [giskard.me/mind.1$Tag]
+			Dust.access(DustAccess.Set, "TOKEN_MISC_CMD_SYNCUNITS", idea_handle_giskard_me_dust___CmdSyncUnits, att_handle_giskard_me_dev___token);
+			Dust.access(DustAccess.Set, "TOKEN_MISC_CMD_SYNCUNITS", idea_handle_giskard_me_dust___CmdSyncUnits, att_handle_giskard_me_misc___name);
+
+		// giskard.me/net.1$HttpClient [giskard.me/mind.1$Narrative]
+			Dust.access(DustAccess.Set, "me.giskard.dust.core.net.DustNetHttpClientAgent", null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___binaryResolver, idea_handle_giskard_me_net___HttpClient);
+
+		// giskard.me/stream.1$BinaryStreamSource [giskard.me/mind.1$Narrative]
+			Dust.access(DustAccess.Set, "me.giskard.dust.core.stream.DustStreamSrcBinaryAgent", null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___binaryResolver, idea_handle_giskard_me_stream___BinaryStreamSource);
+
+		// giskard.me/stream.1$FileStreamSource [giskard.me/mind.1$Narrative]
+			Dust.access(DustAccess.Set, "me.giskard.dust.mod.android.stream.DustStreamSrcFileAgent", null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___binaryResolver, idea_handle_giskard_me_stream___FileStreamSource);
 
 		// giskard.me/stream.1$SerializeJsonApi [giskard.me/mind.1$Narrative]
 			Dust.access(DustAccess.Set, "me.giskard.dust.core.stream.DustStreamJsonApiSerializerAgent", null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___binaryResolver, idea_handle_giskard_me_stream___SerializeJsonApi);

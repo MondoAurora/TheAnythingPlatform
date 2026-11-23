@@ -157,7 +157,7 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 				Map<String, DustHandle> ideas = new TreeMap<String, DustHandle>();
 				Map<String, DustHandle> atts = new TreeMap<String, DustHandle>();
 				Map<DustHandle, String> all = new HashMap<DustHandle, String>();
-				Map<DustHandle, String> impl = new HashMap<DustHandle, String>();
+				Map<DustHandle, DustHandle> impl = new HashMap<DustHandle, DustHandle>();
 
 				String kCtxApp = addToken(Dust.getHandle(TOKEN_DUST_ATT_CTX_APP), "att_", atts, all);
 				String kBinRes = addToken(Dust.getHandle(TOKEN_DUST_ATT_BINARY_RESOLVER), "att_", atts, all);
@@ -167,13 +167,37 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 				Collection<DustHandle> modules = Dust.access(DustAccess.Get, Collections.EMPTY_LIST, hNode,
 						TOKEN_MISC_ATT_PARENT, TOKEN_DUST_ATT_MODULES);
 
+				DustHandle nodePlatform = Dust.access(DustAccess.Get, null, hNode, TOKEN_DUST_ATT_PLATFORM);
+
 				for (DustHandle mod : modules) {
 					DustHandle mu = mod.getUnit();
 					for (DustHandle h : DustMachineUtils.getUnitMembers(mu)) {
 						if (TOKEN_DUST_ASP_IMPLEMENTATION.equals(h.getType().getId())) {
 							DustHandle target = Dust.access(DustAccess.Get, null, h, TOKEN_MISC_ATT_TARGET);
+							DustHandle implPlatform = Dust.access(DustAccess.Get, null, h, TOKEN_DUST_ATT_PLATFORM);
+							
 							String key = Dust.access(DustAccess.Get, null, h, TOKEN_MISC_ATT_KEY);
-							impl.put(target, key);
+							if ( key.contains("android")) {
+								impl.get(target); // TODO remove
+							}
+
+							if (nodePlatform == implPlatform) {
+								impl.put(target, h);
+							} else {
+								DustHandle currImpl = impl.get(target);
+								
+								DustHandle knownImplPlatform = (null == currImpl) ? null : Dust.access(DustAccess.Get, null, currImpl, TOKEN_DUST_ATT_PLATFORM);
+
+								if (nodePlatform != knownImplPlatform) {
+									boolean compat = Dust.access(DustAccess.Check, implPlatform, nodePlatform, TOKEN_MIND_ATT_EXTENDS);
+									if (compat) {
+										impl.put(target, h);
+									} else {
+										impl.get(target); // TODO remove
+									}
+								}
+							}
+
 						}
 					}
 				}
@@ -185,15 +209,15 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 
 				Set<String> lines = new TreeSet<String>();
 				ArrayList<String> actions = new ArrayList<String>();
-				
+
 				ps.println(DustUtils.sbAppend(null, "", false, "\t\tcase \"", hNode.getId(), "\" : {").toString());
 
 				for (DustHandle hToken : ideas.values()) {
 					actions.add("\n\t\t// " + hToken);
 
 					if (TOKEN_MIND_ASP_NARRATIVE.equals(hToken.getType().getId())) {
-//						String cn = "\"" + Dust.getClassName(hToken.getId()) + "\"";
-						String cn = "\"" + impl.get(hToken) + "\"";
+						String key = Dust.access(DustAccess.Get, null, impl.get(hToken), TOKEN_MISC_ATT_KEY);
+						String cn = "\"" + key + "\"";
 						actions.add(DustUtils.sbAppend(null, ", ", false, "\t\t\tDust.access(DustAccess.Set", cn, "null", kCtxApp,
 								kBinRes, all.get(hToken)).toString() + ");");
 					}
@@ -401,7 +425,7 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 			ps.println(" implements DustConsts {");
 			ps.print("\tpublic ");
 			ps.print(cName);
-			ps.print(" (String appId)");
+			ps.print("(String appId)");
 
 			break;
 		default:

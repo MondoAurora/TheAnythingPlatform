@@ -41,7 +41,7 @@ public class DustMachineBoot implements DustGenBootConsts, DustUtilsConsts, Dust
 
 	private static DustUtilsFactory<String, DustMachineHandle> HANDLE_MAP = new DustUtilsFactory<String, DustMachineHandle>(handleCreator, true);
 
-	public DustMachineBoot() throws Exception {
+	public DustMachineBoot(String platform) throws Exception {
 		Set set;
 		ArrayList arr;
 
@@ -58,7 +58,7 @@ public class DustMachineBoot implements DustGenBootConsts, DustUtilsConsts, Dust
 		iMACHINE.content.put(hUnitHandles, new TreeMap());
 		iMACHINE.content.put(HANDLE_MAP.get(TOKEN_DUST_ATT_UNIT_OBJECTS), new HashMap());
 
-		iMACHINE.content.put(HANDLE_MAP.get(TOKEN_DUST_ATT_PLATFORM), HANDLE_MAP.get(TOKEN_DUST_IDEA_JAVA17));
+		iMACHINE.content.put(HANDLE_MAP.get(TOKEN_DUST_ATT_PLATFORM), HANDLE_MAP.get(platform));
 
 		DustMachineHandle hThread = getMachineHandle(TOKEN_DUST_ASP_THREAD);
 		set = new TreeSet();

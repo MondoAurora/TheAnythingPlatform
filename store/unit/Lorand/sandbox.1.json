@@ -218,6 +218,10 @@
 						{
 							"id": "Lorand/test01$TestServer",
 							"type": "giskard.me/mind.1$Node"
+						},
+						{
+							"id": "Lorand/test01$AndroidClient",
+							"type": "giskard.me/mind.1$Node"
 						}
 					]
 				}

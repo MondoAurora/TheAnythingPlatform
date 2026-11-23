@@ -3,7 +3,7 @@ package gen.boot;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustHandle;
 
-// Generation timestamp 20261119T134344Z
+// Generation timestamp 20261123T110901Z
 
 public interface DustGenBootConsts {
 
@@ -28,6 +28,7 @@ public interface DustGenBootConsts {
 	String TOKEN_DUST_ATT_UNIT_HANDLES = "giskard.me/dust.1$unitHandles";
 	String TOKEN_DUST_ATT_UNIT_OBJECTS = "giskard.me/dust.1$unitObjects";
 
+	String TOKEN_DUST_IDEA_ANDROID24 = "giskard.me/dust.1$Android24";
 	String TOKEN_DUST_IDEA_JAVA17 = "giskard.me/dust.1$Java17";
 
 	String TOKEN_MIND_ASP_AGENT = "giskard.me/mind.1$Agent";
