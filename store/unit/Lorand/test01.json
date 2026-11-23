@@ -230,6 +230,14 @@
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
+							"id": "giskard.me/dustImpl.1$GuiRendererImplAndroid24",
+							"type": "giskard.me/dust.1$Implementation"
+						},
+						{
+							"id": "giskard.me/gui.1$GuiRenderer",
+							"type": "giskard.me/mind.1$Narrative"
+						},
+						{
 							"id": "giskard.me/net.1$HttpClient",
 							"type": "giskard.me/mind.1$Narrative"
 						},

@@ -10,6 +10,7 @@ import me.giskard.dust.api.DustHandle;
 import me.giskard.dust.core.stream.DustStreamConsts;
 import me.giskard.dust.core.utils.DustUtils;
 import me.giskard.dust.core.utils.DustUtilsFile;
+import me.giskard.dust.mod.android.TAPAndroidUtils;
 
 public class DustStreamSrcFileAgent extends DustAgent implements DustStreamConsts {
 
@@ -132,7 +133,8 @@ public class DustStreamSrcFileAgent extends DustAgent implements DustStreamConst
 	}
 
 	protected File getRootFolder(String root) {
-		File r = DustUtils.isEmpty(root) ? null : new File(root);
+		File appRoot = TAPAndroidUtils.getAppCtx().getFilesDir();
+		File r = DustUtils.isEmpty(root) ? appRoot : new File(appRoot, root);
 		return r;
 	}
 }

@@ -76,6 +76,27 @@
 			}
 		},
 		{
+			"id": "giskard.me/dustImpl.1$GuiRendererImplAndroid24",
+			"type": "giskard.me/dust.1$Implementation",
+			"attributes": {
+				"giskard.me/misc.1$key": "me.giskard.dust.mod.android.gui.DustGuiAndroidRendererAgent"
+			},
+			"relationships": {
+				"giskard.me/dust.1$platform": {
+					"data": {
+						"id": "giskard.me/dust.1$Android24",
+						"type": "giskard.me/dust.1$Platform"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/gui.1$GuiRenderer",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
 			"id": "giskard.me/dustImpl.1$HttpClientImplJava17",
 			"type": "giskard.me/dust.1$Implementation",
 			"attributes": {
@@ -463,6 +484,27 @@
 			}
 		},
 		{
+			"id": "giskard.me/dustImpl.1$StreamBinarySourceImplAndroid24",
+			"type": "giskard.me/dust.1$Implementation",
+			"attributes": {
+				"giskard.me/misc.1$key": "me.giskard.dust.mod.android.stream.DustStreamSrcBinaryAgent"
+			},
+			"relationships": {
+				"giskard.me/dust.1$platform": {
+					"data": {
+						"id": "giskard.me/dust.1$Android24",
+						"type": "giskard.me/dust.1$Platform"
+					}
+				},
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/stream.1$BinaryStreamSource",
+						"type": "giskard.me/mind.1$Narrative"
+					}
+				}
+			}
+		},
+		{
 			"id": "giskard.me/dustImpl.1$StreamBinarySourceImplJava17",
 			"type": "giskard.me/dust.1$Implementation",
 			"attributes": {
@@ -569,7 +611,7 @@
 		}
 	],
 	"meta": {
-		"count": 17,
+		"count": 19,
 		"unitInfo": {
 			"id": "giskard.me/dustImpl.1",
 			"type": "giskard.me/mind.1$Unit",
