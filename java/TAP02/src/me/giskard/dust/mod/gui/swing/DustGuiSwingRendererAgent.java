@@ -53,34 +53,37 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 
 	DustUtilsFactory<DustHandle, Set<DustHandle>> listeners = new DustUtilsFactory(SORTEDSET_CREATOR, true);
 
+	boolean inUpdate = false;
+
+	@Override
+	public void process() throws Exception {
+		DustHandle cmd = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_CMD);
+		DustHandle hComp = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_TARGET);
+
+		if (HANDLE_MISC_TAG_CMD_REFRESH.equals(cmd)) {
+			refreshGuiComp(hComp);
+		} else {
+			Dust.log(HANDLE_MISC_TAG_LEVEL_INFO, getClass().getName(), "called with", cmd);
+		}
+	}
+
 	@Override
 	public void init() throws Exception {
 		Dust.manageThread(DustThreadAction.SetAnchor, anchor);
 	}
 
-	@Override
-	public void process() throws Exception {
-		DustHandle cmd = Dust.access(DustAccess.Peek, null, null, HANDLE_MIND_ATT_CMD);
-//		DustHandle h;
-		DustHandle hRoot = Dust.access(DustAccess.Peek, null, null, HANDLE_MISC_ATT_TARGET);
+	public void refreshGuiComp(DustHandle hComp) {
+		DustHandle type = hComp.getType();
 
-		if (HANDLE_MISC_TAG_CMD_REFRESH.equals(cmd)) {
+		if (HANDLE_GUI_ASP_WINDOW.equals(type)) {
+			JFrame frm = getWrapped(hComp);
 
-			DustHandle type = hRoot.getType();
+			String title = Dust.access(DustAccess.Peek, null, hComp, HANDLE_DEV_ATT_DEVTEXT);
+			frm.setTitle(title);
 
-			if (HANDLE_GUI_ASP_WINDOW.equals(type)) {
-				JFrame frm = getWrapped(hRoot);
+			Container cp = frm.getContentPane();
 
-				String title = Dust.access(DustAccess.Peek, null, hRoot, HANDLE_DEV_ATT_DEVTEXT);
-				frm.setTitle(title);
-
-				Container cp = frm.getContentPane();
-
-				layoutContainer(hRoot, cp);
-			}
-
-		} else {
-			Dust.log(HANDLE_MISC_TAG_LEVEL_INFO, getClass().getName(), "called with", cmd);
+			layoutContainer(hComp, cp);
 		}
 	}
 
@@ -151,8 +154,6 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 		container.revalidate();
 		container.repaint();
 	}
-
-	boolean inUpdate = false;
 
 	ActionListener al = new ActionListener() {
 		@Override
@@ -249,40 +250,72 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 		Object ret = Dust.access(DustAccess.Peek, null, h, HANDLE_DUST_ATT_WRAPPEDOBJECT);
 
 		if (null == ret) {
-
 			DustHandle type = h.getType();
-			JScrollPane scp = null;
+
 			DustHandle hData = DustUtilsData.findRec(h, HANDLE_MISC_ATT_DATA, HANDLE_GUI_ATT_PARENT_CONTAINER);
 
 			if (null != hData) {
 				listeners.get(hData).add(h);
 			}
 
-			if (HANDLE_GUI_ASP_WINDOW.equals(type)) {
-				JFrame frm = new JFrame();
-				frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			ret = createWrapped(h, type, hData);
 
-				frm.setBounds(100, 100, 800, 400);
+			if (null != ret) {
+				Dust.access(DustAccess.Set, ret, h, HANDLE_DUST_ATT_WRAPPEDOBJECT);
+//				Dust.access(DustAccess.Set, h, DustContext.Agent, TOKEN_DUST_ATT_WRAPBACKREF, ret);
+				backRef.put(ret, h);
+			}
+		}
 
-				frm.setVisible(true);
+		return (RetType) ret;
+	}
 
-				ret = frm;
+	public <RetType> RetType getValue(DustHandle h, DustHandle hData) {
+		Object ret = Dust.access(DustAccess.Peek, null, h, HANDLE_DEV_ATT_DEVTEXT);
 
-			} else if (HANDLE_GUI_ASP_WIDGET_LABEL.equals(type)) {
+		if (null != hData) {
+			Object[] pp = DustUtilsData.optGetRefPath(h);
+			ret = (null == pp) ? hData.toString() : Dust.access(DustAccess.Peek, null, hData, pp);
+		}
+		return (RetType) ret;
+	}
+
+	// -- Swing spec functions
+
+	public Object createWrapped(DustHandle h, DustHandle type, DustHandle hData) {
+		Object ret = null;
+
+		if (HANDLE_GUI_ASP_WINDOW.equals(type)) {
+			JFrame frm = new JFrame();
+			frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+			frm.setBounds(100, 100, 800, 400);
+
+			frm.setVisible(true);
+
+			ret = frm;
+
+		} else if (HANDLE_GUI_ASP_CONTAINER.equals(type)) {
+			JPanel pnl = new JPanel(null);
+
+			layoutContainer(h, pnl);
+
+			ret = pnl;
+		} else if (HANDLE_GUI_ASP_CONTROL.equals(type)) {
+
+			DustHandle ctrlType = Dust.access(DustAccess.Peek, null, h, HANDLE_MIND_ATT_TAGS, HANDLE_GUI_TAG_CONTROL_TYPE);
+
+			JScrollPane scp = null;
+			JTextComponent tf = null;
+
+			if (HANDLE_GUI_TAG_LABEL.equals(ctrlType)) {
 
 				String txt = getValue(h, hData);
 
 				JLabel lbl = new JLabel(txt);
 				ret = lbl;
 
-			} else if (HANDLE_GUI_ASP_PANEL_CONTAINER.equals(type)) {
-				JPanel pnl = new JPanel(null);
-
-				layoutContainer(h, pnl);
-
-				ret = pnl;
-
-			} else if (HANDLE_GUI_ASP_WIDGET_BUTTON.equals(type)) {
+			} else if (HANDLE_GUI_TAG_BUTTON.equals(ctrlType)) {
 				String txt = Dust.access(DustAccess.Peek, null, h, HANDLE_DEV_ATT_DEVTEXT);
 
 				if (DustUtils.isEmpty(txt)) {
@@ -295,21 +328,19 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 
 				ret = btn;
 
-			} else if (HANDLE_GUI_ASP_EDIT_TEXT.equals(type)) {
-				DustHandle hMode = Dust.access(DustAccess.Peek, null, h, HANDLE_MIND_ATT_TAGS, HANDLE_GUI_TAG_TEXT_MODE);
+			} else if (HANDLE_GUI_TAG_TEXT_SINGLE_LINE.equals(ctrlType)) {
 
-				JTextComponent tf;
+				tf = new JTextField();
 
-				if (HANDLE_GUI_TAG_TEXT_MODE_MULTI_LINE == hMode) {
-					tf = new JTextArea();
-					scp = new JScrollPane();
-				} else if (HANDLE_GUI_TAG_TEXT_MODE_FORMATTED == hMode) {
-					tf = new JEditorPane();
-					scp = new JScrollPane();
-				} else {
-					tf = new JTextField();
-				}
+			} else if (HANDLE_GUI_TAG_TEXT_MULTI_LINE.equals(ctrlType)) {
+				tf = new JTextArea();
+				scp = new JScrollPane();
+			} else if (HANDLE_GUI_TAG_TEXT_FORMATTED.equals(ctrlType)) {
+				tf = new JEditorPane();
+				scp = new JScrollPane();
+			}
 
+			if (null != tf) {
 				hData = DustUtilsData.findRec(h, HANDLE_MISC_ATT_DATA, HANDLE_GUI_ATT_PARENT_CONTAINER);
 				if (null != hData) {
 					tf.setText(getValue(h, hData));
@@ -324,51 +355,48 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 					ret = scp;
 				} else {
 					tf.setPreferredSize(new Dimension(300, 20));
-
 					ret = tf;
 				}
-			} else if (HANDLE_MIND_ASP_MESSAGE.equals(type)) {
-				Dust.access(DustAccess.Commit, null, h);
-				ret = Dust.access(DustAccess.Peek, null, h, HANDLE_DUST_ATT_WRAPPEDOBJECT);
-			} else {
-				ret = new JLabel("No twin creation for type " + type);
 			}
-
-			if (null != ret) {
-				Dust.access(DustAccess.Set, ret, h, HANDLE_DUST_ATT_WRAPPEDOBJECT);
-//				Dust.access(DustAccess.Set, h, DustContext.Agent, TOKEN_DUST_ATT_WRAPBACKREF, ret);
-				backRef.put(ret, h);
-			}
+		} else if (HANDLE_MIND_ASP_MESSAGE.equals(type)) {
+			Dust.access(DustAccess.Commit, null, h);
+			ret = Dust.access(DustAccess.Peek, null, h, HANDLE_DUST_ATT_WRAPPEDOBJECT);
+		} else {
+			ret = new JLabel("No twin creation for type " + type);
 		}
-
-		return (RetType) ret;
+		
+		return ret;
 	}
 
-	public void updateValue(DustHandle h, DustHandle hData) {
+	public Object getCtrl(DustHandle h) {
 		Object ctrl = Dust.access(DustAccess.Peek, null, h, HANDLE_DUST_ATT_WRAPPEDOBJECT);
-		Object val = getValue(h, hData);
 
 		if (ctrl instanceof JScrollPane) {
 			ctrl = ((JScrollPane) ctrl).getViewport().getView();
 		}
 
-		DustHandle type = h.getType();
-
-		if (HANDLE_GUI_ASP_EDIT_TEXT.equals(type)) {
-			((JTextComponent) ctrl).setText((String) val);
-		} else if (HANDLE_GUI_ASP_WIDGET_LABEL.equals(type)) {
-			((JLabel) ctrl).setText((String) val);
-		}
+		return ctrl;
 	}
 
-	public <RetType> RetType getValue(DustHandle h, DustHandle hData) {
-		Object ret = Dust.access(DustAccess.Peek, null, h, HANDLE_DEV_ATT_DEVTEXT);
+	public void updateValue(DustHandle h, DustHandle hData) {
+		Object val = getValue(h, hData);
 
-		if (null != hData) {
-			Object[] pp = DustUtilsData.optGetRefPath(h);
-			ret = (null == pp) ? hData.toString() : Dust.access(DustAccess.Peek, null, hData, pp);
+		Object ctrl = getCtrl(h);
+
+		if (ctrl instanceof JTextComponent) {
+			((JTextComponent) ctrl).setText((String) val);
+		} else if (ctrl instanceof JLabel) {
+			((JLabel) ctrl).setText((String) val);
 		}
-		return (RetType) ret;
+
+//		DustHandle type = Dust.access(DustAccess.Peek, null, h, HANDLE_MIND_ATT_TAGS, HANDLE_GUI_TAG_CONTROL_TYPE);
+//
+////		DustHandle type = h.getType();
+//		if (HANDLE_GUI_ASP_EDIT_TEXT.equals(type)) {
+//			((JTextComponent) ctrl).setText((String) val);
+//		} else if (HANDLE_GUI_TAG_LABEL.equals(type)) {
+//			((JLabel) ctrl).setText((String) val);
+//		}
 	}
 
 }

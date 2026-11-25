@@ -1,24 +1,11 @@
 package gen.tokens.giskard_me;
 
-// Generation timestamp 20261118T145147Z
+// Generation timestamp 20261125T102603Z
 
 public interface DustGenTokens_gui_1 {
 // Aspects
-	String TOKEN_GUI_ASP_EDIT_COLL = "giskard.me/gui.1$EditColl";
-	String TOKEN_GUI_ASP_EDIT_HANDLE = "giskard.me/gui.1$EditHandle";
-	String TOKEN_GUI_ASP_EDIT_NUMBER = "giskard.me/gui.1$EditNumber";
-	String TOKEN_GUI_ASP_EDIT_OPTION = "giskard.me/gui.1$EditOption";
-	String TOKEN_GUI_ASP_EDIT_TEXT = "giskard.me/gui.1$EditText";
-	String TOKEN_GUI_ASP_PANEL_CALENDAR = "giskard.me/gui.1$PanelCalendar";
-	String TOKEN_GUI_ASP_PANEL_CONTAINER = "giskard.me/gui.1$PanelContainer";
-	String TOKEN_GUI_ASP_PANEL_IDEA_GRID = "giskard.me/gui.1$PanelIdeaGrid";
-	String TOKEN_GUI_ASP_PANEL_IDEA_PROPERTIES = "giskard.me/gui.1$PanelIdeaProperties";
-	String TOKEN_GUI_ASP_PANEL_MEDIA_PLAYER = "giskard.me/gui.1$PanelMediaPlayer";
-	String TOKEN_GUI_ASP_PANEL_SPLIT = "giskard.me/gui.1$PanelSplit";
-	String TOKEN_GUI_ASP_PANEL_TOOLBAR = "giskard.me/gui.1$PanelToolbar";
-	String TOKEN_GUI_ASP_WIDGET_BUTTON = "giskard.me/gui.1$WidgetButton";
-	String TOKEN_GUI_ASP_WIDGET_LABEL = "giskard.me/gui.1$WidgetLabel";
-	String TOKEN_GUI_ASP_WIDGET_PROGRESS = "giskard.me/gui.1$WidgetProgress";
+	String TOKEN_GUI_ASP_CONTAINER = "giskard.me/gui.1$Container";
+	String TOKEN_GUI_ASP_CONTROL = "giskard.me/gui.1$Control";
 	String TOKEN_GUI_ASP_WINDOW = "giskard.me/gui.1$Window";
 
 // Attributes
@@ -31,18 +18,29 @@ public interface DustGenTokens_gui_1 {
 	String TOKEN_GUI_TAG_AXISUNIT_PIXEL = "giskard.me/gui.1$AxisUnitPixel";
 	String TOKEN_GUI_TAG_AXIS_SCREEN_X = "giskard.me/gui.1$AxisScreenX";
 	String TOKEN_GUI_TAG_AXIS_SCREEN_Y = "giskard.me/gui.1$AxisScreenY";
-	String TOKEN_GUI_TAG_NUMBER_MODE = "giskard.me/gui.1$NumberMode";
-	String TOKEN_GUI_TAG_NUMBER_MODE_SLIDER = "giskard.me/gui.1$NumberModeSlider";
-	String TOKEN_GUI_TAG_NUMBER_MODE_SPINNER = "giskard.me/gui.1$NumberModeSpinner";
-	String TOKEN_GUI_TAG_NUMBER_MODE_TEXT = "giskard.me/gui.1$NumberModeText";
-	String TOKEN_GUI_TAG_OPTION_MODE = "giskard.me/gui.1$OptionMode";
-	String TOKEN_GUI_TAG_OPTION_MODE_COMBO = "giskard.me/gui.1$OptionModeCombo";
-	String TOKEN_GUI_TAG_OPTION_MODE_LIST = "giskard.me/gui.1$OptionModeList";
-	String TOKEN_GUI_TAG_OPTION_MODE_RADIO = "giskard.me/gui.1$OptionModeRadio";
-	String TOKEN_GUI_TAG_OPTION_MODE_SLIDER = "giskard.me/gui.1$OptionModeSlider";
-	String TOKEN_GUI_TAG_OPTION_MODE_TOGGLE = "giskard.me/gui.1$OptionModeToggle";
-	String TOKEN_GUI_TAG_TEXT_MODE = "giskard.me/gui.1$TextMode";
-	String TOKEN_GUI_TAG_TEXT_MODE_FORMATTED = "giskard.me/gui.1$TextModeFormatted";
-	String TOKEN_GUI_TAG_TEXT_MODE_MULTI_LINE = "giskard.me/gui.1$TextModeMultiLine";
-	String TOKEN_GUI_TAG_TEXT_MODE_SINGLE_LINE = "giskard.me/gui.1$TextModeSingleLine";
+	String TOKEN_GUI_TAG_BUTTON = "giskard.me/gui.1$Button";
+	String TOKEN_GUI_TAG_CARD = "giskard.me/gui.1$Card";
+	String TOKEN_GUI_TAG_COLLECTION = "giskard.me/gui.1$Collection";
+	String TOKEN_GUI_TAG_CONTAINER_TYPE = "giskard.me/gui.1$ContainerType";
+	String TOKEN_GUI_TAG_CONTROL_TYPE = "giskard.me/gui.1$ControlType";
+	String TOKEN_GUI_TAG_DIRECT = "giskard.me/gui.1$Direct";
+	String TOKEN_GUI_TAG_GRID = "giskard.me/gui.1$Grid";
+	String TOKEN_GUI_TAG_HANDLE = "giskard.me/gui.1$Handle";
+	String TOKEN_GUI_TAG_LABEL = "giskard.me/gui.1$Label";
+	String TOKEN_GUI_TAG_NUMBER_SLIDER = "giskard.me/gui.1$NumberSlider";
+	String TOKEN_GUI_TAG_NUMBER_SPINNER = "giskard.me/gui.1$NumberSpinner";
+	String TOKEN_GUI_TAG_NUMBER_TEXT = "giskard.me/gui.1$NumberText";
+	String TOKEN_GUI_TAG_OPTION_COMBO = "giskard.me/gui.1$OptionCombo";
+	String TOKEN_GUI_TAG_OPTION_LIST = "giskard.me/gui.1$OptionList";
+	String TOKEN_GUI_TAG_OPTION_RADIO = "giskard.me/gui.1$OptionRadio";
+	String TOKEN_GUI_TAG_OPTION_SLIDER = "giskard.me/gui.1$OptionSlider";
+	String TOKEN_GUI_TAG_OPTION_TOGGLE = "giskard.me/gui.1$OptionToggle";
+	String TOKEN_GUI_TAG_PROGRESS = "giskard.me/gui.1$Progress";
+	String TOKEN_GUI_TAG_PROPERTIES = "giskard.me/gui.1$Properties";
+	String TOKEN_GUI_TAG_SCROLL = "giskard.me/gui.1$Scroll";
+	String TOKEN_GUI_TAG_SPLIT = "giskard.me/gui.1$Split";
+	String TOKEN_GUI_TAG_TABLE = "giskard.me/gui.1$Table";
+	String TOKEN_GUI_TAG_TEXT_FORMATTED = "giskard.me/gui.1$TextModeFormatted";
+	String TOKEN_GUI_TAG_TEXT_MULTI_LINE = "giskard.me/gui.1$TextModeMultiLine";
+	String TOKEN_GUI_TAG_TEXT_SINGLE_LINE = "giskard.me/gui.1$TextModeSingleLine";
 }

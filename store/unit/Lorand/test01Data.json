@@ -5,7 +5,7 @@
 	"data": [
 		{
 			"id": "Lorand/test01Data$EditAtt01Text",
-			"type": "giskard.me/gui.1$EditText",
+			"type": "giskard.me/gui.1$Control",
 			"attributes": {
 				"giskard.me/misc.1$refPath": [
 					"Lorand/test01Data$TestAtt01TextSingle"
@@ -24,12 +24,22 @@
 		},
 		{
 			"id": "Lorand/test01Data$LabelAtt01",
-			"type": "giskard.me/gui.1$WidgetLabel",
+			"type": "giskard.me/gui.1$Control",
 			"attributes": {
 				"giskard.me/dev.1$devText": "Test Label in data unit ",
 				"giskard.me/misc.1$refPath": [
 					"Lorand/test01Data$TestAtt01TextSingle"
 				]
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$Label",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
@@ -45,7 +55,7 @@
 				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/test01Data$LabelAtt01",
-						"type": "giskard.me/gui.1$WidgetLabel"
+						"type": "giskard.me/gui.1$Control"
 					}
 				}
 			}
@@ -63,7 +73,7 @@
 				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/test01Data$EditAtt01Text",
-						"type": "giskard.me/gui.1$EditText"
+						"type": "giskard.me/gui.1$Control"
 					}
 				}
 			}
@@ -94,7 +104,7 @@
 		},
 		{
 			"id": "Lorand/test01Data$Test01PropPage01",
-			"type": "giskard.me/gui.1$PanelContainer",
+			"type": "giskard.me/gui.1$Container",
 			"relationships": {
 				"giskard.me/gui.1$layoutConfig": {
 					"data": [
@@ -117,14 +127,14 @@
 								"key": 0
 							},
 							"id": "Lorand/test01Data$LabelAtt01",
-							"type": "giskard.me/gui.1$WidgetLabel"
+							"type": "giskard.me/gui.1$Control"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
 							"id": "Lorand/test01Data$EditAtt01Text",
-							"type": "giskard.me/gui.1$EditText"
+							"type": "giskard.me/gui.1$Control"
 						}
 					]
 				}

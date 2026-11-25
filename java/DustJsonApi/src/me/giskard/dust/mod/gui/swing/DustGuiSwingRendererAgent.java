@@ -87,18 +87,18 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 			String tid = h.getType().getId();
 
 			switch (tid) {
-			case TOKEN_GUI_ASP_PANEL_TOOLBAR:
-				ret = pnl = new JPanel(new FlowLayout());
-				for (DustHandle hc : members) {
-					id = hc.getId();
-
-					btn = new JButton(id);
-					btn.setActionCommand(id);
-					btn.addActionListener(al);
-					pnl.add(btn);
-				}
-
-				break;
+//			case TOKEN_GUI_ASP_PANEL_TOOLBAR:
+//				ret = pnl = new JPanel(new FlowLayout());
+//				for (DustHandle hc : members) {
+//					id = hc.getId();
+//
+//					btn = new JButton(id);
+//					btn.setActionCommand(id);
+//					btn.addActionListener(al);
+//					pnl.add(btn);
+//				}
+//
+//				break;
 			case TOKEN_MIND_ASP_MESSAGE:
 
 				Dust.access(DustAccess.Set, TOKEN_MISC_TAG_CMD_PING, h, TOKEN_MIND_ATT_CMD);
@@ -107,17 +107,17 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 				ret = Dust.access(DustAccess.Peek, null, h, TOKEN_DUST_ATT_WRAPPEDOBJECT);
 
 				break;
-			case TOKEN_GUI_ASP_WIDGET_BUTTON:
-				hCmd = Dust.access(DustAccess.Peek, null, h, TOKEN_MISC_ATT_TARGET, TOKEN_MIND_ATT_CMD);
-				id = hCmd.getId();
-
-				ret = btn = new JButton(id);
-				btn.setActionCommand(id);
-				btn.addActionListener(al);
-
-//				btn.putClientProperty(DUST_SWING_HANDLE, h);
-				break;
-			case TOKEN_GUI_ASP_PANEL_CONTAINER:
+//			case TOKEN_GUI_ASP_WIDGET_BUTTON:
+//				hCmd = Dust.access(DustAccess.Peek, null, h, TOKEN_MISC_ATT_TARGET, TOKEN_MIND_ATT_CMD);
+//				id = hCmd.getId();
+//
+//				ret = btn = new JButton(id);
+//				btn.setActionCommand(id);
+//				btn.addActionListener(al);
+//
+////				btn.putClientProperty(DUST_SWING_HANDLE, h);
+//				break;
+			case TOKEN_GUI_ASP_CONTAINER:
 
 				LayoutManager lm = new GridLayout(0, 1);
 

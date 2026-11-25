@@ -20,7 +20,7 @@
 				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/test01$Test01MainContainer",
-						"type": "giskard.me/gui.1$PanelContainer"
+						"type": "giskard.me/gui.1$Container"
 					}
 				}
 			}
@@ -38,7 +38,7 @@
 				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/test01$Test01TopToolbar",
-						"type": "giskard.me/gui.1$PanelContainer"
+						"type": "giskard.me/gui.1$Container"
 					}
 				}
 			}
@@ -84,13 +84,13 @@
 				"giskard.me/misc.1$source": {
 					"data": {
 						"id": "TAP/graphConsole.1$MainPanel",
-						"type": "giskard.me/gui.1$PanelContainer"
+						"type": "giskard.me/gui.1$Container"
 					}
 				},
 				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/test01$Test01MainContainer",
-						"type": "giskard.me/gui.1$PanelContainer"
+						"type": "giskard.me/gui.1$Container"
 					}
 				}
 			}
@@ -124,13 +124,13 @@
 				"giskard.me/misc.1$source": {
 					"data": {
 						"id": "Lorand/test01$MediaPlayerContainer",
-						"type": "giskard.me/gui.1$PanelContainer"
+						"type": "giskard.me/gui.1$Container"
 					}
 				},
 				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/test01$Test01MainContainer",
-						"type": "giskard.me/gui.1$PanelContainer"
+						"type": "giskard.me/gui.1$Container"
 					}
 				}
 			}
@@ -164,13 +164,13 @@
 				"giskard.me/misc.1$source": {
 					"data": {
 						"id": "Lorand/test01Data$Test01PropPage01",
-						"type": "giskard.me/gui.1$PanelContainer"
+						"type": "giskard.me/gui.1$Container"
 					}
 				},
 				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/test01$Test01MainContainer",
-						"type": "giskard.me/gui.1$PanelContainer"
+						"type": "giskard.me/gui.1$Container"
 					}
 				}
 			}
@@ -391,11 +391,19 @@
 		},
 		{
 			"id": "Lorand/test01$BtnConsole",
-			"type": "giskard.me/gui.1$WidgetButton",
+			"type": "giskard.me/gui.1$Control",
 			"attributes": {
 				"giskard.me/dev.1$devText": "Graph Console"
 			},
 			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/gui.1$Button",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				},
 				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/test01$ActivateGraphConsole",
@@ -406,11 +414,19 @@
 		},
 		{
 			"id": "Lorand/test01$BtnMediaPlayer",
-			"type": "giskard.me/gui.1$WidgetButton",
+			"type": "giskard.me/gui.1$Control",
 			"attributes": {
 				"giskard.me/dev.1$devText": "Media Player"
 			},
 			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/gui.1$Button",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				},
 				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/test01$ActivateMediaPlayer",
@@ -421,11 +437,19 @@
 		},
 		{
 			"id": "Lorand/test01$BtnPropEditor",
-			"type": "giskard.me/gui.1$WidgetButton",
+			"type": "giskard.me/gui.1$Control",
 			"attributes": {
 				"giskard.me/dev.1$devText": "Property Editor"
 			},
 			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/gui.1$Button",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				},
 				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/test01$ActivatePropertyEditor",
@@ -703,7 +727,7 @@
 		},
 		{
 			"id": "Lorand/test01$MediaPlayerContainer",
-			"type": "giskard.me/gui.1$PanelContainer",
+			"type": "giskard.me/gui.1$Container",
 			"relationships": {
 				"giskard.me/gui.1$layoutConfig": {
 					"data": [
@@ -727,7 +751,7 @@
 								"key": 1
 							},
 							"id": "Lorand/test01$MediaPlayerControls",
-							"type": "giskard.me/gui.1$PanelContainer"
+							"type": "giskard.me/gui.1$Container"
 						}
 					]
 				}
@@ -735,7 +759,7 @@
 		},
 		{
 			"id": "Lorand/test01$MediaPlayerControls",
-			"type": "giskard.me/gui.1$PanelContainer",
+			"type": "giskard.me/gui.1$Container",
 			"relationships": {
 				"giskard.me/misc.1$members": {
 					"data": [
@@ -744,35 +768,35 @@
 								"key": 0
 							},
 							"id": "Lorand/test01$VideoPlayerSkipBack",
-							"type": "giskard.me/gui.1$WidgetButton"
+							"type": "giskard.me/gui.1$Control"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
 							"id": "Lorand/test01$VideoPlayerStart",
-							"type": "giskard.me/gui.1$WidgetButton"
+							"type": "giskard.me/gui.1$Control"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
 							"id": "Lorand/test01$VideoPlayerPause",
-							"type": "giskard.me/gui.1$WidgetButton"
+							"type": "giskard.me/gui.1$Control"
 						},
 						{
 							"meta": {
 								"key": 3
 							},
 							"id": "Lorand/test01$VideoPlayerStop",
-							"type": "giskard.me/gui.1$WidgetButton"
+							"type": "giskard.me/gui.1$Control"
 						},
 						{
 							"meta": {
 								"key": 4
 							},
 							"id": "Lorand/test01$VideoPlayerSkipForward",
-							"type": "giskard.me/gui.1$WidgetButton"
+							"type": "giskard.me/gui.1$Control"
 						}
 					]
 				}
@@ -914,7 +938,7 @@
 				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/test01$BtnPropEditor",
-						"type": "giskard.me/gui.1$WidgetButton"
+						"type": "giskard.me/gui.1$Control"
 					}
 				}
 			}
@@ -932,7 +956,7 @@
 				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/test01$BtnMediaPlayer",
-						"type": "giskard.me/gui.1$WidgetButton"
+						"type": "giskard.me/gui.1$Control"
 					}
 				}
 			}
@@ -950,14 +974,14 @@
 				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/test01$BtnConsole",
-						"type": "giskard.me/gui.1$WidgetButton"
+						"type": "giskard.me/gui.1$Control"
 					}
 				}
 			}
 		},
 		{
 			"id": "Lorand/test01$Test01AppContainer",
-			"type": "giskard.me/gui.1$PanelContainer",
+			"type": "giskard.me/gui.1$Container",
 			"relationships": {
 				"giskard.me/gui.1$layoutConfig": {
 					"data": [
@@ -974,14 +998,14 @@
 								"key": 0
 							},
 							"id": "Lorand/test01$Test01TopToolbar",
-							"type": "giskard.me/gui.1$PanelContainer"
+							"type": "giskard.me/gui.1$Container"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
 							"id": "Lorand/test01$Test01MainContainer",
-							"type": "giskard.me/gui.1$PanelContainer"
+							"type": "giskard.me/gui.1$Container"
 						}
 					]
 				}
@@ -1009,7 +1033,7 @@
 		},
 		{
 			"id": "Lorand/test01$Test01MainContainer",
-			"type": "giskard.me/gui.1$PanelContainer",
+			"type": "giskard.me/gui.1$Container",
 			"relationships": {
 				"giskard.me/misc.1$members": {
 					"data": [
@@ -1018,7 +1042,7 @@
 								"key": 0
 							},
 							"id": "Lorand/test01$TestLabel02",
-							"type": "giskard.me/gui.1$WidgetLabel"
+							"type": "giskard.me/gui.1$Control"
 						}
 					]
 				}
@@ -1038,7 +1062,7 @@
 								"key": 0
 							},
 							"id": "Lorand/test01$Test01AppContainer",
-							"type": "giskard.me/gui.1$PanelContainer"
+							"type": "giskard.me/gui.1$Container"
 						}
 					]
 				}
@@ -1084,7 +1108,7 @@
 		},
 		{
 			"id": "Lorand/test01$Test01TopToolbar",
-			"type": "giskard.me/gui.1$PanelContainer",
+			"type": "giskard.me/gui.1$Container",
 			"relationships": {
 				"giskard.me/gui.1$layoutConfig": {
 					"data": [
@@ -1101,21 +1125,21 @@
 								"key": 0
 							},
 							"id": "Lorand/test01$BtnPropEditor",
-							"type": "giskard.me/gui.1$WidgetButton"
+							"type": "giskard.me/gui.1$Control"
 						},
 						{
 							"meta": {
 								"key": 1
 							},
 							"id": "Lorand/test01$BtnMediaPlayer",
-							"type": "giskard.me/gui.1$WidgetButton"
+							"type": "giskard.me/gui.1$Control"
 						},
 						{
 							"meta": {
 								"key": 2
 							},
 							"id": "Lorand/test01$BtnConsole",
-							"type": "giskard.me/gui.1$WidgetButton"
+							"type": "giskard.me/gui.1$Control"
 						}
 					]
 				}
@@ -1204,23 +1228,53 @@
 		},
 		{
 			"id": "Lorand/test01$TestLabel01",
-			"type": "giskard.me/gui.1$WidgetLabel",
+			"type": "giskard.me/gui.1$Control",
 			"attributes": {
 				"giskard.me/dev.1$devText": "PLACEHOLDER - Property editor"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/gui.1$Label",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
 			"id": "Lorand/test01$TestLabel02",
-			"type": "giskard.me/gui.1$WidgetLabel",
+			"type": "giskard.me/gui.1$Control",
 			"attributes": {
 				"giskard.me/dev.1$devText": "PLACEHOLDER - Media Player"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/gui.1$Label",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
 			"id": "Lorand/test01$TestLabel03",
-			"type": "giskard.me/gui.1$WidgetLabel",
+			"type": "giskard.me/gui.1$Control",
 			"attributes": {
 				"giskard.me/dev.1$devText": "PLACEHOLDER - Graph Console"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/gui.1$Label",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
 			}
 		},
 		{
@@ -1582,7 +1636,7 @@
 				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "Lorand/test01$MediaPlayerControls",
-						"type": "giskard.me/gui.1$PanelContainer"
+						"type": "giskard.me/gui.1$Container"
 					}
 				}
 			}
@@ -1636,13 +1690,21 @@
 		},
 		{
 			"id": "Lorand/test01$VideoPlayerPause",
-			"type": "giskard.me/gui.1$WidgetButton",
+			"type": "giskard.me/gui.1$Control",
 			"relationships": {
 				"giskard.me/mind.1$cmd": {
 					"data": {
 						"id": "giskard.me/flow.1$CmdFlowPause",
 						"type": "giskard.me/mind.1$Tag"
 					}
+				},
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/gui.1$Button",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
 				},
 				"giskard.me/misc.1$target": {
 					"data": {
@@ -1671,13 +1733,21 @@
 		},
 		{
 			"id": "Lorand/test01$VideoPlayerSkipBack",
-			"type": "giskard.me/gui.1$WidgetButton",
+			"type": "giskard.me/gui.1$Control",
 			"relationships": {
 				"giskard.me/mind.1$cmd": {
 					"data": {
 						"id": "giskard.me/misc.1$CmdSkipBack",
 						"type": "giskard.me/mind.1$Tag"
 					}
+				},
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/gui.1$Button",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
 				},
 				"giskard.me/misc.1$target": {
 					"data": {
@@ -1689,13 +1759,21 @@
 		},
 		{
 			"id": "Lorand/test01$VideoPlayerSkipForward",
-			"type": "giskard.me/gui.1$WidgetButton",
+			"type": "giskard.me/gui.1$Control",
 			"relationships": {
 				"giskard.me/mind.1$cmd": {
 					"data": {
 						"id": "giskard.me/misc.1$CmdSkipForward",
 						"type": "giskard.me/mind.1$Tag"
 					}
+				},
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/gui.1$Button",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
 				},
 				"giskard.me/misc.1$target": {
 					"data": {
@@ -1707,13 +1785,21 @@
 		},
 		{
 			"id": "Lorand/test01$VideoPlayerStart",
-			"type": "giskard.me/gui.1$WidgetButton",
+			"type": "giskard.me/gui.1$Control",
 			"relationships": {
 				"giskard.me/mind.1$cmd": {
 					"data": {
 						"id": "giskard.me/flow.1$CmdFlowPlay",
 						"type": "giskard.me/mind.1$Tag"
 					}
+				},
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/gui.1$Button",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
 				},
 				"giskard.me/misc.1$target": {
 					"data": {
@@ -1725,13 +1811,21 @@
 		},
 		{
 			"id": "Lorand/test01$VideoPlayerStop",
-			"type": "giskard.me/gui.1$WidgetButton",
+			"type": "giskard.me/gui.1$Control",
 			"relationships": {
 				"giskard.me/mind.1$cmd": {
 					"data": {
 						"id": "giskard.me/misc.1$CmdStop",
 						"type": "giskard.me/mind.1$Tag"
 					}
+				},
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/gui.1$Button",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
 				},
 				"giskard.me/misc.1$target": {
 					"data": {

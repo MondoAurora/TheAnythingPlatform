@@ -20,7 +20,7 @@
         "giskard.me\/misc.1$target": {
           "data": {
             "id": "TAP\/graphConsole.1$CommandText",
-            "type": "giskard.me\/gui.1$EditText"
+            "type": "giskard.me\/gui.1$Control"
           }
         }
       }
@@ -60,7 +60,7 @@
     },
     {
       "id": "TAP\/graphConsole.1$CommandText",
-      "type": "giskard.me\/gui.1$EditText",
+      "type": "giskard.me\/gui.1$Control",
       "attributes": {
         "giskard.me\/misc.1$refPath": [
           "giskard.me\/text.1$text"
@@ -100,14 +100,14 @@
         "giskard.me\/misc.1$target": {
           "data": {
             "id": "TAP\/graphConsole.1$CtrlPanel",
-            "type": "giskard.me\/gui.1$PanelContainer"
+            "type": "giskard.me\/gui.1$Container"
           }
         }
       }
     },
     {
       "id": "TAP\/graphConsole.1$CtrlPanel",
-      "type": "giskard.me\/gui.1$PanelContainer",
+      "type": "giskard.me\/gui.1$Container",
       "relationships": {
         "giskard.me\/gui.1$layoutConfig": {
           "data": [
@@ -124,14 +124,14 @@
                 "key": 0
               },
               "id": "TAP\/graphConsole.1$CommandText",
-              "type": "giskard.me\/gui.1$EditText"
+              "type": "giskard.me\/gui.1$Control"
             },
             {
               "meta": {
                 "key": 1
               },
               "id": "TAP\/graphConsole.1$ExecBtn",
-              "type": "giskard.me\/gui.1$WidgetButton"
+              "type": "giskard.me\/gui.1$Control"
             }
           ]
         }
@@ -163,7 +163,7 @@
     },
     {
       "id": "TAP\/graphConsole.1$ExecBtn",
-      "type": "giskard.me\/gui.1$WidgetButton",
+      "type": "giskard.me\/gui.1$Control",
       "attributes": {
         "giskard.me\/dev.1$devText": "Execute!!!"
       },
@@ -173,7 +173,15 @@
             "id": "TAP\/graphConsole.1$CommandEvalMsg",
             "type": "giskard.me\/mind.1$Message"
           }
-        }
+        },
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/gui.1$Button",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
       }
     },
     {
@@ -189,7 +197,7 @@
         "giskard.me\/misc.1$target": {
           "data": {
             "id": "TAP\/graphConsole.1$ExecBtn",
-            "type": "giskard.me\/gui.1$WidgetButton"
+            "type": "giskard.me\/gui.1$Control"
           }
         }
       }
@@ -223,7 +231,7 @@
         "giskard.me\/misc.1$target": {
           "data": {
             "id": "TAP\/graphConsole.1$HistoryText",
-            "type": "giskard.me\/gui.1$EditText"
+            "type": "giskard.me\/gui.1$Control"
           }
         }
       }
@@ -234,7 +242,7 @@
     },
     {
       "id": "TAP\/graphConsole.1$HistoryText",
-      "type": "giskard.me\/gui.1$EditText",
+      "type": "giskard.me\/gui.1$Control",
       "attributes": {
         "giskard.me\/misc.1$refPath": [
           "giskard.me\/text.1$text"
@@ -259,7 +267,7 @@
     },
     {
       "id": "TAP\/graphConsole.1$MainPanel",
-      "type": "giskard.me\/gui.1$PanelContainer",
+      "type": "giskard.me\/gui.1$Container",
       "relationships": {
         "giskard.me\/gui.1$layoutConfig": {
           "data": [
@@ -276,14 +284,14 @@
                 "key": 0
               },
               "id": "TAP\/graphConsole.1$HistoryText",
-              "type": "giskard.me\/gui.1$EditText"
+              "type": "giskard.me\/gui.1$Control"
             },
             {
               "meta": {
                 "key": 1
               },
               "id": "TAP\/graphConsole.1$CtrlPanel",
-              "type": "giskard.me\/gui.1$PanelContainer"
+              "type": "giskard.me\/gui.1$Container"
             }
           ]
         }

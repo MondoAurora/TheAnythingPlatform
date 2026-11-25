@@ -1,6 +1,5 @@
 package me.giskard.dust.core.stream;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
