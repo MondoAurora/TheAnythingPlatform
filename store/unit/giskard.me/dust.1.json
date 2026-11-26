@@ -235,6 +235,31 @@
 			}
 		},
 		{
+			"id": "giskard.me/dust.1$agentImplementation",
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_AGENT_IMPLEMENTATION"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeMap",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$Transient",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeHandle",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
+		},
+		{
 			"id": "giskard.me/dust.1$agentInstance",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
@@ -915,7 +940,7 @@
 		}
 	],
 	"meta": {
-		"count": 58,
+		"count": 59,
 		"unitInfo": {
 			"id": "giskard.me/dust.1",
 			"type": "giskard.me/mind.1$Unit",
