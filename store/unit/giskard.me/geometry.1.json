@@ -4,160 +4,151 @@
 	},
 	"data": [
 		{
-			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GEOMETRY_ASP_AREA",
-				"giskard.me/misc.1$name": "TOKEN_GEOMETRY_ASP_AREA"
-			},
 			"id": "giskard.me/geometry.1$Area",
-			"type": "giskard.me/mind.1$Aspect"
+			"type": "giskard.me/mind.1$Aspect",
+			"attributes": {
+				"giskard.me/misc.1$key": "TOKEN_GEOMETRY_ASP_AREA"
+			}
 		},
 		{
-			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GEOMETRY_TAG_AXIS",
-				"giskard.me/misc.1$name": "TOKEN_GEOMETRY_TAG_AXIS"
-			},
 			"id": "giskard.me/geometry.1$Axis",
-			"type": "giskard.me/mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag",
+			"attributes": {
+				"giskard.me/misc.1$key": "TOKEN_GEOMETRY_TAG_AXIS"
+			}
 		},
 		{
-			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GEOMETRY_TAG_AXISUNIT",
-				"giskard.me/misc.1$name": "TOKEN_GEOMETRY_TAG_AXISUNIT"
-			},
 			"id": "giskard.me/geometry.1$AxisUnit",
-			"type": "giskard.me/mind.1$Tag"
+			"type": "giskard.me/mind.1$Tag",
+			"attributes": {
+				"giskard.me/misc.1$key": "TOKEN_GEOMETRY_TAG_AXISUNIT"
+			}
 		},
 		{
-			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GEOMETRY_ASP_COORD_SYS",
-				"giskard.me/misc.1$name": "TOKEN_GEOMETRY_ASP_COORD_SYS"
-			},
 			"id": "giskard.me/geometry.1$CoordSys",
-			"type": "giskard.me/mind.1$Aspect"
-		},
-		{
+			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GEOMETRY_ASP_LOCATION",
-				"giskard.me/misc.1$name": "TOKEN_GEOMETRY_ASP_LOCATION"
-			},
-			"id": "giskard.me/geometry.1$Location",
-			"type": "giskard.me/mind.1$Aspect"
+				"giskard.me/misc.1$key": "TOKEN_GEOMETRY_ASP_COORD_SYS"
+			}
 		},
 		{
+			"id": "giskard.me/geometry.1$Location",
+			"type": "giskard.me/mind.1$Aspect",
+			"attributes": {
+				"giskard.me/misc.1$key": "TOKEN_GEOMETRY_ASP_LOCATION"
+			}
+		},
+		{
+			"id": "giskard.me/geometry.1$coordSys",
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/misc.1$key": "TOKEN_GEOMETRY_ATT_COORD_SYS"
+			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
 					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
 						{
 							"id": "giskard.me/mind.1$ValtypeHandle",
 							"type": "giskard.me/mind.1$Tag"
-						},
-						{
-							"id": "giskard.me/mind.1$ColltypeOne",
-							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				}
-			},
-			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GEOMETRY_ATT_COORD_SYS",
-				"giskard.me/misc.1$name": "TOKEN_GEOMETRY_ATT_COORD_SYS"
-			},
-			"id": "giskard.me/geometry.1$coordSys",
-			"type": "giskard.me/mind.1$Attribute"
+			}
 		},
 		{
-			"relationships": {
-				"giskard.me/mind.1$tags": {
-					"data": [
-						{
-							"id": "giskard.me/mind.1$ValtypeInteger",
-							"type": "giskard.me/mind.1$Tag"
-						},
-						{
-							"id": "giskard.me/mind.1$ColltypeOne",
-							"type": "giskard.me/mind.1$Tag"
-						}
-					]
-				}
-			},
-			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GEOMETRY_ATT_POSITION_INT",
-				"giskard.me/misc.1$name": "TOKEN_GEOMETRY_ATT_POSITION_INT"
-			},
 			"id": "giskard.me/geometry.1$positionInt",
-			"type": "giskard.me/mind.1$Attribute"
-		},
-		{
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/misc.1$key": "TOKEN_GEOMETRY_ATT_POSITION_INT"
+			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
 					"data": [
-						{
-							"id": "giskard.me/mind.1$ValtypeReal",
-							"type": "giskard.me/mind.1$Tag"
-						},
 						{
 							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
-						}
-					]
-				}
-			},
-			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GEOMETRY_ATT_POSITION_REAL",
-				"giskard.me/misc.1$name": "TOKEN_GEOMETRY_ATT_POSITION_REAL"
-			},
-			"id": "giskard.me/geometry.1$positionReal",
-			"type": "giskard.me/mind.1$Attribute"
-		},
-		{
-			"relationships": {
-				"giskard.me/mind.1$tags": {
-					"data": [
+						},
 						{
 							"id": "giskard.me/mind.1$ValtypeInteger",
 							"type": "giskard.me/mind.1$Tag"
-						},
-						{
-							"id": "giskard.me/mind.1$ColltypeOne",
-							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				}
-			},
-			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GEOMETRY_ATT_SIZE_INT",
-				"giskard.me/misc.1$name": "TOKEN_GEOMETRY_ATT_SIZE_INT"
-			},
-			"id": "giskard.me/geometry.1$sizeInt",
-			"type": "giskard.me/mind.1$Attribute"
+			}
 		},
 		{
+			"id": "giskard.me/geometry.1$positionReal",
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/misc.1$key": "TOKEN_GEOMETRY_ATT_POSITION_REAL"
+			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$ValtypeReal",
+							"id": "giskard.me/mind.1$ColltypeOne",
 							"type": "giskard.me/mind.1$Tag"
 						},
 						{
-							"id": "giskard.me/mind.1$ColltypeOne",
+							"id": "giskard.me/mind.1$ValtypeReal",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
 				}
-			},
+			}
+		},
+		{
+			"id": "giskard.me/geometry.1$sizeInt",
+			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GEOMETRY_ATT_SIZE_REAL",
-				"giskard.me/misc.1$name": "TOKEN_GEOMETRY_ATT_SIZE_REAL"
+				"giskard.me/misc.1$key": "TOKEN_GEOMETRY_ATT_SIZE_INT"
 			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeInteger",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
+		},
+		{
 			"id": "giskard.me/geometry.1$sizeReal",
-			"type": "giskard.me/mind.1$Attribute"
+			"type": "giskard.me/mind.1$Attribute",
+			"attributes": {
+				"giskard.me/misc.1$key": "TOKEN_GEOMETRY_ATT_SIZE_REAL"
+			},
+			"relationships": {
+				"giskard.me/mind.1$tags": {
+					"data": [
+						{
+							"id": "giskard.me/mind.1$ColltypeOne",
+							"type": "giskard.me/mind.1$Tag"
+						},
+						{
+							"id": "giskard.me/mind.1$ValtypeReal",
+							"type": "giskard.me/mind.1$Tag"
+						}
+					]
+				}
+			}
 		}
 	],
 	"meta": {
-		"date": "20260923T152417Z",
 		"count": 10,
 		"unitInfo": {
+			"id": "giskard.me/geometry.1",
+			"type": "giskard.me/mind.1$Unit",
 			"relationships": {
 				"giskard.me/mind.1$author": {
 					"data": {
@@ -165,9 +156,7 @@
 						"type": "giskard.me/mind.1$Author"
 					}
 				}
-			},
-			"id": "giskard.me/geometry.1",
-			"type": "giskard.me/mind.1$Unit"
+			}
 		}
 	}
 }

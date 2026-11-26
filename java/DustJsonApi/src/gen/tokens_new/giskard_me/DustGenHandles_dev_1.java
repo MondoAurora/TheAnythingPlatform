@@ -10,7 +10,6 @@ public interface DustGenHandles_dev_1 {
 	DustHandle HANDLE_DEV_ATT_CLASSES = Dust.getHandle("giskard.me/dev.1$classes");
 	DustHandle HANDLE_DEV_ATT_PACKAGE = Dust.getHandle("giskard.me/dev.1$package");
 	DustHandle HANDLE_DEV_ATT_SKIP = Dust.getHandle("giskard.me/dev.1$skip");
-	DustHandle HANDLE_DEV_ATT_TOKEN = Dust.getHandle("giskard.me/dev.1$token");
 	DustHandle HANDLE_DEV_CMD_GENSRC = Dust.getHandle("giskard.me/dev.1$genSrc");
 
 // Tags

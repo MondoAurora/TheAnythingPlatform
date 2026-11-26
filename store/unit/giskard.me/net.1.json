@@ -31,8 +31,7 @@
 			"id": "giskard.me/net.1$attributes",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVCALL_ATTRIBUTES",
-				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_ATTRIBUTES"
+				"giskard.me/misc.1$key": "TOKEN_NET_ATT_SRVCALL_ATTRIBUTES"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -53,8 +52,7 @@
 			"id": "giskard.me/net.1$dispatcher",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_NET_ATT_DISPATCHER",
-				"giskard.me/misc.1$name": "TOKEN_NET_ATT_DISPATCHER"
+				"giskard.me/misc.1$key": "TOKEN_NET_ATT_DISPATCHER"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -75,8 +73,7 @@
 			"id": "giskard.me/net.1$headers",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVCALL_HEADERS",
-				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_HEADERS"
+				"giskard.me/misc.1$key": "TOKEN_NET_ATT_SRVCALL_HEADERS"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -97,8 +94,7 @@
 			"id": "giskard.me/net.1$knownHost",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_NET_ATT_KNOWN_HOST",
-				"giskard.me/misc.1$name": "TOKEN_NET_ATT_KNOWN_HOST"
+				"giskard.me/misc.1$key": "TOKEN_NET_ATT_KNOWN_HOST"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -119,8 +115,7 @@
 			"id": "giskard.me/net.1$method",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVCALL_METHOD",
-				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_METHOD"
+				"giskard.me/misc.1$key": "TOKEN_NET_ATT_SRVCALL_METHOD"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -141,8 +136,7 @@
 			"id": "giskard.me/net.1$pathInfo",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVCALL_PATHINFO",
-				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_PATHINFO"
+				"giskard.me/misc.1$key": "TOKEN_NET_ATT_SRVCALL_PATHINFO"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -163,8 +157,7 @@
 			"id": "giskard.me/net.1$port",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_NET_ATT_HOST_PORT",
-				"giskard.me/misc.1$name": "TOKEN_NET_ATT_HOST_PORT"
+				"giskard.me/misc.1$key": "TOKEN_NET_ATT_HOST_PORT"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -185,8 +178,7 @@
 			"id": "giskard.me/net.1$request",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVCALL_REQUEST",
-				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_REQUEST"
+				"giskard.me/misc.1$key": "TOKEN_NET_ATT_SRVCALL_REQUEST"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -207,8 +199,7 @@
 			"id": "giskard.me/net.1$respHeader",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVRESP_HEADER",
-				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVRESP_HEADER"
+				"giskard.me/misc.1$key": "TOKEN_NET_ATT_SRVRESP_HEADER"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -229,8 +220,7 @@
 			"id": "giskard.me/net.1$respStatus",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVRESP_STATUS",
-				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVRESP_STATUS"
+				"giskard.me/misc.1$key": "TOKEN_NET_ATT_SRVRESP_STATUS"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -251,8 +241,7 @@
 			"id": "giskard.me/net.1$respType",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVRESP_TYPE",
-				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVRESP_TYPE"
+				"giskard.me/misc.1$key": "TOKEN_NET_ATT_SRVRESP_TYPE"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -273,8 +262,7 @@
 			"id": "giskard.me/net.1$response",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVCALL_RESPONSE",
-				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_RESPONSE"
+				"giskard.me/misc.1$key": "TOKEN_NET_ATT_SRVCALL_RESPONSE"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -295,8 +283,7 @@
 			"id": "giskard.me/net.1$sslKeyMgrPass",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SSLINFO_KEYMANAGERPASS",
-				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SSLINFO_KEYMANAGERPASS"
+				"giskard.me/misc.1$key": "TOKEN_NET_ATT_SSLINFO_KEYMANAGERPASS"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -317,8 +304,7 @@
 			"id": "giskard.me/net.1$sslPort",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SSLINFO_PORT",
-				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SSLINFO_PORT"
+				"giskard.me/misc.1$key": "TOKEN_NET_ATT_SSLINFO_PORT"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -339,8 +325,7 @@
 			"id": "giskard.me/net.1$sslStorePass",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SSLINFO_STOREPASS",
-				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SSLINFO_STOREPASS"
+				"giskard.me/misc.1$key": "TOKEN_NET_ATT_SSLINFO_STOREPASS"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -361,8 +346,7 @@
 			"id": "giskard.me/net.1$sslStorePath",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SSLINFO_STOREPATH",
-				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SSLINFO_STOREPATH"
+				"giskard.me/misc.1$key": "TOKEN_NET_ATT_SSLINFO_STOREPATH"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -383,8 +367,7 @@
 			"id": "giskard.me/net.1$status",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_NET_ATT_SRVCALL_STATUS",
-				"giskard.me/misc.1$name": "TOKEN_NET_ATT_SRVCALL_STATUS"
+				"giskard.me/misc.1$key": "TOKEN_NET_ATT_SRVCALL_STATUS"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -403,7 +386,6 @@
 		}
 	],
 	"meta": {
-		"date": "20261015T140843Z",
 		"count": 23,
 		"unitInfo": {
 			"id": "giskard.me/net.1",

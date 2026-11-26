@@ -110,7 +110,7 @@
 			"id": "Lorand/sandbox.1$SrcGenFilter",
 			"attributes": {
 				"giskard.me/misc.1$filter": {
-					"giskard.me/misc.1$name": true,
+					"giskard.me/misc.1$key": true,
 					"giskard.me/mind.1$type": [
 						"giskard.me/mind.1$Unit",
 						"giskard.me/mind.1$Aspect",

@@ -5,28 +5,28 @@
 	"data": [
 		{
 			"attributes": {
-				"giskard.me/misc.1$name": "TOKEN_SQL_ASP_SELECT"
+				"giskard.me/misc.1$key": "TOKEN_SQL_ASP_SELECT"
 			},
 			"id": "giskard.me/sql.1$Select",
 			"type": "giskard.me/mind.1$Aspect"
 		},
 		{
 			"attributes": {
-				"giskard.me/misc.1$name": "TOKEN_SQL_ATT_COLUMN_MAP"
+				"giskard.me/misc.1$key": "TOKEN_SQL_ATT_COLUMN_MAP"
 			},
 			"id": "giskard.me/sql.1$columnMap",
 			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"giskard.me/misc.1$name": "TOKEN_SQL_ATT_SQL"
+				"giskard.me/misc.1$key": "TOKEN_SQL_ATT_SQL"
 			},
 			"id": "giskard.me/sql.1$sql",
 			"type": "giskard.me/mind.1$Attribute"
 		},
 		{
 			"attributes": {
-				"giskard.me/misc.1$name": "TOKEN_SQL_ATT_TABLE_MAP"
+				"giskard.me/misc.1$key": "TOKEN_SQL_ATT_TABLE_MAP"
 			},
 			"id": "giskard.me/sql.1$tableMap",
 			"type": "giskard.me/mind.1$Attribute"

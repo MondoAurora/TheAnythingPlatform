@@ -5,7 +5,7 @@ import me.giskard.dust.api.DustHandle;
 import me.giskard.dust.api.DustConsts;
 import me.giskard.dust.api.DustException;
 
-// Generation timestamp 20261123T143450Z
+// Generation timestamp 20261126T102219Z
 
 public class DustGenBootApp implements DustConsts {
 	public DustGenBootApp(String appId) {
@@ -13,7 +13,6 @@ public class DustGenBootApp implements DustConsts {
 		case "Lorand/test01$ThinClient" : {
 
 // Attributes
-			DustHandle att_handle_giskard_me_dev___token = Dust.getHandle("giskard.me/dev.1$token", DustHandle.PLACEHOLDER);
 			DustHandle att_handle_giskard_me_dust___binaryResolver = Dust.getHandle("giskard.me/dust.1$binaryResolver", DustHandle.PLACEHOLDER);
 			DustHandle att_handle_giskard_me_dust___ctxApp = Dust.getHandle("giskard.me/dust.1$ctxApp", DustHandle.PLACEHOLDER);
 			DustHandle att_handle_giskard_me_dust___node = Dust.getHandle("giskard.me/dust.1$node", DustHandle.PLACEHOLDER);
@@ -22,7 +21,7 @@ public class DustGenBootApp implements DustConsts {
 			DustHandle att_handle_giskard_me_mind___narrative = Dust.getHandle("giskard.me/mind.1$narrative", DustHandle.PLACEHOLDER);
 			DustHandle att_handle_giskard_me_mind___next = Dust.getHandle("giskard.me/mind.1$next", DustHandle.PLACEHOLDER);
 			DustHandle att_handle_giskard_me_misc___fallback = Dust.getHandle("giskard.me/misc.1$fallback", DustHandle.PLACEHOLDER);
-			DustHandle att_handle_giskard_me_misc___name = Dust.getHandle("giskard.me/misc.1$name", DustHandle.PLACEHOLDER);
+			DustHandle att_handle_giskard_me_misc___key = Dust.getHandle("giskard.me/misc.1$key", DustHandle.PLACEHOLDER);
 			DustHandle att_handle_giskard_me_misc___path = Dust.getHandle("giskard.me/misc.1$path", DustHandle.PLACEHOLDER);
 			DustHandle att_handle_giskard_me_stream___backupFolder = Dust.getHandle("giskard.me/stream.1$backupFolder", DustHandle.PLACEHOLDER);
 			DustHandle att_handle_giskard_me_stream___rootFolder = Dust.getHandle("giskard.me/stream.1$rootFolder", DustHandle.PLACEHOLDER);
@@ -95,8 +94,7 @@ public class DustGenBootApp implements DustConsts {
 			Dust.access(DustAccess.Set, idea_handle_Lorand_test___ThinProvideStream, idea_handle_Lorand_test___ThinUnitHandler, att_handle_giskard_me_stream___streamSource);
 
 		// giskard.me/dust.1$CmdSyncUnits [giskard.me/mind.1$Tag]
-			Dust.access(DustAccess.Set, "TOKEN_MISC_CMD_SYNCUNITS", idea_handle_giskard_me_dust___CmdSyncUnits, att_handle_giskard_me_dev___token);
-			Dust.access(DustAccess.Set, "TOKEN_MISC_CMD_SYNCUNITS", idea_handle_giskard_me_dust___CmdSyncUnits, att_handle_giskard_me_misc___name);
+			Dust.access(DustAccess.Set, "TOKEN_MISC_CMD_SYNCUNITS", idea_handle_giskard_me_dust___CmdSyncUnits, att_handle_giskard_me_misc___key);
 
 		// giskard.me/net.1$HttpClient [giskard.me/mind.1$Narrative]
 			Dust.access(DustAccess.Set, "me.giskard.dust.core.net.DustNetHttpClientAgent", null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___binaryResolver, idea_handle_giskard_me_net___HttpClient);
@@ -184,7 +182,6 @@ public class DustGenBootApp implements DustConsts {
 		case "Lorand/test01$AndroidClient" : {
 
 // Attributes
-			DustHandle att_handle_giskard_me_dev___token = Dust.getHandle("giskard.me/dev.1$token", DustHandle.PLACEHOLDER);
 			DustHandle att_handle_giskard_me_dust___binaryResolver = Dust.getHandle("giskard.me/dust.1$binaryResolver", DustHandle.PLACEHOLDER);
 			DustHandle att_handle_giskard_me_dust___ctxApp = Dust.getHandle("giskard.me/dust.1$ctxApp", DustHandle.PLACEHOLDER);
 			DustHandle att_handle_giskard_me_dust___node = Dust.getHandle("giskard.me/dust.1$node", DustHandle.PLACEHOLDER);
@@ -194,7 +191,6 @@ public class DustGenBootApp implements DustConsts {
 			DustHandle att_handle_giskard_me_mind___next = Dust.getHandle("giskard.me/mind.1$next", DustHandle.PLACEHOLDER);
 			DustHandle att_handle_giskard_me_misc___fallback = Dust.getHandle("giskard.me/misc.1$fallback", DustHandle.PLACEHOLDER);
 			DustHandle att_handle_giskard_me_misc___key = Dust.getHandle("giskard.me/misc.1$key", DustHandle.PLACEHOLDER);
-			DustHandle att_handle_giskard_me_misc___name = Dust.getHandle("giskard.me/misc.1$name", DustHandle.PLACEHOLDER);
 			DustHandle att_handle_giskard_me_misc___path = Dust.getHandle("giskard.me/misc.1$path", DustHandle.PLACEHOLDER);
 			DustHandle att_handle_giskard_me_misc___target = Dust.getHandle("giskard.me/misc.1$target", DustHandle.PLACEHOLDER);
 			DustHandle att_handle_giskard_me_stream___backupFolder = Dust.getHandle("giskard.me/stream.1$backupFolder", DustHandle.PLACEHOLDER);
@@ -274,8 +270,7 @@ public class DustGenBootApp implements DustConsts {
 			Dust.access(DustAccess.Set, idea_handle_giskard_me_gui___GuiRenderer, idea_handle_giskard_me_dustImpl___GuiRendererImplAndroid__, att_handle_giskard_me_misc___target);
 
 		// giskard.me/dust.1$CmdSyncUnits [giskard.me/mind.1$Tag]
-			Dust.access(DustAccess.Set, "TOKEN_MISC_CMD_SYNCUNITS", idea_handle_giskard_me_dust___CmdSyncUnits, att_handle_giskard_me_dev___token);
-			Dust.access(DustAccess.Set, "TOKEN_MISC_CMD_SYNCUNITS", idea_handle_giskard_me_dust___CmdSyncUnits, att_handle_giskard_me_misc___name);
+			Dust.access(DustAccess.Set, "TOKEN_MISC_CMD_SYNCUNITS", idea_handle_giskard_me_dust___CmdSyncUnits, att_handle_giskard_me_misc___key);
 
 		// giskard.me/gui.1$GuiRenderer [giskard.me/mind.1$Narrative]
 			Dust.access(DustAccess.Set, "me.giskard.dust.mod.android.gui.DustGuiAndroidRendererAgent", null, att_handle_giskard_me_dust___ctxApp, att_handle_giskard_me_dust___binaryResolver, idea_handle_giskard_me_gui___GuiRenderer);

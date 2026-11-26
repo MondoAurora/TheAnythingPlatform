@@ -74,9 +74,10 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 		if (null != data) {
 			String unit = data.getUnit().getId();
 			String type = data.getType().getId();
-			String name = Dust.access(DustAccess.Peek, null, data, TOKEN_MISC_ATT_NAME);
+			String name = Dust.access(DustAccess.Peek, null, data, TOKEN_MISC_ATT_KEY);
 
-			Dust.access(DustAccess.Set, name, data, TOKEN_DEV_ATT_TOKEN);
+//			Dust.access(DustAccess.Delete, null, data, TOKEN_DEV_ATT_TOKEN);
+//			Dust.access(DustAccess.Delete, null, data, TOKEN_MISC_ATT_NAME);
 
 			Dust.access(DustAccess.Set, data, temp, TOKEN_MISC_ATT_DATA, unit, type, name);
 		}
@@ -109,7 +110,7 @@ public class DustDevGenSourceTokenAgent extends DustAgent implements DustDevCons
 			PrintStream ps = createSrcStream(r, pn, cName, null, Mode.TAP02BootTokens);
 
 			for (DustHandle ht : bootTokens) {
-				String key = Dust.access(DustAccess.Peek, null, ht, TOKEN_DEV_ATT_TOKEN);
+				String key = Dust.access(DustAccess.Peek, null, ht, TOKEN_MISC_ATT_KEY);
 				btSort.put(key, ht);
 			}
 

@@ -1,6 +1,6 @@
 package gen.tokens.giskard_me;
 
-// Generation timestamp 20261118T145147Z
+// Generation timestamp 20261126T102219Z
 
 public interface DustGenTokens_dev_1 {
 // Attributes
@@ -11,7 +11,6 @@ public interface DustGenTokens_dev_1 {
 	String TOKEN_DEV_ATT_MACHINE_IMPL = "giskard.me/dev.1$machineImpl";
 	String TOKEN_DEV_ATT_PACKAGE = "giskard.me/dev.1$package";
 	String TOKEN_DEV_ATT_SKIP = "giskard.me/dev.1$skip";
-	String TOKEN_DEV_ATT_TOKEN = "giskard.me/dev.1$token";
 	String TOKEN_DEV_CMD_GENSRC = "giskard.me/dev.1$genSrc";
 
 // Tags

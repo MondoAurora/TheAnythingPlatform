@@ -3,7 +3,7 @@ package gen.handles.giskard_me;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustHandle;
 
-// Generation timestamp 20261118T145147Z
+// Generation timestamp 20261126T102219Z
 
 public interface DustGenHandles_dev_1 {
 // Attributes
@@ -14,7 +14,6 @@ public interface DustGenHandles_dev_1 {
 	DustHandle HANDLE_DEV_ATT_MACHINE_IMPL = Dust.getHandle("giskard.me/dev.1$machineImpl", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_DEV_ATT_PACKAGE = Dust.getHandle("giskard.me/dev.1$package", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_DEV_ATT_SKIP = Dust.getHandle("giskard.me/dev.1$skip", DustHandle.PLACEHOLDER);
-	DustHandle HANDLE_DEV_ATT_TOKEN = Dust.getHandle("giskard.me/dev.1$token", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_DEV_CMD_GENSRC = Dust.getHandle("giskard.me/dev.1$genSrc", DustHandle.PLACEHOLDER);
 
 // Tags

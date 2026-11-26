@@ -7,7 +7,7 @@
 			"id": "giskard.me/dust.1$Android24",
 			"type": "giskard.me/dust.1$Platform",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_IDEA_ANDROID24",
+				"giskard.me/misc.1$key": "TOKEN_DUST_IDEA_ANDROID24",
 				"giskard.me/misc.1$version": "24"
 			},
 			"relationships": {
@@ -31,24 +31,21 @@
 			"id": "giskard.me/dust.1$Application",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ASP_APPLICATION",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ASP_APPLICATION"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ASP_APPLICATION"
 			}
 		},
 		{
 			"id": "giskard.me/dust.1$CallContext",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ASP_CALL_CONTEXT",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ASP_CALL_CONTEXT"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ASP_CALL_CONTEXT"
 			}
 		},
 		{
 			"id": "giskard.me/dust.1$CmdSyncUnits",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_MISC_CMD_SYNCUNITS",
-				"giskard.me/misc.1$name": "TOKEN_MISC_CMD_SYNCUNITS"
+				"giskard.me/misc.1$key": "TOKEN_MISC_CMD_SYNCUNITS"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -63,23 +60,21 @@
 			"id": "giskard.me/dust.1$Dialog",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ASP_DIALOG",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ASP_DIALOG"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ASP_DIALOG"
 			}
 		},
 		{
 			"id": "giskard.me/dust.1$Implementation",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ASP_IMPLEMENTATION",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ASP_IMPLEMENTATION"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ASP_IMPLEMENTATION"
 			}
 		},
 		{
 			"id": "giskard.me/dust.1$Java17",
 			"type": "giskard.me/dust.1$Platform",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_IDEA_JAVA17",
+				"giskard.me/misc.1$key": "TOKEN_DUST_IDEA_JAVA17",
 				"giskard.me/misc.1$version": "17"
 			},
 			"relationships": {
@@ -95,16 +90,14 @@
 			"id": "giskard.me/dust.1$Library",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ASP_LIBRARY",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ASP_LIBRARY"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ASP_LIBRARY"
 			}
 		},
 		{
 			"id": "giskard.me/dust.1$Machine",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ASP_MACHINE",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ASP_MACHINE"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ASP_MACHINE"
 			}
 		},
 		{
@@ -115,8 +108,7 @@
 			"id": "giskard.me/dust.1$Module",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ASP_MODULE",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ASP_MODULE"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ASP_MODULE"
 			}
 		},
 		{
@@ -131,40 +123,35 @@
 			"id": "giskard.me/dust.1$NeumannALU",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ASP_NEUMANN_ALU",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ASP_NEUMANN_ALU"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ASP_NEUMANN_ALU"
 			}
 		},
 		{
 			"id": "giskard.me/dust.1$NeumannCPU",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ASP_NEUMANN_CPU",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ASP_NEUMANN_CPU"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ASP_NEUMANN_CPU"
 			}
 		},
 		{
 			"id": "giskard.me/dust.1$NeumannIO",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ASP_NEUMANN_IO",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ASP_NEUMANN_IO"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ASP_NEUMANN_IO"
 			}
 		},
 		{
 			"id": "giskard.me/dust.1$NeumannMEM",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ASP_NEUMANN_MEM",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ASP_NEUMANN_MEM"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ASP_NEUMANN_MEM"
 			}
 		},
 		{
 			"id": "giskard.me/dust.1$Platform",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ASP_PLATFORM",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ASP_PLATFORM"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ASP_PLATFORM"
 			},
 			"relationships": {
 				"giskard.me/mind.1$requiredAttributes": {
@@ -185,8 +172,7 @@
 			"id": "giskard.me/dust.1$PlatformType",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ASP_PLATFORM_TYPE",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ASP_PLATFORM_TYPE"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ASP_PLATFORM_TYPE"
 			},
 			"relationships": {
 				"giskard.me/mind.1$requiredAttributes": {
@@ -217,9 +203,8 @@
 			"id": "giskard.me/dust.1$Runtime",
 			"type": "giskard.me/mind.1$Agent",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_AGT_RUNTIME",
-				"giskard.me/misc.1$meta": "dust.1",
-				"giskard.me/misc.1$name": "TOKEN_DUST_AGT_RUNTIME"
+				"giskard.me/misc.1$key": "TOKEN_DUST_AGT_RUNTIME",
+				"giskard.me/misc.1$meta": "dust.1"
 			},
 			"relationships": {
 				"giskard.me/mind.1$narrative": {
@@ -246,16 +231,14 @@
 			"id": "giskard.me/dust.1$Thread",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ASP_THREAD",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ASP_THREAD"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ASP_THREAD"
 			}
 		},
 		{
 			"id": "giskard.me/dust.1$agentInstance",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_AGENT_INSTANCE",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_AGENT_INSTANCE"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_AGENT_INSTANCE"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -280,8 +263,7 @@
 			"id": "giskard.me/dust.1$allApplications",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_ALLAPPLICATIONS",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_ALLAPPLICATIONS"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_ALLAPPLICATIONS"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -302,8 +284,7 @@
 			"id": "giskard.me/dust.1$allDialogs",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_ALLDIALOGS",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_ALLDIALOGS"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_ALLDIALOGS"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -324,8 +305,7 @@
 			"id": "giskard.me/dust.1$allThreads",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_ALLTHREADS",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_ALLTHREADS"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_ALLTHREADS"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -346,8 +326,7 @@
 			"id": "giskard.me/dust.1$applications",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_APPLICATION",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_APPLICATION"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_APPLICATION"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -368,8 +347,7 @@
 			"id": "giskard.me/dust.1$assembly",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_ASSEMBLY",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_ASSEMBLY"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_ASSEMBLY"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -390,8 +368,7 @@
 			"id": "giskard.me/dust.1$binary",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_BINARY",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_BINARY"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_BINARY"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -412,8 +389,7 @@
 			"id": "giskard.me/dust.1$binaryResolver",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_BINARY_RESOLVER",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_BINARY_RESOLVER"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_BINARY_RESOLVER"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -434,8 +410,7 @@
 			"id": "giskard.me/dust.1$callStack",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_CALL_STACK",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_CALL_STACK"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_CALL_STACK"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -456,8 +431,7 @@
 			"id": "giskard.me/dust.1$ctxAgt",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_CTX_AGT",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_CTX_AGT"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_CTX_AGT"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -478,8 +452,7 @@
 			"id": "giskard.me/dust.1$ctxApp",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_CTX_APP",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_CTX_APP"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_CTX_APP"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -500,8 +473,7 @@
 			"id": "giskard.me/dust.1$ctxDlg",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_CTX_DLG",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_CTX_DLG"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_CTX_DLG"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -522,8 +494,7 @@
 			"id": "giskard.me/dust.1$ctxMsg",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_CTX_MSG",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_CTX_MSG"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_CTX_MSG"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -544,8 +515,7 @@
 			"id": "giskard.me/dust.1$dialog",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_DIALOG",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_DIALOG"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_DIALOG"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -566,8 +536,7 @@
 			"id": "giskard.me/dust.1$implementations",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_IMPLEMENTATIONS",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_IMPLEMENTATIONS"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_IMPLEMENTATIONS"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -588,8 +557,7 @@
 			"id": "giskard.me/dust.1$libraries",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_LIBRARIES",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_LIBRARIES"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_LIBRARIES"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -614,8 +582,7 @@
 			"id": "giskard.me/dust.1$modules",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_MODULES",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_MODULES"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_MODULES"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -636,8 +603,7 @@
 			"id": "giskard.me/dust.1$neumannALU",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_NEUMANN_ALU",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_NEUMANN_ALU"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_NEUMANN_ALU"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -658,8 +624,7 @@
 			"id": "giskard.me/dust.1$neumannCPU",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_NEUMANN_CPU",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_NEUMANN_CPU"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_NEUMANN_CPU"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -680,8 +645,7 @@
 			"id": "giskard.me/dust.1$neumannIO",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_NEUMANN_IO",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_NEUMANN_IO"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_NEUMANN_IO"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -702,8 +666,7 @@
 			"id": "giskard.me/dust.1$neumannMEM",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_NEUMANN_MEM",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_NEUMANN_MEM"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_NEUMANN_MEM"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -724,8 +687,7 @@
 			"id": "giskard.me/dust.1$node",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_NODE",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_NODE"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_NODE"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -746,8 +708,7 @@
 			"id": "giskard.me/dust.1$platform",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_PLATFORM",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_PLATFORM"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_PLATFORM"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -768,8 +729,7 @@
 			"id": "giskard.me/dust.1$releaseOnShutdown",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_RELEASEONSHUTDOWN",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_RELEASEONSHUTDOWN"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_RELEASEONSHUTDOWN"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -790,8 +750,7 @@
 			"id": "giskard.me/dust.1$supportedPlatforms",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_SUPPORTED_PLATFORMS",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_SUPPORTED_PLATFORMS"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_SUPPORTED_PLATFORMS"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -812,8 +771,7 @@
 			"id": "giskard.me/dust.1$system",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_SYSTEM",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_SYSTEM"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_SYSTEM"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -834,8 +792,7 @@
 			"id": "giskard.me/dust.1$unitHandles",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_UNIT_HANDLES",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_UNIT_HANDLES"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_UNIT_HANDLES"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -856,8 +813,7 @@
 			"id": "giskard.me/dust.1$unitObjects",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_UNIT_OBJECTS",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_UNIT_OBJECTS"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_UNIT_OBJECTS"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -878,8 +834,7 @@
 			"id": "giskard.me/dust.1$unitRefs",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_UNIT_REFS",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_UNIT_REFS"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_UNIT_REFS"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -900,8 +855,7 @@
 			"id": "giskard.me/dust.1$wrapBackRef",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_WRAPBACKREF",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_WRAPBACKREF"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_WRAPBACKREF"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -926,8 +880,7 @@
 			"id": "giskard.me/dust.1$wrappedObject",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_DUST_ATT_WRAPPEDOBJECT",
-				"giskard.me/misc.1$name": "TOKEN_DUST_ATT_WRAPPEDOBJECT"
+				"giskard.me/misc.1$key": "TOKEN_DUST_ATT_WRAPPEDOBJECT"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {

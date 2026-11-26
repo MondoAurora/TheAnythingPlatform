@@ -7,32 +7,28 @@
 			"id": "giskard.me/gui.1$AxisScreenX",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_AXIS_SCREEN_X",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_AXIS_SCREEN_X"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_AXIS_SCREEN_X"
 			}
 		},
 		{
 			"id": "giskard.me/gui.1$AxisScreenY",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_AXIS_SCREEN_Y",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_AXIS_SCREEN_Y"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_AXIS_SCREEN_Y"
 			}
 		},
 		{
 			"id": "giskard.me/gui.1$AxisUnitPixel",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_AXISUNIT_PIXEL",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_AXISUNIT_PIXEL"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_AXISUNIT_PIXEL"
 			}
 		},
 		{
 			"id": "giskard.me/gui.1$Button",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_BUTTON",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_BUTTON"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_BUTTON"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -47,8 +43,7 @@
 			"id": "giskard.me/gui.1$Card",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_CARD",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_CARD"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_CARD"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -63,8 +58,7 @@
 			"id": "giskard.me/gui.1$Collection",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_COLLECTION",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_COLLECTION"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_COLLECTION"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -79,40 +73,35 @@
 			"id": "giskard.me/gui.1$Container",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_ASP_CONTAINER",
-				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_CONTAINER"
+				"giskard.me/misc.1$key": "TOKEN_GUI_ASP_CONTAINER"
 			}
 		},
 		{
 			"id": "giskard.me/gui.1$ContainerType",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_CONTAINER_TYPE",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_CONTAINER_TYPE"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_CONTAINER_TYPE"
 			}
 		},
 		{
 			"id": "giskard.me/gui.1$Control",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_ASP_CONTROL",
-				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_CONTROL"
+				"giskard.me/misc.1$key": "TOKEN_GUI_ASP_CONTROL"
 			}
 		},
 		{
 			"id": "giskard.me/gui.1$ControlType",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_CONTROL_TYPE",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_CONTROL_TYPE"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_CONTROL_TYPE"
 			}
 		},
 		{
 			"id": "giskard.me/gui.1$Direct",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_DIRECT",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_DIRECT"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_DIRECT"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -127,8 +116,7 @@
 			"id": "giskard.me/gui.1$Grid",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_GRID",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_GRID"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_GRID"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -147,8 +135,7 @@
 			"id": "giskard.me/gui.1$Handle",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_HANDLE",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_HANDLE"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_HANDLE"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -163,8 +150,7 @@
 			"id": "giskard.me/gui.1$Label",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_LABEL",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_LABEL"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_LABEL"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -179,8 +165,7 @@
 			"id": "giskard.me/gui.1$NumberSlider",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_NUMBER_SLIDER",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_NUMBER_SLIDER"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_NUMBER_SLIDER"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -195,8 +180,7 @@
 			"id": "giskard.me/gui.1$NumberSpinner",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_NUMBER_SPINNER",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_NUMBER_SPINNER"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_NUMBER_SPINNER"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -211,8 +195,7 @@
 			"id": "giskard.me/gui.1$NumberText",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_NUMBER_TEXT",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_NUMBER_TEXT"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_NUMBER_TEXT"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -227,8 +210,7 @@
 			"id": "giskard.me/gui.1$OptionCombo",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_OPTION_COMBO",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_OPTION_COMBO"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_OPTION_COMBO"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -243,8 +225,7 @@
 			"id": "giskard.me/gui.1$OptionList",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_OPTION_LIST",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_OPTION_LIST"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_OPTION_LIST"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -259,8 +240,7 @@
 			"id": "giskard.me/gui.1$OptionRadio",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_OPTION_RADIO",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_OPTION_RADIO"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_OPTION_RADIO"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -275,8 +255,7 @@
 			"id": "giskard.me/gui.1$OptionSlider",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_OPTION_SLIDER",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_OPTION_SLIDER"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_OPTION_SLIDER"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -291,8 +270,7 @@
 			"id": "giskard.me/gui.1$OptionToggle",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_OPTION_TOGGLE",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_OPTION_TOGGLE"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_OPTION_TOGGLE"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -307,8 +285,7 @@
 			"id": "giskard.me/gui.1$Progress",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_PROGRESS",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_PROGRESS"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_PROGRESS"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -323,8 +300,7 @@
 			"id": "giskard.me/gui.1$Properties",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_PROPERTIES",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_PROPERTIES"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_PROPERTIES"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -339,8 +315,7 @@
 			"id": "giskard.me/gui.1$Scroll",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_SCROLL",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_SCROLL"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_SCROLL"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -355,8 +330,7 @@
 			"id": "giskard.me/gui.1$Split",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_SPLIT",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_SPLIT"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_SPLIT"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -371,8 +345,7 @@
 			"id": "giskard.me/gui.1$Table",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_TABLE",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_TABLE"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_TABLE"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -387,8 +360,7 @@
 			"id": "giskard.me/gui.1$TextModeFormatted",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_TEXT_FORMATTED",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_TEXT_FORMATTED"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_TEXT_FORMATTED"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -403,8 +375,7 @@
 			"id": "giskard.me/gui.1$TextModeMultiLine",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_TEXT_MULTI_LINE",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_TEXT_MULTI_LINE"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_TEXT_MULTI_LINE"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -419,8 +390,7 @@
 			"id": "giskard.me/gui.1$TextModeSingleLine",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_TAG_TEXT_SINGLE_LINE",
-				"giskard.me/misc.1$name": "TOKEN_GUI_TAG_TEXT_SINGLE_LINE"
+				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_TEXT_SINGLE_LINE"
 			},
 			"relationships": {
 				"giskard.me/misc.1$parent": {
@@ -439,16 +409,14 @@
 			"id": "giskard.me/gui.1$Window",
 			"type": "giskard.me/mind.1$Aspect",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_ASP_WINDOW",
-				"giskard.me/misc.1$name": "TOKEN_GUI_ASP_WINDOW"
+				"giskard.me/misc.1$key": "TOKEN_GUI_ASP_WINDOW"
 			}
 		},
 		{
 			"id": "giskard.me/gui.1$imageResolver",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_ATT_IMAGE_RESOLVER",
-				"giskard.me/misc.1$name": "TOKEN_GUI_ATT_IMAGE_RESOLVER"
+				"giskard.me/misc.1$key": "TOKEN_GUI_ATT_IMAGE_RESOLVER"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -469,8 +437,7 @@
 			"id": "giskard.me/gui.1$layoutConfig",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_ATT_LAYOUT_CONFIG",
-				"giskard.me/misc.1$name": "TOKEN_GUI_ATT_LAYOUT_CONFIG"
+				"giskard.me/misc.1$key": "TOKEN_GUI_ATT_LAYOUT_CONFIG"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -491,8 +458,7 @@
 			"id": "giskard.me/gui.1$lookAndFeel",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_ATT_LOOKANDFEEL",
-				"giskard.me/misc.1$name": "TOKEN_GUI_ATT_LOOKANDFEEL"
+				"giskard.me/misc.1$key": "TOKEN_GUI_ATT_LOOKANDFEEL"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
@@ -513,8 +479,7 @@
 			"id": "giskard.me/gui.1$parentContainer",
 			"type": "giskard.me/mind.1$Attribute",
 			"attributes": {
-				"giskard.me/dev.1$token": "TOKEN_GUI_ATT_PARENT_CONTAINER",
-				"giskard.me/misc.1$name": "TOKEN_GUI_ATT_PARENT_CONTAINER"
+				"giskard.me/misc.1$key": "TOKEN_GUI_ATT_PARENT_CONTAINER"
 			},
 			"relationships": {
 				"giskard.me/mind.1$tags": {
