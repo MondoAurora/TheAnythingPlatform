@@ -15,7 +15,7 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/gui.1$TextModeMultiLine",
+							"id": "giskard.me/gui.1$TextMultiLine",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -35,7 +35,7 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/mind.1$Label",
+							"id": "giskard.me/gui.1$Label",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import gen.handles.giskard_me.DustGenHandles_flow_1;
 import gen.handles.giskard_me.DustGenHandles_misc_1;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.embed.swing.JFXPanel;
@@ -42,26 +43,32 @@ public class DustGuiSwingVideoPlayerAgent extends DustAgent
 			// must be first for some magic in com.sun.javafx.tk.quantum.QuantumToolkit
 			vfxPanel = new JFXPanel();
 
-			viewer = new MediaView();
-
-			// resize video based on screen size
-			DoubleProperty width = viewer.fitWidthProperty();
-			DoubleProperty height = viewer.fitHeightProperty();
-			width.bind(Bindings.selectDouble(viewer.sceneProperty(), "width"));
-			height.bind(Bindings.selectDouble(viewer.sceneProperty(), "height"));
-			viewer.setPreserveRatio(true);
-
-			root = new StackPane();
-			root.getChildren().add(viewer);
-
-			scene = new Scene(root);
-
-			vfxPanel.setScene(scene);
-
-			add(vfxPanel, BorderLayout.CENTER);
-
 			setSize(600, 300);
 			setPreferredSize(getSize());
+
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					viewer = new MediaView();
+
+					// resize video based on screen size
+					DoubleProperty width = viewer.fitWidthProperty();
+					DoubleProperty height = viewer.fitHeightProperty();
+					width.bind(Bindings.selectDouble(viewer.sceneProperty(), "width"));
+					height.bind(Bindings.selectDouble(viewer.sceneProperty(), "height"));
+					viewer.setPreserveRatio(true);
+
+					root = new StackPane();
+					root.getChildren().add(viewer);
+
+					add(vfxPanel, BorderLayout.CENTER);
+
+					scene = new Scene(root);
+					vfxPanel.setScene(scene);
+					
+					test(VideoPanel.this);
+				}
+			});
 		}
 
 		void setMediaUri(URI uri) {
@@ -79,8 +86,7 @@ public class DustGuiSwingVideoPlayerAgent extends DustAgent
 	public void init() throws Exception {
 
 		vp = new VideoPanel();
-//		VideoPanel vp = new VideoPanel();
-		test(vp);
+//		test(vp);
 
 		Dust.access(DustAccess.Set, vp, null, HANDLE_DUST_ATT_CTX_AGT, HANDLE_DUST_ATT_WRAPPEDOBJECT);
 
@@ -93,24 +99,24 @@ public class DustGuiSwingVideoPlayerAgent extends DustAgent
 //		VideoPanel vp = Dust.access(DustAccess.Peek, null, null, HANDLE_DUST_ATT_CTX_AGT, HANDLE_DUST_ATT_WRAPPEDOBJECT);
 		Duration d = null;
 
-		if ( HANDLE_MISC_TAG_CMD_STOP.equals(cmd) ) {
+		if (HANDLE_MISC_TAG_CMD_STOP.equals(cmd)) {
 			vp.player.stop();
 
-		} else if ( HANDLE_FLOW_TAG_CMD_PAUSE.equals(cmd) ) {
+		} else if (HANDLE_FLOW_TAG_CMD_PAUSE.equals(cmd)) {
 			vp.player.pause();
 
-		} else if ( HANDLE_FLOW_TAG_CMD_PLAY.equals(cmd) ) {
+		} else if (HANDLE_FLOW_TAG_CMD_PLAY.equals(cmd)) {
 			vp.player.play();
 
-		} else if ( HANDLE_MISC_TAG_CMD_SKIPBACK.equals(cmd) ) {
+		} else if (HANDLE_MISC_TAG_CMD_SKIPBACK.equals(cmd)) {
 			d = vp.player.getCurrentTime().add(Duration.seconds(-10.0));
-		} else if ( HANDLE_MISC_TAG_CMD_SKIPFORWARD.equals(cmd) ) {
+		} else if (HANDLE_MISC_TAG_CMD_SKIPFORWARD.equals(cmd)) {
 			d = vp.player.getCurrentTime().add(Duration.seconds(10.0));
 		} else {
 			Dust.access(DustAccess.Set, vp, null, HANDLE_DUST_ATT_CTX_MSG, HANDLE_DUST_ATT_WRAPPEDOBJECT);
 		}
 
-		if ( null != d ) {
+		if (null != d) {
 			vp.player.seek(d);
 		}
 

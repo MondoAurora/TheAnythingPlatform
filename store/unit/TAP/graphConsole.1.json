@@ -70,7 +70,7 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/gui.1$TextModeSingleLine",
+							"id": "giskard.me/gui.1$TextSingleLine",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]
@@ -277,7 +277,7 @@
 				"giskard.me/mind.1$tags": {
 					"data": [
 						{
-							"id": "giskard.me/gui.1$TextModeFormatted",
+							"id": "giskard.me/gui.1$TextFormatted",
 							"type": "giskard.me/mind.1$Tag"
 						}
 					]

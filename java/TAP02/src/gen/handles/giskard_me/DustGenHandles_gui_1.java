@@ -3,7 +3,7 @@ package gen.handles.giskard_me;
 import me.giskard.dust.api.Dust;
 import me.giskard.dust.api.DustHandle;
 
-// Generation timestamp 20261125T102603Z
+// Generation timestamp 20261127T092441Z
 
 public interface DustGenHandles_gui_1 {
 // Aspects
@@ -43,7 +43,7 @@ public interface DustGenHandles_gui_1 {
 	DustHandle HANDLE_GUI_TAG_SCROLL = Dust.getHandle("giskard.me/gui.1$Scroll", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_GUI_TAG_SPLIT = Dust.getHandle("giskard.me/gui.1$Split", DustHandle.PLACEHOLDER);
 	DustHandle HANDLE_GUI_TAG_TABLE = Dust.getHandle("giskard.me/gui.1$Table", DustHandle.PLACEHOLDER);
-	DustHandle HANDLE_GUI_TAG_TEXT_FORMATTED = Dust.getHandle("giskard.me/gui.1$TextModeFormatted", DustHandle.PLACEHOLDER);
-	DustHandle HANDLE_GUI_TAG_TEXT_MULTI_LINE = Dust.getHandle("giskard.me/gui.1$TextModeMultiLine", DustHandle.PLACEHOLDER);
-	DustHandle HANDLE_GUI_TAG_TEXT_SINGLE_LINE = Dust.getHandle("giskard.me/gui.1$TextModeSingleLine", DustHandle.PLACEHOLDER);
+	DustHandle HANDLE_GUI_TAG_TEXT_FORMATTED = Dust.getHandle("giskard.me/gui.1$TextFormatted", DustHandle.PLACEHOLDER);
+	DustHandle HANDLE_GUI_TAG_TEXT_MULTI_LINE = Dust.getHandle("giskard.me/gui.1$TextMultiLine", DustHandle.PLACEHOLDER);
+	DustHandle HANDLE_GUI_TAG_TEXT_SINGLE_LINE = Dust.getHandle("giskard.me/gui.1$TextSingleLine", DustHandle.PLACEHOLDER);
 }

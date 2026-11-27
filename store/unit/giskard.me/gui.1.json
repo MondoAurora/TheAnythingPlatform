@@ -357,7 +357,7 @@
 			}
 		},
 		{
-			"id": "giskard.me/gui.1$TextModeFormatted",
+			"id": "giskard.me/gui.1$TextFormatted",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_TEXT_FORMATTED"
@@ -372,7 +372,19 @@
 			}
 		},
 		{
+			"id": "giskard.me/gui.1$TextModeFormatted",
+			"type": "giskard.me/mind.1$Tag"
+		},
+		{
 			"id": "giskard.me/gui.1$TextModeMultiLine",
+			"type": "giskard.me/mind.1$Tag"
+		},
+		{
+			"id": "giskard.me/gui.1$TextModeSingleLine",
+			"type": "giskard.me/mind.1$Tag"
+		},
+		{
+			"id": "giskard.me/gui.1$TextMultiLine",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_TEXT_MULTI_LINE"
@@ -387,7 +399,7 @@
 			}
 		},
 		{
-			"id": "giskard.me/gui.1$TextModeSingleLine",
+			"id": "giskard.me/gui.1$TextSingleLine",
 			"type": "giskard.me/mind.1$Tag",
 			"attributes": {
 				"giskard.me/misc.1$key": "TOKEN_GUI_TAG_TEXT_SINGLE_LINE"
@@ -498,7 +510,7 @@
 		}
 	],
 	"meta": {
-		"count": 37,
+		"count": 40,
 		"unitInfo": {
 			"id": "giskard.me/gui.1",
 			"type": "giskard.me/mind.1$Unit",

@@ -1,6 +1,6 @@
 package gen.tokens.giskard_me;
 
-// Generation timestamp 20261125T102603Z
+// Generation timestamp 20261127T092441Z
 
 public interface DustGenTokens_gui_1 {
 // Aspects
@@ -40,7 +40,7 @@ public interface DustGenTokens_gui_1 {
 	String TOKEN_GUI_TAG_SCROLL = "giskard.me/gui.1$Scroll";
 	String TOKEN_GUI_TAG_SPLIT = "giskard.me/gui.1$Split";
 	String TOKEN_GUI_TAG_TABLE = "giskard.me/gui.1$Table";
-	String TOKEN_GUI_TAG_TEXT_FORMATTED = "giskard.me/gui.1$TextModeFormatted";
-	String TOKEN_GUI_TAG_TEXT_MULTI_LINE = "giskard.me/gui.1$TextModeMultiLine";
-	String TOKEN_GUI_TAG_TEXT_SINGLE_LINE = "giskard.me/gui.1$TextModeSingleLine";
+	String TOKEN_GUI_TAG_TEXT_FORMATTED = "giskard.me/gui.1$TextFormatted";
+	String TOKEN_GUI_TAG_TEXT_MULTI_LINE = "giskard.me/gui.1$TextMultiLine";
+	String TOKEN_GUI_TAG_TEXT_SINGLE_LINE = "giskard.me/gui.1$TextSingleLine";
 }

@@ -53,10 +53,12 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 
 	WeakHashMap<Object, DustHandle> backRef = new WeakHashMap<Object, DustHandle>();
 
-	DustUtilsFactory<DustHandle, Set<DustHandle>> listeners = new DustUtilsFactory(SORTEDSET_CREATOR, true);
+	Map<DustHandle, String> implClasses = new TreeMap<>();
+
+	DustUtilsFactory<DustHandle, Set<DustHandle>> dataListeners = new DustUtilsFactory(SORTEDSET_CREATOR, true);
 
 	boolean inUpdate = false;
-	
+
 	public DustGuiSwingRendererAgent() {
 		Dust.log(HANDLE_MISC_TAG_LEVEL_INFO, getClass().getName(), "Created");
 	}
@@ -76,12 +78,13 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 	@Override
 	public void init() throws Exception {
 		Dust.manageThread(DustThreadAction.SetAnchor, anchor);
-		
-		Collection<DustHandle> impls = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, null, HANDLE_DUST_ATT_AGENT_IMPLEMENTATION, HANDLE_DUST_ATT_IMPLEMENTATIONS);
-		
-		Map<DustHandle, String> implClasses = new TreeMap<>();
-		for (DustHandle hImpl : impls ) {
-			implClasses.put(Dust.access(DustAccess.Peek, null, hImpl, HANDLE_MISC_ATT_TARGET), Dust.access(DustAccess.Peek, null, hImpl, HANDLE_MISC_ATT_KEY));
+
+		Collection<DustHandle> impls = Dust.access(DustAccess.Peek, Collections.EMPTY_SET, null,
+				HANDLE_DUST_ATT_AGENT_IMPLEMENTATION, HANDLE_DUST_ATT_IMPLEMENTATIONS);
+
+		for (DustHandle hImpl : impls) {
+			implClasses.put(Dust.access(DustAccess.Peek, null, hImpl, HANDLE_MISC_ATT_TARGET),
+					Dust.access(DustAccess.Peek, null, hImpl, HANDLE_MISC_ATT_KEY));
 		}
 
 		Dust.log(HANDLE_MISC_TAG_LEVEL_INFO, implClasses);
@@ -126,49 +129,52 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 			spl.setLeftComponent(compList.get(0));
 			spl.setRightComponent(compList.get(1));
 		} else {
-			container.removeAll();
+//			if (0 == container.getComponentCount()) 
+			{
+				container.removeAll();
 
-			DustHandle hLayout = Dust.access(DustAccess.Peek, null, h, HANDLE_GUI_ATT_LAYOUT_CONFIG, 0);
+				DustHandle hLayout = Dust.access(DustAccess.Peek, null, h, HANDLE_GUI_ATT_LAYOUT_CONFIG, 0);
 
-			if (null != hLayout) {
-				Iterable<DustHandle> lms = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, hLayout,
-						HANDLE_MISC_ATT_MEMBERS);
+				if (null != hLayout) {
+					Iterable<DustHandle> lms = Dust.access(DustAccess.Visit, Collections.EMPTY_LIST, hLayout,
+							HANDLE_MISC_ATT_MEMBERS);
 
-				container.setLayout(new GridBagLayout());
+					container.setLayout(new GridBagLayout());
 
-				GridBagConstraints gbc = new GridBagConstraints();
-				gbc.insets = new Insets(2, 2, 2, 2);
+					GridBagConstraints gbc = new GridBagConstraints();
+					gbc.insets = new Insets(2, 2, 2, 2);
 
-				for (DustHandle hl : lms) {
-					DustHandle hTarget = Dust.access(DustAccess.Peek, null, hl, HANDLE_MISC_ATT_TARGET);
+					for (DustHandle hl : lms) {
+						DustHandle hTarget = Dust.access(DustAccess.Peek, null, hl, HANDLE_MISC_ATT_TARGET);
 
-					ArrayList<Long> loc = Dust.access(DustAccess.Peek, null, hl, HANDLE_MISC_ATT_POSITION);
+						ArrayList<Long> loc = Dust.access(DustAccess.Peek, null, hl, HANDLE_MISC_ATT_POSITION);
 
-					gbc.gridx = loc.get(1).intValue() - 1;
-					gbc.gridy = loc.get(0).intValue() - 1;
+						gbc.gridx = loc.get(1).intValue() - 1;
+						gbc.gridy = loc.get(0).intValue() - 1;
 
-					gbc.weighty = Dust.access(DustAccess.Peek, 0.0, hl, HANDLE_LAYOUT_ATT_FILL_WEIGHT, 0);
-					gbc.weightx = Dust.access(DustAccess.Peek, 0.0, hl, HANDLE_LAYOUT_ATT_FILL_WEIGHT, 1);
+						gbc.weighty = Dust.access(DustAccess.Peek, 0.0, hl, HANDLE_LAYOUT_ATT_FILL_WEIGHT, 0);
+						gbc.weightx = Dust.access(DustAccess.Peek, 0.0, hl, HANDLE_LAYOUT_ATT_FILL_WEIGHT, 1);
 
-					gbc.fill = (0.0 == gbc.weighty)
-							? (0.0 == gbc.weightx) ? GridBagConstraints.NONE : GridBagConstraints.HORIZONTAL
-							: (0.0 == gbc.weightx) ? GridBagConstraints.VERTICAL : GridBagConstraints.BOTH;
+						gbc.fill = (0.0 == gbc.weighty)
+								? (0.0 == gbc.weightx) ? GridBagConstraints.NONE : GridBagConstraints.HORIZONTAL
+								: (0.0 == gbc.weightx) ? GridBagConstraints.VERTICAL : GridBagConstraints.BOTH;
 
-					if (GridBagConstraints.NONE != gbc.fill) {
-						Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "Expansion", gbc);
+						if (GridBagConstraints.NONE != gbc.fill) {
+							Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "Expansion", gbc);
+						}
+
+						JComponent comp = comps.get(hTarget);
+						container.add(comp, gbc);
 					}
-
-					JComponent comp = comps.get(hTarget);
-					container.add(comp, gbc);
-				}
-			} else {
-				if (1 == members.size()) {
-					container.setLayout(new BorderLayout());
-					container.add(comps.get(members.iterator().next()), BorderLayout.CENTER);
 				} else {
-					container.setLayout(new FlowLayout(FlowLayout.CENTER));
-					for (DustHandle hm : members) {
-						container.add(comps.get(hm));
+					if (1 == members.size()) {
+						container.setLayout(new BorderLayout());
+						container.add(comps.get(members.iterator().next()), BorderLayout.CENTER);
+					} else {
+						container.setLayout(new FlowLayout(FlowLayout.CENTER));
+						for (DustHandle hm : members) {
+							container.add(comps.get(hm));
+						}
 					}
 				}
 			}
@@ -200,8 +206,8 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 
 					try {
 						inUpdate = true;
-						for (DustHandle hData : listeners.keys()) {
-							for (DustHandle hCtrl : listeners.get(hData)) {
+						for (DustHandle hData : dataListeners.keys()) {
+							for (DustHandle hCtrl : dataListeners.get(hData)) {
 								if (h != hCtrl) {
 									updateValue(hCtrl, hData);
 								}
@@ -251,7 +257,7 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 
 						try {
 							inUpdate = true;
-							for (DustHandle hCtrl : listeners.get(hData)) {
+							for (DustHandle hCtrl : dataListeners.get(hData)) {
 								if (h != hCtrl) {
 									updateValue(hCtrl, hData);
 								}
@@ -278,7 +284,7 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 			DustHandle hData = DustUtilsData.findRec(h, HANDLE_MISC_ATT_DATA, HANDLE_GUI_ATT_PARENT_CONTAINER);
 
 			if (null != hData) {
-				listeners.get(hData).add(h);
+				dataListeners.get(hData).add(h);
 			}
 
 			ret = createWrapped(h, type, hData);
@@ -307,8 +313,9 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 
 	public Object createWrapped(DustHandle h, DustHandle type, DustHandle hData) {
 		Object ret = null;
-		
+
 		String className = null;
+		DustHandle typeTag = null;
 
 		if (HANDLE_GUI_ASP_WINDOW.equals(type)) {
 			JFrame frm = new JFrame();
@@ -322,14 +329,13 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 
 		} else if (HANDLE_GUI_ASP_CONTAINER.equals(type)) {
 
-			DustHandle containerType = Dust.access(DustAccess.Peek, null, h, HANDLE_MIND_ATT_TAGS,
-					HANDLE_GUI_TAG_CONTAINER_TYPE);
+			typeTag = Dust.access(DustAccess.Peek, null, h, HANDLE_MIND_ATT_TAGS, HANDLE_GUI_TAG_CONTAINER_TYPE);
 
 			Container cont;
-			if (HANDLE_GUI_TAG_SCROLL.equals(containerType)) {
+			if (HANDLE_GUI_TAG_SCROLL.equals(typeTag)) {
 				JScrollPane scp = new JScrollPane();
 				cont = scp;
-			} else if (HANDLE_GUI_TAG_SPLIT.equals(containerType)) {
+			} else if (HANDLE_GUI_TAG_SPLIT.equals(typeTag)) {
 				JSplitPane spl = new JSplitPane();
 				cont = spl;
 			} else {
@@ -342,19 +348,18 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 			ret = cont;
 		} else if (HANDLE_GUI_ASP_CONTROL.equals(type)) {
 
-			DustHandle ctrlType = Dust.access(DustAccess.Peek, null, h, HANDLE_MIND_ATT_TAGS, HANDLE_GUI_TAG_CONTROL_TYPE);
-			
+			typeTag = Dust.access(DustAccess.Peek, null, h, HANDLE_MIND_ATT_TAGS, HANDLE_GUI_TAG_CONTROL_TYPE);
 
 			JTextComponent tf = null;
 
-			if (HANDLE_GUI_TAG_LABEL.equals(ctrlType)) {
+			if (HANDLE_GUI_TAG_LABEL.equals(typeTag)) {
 
 				String txt = getValue(h, hData);
 
 				JLabel lbl = new JLabel(txt);
 				ret = lbl;
 
-			} else if (HANDLE_GUI_TAG_BUTTON.equals(ctrlType)) {
+			} else if (HANDLE_GUI_TAG_BUTTON.equals(typeTag)) {
 				String txt = Dust.access(DustAccess.Peek, null, h, HANDLE_DEV_ATT_DEVTEXT);
 
 				if (DustUtils.isEmpty(txt)) {
@@ -367,13 +372,13 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 
 				ret = btn;
 
-			} else if (HANDLE_GUI_TAG_TEXT_SINGLE_LINE.equals(ctrlType)) {
+			} else if (HANDLE_GUI_TAG_TEXT_SINGLE_LINE.equals(typeTag)) {
 
 				tf = new JTextField();
 
-			} else if (HANDLE_GUI_TAG_TEXT_MULTI_LINE.equals(ctrlType)) {
+			} else if (HANDLE_GUI_TAG_TEXT_MULTI_LINE.equals(typeTag)) {
 				tf = new JTextArea();
-			} else if (HANDLE_GUI_TAG_TEXT_FORMATTED.equals(ctrlType)) {
+			} else if (HANDLE_GUI_TAG_TEXT_FORMATTED.equals(typeTag)) {
 				tf = new JEditorPane();
 			}
 
@@ -394,6 +399,10 @@ public class DustGuiSwingRendererAgent extends DustAgent implements DustGuiSwing
 			ret = Dust.access(DustAccess.Peek, null, h, HANDLE_DUST_ATT_WRAPPEDOBJECT);
 		} else {
 			ret = new JLabel("No twin creation for type " + type);
+		}
+
+		if (null == ret) {
+			Dust.log(HANDLE_MISC_TAG_LEVEL_TRACE, "No twin for ", h);
 		}
 
 		return ret;

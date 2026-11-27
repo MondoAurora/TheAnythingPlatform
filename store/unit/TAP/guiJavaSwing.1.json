@@ -37,7 +37,43 @@
 				"giskard.me/dust.1$implementations": {
 					"data": [
 						{
+							"id": "TAP/guiJavaSwing.1$SwingButton",
+							"type": "giskard.me/dust.1$Implementation"
+						},
+						{
+							"id": "TAP/guiJavaSwing.1$SwingContainer",
+							"type": "giskard.me/dust.1$Implementation"
+						},
+						{
+							"id": "TAP/guiJavaSwing.1$SwingControlPlaceholder",
+							"type": "giskard.me/dust.1$Implementation"
+						},
+						{
+							"id": "TAP/guiJavaSwing.1$SwingFrame",
+							"type": "giskard.me/dust.1$Implementation"
+						},
+						{
 							"id": "TAP/guiJavaSwing.1$SwingLabel",
+							"type": "giskard.me/dust.1$Implementation"
+						},
+						{
+							"id": "TAP/guiJavaSwing.1$SwingScroll",
+							"type": "giskard.me/dust.1$Implementation"
+						},
+						{
+							"id": "TAP/guiJavaSwing.1$SwingSplit",
+							"type": "giskard.me/dust.1$Implementation"
+						},
+						{
+							"id": "TAP/guiJavaSwing.1$SwingTextFormatted",
+							"type": "giskard.me/dust.1$Implementation"
+						},
+						{
+							"id": "TAP/guiJavaSwing.1$SwingTextMultiLine",
+							"type": "giskard.me/dust.1$Implementation"
+						},
+						{
+							"id": "TAP/guiJavaSwing.1$SwingTextSingleLine",
 							"type": "giskard.me/dust.1$Implementation"
 						}
 					]
@@ -92,6 +128,66 @@
 			}
 		},
 		{
+			"id": "TAP/guiJavaSwing.1$SwingButton",
+			"type": "giskard.me/dust.1$Implementation",
+			"attributes": {
+				"giskard.me/misc.1$key": "javax.swing.JButton"
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/gui.1$Button",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			}
+		},
+		{
+			"id": "TAP/guiJavaSwing.1$SwingContainer",
+			"type": "giskard.me/dust.1$Implementation",
+			"attributes": {
+				"giskard.me/misc.1$key": "javax.swing.JPanel"
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/gui.1$Container",
+						"type": "giskard.me/mind.1$Aspect"
+					}
+				}
+			}
+		},
+		{
+			"id": "TAP/guiJavaSwing.1$SwingControlPlaceholder",
+			"type": "giskard.me/dust.1$Implementation",
+			"attributes": {
+				"giskard.me/misc.1$key": "javax.swing.JLabel"
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/gui.1$Control",
+						"type": "giskard.me/mind.1$Aspect"
+					}
+				}
+			}
+		},
+		{
+			"id": "TAP/guiJavaSwing.1$SwingFrame",
+			"type": "giskard.me/dust.1$Implementation",
+			"attributes": {
+				"giskard.me/misc.1$key": "javax.swing.JFrame"
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/gui.1$Window",
+						"type": "giskard.me/mind.1$Aspect"
+					}
+				}
+			}
+		},
+		{
 			"id": "TAP/guiJavaSwing.1$SwingLabel",
 			"type": "giskard.me/dust.1$Implementation",
 			"attributes": {
@@ -101,6 +197,81 @@
 				"giskard.me/misc.1$target": {
 					"data": {
 						"id": "giskard.me/gui.1$Label",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			}
+		},
+		{
+			"id": "TAP/guiJavaSwing.1$SwingScroll",
+			"type": "giskard.me/dust.1$Implementation",
+			"attributes": {
+				"giskard.me/misc.1$key": "javax.swing.JScrollPane"
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/gui.1$Scroll",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			}
+		},
+		{
+			"id": "TAP/guiJavaSwing.1$SwingSplit",
+			"type": "giskard.me/dust.1$Implementation",
+			"attributes": {
+				"giskard.me/misc.1$key": "javax.swing.JSplitPane"
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/gui.1$Split",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			}
+		},
+		{
+			"id": "TAP/guiJavaSwing.1$SwingTextFormatted",
+			"type": "giskard.me/dust.1$Implementation",
+			"attributes": {
+				"giskard.me/misc.1$key": "javax.swing.JEditorPane"
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/gui.1$TextModeFormatted",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			}
+		},
+		{
+			"id": "TAP/guiJavaSwing.1$SwingTextMultiLine",
+			"type": "giskard.me/dust.1$Implementation",
+			"attributes": {
+				"giskard.me/misc.1$key": "javax.swing.JTextArea"
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/gui.1$TextModeMultiLine",
+						"type": "giskard.me/mind.1$Tag"
+					}
+				}
+			}
+		},
+		{
+			"id": "TAP/guiJavaSwing.1$SwingTextSingleLine",
+			"type": "giskard.me/dust.1$Implementation",
+			"attributes": {
+				"giskard.me/misc.1$key": "javax.swing.JTextField"
+			},
+			"relationships": {
+				"giskard.me/misc.1$target": {
+					"data": {
+						"id": "giskard.me/gui.1$TextModeSingleLine",
 						"type": "giskard.me/mind.1$Tag"
 					}
 				}
@@ -122,7 +293,7 @@
 		}
 	],
 	"meta": {
-		"count": 6,
+		"count": 15,
 		"unitInfo": {
 			"id": "TAP/guiJavaSwing.1",
 			"type": "giskard.me/mind.1$Unit",
